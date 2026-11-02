@@ -1,0 +1,17 @@
+id: T-010
+title: Upgrade CI actions to Node 24 releases, pinned by SHA (from T-005 review)
+phase: '11'
+owner: claude
+status: in_progress
+depends_on:
+- T-005
+blocker: null
+acceptance:
+- id: T-010-A1
+  criterion: checkout v5.1.0 and setup-python v6.3.0 pinned by commit SHA; their action.yml declares node24
+  check: review of workflow + raw action.yml
+- id: T-010-A2
+  criterion: CI green with no Node 20 deprecation warning
+  check: GitHub Actions job log
+results: []
+reviews: []

@@ -8,18 +8,23 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #17** - 2026-11-02 04:42 UTC
-- **Commit:** bu kaydı içeren commit = `3e152a7` commit'inin hemen ardından gelen commit
+- **Checkpoint #18** - 2026-11-02 04:59 UTC
+- **Commit:** bu kaydı içeren commit = `75e34a6` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** chore(kartal-s-twin): record T-001 and T-005 results (CI green: 68/68 on GitHub Actions)
-- **Testler:** PASS - Ran 68 tests in 41.263s; ## result: validate=0 unittest=0
+- **Başlık:** review(kartal-s-twin): record ChatGPT reviews - T-001 and T-005 accepted by cross-review
+- **Testler:** PASS - Ran 68 tests in 41.486s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
     M	kartal-s-twin/HANDOFF.md
     M	kartal-s-twin/TASKS.md
+    M	kartal-s-twin/agents/REVIEW_REQUEST_T-002.md
     M	kartal-s-twin/persistence/checkpoint.json
     M	kartal-s-twin/tasks/T-001.yaml
+    M	kartal-s-twin/tasks/T-002.yaml
     M	kartal-s-twin/tasks/T-005.yaml
+    A	kartal-s-twin/tasks/T-010.yaml
+    A	kartal-s-twin/tasks/T-011.yaml
+    A	kartal-s-twin/tasks/T-012.yaml
     M	kartal-s-twin/test-results/latest.txt
 ```
 <!-- AUTO-CHECKPOINT:END -->
@@ -45,6 +50,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 15 | ChatGPT incelemeleri kaydedildi: T-001, T-005 ACCEPTED (çapraz onay, fa2f8cd); T-002 Claude incelemesiyle ACCEPTED; yeni görevler T-010 (Node 24 CI), T-011, T-012 | TAMAM | (otomatik kayda bakın) |
 | 14 | T-005 CI: GitHub Actions 68/68 başarılı (run 41389454272 / 41389454020); görev kayıtları güncellendi | TAMAM | (otomatik kayda bakın) |
 | 13 | Kartal Jarvis: T-001 boşluk/girişim modülü (D-018), görev kaydı + çapraz inceleme kuralı (D-019, tasks/, TASKS.md), ROADMAP.md, docs/AUTOMATION_ARCHITECTURE.md, ChatGPT inceleme talebi; 68/68 | TAMAM | (otomatik kayda bakın) |
 

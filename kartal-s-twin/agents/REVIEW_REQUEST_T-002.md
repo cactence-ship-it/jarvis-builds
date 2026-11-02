@@ -26,3 +26,9 @@ Reply with this block (the owner pastes it back, or commit it to `tasks/T-001.ya
   findings:
     - <finding with evidence: calculation, file:line, command output>
 ```
+
+## Raw file links for hash checks (added for T-012)
+STEP files are plain ASCII text (ISO 10303-21), so they can be fetched and hashed directly:
+- https://raw.githubusercontent.com/cactence-ship-it/jarvis-builds/fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf/kartal-s-twin/audit/2026-11-02/SHA256SUMS
+- https://raw.githubusercontent.com/cactence-ship-it/jarvis-builds/fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf/kartal-s-twin/audit/2026-11-02/cad/vehicle_cad.step
+- (same path pattern for cad/WHL-001.step ... WHL-004.step, manifest.json, latest.txt)

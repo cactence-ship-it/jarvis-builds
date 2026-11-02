@@ -1,0 +1,17 @@
+id: T-012
+title: Independent SHA-256 / rebuild verification of the audit snapshot (open item from T-001 review)
+phase: '11'
+owner: chatgpt
+status: open
+depends_on:
+- T-001
+blocker: null
+acceptance:
+- id: T-012-A1
+  criterion: Reviewer recomputes SHA-256 of audit/2026-11-02 files from the raw URLs and matches SHA256SUMS
+  check: sha256sum output
+- id: T-012-A2
+  criterion: 'Optionally: rebuild with Python 3.13 and compare CAD STEP hashes (byte-reproducible per D-016)'
+  check: build output
+results: []
+reviews: []

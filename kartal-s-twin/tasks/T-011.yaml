@@ -1,0 +1,14 @@
+id: T-011
+title: Run the viewer browser smoke test in CI (from T-005 review)
+phase: '11'
+owner: claude
+status: open
+depends_on:
+- T-005
+blocker: null
+acceptance:
+- id: T-011-A1
+  criterion: CI job installs three.js@0.147.0 from npm and runs tools/viewer_smoke/run.sh with 0 console errors
+  check: GitHub Actions job log
+results: []
+reviews: []

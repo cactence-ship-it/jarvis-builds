@@ -2,7 +2,7 @@ id: T-001
 title: Assembly interface and clearance check module (exact B-rep)
 phase: '11'
 owner: claude
-status: submitted
+status: accepted
 depends_on: []
 blocker: null
 acceptance:
@@ -24,7 +24,7 @@ acceptance:
 results:
 - agent: claude
   commit: ad7ffff
-  files:
+  files: &id001
   - src/kartal_twin/interfaces.py
   - specs/clearance_rules.yaml
   - tests/test_interfaces.py
@@ -32,9 +32,32 @@ results:
   tests: '62/62 local at ad7ffff; CI on GitHub (commit 3e152a7, runs 41389454272 and 41389454020): 68/68 passed;
     CL-001 PASS (6 pairs), CL-002 PASS (4 tires)'
   confidence: HIGH
-  known_defects:
+  known_defects: &id002
   - Only definitional rules exist; no packaging clearances (needs evidence)
   - Interference volume is computed only when the distance is 0
   open_questions:
   - Should touching (0 mm) ever be acceptable, e.g. for bolted interfaces? Needs an interface-type field.
-reviews: []
+- agent: claude
+  commit: fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf
+  files: *id001
+  tests: 'Deliverable identical to ad7ffff: `git diff --stat ad7ffff fa2f8cd` over the four T-001 files is empty.
+    CI at fa2f8cd: runs 41389973155 and 41389967732 success.'
+  confidence: HIGH
+  known_defects: *id002
+  open_questions: []
+reviews:
+- reviewer: chatgpt
+  commit: fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf
+  verdict: ACCEPT
+  provenance: Relayed verbatim by the owner in the Claude session on 2026-11-02; Claude cannot see the ChatGPT session
+    itself.
+  findings:
+  - Independently recalculated tire OD 600.6 mm and bead seat 355.6 mm.
+  - Independently recalculated annular envelope volume approximately 32199027 mm3.
+  - 'Recalculated unique tire-envelope clearances: 1211.0, 1152.0, 1889.4 and 2228.40 mm.'
+  - Exact B-rep distance and boolean intersection approach is appropriate for the stated tire non-interference rules.
+  - Missing geometry is explicitly reported as NOT_EVALUATED.
+  - Touching = FAIL is appropriate for CL-001 tire non-interference.
+  - The annulus remains a simplified design envelope, not a physical tire model; keep DRAFT status.
+  - Binary STEP artifact SHA-256 values could not be independently recomputed in this review environment. Manifest
+    verification remains outstanding.
