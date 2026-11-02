@@ -31,6 +31,15 @@ class TaskRegistry(unittest.TestCase):
     def test_independent_review_is_accepted(self):
         self.assertEqual(self._accepted("chatgpt"), [])
 
+    def test_later_changes_request_blocks_acceptance(self):
+        t = copy.deepcopy(self.t)
+        r = t["T-001"]["results"][0]
+        t["T-001"]["status"] = "accepted"
+        t["T-001"]["reviews"] = [
+            {"reviewer": "chatgpt", "commit": r["commit"], "verdict": "ACCEPT", "findings": []},
+            {"reviewer": "chatgpt", "commit": r["commit"], "verdict": "CHANGES_REQUESTED", "findings": ["x"]}]
+        self.assertTrue(any("supersedes" in e for e in tasks.validate(t)))
+
     def test_blocked_requires_named_blocker(self):
         t = copy.deepcopy(self.t)
         t["T-009"]["blocker"] = None

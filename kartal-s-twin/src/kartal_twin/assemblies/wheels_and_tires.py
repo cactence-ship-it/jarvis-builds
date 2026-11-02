@@ -51,13 +51,10 @@ def tire_envelope(t: layout.Tire) -> bd.Solid:
 def cad_wheel_centres(r) -> dict[str, tuple[float, float, float]]:
     """Unloaded design position: wheel centre at the free radius above the ground plane
     (no static deflection - that value has no evidence)."""
-    wb = (r.get("dimensions.wheelbase_lh") + r.get("dimensions.wheelbase_rh")) / 2
     out = {}
-    for axle, x, track in (("F", 0.0, r.get("dimensions.front_track")),
-                           ("R", wb, r.get("dimensions.rear_track"))):
-        t = layout.tire(r, "front" if axle == "F" else "rear")
-        out[axle + "L"] = (x, -track / 2, t.outer_diameter / 2)
-        out[axle + "R"] = (x, track / 2, t.outer_diameter / 2)
+    for key, (x, y) in layout.axle_positions(r).items():
+        t = layout.tire(r, "front" if key[0] == "F" else "rear")
+        out[key] = (x, y, t.outer_diameter / 2)
     return out
 
 

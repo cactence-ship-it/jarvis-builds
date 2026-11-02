@@ -2,7 +2,7 @@ id: T-001
 title: Assembly interface and clearance check module (exact B-rep)
 phase: '11'
 owner: claude
-status: accepted
+status: changes_requested
 depends_on: []
 blocker: null
 acceptance:
@@ -61,3 +61,31 @@ reviews:
   - The annulus remains a simplified design envelope, not a physical tire model; keep DRAFT status.
   - Binary STEP artifact SHA-256 values could not be independently recomputed in this review environment. Manifest
     verification remains outstanding.
+- reviewer: chatgpt
+  commit: fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf
+  verdict: CHANGES_REQUESTED
+  provenance: Relayed verbatim by the owner on 2026-11-02 (second ChatGPT review of the same commit; supersedes
+    the earlier ACCEPT).
+  findings:
+  - 'PASS: Re-derived tire OD = 600.6 mm and bead-seat diameter = 355.6 mm.'
+  - 'PASS: Re-derived annulus volume = 32199027.4097 mm3; the reported 32199027 mm3 is correct to the nearest mm3.'
+  - 'PASS: Re-derived unique clearances = 1211.0, 1152.0, 1889.4 and 2228.4018 mm. The reported 2228.40 mm is correct
+    to two decimals.'
+  - 'PASS WITH SCOPE LIMIT: The annulus is acceptable as a nominal simplified design envelope, but it is not a validated
+    physical tire geometry. It omits tread, shoulder shape, sidewall bulge, actual tire dimensional tolerances and
+    loaded deflection. Do not use it to certify tire-to-body or dynamic suspension clearance.'
+  - 'PASS: Touching = FAIL is consistent with CL-001''s zero-interference definition. It does not establish a positive
+    real-world packaging clearance.'
+  - 'CHANGE REQUIRED: wheels_and_tires.py::cad_wheel_centres averages wheelbase_lh and wheelbase_rh, then assigns
+    the same rear-axle X coordinate to both rear wheels. This silently removes measured left/right wheelbase asymmetry.
+    Use wheelbase_lh for the left rear wheel and wheelbase_rh for the right rear wheel; add a test with unequal
+    values.'
+  - 'EVIDENCE LIMITATION: E-009 through E-011 are reported aggregator/search-summary sources, not primary manufacturer
+    documentation. They may support ESTIMATED values, but confidence should remain LOW where variant applicability
+    or source traceability is weak. The tire size is correctly LOW confidence and must remain unverified until the
+    fitted sidewall is photographed.'
+  - 'EVIDENCE RECOMMENDATION: Reassess MEDIUM confidence for wheelbase and track values because E-009 to E-011 do
+    not provide primary-source confirmation for VEH-01''s exact trim and configuration.'
+  - 'NOT VERIFIED: SHA256SUMS could not be independently checked against the binary STEP files in this review environment.'
+  - 'NOT REPRODUCED: Python 3.13.5 is available, but scripts/setup_env.sh and scripts/run_tests.sh were not executed
+    against a local checkout. CI results are not represented as independently reproduced.'

@@ -77,6 +77,8 @@ def validate(tasks: dict[str, dict]) -> list[str]:
                      for v in t["reviews"] for (a, _) in producers)
             if not ok:
                 e("accepted requires an ACCEPT review of the same commit by a different agent")
+            elif t["reviews"] and t["reviews"][-1]["verdict"] != "ACCEPT":
+                e("accepted but the latest review is " + t["reviews"][-1]["verdict"] + " - a later review supersedes")
     # dependency cycles
     state: dict[str, int] = {}
 

@@ -123,7 +123,7 @@ parameters:
       value: 4396
       unit: mm
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 40
       source: [E-007, E-008, E-009]
       verify_by: Tape on level ground between plumb lines at front and rear extremities
@@ -133,7 +133,7 @@ parameters:
       value: 1642
       unit: mm
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 20
       source: [E-007, E-010]
       verify_by: Plumb lines at the widest body point
@@ -153,7 +153,7 @@ parameters:
       value: 1496
       unit: mm
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 25
       source: [E-007, E-010]
       verify_by: Straight-edge across the roof to the ground
@@ -173,7 +173,7 @@ parameters:
       value: 2490
       unit: mm
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 10
       source: [E-009, E-010]
       verify_by: Hub centre to hub centre, wheels straight ahead
@@ -183,7 +183,7 @@ parameters:
       value: 2490
       unit: mm
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 10
       source: [E-009, E-010]
       verify_by: Hub centre to hub centre, wheels straight ahead
@@ -193,7 +193,7 @@ parameters:
       value: 1386
       unit: mm
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 15
       source: [E-011]
       verify_by: Tread centres at the ground, wheels straight ahead
@@ -203,7 +203,7 @@ parameters:
       value: 1327
       unit: mm
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 15
       source: [E-011]
       verify_by: Tread centres at the ground
@@ -461,7 +461,7 @@ parameters:
       value: 1581
       unit: cm3
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 10
       source: [E-011, E-013]
       verify_by: Ruhsat 'Silindir hacmi' field
@@ -471,7 +471,7 @@ parameters:
       value: 4
       unit: null
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: null
       source: [E-011]
       verify_by: Engine bay photo / documents
@@ -481,7 +481,7 @@ parameters:
       value: inline
       unit: null
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: null
       source: [E-011]
       verify_by: Engine bay photo
@@ -685,7 +685,7 @@ parameters:
       value: front-engine, rear-wheel drive
       unit: null
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: null
       source: [E-009]
       verify_by: 'Underbody photo: propeller shaft and differential housing (U-006)'

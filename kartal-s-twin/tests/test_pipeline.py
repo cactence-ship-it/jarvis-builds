@@ -173,3 +173,28 @@ class Reproducibility(unittest.TestCase):
             self.assertFalse(stale.exists())
             self.assertNotIn("cad/OLD-999.step", r["files"])
             self.assertTrue(all(not k.startswith("delivery") for k in r["files"]))
+
+
+class WheelbaseAsymmetry(unittest.TestCase):
+    """Review finding (ChatGPT, T-001): left/right wheelbases must not be averaged."""
+
+    def _resolver(self, lh, rh, allow=True):
+        base = Resolver()
+        spec = copy.deepcopy(base.spec)
+        for k, v in (("wheelbase_lh", lh), ("wheelbase_rh", rh)):
+            spec["parameters"]["dimensions"][k].update(value=v, status="ESTIMATED", confidence="LOW",
+                                                       tolerance=10, source=["E-009"])
+        return Resolver(spec, base.assumptions, allow_placeholders=allow)
+
+    def test_cad_rear_wheels_use_their_own_side(self):
+        from kartal_twin.assemblies.wheels_and_tires import cad_wheel_centres
+        c = cad_wheel_centres(self._resolver(2480.0, 2500.0, allow=False))
+        self.assertEqual((c["RL"][0], c["RR"][0]), (2480.0, 2500.0))
+        self.assertEqual((c["FL"][0], c["FR"][0]), (0.0, 0.0))
+        self.assertLess(c["RL"][1], 0)
+        self.assertGreater(c["RR"][1], 0)
+
+    def test_visual_rear_wheels_use_their_own_side(self):
+        from kartal_twin import layout
+        c = layout.wheel_centres(self._resolver(2480.0, 2500.0))
+        self.assertEqual((c["RL"][0], c["RR"][0]), (2480.0, 2500.0))

@@ -36,16 +36,21 @@ def tire(r: Resolver, axle: str = "front") -> Tire:
     return Tire(float(m.group(1)), int(m.group(2)) / 100, float(rim))
 
 
+def axle_positions(r: Resolver) -> dict[str, tuple[float, float]]:
+    """(X, Y) of each wheel centre. The rear X differs per side when the measured left and
+    right wheelbases differ - they are never averaged (review T-001, ChatGPT finding)."""
+    tf, tr = r.get("dimensions.front_track"), r.get("dimensions.rear_track")
+    return {"FL": (0.0, -tf / 2), "FR": (0.0, tf / 2),
+            "RL": (r.get("dimensions.wheelbase_lh"), -tr / 2),
+            "RR": (r.get("dimensions.wheelbase_rh"), tr / 2)}
+
+
 def wheel_centres(r: Resolver) -> dict[str, tuple[float, float, float]]:
-    """Centres of the four road wheels: FL, FR, RL, RR (LH = -Y)."""
-    wb = (r.get("dimensions.wheelbase_lh") + r.get("dimensions.wheelbase_rh")) / 2
+    """Visual (loaded) centres of the four road wheels: FL, FR, RL, RR (LH = -Y)."""
     out = {}
-    for axle, x, track in (("F", 0.0, r.get("dimensions.front_track")),
-                           ("R", wb, r.get("dimensions.rear_track"))):
-        t = tire(r, "front" if axle == "F" else "rear")
-        z = t.outer_diameter / 2 - r.get("tire_static_deflection")
-        out[axle + "L"] = (x, -track / 2, z)
-        out[axle + "R"] = (x, track / 2, z)
+    for key, (x, y) in axle_positions(r).items():
+        t = tire(r, "front" if key[0] == "F" else "rear")
+        out[key] = (x, y, t.outer_diameter / 2 - r.get("tire_static_deflection"))
     return out
 
 
