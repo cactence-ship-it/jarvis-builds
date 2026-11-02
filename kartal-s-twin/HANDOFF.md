@@ -8,46 +8,19 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #41** - 2026-11-02 17:53 UTC
-- **Commit:** bu kaydı içeren commit = `04d75a2` commit'inin hemen ardından gelen commit
+- **Checkpoint #42** - 2026-11-02 18:01 UTC
+- **Commit:** bu kaydı içeren commit = `e3fe56e` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** evidence(kartal-s-twin): owner photos E-022..E-028 (hashes only) - LPG tank/multivalve, interior, underbody, engine bay; tire 185/65 R14; 25 VERIFIED; audit r3 (T-022)
-- **Testler:** PASS - Ran 143 tests in 86.947s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): T-022 result recorded at e3fe56e with CI links; review request
+- **Testler:** PASS - Ran 143 tests in 96.076s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/COMPONENT_INVENTORY.md
-    M	kartal-s-twin/EVIDENCE_REGISTER.md
-    M	kartal-s-twin/HANDOFF.md
-    M	kartal-s-twin/PROJECT_STATUS.md
     M	kartal-s-twin/TASKS.md
-    M	kartal-s-twin/UNCERTAINTY_REGISTER.md
-    M	kartal-s-twin/assembly/vehicle_master.yaml
-    A	kartal-s-twin/audit/2026-11-02-r3/SHA256SUMS
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/FUL-005.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-001.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-002.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-003.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-004.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-006.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-007.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-008.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-009.step
-    A	kartal-s-twin/audit/2026-11-02-r3/cad/vehicle_cad.step
-    A	kartal-s-twin/audit/2026-11-02-r3/latest.txt
-    A	kartal-s-twin/audit/2026-11-02-r3/manifest.json
-    M	kartal-s-twin/docs/OLCUM_REHBERI.md
-    M	kartal-s-twin/docs/VERI_SOZLUGU.md
+    A	kartal-s-twin/agents/REVIEW_REQUEST_T-022.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/refs/MANIFEST.csv
-    M	kartal-s-twin/specs/kartal_s_1997.yaml
-    M	kartal-s-twin/specs/placeholder_assumptions.yaml
-    A	kartal-s-twin/tasks/T-022.yaml
+    M	kartal-s-twin/tasks/T-022.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tests/test_configuration_cad.py
-    M	kartal-s-twin/tests/test_inventory.py
-    M	kartal-s-twin/tests/test_spec.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 

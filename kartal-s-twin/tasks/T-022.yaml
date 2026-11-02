@@ -6,7 +6,7 @@ description: Ingest the owner photo sets 2 and 3 (28 photos, originals local-onl
 priority: P1
 phase: '2'
 owner: claude
-status: in_progress
+status: submitted
 depends_on:
 - T-021
 blocker: null
@@ -33,5 +33,35 @@ acceptance:
 - id: T-022-A4
   criterion: Tire envelope OD equals 185/65 R14 arithmetic (596.1 mm); new snapshot reproducible; earlier snapshots unchanged
   check: test_golden_cad, test_pipeline, CI coreutils sha256sum
-results: []
+results:
+- agent: claude
+  commit: e3fe56ed94f0bb3fe8ed18768204cc950437b387
+  round: 1
+  superseded_by: null
+  files:
+  - EVIDENCE_REGISTER.md
+  - refs/MANIFEST.csv
+  - specs/kartal_s_1997.yaml
+  - specs/placeholder_assumptions.yaml
+  - assembly/vehicle_master.yaml
+  - UNCERTAINTY_REGISTER.md
+  - src/kartal_twin/spec.py
+  - tools/twin.py
+  - tests/test_spec.py
+  - tests/test_inventory.py
+  - tests/test_configuration_cad.py
+  - audit/2026-11-02-r3/SHA256SUMS
+  - docs/VERI_SOZLUGU.md
+  - docs/OLCUM_REHBERI.md
+  tests: 'Local: validate all PASS; unittest 143/143 OK (5 new ReceivedEvidenceRefs tests); viewer smoke 36 parts, errors
+    []; ruff 0.15.0 clean; second fresh build reproduces all 10 CAD STEP files; privacy_history_audit 577 blobs, 0 findings;
+    git log --all -p has 0 hits for plate, VIN, name and sticker strings. CI at e3fe56e: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41495432712
+    and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41495441835: success.'
+  confidence: MEDIUM
+  known_defects:
+  - Photos are private; a reviewer cannot re-check the readings, only the owner can
+  - Tire size per axle is assumed from one photographed tire (position not stated)
+  - Rear drum brake and carburettor remain inferences (ESTIMATED)
+  open_questions:
+  - Which wheel carries the photographed 185/65R14 86T tire? Are all four the same?
 reviews: []
