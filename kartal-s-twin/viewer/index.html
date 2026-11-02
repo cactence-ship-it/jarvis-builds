@@ -1,0 +1,229 @@
+<title>Kartal S Dijital İkiz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+/* Layout: one-screen workshop viewer - full-bleed 3D stage, spec-sheet header, bottom control sheet. */
+:root {
+  --bg: #eef0ee; --stage: #e3e6e3; --panel: #fbfbf9; --ink: #1d2124; --muted: #5b6468;
+  --line: #c9cfcc; --accent: #c4501a; --accent-ink: #ffffff;
+  --ph: #b7791f; --draft: #2f6fb0; --ok: #2e7d4f;
+  --f-display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15191b; --stage: #1c2124; --panel: #20262a; --ink: #e7ebe9; --muted: #9aa5a9;
+  --line: #354045; --accent: #ec7a40; --accent-ink: #1a1a1a; --ph: #e0a648; --draft: #6aa6e3; --ok: #5fb985;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15191b; --stage: #1c2124; --panel: #20262a; --ink: #e7ebe9; --muted: #9aa5a9;
+  --line: #354045; --accent: #ec7a40; --accent-ink: #1a1a1a; --ph: #e0a648; --draft: #6aa6e3; --ok: #5fb985;
+  color-scheme: dark }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); display: flex; flex-direction: column; overflow: hidden; }
+header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding-block: 10px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  border-bottom: 1px solid var(--line); background: var(--panel); }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: 1.25rem; letter-spacing: .02em; margin: 0; text-wrap: balance; }
+h1 small { font-weight: 500; color: var(--muted); font-size: .95rem; margin-left: 6px; }
+.chip { font-family: var(--f-data); font-size: .72rem; letter-spacing: .04em; padding: 3px 8px; border-radius: 3px; border: 1px solid currentColor; white-space: nowrap; }
+.chip.ph { color: var(--ph); } .chip.draft { color: var(--draft); } .chip.ok { color: var(--ok); }
+#stage { position: relative; flex: 1; min-height: 0; background: var(--stage); }
+#stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+#msg { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-data); color: var(--muted); text-align: center; padding: 16px; }
+#views { position: absolute; top: 10px; left: max(10px, env(safe-area-inset-left, 0px)); display: flex; gap: 6px; flex-wrap: wrap; max-width: calc(100% - 20px); }
+button, .tog { font: 500 .82rem var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 7px 10px; cursor: pointer; }
+button:hover, .tog:hover { border-color: var(--muted); }
+button:focus-visible, input:focus-visible, .tog:focus-within { outline: 2px solid var(--accent); outline-offset: 1px; }
+button.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+#sheet { background: var(--panel); border-top: 1px solid var(--line); display: grid; gap: 10px; max-height: 46vh; overflow-y: auto;
+  padding-block: 10px 12px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.lbl { font-family: var(--f-display); font-weight: 600; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); min-width: 92px; }
+input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
+#asm { display: flex; flex-wrap: wrap; gap: 6px; }
+.tog { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; }
+.tog input { margin: 0; accent-color: var(--accent); }
+.tog span { font-family: var(--f-data); font-size: .74rem; }
+#info { border: 1px solid var(--line); border-radius: 4px; padding: 10px; min-width: 0; }
+#info h2 { font-family: var(--f-display); font-size: 1.05rem; margin: 0 0 4px; }
+#info dl { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 6px 0 0; font-size: .82rem; }
+#info dt { color: var(--muted); } #info dd { margin: 0; font-family: var(--f-data); font-size: .76rem; overflow-wrap: anywhere; }
+.prov { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.prov .chip { font-size: .66rem; }
+.hint { color: var(--muted); font-size: .8rem; }
+.legend { display: flex; gap: 10px; flex-wrap: wrap; font-size: .78rem; color: var(--muted); }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header>
+  <h1>Tofaş Kartal S 1997 <small>VEH-01 · dijital ikiz</small></h1>
+  <span class="chip ph" id="statusChip">PLACEHOLDER · gerçek kaporta değil</span>
+</header>
+
+<div id="stage">
+  <div id="msg">3D model yükleniyor…</div>
+  <div id="views" role="toolbar" aria-label="Kamera görünümleri">
+    <button id="v-iso" class="on">İzo</button><button id="v-front">Ön</button><button id="v-rear">Arka</button>
+    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button>
+  </div>
+</div>
+
+<section id="sheet" aria-label="Kontroller">
+  <div class="row">
+    <label class="lbl" for="explode">Patlatma</label>
+    <input id="explode" type="range" min="0" max="100" value="0">
+  </div>
+  <div class="row">
+    <span class="lbl">Renk</span>
+    <button id="c-real" class="on">Malzeme</button><button id="c-status">Kanıt durumu</button>
+    <span class="legend" id="legend" hidden>
+      <span><i class="sw" style="background:var(--ph)"></i>PLACEHOLDER</span>
+      <span><i class="sw" style="background:var(--draft)"></i>DRAFT</span>
+      <span><i class="sw" style="background:var(--ok)"></i>VALIDATED</span>
+    </span>
+  </div>
+  <div class="row" style="align-items:flex-start">
+    <span class="lbl">Montajlar</span>
+    <div id="asm"></div>
+  </div>
+  <div id="info"><span class="hint">Bir parçaya dokunun: kimlik, kanıt durumu ve hangi parametrelerin hangi kaynaktan geldiği burada görünür. Döndürmek için sürükleyin, yakınlaştırmak için iki parmakla sıkıştırın.</span></div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function () {
+  const stage = document.getElementById('stage'), msg = document.getElementById('msg');
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const ASM_TR = { BODY_ASSEMBLY: 'Kaporta', GLAZING: 'Camlar', WHEELS_AND_TIRES: 'Tekerlekler',
+    LIGHTING: 'Aydınlatma', EXTERIOR_TRIM: 'Dış trim', INTERIOR: 'İç mekan', ENGINE: 'Motor',
+    TRANSMISSION: 'Şanzıman', DRIVETRAIN: 'Aktarma', CHASSIS: 'Şasi', FRONT_SUSPENSION: 'Ön süsp.',
+    REAR_SUSPENSION: 'Arka süsp.', STEERING: 'Direksiyon', BRAKING: 'Fren', FUEL_SYSTEM: 'Yakıt',
+    EXHAUST: 'Egzoz', ELECTRICAL: 'Elektrik' };
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  stage.prepend(renderer.domElement);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.05, 100);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8f8c, 0.85));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.9); sun.position.set(3, 5, 4); scene.add(sun);
+  const grid = new THREE.GridHelper(8, 16, 0x888888, 0xbbbbbb); grid.material.opacity = 0.35; grid.material.transparent = true; scene.add(grid);
+
+  function resize() {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setSize(w, h, false); camera.aspect = w / Math.max(h, 1); camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(stage); resize();
+  function bgFromTheme() { scene.background = new THREE.Color(css('--stage') || '#e3e6e3'); }
+  bgFromTheme(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', bgFromTheme);
+  new MutationObserver(bgFromTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  let root, centre = new THREE.Vector3(), radius = 3, parts = [], selected = null, statusMode = false;
+
+  function setView(name) {
+    document.querySelectorAll('#views button').forEach(b => b.classList.toggle('on', b.id === 'v-' + name));
+    // Distance that fits the bounding sphere in the narrower of the two fields of view.
+    const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
+    const d = radius * 1.08 / Math.sin(Math.min(vf, hf) / 2), c = centre;
+    const dir = { iso: [.62, .42, .68], front: [0, .12, 1], rear: [0, .12, -1],
+      left: [1, .12, 0], right: [-1, .12, 0], top: [0, 1, 0.001] }[name];
+    const v = new THREE.Vector3(...dir).normalize().multiplyScalar(d);
+    camera.position.set(c.x + v.x, c.y + v.y, c.z + v.z);
+    controls.target.copy(c); controls.update();
+  }
+  ['iso', 'front', 'rear', 'left', 'right', 'top'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
+
+  const statusColor = s => new THREE.Color(css(s === 'VALIDATED' ? '--ok' : s === 'DRAFT' ? '--draft' : '--ph'));
+  function paint() {
+    parts.forEach(p => p.meshes.forEach(m => {
+      m.material = statusMode ? p.statusMat : m.userData.orig;
+      if (m.material.emissive) m.material.emissive.setHex(p === selected ? 0x553311 : 0x000000);
+    }));
+  }
+  document.getElementById('c-real').onclick = e => { statusMode = false; e.target.classList.add('on'); document.getElementById('c-status').classList.remove('on'); document.getElementById('legend').hidden = true; paint(); };
+  document.getElementById('c-status').onclick = e => { statusMode = true; e.target.classList.add('on'); document.getElementById('c-real').classList.remove('on'); document.getElementById('legend').hidden = false; paint(); };
+
+  document.getElementById('explode').oninput = e => {
+    const k = e.target.value / 100 * 0.9;
+    parts.forEach(p => p.node.position.copy(p.home).addScaledVector(p.dir, k));
+  };
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]); }
+  function showInfo(p) {
+    const box = document.getElementById('info');
+    if (!p) { box.innerHTML = '<span class="hint">Seçim yok. Bir parçaya dokunun.</span>'; return; }
+    const u = p.data, prm = u.parameters || {};
+    const chips = Object.entries(prm).map(([k, v]) =>
+      `<span class="chip ${v === 'PLACEHOLDER' ? 'ph' : v === 'VERIFIED' ? 'ok' : 'draft'}" title="${esc(k)}">${esc(k)} · ${esc(v)}</span>`).join('');
+    const nPh = Object.values(prm).filter(v => v === 'PLACEHOLDER').length;
+    box.innerHTML = `<h2>${esc(u.id)} · ${esc(u.name)}</h2>
+      <dl><dt>Montaj</dt><dd>${esc(ASM_TR[u.assembly] || u.assembly)} (${esc(u.assembly)})</dd>
+      <dt>Geometri</dt><dd>${esc(u.geometry_status)} · ${esc(u.representation)}</dd>
+      <dt>Parametre</dt><dd>${Object.keys(prm).length} adet, ${nPh} tanesi varsayım (kanıt değil)</dd>
+      ${u.note ? `<dt>Not</dt><dd>${esc(u.note)}</dd>` : ''}</dl>
+      <div class="prov">${chips}</div>`;
+  }
+
+  const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+  let down = null;
+  renderer.domElement.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; });
+  renderer.domElement.addEventListener('pointerup', e => {
+    if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return;
+    const r = renderer.domElement.getBoundingClientRect();
+    ptr.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
+    ray.setFromCamera(ptr, camera);
+    const hit = ray.intersectObjects(parts.filter(p => p.node.visible).flatMap(p => p.meshes), false)[0];
+    selected = hit ? parts.find(p => p.meshes.includes(hit.object)) : null;
+    showInfo(selected); paint();
+  });
+
+  function onModel(gltf) {
+    root = gltf.scene; scene.add(root);
+    const box = new THREE.Box3().setFromObject(root);
+    box.getCenter(centre); radius = box.getSize(new THREE.Vector3()).length() / 2;
+    grid.position.y = box.min.y + 0.01;
+    const groups = {};
+    root.traverse(o => {
+      if (!o.userData || !o.userData.id) return;
+      const meshes = []; o.traverse(m => { if (m.isMesh) { m.userData.orig = m.material; meshes.push(m); } });
+      const c = new THREE.Box3().setFromObject(o).getCenter(new THREE.Vector3());
+      const dir = c.clone().sub(centre); dir.y = Math.max(dir.y, 0) * 1.4;
+      const p = { node: o, data: o.userData, meshes, home: o.position.clone(), dir,
+        statusMat: new THREE.MeshStandardMaterial({ color: statusColor(o.userData.geometry_status), roughness: .6 }) };
+      parts.push(p); (groups[o.userData.assembly] = groups[o.userData.assembly] || []).push(p);
+    });
+    const asm = document.getElementById('asm');
+    Object.entries(groups).forEach(([name, ps]) => {
+      const id = 'a-' + name.toLowerCase();
+      const l = document.createElement('label'); l.className = 'tog'; l.htmlFor = id;
+      l.innerHTML = `<input type="checkbox" id="${id}" checked> ${esc(ASM_TR[name] || name)} <span>${ps.length}</span>`;
+      l.querySelector('input').onchange = e => ps.forEach(p => { p.node.visible = e.target.checked; });
+      asm.appendChild(l);
+    });
+    const statuses = new Set(parts.map(p => p.data.geometry_status));
+    const chip = document.getElementById('statusChip');
+    if (!statuses.has('PLACEHOLDER')) { chip.className = 'chip draft'; chip.textContent = 'DRAFT · kanıta dayalı taslak'; }
+    msg.hidden = true; setView('iso');
+  }
+  const fail = err => { msg.textContent = 'Model yüklenemedi: ' + (err && err.message || err); };
+  // Packaged builds embed the GLB as base64 (tools/package_viewer.py); otherwise fetch vehicle.glb.
+  const embedded = document.getElementById('glb-data');
+  if (embedded) {
+    const bin = atob(embedded.textContent.trim()), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    new THREE.GLTFLoader().parse(buf.buffer, '', onModel, fail);
+  } else {
+    new THREE.GLTFLoader().load('vehicle.glb', onModel, undefined, fail);
+  }
+
+  (function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+})();
+</script>

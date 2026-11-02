@@ -16,7 +16,8 @@
 |---|---|---|---|
 | 1 | Literatür kanıtları (E-007..E-010) + spec ESTIMATED değerleri | TAMAM | 183c608 |
 | 1b | Test kapısı: checkpoint testler geçmezse commit etmiyor; sonuçlar test-results/latest.txt | TAMAM | 9b76991 |
-| 2 | CAD hattı: Resolver (köken takibi), GLB yazıcı, build/export/doğrulama, 24 PLACEHOLDER parça, önizleme render | TAMAM | (bu commit) |
+| 2 | CAD hattı: Resolver (köken takibi), GLB yazıcı, build/export/doğrulama, 24 PLACEHOLDER parça, önizleme render | TAMAM | e27266d |
+| 3 | Android 3D görüntüleyici (tek dosya, GLB gömülü), headless Chromium testi; yayın: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk | TAMAM | (bu commit) |
 
 ## Bilinen eksikler / engeller
 - Sahip fotoğrafları (9 adet) ve `Kartal_S_Studyo.zip` hâlâ yüklenmedi -> Faz 2 başlayamıyor.

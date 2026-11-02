@@ -1,0 +1,7 @@
+assemblies: Kaporta 1 | Dış trim 5 | Camlar 8 | Aydınlatma 6 | Tekerlekler 4
+info after tap: BDY-001 · Body shell (body-in-white)
+      MontajKaporta (BODY_ASSEMBLY)
+      GeometriPLACEHOLDER · visual
+      Parametre27 adet, 19 tanesi varsayım (kanıt de
+errors: []
+screenshots: /tmp/kartal_viewer_smoke/iso.png /tmp/kartal_viewer_smoke/exploded.png
