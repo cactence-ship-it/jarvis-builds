@@ -29,7 +29,10 @@ def tessellate(shape, tol: float = 0.5, ang: float = 0.3):
             np.add.at(vn, t[:, k], fn)
         ln = np.linalg.norm(vn, axis=1, keepdims=True)
         vn = np.divide(vn, ln, out=np.zeros_like(vn), where=ln > 0)
-        pos.append(v); nrm.append(vn); idx.append(t + off); off += len(v)
+        pos.append(v)
+        nrm.append(vn)
+        idx.append(t + off)
+        off += len(v)
     if not pos:
         return np.zeros((0, 3)), np.zeros((0, 3)), np.zeros((0, 3), np.int64)
     return np.concatenate(pos), np.concatenate(nrm), np.concatenate(idx)

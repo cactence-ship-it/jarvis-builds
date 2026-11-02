@@ -1,0 +1,23 @@
+id: T-017
+title: Lint gate (ruff 0.15.0, E/F/W) in CI and locally
+description: Static checks on src, tools and tests; 11 findings fixed (unused imports, multiple statements per line,
+  lambda assignments).
+priority: P3
+phase: '11'
+owner: claude
+status: in_progress
+depends_on:
+- T-005
+blocker: null
+started_at: '2026-11-02T05:56:16Z'
+finished_at: null
+error: null
+evidence:
+- ruff.toml
+- .github/workflows/kartal-ci.yml
+acceptance:
+- id: T-017-A1
+  criterion: ruff check src tools tests reports no findings locally and in CI
+  check: CI lint step log
+results: []
+reviews: []

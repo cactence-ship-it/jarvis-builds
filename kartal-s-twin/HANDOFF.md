@@ -8,47 +8,29 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #22** - 2026-11-02 05:54 UTC
-- **Commit:** bu kaydı içeren commit = `05c41a5` commit'inin hemen ardından gelen commit
+- **Checkpoint #23** - 2026-11-02 05:57 UTC
+- **Commit:** bu kaydı içeren commit = `6b388a8` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** feat(kartal-s-twin): Phase 0 audit fixes - dimensional consistency rules, CAD golden gate, task schema for n8n
-- **Testler:** PASS - Ran 80 tests in 60.695s; ## result: validate=0 unittest=0
+- **Başlık:** chore(kartal-s-twin): lint fixes (11 findings), ruff config, configurable NODE_PATH for viewer smoke; T-011/T-017 in progress
+- **Testler:** PASS - Ran 80 tests in 53.465s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
-    M	kartal-s-twin/HANDOFF.md
-    M	kartal-s-twin/PROJECT_STATUS.md
     M	kartal-s-twin/TASKS.md
-    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
-    A	kartal-s-twin/specs/consistency_rules.yaml
-    A	kartal-s-twin/src/kartal_twin/consistency.py
+    A	kartal-s-twin/ruff.toml
+    M	kartal-s-twin/src/kartal_twin/gltf_writer.py
+    M	kartal-s-twin/src/kartal_twin/pipeline.py
     M	kartal-s-twin/src/kartal_twin/tasks.py
-    M	kartal-s-twin/tasks/T-001.yaml
-    M	kartal-s-twin/tasks/T-002.yaml
-    M	kartal-s-twin/tasks/T-003.yaml
-    M	kartal-s-twin/tasks/T-004.yaml
-    M	kartal-s-twin/tasks/T-005.yaml
-    M	kartal-s-twin/tasks/T-006.yaml
-    M	kartal-s-twin/tasks/T-007.yaml
-    M	kartal-s-twin/tasks/T-008.yaml
-    M	kartal-s-twin/tasks/T-009.yaml
-    M	kartal-s-twin/tasks/T-010.yaml
     M	kartal-s-twin/tasks/T-011.yaml
-    M	kartal-s-twin/tasks/T-012.yaml
-    A	kartal-s-twin/tasks/T-013.yaml
-    A	kartal-s-twin/tasks/T-014.yaml
-    A	kartal-s-twin/tasks/T-015.yaml
-    A	kartal-s-twin/tasks/T-016.yaml
-    A	kartal-s-twin/tasks/tasks.json
+    A	kartal-s-twin/tasks/T-017.yaml
+    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    A	kartal-s-twin/tests/test_consistency.py
-    A	kartal-s-twin/tests/test_golden_cad.py
-    M	kartal-s-twin/tests/test_tasks.py
+    M	kartal-s-twin/tests/test_inventory.py
+    M	kartal-s-twin/tests/test_photo_scale.py
+    M	kartal-s-twin/tests/test_pipeline.py
     M	kartal-s-twin/tools/measurement_guide.py
-    M	kartal-s-twin/tools/record_measurement.py
-    M	kartal-s-twin/tools/twin.py
+    M	kartal-s-twin/tools/render_preview.py
+    M	kartal-s-twin/tools/viewer_smoke/run.sh
 ```
 <!-- AUTO-CHECKPOINT:END -->
 

@@ -4,11 +4,11 @@ description: Run the viewer browser smoke test in CI.
 priority: P3
 phase: '11'
 owner: claude
-status: open
+status: in_progress
 depends_on:
 - T-005
 blocker: null
-started_at: null
+started_at: '2026-11-02T05:56:16Z'
 finished_at: null
 error: null
 evidence: []

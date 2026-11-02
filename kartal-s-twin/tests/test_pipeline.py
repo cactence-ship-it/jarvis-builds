@@ -150,7 +150,8 @@ class Reproducibility(unittest.TestCase):
         # compared geometrically instead (same solids, same volume).
         # Each build runs in its own process, as an auditor would run it: OCCT numbers
         # assembly-usage records with a per-process counter.
-        import subprocess, sys
+        import subprocess
+        import sys
         from kartal_twin import PROJECT_ROOT
         code = ("import sys; sys.path.insert(0, 'src'); from pathlib import Path; "
                 "from kartal_twin import pipeline; pipeline.run(Path(sys.argv[1]))")

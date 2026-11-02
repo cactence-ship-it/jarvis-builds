@@ -258,11 +258,11 @@
         "CI job installs three.js@0.147.0 from npm and runs tools/viewer_smoke/run.sh with 0 console errors"
       ],
       "owner_agent": "claude",
-      "status": "TODO",
-      "registry_status": "open",
+      "status": "IN_PROGRESS",
+      "registry_status": "in_progress",
       "test_result": null,
       "error": null,
-      "started_at": null,
+      "started_at": "2026-11-02T05:56:16Z",
       "finished_at": null,
       "evidence": [],
       "last_result_commit": null,
@@ -387,6 +387,31 @@
       "finished_at": null,
       "evidence": [
         "tasks/tasks.json"
+      ],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-017",
+      "title": "Lint gate (ruff 0.15.0, E/F/W) in CI and locally",
+      "description": "Static checks on src, tools and tests; 11 findings fixed (unused imports, multiple statements per line, lambda assignments).",
+      "priority": "P3",
+      "depends_on": [
+        "T-005"
+      ],
+      "acceptance_criteria": [
+        "ruff check src tools tests reports no findings locally and in CI"
+      ],
+      "owner_agent": "claude",
+      "status": "IN_PROGRESS",
+      "registry_status": "in_progress",
+      "test_result": null,
+      "error": null,
+      "started_at": "2026-11-02T05:56:16Z",
+      "finished_at": null,
+      "evidence": [
+        "ruff.toml",
+        ".github/workflows/kartal-ci.yml"
       ],
       "last_result_commit": null,
       "last_review": null

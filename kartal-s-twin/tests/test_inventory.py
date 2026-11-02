@@ -26,7 +26,8 @@ class Inventory(unittest.TestCase):
                          inventory.render_markdown(self.m))
 
     def test_measurement_guide_is_up_to_date(self):
-        import subprocess, sys
+        import subprocess
+        import sys
         from kartal_twin import PROJECT_ROOT
         r = subprocess.run([sys.executable, str(PROJECT_ROOT / "tools" / "measurement_guide.py"), "--check"],
                            capture_output=True, text=True)

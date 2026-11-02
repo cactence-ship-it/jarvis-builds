@@ -15,5 +15,5 @@ PORT=$(( 20000 + RANDOM % 20000 ))
 npx --yes http-server site -p "$PORT" -s >/dev/null 2>&1 & srv=$!
 trap 'kill $srv 2>/dev/null || true' EXIT
 sleep 2
-PORT=$PORT NODE_PATH=/opt/node22/lib/node_modules node smoke.js
+PORT=$PORT NODE_PATH="${NODE_PATH:-/opt/node22/lib/node_modules}" node smoke.js
 echo "screenshots: $W/iso.png $W/exploded.png"

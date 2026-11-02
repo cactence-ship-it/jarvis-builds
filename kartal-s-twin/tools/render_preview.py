@@ -40,13 +40,15 @@ def collect():
 def render(tris, cols, view, size=(1200, 760)):
     d, up = VIEWS[view]
     d = d / np.linalg.norm(d)
-    right = np.cross(d, up); right /= np.linalg.norm(right)
+    right = np.cross(d, up)
+    right /= np.linalg.norm(right)
     up2 = np.cross(right, d)
     c = tris.reshape(-1, 3).mean(0)
     p = tris - c
     sx, sy, depth = p @ right, p @ up2, p @ d
     n = np.cross(tris[:, 1] - tris[:, 0], tris[:, 2] - tris[:, 0])
-    nl = np.linalg.norm(n, axis=1); n = n / np.where(nl > 0, nl, 1)[:, None]
+    nl = np.linalg.norm(n, axis=1)
+    n = n / np.where(nl > 0, nl, 1)[:, None]
     facing = (n @ d) < 0
     light = np.array([0.4, 0.7, 0.6]) * -1 + d * -0.3
     light /= np.linalg.norm(light)

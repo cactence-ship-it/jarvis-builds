@@ -14,7 +14,6 @@ import time
 from pathlib import Path
 
 import build123d as bd
-import numpy as np
 
 from . import PROJECT_ROOT
 from . import export_check as xc

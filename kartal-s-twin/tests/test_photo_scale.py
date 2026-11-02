@@ -3,7 +3,6 @@ import importlib.util
 import math
 import unittest
 
-import numpy as np
 
 from kartal_twin import PROJECT_ROOT
 

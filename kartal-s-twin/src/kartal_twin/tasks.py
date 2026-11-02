@@ -44,7 +44,8 @@ def load_tasks(d: Path = TASKS_DIR) -> dict[str, dict]:
 def validate(tasks: dict[str, dict]) -> list[str]:
     errs = []
     for tid, t in tasks.items():
-        e = lambda m, tid=tid: errs.append(f"{tid}: {m}")
+        def e(m, tid=tid):
+            errs.append(f"{tid}: {m}")
         missing = [f for f in FIELDS if f not in t]
         if missing:
             e(f"missing fields {missing}")

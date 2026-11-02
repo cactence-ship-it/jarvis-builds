@@ -87,7 +87,8 @@ def render() -> str:
     spec = load_spec()
     params = dict(iter_parameters(spec))
     asm = load_assumptions()
-    st = lambda pid: params[pid]["status"] + (f" ({params[pid]['value']})" if params[pid]["value"] is not None else "")
+    def st(pid):
+        return params[pid]["status"] + (f" ({params[pid]['value']})" if params[pid]["value"] is not None else "")
     lines = [
         "# Ölçüm ve Kanıt Rehberi - Kartal S (VEH-01)",
         "",
