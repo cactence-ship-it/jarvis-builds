@@ -2,6 +2,12 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.3.1] - 2026-11-02 - Delivery and legacy-archive analysis
+
+### Added
+- `scripts/package_delivery.sh`: build, render and package STEP/STL/GLB, per-assembly GLBs, previews, viewer, manifest and the measurement guide into one ZIP (sent to the owner).
+- `tools/analyze_legacy.py`: read-only analysis of the legacy archive (three.js JSON, glTF or generic JSON; procedural vs mesh geometry; embedded-image privacy warning). Tested on synthetic archives, since the real ZIP has not been received.
+
 ## [0.3.0] - 2026-11-02 - Measurement intake
 
 ### Added
