@@ -29,6 +29,10 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0 (node24)
         with:
           python-version: "3.13"
+      - name: Lint (ruff, pinned version, config kartal-s-twin/ruff.toml)
+        run: |
+          python -m pip install --quiet ruff==0.15.0
+          cd kartal-s-twin && ruff check src tools tests
       - name: Set up hash-locked environment
         run: bash kartal-s-twin/scripts/setup_env.sh
       - name: Validate + unit tests (results recorded)
@@ -40,3 +44,33 @@ jobs:
           exit $rc
       - name: Build and re-open all exports
         run: kartal-s-twin/.venv/bin/python kartal-s-twin/tools/twin.py build
+
+  viewer:
+    # T-011: build the GLB, package the single-file viewer and test it in headless Chromium.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09  # v5.1.0 (node24)
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0 (node24)
+        with:
+          python-version: "3.13"
+      - name: Set up hash-locked environment
+        run: bash kartal-s-twin/scripts/setup_env.sh
+      - name: Build and package the viewer
+        run: |
+          kartal-s-twin/.venv/bin/python kartal-s-twin/tools/twin.py build
+          kartal-s-twin/.venv/bin/python kartal-s-twin/tools/package_viewer.py
+      - name: Install test browser (pinned versions)
+        run: |
+          mkdir -p "$RUNNER_TEMP/viewer-node" && cd "$RUNNER_TEMP/viewer-node"
+          npm install --silent --no-audit --no-fund playwright@1.56.1 three@0.147.0
+          npx playwright install --with-deps chromium
+      - name: Browser smoke test
+        env:
+          NODE_PATH: ${{ runner.temp }}/viewer-node/node_modules
+        run: |
+          set -o pipefail
+          bash kartal-s-twin/tools/viewer_smoke/run.sh | tee viewer_smoke.txt
+          grep -q '^errors: \[\]$' viewer_smoke.txt
