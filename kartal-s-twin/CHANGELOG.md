@@ -2,6 +2,14 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.2.1] - 2026-11-02 - Closures as separate components
+
+### Added
+- Hood BDY-003, doors BDY-008..011 and tailgate BDY-012 are cut from the envelope as separate PLACEHOLDER components with 3 mm panel gaps (30 components in total).
+
+### Fixed
+- Viewer smoke test: a stale http-server on a fixed port could serve old files to later runs. The test now uses a random port and its own server process.
+
 ## [0.2.0] - 2026-11-02 - CAD pipeline and first PLACEHOLDER envelope
 
 ### Added

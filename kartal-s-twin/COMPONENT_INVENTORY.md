@@ -5,7 +5,7 @@
 Source of truth: `assembly/vehicle_master.yaml` (revision 0.1.0). Components: **143** in **17** assemblies.
 
 Verification status: VERIFIED 0, ESTIMATED 0, UNKNOWN 143.  
-Geometry with any content (visual / CAD / mechanical): 24 / 0 / 0.
+Geometry with any content (visual / CAD / mechanical): 30 / 0 / 0.
 
 Legend: fitment = CONFIRMED / UNCONFIRMED / ABSENT on this vehicle; `opt` = may not be fitted; geometry states NONE < PLACEHOLDER < LEGACY_IMPORT < DRAFT < VALIDATED.
 
@@ -37,16 +37,16 @@ Body-in-white and closures. Construction type (unibody or not) is UNKNOWN until 
 |---|---|---|---|---|---|---|---|---|
 | BDY-001 | Body shell (body-in-white) | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | - | E-003 |
 | BDY-002 | Roof panel | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| BDY-003 | Hood (bonnet) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
+| BDY-003 | Hood (bonnet) | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
 | BDY-004 | Front fender, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
 | BDY-005 | Front fender, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
 | BDY-006 | Rear quarter panel, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
 | BDY-007 | Rear quarter panel, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| BDY-008 | Front door, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| BDY-009 | Front door, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| BDY-010 | Rear door, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| BDY-011 | Rear door, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| BDY-012 | Tailgate | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | E-003 |
+| BDY-008 | Front door, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
+| BDY-009 | Front door, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
+| BDY-010 | Rear door, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
+| BDY-011 | Rear door, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
+| BDY-012 | Tailgate | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | E-003 |
 
 ## EXTERIOR_TRIM
 

@@ -22,3 +22,13 @@ def thick_quad(pts, thickness: float, outward, inset: float = 0.0, gap: float = 
     p = p + n * gap
     face = bd.Face(bd.Wire.make_polygon([bd.Vector(*q) for q in p], close=True))
     return bd.Solid.extrude(face, bd.Vector(*(n * thickness)))
+
+
+def one(shape):
+    """Normalise a boolean result (Shape or ShapeList) to a single Shape."""
+    if isinstance(shape, bd.ShapeList) or isinstance(shape, list):
+        items = list(shape)
+        if not items:
+            raise ValueError("boolean operation produced no geometry")
+        return items[0] if len(items) == 1 else bd.Compound(children=items)
+    return shape

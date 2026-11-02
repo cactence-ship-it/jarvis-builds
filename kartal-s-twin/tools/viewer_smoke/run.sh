@@ -11,8 +11,9 @@ sed -e 's#https://cdn.jsdelivr.net/npm/three@0.147.0/#/node_modules/three/#g' -e
   "$ROOT/build/viewer/kartal_viewer.html" | { echo '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width">'; cat; } > site/index.html
 ln -sfn ../node_modules site/node_modules
 cp "$ROOT/tools/viewer_smoke/smoke.js" .
-npx --yes http-server site -p 8765 -s >/dev/null 2>&1 & srv=$!
+PORT=$(( 20000 + RANDOM % 20000 ))
+npx --yes http-server site -p "$PORT" -s >/dev/null 2>&1 & srv=$!
 trap 'kill $srv 2>/dev/null || true' EXIT
 sleep 2
-NODE_PATH=/opt/node22/lib/node_modules node smoke.js
+PORT=$PORT NODE_PATH=/opt/node22/lib/node_modules node smoke.js
 echo "screenshots: $W/iso.png $W/exploded.png"

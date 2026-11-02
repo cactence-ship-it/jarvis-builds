@@ -2,7 +2,7 @@ const {chromium}=require('playwright');(async()=>{
  const b=await chromium.launch({args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  const p=await b.newPage({viewport:{width:412,height:860},deviceScaleFactor:2});
  const errs=[];p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});p.on('pageerror',e=>errs.push(String(e)));
- await p.goto('http://127.0.0.1:8765/index.html');await p.waitForFunction(()=>document.getElementById('msg').hidden,null,{timeout:30000});
+ await p.goto('http://127.0.0.1:'+(process.env.PORT||8765)+'/index.html');await p.waitForFunction(()=>document.getElementById('msg').hidden,null,{timeout:30000});
  await p.waitForTimeout(800);
  const n=await p.$$eval('#asm .tog',e=>e.map(x=>x.textContent.trim()));console.log('assemblies:',n.join(' | '));
  await p.screenshot({path:'iso.png'});
