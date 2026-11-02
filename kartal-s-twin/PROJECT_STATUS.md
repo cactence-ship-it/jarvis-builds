@@ -9,14 +9,14 @@ Detailed session log and next tasks: [HANDOFF.md](HANDOFF.md). Rules: [CLAUDE.md
 | 0-1 | Environment, persistence, infrastructure | DONE |
 | 2 | Photo and source-data analysis | BLOCKED: photos and legacy ZIP not received |
 | 3 | Dimensional database | IN PROGRESS: literature estimates (17 ESTIMATED) and measurement guide ready; waiting for owner measurements |
-| 4 | Exterior body | PLACEHOLDER envelope: 30 components (body, closures, glazing, lamps, trim, wheels) |
+| 4 | Exterior body | PLACEHOLDER envelope: 35 components (body, closures, glazing, lamps, trim incl. handles and wipers, wheels) |
 | 11 (partial) | Export and validation, Android viewer | DONE for current parts: STEP/STL/GLB re-open checks, viewer published |
 | 5-10, 12 | Interior, powertrain, chassis, suspension, electrical, integration, documentation | NOT STARTED: no evidence |
 
 ## Current numbers
 - Spec: 111 parameters, 0 VERIFIED / 17 ESTIMATED / 94 UNKNOWN. Evidence items: E-001..E-010.
-- Built: 30 of 143 components, all visual PLACEHOLDER. CAD and mechanical representations: none.
-- Tests: 46/46 (`test-results/latest.txt`). Viewer smoke test: `test-results/viewer_smoke.txt`.
+- Built: 35 of 143 components, all visual PLACEHOLDER. CAD and mechanical representations: none.
+- Tests: 48/48 (`test-results/latest.txt`). Viewer smoke test: `test-results/viewer_smoke.txt`.
 - Viewer: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk
 
 ## Owner actions that unblock the most

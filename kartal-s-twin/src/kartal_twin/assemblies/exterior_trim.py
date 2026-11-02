@@ -31,4 +31,16 @@ def build(ctx):
     for cid, s in (("EXT-004", -1), ("EXT-005", 1)):
         y0, y1 = sorted((s * hw, s * (hw + mp)))
         add(cid, box(xm, xm + 90, y0, y1, g.z_belt - 40, g.z_belt + 80), BLACK)
+    # Door handles on each door skin, near the rear edge below the beltline.
+    belt, xb, xc = base.get("body_profile.belt_z"), base.get("body_profile.b_pillar_x"), base.get("body_profile.c_pillar_x")
+    for cid, s, x1 in (("EXT-006", -1, xb), ("EXT-007", 1, xb), ("EXT-008", -1, xc), ("EXT-009", 1, xc)):
+        y0, y1 = sorted((s * (hw - 2), s * (hw + 14)))
+        add(cid, box(x1 - 190, x1 - 80, y0, y1, belt - 95, belt - 65), CHROME, "Handle position not from evidence")
+    # Front wiper blades resting at the windshield base (one component, two blades).
+    r = ctx.resolver()
+    r.absorb(base)
+    xw = g.x_belt_front - 25
+    blades = [(box(xw - 12, xw, ya, yb, g.z_belt, g.z_belt + 14), BLACK)
+              for ya, yb in ((-hw + 160, -60), (40, hw - 260))]
+    ctx.add("EXT-015", ASSEMBLY, blades, r, "Wiper layout not from evidence")
     return ctx.parts

@@ -5,7 +5,7 @@
 Source of truth: `assembly/vehicle_master.yaml` (revision 0.1.0). Components: **143** in **17** assemblies.
 
 Verification status: VERIFIED 0, ESTIMATED 0, UNKNOWN 143.  
-Geometry with any content (visual / CAD / mechanical): 30 / 0 / 0.
+Geometry with any content (visual / CAD / mechanical): 35 / 0 / 0.
 
 Legend: fitment = CONFIRMED / UNCONFIRMED / ABSENT on this vehicle; `opt` = may not be fitted; geometry states NONE < PLACEHOLDER < LEGACY_IMPORT < DRAFT < VALIDATED.
 
@@ -59,16 +59,16 @@ Bolt-on exterior parts. The exhaust outlet is EXH-004 (no duplicates across asse
 | EXT-003 | Radiator grille | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
 | EXT-004 | Exterior mirror, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-008 | - |
 | EXT-005 | Exterior mirror, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-009 | - |
-| EXT-006 | Outer door handle, front LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-008 | - |
-| EXT-007 | Outer door handle, front RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-009 | - |
-| EXT-008 | Outer door handle, rear LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-010 | - |
-| EXT-009 | Outer door handle, rear RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-011 | - |
+| EXT-006 | Outer door handle, front LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-008 | - |
+| EXT-007 | Outer door handle, front RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-009 | - |
+| EXT-008 | Outer door handle, rear LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-010 | - |
+| EXT-009 | Outer door handle, rear RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-011 | - |
 | EXT-010 | Tailgate handle / release | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-012 | - |
 | EXT-011 | Side protective mouldings (set) (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
 | EXT-012 | Roof rail, LH (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-002 | - |
 | EXT-013 | Roof rail, RH (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-002 | - |
 | EXT-014 | Door and tailgate seals (set) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-008, BDY-009, BDY-010, BDY-011, BDY-012 | - |
-| EXT-015 | Front wiper system (arms, blades, linkage, motor) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001, ELE-007 | - |
+| EXT-015 | Front wiper system (arms, blades, linkage, motor) | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001, ELE-007 | - |
 | EXT-016 | Rear (tailgate) wiper (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-012, ELE-007 | - |
 
 ## GLAZING

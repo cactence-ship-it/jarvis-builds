@@ -19,7 +19,8 @@ def wheel(t: layout.Tire):
         pass
     tyre = tyre.cut(bd.Cylinder(ri, w + 2))
     rim = bd.Cylinder(ri, w - 30).cut(bd.Pos(0, 0, w / 2 - 15) * bd.Cylinder(ri - 35, 60))
-    return tyre, rim
+    hub = bd.Pos(0, 0, w / 2 - 40) * bd.Cylinder(ri * 0.38, 30)       # hub cap (placeholder)
+    return tyre, rim.fuse(hub).clean()
 
 
 def build(ctx):

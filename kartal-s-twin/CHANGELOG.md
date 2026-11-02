@@ -2,6 +2,11 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.3.2] - 2026-11-02 - Exterior detail (PLACEHOLDER)
+
+### Added
+- Rounded roof edges, door handles EXT-006..009, front wipers EXT-015 and wheel hub caps. 35 components built; viewer version 3 published.
+
 ## [0.3.1] - 2026-11-02 - Delivery and legacy-archive analysis
 
 ### Added

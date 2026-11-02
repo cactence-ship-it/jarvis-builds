@@ -37,6 +37,10 @@ def body_shell(r) -> bd.Shape:
     top = bd.Pos((g.x_roof_front + g.x_roof_rear) / 2, 0, g.z_roof) * bd.Rectangle(
         g.x_roof_rear - g.x_roof_front, 2 * g.half_roof)
     cabin = bd.loft([bottom.face(), top.face()])
+    try:  # soften the roof edges (cosmetic; skipped if OCC refuses)
+        cabin = cabin.fillet(35, cabin.edges().group_by(bd.Axis.Z)[-1])
+    except Exception:
+        pass
     shell = lower.fuse(cabin).clean()
     arch_r = layout.tire(r).outer_diameter / 2 + r.get("arch_clearance")
     depth = r.get("arch_depth")

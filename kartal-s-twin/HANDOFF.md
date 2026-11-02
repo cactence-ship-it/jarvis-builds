@@ -21,11 +21,12 @@
 | 4 | Kapı/kaput/bagaj kapağı ayrı bileşen (panel boşluklu), 30 parça; smoke test port hatası düzeltildi | TAMAM | 8f0119a |
 | 5 | Ölçüm rehberi docs/OLCUM_REHBERI.md, senkron testi | TAMAM | 04f0f57 |
 | 6 | Ölçüm girişi: tools/record_measurement.py, body_profile spec alanları (15), D-015; 31 ölçü kodu | TAMAM | c2743e3 |
-| 7 | Teslim paketi (scripts/package_delivery.sh, ZIP gönderildi) + eski arşiv analiz aracı (tools/analyze_legacy.py) | TAMAM | (bu commit) |
+| 7 | Teslim paketi (scripts/package_delivery.sh, ZIP gönderildi) + eski arşiv analiz aracı (tools/analyze_legacy.py) | TAMAM | 73de919 |
+| 8 | Dış detay: tavan yuvarlatma, 4 kapı kolu, silecekler, jant göbeği -> 35 parça; görüntüleyici v3 | TAMAM | (bu commit) |
 
 ## Sayılar (son durum)
 - Spec 111 parametre: 0 VERIFIED / 17 ESTIMATED / 94 UNKNOWN. Kanıt: E-001..E-010.
-- 143 bileşenin 30'u modellendi (hepsi görsel PLACEHOLDER). CAD/mekanik temsil yok.
+- 143 bileşenin 35'i modellendi (hepsi görsel PLACEHOLDER). CAD/mekanik temsil yok.
 - Testler: 48/48 geçti -> `test-results/latest.txt`; görüntüleyici tarayıcı testi -> `test-results/viewer_smoke.txt`.
 - Görüntüleyici: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (yeniden yayın: `python tools/package_viewer.py` + aynı dosya yolu ile yayınla).
 
@@ -35,8 +36,8 @@
 2. **Fotoğraf/ZIP gelirse:** `python3 tools/ingest_refs.py <dosyalar>` (public depo: orijinaller git'e girmez),
    her foto için EVIDENCE_REGISTER'a E-0xx satırı, `python3 tools/analyze_legacy.py refs/original/R-xxxx_Kartal_S_Studyo.zip`,
    sonra Faz 2: fotoğraf-bileşen eşlemesi, kaporta profilini fotoğraftan çıkarma (ölçek: dingil mesafesi 2490 ±10).
-3. Kaporta gerçekçiliği (kanıt gelmeden yapılabilecekler, hepsi PLACEHOLDER kalır): tavan/cam kenarı yuvarlatmaları,
-   tampon köşe sarması, jant göbeği detayı, kapı kolları (EXT-006..009), sileceği (EXT-015).
+3. Kaporta gerçekçiliği (kanıt gelmeden, hepsi PLACEHOLDER): tampon köşe sarması, plaka lambası (LGT-009),
+   yan sinyaller (LGT-005/006, takılı olup olmadığı belirsiz), ızgara detayı. (Kollar, silecek, göbek, tavan yuvarlatma YAPILDI.)
 4. İç mekan (Faz 5) için sadece fotoğraf geldikten sonra; motor/şasi/süspansiyon kanıt olmadan MODELLENMEZ (kural).
 5. PR #1 kullanıcı tarafından merge edilmedi; yeni oturum bu branch'ten devam etmeli.
 
