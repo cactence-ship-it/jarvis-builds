@@ -6,7 +6,7 @@ description: Ingest the owner's three registration/emission document photos (ori
 priority: P1
 phase: '3'
 owner: claude
-status: submitted
+status: changes_requested
 depends_on: []
 blocker: null
 started_at: '2026-11-02T06:50:50Z'
@@ -48,4 +48,18 @@ results:
   - Two tests assumed fixed VERIFIED counts (0, 2); rewritten to check the rule instead
   open_questions:
   - Is 'İstiap haddi 04 kişi' passengers excluding the driver (5 seats)? Kept ESTIMATED until an interior photo
-reviews: []
+reviews:
+- reviewer: chatgpt
+  commit: 4284df321e4f248f70ae980eb03118a347b1d8df
+  verdict: CHANGES_REQUESTED
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-3 review of 4284df3).
+  findings:
+  - Model, variant, model year, registered colour, registered net weight and displacement consistent with the document notes
+  - MURAT->Tofaş and 5 seats correctly kept ESTIMATED
+  - Motor gücü and azami yüklü ağırlık correctly left unverified (empty fields)
+  - 'engine.fuel_type value ''petrol base engine'' is not printed on the document: separate it; keep only the registered LPG
+    conversion VERIFIED, make the petrol base-engine reading ESTIMATED or UNKNOWN'
+  - docs/OLCUM_REHBERI.md summary still says 0 VERIFIED / 27 ESTIMATED / 84 UNKNOWN; must match spec 0.6.0
+  - verify_by says 'Yakıt cinsi' but the document field is 'Cinsi'; explain consistently
+  - 'Reviewer could not see the private photos: this verdict covers internal consistency and privacy, not the transcription
+    against the photo'

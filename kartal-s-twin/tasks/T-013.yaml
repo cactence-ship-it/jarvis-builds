@@ -1,15 +1,15 @@
 id: T-013
 title: Dimensional consistency rules between spec parameters
-description: Identities and inequalities every correct measurement set must satisfy (length identity, L/R wheelbase,
-  track fits body, arch clears tire...). Catches unit and code entry errors.
+description: Identities and inequalities every correct measurement set must satisfy (length identity, L/R wheelbase, track
+  fits body, arch clears tire...). Catches unit and code entry errors.
 priority: P1
 phase: '3'
 owner: claude
-status: submitted
+status: accepted
 depends_on: []
 blocker: null
 started_at: '2026-11-02T05:51:12Z'
-finished_at: null
+finished_at: '2026-11-02T07:15:57Z'
 error: null
 evidence:
 - src/kartal_twin/consistency.py
@@ -37,9 +37,9 @@ results:
   - tests/test_consistency.py
   - tools/twin.py
   - tools/record_measurement.py
-  tests: '5 tests: current spec 0 FAIL (DC-003/004/005 PASS, 12 NOT_EVALUATED); cm entry 249 -> DC-003 FAIL; +100
-    mm rear overhang -> DC-001 FAIL; arch 250 mm < tire radius 300.3 -> DC-012 FAIL [commit field corrected from
-    a placeholder text to the real SHA on 2026-11-02]'
+  tests: '5 tests: current spec 0 FAIL (DC-003/004/005 PASS, 12 NOT_EVALUATED); cm entry 249 -> DC-003 FAIL; +100 mm rear
+    overhang -> DC-001 FAIL; arch 250 mm < tire radius 300.3 -> DC-012 FAIL [commit field corrected from a placeholder text
+    to the real SHA on 2026-11-02]'
   confidence: HIGH
   known_defects: &id002
   - Worst-case tolerance stacking is conservative; may pass marginal errors smaller than the combined tolerance
@@ -62,17 +62,16 @@ results:
   - tests/test_consistency.py
   - tools/record_measurement.py
   - ENGINEERING_DECISIONS.md
-  tests: '9 tests: safe clearance PASS (335 > 313.0), overlapping bands INDETERMINATE (305 < 313.0 < 310), definitely
-    insufficient FAIL (255 < 287.6), exact strict ''<'' boundary INDETERMINATE, sum_at_most PASS at 1590<=1590,
-    INDETERMINATE at +1 mm, FAIL at 1611>1610, UNKNOWN NOT_EVALUATED; cm-for-mm and 100 mm typo still FAIL. Current
-    spec: DC-003/004/005 PASS with worst-case margins 4.8/46/105 mm. [commit field corrected from a placeholder
-    text to the real SHA on 2026-11-02]'
+  tests: '9 tests: safe clearance PASS (335 > 313.0), overlapping bands INDETERMINATE (305 < 313.0 < 310), definitely insufficient
+    FAIL (255 < 287.6), exact strict ''<'' boundary INDETERMINATE, sum_at_most PASS at 1590<=1590, INDETERMINATE at +1 mm,
+    FAIL at 1611>1610, UNKNOWN NOT_EVALUATED; cm-for-mm and 100 mm typo still FAIL. Current spec: DC-003/004/005 PASS with
+    worst-case margins 4.8/46/105 mm. [commit field corrected from a placeholder text to the real SHA on 2026-11-02]'
   confidence: HIGH
   known_defects:
   - Rim-diameter tolerance is the only tire-radius uncertainty modelled (tire size string has no tolerance)
   open_questions: []
-  response_to_review: Inequalities now PASS only over the whole uncertainty range; FAIL when violated everywhere;
-    INDETERMINATE otherwise. Identity rules keep overlap = consistent.
+  response_to_review: Inequalities now PASS only over the whole uncertainty range; FAIL when violated everywhere; INDETERMINATE
+    otherwise. Identity rules keep overlap = consistent.
   round: 3
   superseded_by: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
 - agent: claude
@@ -80,8 +79,8 @@ results:
   files:
   - src/kartal_twin/consistency.py
   - tests/test_consistency.py
-  tests: 'Local at 88e1d36: 99/99 suite; test_consistency 13 tests incl. exact 1 % limit -> FAIL (strict), 2475.01
-    -> PASS, 2474 -> FAIL; tolerance band PASS/INDETERMINATE; metre (2.49) and cm (164.2) entries FAIL.'
+  tests: 'Local at 88e1d36: 99/99 suite; test_consistency 13 tests incl. exact 1 % limit -> FAIL (strict), 2475.01 -> PASS,
+    2474 -> FAIL; tolerance band PASS/INDETERMINATE; metre (2.49) and cm (164.2) entries FAIL.'
   confidence: HIGH
   known_defects:
   - Tire-radius uncertainty models only the rim-diameter tolerance
@@ -97,8 +96,8 @@ results:
   tests: 'Deliverable unchanged since 88e1d36; CI log lists all 13 consistency tests ok (incl. test_relative_difference_exact_limit_is_not_pass,
     test_metre_entry_is_caught, test_sum_at_most_boundaries). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
     (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
-    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
-    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884
+    log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
   confidence: HIGH
   known_defects:
   - Tire-radius uncertainty models only the rim-diameter tolerance
@@ -112,11 +111,20 @@ reviews:
   findings:
   - 'Re-assess the inequality checks in consistency.py: less_than and at_most can PASS inside the uncertainty band.'
   - Apply worst-case tolerance, especially for tire radius vs wheel-arch clearance.
-  - PASS only when the condition holds over the whole uncertainty range; otherwise NOT_EVALUATED or an appropriate
-    uncertainty status.
-  - 'Add boundary tests: clearance safe; nominally positive but tolerance bands overlap; definitely insufficient;
-    UNKNOWN parameter; sum_at_most and less_than tolerance limits.'
+  - PASS only when the condition holds over the whole uncertainty range; otherwise NOT_EVALUATED or an appropriate uncertainty
+    status.
+  - 'Add boundary tests: clearance safe; nominally positive but tolerance bands overlap; definitely insufficient; UNKNOWN
+    parameter; sum_at_most and less_than tolerance limits.'
   - Keep the existing cm/mm and 100 mm error tests.
+- reviewer: chatgpt
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  verdict: ACCEPT
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-3 review of bf31d4d).
+  findings:
+  - 'relative_difference_below strict limit reviewed: exactly 1 % FAILs, just below PASSes'
+  - PASS / FAIL / INDETERMINATE distinction on uncertainty intervals present
+  - 13 related tests and CI succeeded
+  - 'Known limitation: tire radius tolerance models only the rim-diameter tolerance'
 round_summary:
 - 'round 1: bbeefcf (superseded)'
 - 'round 2: c665cfb8245cc2c896bf77008b4b0c350ef786b8 (superseded)'

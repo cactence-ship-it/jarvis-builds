@@ -1,11 +1,10 @@
 id: T-018
 title: SHA-256 verification tool for audit snapshots and the reference manifest
-description: kartal_twin.hashes verifies every audit/<date>/SHA256SUMS and refs/MANIFEST.csv; part of validate and
-  CI.
+description: kartal_twin.hashes verifies every audit/<date>/SHA256SUMS and refs/MANIFEST.csv; part of validate and CI.
 priority: P2
 phase: '11'
 owner: claude
-status: submitted
+status: changes_requested
 depends_on:
 - T-015
 blocker: null
@@ -33,8 +32,8 @@ results:
   - tests/test_hashes.py
   - tools/twin.py
   - tests/test_tasks.py
-  tests: 'Local at 88e1d36: 7 hash tests (OK, MISMATCH, MISSING, MALFORMED, UNSAFE_PATH, failures list, project
-    clean); validate ''[PASS] hash integrity''; all recorded SHAs exist in git.'
+  tests: 'Local at 88e1d36: 7 hash tests (OK, MISMATCH, MISSING, MALFORMED, UNSAFE_PATH, failures list, project clean); validate
+    ''[PASS] hash integrity''; all recorded SHAs exist in git.'
   confidence: HIGH
   known_defects:
   - Local-only originals (public repo policy) cannot be verified in CI by design
@@ -46,15 +45,26 @@ results:
   - tests/test_hashes.py
   - src/kartal_twin/tasks.py
   - tests/test_tasks.py
-  tests: 'CI log lists test_modified_file_is_mismatch, test_missing_file_is_missing, test_corrupt_line_is_malformed,
-    test_path_escape_is_rejected, test_intact_snapshot_is_ok, test_failures_lists_only_problems, test_repository_hashes_are_intact:
-    all ok; SHA semantics (D-024): test_short_and_full_sha_are_equivalent, test_invalid_sha_forms_are_rejected,
-    test_every_recorded_commit_resolves_to_exactly_one_commit: ok. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
-    (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
-    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
-    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  tests: 'CI log lists test_modified_file_is_mismatch, test_missing_file_is_missing, test_corrupt_line_is_malformed, test_path_escape_is_rejected,
+    test_intact_snapshot_is_ok, test_failures_lists_only_problems, test_repository_hashes_are_intact: all ok; SHA semantics
+    (D-024): test_short_and_full_sha_are_equivalent, test_invalid_sha_forms_are_rejected, test_every_recorded_commit_resolves_to_exactly_one_commit:
+    ok. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d
+    itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884
+    log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
   confidence: HIGH
   known_defects:
   - Local-only originals cannot be verified in CI by design (D-012)
   open_questions: []
-reviews: []
+reviews:
+- reviewer: chatgpt
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  verdict: CHANGES_REQUESTED
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-3 review of bf31d4d).
+  findings:
+  - verify_manifest returns an empty list when refs/MANIFEST.csv is missing, so failures() reports nothing and validate can
+    pass the integrity check by mistake
+  - verify_project raises no missing-snapshot error when no audit/<date>/SHA256SUMS exists
+  - Negative tests needed for a missing manifest and a missing audit snapshot
+  - Validation must fail when expected integrity files are absent, not return a clean result
+  - Hash checks of existing files and CI are fine; the request is limited to missing-file scenarios

@@ -258,15 +258,15 @@
         "CI job installs three.js@0.147.0 from npm and runs tools/viewer_smoke/run.sh with 0 console errors"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
+      "status": "PASS",
+      "registry_status": "accepted",
       "test_result": "Deliverable unchanged since 88e1d36 (viewer job success in both runs). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
       "error": null,
       "started_at": "2026-11-02T05:56:16Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T07:15:57Z",
       "evidence": [],
       "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
-      "last_review": "chatgpt:CHANGES_REQUESTED"
+      "last_review": "chatgpt:ACCEPT"
     },
     {
       "task_id": "T-012",
@@ -281,17 +281,17 @@
         "Optionally: rebuild with Python 3.13 and compare CAD STEP hashes (byte-reproducible per D-016)"
       ],
       "owner_agent": "chatgpt",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
+      "status": "PASS",
+      "registry_status": "accepted",
       "test_result": "Environment-independent check (NOT agent-independent): CI step runs coreutils 'sha256sum -c' (not the project's Python code) on audit/2026-11-02: WHL-001..004.step, vehicle_cad.step, manifest.json, latest.txt all OK; test_fresh_build_reproduces_snapshot_cad ok on the GitHub runner (CAD STEP rebuilt from source equals the snapshot byte for byte). Agent independence still requires ChatGPT's own verdict. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
       "error": null,
       "started_at": "2026-11-02T06:30:16Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T07:15:57Z",
       "evidence": [
         "audit/2026-11-02/SHA256SUMS"
       ],
       "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
-      "last_review": null
+      "last_review": "chatgpt:ACCEPT"
     },
     {
       "task_id": "T-013",
@@ -306,19 +306,19 @@
         "A FAIL blocks validation and therefore every checkpoint commit"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
+      "status": "PASS",
+      "registry_status": "accepted",
       "test_result": "Deliverable unchanged since 88e1d36; CI log lists all 13 consistency tests ok (incl. test_relative_difference_exact_limit_is_not_pass, test_metre_entry_is_caught, test_sum_at_most_boundaries). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
       "error": null,
       "started_at": "2026-11-02T05:51:12Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T07:15:57Z",
       "evidence": [
         "src/kartal_twin/consistency.py",
         "specs/consistency_rules.yaml",
         "tests/test_consistency.py"
       ],
       "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
-      "last_review": "chatgpt:CHANGES_REQUESTED"
+      "last_review": "chatgpt:ACCEPT"
     },
     {
       "task_id": "T-014",
@@ -430,8 +430,8 @@
         "Every SHA recorded in tasks/*.yaml exists in git history (CI uses full history)"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
+      "status": "FAILED",
+      "registry_status": "changes_requested",
       "test_result": "CI log lists test_modified_file_is_mismatch, test_missing_file_is_missing, test_corrupt_line_is_malformed, test_path_escape_is_rejected, test_intact_snapshot_is_ok, test_failures_lists_only_problems, test_repository_hashes_are_intact: all ok; SHA semantics (D-024): test_short_and_full_sha_are_equivalent, test_invalid_sha_forms_are_rejected, test_every_recorded_commit_resolves_to_exactly_one_commit: ok. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
       "error": null,
       "started_at": "2026-11-02T06:21:18Z",
@@ -441,7 +441,7 @@
         "tests/test_hashes.py"
       ],
       "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
-      "last_review": null
+      "last_review": "chatgpt:CHANGES_REQUESTED"
     },
     {
       "task_id": "T-019",
@@ -455,18 +455,18 @@
         "Whole-history audit reports 0 findings and runs in CI"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
+      "status": "PASS",
+      "registry_status": "accepted",
       "test_result": "CI history audit at bf31d4d (pull_request run, merge ref): 'scanned 411 blobs across all refs; findings: 0'. Scope limits recorded in the round-1 provenance (no image pixels, no binary contents, no text > 2 MB, Turkish plate scheme only). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
       "error": null,
       "started_at": "2026-11-02T06:21:18Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T07:15:57Z",
       "evidence": [
         "src/kartal_twin/privacy.py",
         "tools/privacy_history_audit.py"
       ],
       "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
-      "last_review": null
+      "last_review": "chatgpt:ACCEPT"
     },
     {
       "task_id": "T-020",
@@ -480,8 +480,8 @@
         "Interpretations beyond the printed text stay ESTIMATED (make 'MURAT' = Tofaş; 'İstiap haddi 04 kişi' = 5 seats)"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
+      "status": "FAILED",
+      "registry_status": "changes_requested",
       "test_result": "Local: validate 0 FAIL, unittest 101/101 OK; tools/privacy_history_audit.py 438 blobs, 0 findings; git log --all -p has 0 hits for the plate, VIN, engine-number and document-serial strings. CI at 4284df3: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402952218 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402959189, both success.",
       "error": null,
       "started_at": "2026-11-02T06:50:50Z",
@@ -492,7 +492,7 @@
         "specs/kartal_s_1997.yaml"
       ],
       "last_result_commit": "4284df321e4f248f70ae980eb03118a347b1d8df",
-      "last_review": null
+      "last_review": "chatgpt:CHANGES_REQUESTED"
     }
   ]
 }

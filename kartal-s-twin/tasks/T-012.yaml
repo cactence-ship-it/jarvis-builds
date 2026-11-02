@@ -1,16 +1,16 @@
 id: T-012
 title: Independent SHA-256 / rebuild verification of the audit snapshot (open item from T-001 review)
-description: Independent SHA-256 / rebuild check by a SECOND agent (ChatGPT). Claude's own tooling exists (T-018)
-  but cannot count as independent verification.
+description: Independent SHA-256 / rebuild check by a SECOND agent (ChatGPT). Claude's own tooling exists (T-018) but cannot
+  count as independent verification.
 priority: P2
 phase: '11'
 owner: chatgpt
-status: submitted
+status: accepted
 depends_on:
 - T-001
 blocker: null
 started_at: '2026-11-02T06:30:16Z'
-finished_at: null
+finished_at: '2026-11-02T07:15:57Z'
 error: null
 evidence:
 - audit/2026-11-02/SHA256SUMS
@@ -26,16 +26,24 @@ results:
   commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
   files:
   - .github/workflows/kartal-ci.yml
-  tests: 'Environment-independent check (NOT agent-independent): CI step runs coreutils ''sha256sum -c'' (not the
-    project''s Python code) on audit/2026-11-02: WHL-001..004.step, vehicle_cad.step, manifest.json, latest.txt
-    all OK; test_fresh_build_reproduces_snapshot_cad ok on the GitHub runner (CAD STEP rebuilt from source equals
-    the snapshot byte for byte). Agent independence still requires ChatGPT''s own verdict. CI at bf31d4d: push run
-    https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test
-    125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
-    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
-    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  tests: 'Environment-independent check (NOT agent-independent): CI step runs coreutils ''sha256sum -c'' (not the project''s
+    Python code) on audit/2026-11-02: WHL-001..004.step, vehicle_cad.step, manifest.json, latest.txt all OK; test_fresh_build_reproduces_snapshot_cad
+    ok on the GitHub runner (CAD STEP rebuilt from source equals the snapshot byte for byte). Agent independence still requires
+    ChatGPT''s own verdict. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
+    (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884
+    log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
   confidence: HIGH
   known_defects:
   - Claude produced both the snapshot and this check; only a second agent can supply independence
   open_questions: []
-reviews: []
+reviews:
+- reviewer: chatgpt
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  verdict: ACCEPT
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-3 review of bf31d4d).
+  findings:
+  - SHA-256 of the 7 files in audit/2026-11-02/SHA256SUMS computed independently by the reviewer
+  - All 4 wheel STEP files, vehicle_cad.step, manifest.json and latest.txt match the manifest
+  - Mandatory independent hash verification complete
+  - Optional CAD rebuild and byte-reproducibility comparison NOT done by the reviewer (A2 not independently covered)

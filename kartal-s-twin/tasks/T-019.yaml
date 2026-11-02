@@ -1,15 +1,14 @@
 id: T-019
 title: 'Privacy scan: VINs, credentials, private keys; full git-history audit'
-description: Extends the public-repository guard (D-012) beyond plates, e-mails and media; audits every blob ever
-  committed.
+description: Extends the public-repository guard (D-012) beyond plates, e-mails and media; audits every blob ever committed.
 priority: P1
 phase: '11'
 owner: claude
-status: submitted
+status: accepted
 depends_on: []
 blocker: null
 started_at: '2026-11-02T06:21:18Z'
-finished_at: null
+finished_at: '2026-11-02T07:15:57Z'
 error: null
 evidence:
 - src/kartal_twin/privacy.py
@@ -31,12 +30,11 @@ results:
   - src/kartal_twin/privacy.py
   - tools/privacy_history_audit.py
   - tests/test_privacy.py
-  tests: 'Local at 88e1d36: privacy tests pass (4 patterns detected, values not echoed; no false positives on SHAs/IDs);
-    history audit 364 blobs, 0 findings.'
+  tests: 'Local at 88e1d36: privacy tests pass (4 patterns detected, values not echoed; no false positives on SHAs/IDs); history
+    audit 364 blobs, 0 findings.'
   confidence: HIGH
   known_defects:
-  - 'Regex-based: does not read image pixels or binary contents; plate formats outside the Turkish scheme are not
-    covered'
+  - 'Regex-based: does not read image pixels or binary contents; plate formats outside the Turkish scheme are not covered'
   open_questions: []
   provenance:
     local_scan:
@@ -60,14 +58,23 @@ results:
   - src/kartal_twin/privacy.py
   - tools/privacy_history_audit.py
   - tests/test_privacy.py
-  tests: 'CI history audit at bf31d4d (pull_request run, merge ref): ''scanned 411 blobs across all refs; findings:
-    0''. Scope limits recorded in the round-1 provenance (no image pixels, no binary contents, no text > 2 MB, Turkish
-    plate scheme only). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
-    (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
-    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
-    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  tests: 'CI history audit at bf31d4d (pull_request run, merge ref): ''scanned 411 blobs across all refs; findings: 0''. Scope
+    limits recorded in the round-1 provenance (no image pixels, no binary contents, no text > 2 MB, Turkish plate scheme only).
+    CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself;
+    jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884
+    log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
   confidence: HIGH
   known_defects:
   - Regex-based detection only
   open_questions: []
-reviews: []
+reviews:
+- reviewer: chatgpt
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  verdict: ACCEPT
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-3 review of bf31d4d).
+  findings:
+  - History audit reported 411 blobs, 0 findings
+  - Negative tests exist for VIN and access-key patterns; secret values are not echoed
+  - Push and pull_request CI jobs succeeded
+  - 'Scope limits accepted as recorded: binary content, image pixels, text over 2 MB, patterns not covered'

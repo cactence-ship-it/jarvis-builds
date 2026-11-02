@@ -8,16 +8,20 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #33** - 2026-11-02 06:58 UTC
-- **Commit:** bu kaydı içeren commit = `4284df3` commit'inin hemen ardından gelen commit
+- **Checkpoint #34** - 2026-11-02 07:17 UTC
+- **Commit:** bu kaydı içeren commit = `0139acc` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** evidence(kartal-s-twin): T-020 result recorded at 4284df3 with CI links; submitted for cross-review
-- **Testler:** PASS - Ran 101 tests in 58.417s; ## result: validate=0 unittest=0
+- **Başlık:** review(kartal-s-twin): record ChatGPT batch-3 verdicts - ACCEPT T-011/T-012/T-013/T-019, CHANGES_REQUESTED T-018/T-020
+- **Testler:** PASS - Ran 101 tests in 70.441s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
     M	kartal-s-twin/TASKS.md
-    M	kartal-s-twin/agents/REVIEW_REQUEST_BATCH_3.md
     M	kartal-s-twin/persistence/checkpoint.json
+    M	kartal-s-twin/tasks/T-011.yaml
+    M	kartal-s-twin/tasks/T-012.yaml
+    M	kartal-s-twin/tasks/T-013.yaml
+    M	kartal-s-twin/tasks/T-018.yaml
+    M	kartal-s-twin/tasks/T-019.yaml
     M	kartal-s-twin/tasks/T-020.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
