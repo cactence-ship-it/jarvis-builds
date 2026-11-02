@@ -30,8 +30,11 @@ class SpecIntegrity(unittest.TestCase):
 
     # --- negative tests: each fabrication pattern must be caught -------------------------
     def _errors_after(self, **changes):
+        # Start from a clean UNKNOWN record so the test does not depend on current data.
         s = copy.deepcopy(self.spec)
-        s["parameters"]["dimensions"]["wheelbase_lh"].update(changes)
+        rec = s["parameters"]["dimensions"]["wheelbase_lh"]
+        rec.update(value=None, status="UNKNOWN", confidence="NONE", tolerance=None, source=[])
+        rec.update(changes)
         return spec.validate_spec(s, self.ev)
 
     def test_rejects_unknown_with_a_number(self):

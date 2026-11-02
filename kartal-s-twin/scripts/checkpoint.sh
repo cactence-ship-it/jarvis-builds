@@ -20,6 +20,11 @@ if [[ "${1:-}" != "--verify" ]]; then
   MSG="${1:?usage: scripts/checkpoint.sh \"commit message\" | --verify}"
   PY="$ROOT/.venv/bin/python"; [[ -x "$PY" ]] || PY=python3
   "$PY" tools/twin.py validate
+  if [[ -x "$ROOT/.venv/bin/python" ]]; then
+    bash scripts/run_tests.sh || { echo "[checkpoint] tests FAILED - nothing committed" >&2; exit 1; }
+  else
+    echo "[checkpoint] WARNING: .venv missing - unit tests not run (run scripts/setup_env.sh)" >&2
+  fi
   "$PY" - <<'EOF'
 import datetime, json, pathlib, secrets
 p = pathlib.Path("persistence/checkpoint.json")
