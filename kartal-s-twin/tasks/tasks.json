@@ -261,7 +261,7 @@
       "status": "IN_PROGRESS",
       "registry_status": "in_progress",
       "test_result": null,
-      "error": null,
+      "error": "CI viewer job failed at 7147c05 (runs 41396978522, 41396982844): ERR_CONNECTION_REFUSED - npx http-server needed a download on the fresh runner and was not listening after a fixed 2 s sleep. Fix: python3 -m http.server plus readiness polling (max 30 s); passes locally. Attempt 1 of 3.",
       "started_at": "2026-11-02T05:56:16Z",
       "finished_at": null,
       "evidence": [],

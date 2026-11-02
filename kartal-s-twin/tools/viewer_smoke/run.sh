@@ -12,8 +12,14 @@ sed -e 's#https://cdn.jsdelivr.net/npm/three@0.147.0/#/node_modules/three/#g' -e
 ln -sfn ../node_modules site/node_modules
 cp "$ROOT/tools/viewer_smoke/smoke.js" .
 PORT=$(( 20000 + RANDOM % 20000 ))
-npx --yes http-server site -p "$PORT" -s >/dev/null 2>&1 & srv=$!
+# python3's built-in server: nothing to download (npx http-server needed a download on fresh
+# CI runners and was not listening yet after a fixed 2 s sleep -> ERR_CONNECTION_REFUSED).
+python3 -m http.server "$PORT" --bind 127.0.0.1 --directory site >/dev/null 2>&1 & srv=$!
 trap 'kill $srv 2>/dev/null || true' EXIT
-sleep 2
+for _ in $(seq 1 60); do        # wait until the port really answers (max 30 s)
+  curl -sf -o /dev/null "http://127.0.0.1:$PORT/index.html" && break
+  sleep 0.5
+done
+curl -sf -o /dev/null "http://127.0.0.1:$PORT/index.html" || { echo "viewer test server did not start" >&2; exit 1; }
 PORT=$PORT NODE_PATH="${NODE_PATH:-/opt/node22/lib/node_modules}" node smoke.js
 echo "screenshots: $W/iso.png $W/exploded.png"

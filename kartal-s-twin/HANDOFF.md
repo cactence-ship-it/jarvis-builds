@@ -8,28 +8,17 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #23** - 2026-11-02 05:57 UTC
-- **Commit:** bu kaydı içeren commit = `6b388a8` commit'inin hemen ardından gelen commit
+- **Checkpoint #24** - 2026-11-02 06:00 UTC
+- **Commit:** bu kaydı içeren commit = `7147c05` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** chore(kartal-s-twin): lint fixes (11 findings), ruff config, configurable NODE_PATH for viewer smoke; T-011/T-017 in progress
-- **Testler:** PASS - Ran 80 tests in 53.465s; ## result: validate=0 unittest=0
+- **Başlık:** fix(kartal-s-twin): viewer smoke test waits for its server (CI failure on 7147c05)
+- **Testler:** PASS - Ran 80 tests in 54.640s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/TASKS.md
     M	kartal-s-twin/persistence/checkpoint.json
-    A	kartal-s-twin/ruff.toml
-    M	kartal-s-twin/src/kartal_twin/gltf_writer.py
-    M	kartal-s-twin/src/kartal_twin/pipeline.py
-    M	kartal-s-twin/src/kartal_twin/tasks.py
     M	kartal-s-twin/tasks/T-011.yaml
-    A	kartal-s-twin/tasks/T-017.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tests/test_inventory.py
-    M	kartal-s-twin/tests/test_photo_scale.py
-    M	kartal-s-twin/tests/test_pipeline.py
-    M	kartal-s-twin/tools/measurement_guide.py
-    M	kartal-s-twin/tools/render_preview.py
     M	kartal-s-twin/tools/viewer_smoke/run.sh
 ```
 <!-- AUTO-CHECKPOINT:END -->
