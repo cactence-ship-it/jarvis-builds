@@ -97,7 +97,9 @@ class Inventory(unittest.TestCase):
 
     def test_detects_unsupported_confirmation(self):
         def conf(m):
-            m["assemblies"]["BODY_ASSEMBLY"]["components"][0]["fitment"] = "CONFIRMED"
+            c = m["assemblies"]["BODY_ASSEMBLY"]["components"][0]
+            c["fitment"] = "CONFIRMED"
+            c["source_refs"] = ["E-001"]          # owner statement only: no RECEIVED primary evidence
         self.assertTrue(self._mutated(conf))
 
 

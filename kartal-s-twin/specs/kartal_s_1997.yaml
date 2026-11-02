@@ -13,7 +13,7 @@
 # this repository is public (D-012).
 
 schema_version: 1
-revision: "0.7.0"
+revision: "0.8.0"
 last_updated: 2026-11-02
 vehicle_alias: VEH-01   # public alias for the owner's car (real registration withheld)
 
@@ -90,22 +90,22 @@ parameters:
       name: Body style
       value: estate (station wagon) with tailgate
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-001]
+      source: [E-001, E-026]
       verify_by: Side-profile and rear photos
-      notes: Owner lists a tailgate, rear glass and cargo compartment among the photographed views (E-001); confirm from photos (E-003).
+      notes: Estate with a tailgate, seen in the exterior photos (E-026); owner description E-001.
     side_door_count:
       name: Number of side doors (excluding tailgate)
       value: 4
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-001]
+      source: [E-001, E-026]
       verify_by: Side-profile photos
-      notes: Owner's system list names front and rear doors (E-001); confirm from side-profile photos.
+      notes: Four side doors plus tailgate, seen in the exterior photos (E-026).
     exterior_colour:
       name: Exterior colour
       value: Turkuaz yeşil (turquoise green), registered colour name
@@ -379,19 +379,19 @@ parameters:
       status: ESTIMATED
       confidence: MEDIUM
       tolerance: 1
-      source: [E-014, E-015]
+      source: [E-014, E-015, E-024]
       verify_by: Ruhsat 'İstiap haddi' (persons) field plus an interior photo; the documents have no 'Koltuk sayısı' field
-      notes: Documents state 'İstiap haddi' = 04 kişi (persons). Turkish registrations normally count passengers excluding the driver, giving 5 seats; that reading is not printed on the document, so ESTIMATED (tolerance 1 covers the 4-seat reading). Confirm with an interior photo.
+      notes: Documents state 'Istiap haddi' = 04 kisi (persons). Turkish registrations normally count passengers excluding the driver, giving 5 seats; photos show two front seats and a rear bench (E-024), whose seat count cannot be read from a photo. ESTIMATED (tolerance 1).
     steering_side:
       name: Steering side (LHD / RHD)
-      value: null
+      value: left-hand drive (LHD)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-024]
       verify_by: Dashboard photo
-      notes: ''
+      notes: Steering wheel on the left in the interior photos (E-024). The fitted wheel is an aftermarket sport wheel (U-010).
     steering_wheel_diameter:
       name: Steering wheel outer diameter
       value: null
@@ -593,9 +593,9 @@ parameters:
       status: ESTIMATED
       confidence: HIGH
       tolerance: null
-      source: [E-017, E-012, E-013]
+      source: [E-017, E-012, E-013, E-027]
       verify_by: Engine bay photo of the intake
-      notes: 'Owner states a carburettor engine (E-017); literature for the S trim agrees (E-012, E-013). Fuel-injected 1.6 i.e. engines (e.g. 96 hp, E-009) are a DIFFERENT variant: specs/configuration_rules.yaml forbids engine.* values sourced from them while this value is ''carburettor''. Carburettor model/make not known: engine-bay photo.'
+      notes: 'Owner states a carburettor engine (E-017); literature for the S trim agrees (E-012, E-013); the round air cleaner on top of the engine (E-027) is typical of a downdraught carburettor, but the carburettor itself is hidden, so this stays ESTIMATED. Fuel-injected 1.6 i.e. engines (E-009) are a DIFFERENT variant: specs/configuration_rules.yaml forbids engine.* values sourced from them while this value is ''carburettor''.'
     ignition_type:
       name: Ignition system type
       value: null
@@ -608,36 +608,36 @@ parameters:
       notes: ''
     cooling_system_type:
       name: Cooling system type
-      value: null
+      value: liquid-cooled; front radiator with electric fan; separate expansion tank
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-027]
       verify_by: Engine bay photo
-      notes: ''
+      notes: Engine-bay photos (E-027). Radiator cap marked '0.9' (presumably bar); not recorded as a parameter.
     engine_orientation:
       name: Engine orientation (longitudinal / transverse)
-      value: null
+      value: longitudinal
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-027]
       verify_by: Engine bay photo
-      notes: ''
+      notes: Accessory belt drive faces the radiator at the front of the engine bay (E-027); consistent with front-engine rear-wheel drive.
   # ---------------------------------------------------------------- Transmission
   transmission:
     transmission_type:
       name: Transmission type (manual / automatic)
-      value: null
+      value: manual (floor-mounted lever, three pedals)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-024]
       verify_by: Gear lever photo
-      notes: ''
+      notes: Floor gear lever and three pedals in the interior photos (E-024). Number of forward gears not readable (forward_gear_count UNKNOWN).
     forward_gear_count:
       name: Number of forward gears
       value: null
@@ -716,24 +716,24 @@ parameters:
   suspension:
     front_suspension_type:
       name: Front suspension type
-      value: null
+      value: MacPherson strut
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-027]
       verify_by: Wheel-arch photo, wheel turned to full lock
-      notes: ''
+      notes: Strut top mounts on both inner-wing towers in the engine-bay photos (E-027). Lower arm, spring and anti-roll bar details not visible.
     rear_suspension_type:
       name: Rear suspension type
-      value: null
+      value: rigid (live) rear axle
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-025]
       verify_by: Underbody photo behind the rear wheels
-      notes: ''
+      notes: 'Axle tube spanning both rear wheels and a transverse locating rod in the underbody photos (E-025). Spring type (coil or leaf) not visible: rear_spring_type stays UNKNOWN.'
     front_spring_type:
       name: Front spring type
       value: null
@@ -788,14 +788,14 @@ parameters:
       notes: ''
     power_assisted:
       name: Power assisted
-      value: null
+      value: yes (hydraulic, belt-driven pump)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-027]
       verify_by: Engine bay photo (pump, reservoir)
-      notes: ''
+      notes: Belt-driven power-steering pump and a reservoir cap marked for power-steering oil in the engine-bay photos (E-027).
     turns_lock_to_lock:
       name: Steering-wheel turns, lock to lock
       value: null
@@ -830,14 +830,14 @@ parameters:
       notes: ''
     rear_brake_type:
       name: Rear brake type (disc / drum)
-      value: null
+      value: drum
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-025]
       verify_by: Photo through the wheel
-      notes: ''
+      notes: Round brake housing behind the rear wheel in one underbody photo (E-025) is consistent with a drum brake; not certain. Verify with a photo through the wheel or with the wheel off.
     rear_drum_diameter:
       name: Rear drum diameter
       value: null
@@ -872,34 +872,34 @@ parameters:
   wheels_tires:
     tire_size_front:
       name: Front tire size and load/speed index
-      value: 185/70 R14
+      value: 185/65 R14
       unit: null
       status: ESTIMATED
-      confidence: LOW
+      confidence: MEDIUM
       tolerance: null
-      source: [E-018]
+      source: [E-028]
       verify_by: Sidewall photo (also record the DOT date code)
-      notes: 'PROVISIONAL CAD value given by the owner (E-018) - NOT a confirmed factory or fitted size. Sale listings report 175/70 R14 (E-010). Free outer diameter from the designation: 14 x 25.4 + 2 x 0.70 x 185 = 614.6 mm (175/70 R14 would give 600.6 mm). Decide from a sidewall photo.'
+      notes: 'One tire photographed with ''185/65R14 86T'' (E-028); its position is not stated, so this axle is ASSUMED to carry the same size (ESTIMATED). Supersedes the owner''s provisional 185/70 R14 (E-018) and the listing value 175/70 R14 (E-010). Free outer diameter from the designation: 14 x 25.4 + 2 x 0.65 x 185 = 596.1 mm. Photograph all four sidewalls to verify per axle.'
     tire_size_rear:
       name: Rear tire size and load/speed index
-      value: 185/70 R14
+      value: 185/65 R14
       unit: null
       status: ESTIMATED
-      confidence: LOW
+      confidence: MEDIUM
       tolerance: null
-      source: [E-018]
+      source: [E-028]
       verify_by: Sidewall photo
-      notes: 'PROVISIONAL CAD value given by the owner (E-018) - NOT a confirmed factory or fitted size. Sale listings report 175/70 R14 (E-010). Free outer diameter from the designation: 14 x 25.4 + 2 x 0.70 x 185 = 614.6 mm (175/70 R14 would give 600.6 mm). Decide from a sidewall photo.'
+      notes: 'One tire photographed with ''185/65R14 86T'' (E-028); its position is not stated, so this axle is ASSUMED to carry the same size (ESTIMATED). Supersedes the owner''s provisional 185/70 R14 (E-018) and the listing value 175/70 R14 (E-010). Free outer diameter from the designation: 14 x 25.4 + 2 x 0.65 x 185 = 596.1 mm. Photograph all four sidewalls to verify per axle.'
     wheel_rim_diameter:
       name: Rim diameter
       value: 14
       unit: in
-      status: ESTIMATED
+      status: VERIFIED
       confidence: HIGH
       tolerance: 0.5
-      source: [E-017, E-010]
+      source: [E-017, E-010, E-028]
       verify_by: Sidewall marking / rim stamping
-      notes: 'Owner states 14 in black pressed-steel wheels (E-017); listings agree (E-010). Tolerance 0.5 in only separates 14 from 13/15 (rim diameters are whole inches). Verify: rim stamping (e.g. ''5 1/2 J x 14'').'
+      notes: Tire marked R14 on a pressed-steel rim (E-028); owner states 14 in (E-017); listings agree (E-010). Tolerance 0.5 in only separates 14 from 13/15.
     wheel_rim_width:
       name: Rim width
       value: 5.5
@@ -932,14 +932,14 @@ parameters:
       notes: ''
     wheel_fastener_count:
       name: Number of wheel bolts or studs
-      value: null
+      value: 4
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-026]
       verify_by: Wheel photo
-      notes: ''
+      notes: Four wheel nuts on the front wheel in one exterior photo (E-026); other wheels assumed the same. PCD and centre bore not measurable from photos.
     wheel_centre_bore:
       name: Wheel centre bore
       value: null
@@ -954,32 +954,32 @@ parameters:
       name: Wheel material (steel / alloy)
       value: pressed steel
       unit: null
-      status: ESTIMATED
+      status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-017]
+      source: [E-017, E-026, E-028]
       verify_by: Wheel photo
-      notes: Owner states black pressed-steel ('kara sac') wheels (E-017).
+      notes: Pressed-steel wheels with oval vent holes in the photos (E-026, E-028); owner states black pressed steel (E-017).
     spare_wheel_location:
       name: Spare wheel location
-      value: null
+      value: not in the spare-wheel well (the LPG tank occupies it); a wheel stood loose in the luggage compartment in the photos
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-022]
       verify_by: Cargo compartment / underbody photo
-      notes: ''
+      notes: Photos E-022; whether that loose wheel is the designated spare is not stated.
     wheel_colour:
       name: Wheel finish / colour
       value: black (painted)
       unit: null
-      status: ESTIMATED
+      status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-017]
+      source: [E-017, E-026]
       verify_by: Wheel photo
-      notes: Owner states black ('kara') steel wheels (E-017).
+      notes: Dark/black painted steel wheels in the exterior photos (E-026); owner statement E-017.
     wheel_rim_flange_contour:
       name: Rim flange contour letter
       value: J
@@ -1031,27 +1031,27 @@ parameters:
       tolerance: null
       source: []
       verify_by: 'Engine-bay photo: mixer in the air intake vs injector rail'
-      notes: ''
+      notes: No mixer or injector rail visible in the engine-bay photos (E-027); the air cleaner covers the carburettor. A round coolant-heated unit near the bulkhead may be the vaporiser (unconfirmed).
     tank_type:
       name: LPG tank type
-      value: toroidal (ring) tank
+      value: toroidal (ring) tank in the spare-wheel well
       unit: null
-      status: ESTIMATED
+      status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-017]
+      source: [E-017, E-022]
       verify_by: Cargo-area photo and tank label
-      notes: Owner statement (E-017).
+      notes: Seen in the luggage-compartment photos (E-022); owner statement E-017.
     tank_location:
       name: LPG tank location
-      value: luggage compartment (rear)
+      value: spare-wheel well at the rear of the luggage floor, near the tailgate sill; underside protrudes below the floor
       unit: null
-      status: ESTIMATED
+      status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-017]
+      source: [E-017, E-022, E-025]
       verify_by: Cargo-area photo
-      notes: Owner statement (E-017). Exact position is UNKNOWN (tank_centre_x/y, tank_base_z).
+      notes: 'Photos E-022 (top) and E-025 (underbody). Numeric position (tank_centre_x/y, tank_base_z) still UNKNOWN: no scale in the photos.'
     tank_nominal_capacity:
       name: LPG tank nominal capacity
       value: 40
@@ -1091,7 +1091,7 @@ parameters:
       tolerance: 40
       source: [E-019, E-020]
       verify_by: Tape across the central opening
-      notes: 'Engineering assumption (E-019): chosen so the simplified stadium section of a 600 x 180 mm tank gives about 38 L water capacity, the figure listed for that size (E-020). Not measured.'
+      notes: 'Engineering assumption (E-019): chosen so the simplified stadium section of a 600 x 180 mm tank gives about 38 L water capacity, the figure listed for that size (E-020). Top-view photos (E-022) show a central opening containing the multivalve; they have no scale, so the diameter cannot be measured from them. Not measured.'
     tank_wall_thickness:
       name: LPG tank wall thickness
       value: 3.0
@@ -1154,14 +1154,14 @@ parameters:
       notes: ''
     multivalve_orientation:
       name: Multivalve clock position on the tank
-      value: null
+      value: in the central opening, on the inner wall of the tank (ALBIEN multivalve, 12 V solenoid, level gauge)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-022, E-023]
       verify_by: Cargo-area photo
-      notes: ''
+      notes: Photos E-022, E-023. Clock angle not determined.
     filler_location:
       name: LPG filler valve location
       value: null
@@ -1171,17 +1171,27 @@ parameters:
       tolerance: null
       source: []
       verify_by: Exterior photo (bumper / fuel flap / body side)
-      notes: ''
+      notes: 'Not visible on the exterior photos (E-026): no separate LPG filler on either side or the bumper in those views. Ask the owner or photograph under the fuel flap and the rear bumper.'
     tank_mounting:
       name: Tank mounting (frame, straps, bolts)
-      value: null
+      value: bolted through the floor of the spare-wheel well at the tank centre (two brackets in the central opening, two bolt heads visible from below); opening closed by a black cover with two holes
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-022, E-025]
       verify_by: Cargo-area photo; no mounting is modelled
-      notes: ''
+      notes: Photos only show the arrangement; no mounting geometry is modelled and nothing here is installation guidance.
+    tank_marking:
+      name: LPG tank maker and approval marking
+      value: maker ATIKER; approval mark 'E7 67R-01 0049401' (UN Regulation No. 67, 01 series)
+      unit: null
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: null
+      source: [E-022]
+      verify_by: Photo of the tank top
+      notes: Read from the moulded marking on the tank centre (E-022); a type-approval mark, not a vehicle identifier. Capacity/dimension label not visible in the photos (U-013).
   # ---------------------------------------------------------------- Electrical
   electrical:
     system_voltage:

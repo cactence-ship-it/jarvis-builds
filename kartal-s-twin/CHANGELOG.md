@@ -2,6 +2,23 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.11.0] - 2026-11-02 - Owner photo evidence: LPG tank, interior, underbody, engine bay, tire size (T-022)
+
+### Added
+- 28 owner photos ingested as R-0004..R-0031 (originals local-only; SHA-256 in `refs/MANIFEST.csv`; plate, VIN stamping, names and stickers never transcribed): evidence E-022 (luggage compartment / LPG tank), E-023 (multivalve), E-024 (interior), E-025 (rear underbody), E-026 (exterior), E-027 (engine bay), E-028 (tire sidewall).
+- `validate`: a RECEIVED evidence item must cite refs/MANIFEST.csv ids in its Ref column (ranges like `R-0004..R-0007` allowed); 5 tests.
+- Spec 0.8.0 (134 parameters, 25 VERIFIED / 35 ESTIMATED / 74 UNKNOWN): VERIFIED from photos - body style, side doors, LHD, manual gearbox, MacPherson front, rigid rear axle, power steering, cooling system, longitudinal engine, rim 14 in, pressed-steel black wheels with 4 nuts, LPG tank type/location/mounting/multivalve, new `lpg_system.tank_marking` (ATIKER, E7 67R-01 0049401). ESTIMATED: rear drum brakes (MEDIUM), spare-wheel location.
+- Inventory: 32 components CONFIRMED from photos (history appended); FUL-005 and FUL-006 VERIFIED.
+- Audit snapshot `audit/2026-11-02-r3` (tire envelopes now 185/65 R14).
+
+### Changed
+- Tire size 185/70 R14 (owner provisional) -> 185/65 R14 (photo of one tire, ESTIMATED MEDIUM per axle); free OD 614.6 -> 596.1 mm.
+- Visual-only LPG tank placeholder moved towards the tailgate sill (X 3150 mm), per photo E-022.
+- U-010, U-012 (partly resolved), U-013, U-014 updated.
+
+### Fixed
+- Two tests depended on live data (BDY-001 had no photo evidence; unitless counts have no tolerance); they now test the rule.
+
 ## [0.10.0] - 2026-11-02 - Owner configuration, LPG tank and steel-rim CAD (T-021, branch ccr-b5d82c24-config-lpg-wheels)
 
 ### Added

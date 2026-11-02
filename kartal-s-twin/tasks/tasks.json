@@ -529,6 +529,37 @@
       ],
       "last_result_commit": "ffd3f8fe5c04e48f282b872176d31f44c3382c0a",
       "last_review": null
+    },
+    {
+      "task_id": "T-022",
+      "title": "Owner photo evidence: LPG tank, interior, underbody, engine bay and tire size",
+      "description": "Ingest the owner photo sets 2 and 3 (28 photos, originals local-only), register evidence E-022..E-028, update only what the photos show (VERIFIED where directly visible, ESTIMATED where inferred), switch the tire geometry to the photographed 185/65 R14 and refresh the CAD snapshot. Never transcribe plate, VIN stamping, names or stickers.",
+      "priority": "P1",
+      "depends_on": [
+        "T-021"
+      ],
+      "acceptance_criteria": [
+        "Every newly VERIFIED value is directly visible in a cited RECEIVED photo; inferences stay ESTIMATED (tire size per axle, rear drum, spare-wheel location, carburettor)",
+        "No plate, VIN, personal names or stickers in any committed file or history",
+        "RECEIVED evidence must cite manifest ids; enforced by validate and tested",
+        "Tire envelope OD equals 185/65 R14 arithmetic (596.1 mm); new snapshot reproducible; earlier snapshots unchanged"
+      ],
+      "owner_agent": "claude",
+      "status": "IN_PROGRESS",
+      "registry_status": "in_progress",
+      "test_result": null,
+      "error": null,
+      "started_at": "2026-11-02T08:30:00Z",
+      "finished_at": null,
+      "evidence": [
+        "EVIDENCE_REGISTER.md",
+        "refs/MANIFEST.csv",
+        "specs/kartal_s_1997.yaml",
+        "assembly/vehicle_master.yaml",
+        "audit/2026-11-02-r3/SHA256SUMS"
+      ],
+      "last_result_commit": null,
+      "last_review": null
     }
   ]
 }

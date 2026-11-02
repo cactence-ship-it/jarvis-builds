@@ -8,19 +8,46 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #40** - 2026-11-02 11:18 UTC - **WIP: testler geçmemiş olabilir**
-- **Commit:** bu kaydı içeren commit = `af50d75` commit'inin hemen ardından gelen commit
+- **Checkpoint #41** - 2026-11-02 17:53 UTC
+- **Commit:** bu kaydı içeren commit = `04d75a2` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** WIP: wip(kartal-s-twin): photo evidence set 2 ingested (R-0004..R-0023 hashes only), E-022..E-026, RECEIVED refs checked against manifest; paused on owner request
-- **Testler:** PASS - Ran 138 tests in 95.942s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): owner photos E-022..E-028 (hashes only) - LPG tank/multivalve, interior, underbody, engine bay; tire 185/65 R14; 25 VERIFIED; audit r3 (T-022)
+- **Testler:** PASS - Ran 143 tests in 86.947s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
+    M	kartal-s-twin/CHANGELOG.md
+    M	kartal-s-twin/COMPONENT_INVENTORY.md
     M	kartal-s-twin/EVIDENCE_REGISTER.md
+    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/PROJECT_STATUS.md
+    M	kartal-s-twin/TASKS.md
+    M	kartal-s-twin/UNCERTAINTY_REGISTER.md
+    M	kartal-s-twin/assembly/vehicle_master.yaml
+    A	kartal-s-twin/audit/2026-11-02-r3/SHA256SUMS
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/FUL-005.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-001.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-002.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-003.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-004.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-006.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-007.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-008.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/WHL-009.step
+    A	kartal-s-twin/audit/2026-11-02-r3/cad/vehicle_cad.step
+    A	kartal-s-twin/audit/2026-11-02-r3/latest.txt
+    A	kartal-s-twin/audit/2026-11-02-r3/manifest.json
+    M	kartal-s-twin/docs/OLCUM_REHBERI.md
+    M	kartal-s-twin/docs/VERI_SOZLUGU.md
     M	kartal-s-twin/persistence/checkpoint.json
     M	kartal-s-twin/refs/MANIFEST.csv
-    M	kartal-s-twin/src/kartal_twin/spec.py
+    M	kartal-s-twin/specs/kartal_s_1997.yaml
+    M	kartal-s-twin/specs/placeholder_assumptions.yaml
+    A	kartal-s-twin/tasks/T-022.yaml
+    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tools/twin.py
+    M	kartal-s-twin/tests/test_configuration_cad.py
+    M	kartal-s-twin/tests/test_inventory.py
+    M	kartal-s-twin/tests/test_spec.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -45,6 +72,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 26 | Sahip fotoğrafları (28 adet, yalnız yerel; plaka/VIN/isim yazılmadı): LPG tankı ATIKER E7 67R-01 + ALBIEN multivalf, LHD, manuel, MacPherson, rijit arka aks, hidrolik direksiyon, lastik 185/65 R14 (OD 596,1 mm), 25 VERIFIED, audit r3; Gemini devir raporu depoda karşılığı olmadığı için uygulanmadı | TAMAM | (otomatik kayda bakın) |
 | 25 | Araç konfigürasyonu (ayrı dal ccr-b5d82c24-config-lpg-wheels, PR #1 üstüne): veri sınıfları (D-026), karbüratör varyant kuralı, LPG grubu + FUL-005..014, parametrik toroidal tank (yerleştirilmemiş CAD), çelik jant WHL-006..009, geçici 185/70 R14, DC-016..020, CL-003..012, veri sözlüğü, M32-M38, audit 2026-11-02-r2 | TAMAM | (otomatik kayda bakın) |
 | 24 | ChatGPT 3. paket: T-011/T-012/T-013/T-019 ACCEPT (bf31d4d); T-018 eksik bütünlük dosyası artık hata (6 test); T-020 yakıt değeri ayrıldı (engine.base_fuel ESTIMATED), rehber özeti düzeltildi | TAMAM | (otomatik kayda bakın) |
 | 23 | Ruhsat belgeleri birincil kanıt (E-014..E-016, asılları yalnız yerelde): 7 parametre VERIFIED, D-025; plaka/VIN/motor no repoya girmedi | TAMAM | 4284df3 |
@@ -60,7 +88,7 @@
 | 13 | Kartal Jarvis: T-001 boşluk/girişim modülü (D-018), görev kaydı + çapraz inceleme kuralı (D-019, tasks/, TASKS.md), ROADMAP.md, docs/AUTOMATION_ARCHITECTURE.md, ChatGPT inceleme talebi; 68/68 | TAMAM | (otomatik kayda bakın) |
 
 ## Sayılar (son durum)
-- Spec 133 parametre: 7 VERIFIED / 40 ESTIMATED / 86 UNKNOWN (sınıflar: docs/VERI_SOZLUGU.md). Kanıt: E-001..E-021.
+- Spec 134 parametre: 25 VERIFIED / 35 ESTIMATED / 74 UNKNOWN (sınıflar: docs/VERI_SOZLUGU.md). Kanıt: E-001..E-028.
 - 157 bileşen: 36 görsel (PLACEHOLDER), 9 CAD (4 lastik zarfı, 4 çelik jant, 1 LPG tankı yerleştirilmemiş; DRAFT), 0 mekanik.
 - Testler: son sonuç `test-results/latest.txt` (sayı orada; elle yazılmaz); görüntüleyici tarayıcı testi -> `test-results/viewer_smoke.txt`.
 - Görüntüleyici: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (yeniden yayın: `python tools/package_viewer.py` + aynı dosya yolu ile yayınla).

@@ -248,7 +248,8 @@ class NewParametersArePositive(unittest.TestCase):
                     and isinstance(p["value"], (int, float)) and not coordinate:
                 with self.subTest(pid=pid):
                     self.assertGreater(p["value"], 0)
-                    self.assertGreater(p["tolerance"], 0)
+                    if p["unit"] is not None:               # unitless counts carry no tolerance (D-005)
+                        self.assertGreater(p["tolerance"], 0)
 
     def test_resolver_reads_them_without_placeholders(self):
         r = Resolver(allow_placeholders=False)

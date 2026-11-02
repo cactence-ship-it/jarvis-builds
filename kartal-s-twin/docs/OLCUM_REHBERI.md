@@ -60,7 +60,7 @@ Tank ölçüleri şu an **geçici varsayım** (600 x 180 mm). Gerçek ölçü ve
 | M32 | LPG tank outer diameter (`lpg_system.tank_outer_diameter`) | Tankın dış çapı: şerit metreyi tankın üstünden, merkezden geçecek şekilde uçtan uca tutun (veya tank etiketindeki '600x180' gibi değeri yazın). | ESTIMATED (600) |
 | M33 | LPG tank height (`lpg_system.tank_height`) | Tankın yüksekliği: tabandan üst yüzeye dik mesafe (etiketteki ikinci sayı). | ESTIMATED (180) |
 | M34 | LPG tank central opening diameter (`lpg_system.tank_central_opening_diameter`) | Tankın ortasındaki deliğin çapı (varsa). | ESTIMATED (130) |
-| M35 | LPG tank centre X (VCS, rearward from front axle) (`lpg_system.tank_centre_x`) | Ön jant merkezinden tank merkezine yatay mesafe (araç boyunca, yerde çekülle işaretleyerek). | PLACEHOLDER 2950 mm (sadece görsel) |
+| M35 | LPG tank centre X (VCS, rearward from front axle) (`lpg_system.tank_centre_x`) | Ön jant merkezinden tank merkezine yatay mesafe (araç boyunca, yerde çekülle işaretleyerek). | PLACEHOLDER 3150 mm (sadece görsel) |
 | M36 | LPG tank centre Y (VCS, right positive) (`lpg_system.tank_centre_y`) | Aracın orta çizgisinden tank merkezine yanal mesafe (sağa +, sola -). | PLACEHOLDER 0 mm (sadece görsel) |
 | M37 | LPG tank underside height above ground (`lpg_system.tank_base_z`) | Tankın alt yüzeyinin (veya oturduğu stepne yuvası tabanının) yerden yüksekliği; araç altından ölçün. | PLACEHOLDER 350 mm (sadece görsel) |
 | M38 | Cargo width between wheel arches (`body.cargo_width_between_arches`) | Bagajda iki arka çamurluk kemeri arasındaki en dar genişlik. | UNKNOWN |
@@ -97,4 +97,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 133 parametre: 7 VERIFIED, 40 ESTIMATED, 86 UNKNOWN. Varsayım dosyası: 28 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 134 parametre: 25 VERIFIED, 35 ESTIMATED, 74 UNKNOWN. Varsayım dosyası: 28 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.

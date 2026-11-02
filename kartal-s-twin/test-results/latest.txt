@@ -1,4 +1,4 @@
-# Test run 2026-11-02T11:16:22Z on commit base af50d75
+# Test run 2026-11-02T17:52:08Z on commit base 04d75a2
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -9,7 +9,7 @@
 [PASS] hash integrity (audit snapshots, refs manifest)
 [PASS] configuration (engine variant separation)
 [PASS] dimensional consistency
-spec: 133 parameters (VERIFIED 7, ESTIMATED 40, UNKNOWN 86) | inventory: 157 components | evidence: 26 items
+spec: 134 parameters (VERIFIED 25, ESTIMATED 35, UNKNOWN 74) | inventory: 157 components | evidence: 28 items
 ## unittest
 test_glb_is_valid_metres_and_y_up (tests.test_cad_toolchain.CadToolchain.test_glb_is_valid_metres_and_y_up) ... ok
 test_kernel_builds_valid_solid (tests.test_cad_toolchain.CadToolchain.test_kernel_builds_valid_solid) ... ok
@@ -126,6 +126,11 @@ test_copy_is_byte_identical_read_only_and_recorded (tests.test_refs.IngestTool.t
 test_duplicate_is_not_stored_twice_and_restore_works (tests.test_refs.IngestTool.test_duplicate_is_not_stored_twice_and_restore_works) ... ok
 test_never_overwrites (tests.test_refs.IngestTool.test_never_overwrites) ... ok
 test_manifest_rows_match_files (tests.test_refs.ManifestIntegrity.test_manifest_rows_match_files) ... ok
+test_range_and_list_parsing (tests.test_spec.ReceivedEvidenceRefs.test_range_and_list_parsing) ... ok
+test_received_with_known_refs_passes (tests.test_spec.ReceivedEvidenceRefs.test_received_with_known_refs_passes) ... ok
+test_received_with_unknown_ref_fails (tests.test_spec.ReceivedEvidenceRefs.test_received_with_unknown_ref_fails) ... ok
+test_received_without_manifest_ref_fails (tests.test_spec.ReceivedEvidenceRefs.test_received_without_manifest_ref_fails) ... ok
+test_repository_register_matches_manifest (tests.test_spec.ReceivedEvidenceRefs.test_repository_register_matches_manifest) ... ok
 test_accepts_properly_sourced_estimate (tests.test_spec.SpecIntegrity.test_accepts_properly_sourced_estimate) ... ok
 test_evidence_register_is_valid (tests.test_spec.SpecIntegrity.test_evidence_register_is_valid) ... ok
 test_master_spec_is_valid (tests.test_spec.SpecIntegrity.test_master_spec_is_valid) ... ok
@@ -151,7 +156,7 @@ test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval
 test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
 
 ----------------------------------------------------------------------
-Ran 138 tests in 95.942s
+Ran 143 tests in 86.947s
 
 OK
 ## result: validate=0 unittest=0
