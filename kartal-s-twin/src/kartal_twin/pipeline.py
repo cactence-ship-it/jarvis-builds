@@ -188,6 +188,10 @@ def run(out: Path = BUILD_DIR) -> dict:
     errors += [f"cad: {e}" for e in cad_errors]
     if cad_parts and not cad_errors:
         report["checks"]["cad"] = export_cad(cad_parts, out)
+        from .interfaces import check as clearance_check
+        cl = clearance_check({p.component_id: p.bodies[0][0] for p in cad_parts})
+        report["checks"]["clearance"] = cl
+        errors += [f"clearance {r['id']} FAILED" for r in cl if r["status"] == "FAIL"]
     parts = parts + cad_parts
     report["files"] = _list_outputs(out)
     report.update({

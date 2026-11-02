@@ -2,6 +2,12 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.6.0] - 2026-11-02 - Kartal Jarvis organisation: clearance checks, task registry
+
+### Added
+- T-001: exact B-rep clearance/interference module (`interfaces.py`, `specs/clearance_rules.yaml`, D-018). CL-001 and CL-002 PASS; values match analytic results.
+- Task registry `tasks/T-001..T-009` with an enforced cross-review rule (no self-approval, D-019); generated `TASKS.md`; `ROADMAP.md`; `docs/AUTOMATION_ARCHITECTURE.md`; `agents/REVIEW_REQUEST_T-002.md`. 68 tests.
+
 ## [0.5.0] - 2026-11-02 - Independent review and first engineering CAD
 
 ### Added

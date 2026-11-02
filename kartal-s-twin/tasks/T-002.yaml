@@ -1,0 +1,20 @@
+id: T-002
+title: Independent review of the tire-envelope CAD (D-016) and T-001
+phase: '11'
+owner: chatgpt
+status: blocked
+depends_on:
+- T-001
+blocker: 'No automated channel to ChatGPT: no OpenAI API key and no budget authorisation. Manual handoff: agents/REVIEW_REQUEST_T-002.md'
+acceptance:
+- id: T-002-A1
+  criterion: Reviewer re-derives OD 600.6 mm, bead seat 355.6 mm and the analytic tire volume
+  check: independent calculation
+- id: T-002-A2
+  criterion: Reviewer re-checks audit/2026-11-02/SHA256SUMS and, if possible, rebuilds and compares SHA-256
+  check: sha256sum -c; python tools/twin.py build
+- id: T-002-A3
+  criterion: Reviewer records verdict ACCEPT / CHANGES_REQUESTED / REJECT with findings in tasks/T-001.yaml
+  check: task registry validator
+results: []
+reviews: []

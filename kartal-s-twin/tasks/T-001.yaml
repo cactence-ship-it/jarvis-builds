@@ -1,0 +1,39 @@
+id: T-001
+title: Assembly interface and clearance check module (exact B-rep)
+phase: '11'
+owner: claude
+status: submitted
+depends_on: []
+blocker: null
+acceptance:
+- id: T-001-A1
+  criterion: Minimum distance and interference volume are exact B-rep values matching analytic cases
+  check: tests/test_interfaces.py::Primitives
+- id: T-001-A2
+  criterion: Interference, touching (0 mm) and floating parts are reported as FAIL; missing geometry as NOT_EVALUATED
+  check: tests/test_interfaces.py::Rules
+- id: T-001-A3
+  criterion: Tire envelope clearances equal track-width, wheelbase-OD and the diagonal formula within 0.001 mm
+  check: tests/test_interfaces.py::VehicleCad
+- id: T-001-A4
+  criterion: Rules live in specs/clearance_rules.yaml and contain only definitional requirements
+  check: review of specs/clearance_rules.yaml
+- id: T-001-A5
+  criterion: A FAIL rule makes the build report an error
+  check: src/kartal_twin/pipeline.py run()
+results:
+- agent: claude
+  commit: see TASKS.md / git log (commit introducing T-001)
+  files:
+  - src/kartal_twin/interfaces.py
+  - specs/clearance_rules.yaml
+  - tests/test_interfaces.py
+  - src/kartal_twin/pipeline.py
+  tests: 62/62 passed (test-results/latest.txt); CL-001 PASS (6 pairs), CL-002 PASS (4 tires)
+  confidence: HIGH
+  known_defects:
+  - Only definitional rules exist; no packaging clearances (needs evidence)
+  - Interference volume is computed only when the distance is 0
+  open_questions:
+  - Should touching (0 mm) ever be acceptable, e.g. for bolted interfaces? Needs an interface-type field.
+reviews: []

@@ -8,6 +8,7 @@
   python tools/twin.py build             build + export + validate -> build/ (manifest.json)
   python tools/twin.py sync-inventory    copy built geometry statuses into the inventory
   python tools/twin.py privacy           privacy scan only (also gates WIP checkpoints)
+  python tools/twin.py tasks             regenerate TASKS.md from tasks/*.yaml
 """
 import sys
 from collections import Counter
@@ -35,6 +36,7 @@ def validate() -> int:
         INVENTORY_MD_PATH.read_text(encoding="utf-8") == inventory.render_markdown(m)
         else ["COMPONENT_INVENTORY.md is stale - run: python tools/twin.py inventory"],
         "privacy (public repo)": privacy.scan_repository(_repo_root()),
+        "task registry": _task_errors(),
     }
     failed = 0
     for name, errs in checks.items():
@@ -47,6 +49,15 @@ def validate() -> int:
     print(f"spec: {sum(c.values())} parameters (VERIFIED {c['VERIFIED']}, ESTIMATED {c['ESTIMATED']}, "
           f"UNKNOWN {c['UNKNOWN']}) | inventory: {n_comp} components | evidence: {len(ev)} items")
     return 1 if failed else 0
+
+
+def _task_errors() -> list:
+    from kartal_twin import tasks
+    t = tasks.load_tasks()
+    errs = tasks.validate(t)
+    if tasks.BOARD_PATH.read_text(encoding="utf-8") != tasks.render_board(t) if tasks.BOARD_PATH.exists() else True:
+        errs.append("TASKS.md is stale - run: python tools/twin.py tasks")
+    return errs
 
 
 def write_inventory(check: bool) -> int:
@@ -103,6 +114,11 @@ def sync_inventory() -> int:
 
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "tasks":
+        from kartal_twin import tasks as _t
+        _t.BOARD_PATH.write_text(_t.render_board(_t.load_tasks()), encoding="utf-8")
+        print("wrote TASKS.md")
+        sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == "privacy":
         issues = privacy.scan_repository(_repo_root())
         for i in issues:

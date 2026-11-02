@@ -1,0 +1,13 @@
+id: T-003
+title: Owner tape measurements M01-M16 and reference state
+phase: '3'
+owner: owner
+status: open
+depends_on: []
+blocker: null
+acceptance:
+- id: T-003-A1
+  criterion: Values sent in 'Mxx = value' form with the reference state
+  check: tools/record_measurement.py accepts them; validate passes
+results: []
+reviews: []

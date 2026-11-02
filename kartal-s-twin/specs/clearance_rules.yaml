@@ -1,0 +1,19 @@
+# Interface and clearance rules checked on the ENGINEERING CAD representation (D-018).
+# Only definitional requirements are allowed here (e.g. "solids must not intersect",
+# "unloaded tire touches the ground plane"). Numeric clearance targets for real
+# packaging (tire-to-arch, steering lock, suspension travel) need evidence and are
+# added only when that evidence exists - never guessed.
+schema_version: 1
+rules:
+  - id: CL-001
+    description: Road-wheel tire envelopes must not intersect each other
+    kind: no_interference
+    components: [WHL-001, WHL-002, WHL-003, WHL-004]
+    min_clearance_mm: 0.0
+    basis: definitional (two solids cannot occupy the same space)
+  - id: CL-002
+    description: Unloaded tire envelopes rest on the ground plane (Z = 0) in the design position
+    kind: ground_contact
+    components: [WHL-001, WHL-002, WHL-003, WHL-004]
+    tolerance_mm: 0.01
+    basis: definitional (VCS Z = 0 is the ground plane, D-003; unloaded position, D-016)

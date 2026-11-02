@@ -1,0 +1,17 @@
+id: T-005
+title: Continuous integration on GitHub Actions (tests on every push and PR, no secrets)
+phase: '11'
+owner: claude
+status: in_progress
+depends_on:
+- T-001
+blocker: null
+acceptance:
+- id: T-005-A1
+  criterion: Workflow runs setup + validation + all unit tests on push and pull_request
+  check: 'GitHub check run on PR #1'
+- id: T-005-A2
+  criterion: 'permissions: contents read; no secrets; no pull_request_target; actions pinned by commit SHA'
+  check: review of .github/workflows/*.yml
+results: []
+reviews: []

@@ -1,0 +1,15 @@
+id: T-008
+title: Clearance rule CL-003 tire envelope to wheel arch (static and steering lock)
+phase: '11'
+owner: claude
+status: blocked
+depends_on:
+- T-001
+- T-006
+blocker: Wheel-arch geometry is still a placeholder; steering lock angle UNKNOWN
+acceptance:
+- id: T-008-A1
+  criterion: Rule added with evidence-based target; check runs in CI
+  check: tests/test_interfaces.py
+results: []
+reviews: []
