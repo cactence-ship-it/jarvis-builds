@@ -8,25 +8,18 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #19** - 2026-11-02 05:03 UTC
-- **Commit:** bu kaydı içeren commit = `c29f5fe` commit'inin hemen ardından gelen commit
+- **Checkpoint #20** - 2026-11-02 05:04 UTC
+- **Commit:** bu kaydı içeren commit = `784ceb9` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** fix(kartal-s-twin): per-side rear wheel positions; literature confidence capped at LOW (ChatGPT T-001 review)
-- **Testler:** PASS - Ran 71 tests in 41.803s; ## result: validate=0 unittest=0
+- **Başlık:** review(kartal-s-twin): T-001 resubmitted for re-review (fix 784ceb9); re-review request R2
+- **Testler:** PASS - Ran 71 tests in 42.250s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
-    M	kartal-s-twin/HANDOFF.md
     M	kartal-s-twin/TASKS.md
+    A	kartal-s-twin/agents/REVIEW_REQUEST_T-001-R2.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/specs/kartal_s_1997.yaml
-    M	kartal-s-twin/src/kartal_twin/assemblies/wheels_and_tires.py
-    M	kartal-s-twin/src/kartal_twin/layout.py
-    M	kartal-s-twin/src/kartal_twin/tasks.py
     M	kartal-s-twin/tasks/T-001.yaml
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tests/test_pipeline.py
-    M	kartal-s-twin/tests/test_tasks.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 

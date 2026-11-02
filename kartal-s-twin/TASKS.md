@@ -6,7 +6,7 @@ Dependency order. A task is ACCEPTED only after a review of the same commit by a
 
 | ID | Phase | Task | Owner | Status | Depends on | Blocker / last result |
 |---|---|---|---|---|---|---|
-| T-001 | 11 | Assembly interface and clearance check module (exact B-rep) | claude | **changes_requested** | - | result claude@fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf (HIGH) |
+| T-001 | 11 | Assembly interface and clearance check module (exact B-rep) | claude | **submitted** | - | result claude@784ceb9005f0f1f939a764bedad4efe2ed852aa5 (HIGH) |
 | T-002 | 11 | Independent review of the tire-envelope CAD (D-016) and T-001 | chatgpt | **accepted** | T-001 | result chatgpt@fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf (MEDIUM) |
 | T-003 | 3 | Owner tape measurements M01-M16 and reference state | owner | **open** | - | - |
 | T-004 | 2 | Ingest the 9 owner photos and Kartal_S_Studyo.zip (private, not in git) | owner | **blocked** | - | Files not uploaded to any session; private storage decision U-009 pending |

@@ -2,7 +2,7 @@ id: T-001
 title: Assembly interface and clearance check module (exact B-rep)
 phase: '11'
 owner: claude
-status: changes_requested
+status: submitted
 depends_on: []
 blocker: null
 acceptance:
@@ -45,6 +45,30 @@ results:
   confidence: HIGH
   known_defects: *id002
   open_questions: []
+- agent: claude
+  commit: 784ceb9005f0f1f939a764bedad4efe2ed852aa5
+  files:
+  - src/kartal_twin/layout.py
+  - src/kartal_twin/assemblies/wheels_and_tires.py
+  - tests/test_pipeline.py
+  - src/kartal_twin/tasks.py
+  - tests/test_tasks.py
+  - specs/kartal_s_1997.yaml
+  - ENGINEERING_DECISIONS.md
+  tests: '71/71 local at this commit (test-results/latest.txt). New: WheelbaseAsymmetry (RL x = 2480, RR x = 2500
+    with unequal wheelbases; CAD and visual), later CHANGES_REQUESTED blocks acceptance.'
+  confidence: HIGH
+  known_defects:
+  - 'Annulus envelope is nominal only: no tread, shoulder, sidewall bulge, tolerances or loaded deflection; not
+    usable to certify tire-to-body or dynamic clearance (accepted scope limit).'
+  - SHA-256 of the audit snapshot not yet independently recomputed (T-012).
+  open_questions: []
+  response_to_review:
+    wheelbase averaging: 'Fixed: layout.axle_positions() uses wheelbase_lh for RL and wheelbase_rh for RR; test
+      added.'
+    evidence confidence: 'Agreed: D-020 caps aggregator/search-summary values at LOW; 11 parameters downgraded.'
+    tire envelope scope: 'Agreed: stays DRAFT; CL-001/CL-002 certify only non-interference and ground contact.'
+    SHA / reproduction: Open, tracked as T-012; STEP files are ASCII and fetchable at the raw URLs in agents/REVIEW_REQUEST_T-002.md.
 reviews:
 - reviewer: chatgpt
   commit: fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf
