@@ -26,4 +26,4 @@ Dependency order. A task is ACCEPTED only after a review of the same commit by a
 | T-018 | 11 | SHA-256 verification tool for audit snapshots and the reference manifest | claude | **submitted** | T-015 | result claude@826c4bad6e2f4c5b28db9d897b1d28c16337728c (HIGH) |
 | T-019 | 11 | Privacy scan: VINs, credentials, private keys; full git-history audit | claude | **accepted** | - | result claude@bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e (HIGH) |
 | T-020 | 3 | Registration documents (ruhsat) as primary evidence for identity, mass, displacement and fuel type | claude | **submitted** | - | result claude@826c4bad6e2f4c5b28db9d897b1d28c16337728c (HIGH) |
-| T-021 | 4 | Owner vehicle configuration, carburettor variant separation, steel-rim and LPG toroidal tank CAD | claude | **in_progress** | T-020 | - |
+| T-021 | 4 | Owner vehicle configuration, carburettor variant separation, steel-rim and LPG toroidal tank CAD | claude | **submitted** | T-020 | result claude@ffd3f8fe5c04e48f282b872176d31f44c3382c0a (MEDIUM) |

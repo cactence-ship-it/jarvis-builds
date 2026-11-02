@@ -8,64 +8,19 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #38** - 2026-11-02 07:56 UTC
-- **Commit:** bu kaydı içeren commit = `e81efa1` commit'inin hemen ardından gelen commit
+- **Checkpoint #39** - 2026-11-02 08:00 UTC
+- **Commit:** bu kaydı içeren commit = `ffd3f8f` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** feat(kartal-s-twin): owner configuration (D-026) - data classes, carburettor variant rule, parametric toroidal LPG tank, steel rims, provisional 185/70 R14, checks, data dictionary (T-021)
-- **Testler:** PASS - Ran 138 tests in 107.967s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): T-021 result recorded at ffd3f8f with CI links; review request for ChatGPT
+- **Testler:** PASS - Ran 138 tests in 100.072s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/COMPONENT_INVENTORY.md
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
-    M	kartal-s-twin/EVIDENCE_REGISTER.md
-    M	kartal-s-twin/HANDOFF.md
-    M	kartal-s-twin/PROJECT_STATUS.md
     M	kartal-s-twin/TASKS.md
-    M	kartal-s-twin/UNCERTAINTY_REGISTER.md
-    M	kartal-s-twin/assembly/vehicle_master.yaml
-    A	kartal-s-twin/audit/2026-11-02-r2/SHA256SUMS
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/FUL-005.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/WHL-001.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/WHL-002.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/WHL-003.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/WHL-004.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/WHL-006.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/WHL-007.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/WHL-008.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/WHL-009.step
-    A	kartal-s-twin/audit/2026-11-02-r2/cad/vehicle_cad.step
-    A	kartal-s-twin/audit/2026-11-02-r2/latest.txt
-    A	kartal-s-twin/audit/2026-11-02-r2/manifest.json
-    M	kartal-s-twin/docs/OLCUM_REHBERI.md
-    A	kartal-s-twin/docs/VERI_SOZLUGU.md
+    A	kartal-s-twin/agents/REVIEW_REQUEST_T-021.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/specs/clearance_rules.yaml
-    A	kartal-s-twin/specs/configuration_rules.yaml
-    M	kartal-s-twin/specs/consistency_rules.yaml
-    M	kartal-s-twin/specs/kartal_s_1997.yaml
-    M	kartal-s-twin/specs/placeholder_assumptions.yaml
-    M	kartal-s-twin/src/kartal_twin/assemblies/fuel_system.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/wheels_and_tires.py
-    M	kartal-s-twin/src/kartal_twin/cad/part.py
-    A	kartal-s-twin/src/kartal_twin/configuration.py
-    M	kartal-s-twin/src/kartal_twin/consistency.py
-    M	kartal-s-twin/src/kartal_twin/interfaces.py
-    M	kartal-s-twin/src/kartal_twin/layout.py
-    M	kartal-s-twin/src/kartal_twin/pipeline.py
-    M	kartal-s-twin/src/kartal_twin/spec.py
-    A	kartal-s-twin/tasks/T-021.yaml
+    M	kartal-s-twin/tasks/T-021.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/test-results/viewer_smoke.txt
-    A	kartal-s-twin/tests/test_configuration_cad.py
-    M	kartal-s-twin/tests/test_consistency.py
-    M	kartal-s-twin/tests/test_interfaces.py
-    M	kartal-s-twin/tests/test_inventory.py
-    M	kartal-s-twin/tests/test_pipeline.py
-    A	kartal-s-twin/tools/data_dictionary.py
-    M	kartal-s-twin/tools/measurement_guide.py
-    M	kartal-s-twin/tools/twin.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 

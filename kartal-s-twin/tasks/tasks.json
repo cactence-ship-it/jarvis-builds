@@ -511,9 +511,9 @@
         "All exports re-open; CAD byte-reproducible; new audit snapshot; full suite and viewer smoke test pass locally and in CI"
       ],
       "owner_agent": "claude",
-      "status": "IN_PROGRESS",
-      "registry_status": "in_progress",
-      "test_result": null,
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Local: validate all PASS; unittest 138/138 OK (29 new in tests/test_configuration_cad.py); viewer smoke 36 parts, errors []; ruff 0.15.0 clean; second fresh build reproduces all 10 CAD STEP files byte for byte. CI at ffd3f8f: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41409480479 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41409524922 (jobs test 125159116299, viewer 125159116086): success; log 'Ran 138 tests ... OK'; coreutils sha256sum -c audit/2026-11-02-r2 12/12 OK and audit/2026-11-02 7/7 OK; privacy audit 531 blobs, 0 findings.",
       "error": null,
       "started_at": "2026-11-02T07:40:00Z",
       "finished_at": null,
@@ -527,7 +527,7 @@
         "docs/VERI_SOZLUGU.md",
         "audit/2026-11-02-r2/SHA256SUMS"
       ],
-      "last_result_commit": null,
+      "last_result_commit": "ffd3f8fe5c04e48f282b872176d31f44c3382c0a",
       "last_review": null
     }
   ]
