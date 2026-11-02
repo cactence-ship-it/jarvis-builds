@@ -190,24 +190,24 @@ parameters:
       notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
     front_track:
       name: Front track (tyre tread centre to centre)
-      value: null
+      value: 1386
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 15
+      source: [E-011]
       verify_by: Tread centres at the ground, wheels straight ahead
-      notes: ''
+      notes: Literature (aggregators agree on 1386). Replaces the 1380 mm placeholder.
     rear_track:
       name: Rear track (tyre tread centre to centre)
-      value: null
+      value: 1327
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 15
+      source: [E-011]
       verify_by: Tread centres at the ground
-      notes: ''
+      notes: Literature (aggregators agree on 1327). Replaces the 1350 mm placeholder.
     front_overhang:
       name: Front overhang (front axle to front extremity)
       value: null
@@ -416,14 +416,14 @@ parameters:
       notes: Owner-entered listing value; definition (fuel, driver) unknown.
     gross_vehicle_mass:
       name: Gross vehicle mass
-      value: null
+      value: 1550
       unit: kg
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-011]
       verify_by: Ruhsat 'Azami yüklü ağırlığı' field
-      notes: ''
+      notes: Aggregator value; confirm from ruhsat 'Azami yüklü ağırlığı'.
     axle_load_front_measured:
       name: Front axle load, measured
       value: null
@@ -458,44 +458,44 @@ parameters:
       notes: ''
     displacement:
       name: Displacement
-      value: null
+      value: 1581
       unit: cm3
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 10
+      source: [E-011, E-013]
       verify_by: Ruhsat 'Silindir hacmi' field
-      notes: ''
+      notes: 1.6 engine family reported as 1581 cm3; tolerance also covers 1585 cm3 variants. Confirm from ruhsat 'Silindir hacmi'.
     cylinder_count:
       name: Number of cylinders
-      value: null
+      value: 4
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-011]
       verify_by: Engine bay photo / documents
-      notes: ''
+      notes: Aggregator data for all Kartal 1.6 variants.
     cylinder_layout:
       name: Cylinder layout
-      value: null
+      value: inline
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-011]
       verify_by: Engine bay photo
-      notes: ''
+      notes: Aggregator data.
     valvetrain:
       name: Valvetrain (OHV / SOHC / DOHC)
-      value: null
+      value: SOHC
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-012]
       verify_by: Engine bay photo (cam cover, timing cover) / manual
-      notes: ''
+      notes: Listings describe an overhead-cam 'Tempra' engine. Confirm with an engine-bay photo.
     bore:
       name: Bore
       value: null
@@ -528,14 +528,14 @@ parameters:
       notes: ''
     max_power:
       name: Maximum power
-      value: null
+      value: 61
       unit: kW
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-011, E-013]
       verify_by: Ruhsat 'Motor gücü' field / manual
-      notes: ''
+      notes: 83 HP (61 kW) reported for the carburettor 1.6; 81-84 hp listed elsewhere (60-62 kW). Confirm from ruhsat 'Motor gücü'.
     max_power_speed:
       name: Engine speed at maximum power
       value: null
@@ -548,14 +548,14 @@ parameters:
       notes: ''
     max_torque:
       name: Maximum torque
-      value: null
+      value: 131
       unit: N·m
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 6
+      source: [E-013]
       verify_by: Manual
-      notes: ''
+      notes: Reported for the 1997 SLX carburettor 1.6.
     max_torque_speed:
       name: Engine speed at maximum torque
       value: null
@@ -578,14 +578,14 @@ parameters:
       notes: LPG conversions are common on cars of this type and age - check explicitly.
     fuel_system_type:
       name: Fuel system (carburettor / single-point / multi-point injection)
-      value: null
+      value: carburettor
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-012, E-013]
       verify_by: Engine bay photo of the intake
-      notes: ''
+      notes: Kartal S listings and the 1997 SLX page report a carburettor; the 1.6 i.e. (injection) is a different variant. Confirm with an engine-bay photo.
     ignition_type:
       name: Ignition system type
       value: null
@@ -869,7 +869,7 @@ parameters:
       tolerance: null
       source: [E-010]
       verify_by: Sidewall photo (also record the DOT date code)
-      notes: From owner-entered sale listings of other Kartal S cars; the fitted tires on VEH-01 may differ.
+      notes: Kartal S listings give 175/70 R14 (E-010); aggregators also list 185/70 R14 for the Kartal. Fitted tires on VEH-01 unknown - photograph the sidewall.
     tire_size_rear:
       name: Rear tire size and load/speed index
       value: 175/70 R14
@@ -879,7 +879,7 @@ parameters:
       tolerance: null
       source: [E-010]
       verify_by: Sidewall photo
-      notes: From owner-entered sale listings of other Kartal S cars; the fitted tires on VEH-01 may differ.
+      notes: Kartal S listings give 175/70 R14 (E-010); aggregators also list 185/70 R14 for the Kartal. Fitted tires on VEH-01 unknown - photograph the sidewall.
     wheel_rim_diameter:
       name: Rim diameter
       value: 14

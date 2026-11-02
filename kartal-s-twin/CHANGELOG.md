@@ -2,6 +2,12 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.4.0] - 2026-11-02 - Autonomous mode, more literature evidence
+
+### Added
+- `checkpoint.sh` writes an AUTO-CHECKPOINT record into HANDOFF.md on every commit and supports `--wip` emergency saves; `twin.py privacy`; autonomous work protocol in CLAUDE.md.
+- Literature evidence E-011..E-013: front/rear track 1386/1327 mm (replacing placeholders), gross mass 1550 kg, engine family (4-cylinder inline SOHC carburettor 1.6, 1581 cm3, ~61 kW, ~131 N·m). 27 ESTIMATED values, still 0 VERIFIED.
+
 ## [0.3.2] - 2026-11-02 - Exterior detail (PLACEHOLDER)
 
 ### Added

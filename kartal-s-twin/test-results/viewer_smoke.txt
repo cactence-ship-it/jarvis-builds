@@ -2,7 +2,7 @@ assemblies: Kaporta 7 | Dış trim 10 | Camlar 8 | Aydınlatma 6 | Tekerlekler 4
 info after tap: BDY-003 · Hood (bonnet)
       MontajKaporta (BODY_ASSEMBLY)
       GeometriPLACEHOLDER · visual
-      Parametre29 adet, 21 tanesi varsayım (kanıt değil)
+      Parametre29 adet, 19 tanesi varsayım (kanıt değil)
       No
 errors: []
 screenshots: /tmp/kartal_viewer_smoke/iso.png /tmp/kartal_viewer_smoke/exploded.png

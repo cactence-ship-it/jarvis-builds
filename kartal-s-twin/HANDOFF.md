@@ -8,19 +8,24 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #12** - 2026-11-02 01:05 UTC
-- **Commit:** bu kaydı içeren commit = `8d037b8` commit'inin hemen ardından gelen commit
+- **Checkpoint #13** - 2026-11-02 01:07 UTC
+- **Commit:** bu kaydı içeren commit = `c00bf6c` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** feat(kartal-s-twin): autonomous work mode - automatic HANDOFF record and WIP checkpoints
-- **Testler:** PASS - Ran 48 tests in 8.409s; ## result: validate=0 unittest=0
+- **Başlık:** data(kartal-s-twin): literature tracks 1386/1327 and engine family estimates (E-011..E-013)
+- **Testler:** PASS - Ran 48 tests in 8.301s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CLAUDE.md
+    M	kartal-s-twin/CHANGELOG.md
+    M	kartal-s-twin/EVIDENCE_REGISTER.md
     M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/PROJECT_STATUS.md
+    M	kartal-s-twin/UNCERTAINTY_REGISTER.md
+    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/scripts/checkpoint.sh
+    M	kartal-s-twin/specs/kartal_s_1997.yaml
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tools/twin.py
+    M	kartal-s-twin/test-results/viewer_smoke.txt
+    M	kartal-s-twin/tests/test_pipeline.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -41,10 +46,11 @@
 | 6 | Ölçüm girişi: tools/record_measurement.py, body_profile spec alanları (15), D-015; 31 ölçü kodu | TAMAM | c2743e3 |
 | 7 | Teslim paketi (scripts/package_delivery.sh, ZIP gönderildi) + eski arşiv analiz aracı (tools/analyze_legacy.py) | TAMAM | 73de919 |
 | 8 | Dış detay: tavan yuvarlatma, 4 kapı kolu, silecekler, jant göbeği -> 35 parça; görüntüleyici v3 | TAMAM | 8d037b8 |
-| 9 | Otonom düzen: checkpoint.sh HANDOFF'a otomatik kayıt yazar, --wip acil kayıt modu, CLAUDE.md protokolü (yerel sahte remote ile test edildi) | TAMAM | (otomatik kayda bakın) |
+| 9 | Otonom düzen: checkpoint.sh HANDOFF'a otomatik kayıt yazar, --wip acil kayıt modu, CLAUDE.md protokolü (yerel sahte remote ile test edildi) | TAMAM | c00bf6c |
+| 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | (otomatik kayda bakın) |
 
 ## Sayılar (son durum)
-- Spec 111 parametre: 0 VERIFIED / 17 ESTIMATED / 94 UNKNOWN. Kanıt: E-001..E-010.
+- Spec 111 parametre: 0 VERIFIED / 27 ESTIMATED / 84 UNKNOWN. Kanıt: E-001..E-013.
 - 143 bileşenin 35'i modellendi (hepsi görsel PLACEHOLDER). CAD/mekanik temsil yok.
 - Testler: 48/48 geçti -> `test-results/latest.txt`; görüntüleyici tarayıcı testi -> `test-results/viewer_smoke.txt`.
 - Görüntüleyici: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (yeniden yayın: `python tools/package_viewer.py` + aynı dosya yolu ile yayınla).

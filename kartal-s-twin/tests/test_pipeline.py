@@ -18,7 +18,12 @@ class ResolverRules(unittest.TestCase):
             Resolver().get("engine.bore")
 
     def test_placeholder_marks_provenance(self):
-        r = Resolver()
+        # Independent of current data: force the record to UNKNOWN so the placeholder is used.
+        base = Resolver()
+        spec = copy.deepcopy(base.spec)
+        spec["parameters"]["dimensions"]["front_track"].update(
+            value=None, status="UNKNOWN", confidence="NONE", tolerance=None, source=[])
+        r = Resolver(spec, base.assumptions)
         r.get("dimensions.front_track")
         self.assertEqual(r.used, {"dimensions.front_track": "PLACEHOLDER"})
         self.assertEqual(r.geometry_status, "PLACEHOLDER")

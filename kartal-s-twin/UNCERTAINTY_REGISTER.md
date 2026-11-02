@@ -6,8 +6,8 @@ P3 cosmetic.
 
 | ID | Topic | What is uncertain | Impact | Resolution path | Priority | Status |
 |---|---|---|---|---|---|---|
-| U-001 | Engine variant | Engine code, displacement, fuel system (carburettor or injection), power. No engine data received. | Blocks Phase 6, ENG-* | Ruhsat fields 'Silindir hacmi', 'Motor gücü', 'Yakıt cinsi' (redact owner data); engine-bay photos; engine-number stamping | P1 | OPEN |
-| U-002 | Vehicle dimensions | No dimension is verified (90 of 96 spec parameters are UNKNOWN). | Blocks accurate Phase 4 onward | Owner tape measurements against the spec's verify_by fields (guide in Phase 3); documents | P1 | OPEN |
+| U-001 | Engine variant | Literature (E-011..E-013) points to a carburettor SOHC 1.6 (1581 cm3, ~61 kW) for the Kartal S; all ESTIMATED and LOW-MEDIUM confidence. Engine code, actual fitted engine and any LPG kit on VEH-01 are unknown. | Blocks Phase 6, ENG-* | Ruhsat fields 'Silindir hacmi', 'Motor gücü', 'Yakıt cinsi' (redact owner data); engine-bay photos; engine-number stamping | P1 | OPEN |
+| U-002 | Vehicle dimensions | No dimension is verified: main dimensions and tracks are literature estimates; body-profile values are placeholders (see PROJECT_STATUS for counts). | Blocks accurate Phase 4 onward | Owner tape measurements against the spec's verify_by fields (guide in Phase 3); documents | P1 | OPEN |
 | U-003 | Legacy archive | Kartal_S_Studyo.zip not received. Its about 47 objects, their geometry type and their quality are unverified. | Reuse decision for Phase 2 and 4 | Owner attaches the ZIP; ingest; inspect index.html and kartal.json | P1 | OPEN |
 | U-004 | Photo set | The 9 photographs have not been received. Expected coverage gaps: engine bay, underbody, wheel close-ups, VIN plate. | Blocks Phase 2 | Owner attaches the photos; later targeted extra photos | P1 | OPEN |
 | U-005 | Trim and equipment content | Which "S" features are fitted: roof rails, rear wiper, side repeaters, mouldings, booster and similar (inventory items marked optional). | Component fitment | Photos | P2 | OPEN |

@@ -19,8 +19,8 @@ Bu rehber, dijital ikizdeki **tahminleri (ESTIMATED)** ve **varsayımları (PLAC
 | M05 | Overall height incl. roof rails (if fitted) (`dimensions.overall_height_roof_rails`) | Tavan rayı varsa: rayların üstüne çıta, çıtadan yere. | UNKNOWN |
 | M06 | Wheelbase, left side (`dimensions.wheelbase_lh`) | Sol taraf: ön jant göbeği merkezinden arka jant göbeği merkezine (tekerlekler düz). | ESTIMATED (2490) |
 | M07 | Wheelbase, right side (`dimensions.wheelbase_rh`) | Sağ taraf: aynı ölçü. | ESTIMATED (2490) |
-| M08 | Front track (tyre tread centre to centre) (`dimensions.front_track`) | Ön iki lastiğin diş ortasından ortasına, yere yakın (tekerlekler düz). | UNKNOWN |
-| M09 | Rear track (tyre tread centre to centre) (`dimensions.rear_track`) | Arka iki lastiğin diş ortasından ortasına. | UNKNOWN |
+| M08 | Front track (tyre tread centre to centre) (`dimensions.front_track`) | Ön iki lastiğin diş ortasından ortasına, yere yakın (tekerlekler düz). | ESTIMATED (1386) |
+| M09 | Rear track (tyre tread centre to centre) (`dimensions.rear_track`) | Arka iki lastiğin diş ortasından ortasına. | ESTIMATED (1327) |
 | M10 | Front overhang (front axle to front extremity) (`dimensions.front_overhang`) | Ön jant merkezinden tamponun en ön noktasına (yatay, yerde çekülle). | UNKNOWN |
 | M11 | Rear overhang (rear axle to rear extremity) (`dimensions.rear_overhang`) | Arka jant merkezinden tamponun en arka noktasına. | UNKNOWN |
 | M12 | Minimum ground clearance (unladen) (`dimensions.ground_clearance_min`) | Gövdenin en alçak noktasından yere; hangi parça olduğunu yazın. | UNKNOWN |
@@ -80,4 +80,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 111 parametre: 17 ESTIMATED, 94 UNKNOWN, 0 VERIFIED. Varsayım dosyası: 25 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 111 parametre: 27 ESTIMATED, 84 UNKNOWN, 0 VERIFIED. Varsayım dosyası: 25 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
