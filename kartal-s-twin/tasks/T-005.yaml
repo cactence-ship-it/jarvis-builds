@@ -2,7 +2,7 @@ id: T-005
 title: Continuous integration on GitHub Actions (tests on every push and PR, no secrets)
 phase: '11'
 owner: claude
-status: in_progress
+status: submitted
 depends_on:
 - T-001
 blocker: null
@@ -13,5 +13,17 @@ acceptance:
 - id: T-005-A2
   criterion: 'permissions: contents read; no secrets; no pull_request_target; actions pinned by commit SHA'
   check: review of .github/workflows/*.yml
-results: []
+results:
+- agent: claude
+  commit: 3e152a7
+  files:
+  - .github/workflows/kartal-ci.yml
+  tests: 'GitHub Actions push run 41389454272 and pull_request run 41389454020: both success; log shows ''Ran 68
+    tests ... OK'', validate=0, build STEP 40/40 solids, GLB 435444 bytes (identical to local build)'
+  confidence: HIGH
+  known_defects:
+  - Pinned actions (checkout v4.2.2, setup-python v5.6.0) target Node.js 20, which GitHub has deprecated; runners
+    force Node 24 with a warning. Upgrade to Node-24 releases, pinned by SHA.
+  - Viewer browser smoke test is not run in CI (needs Playwright + three.js from npm).
+  open_questions: []
 reviews: []

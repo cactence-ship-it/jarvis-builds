@@ -23,13 +23,14 @@ acceptance:
   check: src/kartal_twin/pipeline.py run()
 results:
 - agent: claude
-  commit: see TASKS.md / git log (commit introducing T-001)
+  commit: ad7ffff
   files:
   - src/kartal_twin/interfaces.py
   - specs/clearance_rules.yaml
   - tests/test_interfaces.py
   - src/kartal_twin/pipeline.py
-  tests: 62/62 passed (test-results/latest.txt); CL-001 PASS (6 pairs), CL-002 PASS (4 tires)
+  tests: '62/62 local at ad7ffff; CI on GitHub (commit 3e152a7, runs 41389454272 and 41389454020): 68/68 passed;
+    CL-001 PASS (6 pairs), CL-002 PASS (4 tires)'
   confidence: HIGH
   known_defects:
   - Only definitional rules exist; no packaging clearances (needs evidence)

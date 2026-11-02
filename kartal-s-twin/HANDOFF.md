@@ -8,39 +8,19 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #16** - 2026-11-02 04:36 UTC
-- **Commit:** bu kaydı içeren commit = `044d49d` commit'inin hemen ardından gelen commit
+- **Checkpoint #17** - 2026-11-02 04:42 UTC
+- **Commit:** bu kaydı içeren commit = `3e152a7` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** feat(kartal-s-twin): clearance checks (T-001), task registry with cross-review rule, roadmap, automation design
-- **Testler:** PASS - Ran 68 tests in 43.268s; ## result: validate=0 unittest=0
+- **Başlık:** chore(kartal-s-twin): record T-001 and T-005 results (CI green: 68/68 on GitHub Actions)
+- **Testler:** PASS - Ran 68 tests in 41.263s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
     M	kartal-s-twin/HANDOFF.md
-    M	kartal-s-twin/PROJECT_STATUS.md
-    A	kartal-s-twin/ROADMAP.md
-    A	kartal-s-twin/TASKS.md
-    A	kartal-s-twin/agents/REVIEW_REQUEST_T-002.md
-    A	kartal-s-twin/docs/AUTOMATION_ARCHITECTURE.md
+    M	kartal-s-twin/TASKS.md
     M	kartal-s-twin/persistence/checkpoint.json
-    A	kartal-s-twin/specs/clearance_rules.yaml
-    A	kartal-s-twin/src/kartal_twin/interfaces.py
-    M	kartal-s-twin/src/kartal_twin/pipeline.py
-    A	kartal-s-twin/src/kartal_twin/tasks.py
-    A	kartal-s-twin/tasks/T-001.yaml
-    A	kartal-s-twin/tasks/T-002.yaml
-    A	kartal-s-twin/tasks/T-003.yaml
-    A	kartal-s-twin/tasks/T-004.yaml
-    A	kartal-s-twin/tasks/T-005.yaml
-    A	kartal-s-twin/tasks/T-006.yaml
-    A	kartal-s-twin/tasks/T-007.yaml
-    A	kartal-s-twin/tasks/T-008.yaml
-    A	kartal-s-twin/tasks/T-009.yaml
+    M	kartal-s-twin/tasks/T-001.yaml
+    M	kartal-s-twin/tasks/T-005.yaml
     M	kartal-s-twin/test-results/latest.txt
-    A	kartal-s-twin/tests/test_interfaces.py
-    A	kartal-s-twin/tests/test_tasks.py
-    M	kartal-s-twin/tools/twin.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -65,6 +45,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 14 | T-005 CI: GitHub Actions 68/68 başarılı (run 41389454272 / 41389454020); görev kayıtları güncellendi | TAMAM | (otomatik kayda bakın) |
 | 13 | Kartal Jarvis: T-001 boşluk/girişim modülü (D-018), görev kaydı + çapraz inceleme kuralı (D-019, tasks/, TASKS.md), ROADMAP.md, docs/AUTOMATION_ARCHITECTURE.md, ChatGPT inceleme talebi; 68/68 | TAMAM | (otomatik kayda bakın) |
 
 ## Sayılar (son durum)
