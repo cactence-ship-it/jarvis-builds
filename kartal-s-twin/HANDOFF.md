@@ -8,19 +8,15 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #25** - 2026-11-02 06:08 UTC
-- **Commit:** bu kaydı içeren commit = `ca1fe01` commit'inin hemen ardından gelen commit
+- **Checkpoint #26** - 2026-11-02 06:09 UTC
+- **Commit:** bu kaydı içeren commit = `c665cfb` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** chore(kartal-s-twin): record T-011 and T-017 results - viewer and lint green in CI
-- **Testler:** PASS - Ran 80 tests in 52.956s; ## result: validate=0 unittest=0
+- **Başlık:** docs(kartal-s-twin): single batched review request for ChatGPT (7 tasks at c665cfb)
+- **Testler:** PASS - Ran 80 tests in 49.478s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/HANDOFF.md
-    M	kartal-s-twin/TASKS.md
+    A	kartal-s-twin/agents/REVIEW_REQUEST_BATCH_2.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/tasks/T-011.yaml
-    M	kartal-s-twin/tasks/T-017.yaml
-    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
 ```
 <!-- AUTO-CHECKPOINT:END -->
