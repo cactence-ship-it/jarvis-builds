@@ -1,9 +1,16 @@
 """Dimensional consistency checks between spec parameters (T-013, D-021).
 
 Rules are pure relations (identities and inequalities) from specs/consistency_rules.yaml.
-Tolerances of the inputs are combined worst-case, so a rule FAILs only when the values
-cannot be reconciled within their stated uncertainty. Rules with an UNKNOWN input are
-NOT_EVALUATED - never silently passed.
+Every input is an interval [value - tolerance, value + tolerance]; worst case is applied
+(review of T-013 by ChatGPT, 2026-11-02):
+
+* inequality (less_than, at_most, sum_at_most, relative_difference_below):
+  PASS only if the condition holds for EVERY point of the intervals;
+  FAIL if it is violated for every point; otherwise INDETERMINATE (the uncertainty
+  is too large to decide - better measurements needed).
+* identity (sum_equals): PASS if the intervals can be reconciled (they overlap),
+  FAIL if they cannot - an identity can only be checked for consistency.
+* any UNKNOWN input: NOT_EVALUATED - never silently passed.
 """
 from __future__ import annotations
 
@@ -67,27 +74,36 @@ def evaluate(spec: dict, rules: list[dict] | None = None) -> list[dict]:
             res.update(status="NOT_EVALUATED", missing=missing)
             out.append(res)
             continue
-        if r["kind"] in ("sum_equals", "sum_at_most"):
+        if r["kind"] == "sum_equals":
             total = sum(vals[k][0] for k in r["terms"])
-            tol = sum(vals[k][1] for k in r["terms"])
-            ref_key = r.get("equals") or r.get("at_most")
-            ref, rtol = vals[ref_key]
-            slack = tol + rtol
-            ok = abs(total - ref) <= slack if r["kind"] == "sum_equals" else total <= ref + slack
+            slack = sum(vals[k][1] for k in r["terms"]) + vals[r["equals"]][1]
+            ref = vals[r["equals"]][0]
+            status = "PASS" if abs(total - ref) <= slack else "FAIL"
             res.update(lhs=total, rhs=ref, combined_tolerance=slack)
-        elif r["kind"] == "relative_difference_below":
-            (a, ta), (b, tb) = vals[r["a"]], vals[r["b"]]
-            diff = abs(a - b)
-            ok = diff <= r["limit"] * max(a, b) + ta + tb
-            res.update(lhs=diff, rhs=r["limit"] * max(a, b), combined_tolerance=ta + tb)
-        elif r["kind"] in ("less_than", "at_most"):
-            (a, ta), (b, tb) = vals[r["a"]], vals[r["b"]]
-            ok = (a < b + ta + tb) if r["kind"] == "less_than" else (a <= b + ta + tb)
-            res.update(lhs=a, rhs=b, combined_tolerance=ta + tb)
-        else:  # positive
-            a, ta = vals[r["a"]]
-            ok = a + ta > 0
-            res.update(lhs=a, rhs=0.0, combined_tolerance=ta)
-        res["status"] = "PASS" if ok else "FAIL"
+        else:
+            # Reduce every inequality to "x <= y" (or "x < y") on intervals x = [x-, x+], y = [y-, y+].
+            if r["kind"] == "sum_at_most":
+                x = sum(vals[k][0] for k in r["terms"])
+                tx = sum(vals[k][1] for k in r["terms"])
+                y, ty = vals[r["at_most"]]
+                strict = False
+            elif r["kind"] == "relative_difference_below":
+                (a, ta), (b, tb) = vals[r["a"]], vals[r["b"]]
+                x, tx = abs(a - b), ta + tb           # |a - b| lies in [diff - tx, diff + tx]
+                y, ty = r["limit"] * max(a, b), r["limit"] * max(ta, tb)
+                strict = False
+            elif r["kind"] in ("less_than", "at_most"):
+                (x, tx), (y, ty) = vals[r["a"]], vals[r["b"]]
+                strict = r["kind"] == "less_than"
+            else:  # positive: 0 < a
+                (y, ty), x, tx = vals[r["a"]], 0.0, 0.0
+                strict = True
+            worst_hi, best_lo = x + tx, y - ty          # condition must hold for x+ against y-
+            best_x, worst_y = max(x - tx, 0.0) if r["kind"] == "relative_difference_below" else x - tx, y + ty
+            holds_everywhere = worst_hi < best_lo if strict else worst_hi <= best_lo
+            violated_everywhere = best_x >= worst_y if strict else best_x > worst_y
+            status = "PASS" if holds_everywhere else "FAIL" if violated_everywhere else "INDETERMINATE"
+            res.update(lhs=x, rhs=y, combined_tolerance=tx + ty, margin_worst_case=best_lo - worst_hi)
+        res["status"] = status
         out.append(res)
     return out

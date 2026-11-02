@@ -5,12 +5,12 @@ description: CAD STEP export is byte-reproducible (D-016); CI rebuilds and compa
 priority: P2
 phase: '11'
 owner: claude
-status: submitted
+status: accepted
 depends_on:
 - T-005
 blocker: null
 started_at: '2026-11-02T05:40:00Z'
-finished_at: null
+finished_at: '2026-11-02T06:11:38Z'
 error: null
 evidence: []
 acceptance:
@@ -23,13 +23,26 @@ acceptance:
 results:
 - agent: claude
   commit: see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)
-  files:
+  files: &id001
   - tests/test_golden_cad.py
   tests: '2 tests pass; sensitivity proven: wheelbase_rh 2490 -> 2491 makes only cad/WHL-004.step differ (c82663cc...
     vs 3c68982d...)'
   confidence: HIGH
-  known_defects:
+  known_defects: &id002
   - Byte equality across OS/OCCT versions is assumed by the pinned lock; a different OCCT build would need a new
     snapshot
   open_questions: []
-reviews: []
+- agent: claude
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  files: *id001
+  tests: Deliverable as reviewed at c665cfb. tests/test_golden_cad.py and audit/2026-11-02 unchanged bbeefcf..c665cfb.
+  confidence: HIGH
+  known_defects: *id002
+  open_questions: []
+reviews:
+- reviewer: chatgpt
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  verdict: ACCEPT
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-2 review of c665cfb). Only the verdict was relayed
+    for ACCEPT decisions; no finding text.
+  findings: []

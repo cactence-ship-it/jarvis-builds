@@ -48,11 +48,16 @@ class TaskRegistry(unittest.TestCase):
         self.assertTrue(any("finished_at" in e for e in tasks.validate(t)))
 
     def test_json_export_maps_statuses(self):
+        # Independent of the current registry content: set each status explicitly on a copy.
         import json
-        rows = {r["task_id"]: r for r in json.loads(tasks.export_json(self.t))["tasks"]}
-        self.assertEqual(rows["T-005"]["status"], "PASS")
-        self.assertEqual(rows["T-009"]["status"], "BLOCKED")
-        self.assertEqual(rows["T-001"]["status"], "NEEDS_REVIEW")
+        t = copy.deepcopy(self.t)
+        for tid, st in (("T-001", "submitted"), ("T-005", "accepted"), ("T-009", "blocked"),
+                        ("T-003", "open"), ("T-013", "changes_requested")):
+            t[tid]["status"] = st
+        rows = {r["task_id"]: r for r in json.loads(tasks.export_json(t))["tasks"]}
+        expect = {"T-001": "NEEDS_REVIEW", "T-005": "PASS", "T-009": "BLOCKED", "T-003": "TODO", "T-013": "FAILED"}
+        for tid, ext in expect.items():
+            self.assertEqual(rows[tid]["status"], ext, tid)
 
     def test_blocked_requires_named_blocker(self):
         t = copy.deepcopy(self.t)

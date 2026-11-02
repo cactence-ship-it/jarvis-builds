@@ -2,6 +2,13 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.7.1] - 2026-11-02 - ChatGPT batch-2 review: T-011 and T-013 reworked
+
+### Changed
+- T-013: worst-case interval semantics (D-022) - PASS / FAIL / INDETERMINATE; boundary tests for clearance and sum_at_most.
+- T-011: the viewer smoke test asserts every interaction (load, part count vs manifest, BDY-003 selection, explode and restore, GLAZING visibility, no console errors) and exits non-zero on failure; read-only test hook in the viewer.
+- Recorded ChatGPT ACCEPT for T-001, T-010, T-014, T-015, T-017.
+
 ## [0.7.0] - 2026-11-02 - Phase 0 audit, consistency rules, CAD regression gate
 
 ### Added

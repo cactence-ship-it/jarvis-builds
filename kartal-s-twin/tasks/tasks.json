@@ -15,19 +15,19 @@
         "A FAIL rule makes the build report an error"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
-      "test_result": "71/71 local at this commit (test-results/latest.txt). New: WheelbaseAsymmetry (RL x = 2480, RR x = 2500 with unequal wheelbases; CAD and visual), later CHANGES_REQUESTED blocks acceptance.",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. T-001 files unchanged 784ceb9..c665cfb (git diff empty).",
       "error": null,
       "started_at": "2026-11-02T04:36:21Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T06:11:38Z",
       "evidence": [
         "src/kartal_twin/interfaces.py",
         "tests/test_interfaces.py",
         "https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41391939368"
       ],
-      "last_result_commit": "784ceb9005f0f1f939a764bedad4efe2ed852aa5",
-      "last_review": "chatgpt:CHANGES_REQUESTED"
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
     },
     {
       "task_id": "T-002",
@@ -234,17 +234,17 @@
         "CI green with no Node 20 deprecation warning"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
-      "test_result": "action.yml of checkout v5.1.0 (fbc6f39) and setup-python v6.3.0 (ece7cb0) declare node24 (raw files read). CI on 19505cb (workflow unchanged since c29f5fe): jobs 125105038877 and 125105126024 success, 'Ran 71 tests ... OK', and the Node.js 20 deprecation warning present in job 125097402634 no longer appears.",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. Workflow at c665cfb keeps the T-010 Node 24 pins (checkout fbc6f39, setup-python ece7cb0) unchanged; the file additionally gained the lint step and viewer job (6b388a8, T-011/T-017).",
       "error": null,
       "started_at": "2026-11-02T04:58:36Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T06:11:38Z",
       "evidence": [
         "https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41391939368"
       ],
-      "last_result_commit": "c29f5fe",
-      "last_review": null
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
     },
     {
       "task_id": "T-011",
@@ -260,13 +260,13 @@
       "owner_agent": "claude",
       "status": "NEEDS_REVIEW",
       "registry_status": "submitted",
-      "test_result": "CI runs 41397314733 and 41397308324 at ca1fe01: viewer job success; log job 125121322473 shows 'assemblies: Kaporta 7 | Dış trim 10 | Camlar 8 | Aydınlatma 6 | Tekerlekler 4', tap selects BDY-003, 'errors: []'. History: first attempt at 7147c05 failed (ERR_CONNECTION_REFUSED, npx http-server not ready after 2 s); fixed with python3 http.server + readiness polling (attempt 1 of 3).",
+      "test_result": "11 assertions pass locally: model loaded (hook), 35 parts == manifest, toggle sum 35, tap selects BDY-003, info shows BDY-003 + PLACEHOLDER, explode max displacement 1.424 m, explode 0 restores exactly, GLAZING 8 hidden/others visible/restored, 0 console errors. Negative run with EXPECTED_PARTS=34 exits 1.",
       "error": null,
       "started_at": "2026-11-02T05:56:16Z",
       "finished_at": null,
       "evidence": [],
-      "last_result_commit": "ca1fe01",
-      "last_review": null
+      "last_result_commit": "see AUTO-CHECKPOINT record in HANDOFF.md (fix commit after c665cfb)",
+      "last_review": "chatgpt:CHANGES_REQUESTED"
     },
     {
       "task_id": "T-012",
@@ -308,7 +308,7 @@
       "owner_agent": "claude",
       "status": "NEEDS_REVIEW",
       "registry_status": "submitted",
-      "test_result": "5 tests: current spec 0 FAIL (DC-003/004/005 PASS, 12 NOT_EVALUATED); cm entry 249 -> DC-003 FAIL; +100 mm rear overhang -> DC-001 FAIL; arch 250 mm < tire radius 300.3 -> DC-012 FAIL",
+      "test_result": "9 tests: safe clearance PASS (335 > 313.0), overlapping bands INDETERMINATE (305 < 313.0 < 310), definitely insufficient FAIL (255 < 287.6), exact strict '<' boundary INDETERMINATE, sum_at_most PASS at 1590<=1590, INDETERMINATE at +1 mm, FAIL at 1611>1610, UNKNOWN NOT_EVALUATED; cm-for-mm and 100 mm typo still FAIL. Current spec: DC-003/004/005 PASS with worst-case margins 4.8/46/105 mm.",
       "error": null,
       "started_at": "2026-11-02T05:51:12Z",
       "finished_at": null,
@@ -317,8 +317,8 @@
         "specs/consistency_rules.yaml",
         "tests/test_consistency.py"
       ],
-      "last_result_commit": "see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)",
-      "last_review": null
+      "last_result_commit": "see AUTO-CHECKPOINT record in HANDOFF.md (fix commit after c665cfb)",
+      "last_review": "chatgpt:CHANGES_REQUESTED"
     },
     {
       "task_id": "T-014",
@@ -330,18 +330,18 @@
         "Every example uses the code that matches the quantity (M06 wheelbase LH, M23 beltline)"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
-      "test_result": "grep for 'M05 = 2488', 'M05=2488', 'M20=955' finds no tracked file; codes verified: M06=wheelbase_lh, M07=wheelbase_rh, M23=belt_z",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. Guide and examples as at bbeefcf; measurement_guide.py later changed only by a lint refactor (lambda -> def, 7147c05); generated guide unchanged (--check up to date).",
       "error": null,
       "started_at": "2026-11-02T05:51:12Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T06:11:38Z",
       "evidence": [
         "docs/OLCUM_REHBERI.md",
         "tools/record_measurement.py"
       ],
-      "last_result_commit": "see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)",
-      "last_review": null
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
     },
     {
       "task_id": "T-015",
@@ -356,15 +356,15 @@
         "A deliberate geometry change requires a new dated audit snapshot"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
-      "test_result": "2 tests pass; sensitivity proven: wheelbase_rh 2490 -> 2491 makes only cad/WHL-004.step differ (c82663cc... vs 3c68982d...)",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. tests/test_golden_cad.py and audit/2026-11-02 unchanged bbeefcf..c665cfb.",
       "error": null,
       "started_at": "2026-11-02T05:40:00Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T06:11:38Z",
       "evidence": [],
-      "last_result_commit": "see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)",
-      "last_review": null
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
     },
     {
       "task_id": "T-016",
@@ -403,18 +403,18 @@
         "ruff check src tools tests reports no findings locally and in CI"
       ],
       "owner_agent": "claude",
-      "status": "NEEDS_REVIEW",
-      "registry_status": "submitted",
-      "test_result": "ruff 0.15.0 'All checks passed!' locally; CI test job success at 7147c05 and ca1fe01 (lint step runs before tests)",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. ruff.toml and workflow lint step unchanged ca1fe01..c665cfb; CI test job (with lint) green at ca1fe01.",
       "error": null,
       "started_at": "2026-11-02T05:56:16Z",
-      "finished_at": null,
+      "finished_at": "2026-11-02T06:11:38Z",
       "evidence": [
         "ruff.toml",
         ".github/workflows/kartal-ci.yml"
       ],
-      "last_result_commit": "ca1fe01",
-      "last_review": null
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
     }
   ]
 }

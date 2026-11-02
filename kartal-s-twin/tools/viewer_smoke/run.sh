@@ -21,5 +21,6 @@ for _ in $(seq 1 60); do        # wait until the port really answers (max 30 s)
   sleep 0.5
 done
 curl -sf -o /dev/null "http://127.0.0.1:$PORT/index.html" || { echo "viewer test server did not start" >&2; exit 1; }
-PORT=$PORT NODE_PATH="${NODE_PATH:-/opt/node22/lib/node_modules}" node smoke.js
+EXPECTED_PARTS=$(python3 -c "import json,sys; print(sum(1 for x in json.load(open(sys.argv[1]))['parts'] if x['representation'] == 'visual'))" "$ROOT/build/manifest.json") \
+  PORT=$PORT NODE_PATH="${NODE_PATH:-/opt/node22/lib/node_modules}" node smoke.js
 echo "screenshots: $W/iso.png $W/exploded.png"

@@ -93,7 +93,10 @@ def main() -> int:
     for r in res:
         if r["status"] == "FAIL":
             print(f"CONSISTENCY FAIL {r['id']}: {r['description']} - check the entry (wrong code or unit?)")
-    print("consistency:", {k: sum(r["status"] == k for r in res) for k in ("PASS", "FAIL", "NOT_EVALUATED")})
+    for r in res:
+        if r["status"] == "INDETERMINATE":
+            print(f"CONSISTENCY INDETERMINATE {r['id']}: {r['description']} - tolerances overlap; a tighter measurement decides it")
+    print("consistency:", {k: sum(r["status"] == k for r in res) for k in ("PASS", "FAIL", "INDETERMINATE", "NOT_EVALUATED")})
     print("next: python tools/twin.py validate && python tools/twin.py build && "
           "python tools/twin.py sync-inventory && python tools/measurement_guide.py")
     return 0

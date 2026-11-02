@@ -1,4 +1,4 @@
-# Test run 2026-11-02T06:08:27Z on commit base c665cfb
+# Test run 2026-11-02T06:15:00Z on commit base 996cce5
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -9,9 +9,9 @@
 [PASS] dimensional consistency
 spec: 111 parameters (VERIFIED 0, ESTIMATED 27, UNKNOWN 84) | inventory: 143 components | evidence: 13 items
 ## unittest
-................................................................................
+....................................................................................
 ----------------------------------------------------------------------
-Ran 80 tests in 49.478s
+Ran 84 tests in 53.878s
 
 OK
 ## result: validate=0 unittest=0

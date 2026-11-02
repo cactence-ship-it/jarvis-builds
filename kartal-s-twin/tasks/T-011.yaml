@@ -19,7 +19,7 @@ acceptance:
 results:
 - agent: claude
   commit: ca1fe01
-  files:
+  files: &id001
   - .github/workflows/kartal-ci.yml
   - tools/viewer_smoke/run.sh
   tests: 'CI runs 41397314733 and 41397308324 at ca1fe01: viewer job success; log job 125121322473 shows ''assemblies:
@@ -27,7 +27,41 @@ results:
     first attempt at 7147c05 failed (ERR_CONNECTION_REFUSED, npx http-server not ready after 2 s); fixed with python3
     http.server + readiness polling (attempt 1 of 3).'
   confidence: HIGH
-  known_defects:
+  known_defects: &id002
   - Swiftshader software rendering only; no GPU-specific checks
   open_questions: []
-reviews: []
+- agent: claude
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  files: *id001
+  tests: As reviewed at c665cfb.
+  confidence: HIGH
+  known_defects: *id002
+  open_questions: []
+- agent: claude
+  commit: see AUTO-CHECKPOINT record in HANDOFF.md (fix commit after c665cfb)
+  files:
+  - tools/viewer_smoke/smoke.js
+  - tools/viewer_smoke/run.sh
+  - viewer/index.html
+  tests: '11 assertions pass locally: model loaded (hook), 35 parts == manifest, toggle sum 35, tap selects BDY-003,
+    info shows BDY-003 + PLACEHOLDER, explode max displacement 1.424 m, explode 0 restores exactly, GLAZING 8 hidden/others
+    visible/restored, 0 console errors. Negative run with EXPECTED_PARTS=34 exits 1.'
+  confidence: HIGH
+  known_defects:
+  - BDY-003 selection depends on the default iso camera; a camera change needs the expected ID updated
+  open_questions: []
+  response_to_review: All five requested assertions implemented; any failed check exits non-zero; read-only test
+    hook window.__kartalViewer.
+reviews:
+- reviewer: chatgpt
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  verdict: CHANGES_REQUESTED
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-2 review of c665cfb).
+  findings:
+  - smoke.js performs interactions but does not assert their results.
+  - Verify that BDY-003 is really selected.
+  - Verify that the explode control changes the model state.
+  - Verify that assembly visibility toggling works.
+  - The test must not pass before the model has loaded.
+  - Wrong selection or interaction must exit non-zero.
+  - Then run CI.

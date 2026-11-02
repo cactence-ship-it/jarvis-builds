@@ -8,16 +8,34 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #26** - 2026-11-02 06:09 UTC
-- **Commit:** bu kaydı içeren commit = `c665cfb` commit'inin hemen ardından gelen commit
+- **Checkpoint #27** - 2026-11-02 06:15 UTC
+- **Commit:** bu kaydı içeren commit = `996cce5` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** docs(kartal-s-twin): single batched review request for ChatGPT (7 tasks at c665cfb)
-- **Testler:** PASS - Ran 80 tests in 49.478s; ## result: validate=0 unittest=0
+- **Başlık:** fix(kartal-s-twin): T-011 asserting viewer test, T-013 worst-case interval semantics (ChatGPT batch-2 review)
+- **Testler:** PASS - Ran 84 tests in 53.878s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    A	kartal-s-twin/agents/REVIEW_REQUEST_BATCH_2.md
+    M	kartal-s-twin/CHANGELOG.md
+    M	kartal-s-twin/ENGINEERING_DECISIONS.md
+    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/TASKS.md
     M	kartal-s-twin/persistence/checkpoint.json
+    M	kartal-s-twin/src/kartal_twin/consistency.py
+    M	kartal-s-twin/tasks/T-001.yaml
+    M	kartal-s-twin/tasks/T-010.yaml
+    M	kartal-s-twin/tasks/T-011.yaml
+    M	kartal-s-twin/tasks/T-013.yaml
+    M	kartal-s-twin/tasks/T-014.yaml
+    M	kartal-s-twin/tasks/T-015.yaml
+    M	kartal-s-twin/tasks/T-017.yaml
+    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
+    M	kartal-s-twin/tests/test_consistency.py
+    M	kartal-s-twin/tests/test_tasks.py
+    M	kartal-s-twin/tools/record_measurement.py
+    M	kartal-s-twin/tools/viewer_smoke/run.sh
+    M	kartal-s-twin/tools/viewer_smoke/smoke.js
+    M	kartal-s-twin/viewer/index.html
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -42,6 +60,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 19 | ChatGPT 2. parti: T-001/T-010/T-014/T-015/T-017 ACCEPT kaydedildi; T-011 (testler artık doğruluyor) ve T-013 (en kötü durum toleransı, D-022) düzeltildi | TAMAM | (otomatik kayda bakın) |
 | 18 | CI: lint (T-017) + görüntüleyici tarayıcı testi (T-011) yeşil; viewer hatası (sunucu hazır değildi) düzeltildi | TAMAM | (otomatik kayda bakın) |
 | 17 | FAZ 0 denetimi; T-013 tutarlılık kuralları; T-014 yanlış ölçü kodu örnekleri düzeltildi; T-015 CAD golden testi; görev şeması + tasks.json (n8n için) | TAMAM | (otomatik kayda bakın) |
 | 16 | ChatGPT 2. inceleme CHANGES_REQUESTED (T-001): sol/sağ dingil mesafesi ortalaması düzeltildi + test; literatür güveni LOW (D-020, 11 parametre); doğrulayıcı en son incelemeyi esas alıyor; 71/71 | TAMAM | (otomatik kayda bakın) |

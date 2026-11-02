@@ -5,11 +5,11 @@ description: The guide, the intake tool and the status file showed 'M05 = 2488' 
 priority: P1
 phase: '3'
 owner: claude
-status: submitted
+status: accepted
 depends_on: []
 blocker: null
 started_at: '2026-11-02T05:51:12Z'
-finished_at: null
+finished_at: '2026-11-02T06:11:38Z'
 error: null
 evidence:
 - docs/OLCUM_REHBERI.md
@@ -21,7 +21,7 @@ acceptance:
 results:
 - agent: claude
   commit: see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)
-  files:
+  files: &id001
   - tools/measurement_guide.py
   - docs/OLCUM_REHBERI.md
   - tools/record_measurement.py
@@ -29,7 +29,21 @@ results:
   tests: 'grep for ''M05 = 2488'', ''M05=2488'', ''M20=955'' finds no tracked file; codes verified: M06=wheelbase_lh,
     M07=wheelbase_rh, M23=belt_z'
   confidence: HIGH
-  known_defects:
+  known_defects: &id002
   - The delivery ZIP sent to the owner earlier (kartal_twin_c2743e3.zip) still contains the old example
   open_questions: []
-reviews: []
+- agent: claude
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  files: *id001
+  tests: Deliverable as reviewed at c665cfb. Guide and examples as at bbeefcf; measurement_guide.py later changed
+    only by a lint refactor (lambda -> def, 7147c05); generated guide unchanged (--check up to date).
+  confidence: HIGH
+  known_defects: *id002
+  open_questions: []
+reviews:
+- reviewer: chatgpt
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  verdict: ACCEPT
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-2 review of c665cfb). Only the verdict was relayed
+    for ACCEPT decisions; no finding text.
+  findings: []

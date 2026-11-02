@@ -1,4 +1,8 @@
-"""Dimensional consistency rules (T-013): they must catch entry errors, not just pass."""
+"""Dimensional consistency rules (T-013) with strict worst-case interval semantics.
+
+Revised after ChatGPT's CHANGES_REQUESTED (c665cfb): an inequality PASSes only when it holds
+over the whole uncertainty range, FAILs when violated everywhere, otherwise INDETERMINATE.
+"""
 import copy
 import unittest
 
@@ -11,6 +15,10 @@ def setp(s, pid, value, tol=5.0, status="VERIFIED"):
                                  tolerance=tol, source=["E-001"])
 
 
+R_FRONT = 14 * 25.4 / 2 + 175 * 0.70        # 300.3 mm free radius from 175/70 R14
+R_TOL = 1 * 25.4 / 2                          # 12.7 mm from the rim-diameter tolerance (+/-1 in)
+
+
 class Consistency(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -19,6 +27,12 @@ class Consistency(unittest.TestCase):
     def _res(self, s):
         return {r["id"]: r for r in consistency.evaluate(s)}
 
+    def _arch(self, value, tol):
+        s = copy.deepcopy(self.base)
+        setp(s, "dimensions.wheel_centre_to_arch_fl", value, tol)
+        return self._res(s)["DC-012"]
+
+    # --- current data -------------------------------------------------------------------
     def test_current_spec_has_no_failures(self):
         self.assertNotIn("FAIL", {r["status"] for r in consistency.evaluate(self.base)})
 
@@ -26,7 +40,43 @@ class Consistency(unittest.TestCase):
         r = self._res(self.base)["DC-001"]
         self.assertEqual(r["status"], "NOT_EVALUATED")
         self.assertIn("dimensions.front_overhang", r["missing"])
+        self.assertEqual(self._res(self.base)["DC-012"]["status"], "NOT_EVALUATED")
 
+    # --- tire radius vs wheel-arch clearance (worst case) -----------------------------------
+    def test_clearance_safe_over_whole_range(self):
+        # arch lower bound 340-5 = 335 > tire upper bound 300.3+12.7 = 313.0
+        r = self._arch(340.0, 5.0)
+        self.assertEqual(r["status"], "PASS")
+        self.assertGreater(r["margin_worst_case"], 0)
+
+    def test_nominally_positive_but_bands_overlap(self):
+        # nominal 310 > 300.3, but 310-5 = 305 < 313.0 -> cannot be decided
+        self.assertEqual(self._arch(310.0, 5.0)["status"], "INDETERMINATE")
+
+    def test_definitely_insufficient(self):
+        # arch upper bound 250+5 = 255 < tire lower bound 300.3-12.7 = 287.6
+        self.assertEqual(self._arch(250.0, 5.0)["status"], "FAIL")
+
+    def test_exact_less_than_boundaries(self):
+        upper = R_FRONT + R_TOL                    # tire radius upper bound
+        self.assertEqual(self._arch(upper + 5.0 + 0.01, 5.0)["status"], "PASS")
+        self.assertEqual(self._arch(upper + 5.0, 5.0)["status"], "INDETERMINATE")   # strict '<' fails at equality
+
+    # --- sum_at_most boundaries (front track + tire width <= body width) ---------------------
+    def _track(self, track, t_tol, width, w_tol):
+        s = copy.deepcopy(self.base)
+        setp(s, "dimensions.front_track", track, t_tol)
+        setp(s, "dimensions.overall_width_body", width, w_tol)
+        return self._res(s)["DC-004"]["status"]
+
+    def test_sum_at_most_boundaries(self):
+        # x = track + 175, worst x+ = track + 175 + t_tol ; best y- = width - w_tol
+        self.assertEqual(self._track(1400, 10, 1600, 10), "PASS")      # 1585 <= 1590
+        self.assertEqual(self._track(1405, 10, 1600, 10), "PASS")      # 1590 <= 1590 (non-strict)
+        self.assertEqual(self._track(1406, 10, 1600, 10), "INDETERMINATE")
+        self.assertEqual(self._track(1446, 10, 1600, 10), "FAIL")      # x- 1611 > y+ 1610
+
+    # --- entry errors (kept from the first version) -----------------------------------------
     def test_length_identity_pass_and_fail(self):
         s = copy.deepcopy(self.base)
         setp(s, "dimensions.overall_length", 4396)
@@ -41,13 +91,6 @@ class Consistency(unittest.TestCase):
         s = copy.deepcopy(self.base)
         setp(s, "dimensions.wheelbase_lh", 249.0)                  # entered in cm by mistake
         self.assertEqual(self._res(s)["DC-003"]["status"], "FAIL")
-
-    def test_arch_must_clear_the_tire(self):
-        s = copy.deepcopy(self.base)
-        setp(s, "dimensions.wheel_centre_to_arch_fl", 340.0)       # radius 300.3 +/- 12.7 -> clears
-        self.assertEqual(self._res(s)["DC-012"]["status"], "PASS")
-        setp(s, "dimensions.wheel_centre_to_arch_fl", 250.0)       # below the tire radius
-        self.assertEqual(self._res(s)["DC-012"]["status"], "FAIL")
 
 
 if __name__ == "__main__":

@@ -212,6 +212,13 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const chip = document.getElementById('statusChip');
     if (!statuses.has('PLACEHOLDER')) { chip.className = 'chip draft'; chip.textContent = 'DRAFT · kanıta dayalı taslak'; }
     msg.hidden = true; setView('iso');
+    // Read-only hook for the automated browser test (tools/viewer_smoke): exposes state, changes nothing.
+    window.__kartalViewer = {
+      loaded: true,
+      parts: () => parts.map(p => ({ id: p.data.id, assembly: p.data.assembly, visible: p.node.visible,
+        position: p.node.position.toArray() })),
+      selected: () => (selected ? selected.data.id : null),
+    };
   }
   const fail = err => { msg.textContent = 'Model yüklenemedi: ' + (err && err.message || err); };
   // Packaged builds embed the GLB as base64 (tools/package_viewer.py); otherwise fetch vehicle.glb.
