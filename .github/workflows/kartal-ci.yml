@@ -45,6 +45,10 @@ jobs:
           exit $rc
       - name: Build and re-open all exports
         run: kartal-s-twin/.venv/bin/python kartal-s-twin/tools/twin.py build
+      - name: Independent hash check of the audit snapshot (coreutils sha256sum, T-012)
+        run: |
+          cd kartal-s-twin
+          for d in audit/*/; do (cd "$d" && echo "== $d" && sha256sum -c SHA256SUMS); done
       - name: Privacy audit of the whole git history
         run: kartal-s-twin/.venv/bin/python kartal-s-twin/tools/privacy_history_audit.py
 
