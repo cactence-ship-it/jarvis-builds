@@ -2,6 +2,19 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.2.0] - 2026-11-02 - CAD pipeline and first PLACEHOLDER envelope
+
+### Added
+- Literature evidence E-007..E-010 and 11 ESTIMATED spec values (length 4396, width 1642, height 1496, wheelbase 2490, tire 175/70 R14 and others). None are VERIFIED.
+- `specs/placeholder_assumptions.yaml`, the provenance-tracking `Resolver`, `layout.py` (wheels, profile, greenhouse) and `cad/` helpers.
+- Builders for BODY_ASSEMBLY (BDY-001 envelope), GLAZING (8), WHEELS_AND_TIRES (4), LIGHTING (6) and EXTERIOR_TRIM (5): 24 components, all visual PLACEHOLDER.
+- `pipeline.py` and `twin.py build`: STEP, STL, full and per-assembly GLB, manifest.json, and an independent re-open of every export. `twin.py sync-inventory`.
+- `gltf_writer.py` (metadata-rich GLB), `tools/render_preview.py` (PNG previews, no GPU) and `tools/spec_set.py`.
+- `scripts/run_tests.sh`: records results in `test-results/latest.txt`. `checkpoint.sh` now refuses to commit when tests fail.
+
+### Fixed
+- Negative spec tests depended on current data and broke when wheelbase became ESTIMATED (commit 183c608 was pushed with 2 failing tests; fixed in 9b76991).
+
 ## [0.1.0] - 2026-11-01 - Phase 0/1: environment, persistence and infrastructure
 
 ### Added

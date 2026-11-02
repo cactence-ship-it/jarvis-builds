@@ -5,7 +5,7 @@
 Source of truth: `assembly/vehicle_master.yaml` (revision 0.1.0). Components: **143** in **17** assemblies.
 
 Verification status: VERIFIED 0, ESTIMATED 0, UNKNOWN 143.  
-Geometry with any content (visual / CAD / mechanical): 0 / 0 / 0.
+Geometry with any content (visual / CAD / mechanical): 24 / 0 / 0.
 
 Legend: fitment = CONFIRMED / UNCONFIRMED / ABSENT on this vehicle; `opt` = may not be fitted; geometry states NONE < PLACEHOLDER < LEGACY_IMPORT < DRAFT < VALIDATED.
 
@@ -35,7 +35,7 @@ Body-in-white and closures. Construction type (unibody or not) is UNKNOWN until 
 
 | ID | Component | Fitment | Status | Visual | CAD | Mech | Depends on | Sources |
 |---|---|---|---|---|---|---|---|---|
-| BDY-001 | Body shell (body-in-white) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | - | E-003 |
+| BDY-001 | Body shell (body-in-white) | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | - | E-003 |
 | BDY-002 | Roof panel | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
 | BDY-003 | Hood (bonnet) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
 | BDY-004 | Front fender, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
@@ -54,11 +54,11 @@ Bolt-on exterior parts. The exhaust outlet is EXH-004 (no duplicates across asse
 
 | ID | Component | Fitment | Status | Visual | CAD | Mech | Depends on | Sources |
 |---|---|---|---|---|---|---|---|---|
-| EXT-001 | Front bumper | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| EXT-002 | Rear bumper | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| EXT-003 | Radiator grille | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| EXT-004 | Exterior mirror, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-008 | - |
-| EXT-005 | Exterior mirror, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-009 | - |
+| EXT-001 | Front bumper | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
+| EXT-002 | Rear bumper | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
+| EXT-003 | Radiator grille | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
+| EXT-004 | Exterior mirror, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-008 | - |
+| EXT-005 | Exterior mirror, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-009 | - |
 | EXT-006 | Outer door handle, front LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-008 | - |
 | EXT-007 | Outer door handle, front RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-009 | - |
 | EXT-008 | Outer door handle, rear LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-010 | - |
@@ -77,14 +77,14 @@ All glass. Rear-door fixed vent glass will be added only if the photos show it.
 
 | ID | Component | Fitment | Status | Visual | CAD | Mech | Depends on | Sources |
 |---|---|---|---|---|---|---|---|---|
-| GLZ-001 | Windshield | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001 | - |
-| GLZ-002 | Tailgate (rear) glass | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-012 | E-003 |
-| GLZ-003 | Front door glass, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-008 | - |
-| GLZ-004 | Front door glass, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-009 | - |
-| GLZ-005 | Rear door glass, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-010 | - |
-| GLZ-006 | Rear door glass, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-011 | - |
-| GLZ-007 | Rear quarter (side) glass, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-006 | - |
-| GLZ-008 | Rear quarter (side) glass, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-007 | - |
+| GLZ-001 | Windshield | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001 | - |
+| GLZ-002 | Tailgate (rear) glass | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-012 | E-003 |
+| GLZ-003 | Front door glass, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-008 | - |
+| GLZ-004 | Front door glass, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-009 | - |
+| GLZ-005 | Rear door glass, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-010 | - |
+| GLZ-006 | Rear door glass, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-011 | - |
+| GLZ-007 | Rear quarter (side) glass, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-006 | - |
+| GLZ-008 | Rear quarter (side) glass, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-007 | - |
 
 ## LIGHTING
 
@@ -92,14 +92,14 @@ Lamps as physical parts; their circuits are ELE-005.
 
 | ID | Component | Fitment | Status | Visual | CAD | Mech | Depends on | Sources |
 |---|---|---|---|---|---|---|---|---|
-| LGT-001 | Headlamp, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001, ELE-005 | - |
-| LGT-002 | Headlamp, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001, ELE-005 | - |
-| LGT-003 | Front indicator, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001, ELE-005 | - |
-| LGT-004 | Front indicator, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-001, ELE-005 | - |
+| LGT-001 | Headlamp, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001, ELE-005 | - |
+| LGT-002 | Headlamp, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001, ELE-005 | - |
+| LGT-003 | Front indicator, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001, ELE-005 | - |
+| LGT-004 | Front indicator, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-001, ELE-005 | - |
 | LGT-005 | Side repeater, LH (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-004, ELE-005 | - |
 | LGT-006 | Side repeater, RH (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-005, ELE-005 | - |
-| LGT-007 | Tail lamp, LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-006, ELE-005 | - |
-| LGT-008 | Tail lamp, RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | BDY-007, ELE-005 | - |
+| LGT-007 | Tail lamp, LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-006, ELE-005 | - |
+| LGT-008 | Tail lamp, RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | BDY-007, ELE-005 | - |
 | LGT-009 | Licence-plate lamp | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | ELE-005 | - |
 | LGT-010 | Interior lamp(s) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | INT-018, ELE-005 | - |
 
@@ -285,8 +285,8 @@ Road wheels and tires. Sizes UNKNOWN (spec wheels_tires.*).
 
 | ID | Component | Fitment | Status | Visual | CAD | Mech | Depends on | Sources |
 |---|---|---|---|---|---|---|---|---|
-| WHL-001 | Wheel and tire, front LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FSU-009 | - |
-| WHL-002 | Wheel and tire, front RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FSU-010 | - |
-| WHL-003 | Wheel and tire, rear LH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | RSU-007 | - |
-| WHL-004 | Wheel and tire, rear RH | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | RSU-008 | - |
+| WHL-001 | Wheel and tire, front LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | FSU-009 | - |
+| WHL-002 | Wheel and tire, front RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | FSU-010 | - |
+| WHL-003 | Wheel and tire, rear LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | RSU-007 | - |
+| WHL-004 | Wheel and tire, rear RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | RSU-008 | - |
 | WHL-005 | Spare wheel (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | - | - |

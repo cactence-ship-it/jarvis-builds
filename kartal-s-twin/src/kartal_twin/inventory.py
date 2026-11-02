@@ -158,3 +158,34 @@ def render_markdown(master: dict) -> str:
                 f"| {c['verification_status']} | {g['visual']} | {g['cad']} | {g['mechanical']} "
                 f"| {', '.join(c['dependencies']) or '-'} | {', '.join(c['source_refs']) or '-'} |")
     return "\n".join(out) + "\n"
+
+
+def set_geometry(updates: dict[str, tuple[str, str]], date: str, change: str,
+                 path=ASSEMBLY_PATH) -> list[str]:
+    """Set geometry[representation] for components and append a history entry.
+
+    updates: {component_id: (representation, new_state)}. Lines are rewritten in place
+    (one flow mapping per component), so comments and layout are preserved. Returns the
+    IDs actually changed; unchanged states do not add history.
+    """
+    text = Path(path).read_text(encoding="utf-8").split("\n")
+    changed = []
+    for i, line in enumerate(text):
+        m = re.match(r"^(\s*- )(\{id: ([A-Z]{3}-\d{3}),.*\})$", line)
+        if not m or m.group(3) not in updates:
+            continue
+        comp = yaml.safe_load(m.group(2))
+        rep, state = updates[m.group(3)]
+        if rep not in REPRESENTATIONS or state not in GEOMETRY_STATES:
+            raise ValueError(f"bad update {m.group(3)}: {rep}={state}")
+        if comp["geometry"][rep] == state:
+            continue
+        comp["geometry"][rep] = state
+        comp["history"].append({"rev": max(h["rev"] for h in comp["history"]) + 1, "date": date,
+                                "change": f"{rep} geometry -> {state}: {change}"})
+        dumped = yaml.safe_dump(comp, default_flow_style=True, sort_keys=False, allow_unicode=True,
+                                width=10**6).strip()
+        text[i] = m.group(1) + dumped
+        changed.append(m.group(3))
+    Path(path).write_text("\n".join(text), encoding="utf-8")
+    return changed

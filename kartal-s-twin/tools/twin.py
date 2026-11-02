@@ -5,6 +5,8 @@
   python tools/twin.py inventory         regenerate COMPONENT_INVENTORY.md from the YAML
   python tools/twin.py inventory --check fail if COMPONENT_INVENTORY.md is stale
   python tools/twin.py status            evidence-status counts per spec group / assembly
+  python tools/twin.py build             build + export + validate -> build/ (manifest.json)
+  python tools/twin.py sync-inventory    copy built geometry statuses into the inventory
 """
 import sys
 from collections import Counter
@@ -69,7 +71,41 @@ def status() -> int:
     return 0
 
 
+def build() -> int:
+    from kartal_twin import pipeline
+    r = pipeline.run()
+    c = r["checks"]
+    print(f"parts {len(r['parts'])} | skipped assemblies {len(r['skipped_assemblies'])} | {r['seconds']} s")
+    for e in r["errors"]:
+        print("  ERROR", e)
+    if not r["errors"]:
+        print(f"STEP  solids {c['step']['solids_read']}/{c['step']['solids_written']} "
+              f"vol err {c['step']['volume_rel_error']:.1e} valid {c['step']['valid']}")
+        print(f"STL   triangles {c['stl']['triangles']} normal flips {c['stl']['normal_flips']}")
+        print(f"GLB   triangles {c['glb']['triangles']} issues {c['glb']['issues']} bytes {c['glb']['bytes']}")
+        print(f"mesh  open/inward bodies: {c['mesh_closed_outward']['failed_bodies']}")
+    bad = r["errors"] or c["glb"]["issues"] or c["mesh_closed_outward"]["failed_bodies"] \
+        or c["step"]["solids_read"] != c["step"]["solids_written"] or c["stl"]["normal_flips"]
+    return 1 if bad else 0
+
+
+def sync_inventory() -> int:
+    import datetime
+    import json
+    from kartal_twin.pipeline import BUILD_DIR
+    r = json.loads((BUILD_DIR / "manifest.json").read_text())
+    upd = {p["id"]: (p["representation"], p["geometry_status"]) for p in r["parts"]}
+    today = datetime.date.today().isoformat()
+    changed = inventory.set_geometry(upd, today, "built by kartal_twin.pipeline from spec + placeholders")
+    print(f"inventory updated for {len(changed)} components")
+    return write_inventory(False)
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "build":
+        sys.exit(build())
+    if len(sys.argv) > 1 and sys.argv[1] == "sync-inventory":
+        sys.exit(sync_inventory())
     cmd = sys.argv[1] if len(sys.argv) > 1 else "validate"
     if cmd == "validate":
         sys.exit(validate())

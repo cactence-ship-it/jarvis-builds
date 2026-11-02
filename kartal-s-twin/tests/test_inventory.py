@@ -5,6 +5,7 @@ import unittest
 
 from kartal_twin import INVENTORY_MD_PATH, inventory, spec
 from kartal_twin.assemblies import MODULES
+from kartal_twin.cad.part import BuildContext
 
 
 class Inventory(unittest.TestCase):
@@ -28,12 +29,20 @@ class Inventory(unittest.TestCase):
         for name, asm in self.m["assemblies"].items():
             mod = importlib.import_module(MODULES[name])
             self.assertEqual((mod.ASSEMBLY, mod.PHASE), (name, asm["phase"]))
-            with self.assertRaises(NotImplementedError):
-                mod.build({})
+            ctx = BuildContext()
+            try:
+                parts = mod.build(ctx)
+            except NotImplementedError:
+                continue                          # not started yet - allowed
+            prefix = asm["prefix"] + "-"
+            self.assertTrue(parts, name)
+            self.assertTrue(all(p.component_id.startswith(prefix) for p in parts), name)
 
-    def test_no_geometry_claimed_in_phase_1(self):
+    def test_no_engineering_geometry_claimed_yet(self):
+        # Only visual placeholders exist; CAD and mechanical representations need evidence.
         for _, _, c in inventory.iter_components(self.m):
-            self.assertEqual(set(c["geometry"].values()), {"NONE"}, c["id"])
+            self.assertEqual((c["geometry"]["cad"], c["geometry"]["mechanical"]), ("NONE", "NONE"), c["id"])
+            self.assertIn(c["geometry"]["visual"], ("NONE", "PLACEHOLDER"), c["id"])
 
     # --- negative tests ----------------------------------------------------------------
     def _mutated(self, fn):
