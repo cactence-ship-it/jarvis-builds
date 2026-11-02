@@ -1,12 +1,12 @@
 id: T-020
 title: Registration documents (ruhsat) as primary evidence for identity, mass, displacement and fuel type
 description: Ingest the owner's three registration/emission document photos (originals local-only, hashes in refs/MANIFEST.csv),
-  register them as DOCUMENT evidence and update only the spec parameters the documents state, without committing plate,
-  VIN, engine number, serials or dates.
+  register them as DOCUMENT evidence and update only the spec parameters the documents state, without committing plate, VIN,
+  engine number, serials or dates.
 priority: P1
 phase: '3'
 owner: claude
-status: in_progress
+status: submitted
 depends_on: []
 blocker: null
 started_at: '2026-11-02T06:50:50Z'
@@ -18,8 +18,8 @@ evidence:
 - specs/kartal_s_1997.yaml
 acceptance:
 - id: T-020-A1
-  criterion: Each changed parameter matches the field printed on the document (model, variant, model year, colour,
-    net weight, displacement, fuel type); empty document fields (Motor gücü, Azami yüklü ağırlığı) are not filled
+  criterion: Each changed parameter matches the field printed on the document (model, variant, model year, colour, net weight,
+    displacement, fuel type); empty document fields (Motor gücü, Azami yüklü ağırlığı) are not filled
   check: reviewer compares EVIDENCE_REGISTER E-014/E-015 notes with the spec diff (the photos are private and not in git)
 - id: T-020-A2
   criterion: No plate, VIN, engine number, document serial or registration date in any committed file or history
@@ -27,5 +27,25 @@ acceptance:
 - id: T-020-A3
   criterion: Interpretations beyond the printed text stay ESTIMATED (make 'MURAT' = Tofaş; 'İstiap haddi 04 kişi' = 5 seats)
   check: spec status fields
-results: []
+results:
+- agent: claude
+  commit: 4284df321e4f248f70ae980eb03118a347b1d8df
+  files:
+  - EVIDENCE_REGISTER.md
+  - refs/MANIFEST.csv
+  - specs/kartal_s_1997.yaml
+  - UNCERTAINTY_REGISTER.md
+  - ENGINEERING_DECISIONS.md
+  - tests/test_spec.py
+  - tests/test_measurements.py
+  tests: 'Local: validate 0 FAIL, unittest 101/101 OK; tools/privacy_history_audit.py 438 blobs, 0 findings; git log --all
+    -p has 0 hits for the plate, VIN, engine-number and document-serial strings. CI at 4284df3: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402952218
+    and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402959189, both success.'
+  confidence: MEDIUM
+  known_defects:
+  - The photos are private and not in git, so a reviewer cannot re-read the fields; only the owner can confirm the transcription
+  - Silindir hacmi is partly under glare on E-015 (read as 1581, agrees with literature)
+  - Two tests assumed fixed VERIFIED counts (0, 2); rewritten to check the rule instead
+  open_questions:
+  - Is 'İstiap haddi 04 kişi' passengers excluding the driver (5 seats)? Kept ESTIMATED until an interior photo
 reviews: []

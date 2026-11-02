@@ -8,28 +8,19 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #32** - 2026-11-02 06:55 UTC
-- **Commit:** bu kaydı içeren commit = `852c233` commit'inin hemen ardından gelen commit
+- **Checkpoint #33** - 2026-11-02 06:58 UTC
+- **Commit:** bu kaydı içeren commit = `4284df3` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** evidence(kartal-s-twin): registration documents as primary evidence (T-020); spec 0.6.0, 7 parameters VERIFIED, D-025; two count-based tests made data-independent
-- **Testler:** PASS - Ran 101 tests in 56.761s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): T-020 result recorded at 4284df3 with CI links; submitted for cross-review
+- **Testler:** PASS - Ran 101 tests in 58.417s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
-    M	kartal-s-twin/EVIDENCE_REGISTER.md
-    M	kartal-s-twin/PROJECT_STATUS.md
     M	kartal-s-twin/TASKS.md
-    M	kartal-s-twin/UNCERTAINTY_REGISTER.md
-    M	kartal-s-twin/docs/OLCUM_REHBERI.md
+    M	kartal-s-twin/agents/REVIEW_REQUEST_BATCH_3.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/refs/MANIFEST.csv
-    M	kartal-s-twin/specs/kartal_s_1997.yaml
-    A	kartal-s-twin/tasks/T-020.yaml
+    M	kartal-s-twin/tasks/T-020.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tests/test_measurements.py
-    M	kartal-s-twin/tests/test_spec.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 

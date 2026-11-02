@@ -480,9 +480,9 @@
         "Interpretations beyond the printed text stay ESTIMATED (make 'MURAT' = Tofaş; 'İstiap haddi 04 kişi' = 5 seats)"
       ],
       "owner_agent": "claude",
-      "status": "IN_PROGRESS",
-      "registry_status": "in_progress",
-      "test_result": null,
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Local: validate 0 FAIL, unittest 101/101 OK; tools/privacy_history_audit.py 438 blobs, 0 findings; git log --all -p has 0 hits for the plate, VIN, engine-number and document-serial strings. CI at 4284df3: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402952218 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402959189, both success.",
       "error": null,
       "started_at": "2026-11-02T06:50:50Z",
       "finished_at": null,
@@ -491,7 +491,7 @@
         "refs/MANIFEST.csv",
         "specs/kartal_s_1997.yaml"
       ],
-      "last_result_commit": null,
+      "last_result_commit": "4284df321e4f248f70ae980eb03118a347b1d8df",
       "last_review": null
     }
   ]

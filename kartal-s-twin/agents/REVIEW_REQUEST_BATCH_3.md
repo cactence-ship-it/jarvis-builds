@@ -31,3 +31,13 @@ Earlier rounds stay visible in each task file (`round`, `superseded_by`, `round_
   findings:
     - <finding with evidence>
 ```
+
+## Addendum: T-020 (registration documents), commit 4284df321e4f248f70ae980eb03118a347b1d8df
+Separate commit; review it as its own block (`commit: 4284df321e4f248f70ae980eb03118a347b1d8df`).
+- What changed: E-014..E-016 (DOCUMENT, RECEIVED; originals local-only, SHA-256 in `refs/MANIFEST.csv` R-0001..R-0003),
+  spec 0.6.0 (7 VERIFIED), D-025, U-001/U-010 notes, two count-based tests made data-independent.
+- CI: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402952218 and pull_request run
+  https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402959189, both success.
+- Review limits: the photos are private (plate, VIN), so you cannot re-read the fields. Please check instead that
+  (a) only printed fields became VERIFIED, (b) empty fields (Motor gücü, Azami yüklü ağırlığı) stayed unverified,
+  (c) interpretations (make MURAT = Tofaş, 04 kişi = 5 seats) stayed ESTIMATED, (d) no identifying data in the diff.

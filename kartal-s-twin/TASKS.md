@@ -25,4 +25,4 @@ Dependency order. A task is ACCEPTED only after a review of the same commit by a
 | T-017 | 11 | Lint gate (ruff 0.15.0, E/F/W) in CI and locally | claude | **accepted** | T-005 | result claude@c665cfb8245cc2c896bf77008b4b0c350ef786b8 (HIGH) |
 | T-018 | 11 | SHA-256 verification tool for audit snapshots and the reference manifest | claude | **submitted** | T-015 | result claude@bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e (HIGH) |
 | T-019 | 11 | Privacy scan: VINs, credentials, private keys; full git-history audit | claude | **submitted** | - | result claude@bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e (HIGH) |
-| T-020 | 3 | Registration documents (ruhsat) as primary evidence for identity, mass, displacement and fuel type | claude | **in_progress** | - | - |
+| T-020 | 3 | Registration documents (ruhsat) as primary evidence for identity, mass, displacement and fuel type | claude | **submitted** | - | result claude@4284df321e4f248f70ae980eb03118a347b1d8df (MEDIUM) |
