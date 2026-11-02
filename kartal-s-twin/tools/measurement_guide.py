@@ -61,10 +61,10 @@ RUHSAT = [
     ("Rengi", "identity.exterior_colour"),
     ("Silindir hacmi", "engine.displacement"),
     ("Motor gücü", "engine.max_power"),
-    ("Yakıt cinsi", "engine.fuel_type"),
+    ("Cinsi (yakıt eki, ör. 'H.OTO LPG'; ayrı 'Yakıt cinsi' alanı yok)", "engine.fuel_type"),
     ("Net ağırlığı", "mass.curb_mass"),
     ("Azami yüklü ağırlığı", "mass.gross_vehicle_mass"),
-    ("Koltuk sayısı", "interior.seating_capacity"),
+    ("İstiap haddi (kişi) - koltuk sayısı yorumla çıkar, ESTIMATED kalır", "interior.seating_capacity"),
 ]
 PHOTOS = [
     "Motor bölmesi: kaput açık, üstten ve iki yandan (motor tipi, karbüratör/enjeksiyon, servo fren).",
@@ -132,8 +132,9 @@ def render() -> str:
     lines += [f"{i}. {t}" for i, t in enumerate(PHOTOS, 1)]
     unknown = sum(1 for p in params.values() if p["status"] == "UNKNOWN")
     est = sum(1 for p in params.values() if p["status"] == "ESTIMATED")
+    ver = sum(1 for p in params.values() if p["status"] == "VERIFIED")
     lines += ["", "## Özet", "",
-              f"Spec: {len(params)} parametre: {est} ESTIMATED, {unknown} UNKNOWN, 0 VERIFIED. "
+              f"Spec: {len(params)} parametre: {ver} VERIFIED, {est} ESTIMATED, {unknown} UNKNOWN. "
               f"Varsayım dosyası: {len(asm)} PLACEHOLDER değer. "
               "Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.", ""]
     return "\n".join(lines)

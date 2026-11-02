@@ -2,6 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.9.1] - 2026-11-02 - ChatGPT batch-3 review: T-018 and T-020 reworked
+
+### Recorded
+- ChatGPT batch-3 verdicts (relayed by the owner): ACCEPT T-011, T-012, T-013, T-019 on bf31d4d; CHANGES_REQUESTED T-018 (bf31d4d) and T-020 (4284df3).
+
+### Fixed
+- T-018: a missing `refs/MANIFEST.csv`, a manifest without its header, no `audit/<date>/SHA256SUMS` at all, an empty SHA256SUMS, or an absent SHA256SUMS passed in directly now FAIL (MISSING / MALFORMED / EMPTY) instead of reading as clean; 6 new tests, 5 of which fail on the old code (the sixth is a positive control).
+- T-020: `engine.fuel_type` holds only what the document prints, "LPG (registered conversion)"; the petrol base engine is a new ESTIMATED LOW parameter `engine.base_fuel`. `verify_by` texts name the real document fields ('Cinsi', 'İstiap haddi').
+- Measurement guide summary printed a hard-coded "0 VERIFIED"; it now counts, and a test compares it with the spec. Spec 0.6.1: 112 parameters, 7 VERIFIED / 24 ESTIMATED / 81 UNKNOWN.
+
 ## [0.9.0] - 2026-11-02 - Registration documents as primary evidence (T-020)
 
 ### Added

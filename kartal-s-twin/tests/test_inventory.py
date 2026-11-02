@@ -33,6 +33,17 @@ class Inventory(unittest.TestCase):
                            capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stdout)
 
+    def test_measurement_guide_summary_matches_spec_counts(self):
+        # ChatGPT T-020 review: the summary once printed a hard-coded "0 VERIFIED".
+        import re
+        from kartal_twin import PROJECT_ROOT
+        text = (PROJECT_ROOT / "docs" / "OLCUM_REHBERI.md").read_text(encoding="utf-8")
+        m = re.search(r"Spec: (\d+) parametre: (\d+) VERIFIED, (\d+) ESTIMATED, (\d+) UNKNOWN", text)
+        self.assertIsNotNone(m, "summary line not found")
+        c = spec.status_counts(spec.load_spec())
+        self.assertEqual(tuple(int(x) for x in m.groups()),
+                         (sum(c.values()), c["VERIFIED"], c["ESTIMATED"], c["UNKNOWN"]))
+
     def test_every_assembly_has_a_builder_module(self):
         for name, asm in self.m["assemblies"].items():
             mod = importlib.import_module(MODULES[name])

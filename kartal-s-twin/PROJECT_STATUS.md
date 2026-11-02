@@ -1,6 +1,6 @@
 # Project Status - Tofaş Kartal S (1997) digital twin (VEH-01)
 
-**Updated:** 2026-11-02 · **Spec rev:** 0.6.0 · **Branch:** `ccr-b5d82c24-huyj0b` · **PR:** #1 (open)
+**Updated:** 2026-11-02 · **Spec rev:** 0.6.1 · **Branch:** `ccr-b5d82c24-huyj0b` · **PR:** #1 (open)
 Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session log: [HANDOFF.md](HANDOFF.md). Rules: [CLAUDE.md](CLAUDE.md).
 
 ## Phase tracker
@@ -15,7 +15,7 @@ Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session
 | 5-10, 12 | Interior, powertrain, chassis, suspension, electrical, integration, documentation | NOT STARTED: no evidence |
 
 ## Current numbers
-- Spec: 111 parameters, 7 VERIFIED / 23 ESTIMATED / 81 UNKNOWN. Evidence items: E-001..E-016 (E-014..E-016 registration documents, originals local-only).
+- Spec: 112 parameters, 7 VERIFIED / 24 ESTIMATED / 81 UNKNOWN (engine.base_fuel split from fuel_type). Evidence items: E-001..E-016 (E-014..E-016 registration documents, originals local-only).
 - Built: 35 of 143 components visual (all PLACEHOLDER); 4 engineering CAD (WHL-001..004 tire design envelopes, DRAFT, evidence only); mechanical: none.
 - Tests: see test-results/latest.txt (all passing at last checkpoint) (`test-results/latest.txt`). Viewer smoke test: `test-results/viewer_smoke.txt`.
 - Viewer: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk

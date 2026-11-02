@@ -2,8 +2,11 @@
 
 Checks every `audit/<date>/SHA256SUMS` and every row of `refs/MANIFEST.csv` whose file must be
 present. Each entry gets one status: OK, MISMATCH (content changed), MISSING (file absent),
-MALFORMED (unparseable line), UNSAFE_PATH (absolute or escaping the snapshot directory).
-Anything other than OK is a failure.
+MALFORMED (unparseable line or manifest header), UNSAFE_PATH (absolute or escaping the snapshot
+directory), EMPTY (a SHA256SUMS file without entries). A missing integrity file itself (no
+refs/MANIFEST.csv, no audit/<date>/SHA256SUMS at all) is MISSING too: absence never reads as
+clean (ChatGPT T-018 review, bf31d4d). Anything other than OK is a failure, except
+NOT_PRESENT_LOCAL_ONLY for private originals (D-012).
 """
 from __future__ import annotations
 
@@ -30,7 +33,12 @@ def _safe(rel: str) -> bool:
     return not pp.is_absolute() and ".." not in pp.parts and rel.strip() == rel and rel != ""
 
 
+MANIFEST_COLUMNS = {"ref_id", "stored_name", "sha256", "storage"}
+
+
 def verify_sums(sums_file: Path) -> list[dict]:
+    if not sums_file.is_file():
+        return [{"file": sums_file.name, "status": "MISSING"}]
     base = sums_file.parent
     out = []
     for n, line in enumerate(sums_file.read_text(encoding="utf-8").splitlines(), 1):
@@ -51,16 +59,21 @@ def verify_sums(sums_file: Path) -> list[dict]:
             got = sha256(p)
             out.append({"file": rel, "status": "OK" if got == expected else "MISMATCH",
                         "expected": expected, "actual": got})
+    if not out:
+        out.append({"file": sums_file.name, "status": "EMPTY"})
     return out
 
 
 def verify_manifest(manifest: Path, originals: Path) -> list[dict]:
     """refs/MANIFEST.csv: rows stored in git must exist; any present file must match."""
     out = []
-    if not manifest.exists():
-        return out
+    if not manifest.is_file():
+        return [{"file": manifest.name, "status": "MISSING"}]
     with open(manifest, newline="", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
+        reader = csv.DictReader(f)
+        if not MANIFEST_COLUMNS <= set(reader.fieldnames or []):
+            return [{"file": manifest.name, "status": "MALFORMED"}]
+        for row in reader:
             p = originals / row["stored_name"]
             if not _safe(row["stored_name"]):
                 out.append({"file": row["stored_name"], "status": "UNSAFE_PATH"})
@@ -76,7 +89,10 @@ def verify_manifest(manifest: Path, originals: Path) -> list[dict]:
 
 def verify_project(root: Path = PROJECT_ROOT) -> dict[str, list[dict]]:
     res = {}
-    for sums in sorted((root / "audit").glob("*/SHA256SUMS")):
+    snapshots = sorted((root / "audit").glob("*/SHA256SUMS"))
+    if not snapshots:                                  # at least one dated snapshot is expected (D-017)
+        res["audit"] = [{"file": "audit/<date>/SHA256SUMS", "status": "MISSING"}]
+    for sums in snapshots:
         res[str(sums.relative_to(root))] = verify_sums(sums)
     res["refs/MANIFEST.csv"] = verify_manifest(root / "refs" / "MANIFEST.csv", root / "refs" / "original")
     return res

@@ -62,10 +62,10 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 | R03 | Rengi | `identity.exterior_colour` |
 | R04 | Silindir hacmi | `engine.displacement` |
 | R05 | Motor gücü | `engine.max_power` |
-| R06 | Yakıt cinsi | `engine.fuel_type` |
+| R06 | Cinsi (yakıt eki, ör. 'H.OTO LPG'; ayrı 'Yakıt cinsi' alanı yok) | `engine.fuel_type` |
 | R07 | Net ağırlığı | `mass.curb_mass` |
 | R08 | Azami yüklü ağırlığı | `mass.gross_vehicle_mass` |
-| R09 | Koltuk sayısı | `interior.seating_capacity` |
+| R09 | İstiap haddi (kişi) - koltuk sayısı yorumla çıkar, ESTIMATED kalır | `interior.seating_capacity` |
 
 ## 4. İstenen fotoğraflar
 
@@ -80,4 +80,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 111 parametre: 23 ESTIMATED, 81 UNKNOWN, 0 VERIFIED. Varsayım dosyası: 25 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 112 parametre: 7 VERIFIED, 24 ESTIMATED, 81 UNKNOWN. Varsayım dosyası: 25 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.

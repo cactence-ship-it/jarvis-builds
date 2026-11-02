@@ -49,6 +49,47 @@ class SnapshotVerification(unittest.TestCase):
         self.assertEqual(f, ["x/SHA256SUMS: b.json MISSING"])
 
 
+class MissingIntegrityFiles(unittest.TestCase):
+    """ChatGPT T-018 review (bf31d4d): absent integrity files must fail, never read as clean."""
+
+    def setUp(self):
+        self.root = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.root)
+        snap = self.root / "audit" / "2026-01-01"
+        snap.mkdir(parents=True)
+        (snap / "a.txt").write_text("a\n")
+        (snap / "SHA256SUMS").write_text(hashlib.sha256(b"a\n").hexdigest() + "  a.txt\n")
+        (self.root / "refs").mkdir()
+        (self.root / "refs" / "MANIFEST.csv").write_text(
+            "ref_id,stored_name,original_name,sha256,bytes,media_type,ingested_utc,storage,source,note\n")
+
+    def fails(self):
+        return hashes.failures(hashes.verify_project(self.root))
+
+    def test_complete_project_passes(self):                       # positive control
+        self.assertEqual(self.fails(), [])
+
+    def test_missing_manifest_fails(self):
+        (self.root / "refs" / "MANIFEST.csv").unlink()
+        self.assertEqual(self.fails(), ["refs/MANIFEST.csv: MANIFEST.csv MISSING"])
+
+    def test_manifest_without_header_fails(self):
+        (self.root / "refs" / "MANIFEST.csv").write_text("")
+        self.assertEqual(self.fails(), ["refs/MANIFEST.csv: MANIFEST.csv MALFORMED"])
+
+    def test_no_audit_snapshot_fails(self):
+        shutil.rmtree(self.root / "audit")
+        self.assertEqual(self.fails(), ["audit: audit/<date>/SHA256SUMS MISSING"])
+
+    def test_empty_sums_file_fails(self):
+        (self.root / "audit" / "2026-01-01" / "SHA256SUMS").write_text("\n")
+        self.assertEqual(self.fails(), ["audit/2026-01-01/SHA256SUMS: SHA256SUMS EMPTY"])
+
+    def test_sums_file_passed_directly_but_absent_fails(self):
+        res = hashes.verify_sums(self.root / "audit" / "nope" / "SHA256SUMS")
+        self.assertEqual(res, [{"file": "SHA256SUMS", "status": "MISSING"}])
+
+
 class ProjectVerification(unittest.TestCase):
     def test_repository_hashes_are_intact(self):
         res = hashes.verify_project()

@@ -1,4 +1,4 @@
-# Test run 2026-11-02T07:16:04Z on commit base 0139acc
+# Test run 2026-11-02T07:19:38Z on commit base 9d6c467
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -8,7 +8,7 @@
 [PASS] task registry
 [PASS] hash integrity (audit snapshots, refs manifest)
 [PASS] dimensional consistency
-spec: 111 parameters (VERIFIED 7, ESTIMATED 23, UNKNOWN 81) | inventory: 143 components | evidence: 16 items
+spec: 112 parameters (VERIFIED 7, ESTIMATED 24, UNKNOWN 81) | inventory: 143 components | evidence: 16 items
 ## unittest
 test_glb_is_valid_metres_and_y_up (tests.test_cad_toolchain.CadToolchain.test_glb_is_valid_metres_and_y_up) ... ok
 test_kernel_builds_valid_solid (tests.test_cad_toolchain.CadToolchain.test_kernel_builds_valid_solid) ... ok
@@ -30,6 +30,12 @@ test_sum_at_most_boundaries (tests.test_consistency.Consistency.test_sum_at_most
 test_unknown_inputs_are_not_evaluated (tests.test_consistency.Consistency.test_unknown_inputs_are_not_evaluated) ... ok
 test_fresh_build_reproduces_snapshot_cad (tests.test_golden_cad.GoldenCad.test_fresh_build_reproduces_snapshot_cad) ... ok
 test_snapshot_is_internally_consistent (tests.test_golden_cad.GoldenCad.test_snapshot_is_internally_consistent) ... ok
+test_complete_project_passes (tests.test_hashes.MissingIntegrityFiles.test_complete_project_passes) ... ok
+test_empty_sums_file_fails (tests.test_hashes.MissingIntegrityFiles.test_empty_sums_file_fails) ... ok
+test_manifest_without_header_fails (tests.test_hashes.MissingIntegrityFiles.test_manifest_without_header_fails) ... ok
+test_missing_manifest_fails (tests.test_hashes.MissingIntegrityFiles.test_missing_manifest_fails) ... ok
+test_no_audit_snapshot_fails (tests.test_hashes.MissingIntegrityFiles.test_no_audit_snapshot_fails) ... ok
+test_sums_file_passed_directly_but_absent_fails (tests.test_hashes.MissingIntegrityFiles.test_sums_file_passed_directly_but_absent_fails) ... ok
 test_repository_hashes_are_intact (tests.test_hashes.ProjectVerification.test_repository_hashes_are_intact) ... ok
 test_corrupt_line_is_malformed (tests.test_hashes.SnapshotVerification.test_corrupt_line_is_malformed) ... ok
 test_failures_lists_only_problems (tests.test_hashes.SnapshotVerification.test_failures_lists_only_problems) ... ok
@@ -54,6 +60,7 @@ test_geometry_claims_within_evidence (tests.test_inventory.Inventory.test_geomet
 test_inventory_is_valid (tests.test_inventory.Inventory.test_inventory_is_valid) ... ok
 test_markdown_is_up_to_date (tests.test_inventory.Inventory.test_markdown_is_up_to_date) ... ok
 test_measurement_guide_is_up_to_date (tests.test_inventory.Inventory.test_measurement_guide_is_up_to_date) ... ok
+test_measurement_guide_summary_matches_spec_counts (tests.test_inventory.Inventory.test_measurement_guide_summary_matches_spec_counts) ... ok
 test_generic_json_named_lists (tests.test_legacy.LegacyAnalyser.test_generic_json_named_lists) ... ok
 test_threejs_objects_classified (tests.test_legacy.LegacyAnalyser.test_threejs_objects_classified) ... ok
 test_measurement_becomes_verified_and_drives_geometry (tests.test_measurements.MeasurementIntake.test_measurement_becomes_verified_and_drives_geometry) ... ok
@@ -113,7 +120,7 @@ test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval
 test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
 
 ----------------------------------------------------------------------
-Ran 101 tests in 70.441s
+Ran 108 tests in 68.235s
 
 OK
 ## result: validate=0 unittest=0

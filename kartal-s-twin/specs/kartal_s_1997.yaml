@@ -13,7 +13,7 @@
 # this repository is public (D-012).
 
 schema_version: 1
-revision: "0.6.0"
+revision: "0.6.1"
 last_updated: 2026-11-02
 vehicle_alias: VEH-01   # public alias for the owner's car (real registration withheld)
 
@@ -380,7 +380,7 @@ parameters:
       confidence: MEDIUM
       tolerance: 1
       source: [E-014, E-015]
-      verify_by: Ruhsat 'Koltuk sayısı' field
+      verify_by: Ruhsat 'İstiap haddi' (persons) field plus an interior photo; the documents have no 'Koltuk sayısı' field
       notes: Documents state 'İstiap haddi' = 04 kişi (persons). Turkish registrations normally count passengers excluding the driver, giving 5 seats; that reading is not printed on the document, so ESTIMATED (tolerance 1 covers the 4-seat reading). Confirm with an interior photo.
     steering_side:
       name: Steering side (LHD / RHD)
@@ -567,15 +567,25 @@ parameters:
       verify_by: Manual
       notes: ''
     fuel_type:
-      name: Fuel type (check for LPG conversion)
-      value: LPG (registered LPG conversion; petrol base engine)
+      name: Fuel type as registered (check for LPG conversion)
+      value: LPG (registered conversion)
       unit: null
       status: VERIFIED
       confidence: HIGH
       tolerance: null
       source: [E-014, E-015]
-      verify_by: Ruhsat 'Yakıt cinsi' field + engine bay / cargo photos
-      notes: 'Ruhsat ''Cinsi'' = ''H.OTO LPG'' (private car, LPG) on both documents. Whether the petrol system is still in use (bi-fuel) and where the LPG tank sits are NOT stated: check cargo area and engine bay photos.'
+      verify_by: Ruhsat 'Cinsi' field, which carries the fuel suffix (here 'H.OTO LPG'); these documents have no separate 'Yakıt cinsi' field
+      notes: 'Ruhsat ''Cinsi'' = ''H.OTO LPG'' (H.OTO = private car; LPG = registered LPG conversion) on both documents. Only the registered LPG conversion is VERIFIED; the base fuel is a separate, ESTIMATED parameter (engine.base_fuel). Where the LPG tank sits is not stated: check cargo area and engine bay photos.'
+    base_fuel:
+      name: Base fuel of the engine before the LPG conversion
+      value: petrol
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-011, E-013]
+      verify_by: Engine-bay photos (carburettor or injection system, LPG mixer / injectors, change-over switch)
+      notes: 'NOT printed on the registration documents (ChatGPT T-020 review, 4284df3). Literature reports a petrol 1.6 (carburettor) for this family; LPG kits of this kind are fitted to spark-ignition engines. Whether the petrol system still works (bi-fuel) is unknown.'
     fuel_system_type:
       name: Fuel system (carburettor / single-point / multi-point injection)
       value: carburettor

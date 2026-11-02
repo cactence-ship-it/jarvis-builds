@@ -8,23 +8,24 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #34** - 2026-11-02 07:17 UTC
-- **Commit:** bu kaydı içeren commit = `0139acc` commit'inin hemen ardından gelen commit
+- **Checkpoint #35** - 2026-11-02 07:20 UTC
+- **Commit:** bu kaydı içeren commit = `9d6c467` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** review(kartal-s-twin): record ChatGPT batch-3 verdicts - ACCEPT T-011/T-012/T-013/T-019, CHANGES_REQUESTED T-018/T-020
-- **Testler:** PASS - Ran 101 tests in 70.441s; ## result: validate=0 unittest=0
+- **Başlık:** fix(kartal-s-twin): T-018 missing integrity files fail validation; T-020 fuel type limited to the printed field, base fuel ESTIMATED, guide summary counts VERIFIED
+- **Testler:** PASS - Ran 108 tests in 68.235s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/TASKS.md
+    M	kartal-s-twin/CHANGELOG.md
+    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/PROJECT_STATUS.md
+    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/tasks/T-011.yaml
-    M	kartal-s-twin/tasks/T-012.yaml
-    M	kartal-s-twin/tasks/T-013.yaml
-    M	kartal-s-twin/tasks/T-018.yaml
-    M	kartal-s-twin/tasks/T-019.yaml
-    M	kartal-s-twin/tasks/T-020.yaml
-    M	kartal-s-twin/tasks/tasks.json
+    M	kartal-s-twin/specs/kartal_s_1997.yaml
+    M	kartal-s-twin/src/kartal_twin/hashes.py
     M	kartal-s-twin/test-results/latest.txt
+    M	kartal-s-twin/tests/test_hashes.py
+    M	kartal-s-twin/tests/test_inventory.py
+    M	kartal-s-twin/tools/measurement_guide.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -49,6 +50,8 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 24 | ChatGPT 3. paket: T-011/T-012/T-013/T-019 ACCEPT (bf31d4d); T-018 eksik bütünlük dosyası artık hata (6 test); T-020 yakıt değeri ayrıldı (engine.base_fuel ESTIMATED), rehber özeti düzeltildi | TAMAM | (otomatik kayda bakın) |
+| 23 | Ruhsat belgeleri birincil kanıt (E-014..E-016, asılları yalnız yerelde): 7 parametre VERIFIED, D-025; plaka/VIN/motor no repoya girmedi | TAMAM | 4284df3 |
 | 22 | bf31d4d CI kanıtı kaydedildi (101 test adıyla, sha256sum 7/7, 411 blob 0 bulgu); 3. inceleme paketi agents/REVIEW_REQUEST_BATCH_3.md | TAMAM | (otomatik kayda bakın) |
 | 21 | Kanıt tamamlama (ChatGPT isteği): 652e8e2 CI kesin doğrulandı; SHA kısa/tam semantiği (D-024); tur kayıtları; T-019 kaynak bilgisi; CI'da test isimleri ve coreutils sha256sum | TAMAM | (otomatik kayda bakın) |
 | 20 | Kayıt bütünlüğü (sahte SHA'lar düzeltildi, D-023), T-018 hash doğrulama, T-019 gizlilik (VIN/anahtar, tüm geçmiş: 0 bulgu), T-013 strict sınır, T-011 kameradan bağımsız seçim | TAMAM | (otomatik kayda bakın) |
@@ -61,13 +64,13 @@
 | 13 | Kartal Jarvis: T-001 boşluk/girişim modülü (D-018), görev kaydı + çapraz inceleme kuralı (D-019, tasks/, TASKS.md), ROADMAP.md, docs/AUTOMATION_ARCHITECTURE.md, ChatGPT inceleme talebi; 68/68 | TAMAM | (otomatik kayda bakın) |
 
 ## Sayılar (son durum)
-- Spec 111 parametre: 0 VERIFIED / 27 ESTIMATED / 84 UNKNOWN. Kanıt: E-001..E-013.
+- Spec 112 parametre: 7 VERIFIED / 24 ESTIMATED / 81 UNKNOWN. Kanıt: E-001..E-016 (E-014..E-016 ruhsat belgeleri).
 - 143 bileşen: 35 görsel (PLACEHOLDER), 4 CAD (WHL lastik zarfı, DRAFT), 0 mekanik.
-- Testler: 55/55 geçti -> `test-results/latest.txt`; görüntüleyici tarayıcı testi -> `test-results/viewer_smoke.txt`.
+- Testler: son sonuç `test-results/latest.txt` (sayı orada; elle yazılmaz); görüntüleyici tarayıcı testi -> `test-results/viewer_smoke.txt`.
 - Görüntüleyici: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (yeniden yayın: `python tools/package_viewer.py` + aynı dosya yolu ile yayınla).
 
 ## Sıradaki görevler (öncelik sırasıyla)
-0. **ChatGPT 3. inceleme paketi:** agents/REVIEW_REQUEST_BATCH_3.md (bf31d4d). Hiçbir görev kendi kendine ACCEPT edilmez.
+0. **ChatGPT 3. paket sonuçlandı:** T-011/T-012/T-013/T-019 ACCEPT (bf31d4d). T-018 ve T-020 2. tur düzeltmeleri yapıldı, agents/REVIEW_REQUEST_BATCH_4.md ile yeniden incelemede. Hiçbir görev kendi kendine ACCEPT edilmez.
    **Görev kuyruğu artık TASKS.md** (tasks/*.yaml). Sıradaki engelsiz görev oradan alınır.
    **ChatGPT denetimi:** COLLAB_REVIEW_CLAUDE.md bölüm E'deki sorular; gelen bulguları B listesine işle.
    Ölçü gelmezse: girişim/boşluk kontrol modülü (G bölümü).
