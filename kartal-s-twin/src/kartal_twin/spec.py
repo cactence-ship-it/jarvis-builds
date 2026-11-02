@@ -41,6 +41,7 @@ class Evidence:
     title: str
     type: str
     state: str
+    ref: str = ""          # refs/MANIFEST.csv ids, e.g. "R-0004..R-0007, R-0012"
 
 
 def load_evidence(path: Path = EVIDENCE_PATH) -> dict[str, Evidence]:
@@ -51,16 +52,37 @@ def load_evidence(path: Path = EVIDENCE_PATH) -> dict[str, Evidence]:
         if not m:
             continue
         cells = [c.strip().strip("`") for c in m.group(2).split("|")]
-        ev = Evidence(m.group(1), cells[0], cells[1], cells[2])
+        ev = Evidence(m.group(1), cells[0], cells[1], cells[2], cells[3] if len(cells) > 3 else "")
         if ev.id in out:
             raise ValueError(f"duplicate evidence id {ev.id}")
         out[ev.id] = ev
     return out
 
 
-def validate_evidence(evidence: dict[str, Evidence]) -> list[str]:
+def manifest_ref_ids(ref: str) -> list[str]:
+    """'R-0004..R-0007, R-0012' -> ['R-0004', 'R-0005', 'R-0006', 'R-0007', 'R-0012']."""
+    out = []
+    for part in (p.strip() for p in ref.split(",")):
+        m = re.fullmatch(r"R-(\d{4})(?:\.\.R-(\d{4}))?", part)
+        if not m:
+            continue
+        lo, hi = int(m.group(1)), int(m.group(2) or m.group(1))
+        out += [f"R-{i:04d}" for i in range(lo, hi + 1)]
+    return out
+
+
+def validate_evidence(evidence: dict[str, Evidence], manifest_ids: set[str] | None = None) -> list[str]:
+    """manifest_ids: ref ids in refs/MANIFEST.csv. When given, every RECEIVED item must cite at
+    least one of them and nothing else (RECEIVED means 'file ingested and checksummed')."""
     errs = []
     for ev in evidence.values():
+        if manifest_ids is not None and ev.state == "RECEIVED":
+            ids = manifest_ref_ids(ev.ref)
+            if not ids:
+                errs.append(f"{ev.id}: RECEIVED needs refs/MANIFEST.csv ids in the Ref column, got '{ev.ref}'")
+            missing = [i for i in ids if i not in manifest_ids]
+            if missing:
+                errs.append(f"{ev.id}: Ref ids not in refs/MANIFEST.csv: {missing}")
         if ev.type not in EVIDENCE_TYPES:
             errs.append(f"{ev.id}: evidence type '{ev.type}' not in {EVIDENCE_TYPES}")
         if ev.state not in EVIDENCE_STATES:

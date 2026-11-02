@@ -25,11 +25,20 @@ def _repo_root() -> Path:
                                capture_output=True, text=True, check=True).stdout.strip())
 
 
+def _manifest_ids() -> set[str]:
+    import csv
+    path = PROJECT_ROOT / "refs" / "MANIFEST.csv"
+    if not path.exists():
+        return set()
+    with open(path, newline="", encoding="utf-8") as f:
+        return {row["ref_id"] for row in csv.DictReader(f)}
+
+
 def validate() -> int:
     ev = spec.load_evidence()
     s, m = spec.load_spec(), inventory.load_assembly()
     checks = {
-        "evidence register": spec.validate_evidence(ev),
+        "evidence register": spec.validate_evidence(ev, _manifest_ids()),
         "master spec": spec.validate_spec(s, ev),
         "component inventory": inventory.validate_assembly(m, ev),
         "inventory markdown in sync": [] if INVENTORY_MD_PATH.exists() and

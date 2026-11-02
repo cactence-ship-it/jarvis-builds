@@ -8,19 +8,19 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #39** - 2026-11-02 08:00 UTC
-- **Commit:** bu kaydı içeren commit = `ffd3f8f` commit'inin hemen ardından gelen commit
+- **Checkpoint #40** - 2026-11-02 11:18 UTC - **WIP: testler geçmemiş olabilir**
+- **Commit:** bu kaydı içeren commit = `af50d75` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** evidence(kartal-s-twin): T-021 result recorded at ffd3f8f with CI links; review request for ChatGPT
-- **Testler:** PASS - Ran 138 tests in 100.072s; ## result: validate=0 unittest=0
+- **Başlık:** WIP: wip(kartal-s-twin): photo evidence set 2 ingested (R-0004..R-0023 hashes only), E-022..E-026, RECEIVED refs checked against manifest; paused on owner request
+- **Testler:** PASS - Ran 138 tests in 95.942s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/TASKS.md
-    A	kartal-s-twin/agents/REVIEW_REQUEST_T-021.md
+    M	kartal-s-twin/EVIDENCE_REGISTER.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/tasks/T-021.yaml
-    M	kartal-s-twin/tasks/tasks.json
+    M	kartal-s-twin/refs/MANIFEST.csv
+    M	kartal-s-twin/src/kartal_twin/spec.py
     M	kartal-s-twin/test-results/latest.txt
+    M	kartal-s-twin/tools/twin.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
