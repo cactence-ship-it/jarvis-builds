@@ -1,0 +1,1186 @@
+# =============================================================================
+# Tofaş Kartal S (1997) - MASTER VEHICLE SPECIFICATION  (single source of truth)
+# =============================================================================
+# Every dimension / technical parameter used by CAD, assemblies or exports is read
+# from this file. Hard rules (ENGINEERING_DECISIONS.md D-005, enforced by
+# `python tools/twin.py validate`):
+#   UNKNOWN   -> value: null, confidence: NONE, tolerance: null, verify_by set.
+#   ESTIMATED -> value + evidence source(s) + tolerance > 0 for numeric values.
+#   VERIFIED  -> confidence HIGH + a RECEIVED photo/document/measurement source.
+#   Owner statements alone can never make a value VERIFIED.
+#   NEVER enter a number from memory or a generic Kartal - only from evidence.
+# Registration plate, VIN and engine number are deliberately NOT stored here:
+# this repository is public (D-012).
+
+schema_version: 1
+revision: "0.1.0"
+last_updated: 2026-11-01
+vehicle_alias: VEH-01   # public alias for the owner's car (real registration withheld)
+
+units:
+  length: mm
+  mass: kg
+  angle: deg
+  displacement: cm3
+  power: kW
+  torque: N·m
+  speed: rpm
+  volume: L
+  voltage: V
+  note: tolerance is always expressed in the parameter's own unit (± value)
+
+coordinate_system:   # D-003
+  id: VCS
+  handedness: right
+  x: {axis: longitudinal, positive: rearward}
+  y: {axis: lateral, positive: right (seen from the driver's seat facing forward)}
+  z: {axis: vertical, positive: up}
+  origin:
+    x: front wheel centre line (front axle) is X = 0
+    y: vehicle centre plane is Y = 0
+    z: ground plane at the reference state is Z = 0
+  side_convention: LH side is -Y, RH side is +Y
+  reference_state: null   # UNKNOWN - fuel level, load, tyre pressures; fix at first measurement (U-008)
+  gltf_export: glTF (x, y, z) = VCS (-Y, Z, -X) x 0.001 m  -> vehicle front faces glTF +Z, up is +Y
+
+parameters:
+  # ---------------------------------------------------------------- Vehicle identity (owner-declared; upgrade to VERIFIED from the redacted ruhsat or a VIN-plate photo)
+  identity:
+    make:
+      name: Make
+      value: Tofaş
+      unit: null
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: null
+      source: [E-001]
+      verify_by: Ruhsat 'Markası' field or VIN plate photo
+      notes: Owner-declared (E-001).
+    model:
+      name: Model / series
+      value: Kartal
+      unit: null
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: null
+      source: [E-001]
+      verify_by: Ruhsat 'Tipi' / 'Ticari adı' field
+      notes: Owner-declared (E-001).
+    variant:
+      name: Trim / variant
+      value: S
+      unit: null
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: null
+      source: [E-001]
+      verify_by: Badge photo + ruhsat 'Tipi' field
+      notes: Owner-declared (E-001).
+    model_year:
+      name: Model year
+      value: 1997
+      unit: null
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: null
+      source: [E-001]
+      verify_by: Ruhsat 'Model yılı' field
+      notes: Owner-declared (E-001). Model year can differ from production date - check the ruhsat.
+    body_style:
+      name: Body style
+      value: estate (station wagon) with tailgate
+      unit: null
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: null
+      source: [E-001]
+      verify_by: Side-profile and rear photos
+      notes: Owner lists a tailgate, rear glass and cargo compartment among the photographed views (E-001); confirm from photos (E-003).
+    side_door_count:
+      name: Number of side doors (excluding tailgate)
+      value: 4
+      unit: null
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: null
+      source: [E-001]
+      verify_by: Side-profile photos
+      notes: Owner's system list names front and rear doors (E-001); confirm from side-profile photos.
+    exterior_colour:
+      name: Exterior colour
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Photos + ruhsat 'Rengi' field
+      notes: ''
+  # ---------------------------------------------------------------- Exterior dimensions - unladen, at the VCS reference state (U-008)
+  dimensions:
+    overall_length:
+      name: Overall length incl. bumpers
+      value: 4396
+      unit: mm
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 40
+      source: [E-007, E-008, E-009]
+      verify_by: Tape on level ground between plumb lines at front and rear extremities
+      notes: Literature for the model, not measured on VEH-01. Sources conflict (4396 vs 4360/4361 mm); tolerance covers both.
+    overall_width_body:
+      name: Overall width excl. mirrors
+      value: 1642
+      unit: mm
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 20
+      source: [E-007, E-010]
+      verify_by: Plumb lines at the widest body point
+      notes: Literature for the model; mirror inclusion not stated by the source.
+    overall_width_mirrors:
+      name: Overall width incl. mirrors
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Plumb lines at the mirror housings
+      notes: ''
+    overall_height:
+      name: Overall height excl. roof rails
+      value: 1496
+      unit: mm
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 25
+      source: [E-007, E-010]
+      verify_by: Straight-edge across the roof to the ground
+      notes: Literature; whether roof rails and load state are included is not stated.
+    overall_height_roof_rails:
+      name: Overall height incl. roof rails (if fitted)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Straight-edge across the rails to the ground
+      notes: ''
+    wheelbase_lh:
+      name: Wheelbase, left side
+      value: 2490
+      unit: mm
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 10
+      source: [E-009, E-010]
+      verify_by: Hub centre to hub centre, wheels straight ahead
+      notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
+    wheelbase_rh:
+      name: Wheelbase, right side
+      value: 2490
+      unit: mm
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 10
+      source: [E-009, E-010]
+      verify_by: Hub centre to hub centre, wheels straight ahead
+      notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
+    front_track:
+      name: Front track (tyre tread centre to centre)
+      value: 1386
+      unit: mm
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 15
+      source: [E-011]
+      verify_by: Tread centres at the ground, wheels straight ahead
+      notes: Literature (aggregators agree on 1386). Replaces the 1380 mm placeholder.
+    rear_track:
+      name: Rear track (tyre tread centre to centre)
+      value: 1327
+      unit: mm
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 15
+      source: [E-011]
+      verify_by: Tread centres at the ground
+      notes: Literature (aggregators agree on 1327). Replaces the 1350 mm placeholder.
+    front_overhang:
+      name: Front overhang (front axle to front extremity)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Plumb line at the front extremity to the front hub centre
+      notes: ''
+    rear_overhang:
+      name: Rear overhang (rear axle to rear extremity)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Plumb line at the rear extremity to the rear hub centre
+      notes: ''
+    ground_clearance_min:
+      name: Minimum ground clearance (unladen)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Lowest underbody point to the ground; name the component in notes
+      notes: ''
+    wheel_centre_to_arch_fl:
+      name: Hub centre to wheel-arch lip, front left
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Vertical tape, hub centre to arch edge (records ride height)
+      notes: ''
+    wheel_centre_to_arch_fr:
+      name: Hub centre to wheel-arch lip, front right
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Vertical tape, hub centre to arch edge
+      notes: ''
+    wheel_centre_to_arch_rl:
+      name: Hub centre to wheel-arch lip, rear left
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Vertical tape, hub centre to arch edge
+      notes: ''
+    wheel_centre_to_arch_rr:
+      name: Hub centre to wheel-arch lip, rear right
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Vertical tape, hub centre to arch edge
+      notes: ''
+    turning_circle_kerb:
+      name: Turning circle, kerb to kerb
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner's manual, or full-lock circle chalked on the ground
+      notes: ''
+  # ---------------------------------------------------------------- Body, closures and cargo
+  body:
+    body_construction:
+      name: Body construction (unibody / separate frame)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Underbody photos
+      notes: ''
+    cargo_floor_length_seat_up:
+      name: Cargo floor length, rear seat up
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: 'Tape at floor level: tailgate seal to rear-seat backrest'
+      notes: ''
+    cargo_floor_length_seat_folded:
+      name: Cargo floor length, rear seat folded
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: 'Tape at floor level: tailgate seal to front-seat backs'
+      notes: ''
+    cargo_width_between_arches:
+      name: Cargo width between wheel arches
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Tape across the narrowest point
+      notes: ''
+    tailgate_opening_width:
+      name: Tailgate opening width
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Tape across the opening at its narrowest point
+      notes: ''
+    tailgate_opening_height:
+      name: Tailgate opening height
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Tape from sill to header at the centre
+      notes: ''
+    load_sill_height:
+      name: Load sill height
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Ground to top of the rear sill
+      notes: ''
+    cargo_volume:
+      name: Cargo volume (state the method in notes)
+      value: null
+      unit: L
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner's manual or brochure; record the measuring method
+      notes: ''
+  # ---------------------------------------------------------------- Interior
+  interior:
+    seating_capacity:
+      name: Seating capacity
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Ruhsat 'Koltuk sayısı' field
+      notes: ''
+    steering_side:
+      name: Steering side (LHD / RHD)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Dashboard photo
+      notes: ''
+    steering_wheel_diameter:
+      name: Steering wheel outer diameter
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Tape across the rim
+      notes: ''
+  # ---------------------------------------------------------------- Mass
+  mass:
+    curb_mass:
+      name: Curb mass (as defined by the source document)
+      value: 1060
+      unit: kg
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-010]
+      verify_by: Ruhsat 'Net ağırlığı' field; note the document's definition
+      notes: Owner-entered listing value; definition (fuel, driver) unknown.
+    gross_vehicle_mass:
+      name: Gross vehicle mass
+      value: 1550
+      unit: kg
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-011]
+      verify_by: Ruhsat 'Azami yüklü ağırlığı' field
+      notes: Aggregator value; confirm from ruhsat 'Azami yüklü ağırlığı'.
+    axle_load_front_measured:
+      name: Front axle load, measured
+      value: null
+      unit: kg
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Weighbridge at the reference state
+      notes: ''
+    axle_load_rear_measured:
+      name: Rear axle load, measured
+      value: null
+      unit: kg
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Weighbridge at the reference state
+      notes: ''
+  # ---------------------------------------------------------------- Engine - variant NOT yet identified (U-001); no value may be assumed
+  engine:
+    engine_code:
+      name: Engine type code
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Engine-number stamping photo / documents
+      notes: ''
+    displacement:
+      name: Displacement
+      value: 1581
+      unit: cm3
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 10
+      source: [E-011, E-013]
+      verify_by: Ruhsat 'Silindir hacmi' field
+      notes: 1.6 engine family reported as 1581 cm3; tolerance also covers 1585 cm3 variants. Confirm from ruhsat 'Silindir hacmi'.
+    cylinder_count:
+      name: Number of cylinders
+      value: 4
+      unit: null
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: null
+      source: [E-011]
+      verify_by: Engine bay photo / documents
+      notes: Aggregator data for all Kartal 1.6 variants.
+    cylinder_layout:
+      name: Cylinder layout
+      value: inline
+      unit: null
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: null
+      source: [E-011]
+      verify_by: Engine bay photo
+      notes: Aggregator data.
+    valvetrain:
+      name: Valvetrain (OHV / SOHC / DOHC)
+      value: SOHC
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-012]
+      verify_by: Engine bay photo (cam cover, timing cover) / manual
+      notes: Listings describe an overhead-cam 'Tempra' engine. Confirm with an engine-bay photo.
+    bore:
+      name: Bore
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Workshop manual
+      notes: ''
+    stroke:
+      name: Stroke
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Workshop manual
+      notes: ''
+    compression_ratio:
+      name: Compression ratio
+      value: null
+      unit: ratio
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Workshop manual
+      notes: ''
+    max_power:
+      name: Maximum power
+      value: 61
+      unit: kW
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-011, E-013]
+      verify_by: Ruhsat 'Motor gücü' field / manual
+      notes: 83 HP (61 kW) reported for the carburettor 1.6; 81-84 hp listed elsewhere (60-62 kW). Confirm from ruhsat 'Motor gücü'.
+    max_power_speed:
+      name: Engine speed at maximum power
+      value: null
+      unit: rpm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Manual
+      notes: ''
+    max_torque:
+      name: Maximum torque
+      value: 131
+      unit: N·m
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 6
+      source: [E-013]
+      verify_by: Manual
+      notes: Reported for the 1997 SLX carburettor 1.6.
+    max_torque_speed:
+      name: Engine speed at maximum torque
+      value: null
+      unit: rpm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Manual
+      notes: ''
+    fuel_type:
+      name: Fuel type (check for LPG conversion)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Ruhsat 'Yakıt cinsi' field + engine bay / cargo photos
+      notes: LPG conversions are common on cars of this type and age - check explicitly.
+    fuel_system_type:
+      name: Fuel system (carburettor / single-point / multi-point injection)
+      value: carburettor
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-012, E-013]
+      verify_by: Engine bay photo of the intake
+      notes: Kartal S listings and the 1997 SLX page report a carburettor; the 1.6 i.e. (injection) is a different variant. Confirm with an engine-bay photo.
+    ignition_type:
+      name: Ignition system type
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Engine bay photo (distributor, coil)
+      notes: ''
+    cooling_system_type:
+      name: Cooling system type
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Engine bay photo
+      notes: ''
+    engine_orientation:
+      name: Engine orientation (longitudinal / transverse)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Engine bay photo
+      notes: ''
+  # ---------------------------------------------------------------- Transmission
+  transmission:
+    transmission_type:
+      name: Transmission type (manual / automatic)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Gear lever photo
+      notes: ''
+    forward_gear_count:
+      name: Number of forward gears
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Gear-knob shift pattern photo
+      notes: ''
+    gear_ratios:
+      name: Forward gear ratios (1st..nth)
+      value: null
+      unit: ratio
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Workshop manual
+      notes: ''
+    reverse_ratio:
+      name: Reverse gear ratio
+      value: null
+      unit: ratio
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Workshop manual
+      notes: ''
+    final_drive_ratio:
+      name: Final drive ratio
+      value: null
+      unit: ratio
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Workshop manual / axle tag
+      notes: ''
+    clutch_actuation:
+      name: Clutch actuation (cable / hydraulic)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Pedal box or bell-housing photo
+      notes: ''
+  # ---------------------------------------------------------------- Drivetrain
+  drivetrain:
+    drive_layout:
+      name: Drive layout (e.g. front-engine RWD / FWD)
+      value: front-engine, rear-wheel drive
+      unit: null
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: null
+      source: [E-009]
+      verify_by: 'Underbody photo: propeller shaft and differential housing (U-006)'
+      notes: Literature (E-009); supports hypothesis U-006. Confirm with an underbody photo before modelling the driveline.
+  # ---------------------------------------------------------------- Chassis and fuel
+  chassis:
+    fuel_tank_capacity:
+      name: Fuel tank capacity
+      value: 52
+      unit: L
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-010]
+      verify_by: Owner's manual
+      notes: Several owner-entered listings.
+  # ---------------------------------------------------------------- Suspension
+  suspension:
+    front_suspension_type:
+      name: Front suspension type
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Wheel-arch photo, wheel turned to full lock
+      notes: ''
+    rear_suspension_type:
+      name: Rear suspension type
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Underbody photo behind the rear wheels
+      notes: ''
+    front_spring_type:
+      name: Front spring type
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Wheel-arch photo
+      notes: ''
+    rear_spring_type:
+      name: Rear spring type (coil / leaf)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Underbody photo
+      notes: ''
+    front_antiroll_bar_fitted:
+      name: Front anti-roll bar fitted
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Underbody photo
+      notes: ''
+    rear_antiroll_bar_fitted:
+      name: Rear anti-roll bar fitted
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Underbody photo
+      notes: ''
+  # ---------------------------------------------------------------- Steering
+  steering:
+    steering_gear_type:
+      name: Steering gear type (rack-and-pinion / recirculating ball)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Underbody or engine bay photo
+      notes: ''
+    power_assisted:
+      name: Power assisted
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Engine bay photo (pump, reservoir)
+      notes: ''
+    turns_lock_to_lock:
+      name: Steering-wheel turns, lock to lock
+      value: null
+      unit: turns
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Count with a tape mark on the wheel rim
+      notes: ''
+  # ---------------------------------------------------------------- Brakes
+  brakes:
+    front_brake_type:
+      name: Front brake type (disc / drum)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Photo through the wheel
+      notes: ''
+    front_disc_diameter:
+      name: Front disc diameter
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Tape across the disc (wheel off) / manual
+      notes: ''
+    rear_brake_type:
+      name: Rear brake type (disc / drum)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Photo through the wheel
+      notes: ''
+    rear_drum_diameter:
+      name: Rear drum diameter
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Manual / measurement with the wheel off
+      notes: ''
+    brake_booster_fitted:
+      name: Brake booster (servo) fitted
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Engine bay photo behind the master cylinder
+      notes: ''
+    parking_brake_type:
+      name: Parking brake type
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Photo of the lever and underbody cables
+      notes: ''
+  # ---------------------------------------------------------------- Wheels and tires
+  wheels_tires:
+    tire_size_front:
+      name: Front tire size and load/speed index
+      value: 175/70 R14
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-010]
+      verify_by: Sidewall photo (also record the DOT date code)
+      notes: Kartal S listings give 175/70 R14 (E-010); aggregators also list 185/70 R14 for the Kartal. Fitted tires on VEH-01 unknown - photograph the sidewall.
+    tire_size_rear:
+      name: Rear tire size and load/speed index
+      value: 175/70 R14
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-010]
+      verify_by: Sidewall photo
+      notes: Kartal S listings give 175/70 R14 (E-010); aggregators also list 185/70 R14 for the Kartal. Fitted tires on VEH-01 unknown - photograph the sidewall.
+    wheel_rim_diameter:
+      name: Rim diameter
+      value: 14
+      unit: in
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-010]
+      verify_by: Sidewall marking / rim stamping
+      notes: Follows from the listed tire size; 13 in cannot be excluded.
+    wheel_rim_width:
+      name: Rim width
+      value: null
+      unit: in
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Rim stamping
+      notes: ''
+    wheel_offset_et:
+      name: Wheel offset (ET)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Rim stamping
+      notes: ''
+    wheel_pcd:
+      name: Bolt-circle diameter (PCD)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Measure across studs / documents
+      notes: ''
+    wheel_fastener_count:
+      name: Number of wheel bolts or studs
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Wheel photo
+      notes: ''
+    wheel_centre_bore:
+      name: Wheel centre bore
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Measure with the wheel off
+      notes: ''
+    wheel_material:
+      name: Wheel material (steel / alloy)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Wheel photo
+      notes: ''
+    spare_wheel_location:
+      name: Spare wheel location
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Cargo compartment / underbody photo
+      notes: ''
+  # ---------------------------------------------------------------- Electrical
+  electrical:
+    system_voltage:
+      name: System voltage
+      value: null
+      unit: V
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Battery label photo
+      notes: ''
+    earth_polarity:
+      name: Earth polarity
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Battery terminal photo
+      notes: ''
+    battery_capacity:
+      name: Battery capacity
+      value: null
+      unit: Ah
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Battery label photo
+      notes: ''
+    battery_cold_cranking:
+      name: Battery cold-cranking current
+      value: null
+      unit: A
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Battery label photo
+      notes: ''
+    alternator_rated_current:
+      name: Alternator rated current
+      value: null
+      unit: A
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Alternator label photo
+      notes: ''
+    headlamp_type:
+      name: Headlamp type / bulb
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Headlamp photo / bulb marking
+      notes: ''
+    fuse_box_location:
+      name: Fuse box location
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Photo
+      notes: ''
+  # ---------------------------------------------------------------- Body profile (VCS) - shape values; placeholders stand in until measured (docs/OLCUM_REHBERI.md)
+  body_profile:
+    bumper_protrusion:
+      name: Bumper face beyond the body face (front and rear)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    bumper_height:
+      name: Bumper vertical height
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    bumper_bottom_z:
+      name: Bumper lower edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    sill_z:
+      name: Body-side (sill) lower edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    nose_bottom_z:
+      name: Front panel lower edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    nose_top_z:
+      name: Hood leading edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    cowl_x:
+      name: Windshield base, X behind the front wheel centre
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    belt_z:
+      name: Side-window sill (beltline) above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    rear_bottom_z:
+      name: Rear panel lower edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    windshield_top_x:
+      name: Windshield top edge, X behind the front wheel centre
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    roof_rear_inset:
+      name: Roof end ahead of the rear body face
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    roof_width:
+      name: Roof width (side to side, at the roof)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    b_pillar_x:
+      name: B-pillar centre, X behind the front wheel centre
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    c_pillar_x:
+      name: Rear-door rear edge, X behind the front wheel centre
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    mirror_protrusion:
+      name: Mirror housing beyond the body side
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
