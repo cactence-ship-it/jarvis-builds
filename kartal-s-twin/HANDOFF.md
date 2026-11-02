@@ -8,17 +8,14 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #36** - 2026-11-02 07:24 UTC
-- **Commit:** bu kaydı içeren commit = `826c4ba` commit'inin hemen ardından gelen commit
+- **Checkpoint #37** - 2026-11-02 07:25 UTC
+- **Commit:** bu kaydı içeren commit = `a68e7e4` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** evidence(kartal-s-twin): T-018/T-020 round-2 results at 826c4ba with CI links; review request batch 4
-- **Testler:** PASS - Ran 108 tests in 64.047s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): T-020 round-2 record lists push-run job IDs
+- **Testler:** PASS - Ran 108 tests in 63.700s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/TASKS.md
-    A	kartal-s-twin/agents/REVIEW_REQUEST_BATCH_4.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/tasks/T-018.yaml
     M	kartal-s-twin/tasks/T-020.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt

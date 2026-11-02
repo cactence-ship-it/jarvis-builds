@@ -69,7 +69,7 @@ results:
     run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405724412 (tests merge commit 0f92fa9; jobs test
     125147169352, viewer 125147168961: success; log lists all 108 tests by name, coreutils sha256sum -c 7/7 OK, privacy audit
     467 blobs 0 findings) and push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405718716 (tests 826c4ba
-    itself).'
+    itself; jobs test 125147150539, viewer 125147150806: success).'
   confidence: HIGH
   known_defects:
   - The photos remain private; transcription against the photo can only be confirmed by the owner
