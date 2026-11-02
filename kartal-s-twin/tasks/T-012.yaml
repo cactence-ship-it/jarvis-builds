@@ -1,11 +1,18 @@
 id: T-012
 title: Independent SHA-256 / rebuild verification of the audit snapshot (open item from T-001 review)
+description: Independent SHA-256 / rebuild check of the audit snapshot by a second agent.
+priority: P2
 phase: '11'
 owner: chatgpt
 status: open
 depends_on:
 - T-001
 blocker: null
+started_at: null
+finished_at: null
+error: null
+evidence:
+- audit/2026-11-02/SHA256SUMS
 acceptance:
 - id: T-012-A1
   criterion: Reviewer recomputes SHA-256 of audit/2026-11-02 files from the raw URLs and matches SHA256SUMS

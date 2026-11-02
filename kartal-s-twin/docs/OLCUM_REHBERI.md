@@ -4,7 +4,7 @@
 
 Bu rehber, dijital ikizdeki **tahminleri (ESTIMATED)** ve **varsayımları (PLACEHOLDER)** gerçek ölçülerle değiştirmek için gereken bilgileri listeler. Sizin ölçtüğünüz değerler MEASUREMENT kanıtı olarak kaydedilir ve parametre **VERIFIED** olabilir.
 
-**Nasıl gönderilir:** Ölçüleri mesaja `KOD = değer` şeklinde yazın (örnek: `M05 = 2488`), milimetre cinsinden. Mümkünse şerit metrenin göründüğü bir fotoğraf ekleyin. Fotoğraflar public GitHub'a yüklenmez; sadece değerler ve dosya özetleri (SHA-256) kaydedilir.
+**Nasıl gönderilir:** Ölçüleri mesaja `KOD = değer` şeklinde yazın (örnek: sol dingil mesafesi için `M06 = 2488`), milimetre cinsinden. Mümkünse şerit metrenin göründüğü bir fotoğraf ekleyin. Fotoğraflar public GitHub'a yüklenmez; sadece değerler ve dosya özetleri (SHA-256) kaydedilir.
 
 **Referans durumu:** Araç düz zeminde, yakıt deposu yaklaşık yarım, bagaj boş, lastik basınçları normal. Bu durumu bir kez not edin (U-008).
 

@@ -1,0 +1,35 @@
+id: T-015
+title: 'CI regression gate on engineering CAD: compare fresh STEP SHA-256 with the committed audit snapshot'
+description: CAD STEP export is byte-reproducible (D-016); CI rebuilds and compares, so any unintended geometry
+  change fails CI.
+priority: P2
+phase: '11'
+owner: claude
+status: submitted
+depends_on:
+- T-005
+blocker: null
+started_at: '2026-11-02T05:40:00Z'
+finished_at: null
+error: null
+evidence: []
+acceptance:
+- id: T-015-A1
+  criterion: CI step runs sha256sum -c on the audit snapshot and compares freshly built CAD STEP hashes
+  check: GitHub Actions log
+- id: T-015-A2
+  criterion: A deliberate geometry change requires a new dated audit snapshot
+  check: documented in ENGINEERING_DECISIONS
+results:
+- agent: claude
+  commit: see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)
+  files:
+  - tests/test_golden_cad.py
+  tests: '2 tests pass; sensitivity proven: wheelbase_rh 2490 -> 2491 makes only cad/WHL-004.step differ (c82663cc...
+    vs 3c68982d...)'
+  confidence: HIGH
+  known_defects:
+  - Byte equality across OS/OCCT versions is assumed by the pinned lock; a different OCCT build would need a new
+    snapshot
+  open_questions: []
+reviews: []

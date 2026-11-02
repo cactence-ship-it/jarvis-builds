@@ -37,6 +37,10 @@ def validate() -> int:
         else ["COMPONENT_INVENTORY.md is stale - run: python tools/twin.py inventory"],
         "privacy (public repo)": privacy.scan_repository(_repo_root()),
         "task registry": _task_errors(),
+        "dimensional consistency": [f"{r['id']} FAIL: {r['description']} (lhs {r['lhs']:.1f}, rhs {r['rhs']:.1f}, "
+                                    f"tolerance {r['combined_tolerance']:.1f})"
+                                    for r in __import__("kartal_twin.consistency", fromlist=["x"]).evaluate(s)
+                                    if r["status"] == "FAIL"],
     }
     failed = 0
     for name, errs in checks.items():
@@ -57,6 +61,8 @@ def _task_errors() -> list:
     errs = tasks.validate(t)
     if tasks.BOARD_PATH.read_text(encoding="utf-8") != tasks.render_board(t) if tasks.BOARD_PATH.exists() else True:
         errs.append("TASKS.md is stale - run: python tools/twin.py tasks")
+    if not tasks.JSON_PATH.exists() or tasks.JSON_PATH.read_text(encoding="utf-8") != tasks.export_json(t):
+        errs.append("tasks/tasks.json is stale - run: python tools/twin.py tasks")
     return errs
 
 
@@ -116,8 +122,10 @@ def sync_inventory() -> int:
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "tasks":
         from kartal_twin import tasks as _t
-        _t.BOARD_PATH.write_text(_t.render_board(_t.load_tasks()), encoding="utf-8")
-        print("wrote TASKS.md")
+        _tt = _t.load_tasks()
+        _t.BOARD_PATH.write_text(_t.render_board(_tt), encoding="utf-8")
+        _t.JSON_PATH.write_text(_t.export_json(_tt), encoding="utf-8")
+        print("wrote TASKS.md and tasks/tasks.json")
         sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == "privacy":
         issues = privacy.scan_repository(_repo_root())

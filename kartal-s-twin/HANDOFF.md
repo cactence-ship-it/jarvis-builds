@@ -8,17 +8,47 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #21** - 2026-11-02 05:09 UTC
-- **Commit:** bu kaydı içeren commit = `19505cb` commit'inin hemen ardından gelen commit
+- **Checkpoint #22** - 2026-11-02 05:54 UTC
+- **Commit:** bu kaydı içeren commit = `05c41a5` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** chore(kartal-s-twin): record T-010 result - CI green on Node 24 actions, deprecation warning gone
-- **Testler:** PASS - Ran 71 tests in 43.277s; ## result: validate=0 unittest=0
+- **Başlık:** feat(kartal-s-twin): Phase 0 audit fixes - dimensional consistency rules, CAD golden gate, task schema for n8n
+- **Testler:** PASS - Ran 80 tests in 60.695s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
+    M	kartal-s-twin/CHANGELOG.md
+    M	kartal-s-twin/ENGINEERING_DECISIONS.md
+    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/PROJECT_STATUS.md
     M	kartal-s-twin/TASKS.md
+    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
+    A	kartal-s-twin/specs/consistency_rules.yaml
+    A	kartal-s-twin/src/kartal_twin/consistency.py
+    M	kartal-s-twin/src/kartal_twin/tasks.py
+    M	kartal-s-twin/tasks/T-001.yaml
+    M	kartal-s-twin/tasks/T-002.yaml
+    M	kartal-s-twin/tasks/T-003.yaml
+    M	kartal-s-twin/tasks/T-004.yaml
+    M	kartal-s-twin/tasks/T-005.yaml
+    M	kartal-s-twin/tasks/T-006.yaml
+    M	kartal-s-twin/tasks/T-007.yaml
+    M	kartal-s-twin/tasks/T-008.yaml
+    M	kartal-s-twin/tasks/T-009.yaml
     M	kartal-s-twin/tasks/T-010.yaml
+    M	kartal-s-twin/tasks/T-011.yaml
+    M	kartal-s-twin/tasks/T-012.yaml
+    A	kartal-s-twin/tasks/T-013.yaml
+    A	kartal-s-twin/tasks/T-014.yaml
+    A	kartal-s-twin/tasks/T-015.yaml
+    A	kartal-s-twin/tasks/T-016.yaml
+    A	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
+    A	kartal-s-twin/tests/test_consistency.py
+    A	kartal-s-twin/tests/test_golden_cad.py
+    M	kartal-s-twin/tests/test_tasks.py
+    M	kartal-s-twin/tools/measurement_guide.py
+    M	kartal-s-twin/tools/record_measurement.py
+    M	kartal-s-twin/tools/twin.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -43,6 +73,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 17 | FAZ 0 denetimi; T-013 tutarlılık kuralları; T-014 yanlış ölçü kodu örnekleri düzeltildi; T-015 CAD golden testi; görev şeması + tasks.json (n8n için) | TAMAM | (otomatik kayda bakın) |
 | 16 | ChatGPT 2. inceleme CHANGES_REQUESTED (T-001): sol/sağ dingil mesafesi ortalaması düzeltildi + test; literatür güveni LOW (D-020, 11 parametre); doğrulayıcı en son incelemeyi esas alıyor; 71/71 | TAMAM | (otomatik kayda bakın) |
 | 15 | ChatGPT incelemeleri kaydedildi: T-001, T-005 ACCEPTED (çapraz onay, fa2f8cd); T-002 Claude incelemesiyle ACCEPTED; yeni görevler T-010 (Node 24 CI), T-011, T-012 | TAMAM | (otomatik kayda bakın) |
 | 14 | T-005 CI: GitHub Actions 68/68 başarılı (run 41389454272 / 41389454020); görev kayıtları güncellendi | TAMAM | (otomatik kayda bakın) |

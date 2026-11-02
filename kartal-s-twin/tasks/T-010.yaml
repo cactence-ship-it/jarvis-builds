@@ -1,11 +1,18 @@
 id: T-010
 title: Upgrade CI actions to Node 24 releases, pinned by SHA (from T-005 review)
+description: Move CI actions to Node 24 releases pinned by SHA.
+priority: P3
 phase: '11'
 owner: claude
 status: submitted
 depends_on:
 - T-005
 blocker: null
+started_at: '2026-11-02T04:58:36Z'
+finished_at: null
+error: null
+evidence:
+- https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41391939368
 acceptance:
 - id: T-010-A1
   criterion: checkout v5.1.0 and setup-python v6.3.0 pinned by commit SHA; their action.yml declares node24

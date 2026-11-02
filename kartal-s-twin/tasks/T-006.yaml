@@ -1,5 +1,7 @@
 id: T-006
 title: Body side profile as DRAFT CAD from measurements and side photo
+description: Body side profile as DRAFT CAD once body_profile values come from measurement or photo.
+priority: P1
 phase: '4'
 owner: claude
 status: blocked
@@ -7,6 +9,10 @@ depends_on:
 - T-003
 - T-004
 blocker: Needs T-003 measurements and a side-profile photo
+started_at: null
+finished_at: null
+error: null
+evidence: []
 acceptance:
 - id: T-006-A1
   criterion: All body_profile.* values ESTIMATED or VERIFIED; no placeholder in the CAD build

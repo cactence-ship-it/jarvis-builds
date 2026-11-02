@@ -1,10 +1,18 @@
 id: T-003
 title: Owner tape measurements M01-M16 and reference state
+description: Owner measures the wheel-reference set first (M06-M09, M13-M16) with the reference state; body profile
+  later.
+priority: P1
 phase: '3'
 owner: owner
 status: open
 depends_on: []
 blocker: null
+started_at: null
+finished_at: null
+error: null
+evidence:
+- docs/OLCUM_REHBERI.md
 acceptance:
 - id: T-003-A1
   criterion: Values sent in 'Mxx = value' form with the reference state

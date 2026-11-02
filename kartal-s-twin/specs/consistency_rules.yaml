@@ -1,0 +1,83 @@
+# Dimensional consistency rules (T-013, D-021).
+# Geometric identities and inequalities that ANY correct set of measurements must satisfy.
+# They contain no vehicle values of their own - only relations between spec parameters.
+# A rule is evaluated only when every parameter it uses is ESTIMATED or VERIFIED;
+# tolerances of the inputs are combined (worst case) so estimates are not over-judged.
+schema_version: 1
+rules:
+  - id: DC-001
+    description: Front overhang + wheelbase + rear overhang equals overall length (each side)
+    kind: sum_equals
+    terms: [dimensions.front_overhang, dimensions.wheelbase_lh, dimensions.rear_overhang]
+    equals: dimensions.overall_length
+  - id: DC-002
+    description: Same identity using the right-hand wheelbase
+    kind: sum_equals
+    terms: [dimensions.front_overhang, dimensions.wheelbase_rh, dimensions.rear_overhang]
+    equals: dimensions.overall_length
+  - id: DC-003
+    description: Left and right wheelbases differ by less than 1 % (larger points to an entry error or damage)
+    kind: relative_difference_below
+    a: dimensions.wheelbase_lh
+    b: dimensions.wheelbase_rh
+    limit: 0.01
+  - id: DC-004
+    description: Front track + one tire section width fits inside the body width
+    kind: sum_at_most
+    terms: [dimensions.front_track, tire_section_width_front]
+    at_most: dimensions.overall_width_body
+  - id: DC-005
+    description: Rear track + one tire section width fits inside the body width
+    kind: sum_at_most
+    terms: [dimensions.rear_track, tire_section_width_rear]
+    at_most: dimensions.overall_width_body
+  - id: DC-006
+    description: Body width excluding mirrors is less than width including mirrors
+    kind: less_than
+    a: dimensions.overall_width_body
+    b: dimensions.overall_width_mirrors
+  - id: DC-007
+    description: Overall height excluding roof rails does not exceed height including rails
+    kind: at_most
+    a: dimensions.overall_height
+    b: dimensions.overall_height_roof_rails
+  - id: DC-008
+    description: Beltline is below the roof
+    kind: less_than
+    a: body_profile.belt_z
+    b: dimensions.overall_height
+  - id: DC-009
+    description: Windshield base is ahead of its top edge (positive rake, VCS X rearward)
+    kind: less_than
+    a: body_profile.cowl_x
+    b: body_profile.windshield_top_x
+  - id: DC-010
+    description: B-pillar is ahead of the rear-door rear edge
+    kind: less_than
+    a: body_profile.b_pillar_x
+    b: body_profile.c_pillar_x
+  - id: DC-011
+    description: Minimum ground clearance is below the sill lower edge
+    kind: at_most
+    a: dimensions.ground_clearance_min
+    b: body_profile.sill_z
+  - id: DC-012
+    description: Hub centre to wheel-arch lip (FL) exceeds the front tire free radius (the arch clears the tire)
+    kind: less_than
+    a: tire_radius_front
+    b: dimensions.wheel_centre_to_arch_fl
+  - id: DC-013
+    description: Hub centre to wheel-arch lip (FR) exceeds the front tire free radius (the arch clears the tire)
+    kind: less_than
+    a: tire_radius_front
+    b: dimensions.wheel_centre_to_arch_fr
+  - id: DC-014
+    description: Hub centre to wheel-arch lip (RL) exceeds the rear tire free radius (the arch clears the tire)
+    kind: less_than
+    a: tire_radius_rear
+    b: dimensions.wheel_centre_to_arch_rl
+  - id: DC-015
+    description: Hub centre to wheel-arch lip (RR) exceeds the rear tire free radius (the arch clears the tire)
+    kind: less_than
+    a: tire_radius_rear
+    b: dimensions.wheel_centre_to_arch_rr

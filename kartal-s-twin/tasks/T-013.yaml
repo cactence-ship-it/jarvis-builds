@@ -1,0 +1,46 @@
+id: T-013
+title: Dimensional consistency rules between spec parameters
+description: Identities and inequalities every correct measurement set must satisfy (length identity, L/R wheelbase,
+  track fits body, arch clears tire...). Catches unit and code entry errors.
+priority: P1
+phase: '3'
+owner: claude
+status: submitted
+depends_on: []
+blocker: null
+started_at: '2026-11-02T05:51:12Z'
+finished_at: null
+error: null
+evidence:
+- src/kartal_twin/consistency.py
+- specs/consistency_rules.yaml
+- tests/test_consistency.py
+acceptance:
+- id: T-013-A1
+  criterion: Rules contain only relations, no vehicle values
+  check: review of specs/consistency_rules.yaml
+- id: T-013-A2
+  criterion: Inputs with UNKNOWN status give NOT_EVALUATED, never PASS
+  check: tests/test_consistency.py
+- id: T-013-A3
+  criterion: A cm-for-mm entry, a 100 mm length typo and an arch below the tire radius are each reported FAIL
+  check: tests/test_consistency.py
+- id: T-013-A4
+  criterion: A FAIL blocks validation and therefore every checkpoint commit
+  check: tools/twin.py validate
+results:
+- agent: claude
+  commit: see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)
+  files:
+  - src/kartal_twin/consistency.py
+  - specs/consistency_rules.yaml
+  - tests/test_consistency.py
+  - tools/twin.py
+  - tools/record_measurement.py
+  tests: '5 tests: current spec 0 FAIL (DC-003/004/005 PASS, 12 NOT_EVALUATED); cm entry 249 -> DC-003 FAIL; +100
+    mm rear overhang -> DC-001 FAIL; arch 250 mm < tire radius 300.3 -> DC-012 FAIL'
+  confidence: HIGH
+  known_defects:
+  - Worst-case tolerance stacking is conservative; may pass marginal errors smaller than the combined tolerance
+  open_questions: []
+reviews: []

@@ -1,10 +1,20 @@
 id: T-001
 title: Assembly interface and clearance check module (exact B-rep)
+description: Exact B-rep minimum-distance and interference checks driven by rule files; first rules CL-001/CL-002
+  on the tire envelopes.
+priority: P1
 phase: '11'
 owner: claude
 status: submitted
 depends_on: []
 blocker: null
+started_at: '2026-11-02T04:36:21Z'
+finished_at: null
+error: null
+evidence:
+- src/kartal_twin/interfaces.py
+- tests/test_interfaces.py
+- https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41391939368
 acceptance:
 - id: T-001-A1
   criterion: Minimum distance and interference volume are exact B-rep values matching analytic cases

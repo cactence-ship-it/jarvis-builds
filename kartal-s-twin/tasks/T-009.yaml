@@ -1,5 +1,7 @@
 id: T-009
 title: Agent orchestration (task dispatch to Claude/OpenAI APIs, cross-review, reports)
+description: Paid agent orchestration (API dispatch, automatic cross-review) - only with an explicit budget.
+priority: P3
 phase: '11'
 owner: claude
 status: blocked
@@ -7,6 +9,11 @@ depends_on:
 - T-005
 blocker: No Anthropic API credit, no OpenAI API key, no n8n host, no budget authorisation; consumer subscriptions
   do not include API access
+started_at: null
+finished_at: null
+error: null
+evidence:
+- docs/AUTOMATION_ARCHITECTURE.md
 acceptance:
 - id: T-009-A1
   criterion: Design documented with threat model; nothing that spends money runs without a budget

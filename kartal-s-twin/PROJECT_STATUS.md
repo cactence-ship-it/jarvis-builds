@@ -17,11 +17,11 @@ Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session
 ## Current numbers
 - Spec: 111 parameters, 0 VERIFIED / 27 ESTIMATED / 84 UNKNOWN. Evidence items: E-001..E-013.
 - Built: 35 of 143 components visual (all PLACEHOLDER); 4 engineering CAD (WHL-001..004 tire design envelopes, DRAFT, evidence only); mechanical: none.
-- Tests: 68/68 (`test-results/latest.txt`). Viewer smoke test: `test-results/viewer_smoke.txt`.
+- Tests: see test-results/latest.txt (all passing at last checkpoint) (`test-results/latest.txt`). Viewer smoke test: `test-results/viewer_smoke.txt`.
 - Viewer: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk
 
 ## Owner actions that unblock the most
-1. Send the tape measurements in `docs/OLCUM_REHBERI.md` (`M05 = 2488` format).
+1. Send the tape measurements in `docs/OLCUM_REHBERI.md` (`M06 = 2488` format; M06 = left wheelbase).
 2. Attach the 9 photos and `Kartal_S_Studyo.zip` in a session.
 3. Send the registration (ruhsat) technical fields (in writing is enough).
 4. Decide private storage for originals (U-009); merge PR #1 when satisfied.

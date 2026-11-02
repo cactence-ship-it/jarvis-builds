@@ -1,11 +1,17 @@
 id: T-007
 title: Wheel rim and hub interface CAD (width, ET, PCD, centre bore)
+description: Rim and hub interface CAD (width, ET, PCD, centre bore) from rim stamping or measurement.
+priority: P2
 phase: '8'
 owner: claude
 status: blocked
 depends_on:
 - T-003
 blocker: Rim width, ET, PCD and centre bore are UNKNOWN (need rim stamping photo or measurement)
+started_at: null
+finished_at: null
+error: null
+evidence: []
 acceptance:
 - id: T-007-A1
   criterion: Rim CAD built only from ESTIMATED/VERIFIED values; tire envelope seats on the rim bead diameter

@@ -1,0 +1,26 @@
+id: T-016
+title: n8n workflow 'Kartal Jarvis' reads the real task queue (tasks/tasks.json) instead of sample rows
+description: Map tasks/tasks.json (public raw URL, no credentials) to Data Table kartal_jarvis_tasks; sample rows
+  must not be treated as engineering work.
+priority: P3
+phase: '11'
+owner: owner
+status: blocked
+depends_on:
+- T-013
+blocker: Claude has no access to the owner's n8n Cloud account (workflow uNAtlFn3mbCDpbUF, table MO4PtI0gTwCXTk6B)
+  from this environment; n8n Cloud is a time-limited trial, not a permanent free service
+started_at: null
+finished_at: null
+error: null
+evidence:
+- tasks/tasks.json
+acceptance:
+- id: T-016-A1
+  criterion: Workflow imports tasks.json via HTTP Request (GET, no auth) and upserts rows keyed by task_id (idempotent)
+  check: n8n execution log
+- id: T-016-A2
+  criterion: No paid API node is used
+  check: workflow JSON review
+results: []
+reviews: []

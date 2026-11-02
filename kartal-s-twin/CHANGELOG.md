@@ -2,6 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.7.0] - 2026-11-02 - Phase 0 audit, consistency rules, CAD regression gate
+
+### Added
+- T-013 dimensional consistency rules DC-001..DC-015 (D-021), wired into `validate` and the measurement intake.
+- T-015 golden CAD regression test against `audit/2026-11-02` (proven sensitive to a 1 mm wheelbase change).
+- Task schema: description, priority, timestamps, error, evidence; owner-facing status mapping; `tasks/tasks.json` export for orchestrators (n8n). T-013..T-016.
+
+### Fixed
+- T-014: misleading measurement examples (`M05 = 2488` and `M20=955` pointed at the wrong quantities) in the guide, intake tool and status file.
+
 ## [0.6.0] - 2026-11-02 - Kartal Jarvis organisation: clearance checks, task registry
 
 ### Added

@@ -20,8 +20,14 @@ AGENTS = ("claude", "chatgpt", "owner")
 STATUSES = ("open", "in_progress", "blocked", "submitted", "changes_requested", "accepted", "cancelled")
 VERDICTS = ("ACCEPT", "CHANGES_REQUESTED", "REJECT")
 CONFIDENCE = ("HIGH", "MEDIUM", "LOW")
-FIELDS = ("id", "title", "phase", "owner", "status", "depends_on", "blocker", "acceptance",
-          "results", "reviews")
+FIELDS = ("id", "title", "description", "priority", "phase", "owner", "status", "depends_on", "blocker",
+          "started_at", "finished_at", "error", "evidence", "acceptance", "results", "reviews")
+PRIORITIES = ("P1", "P2", "P3")
+# Owner-facing status vocabulary (n8n Data Table / reports) for each registry status.
+EXTERNAL_STATUS = {"open": "TODO", "in_progress": "IN_PROGRESS", "blocked": "BLOCKED",
+                   "submitted": "NEEDS_REVIEW", "changes_requested": "FAILED", "accepted": "PASS",
+                   "cancelled": "CANCELLED"}
+JSON_PATH = PROJECT_ROOT / "tasks" / "tasks.json"
 _ID = re.compile(r"^T-\d{3}$")
 
 
@@ -45,6 +51,12 @@ def validate(tasks: dict[str, dict]) -> list[str]:
             continue
         if not _ID.match(tid):
             e("id must look like T-001")
+        if t["priority"] not in PRIORITIES:
+            e(f"priority {t['priority']} not in {PRIORITIES}")
+        if t["status"] == "accepted" and not t["finished_at"]:
+            e("accepted tasks need finished_at")
+        if t["status"] in ("in_progress", "submitted", "accepted") and not t["started_at"]:
+            e(f"{t['status']} tasks need started_at")
         if t["owner"] not in AGENTS:
             e(f"owner {t['owner']} not in {AGENTS}")
         if t["status"] not in STATUSES:
@@ -123,3 +135,21 @@ def render_board(tasks: dict[str, dict]) -> str:
         lines.append(f"| {tid} | {t['phase']} | {t['title']} | {t['owner']} | **{t['status']}** | "
                      f"{', '.join(t['depends_on']) or '-'} | {note} |")
     return "\n".join(lines) + "\n"
+
+
+def export_json(tasks: dict[str, dict]) -> str:
+    """Flat, orchestrator-friendly view (one record per task) - e.g. for an n8n Data Table."""
+    import json
+    rows = []
+    for tid in topo_order(tasks):
+        t = tasks[tid]
+        last = t["results"][-1] if t["results"] else {}
+        rows.append({
+            "task_id": tid, "title": t["title"], "description": t["description"], "priority": t["priority"],
+            "depends_on": t["depends_on"], "acceptance_criteria": [a["criterion"] for a in t["acceptance"]],
+            "owner_agent": t["owner"], "status": EXTERNAL_STATUS[t["status"]], "registry_status": t["status"],
+            "test_result": last.get("tests"), "error": t["error"] or t["blocker"],
+            "started_at": t["started_at"], "finished_at": t["finished_at"], "evidence": t["evidence"],
+            "last_result_commit": last.get("commit"),
+            "last_review": (t["reviews"][-1]["reviewer"] + ":" + t["reviews"][-1]["verdict"]) if t["reviews"] else None})
+    return json.dumps({"schema": "kartal-jarvis-tasks/1", "tasks": rows}, indent=2, ensure_ascii=False) + "\n"

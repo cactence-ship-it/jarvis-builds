@@ -1,11 +1,19 @@
 id: T-005
 title: Continuous integration on GitHub Actions (tests on every push and PR, no secrets)
+description: GitHub Actions runs validation, all tests and the build on every push and PR without secrets.
+priority: P1
 phase: '11'
 owner: claude
 status: accepted
 depends_on:
 - T-001
 blocker: null
+started_at: '2026-11-02T04:36:49Z'
+finished_at: '2026-11-02T04:59:23Z'
+error: null
+evidence:
+- .github/workflows/kartal-ci.yml
+- https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41389454020
 acceptance:
 - id: T-005-A1
   criterion: Workflow runs setup + validation + all unit tests on push and pull_request

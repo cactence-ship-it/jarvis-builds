@@ -18,6 +18,7 @@ class TaskRegistry(unittest.TestCase):
         t = copy.deepcopy(self.t)
         r = t["T-001"]["results"][0]
         t["T-001"]["status"] = "accepted"
+        t["T-001"]["finished_at"] = "2026-11-02T00:00:00Z"
         t["T-001"]["reviews"] = [{"reviewer": reviewer, "commit": r["commit"] if same_commit else "other",
                                   "verdict": "ACCEPT", "findings": []}]
         return tasks.validate(t)
@@ -35,10 +36,23 @@ class TaskRegistry(unittest.TestCase):
         t = copy.deepcopy(self.t)
         r = t["T-001"]["results"][0]
         t["T-001"]["status"] = "accepted"
+        t["T-001"]["finished_at"] = "2026-11-02T00:00:00Z"
         t["T-001"]["reviews"] = [
             {"reviewer": "chatgpt", "commit": r["commit"], "verdict": "ACCEPT", "findings": []},
             {"reviewer": "chatgpt", "commit": r["commit"], "verdict": "CHANGES_REQUESTED", "findings": ["x"]}]
         self.assertTrue(any("supersedes" in e for e in tasks.validate(t)))
+
+    def test_accepted_requires_finished_at(self):
+        t = copy.deepcopy(self.t)
+        t["T-005"]["finished_at"] = None
+        self.assertTrue(any("finished_at" in e for e in tasks.validate(t)))
+
+    def test_json_export_maps_statuses(self):
+        import json
+        rows = {r["task_id"]: r for r in json.loads(tasks.export_json(self.t))["tasks"]}
+        self.assertEqual(rows["T-005"]["status"], "PASS")
+        self.assertEqual(rows["T-009"]["status"], "BLOCKED")
+        self.assertEqual(rows["T-001"]["status"], "NEEDS_REVIEW")
 
     def test_blocked_requires_named_blocker(self):
         t = copy.deepcopy(self.t)

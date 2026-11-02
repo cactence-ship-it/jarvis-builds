@@ -2,7 +2,7 @@
 """Record the owner's tape measurements (codes from docs/OLCUM_REHBERI.md) as evidence.
 
     python tools/record_measurement.py --state "level ground, half tank, empty" \
-        --tol 5 M05=2488 M06=2491 M20=955
+        --tol 5 M06=2488 M07=2491 M23=955
 
 For one measurement session this:
   1. writes evidence/measurements/<E-id>.yaml (values only; no photos, no personal data),
@@ -75,7 +75,7 @@ def record(root: Path, values: dict[str, float], tolerance: float, state: str,
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("values", nargs="+", help="CODE=value in mm, e.g. M05=2488")
+    ap.add_argument("values", nargs="+", help="CODE=value in mm, e.g. M06=2488 (left wheelbase)")
     ap.add_argument("--tol", type=float, default=5.0, help="measurement tolerance in mm (default 5)")
     ap.add_argument("--state", required=True, help="reference state (fuel, load, ground, tyres)")
     ap.add_argument("--date")
@@ -88,6 +88,12 @@ def main() -> int:
         vals[code.strip().upper()] = float(v.replace(",", "."))
     eid, changed = record(Path(a.root), vals, a.tol, a.state, a.date, a.note)
     print(f"{eid}: {len(changed)} parameters VERIFIED -> {', '.join(changed)}")
+    from kartal_twin import consistency, spec as _spec
+    res = consistency.evaluate(_spec.load_spec(Path(a.root) / "specs" / "kartal_s_1997.yaml"))
+    for r in res:
+        if r["status"] == "FAIL":
+            print(f"CONSISTENCY FAIL {r['id']}: {r['description']} - check the entry (wrong code or unit?)")
+    print("consistency:", {k: sum(r["status"] == k for r in res) for k in ("PASS", "FAIL", "NOT_EVALUATED")})
     print("next: python tools/twin.py validate && python tools/twin.py build && "
           "python tools/twin.py sync-inventory && python tools/measurement_guide.py")
     return 0

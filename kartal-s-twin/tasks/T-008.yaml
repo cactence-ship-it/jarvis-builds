@@ -1,5 +1,7 @@
 id: T-008
 title: Clearance rule CL-003 tire envelope to wheel arch (static and steering lock)
+description: Tire-to-arch clearance rule with an evidence-based target, static and at steering lock.
+priority: P2
 phase: '11'
 owner: claude
 status: blocked
@@ -7,6 +9,10 @@ depends_on:
 - T-001
 - T-006
 blocker: Wheel-arch geometry is still a placeholder; steering lock angle UNKNOWN
+started_at: null
+finished_at: null
+error: null
+evidence: []
 acceptance:
 - id: T-008-A1
   criterion: Rule added with evidence-based target; check runs in CI

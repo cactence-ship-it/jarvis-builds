@@ -97,7 +97,7 @@ def render() -> str:
         "gerçek ölçülerle değiştirmek için gereken bilgileri listeler. Sizin ölçtüğünüz değerler "
         "MEASUREMENT kanıtı olarak kaydedilir ve parametre **VERIFIED** olabilir.",
         "",
-        "**Nasıl gönderilir:** Ölçüleri mesaja `KOD = değer` şeklinde yazın (örnek: `M05 = 2488`), "
+        "**Nasıl gönderilir:** Ölçüleri mesaja `KOD = değer` şeklinde yazın (örnek: sol dingil mesafesi için `M06 = 2488`), "
         "milimetre cinsinden. Mümkünse şerit metrenin göründüğü bir fotoğraf ekleyin. "
         "Fotoğraflar public GitHub'a yüklenmez; sadece değerler ve dosya özetleri (SHA-256) kaydedilir.",
         "",

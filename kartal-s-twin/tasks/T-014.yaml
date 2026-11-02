@@ -1,0 +1,35 @@
+id: T-014
+title: Fix misleading measurement-code examples (M05 vs M06)
+description: The guide, the intake tool and the status file showed 'M05 = 2488' (M05 is roof-rail height; 2488 is
+  a wheelbase) and 'M20=955' (M20 is bumper height). Found in the Phase 0 audit.
+priority: P1
+phase: '3'
+owner: claude
+status: submitted
+depends_on: []
+blocker: null
+started_at: '2026-11-02T05:51:12Z'
+finished_at: null
+error: null
+evidence:
+- docs/OLCUM_REHBERI.md
+- tools/record_measurement.py
+acceptance:
+- id: T-014-A1
+  criterion: Every example uses the code that matches the quantity (M06 wheelbase LH, M23 beltline)
+  check: grep for M05=2488 / M20=955 returns nothing in tracked files
+results:
+- agent: claude
+  commit: see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)
+  files:
+  - tools/measurement_guide.py
+  - docs/OLCUM_REHBERI.md
+  - tools/record_measurement.py
+  - PROJECT_STATUS.md
+  tests: 'grep for ''M05 = 2488'', ''M05=2488'', ''M20=955'' finds no tracked file; codes verified: M06=wheelbase_lh,
+    M07=wheelbase_rh, M23=belt_z'
+  confidence: HIGH
+  known_defects:
+  - The delivery ZIP sent to the owner earlier (kartal_twin_c2743e3.zip) still contains the old example
+  open_questions: []
+reviews: []
