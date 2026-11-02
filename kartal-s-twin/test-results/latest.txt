@@ -1,4 +1,4 @@
-# Test run 2026-11-02T01:07:13Z on commit base c00bf6c
+# Test run 2026-11-02T01:08:33Z on commit base 0359b1c
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -7,9 +7,9 @@
 [PASS] privacy (public repo)
 spec: 111 parameters (VERIFIED 0, ESTIMATED 27, UNKNOWN 84) | inventory: 143 components | evidence: 13 items
 ## unittest
-................................................
+..................................................
 ----------------------------------------------------------------------
-Ran 48 tests in 8.301s
+Ran 50 tests in 8.009s
 
 OK
 ## result: validate=0 unittest=0

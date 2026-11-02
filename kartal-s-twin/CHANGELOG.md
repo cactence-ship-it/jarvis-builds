@@ -5,6 +5,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the mas
 ## [0.4.0] - 2026-11-02 - Autonomous mode, more literature evidence
 
 ### Added
+- `tools/photo_scale.py`: side-photo pixel points to VCS mm (wheelbase scale, camera-roll removal, tolerance with a perspective allowance); `--apply` writes ESTIMATED values and never replaces VERIFIED ones. Synthetic tests (50 tests in total).
 - `checkpoint.sh` writes an AUTO-CHECKPOINT record into HANDOFF.md on every commit and supports `--wip` emergency saves; `twin.py privacy`; autonomous work protocol in CLAUDE.md.
 - Literature evidence E-011..E-013: front/rear track 1386/1327 mm (replacing placeholders), gross mass 1550 kg, engine family (4-cylinder inline SOHC carburettor 1.6, 1581 cm3, ~61 kW, ~131 N·m). 27 ESTIMATED values, still 0 VERIFIED.
 

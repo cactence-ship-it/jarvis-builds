@@ -8,24 +8,19 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #13** - 2026-11-02 01:07 UTC
-- **Commit:** bu kaydı içeren commit = `c00bf6c` commit'inin hemen ardından gelen commit
+- **Checkpoint #14** - 2026-11-02 01:08 UTC
+- **Commit:** bu kaydı içeren commit = `0359b1c` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** data(kartal-s-twin): literature tracks 1386/1327 and engine family estimates (E-011..E-013)
-- **Testler:** PASS - Ran 48 tests in 8.301s; ## result: validate=0 unittest=0
+- **Başlık:** feat(kartal-s-twin): photo_scale tool - side-photo pixels to VCS millimetres (Phase 2 prep)
+- **Testler:** PASS - Ran 50 tests in 8.009s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
     M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/EVIDENCE_REGISTER.md
     M	kartal-s-twin/HANDOFF.md
-    M	kartal-s-twin/PROJECT_STATUS.md
-    M	kartal-s-twin/UNCERTAINTY_REGISTER.md
-    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/specs/kartal_s_1997.yaml
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/test-results/viewer_smoke.txt
-    M	kartal-s-twin/tests/test_pipeline.py
+    A	kartal-s-twin/tests/test_photo_scale.py
+    A	kartal-s-twin/tools/photo_scale.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -47,7 +42,8 @@
 | 7 | Teslim paketi (scripts/package_delivery.sh, ZIP gönderildi) + eski arşiv analiz aracı (tools/analyze_legacy.py) | TAMAM | 73de919 |
 | 8 | Dış detay: tavan yuvarlatma, 4 kapı kolu, silecekler, jant göbeği -> 35 parça; görüntüleyici v3 | TAMAM | 8d037b8 |
 | 9 | Otonom düzen: checkpoint.sh HANDOFF'a otomatik kayıt yazar, --wip acil kayıt modu, CLAUDE.md protokolü (yerel sahte remote ile test edildi) | TAMAM | c00bf6c |
-| 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | (otomatik kayda bakın) |
+| 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
+| 11 | Faz 2 hazırlık: tools/photo_scale.py (yan fotoğraftan piksel->mm, dingil mesafesi ölçeği, kamera eğimi düzeltme, tolerans) + sentetik testler, 50/50 | TAMAM | (otomatik kayda bakın) |
 
 ## Sayılar (son durum)
 - Spec 111 parametre: 0 VERIFIED / 27 ESTIMATED / 84 UNKNOWN. Kanıt: E-001..E-013.
@@ -60,7 +56,9 @@
    `tools/twin.py validate` -> `build` -> `sync-inventory` -> `measurement_guide.py` -> testler -> checkpoint -> görüntüleyiciyi yeniden yayınla.
 2. **Fotoğraf/ZIP gelirse:** `python3 tools/ingest_refs.py <dosyalar>` (public depo: orijinaller git'e girmez),
    her foto için EVIDENCE_REGISTER'a E-0xx satırı, `python3 tools/analyze_legacy.py refs/original/R-xxxx_Kartal_S_Studyo.zip`,
-   sonra Faz 2: fotoğraf-bileşen eşlemesi, kaporta profilini fotoğraftan çıkarma (ölçek: dingil mesafesi 2490 ±10).
+   sonra Faz 2: fotoğraf-bileşen eşlemesi. Yan profil fotoğrafında noktaları (ön/arka jant merkezi, iki zemin noktası,
+   bel çizgisi, ön cam alt/üst, direkler...) piksel olarak işaretle -> points.yaml ->
+   `python tools/photo_scale.py points.yaml --apply E-0xx` (ESTIMATED yazar; VERIFIED'ı ezmez) -> build -> sync-inventory.
 3. Kaporta gerçekçiliği (kanıt gelmeden, hepsi PLACEHOLDER): tampon köşe sarması, plaka lambası (LGT-009),
    yan sinyaller (LGT-005/006, takılı olup olmadığı belirsiz), ızgara detayı. (Kollar, silecek, göbek, tavan yuvarlatma YAPILDI.)
 4. İç mekan (Faz 5) için sadece fotoğraf geldikten sonra; motor/şasi/süspansiyon kanıt olmadan MODELLENMEZ (kural).
