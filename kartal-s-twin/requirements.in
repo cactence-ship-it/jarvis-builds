@@ -1,0 +1,6 @@
+# Direct dependencies ONLY. Pinned transitive set lives in requirements.lock.
+# Policy (ENGINEERING_DECISIONS.md D-007): add a package only when a specific task needs it,
+# record the reason here, then regenerate the lock:
+#   uv pip compile requirements.in --python-version 3.13 --generate-hashes -o requirements.lock
+build123d==0.13.0   # primary parametric CAD (OpenCascade via cadquery-ocp-novtk; no VTK)
+pyyaml==6.0.3       # master spec / inventory parsing

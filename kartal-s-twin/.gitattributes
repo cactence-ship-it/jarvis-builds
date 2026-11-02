@@ -1,0 +1,6 @@
+# Originals must stay byte-identical: no end-of-line conversion, no textual diff/merge.
+refs/original/** binary
+*.stl binary
+*.glb binary
+*.step -text
+*.stp -text
