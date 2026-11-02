@@ -24,6 +24,9 @@ from .gltf_writer import GlbBuilder
 from .inventory import iter_components, load_assembly
 
 BUILD_DIR = PROJECT_ROOT / "build"
+# Fixed STEP header timestamp so identical geometry gives identical files (auditable SHA-256).
+STEP_TIMESTAMP = "2000-01-01T00:00:00"
+GENERATED = ("vehicle.step", "vehicle.stl", "vehicle.glb", "manifest.json")
 
 
 def build_parts(representation: str = "visual") -> tuple[list[Part], list[str]]:
@@ -31,11 +34,41 @@ def build_parts(representation: str = "visual") -> tuple[list[Part], list[str]]:
     skipped = []
     for name, modname in MODULES.items():
         mod = importlib.import_module(modname)
+        fn = mod.build if representation == "visual" else getattr(mod, f"build_{representation}", None)
+        if fn is None:
+            skipped.append(name)
+            continue
         try:
-            mod.build(ctx)
+            fn(ctx)
         except NotImplementedError:
             skipped.append(name)
     return ctx.parts, skipped
+
+
+def export_cad(parts: list[Part], out: Path) -> dict:
+    """Engineering CAD: one STEP per component + one assembly STEP, each re-opened."""
+    d = out / "cad"
+    d.mkdir(parents=True, exist_ok=True)
+    rep = {}
+    children = []
+    for p in parts:
+        shape = p.bodies[0][0]
+        shape.label = p.component_id
+        children.append(shape)
+        f = d / f"{p.component_id}.step"
+        bd.export_step(shape, f, timestamp=STEP_TIMESTAMP)
+        back = bd.import_step(f)
+        rep[p.component_id] = {"file": str(f.relative_to(out)), "bytes": f.stat().st_size, "sha256": _sha(f),
+                               "valid": back.is_valid, "volume_mm3": back.volume,
+                               "volume_rel_error": abs(back.volume - shape.volume) / shape.volume,
+                               "bbox_mm": [[round(v, 3) for v in (back.bounding_box().min.X, back.bounding_box().min.Y, back.bounding_box().min.Z)],
+                                           [round(v, 3) for v in (back.bounding_box().max.X, back.bounding_box().max.Y, back.bounding_box().max.Z)]]}
+    asm = d / "vehicle_cad.step"
+    bd.export_step(bd.Compound(children=children, label="VEHICLE_MASTER_CAD"), asm, timestamp=STEP_TIMESTAMP)
+    back = bd.import_step(asm)
+    rep["_assembly"] = {"file": str(asm.relative_to(out)), "bytes": asm.stat().st_size, "sha256": _sha(asm),
+                        "solids_written": len(children), "solids_read": len(back.solids()), "valid": back.is_valid}
+    return rep
 
 
 def check_parts(parts: list[Part]) -> list[str]:
@@ -80,7 +113,7 @@ def export_all(parts: list[Part], out: Path = BUILD_DIR) -> dict:
             children.append(s)
     vehicle = bd.Compound(children=children, label="VEHICLE_MASTER")
     step = out / "vehicle.step"
-    bd.export_step(vehicle, step)
+    bd.export_step(vehicle, step, timestamp=STEP_TIMESTAMP)
     back = bd.import_step(step)
     vol_cad = sum(c.volume for c in children)
     report["checks"]["step"] = {
@@ -125,17 +158,38 @@ def export_all(parts: list[Part], out: Path = BUILD_DIR) -> dict:
                 open_bodies.append(f"{p.component_id}[{i}]")
     report["checks"]["mesh_closed_outward"] = {"failed_bodies": open_bodies}
 
-    for f in sorted(out.rglob("*")):
-        if f.is_file() and f.suffix in (".step", ".stl", ".glb"):
-            report["files"][str(f.relative_to(out))] = {"bytes": f.stat().st_size, "sha256": _sha(f)}
     return report
+
+
+def _clean(out: Path) -> None:
+    """Remove outputs of earlier runs so the manifest can only describe this run."""
+    import shutil
+    for name in GENERATED:
+        (out / name).unlink(missing_ok=True)
+    for sub in ("assemblies", "cad"):
+        shutil.rmtree(out / sub, ignore_errors=True)
+
+
+def _list_outputs(out: Path) -> dict:
+    files = [out / n for n in GENERATED[:3]] + sorted((out / "assemblies").glob("*.glb")) \
+        + sorted((out / "cad").glob("*.step"))
+    return {str(f.relative_to(out)): {"bytes": f.stat().st_size, "sha256": _sha(f)} for f in files if f.exists()}
 
 
 def run(out: Path = BUILD_DIR) -> dict:
     t0 = time.time()
+    out.mkdir(parents=True, exist_ok=True)
+    _clean(out)
     parts, skipped = build_parts()
     errors = check_parts(parts)
     report = export_all(parts, out) if not errors else {"files": {}, "checks": {}}
+    cad_parts, _ = build_parts("cad")
+    cad_errors = check_parts(cad_parts)
+    errors += [f"cad: {e}" for e in cad_errors]
+    if cad_parts and not cad_errors:
+        report["checks"]["cad"] = export_cad(cad_parts, out)
+    parts = parts + cad_parts
+    report["files"] = _list_outputs(out)
     report.update({
         "errors": errors, "skipped_assemblies": skipped, "seconds": round(time.time() - t0, 1),
         "parts": [{"id": p.component_id, "assembly": p.assembly, "representation": p.representation,

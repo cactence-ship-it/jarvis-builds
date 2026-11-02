@@ -2,10 +2,10 @@
 
 <!-- GENERATED from assembly/vehicle_master.yaml by `python tools/twin.py inventory`. Do not edit by hand; edit the YAML and regenerate. -->
 
-Source of truth: `assembly/vehicle_master.yaml` (revision 0.1.0). Components: **143** in **17** assemblies.
+Source of truth: `assembly/vehicle_master.yaml` (revision 0.5.0). Components: **143** in **17** assemblies.
 
 Verification status: VERIFIED 0, ESTIMATED 0, UNKNOWN 143.  
-Geometry with any content (visual / CAD / mechanical): 35 / 0 / 0.
+Geometry with any content (visual / CAD / mechanical): 35 / 4 / 0.
 
 Legend: fitment = CONFIRMED / UNCONFIRMED / ABSENT on this vehicle; `opt` = may not be fitted; geometry states NONE < PLACEHOLDER < LEGACY_IMPORT < DRAFT < VALIDATED.
 
@@ -285,8 +285,8 @@ Road wheels and tires. Sizes UNKNOWN (spec wheels_tires.*).
 
 | ID | Component | Fitment | Status | Visual | CAD | Mech | Depends on | Sources |
 |---|---|---|---|---|---|---|---|---|
-| WHL-001 | Wheel and tire, front LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | FSU-009 | - |
-| WHL-002 | Wheel and tire, front RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | FSU-010 | - |
-| WHL-003 | Wheel and tire, rear LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | RSU-007 | - |
-| WHL-004 | Wheel and tire, rear RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | NONE | NONE | RSU-008 | - |
+| WHL-001 | Wheel and tire, front LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | DRAFT | NONE | FSU-009 | - |
+| WHL-002 | Wheel and tire, front RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | DRAFT | NONE | FSU-010 | - |
+| WHL-003 | Wheel and tire, rear LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | DRAFT | NONE | RSU-007 | - |
+| WHL-004 | Wheel and tire, rear RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | DRAFT | NONE | RSU-008 | - |
 | WHL-005 | Spare wheel (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | - | - |

@@ -2,6 +2,18 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.5.0] - 2026-11-02 - Independent review and first engineering CAD
+
+### Added
+- First engineering CAD: tire design envelopes WHL-001..004 (175/70 R14 designation, ESTIMATED inputs only, DRAFT), per-part and assembly STEP with re-open checks (D-016). Resolver forbids placeholders outside the visual representation.
+- `COLLAB_REVIEW_CLAUDE.md`: evidence-backed review for a ChatGPT cross-check. `audit/2026-11-02/` snapshot with SHA256SUMS (D-017).
+- Reproducibility tests (separate processes) and a stale-output test: 55 tests.
+
+### Fixed
+- `manifest.json` listed stale files from earlier runs and the delivery staging folder; outputs are now cleaned and only this run's files are listed.
+- STEP header timestamp is fixed, so CAD STEP files are byte-reproducible (the coloured visual STEP is not, because of OCCT style ordering; it is checked geometrically).
+- `tests/test_legacy.py` leaked temporary archives; spec and inventory revision fields updated (were 0.1.0).
+
 ## [0.4.0] - 2026-11-02 - Autonomous mode, more literature evidence
 
 ### Added

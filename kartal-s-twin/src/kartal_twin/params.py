@@ -28,7 +28,9 @@ def load_assumptions(path: Path = ASSUMPTIONS_PATH) -> dict:
 
 
 class Resolver:
-    def __init__(self, spec: dict | None = None, assumptions: dict | None = None):
+    def __init__(self, spec: dict | None = None, assumptions: dict | None = None,
+                 allow_placeholders: bool = True):
+        self.allow_placeholders = allow_placeholders
         self.spec = spec if spec is not None else load_spec()
         self.assumptions = assumptions if assumptions is not None else load_assumptions()
         self._params = dict(iter_parameters(self.spec))
@@ -39,6 +41,7 @@ class Resolver:
         """Fresh usage record sharing the same data (one per component)."""
         r = Resolver.__new__(Resolver)
         r.spec, r.assumptions, r._params, r._replacing = self.spec, self.assumptions, self._params, self._replacing
+        r.allow_placeholders = self.allow_placeholders
         r.used = {}
         return r
 
@@ -48,6 +51,8 @@ class Resolver:
             self.used[key] = p["status"]
             return p["value"]
         alt = self._replacing.get(key)
+        if not self.allow_placeholders and (alt is not None or (p is None and key in self.assumptions)):
+            raise UnknownParameter(f"{key}: placeholders are not allowed for engineering CAD (D-016)")
         if p is not None and alt is not None:
             self.used[key] = "PLACEHOLDER"
             return self.assumptions[alt]["value"]

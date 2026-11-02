@@ -45,11 +45,13 @@ class Inventory(unittest.TestCase):
             self.assertTrue(parts, name)
             self.assertTrue(all(p.component_id.startswith(prefix) for p in parts), name)
 
-    def test_no_engineering_geometry_claimed_yet(self):
-        # Only visual placeholders exist; CAD and mechanical representations need evidence.
+    def test_geometry_claims_within_evidence(self):
+        # Visual may be PLACEHOLDER; engineering CAD may be at most DRAFT (no placeholders
+        # allowed, D-016); nothing is VALIDATED; no mechanical representation exists yet.
         for _, _, c in inventory.iter_components(self.m):
-            self.assertEqual((c["geometry"]["cad"], c["geometry"]["mechanical"]), ("NONE", "NONE"), c["id"])
-            self.assertIn(c["geometry"]["visual"], ("NONE", "PLACEHOLDER"), c["id"])
+            self.assertIn(c["geometry"]["visual"], ("NONE", "PLACEHOLDER", "DRAFT"), c["id"])
+            self.assertIn(c["geometry"]["cad"], ("NONE", "DRAFT"), c["id"])
+            self.assertEqual(c["geometry"]["mechanical"], "NONE", c["id"])
 
     # --- negative tests ----------------------------------------------------------------
     def _mutated(self, fn):

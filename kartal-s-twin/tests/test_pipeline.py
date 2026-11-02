@@ -1,6 +1,7 @@
 """End-to-end build: provenance honesty, export validity, scale, axes, inventory sync."""
 import copy
 import json
+import math
 import tempfile
 import unittest
 from pathlib import Path
@@ -101,3 +102,74 @@ class Pipeline(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EngineeringCad(unittest.TestCase):
+    """D-016: the CAD representation uses evidence only (no placeholders)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.r = pipeline.run(Path(cls.tmp.name))
+        cls.cad = {p["id"]: p for p in cls.r["parts"] if p["representation"] == "cad"}
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_cad_resolver_refuses_placeholders(self):
+        with self.assertRaises(UnknownParameter):
+            Resolver(allow_placeholders=False).get("body_profile.belt_z")
+
+    def test_tire_envelopes_are_draft_without_placeholders(self):
+        self.assertEqual(sorted(self.cad), ["WHL-001", "WHL-002", "WHL-003", "WHL-004"])
+        for p in self.cad.values():
+            self.assertEqual(p["geometry_status"], "DRAFT")
+            self.assertNotIn("PLACEHOLDER", p["parameters"].values())
+
+    def test_step_volume_and_position_match_the_designation(self):
+        r = Resolver()
+        od = 14 * 25.4 + 2 * 0.70 * 175                       # 175/70 R14 designation
+        vol = math.pi / 4 * (od ** 2 - (14 * 25.4) ** 2) * 175
+        c = self.r["checks"]["cad"]
+        for cid in self.cad:
+            self.assertTrue(c[cid]["valid"])
+            self.assertAlmostEqual(c[cid]["volume_mm3"], vol, delta=vol * 1e-9)
+        lo, hi = (np.array(v) for v in c["WHL-002"]["bbox_mm"])   # front right
+        self.assertAlmostEqual((lo[1] + hi[1]) / 2, r.get("dimensions.front_track") / 2, delta=1e-6)
+        self.assertAlmostEqual(hi[2] - lo[2], od, delta=1e-6)
+        lo, hi = (np.array(v) for v in c["WHL-003"]["bbox_mm"])   # rear left
+        self.assertAlmostEqual((lo[0] + hi[0]) / 2, r.get("dimensions.wheelbase_lh"), delta=1e-6)
+        self.assertEqual(c["_assembly"]["solids_read"], c["_assembly"]["solids_written"])
+
+
+class Reproducibility(unittest.TestCase):
+    def test_two_builds_give_identical_cad_step_and_glb(self):
+        # Engineering CAD STEP files and the GLB are byte-reproducible. The coloured visual
+        # vehicle.step is not: OCCT writes its colour/style records in varying order, so it is
+        # compared geometrically instead (same solids, same volume).
+        # Each build runs in its own process, as an auditor would run it: OCCT numbers
+        # assembly-usage records with a per-process counter.
+        import subprocess, sys
+        from kartal_twin import PROJECT_ROOT
+        code = ("import sys; sys.path.insert(0, 'src'); from pathlib import Path; "
+                "from kartal_twin import pipeline; pipeline.run(Path(sys.argv[1]))")
+        with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+            for d in (a, b):
+                subprocess.run([sys.executable, "-c", code, d], cwd=PROJECT_ROOT, check=True)
+            ra, rb = (json.loads((Path(d) / "manifest.json").read_text()) for d in (a, b))
+            for f in ("vehicle.glb", "cad/vehicle_cad.step", "cad/WHL-001.step", "cad/WHL-004.step"):
+                self.assertEqual(ra["files"][f]["sha256"], rb["files"][f]["sha256"], f)
+            sa, sb = ra["checks"]["step"], rb["checks"]["step"]
+            self.assertEqual(sa["solids_read"], sb["solids_read"])
+            self.assertLess(abs(sa["volume_rel_error"] - sb["volume_rel_error"]), 1e-9)
+
+    def test_manifest_lists_only_this_runs_outputs(self):
+        with tempfile.TemporaryDirectory() as d:
+            stale = Path(d) / "cad" / "OLD-999.step"
+            stale.parent.mkdir()
+            stale.write_text("stale")
+            r = pipeline.run(Path(d))
+            self.assertFalse(stale.exists())
+            self.assertNotIn("cad/OLD-999.step", r["files"])
+            self.assertTrue(all(not k.startswith("delivery") for k in r["files"]))

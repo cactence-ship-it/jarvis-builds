@@ -23,7 +23,7 @@ class BuildContext:
     """Passed to every assembly builder; collects parts with derived status."""
 
     def __init__(self, resolver: Resolver | None = None, representation: str = "visual"):
-        self.base = resolver or Resolver()
+        self.base = resolver or Resolver(allow_placeholders=(representation == "visual"))
         self.representation = representation
         self.parts: list[Part] = []
 

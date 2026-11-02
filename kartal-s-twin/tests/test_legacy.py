@@ -1,6 +1,7 @@
 """Legacy archive analyser on synthetic archives (the real ZIP has not been received)."""
 import importlib.util
 import json
+import shutil
 import tempfile
 import unittest
 import zipfile
@@ -26,6 +27,7 @@ THREE = {"metadata": {"version": 4.5, "type": "Object"},
 class LegacyAnalyser(unittest.TestCase):
     def _zip(self, members):
         d = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, d, True)
         p = d / "Kartal_S_Studyo.zip"
         with zipfile.ZipFile(p, "w") as z:
             for name, text in members.items():

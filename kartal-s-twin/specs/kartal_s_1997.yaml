@@ -13,8 +13,8 @@
 # this repository is public (D-012).
 
 schema_version: 1
-revision: "0.1.0"
-last_updated: 2026-11-01
+revision: "0.5.0"
+last_updated: 2026-11-02
 vehicle_alias: VEH-01   # public alias for the owner's car (real registration withheld)
 
 units:
