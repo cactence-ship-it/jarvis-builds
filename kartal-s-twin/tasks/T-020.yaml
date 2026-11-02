@@ -1,0 +1,31 @@
+id: T-020
+title: Registration documents (ruhsat) as primary evidence for identity, mass, displacement and fuel type
+description: Ingest the owner's three registration/emission document photos (originals local-only, hashes in refs/MANIFEST.csv),
+  register them as DOCUMENT evidence and update only the spec parameters the documents state, without committing plate,
+  VIN, engine number, serials or dates.
+priority: P1
+phase: '3'
+owner: claude
+status: in_progress
+depends_on: []
+blocker: null
+started_at: '2026-11-02T06:50:50Z'
+finished_at: null
+error: null
+evidence:
+- EVIDENCE_REGISTER.md
+- refs/MANIFEST.csv
+- specs/kartal_s_1997.yaml
+acceptance:
+- id: T-020-A1
+  criterion: Each changed parameter matches the field printed on the document (model, variant, model year, colour,
+    net weight, displacement, fuel type); empty document fields (Motor gücü, Azami yüklü ağırlığı) are not filled
+  check: reviewer compares EVIDENCE_REGISTER E-014/E-015 notes with the spec diff (the photos are private and not in git)
+- id: T-020-A2
+  criterion: No plate, VIN, engine number, document serial or registration date in any committed file or history
+  check: tools/privacy_history_audit.py and a manual read of the diff
+- id: T-020-A3
+  criterion: Interpretations beyond the printed text stay ESTIMATED (make 'MURAT' = Tofaş; 'İstiap haddi 04 kişi' = 5 seats)
+  check: spec status fields
+results: []
+reviews: []

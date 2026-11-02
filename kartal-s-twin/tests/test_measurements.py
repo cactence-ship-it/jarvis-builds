@@ -26,13 +26,14 @@ class MeasurementIntake(unittest.TestCase):
         codes = rm._load("measurement_guide").codes()
         wb = next(c for c, p in codes.items() if p == "dimensions.wheelbase_lh")
         belt = next(c for c, p in codes.items() if p == "body_profile.belt_z")
+        before = spec.status_counts(spec.load_spec(self.root / "specs" / "kartal_s_1997.yaml"))["VERIFIED"]
         eid, changed = rm.record(self.root, {wb: 2488.0, belt: 955.0}, 5.0, "test state", "2026-11-02")
         self.assertEqual(set(changed), {"dimensions.wheelbase_lh", "body_profile.belt_z"})
         self.assertTrue((self.root / "evidence" / "measurements" / f"{eid}.yaml").exists())
         ev = spec.load_evidence(self.root / "EVIDENCE_REGISTER.md")
         s = spec.load_spec(self.root / "specs" / "kartal_s_1997.yaml")
         self.assertEqual(spec.validate_spec(s, ev), [])
-        self.assertEqual(spec.status_counts(s)["VERIFIED"], 2)
+        self.assertEqual(spec.status_counts(s)["VERIFIED"], before + 2)   # data-independent
         r = Resolver(s, load_assumptions(self.root / "specs" / "placeholder_assumptions.yaml"))
         self.assertEqual(r.get("body_profile.belt_z"), 955.0)          # measurement beats placeholder
         self.assertEqual(r.used["body_profile.belt_z"], "VERIFIED")

@@ -19,8 +19,18 @@ class SpecIntegrity(unittest.TestCase):
         self.assertEqual(spec.validate_spec(self.spec, self.ev), [])
 
     def test_no_verified_values_without_received_evidence(self):
-        # Phase 1: nothing has been received yet, so nothing may be VERIFIED.
-        self.assertEqual(spec.status_counts(self.spec)["VERIFIED"], 0)
+        # Data-independent: every VERIFIED value must cite at least one RECEIVED primary
+        # item (photo, document, measurement), whatever the current number of VERIFIED values.
+        for pid, p in spec.iter_parameters(self.spec):
+            if p.get("status") != "VERIFIED":
+                continue
+            primary = [e for e in p.get("source") or []
+                       if e in self.ev and (
+                           (self.ev[e].type in ("PHOTO", "DOCUMENT", "MEASUREMENT")
+                            and self.ev[e].state == "RECEIVED")
+                           or (self.ev[e].type == "MEASUREMENT" and self.ev[e].state == "RECORDED"))]
+            with self.subTest(pid=pid):
+                self.assertTrue(primary, f"{pid} is VERIFIED without received primary evidence")
 
     def test_units_and_coordinate_system_declared(self):
         self.assertEqual(self.spec["units"]["length"], "mm")

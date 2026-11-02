@@ -13,7 +13,7 @@
 # this repository is public (D-012).
 
 schema_version: 1
-revision: "0.5.0"
+revision: "0.6.0"
 last_updated: 2026-11-02
 vehicle_alias: VEH-01   # public alias for the owner's car (real registration withheld)
 
@@ -53,39 +53,39 @@ parameters:
       status: ESTIMATED
       confidence: HIGH
       tolerance: null
-      source: [E-001]
+      source: [E-001, E-014, E-015]
       verify_by: Ruhsat 'Markası' field or VIN plate photo
-      notes: Owner-declared (E-001).
+      notes: Owner-declared (E-001). The registration documents (E-014, E-015) name the make as 'MURAT', the brand under which Tofaş registered its cars, not 'Tofaş'; the equivalence is general knowledge, not printed on the document, so this stays ESTIMATED.
     model:
       name: Model / series
       value: Kartal
       unit: null
-      status: ESTIMATED
+      status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-001]
+      source: [E-014, E-015]
       verify_by: Ruhsat 'Tipi' / 'Ticari adı' field
-      notes: Owner-declared (E-001).
+      notes: Ruhsat 'Tipi' = 'KARTAL S'. Registration documents E-014/E-015 (owner photos 2026-11-02).
     variant:
       name: Trim / variant
       value: S
       unit: null
-      status: ESTIMATED
+      status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-001]
+      source: [E-014, E-015]
       verify_by: Badge photo + ruhsat 'Tipi' field
-      notes: Owner-declared (E-001).
+      notes: Ruhsat 'Tipi' = 'KARTAL S'. Registration documents E-014/E-015 (owner photos 2026-11-02). Badge not yet photographed.
     model_year:
       name: Model year
       value: 1997
       unit: null
-      status: ESTIMATED
+      status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-001]
+      source: [E-014, E-015, E-016]
       verify_by: Ruhsat 'Model yılı' field
-      notes: Owner-declared (E-001). Model year can differ from production date - check the ruhsat.
+      notes: Ruhsat 'Modeli' = 1997 on both registration documents; emission form '97'. Registration documents E-014/E-015 (owner photos 2026-11-02).
     body_style:
       name: Body style
       value: estate (station wagon) with tailgate
@@ -108,14 +108,14 @@ parameters:
       notes: Owner's system list names front and rear doors (E-001); confirm from side-profile photos.
     exterior_colour:
       name: Exterior colour
-      value: null
+      value: Turkuaz yeşil (turquoise green), registered colour name
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-014, E-015]
       verify_by: Photos + ruhsat 'Rengi' field
-      notes: ''
+      notes: Ruhsat 'Rengi' = 'TURKUAZ YEŞİLİ' (E-014) / 'TURKUAZ YEŞİL' (E-015). This is the registered colour NAME only; no paint code or measured shade. A repaint would not change it (U-010).
   # ---------------------------------------------------------------- Exterior dimensions - unladen, at the VCS reference state (U-008)
   dimensions:
     overall_length:
@@ -374,14 +374,14 @@ parameters:
   interior:
     seating_capacity:
       name: Seating capacity
-      value: null
+      value: 5
       unit: null
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 1
+      source: [E-014, E-015]
       verify_by: Ruhsat 'Koltuk sayısı' field
-      notes: ''
+      notes: Documents state 'İstiap haddi' = 04 kişi (persons). Turkish registrations normally count passengers excluding the driver, giving 5 seats; that reading is not printed on the document, so ESTIMATED (tolerance 1 covers the 4-seat reading). Confirm with an interior photo.
     steering_side:
       name: Steering side (LHD / RHD)
       value: null
@@ -406,14 +406,14 @@ parameters:
   mass:
     curb_mass:
       name: Curb mass (as defined by the source document)
-      value: 1060
+      value: 1125
       unit: kg
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 60
-      source: [E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 1
+      source: [E-014, E-015]
       verify_by: Ruhsat 'Net ağırlığı' field; note the document's definition
-      notes: Owner-entered listing value; definition (fuel, driver) unknown.
+      notes: 'Ruhsat ''Net ağırlığı'' = 1125 kg on both registration documents. This is the REGISTERED value; the document does not define fuel, fluids or driver, and the car''s present mass (LPG kit, modifications) is not measured: weigh it for that (axle_load_*_measured). Supersedes the listing estimate 1060 kg (E-010), which was 65 kg low.'
     gross_vehicle_mass:
       name: Gross vehicle mass
       value: 1550
@@ -423,7 +423,7 @@ parameters:
       tolerance: 50
       source: [E-011]
       verify_by: Ruhsat 'Azami yüklü ağırlığı' field
-      notes: Aggregator value; confirm from ruhsat 'Azami yüklü ağırlığı'.
+      notes: Aggregator value (E-011). The ruhsat field 'Azami yüklü ağırlığı' is EMPTY on both registration documents (E-014, E-015), so it cannot be verified from them.
     axle_load_front_measured:
       name: Front axle load, measured
       value: null
@@ -460,12 +460,12 @@ parameters:
       name: Displacement
       value: 1581
       unit: cm3
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 10
-      source: [E-011, E-013]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 1
+      source: [E-015]
       verify_by: Ruhsat 'Silindir hacmi' field
-      notes: 1.6 engine family reported as 1581 cm3; tolerance also covers 1585 cm3 variants. Confirm from ruhsat 'Silindir hacmi'.
+      notes: Ruhsat 'Silindir hacmi' = 1581 cm3 (E-015; partly under glare, read as 1581, agrees with E-011/E-013). Registered value; an engine swap after registration would not be visible here (U-001).
     cylinder_count:
       name: Number of cylinders
       value: 4
@@ -535,7 +535,7 @@ parameters:
       tolerance: 3
       source: [E-011, E-013]
       verify_by: Ruhsat 'Motor gücü' field / manual
-      notes: 83 HP (61 kW) reported for the carburettor 1.6; 81-84 hp listed elsewhere (60-62 kW). Confirm from ruhsat 'Motor gücü'.
+      notes: 83 HP (61 kW) reported for the carburettor 1.6; 81-84 hp listed elsewhere (60-62 kW). The ruhsat field 'Motor gücü' is EMPTY on the registration certificate (E-015), so the document cannot confirm it.
     max_power_speed:
       name: Engine speed at maximum power
       value: null
@@ -568,14 +568,14 @@ parameters:
       notes: ''
     fuel_type:
       name: Fuel type (check for LPG conversion)
-      value: null
+      value: LPG (registered LPG conversion; petrol base engine)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-014, E-015]
       verify_by: Ruhsat 'Yakıt cinsi' field + engine bay / cargo photos
-      notes: LPG conversions are common on cars of this type and age - check explicitly.
+      notes: 'Ruhsat ''Cinsi'' = ''H.OTO LPG'' (private car, LPG) on both documents. Whether the petrol system is still in use (bi-fuel) and where the LPG tank sits are NOT stated: check cargo area and engine bay photos.'
     fuel_system_type:
       name: Fuel system (carburettor / single-point / multi-point injection)
       value: carburettor

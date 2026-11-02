@@ -2,6 +2,19 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.9.0] - 2026-11-02 - Registration documents as primary evidence (T-020)
+
+### Added
+- E-014..E-016: owner photos of the registration documents and the emission form, ingested as R-0001..R-0003 (originals local-only, SHA-256 in `refs/MANIFEST.csv`; plate, VIN, engine number, serials and dates withheld).
+- D-025: a registration document verifies the registered value, not the car's present physical state.
+
+### Changed
+- Spec 0.6.0: VERIFIED model, variant, model year, colour name, net weight 1125 kg (was ESTIMATED 1060 kg), displacement 1581 cm3, fuel type LPG (registered conversion); seating 5 ESTIMATED from 'İstiap haddi 04 kişi'. Totals 7 VERIFIED / 23 ESTIMATED / 81 UNKNOWN.
+- U-001 and U-010 updated: LPG conversion registered; 'Motor gücü' and 'Azami yüklü ağırlığı' are empty on the documents.
+
+### Fixed
+- Two tests assumed a fixed number of VERIFIED values (0 and 2) and failed once real evidence arrived. `test_no_verified_values_without_received_evidence` now checks that every VERIFIED value cites RECEIVED primary evidence; the measurement test compares against the count before recording.
+
 ## [0.8.0] - 2026-11-02 - Record integrity, hash verification, wider privacy guard
 
 ### Added
