@@ -1,0 +1,42 @@
+# Kartal S digital twin - continuous integration (task T-005).
+# Runs validation and the full unit-test suite on every push and pull request touching
+# the project. Security: no secrets are used, the token is read-only, pull_request (not
+# pull_request_target) so fork code never sees credentials, actions pinned by commit SHA.
+name: kartal-ci
+
+on:
+  push:
+    branches: ["main", "ccr-*"]
+    paths: ["kartal-s-twin/**", ".github/workflows/kartal-ci.yml"]
+  pull_request:
+    paths: ["kartal-s-twin/**", ".github/workflows/kartal-ci.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kartal-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5.6.0
+        with:
+          python-version: "3.13"
+      - name: Set up hash-locked environment
+        run: bash kartal-s-twin/scripts/setup_env.sh
+      - name: Validate + unit tests (results recorded)
+        run: |
+          set +e
+          bash kartal-s-twin/scripts/run_tests.sh
+          rc=$?
+          cat kartal-s-twin/test-results/latest.txt
+          exit $rc
+      - name: Build and re-open all exports
+        run: kartal-s-twin/.venv/bin/python kartal-s-twin/tools/twin.py build
