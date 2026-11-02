@@ -120,24 +120,24 @@ parameters:
   dimensions:
     overall_length:
       name: Overall length incl. bumpers
-      value: null
+      value: 4396
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 40
+      source: [E-007, E-008, E-009]
       verify_by: Tape on level ground between plumb lines at front and rear extremities
-      notes: ''
+      notes: Literature for the model, not measured on VEH-01. Sources conflict (4396 vs 4360/4361 mm); tolerance covers both.
     overall_width_body:
       name: Overall width excl. mirrors
-      value: null
+      value: 1642
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 20
+      source: [E-007, E-010]
       verify_by: Plumb lines at the widest body point
-      notes: ''
+      notes: Literature for the model; mirror inclusion not stated by the source.
     overall_width_mirrors:
       name: Overall width incl. mirrors
       value: null
@@ -150,14 +150,14 @@ parameters:
       notes: ''
     overall_height:
       name: Overall height excl. roof rails
-      value: null
+      value: 1496
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 25
+      source: [E-007, E-010]
       verify_by: Straight-edge across the roof to the ground
-      notes: ''
+      notes: Literature; whether roof rails and load state are included is not stated.
     overall_height_roof_rails:
       name: Overall height incl. roof rails (if fitted)
       value: null
@@ -170,24 +170,24 @@ parameters:
       notes: ''
     wheelbase_lh:
       name: Wheelbase, left side
-      value: null
+      value: 2490
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 10
+      source: [E-009, E-010]
       verify_by: Hub centre to hub centre, wheels straight ahead
-      notes: ''
+      notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
     wheelbase_rh:
       name: Wheelbase, right side
-      value: null
+      value: 2490
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 10
+      source: [E-009, E-010]
       verify_by: Hub centre to hub centre, wheels straight ahead
-      notes: ''
+      notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
     front_track:
       name: Front track (tyre tread centre to centre)
       value: null
@@ -406,14 +406,14 @@ parameters:
   mass:
     curb_mass:
       name: Curb mass (as defined by the source document)
-      value: null
+      value: 1060
       unit: kg
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-010]
       verify_by: Ruhsat 'Net ağırlığı' field; note the document's definition
-      notes: ''
+      notes: Owner-entered listing value; definition (fuel, driver) unknown.
     gross_vehicle_mass:
       name: Gross vehicle mass
       value: null
@@ -682,26 +682,26 @@ parameters:
   drivetrain:
     drive_layout:
       name: Drive layout (e.g. front-engine RWD / FWD)
-      value: null
+      value: front-engine, rear-wheel drive
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-009]
       verify_by: 'Underbody photo: propeller shaft and differential housing (U-006)'
-      notes: Hypothesis only (U-006) - not evidence. Must not be used for geometry until verified.
+      notes: Literature (E-009); supports hypothesis U-006. Confirm with an underbody photo before modelling the driveline.
   # ---------------------------------------------------------------- Chassis and fuel
   chassis:
     fuel_tank_capacity:
       name: Fuel tank capacity
-      value: null
+      value: 52
       unit: L
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-010]
       verify_by: Owner's manual
-      notes: ''
+      notes: Several owner-entered listings.
   # ---------------------------------------------------------------- Suspension
   suspension:
     front_suspension_type:
@@ -862,34 +862,34 @@ parameters:
   wheels_tires:
     tire_size_front:
       name: Front tire size and load/speed index
-      value: null
+      value: 175/70 R14
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-010]
       verify_by: Sidewall photo (also record the DOT date code)
-      notes: ''
+      notes: From owner-entered sale listings of other Kartal S cars; the fitted tires on VEH-01 may differ.
     tire_size_rear:
       name: Rear tire size and load/speed index
-      value: null
+      value: 175/70 R14
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-010]
       verify_by: Sidewall photo
-      notes: ''
+      notes: From owner-entered sale listings of other Kartal S cars; the fitted tires on VEH-01 may differ.
     wheel_rim_diameter:
       name: Rim diameter
-      value: null
+      value: 14
       unit: in
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-010]
       verify_by: Sidewall marking / rim stamping
-      notes: ''
+      notes: Follows from the listed tire size; 13 in cannot be excluded.
     wheel_rim_width:
       name: Rim width
       value: null
