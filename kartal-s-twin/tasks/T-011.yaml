@@ -4,19 +4,30 @@ description: Run the viewer browser smoke test in CI.
 priority: P3
 phase: '11'
 owner: claude
-status: in_progress
+status: submitted
 depends_on:
 - T-005
 blocker: null
 started_at: '2026-11-02T05:56:16Z'
 finished_at: null
-error: 'CI viewer job failed at 7147c05 (runs 41396978522, 41396982844): ERR_CONNECTION_REFUSED - npx http-server
-  needed a download on the fresh runner and was not listening after a fixed 2 s sleep. Fix: python3 -m http.server
-  plus readiness polling (max 30 s); passes locally. Attempt 1 of 3.'
+error: null
 evidence: []
 acceptance:
 - id: T-011-A1
   criterion: CI job installs three.js@0.147.0 from npm and runs tools/viewer_smoke/run.sh with 0 console errors
   check: GitHub Actions job log
-results: []
+results:
+- agent: claude
+  commit: ca1fe01
+  files:
+  - .github/workflows/kartal-ci.yml
+  - tools/viewer_smoke/run.sh
+  tests: 'CI runs 41397314733 and 41397308324 at ca1fe01: viewer job success; log job 125121322473 shows ''assemblies:
+    Kaporta 7 | Dış trim 10 | Camlar 8 | Aydınlatma 6 | Tekerlekler 4'', tap selects BDY-003, ''errors: []''. History:
+    first attempt at 7147c05 failed (ERR_CONNECTION_REFUSED, npx http-server not ready after 2 s); fixed with python3
+    http.server + readiness polling (attempt 1 of 3).'
+  confidence: HIGH
+  known_defects:
+  - Swiftshader software rendering only; no GPU-specific checks
+  open_questions: []
 reviews: []

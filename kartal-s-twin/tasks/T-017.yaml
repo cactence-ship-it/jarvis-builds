@@ -5,7 +5,7 @@ description: Static checks on src, tools and tests; 11 findings fixed (unused im
 priority: P3
 phase: '11'
 owner: claude
-status: in_progress
+status: submitted
 depends_on:
 - T-005
 blocker: null
@@ -19,5 +19,16 @@ acceptance:
 - id: T-017-A1
   criterion: ruff check src tools tests reports no findings locally and in CI
   check: CI lint step log
-results: []
+results:
+- agent: claude
+  commit: ca1fe01
+  files:
+  - ruff.toml
+  - .github/workflows/kartal-ci.yml
+  tests: ruff 0.15.0 'All checks passed!' locally; CI test job success at 7147c05 and ca1fe01 (lint step runs before
+    tests)
+  confidence: HIGH
+  known_defects:
+  - Rule set limited to E/F/W
+  open_questions: []
 reviews: []

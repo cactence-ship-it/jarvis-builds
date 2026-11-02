@@ -258,14 +258,14 @@
         "CI job installs three.js@0.147.0 from npm and runs tools/viewer_smoke/run.sh with 0 console errors"
       ],
       "owner_agent": "claude",
-      "status": "IN_PROGRESS",
-      "registry_status": "in_progress",
-      "test_result": null,
-      "error": "CI viewer job failed at 7147c05 (runs 41396978522, 41396982844): ERR_CONNECTION_REFUSED - npx http-server needed a download on the fresh runner and was not listening after a fixed 2 s sleep. Fix: python3 -m http.server plus readiness polling (max 30 s); passes locally. Attempt 1 of 3.",
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "CI runs 41397314733 and 41397308324 at ca1fe01: viewer job success; log job 125121322473 shows 'assemblies: Kaporta 7 | Dış trim 10 | Camlar 8 | Aydınlatma 6 | Tekerlekler 4', tap selects BDY-003, 'errors: []'. History: first attempt at 7147c05 failed (ERR_CONNECTION_REFUSED, npx http-server not ready after 2 s); fixed with python3 http.server + readiness polling (attempt 1 of 3).",
+      "error": null,
       "started_at": "2026-11-02T05:56:16Z",
       "finished_at": null,
       "evidence": [],
-      "last_result_commit": null,
+      "last_result_commit": "ca1fe01",
       "last_review": null
     },
     {
@@ -403,9 +403,9 @@
         "ruff check src tools tests reports no findings locally and in CI"
       ],
       "owner_agent": "claude",
-      "status": "IN_PROGRESS",
-      "registry_status": "in_progress",
-      "test_result": null,
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "ruff 0.15.0 'All checks passed!' locally; CI test job success at 7147c05 and ca1fe01 (lint step runs before tests)",
       "error": null,
       "started_at": "2026-11-02T05:56:16Z",
       "finished_at": null,
@@ -413,7 +413,7 @@
         "ruff.toml",
         ".github/workflows/kartal-ci.yml"
       ],
-      "last_result_commit": null,
+      "last_result_commit": "ca1fe01",
       "last_review": null
     }
   ]

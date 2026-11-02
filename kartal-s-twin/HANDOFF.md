@@ -8,18 +8,20 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #24** - 2026-11-02 06:00 UTC
-- **Commit:** bu kaydı içeren commit = `7147c05` commit'inin hemen ardından gelen commit
+- **Checkpoint #25** - 2026-11-02 06:08 UTC
+- **Commit:** bu kaydı içeren commit = `ca1fe01` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** fix(kartal-s-twin): viewer smoke test waits for its server (CI failure on 7147c05)
-- **Testler:** PASS - Ran 80 tests in 54.640s; ## result: validate=0 unittest=0
+- **Başlık:** chore(kartal-s-twin): record T-011 and T-017 results - viewer and lint green in CI
+- **Testler:** PASS - Ran 80 tests in 52.956s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
+    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/TASKS.md
     M	kartal-s-twin/persistence/checkpoint.json
     M	kartal-s-twin/tasks/T-011.yaml
+    M	kartal-s-twin/tasks/T-017.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tools/viewer_smoke/run.sh
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -44,6 +46,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 18 | CI: lint (T-017) + görüntüleyici tarayıcı testi (T-011) yeşil; viewer hatası (sunucu hazır değildi) düzeltildi | TAMAM | (otomatik kayda bakın) |
 | 17 | FAZ 0 denetimi; T-013 tutarlılık kuralları; T-014 yanlış ölçü kodu örnekleri düzeltildi; T-015 CAD golden testi; görev şeması + tasks.json (n8n için) | TAMAM | (otomatik kayda bakın) |
 | 16 | ChatGPT 2. inceleme CHANGES_REQUESTED (T-001): sol/sağ dingil mesafesi ortalaması düzeltildi + test; literatür güveni LOW (D-020, 11 parametre); doğrulayıcı en son incelemeyi esas alıyor; 71/71 | TAMAM | (otomatik kayda bakın) |
 | 15 | ChatGPT incelemeleri kaydedildi: T-001, T-005 ACCEPTED (çapraz onay, fa2f8cd); T-002 Claude incelemesiyle ACCEPTED; yeni görevler T-010 (Node 24 CI), T-011, T-012 | TAMAM | (otomatik kayda bakın) |
