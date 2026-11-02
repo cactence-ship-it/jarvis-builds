@@ -430,9 +430,9 @@
         "Every SHA recorded in tasks/*.yaml exists in git history (CI uses full history)"
       ],
       "owner_agent": "claude",
-      "status": "FAILED",
-      "registry_status": "changes_requested",
-      "test_result": "CI log lists test_modified_file_is_mismatch, test_missing_file_is_missing, test_corrupt_line_is_malformed, test_path_escape_is_rejected, test_intact_snapshot_is_ok, test_failures_lists_only_problems, test_repository_hashes_are_intact: all ok; SHA semantics (D-024): test_short_and_full_sha_are_equivalent, test_invalid_sha_forms_are_rejected, test_every_recorded_commit_resolves_to_exactly_one_commit: ok. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Addresses ChatGPT CHANGES_REQUESTED on bf31d4d. Missing refs/MANIFEST.csv -> MISSING; manifest without required header columns -> MALFORMED; no audit/<date>/SHA256SUMS at all -> MISSING; SHA256SUMS without entries -> EMPTY; absent SHA256SUMS passed to verify_sums -> MISSING. New class MissingIntegrityFiles (6 tests: test_complete_project_passes [positive control], test_missing_manifest_fails, test_manifest_without_header_fails, test_no_audit_snapshot_fails, test_empty_sums_file_fails, test_sums_file_passed_directly_but_absent_fails). Run against the previous hashes.py (9d6c467): 4 FAIL + 1 ERROR, positive control ok; with the fix 13/13 ok. Local full suite 108/108. CI at 826c4ba: pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405724412 (tests merge commit 0f92fa9; jobs test 125147169352, viewer 125147168961: success; log lists all 108 tests by name, coreutils sha256sum -c 7/7 OK, privacy audit 467 blobs 0 findings) and push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405718716 (tests 826c4ba itself; jobs test 125147150539, viewer 125147150806: success).",
       "error": null,
       "started_at": "2026-11-02T06:21:18Z",
       "finished_at": null,
@@ -440,7 +440,7 @@
         "src/kartal_twin/hashes.py",
         "tests/test_hashes.py"
       ],
-      "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
+      "last_result_commit": "826c4bad6e2f4c5b28db9d897b1d28c16337728c",
       "last_review": "chatgpt:CHANGES_REQUESTED"
     },
     {
@@ -480,9 +480,9 @@
         "Interpretations beyond the printed text stay ESTIMATED (make 'MURAT' = Tofaş; 'İstiap haddi 04 kişi' = 5 seats)"
       ],
       "owner_agent": "claude",
-      "status": "FAILED",
-      "registry_status": "changes_requested",
-      "test_result": "Local: validate 0 FAIL, unittest 101/101 OK; tools/privacy_history_audit.py 438 blobs, 0 findings; git log --all -p has 0 hits for the plate, VIN, engine-number and document-serial strings. CI at 4284df3: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402952218 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402959189, both success.",
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Addresses ChatGPT CHANGES_REQUESTED on 4284df3. engine.fuel_type value is now only 'LPG (registered conversion)' (VERIFIED); the petrol base engine moved to new parameter engine.base_fuel (ESTIMATED, LOW, E-011/E-013, 'not printed on the registration documents'). verify_by names the real fields ('Cinsi' carries the fuel suffix; 'İstiap haddi' for persons; no 'Yakıt cinsi' / 'Koltuk sayısı' field). Guide summary had a hard-coded '0 VERIFIED' (its ESTIMATED/UNKNOWN numbers were computed: 23/81); now counted, and test_measurement_guide_summary_matches_spec_counts compares it with the spec (112: 7 VERIFIED / 24 ESTIMATED / 81 UNKNOWN). HANDOFF counts updated. Local full suite 108/108. CI at 826c4ba: pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405724412 (tests merge commit 0f92fa9; jobs test 125147169352, viewer 125147168961: success; log lists all 108 tests by name, coreutils sha256sum -c 7/7 OK, privacy audit 467 blobs 0 findings) and push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405718716 (tests 826c4ba itself).",
       "error": null,
       "started_at": "2026-11-02T06:50:50Z",
       "finished_at": null,
@@ -491,7 +491,7 @@
         "refs/MANIFEST.csv",
         "specs/kartal_s_1997.yaml"
       ],
-      "last_result_commit": "4284df321e4f248f70ae980eb03118a347b1d8df",
+      "last_result_commit": "826c4bad6e2f4c5b28db9d897b1d28c16337728c",
       "last_review": "chatgpt:CHANGES_REQUESTED"
     }
   ]

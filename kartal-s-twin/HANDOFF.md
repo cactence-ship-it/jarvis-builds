@@ -8,24 +8,20 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #35** - 2026-11-02 07:20 UTC
-- **Commit:** bu kaydı içeren commit = `9d6c467` commit'inin hemen ardından gelen commit
+- **Checkpoint #36** - 2026-11-02 07:24 UTC
+- **Commit:** bu kaydı içeren commit = `826c4ba` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** fix(kartal-s-twin): T-018 missing integrity files fail validation; T-020 fuel type limited to the printed field, base fuel ESTIMATED, guide summary counts VERIFIED
-- **Testler:** PASS - Ran 108 tests in 68.235s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): T-018/T-020 round-2 results at 826c4ba with CI links; review request batch 4
+- **Testler:** PASS - Ran 108 tests in 64.047s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/HANDOFF.md
-    M	kartal-s-twin/PROJECT_STATUS.md
-    M	kartal-s-twin/docs/OLCUM_REHBERI.md
+    M	kartal-s-twin/TASKS.md
+    A	kartal-s-twin/agents/REVIEW_REQUEST_BATCH_4.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/specs/kartal_s_1997.yaml
-    M	kartal-s-twin/src/kartal_twin/hashes.py
+    M	kartal-s-twin/tasks/T-018.yaml
+    M	kartal-s-twin/tasks/T-020.yaml
+    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tests/test_hashes.py
-    M	kartal-s-twin/tests/test_inventory.py
-    M	kartal-s-twin/tools/measurement_guide.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
