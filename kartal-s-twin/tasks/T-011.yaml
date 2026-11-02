@@ -30,6 +30,8 @@ results:
   known_defects: &id002
   - Swiftshader software rendering only; no GPU-specific checks
   open_questions: []
+  round: 1
+  superseded_by: c665cfb8245cc2c896bf77008b4b0c350ef786b8
 - agent: claude
   commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
   files: *id001
@@ -37,6 +39,8 @@ results:
   confidence: HIGH
   known_defects: *id002
   open_questions: []
+  round: 2
+  superseded_by: cf87630
 - agent: claude
   commit: cf87630
   files:
@@ -53,6 +57,8 @@ results:
   open_questions: []
   response_to_review: All five requested assertions implemented; any failed check exits non-zero; read-only test
     hook window.__kartalViewer.
+  round: 3
+  superseded_by: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
 - agent: claude
   commit: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
   files:
@@ -66,6 +72,7 @@ results:
   open_questions: []
   response_to_review: Selection no longer depends on the camera angle; every interaction asserted; non-zero exit
     on failure.
+  round: 4
 reviews:
 - reviewer: chatgpt
   commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
@@ -79,3 +86,9 @@ reviews:
   - The test must not pass before the model has loaded.
   - Wrong selection or interaction must exit non-zero.
   - Then run CI.
+round_summary:
+- 'round 1: ca1fe01 (superseded)'
+- 'round 2: c665cfb8245cc2c896bf77008b4b0c350ef786b8 (superseded)'
+- 'round 3: cf87630 (superseded)'
+- 'round 4: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6 (CURRENT)'
+- 'review: chatgpt CHANGES_REQUESTED on c665cfb'

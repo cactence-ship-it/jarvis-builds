@@ -38,4 +38,20 @@ results:
   - 'Regex-based: does not read image pixels or binary contents; plate formats outside the Turkish scheme are not
     covered'
   open_questions: []
+  provenance:
+    local_scan:
+      result: 364 blobs, 0 findings
+      repository_state: all refs at local HEAD cf87630 (before commit 88e1d36)
+      tool: tools/privacy_history_audit.py as committed in 88e1d36, git blob 40be803a51859e7368a8ebce09dc5153ce3b56ea
+    ci_scan:
+      result: 400 blobs, 0 findings
+      commit: 652e8e2cddbd72927254345f45b845544319a315
+      run: https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41399628977 (job 125128441020)
+      note: more blobs than locally because the CI checkout includes the PR merge ref and the later commits
+    not_covered:
+    - image pixel content (no image files exist in the repository; media types are blocked by extension)
+    - binary blob contents (only UTF-8 decodable text is pattern-scanned)
+    - text blobs larger than 2 MB
+    - plate formats other than the Turkish scheme
+    - secrets in formats not matched by the regex set
 reviews: []

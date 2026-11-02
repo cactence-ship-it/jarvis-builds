@@ -8,21 +8,23 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #29** - 2026-11-02 06:23 UTC
-- **Commit:** bu kaydı içeren commit = `88e1d36` commit'inin hemen ardından gelen commit
+- **Checkpoint #30** - 2026-11-02 06:30 UTC
+- **Commit:** bu kaydı içeren commit = `d9010e1` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** chore(kartal-s-twin): record T-011, T-013, T-018, T-019 results at 88e1d36
-- **Testler:** PASS - Ran 99 tests in 54.170s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): explicit short/full SHA semantics, result rounds, T-019 provenance, verbose CI test log
+- **Testler:** PASS - Ran 101 tests in 54.095s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/TASKS.md
+    M	kartal-s-twin/ENGINEERING_DECISIONS.md
+    M	kartal-s-twin/HANDOFF.md
     M	kartal-s-twin/persistence/checkpoint.json
+    M	kartal-s-twin/scripts/run_tests.sh
+    M	kartal-s-twin/src/kartal_twin/tasks.py
     M	kartal-s-twin/tasks/T-011.yaml
     M	kartal-s-twin/tasks/T-013.yaml
-    M	kartal-s-twin/tasks/T-018.yaml
     M	kartal-s-twin/tasks/T-019.yaml
-    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
+    M	kartal-s-twin/tests/test_tasks.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -47,6 +49,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 21 | Kanıt tamamlama (ChatGPT isteği): 652e8e2 CI kesin doğrulandı; SHA kısa/tam semantiği (D-024); tur kayıtları; T-019 kaynak bilgisi; CI'da test isimleri ve coreutils sha256sum | TAMAM | (otomatik kayda bakın) |
 | 20 | Kayıt bütünlüğü (sahte SHA'lar düzeltildi, D-023), T-018 hash doğrulama, T-019 gizlilik (VIN/anahtar, tüm geçmiş: 0 bulgu), T-013 strict sınır, T-011 kameradan bağımsız seçim | TAMAM | (otomatik kayda bakın) |
 | 19 | ChatGPT 2. parti: T-001/T-010/T-014/T-015/T-017 ACCEPT kaydedildi; T-011 (testler artık doğruluyor) ve T-013 (en kötü durum toleransı, D-022) düzeltildi | TAMAM | (otomatik kayda bakın) |
 | 18 | CI: lint (T-017) + görüntüleyici tarayıcı testi (T-011) yeşil; viewer hatası (sunucu hazır değildi) düzeltildi | TAMAM | (otomatik kayda bakın) |

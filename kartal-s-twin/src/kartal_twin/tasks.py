@@ -29,6 +29,22 @@ EXTERNAL_STATUS = {"open": "TODO", "in_progress": "IN_PROGRESS", "blocked": "BLO
                    "cancelled": "CANCELLED"}
 JSON_PATH = PROJECT_ROOT / "tasks" / "tasks.json"
 _ID = re.compile(r"^T-\d{3}$")
+# Commit references (D-023): 7-40 lowercase hex characters. A short SHA is accepted when git
+# resolves it to exactly one commit (git rev-parse); an ambiguous or unknown prefix is an error.
+# Short and full forms of the same commit are equivalent; historical records are never
+# rewritten to full length.
+SHA_RE = re.compile(r"[0-9a-f]{7,40}")
+
+
+def resolve_commit(ref: str, repo=None) -> str | None:
+    """Full 40-char SHA for a commit reference, or None if unknown/ambiguous/not a commit."""
+    import subprocess
+    if not SHA_RE.fullmatch(str(ref)):
+        return None
+    r = subprocess.run(["git", "rev-parse", "--verify", "--quiet", "--end-of-options", f"{ref}^{{commit}}"],
+                       cwd=repo or PROJECT_ROOT, capture_output=True, text=True)
+    out = r.stdout.strip()
+    return out if r.returncode == 0 and re.fullmatch(r"[0-9a-f]{40}", out) else None
 
 
 def load_tasks(d: Path = TASKS_DIR) -> dict[str, dict]:
@@ -77,12 +93,12 @@ def validate(tasks: dict[str, dict]) -> list[str]:
                 e("result entries need agent, commit, files, tests, confidence, known_defects")
             elif r["agent"] not in AGENTS or r["confidence"] not in CONFIDENCE:
                 e("result agent/confidence invalid")
-            elif not re.fullmatch(r"[0-9a-f]{7,40}", str(r["commit"])):
+            elif not SHA_RE.fullmatch(str(r["commit"])):
                 e(f"result commit must be a real git SHA, got {str(r['commit'])[:40]!r}")
         for v in t["reviews"]:
             if not {"reviewer", "commit", "verdict", "findings"} <= set(v):
                 e("review entries need reviewer, commit, verdict, findings")
-            elif not re.fullmatch(r"[0-9a-f]{7,40}", str(v["commit"])):
+            elif not SHA_RE.fullmatch(str(v["commit"])):
                 e(f"review commit must be a real git SHA, got {str(v['commit'])[:40]!r}")
             elif v["verdict"] not in VERDICTS or v["reviewer"] not in AGENTS:
                 e("review verdict/reviewer invalid")

@@ -59,20 +59,27 @@ class TaskRegistry(unittest.TestCase):
         for tid, ext in expect.items():
             self.assertEqual(rows[tid]["status"], ext, tid)
 
-    def test_every_recorded_commit_exists_in_git(self):
+    def test_every_recorded_commit_resolves_to_exactly_one_commit(self):
         # Needs full history (CI checks out with fetch-depth: 0); a shallow clone fails loudly.
         import subprocess
         from kartal_twin import PROJECT_ROOT
         shallow = subprocess.run(["git", "rev-parse", "--is-shallow-repository"], cwd=PROJECT_ROOT,
                                  capture_output=True, text=True).stdout.strip()
         self.assertEqual(shallow, "false", "full git history required to verify recorded SHAs")
-        missing = []
-        for tid, t in self.t.items():
-            for x in t["results"] + t["reviews"]:
-                if subprocess.run(["git", "cat-file", "-e", str(x["commit"]) + "^{commit}"],
-                                  cwd=PROJECT_ROOT, capture_output=True).returncode:
-                    missing.append((tid, x["commit"]))
-        self.assertEqual(missing, [])
+        bad = [(tid, x["commit"]) for tid, t in self.t.items() for x in t["results"] + t["reviews"]
+               if tasks.resolve_commit(x["commit"]) is None]
+        self.assertEqual(bad, [])
+
+    def test_short_and_full_sha_are_equivalent(self):
+        full = tasks.resolve_commit("d63aa68b6006687e7fff1e0289955883fa6b4dce")   # initial commit of the repo
+        self.assertEqual(full, "d63aa68b6006687e7fff1e0289955883fa6b4dce")
+        self.assertEqual(tasks.resolve_commit("d63aa68"), full)                     # 7-char short form
+
+    def test_invalid_sha_forms_are_rejected(self):
+        self.assertIsNone(tasks.resolve_commit("D63AA68"))          # uppercase: not accepted by policy
+        self.assertIsNone(tasks.resolve_commit("d63aa6"))           # 6 chars: too short
+        self.assertIsNone(tasks.resolve_commit("0000000"))          # well-formed but no such commit
+        self.assertIsNone(tasks.resolve_commit("see HANDOFF.md"))   # placeholder text
 
     def test_placeholder_commit_text_is_rejected(self):
         t = copy.deepcopy(self.t)

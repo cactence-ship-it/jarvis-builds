@@ -12,7 +12,7 @@ OUT=test-results/latest.txt
   echo "## validate"
   "$PY" tools/twin.py validate; v=$?
   echo "## unittest"
-  "$PY" -m unittest discover -s tests -t . 2>&1; t=$?
+  "$PY" -m unittest discover -v -s tests -t . 2>&1; t=$?
   echo "## result: validate=$v unittest=$t"
   exit $(( v != 0 || t != 0 ))
 ) > "$OUT" 2>&1

@@ -44,6 +44,8 @@ results:
   known_defects: &id002
   - Worst-case tolerance stacking is conservative; may pass marginal errors smaller than the combined tolerance
   open_questions: []
+  round: 1
+  superseded_by: c665cfb8245cc2c896bf77008b4b0c350ef786b8
 - agent: claude
   commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
   files: *id001
@@ -51,6 +53,8 @@ results:
   confidence: HIGH
   known_defects: *id002
   open_questions: []
+  round: 2
+  superseded_by: cf87630
 - agent: claude
   commit: cf87630
   files:
@@ -69,6 +73,8 @@ results:
   open_questions: []
   response_to_review: Inequalities now PASS only over the whole uncertainty range; FAIL when violated everywhere;
     INDETERMINATE otherwise. Identity rules keep overlap = consistent.
+  round: 3
+  superseded_by: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
 - agent: claude
   commit: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
   files:
@@ -81,6 +87,7 @@ results:
   - Tire-radius uncertainty models only the rim-diameter tolerance
   open_questions: []
   response_to_review: relative_difference_below is now strict, matching its 'below' name and the DC-003 wording.
+  round: 4
 reviews:
 - reviewer: chatgpt
   commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
@@ -94,3 +101,9 @@ reviews:
   - 'Add boundary tests: clearance safe; nominally positive but tolerance bands overlap; definitely insufficient;
     UNKNOWN parameter; sum_at_most and less_than tolerance limits.'
   - Keep the existing cm/mm and 100 mm error tests.
+round_summary:
+- 'round 1: bbeefcf (superseded)'
+- 'round 2: c665cfb8245cc2c896bf77008b4b0c350ef786b8 (superseded)'
+- 'round 3: cf87630 (superseded)'
+- 'round 4: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6 (CURRENT)'
+- 'review: chatgpt CHANGES_REQUESTED on c665cfb'
