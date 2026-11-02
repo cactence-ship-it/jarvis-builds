@@ -54,4 +54,20 @@ results:
     - text blobs larger than 2 MB
     - plate formats other than the Turkish scheme
     - secrets in formats not matched by the regex set
+- agent: claude
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  files:
+  - src/kartal_twin/privacy.py
+  - tools/privacy_history_audit.py
+  - tests/test_privacy.py
+  tests: 'CI history audit at bf31d4d (pull_request run, merge ref): ''scanned 411 blobs across all refs; findings:
+    0''. Scope limits recorded in the round-1 provenance (no image pixels, no binary contents, no text > 2 MB, Turkish
+    plate scheme only). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
+    (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
+    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  confidence: HIGH
+  known_defects:
+  - Regex-based detection only
+  open_questions: []
 reviews: []

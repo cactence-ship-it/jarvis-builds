@@ -5,11 +5,11 @@ description: Independent SHA-256 / rebuild check by a SECOND agent (ChatGPT). Cl
 priority: P2
 phase: '11'
 owner: chatgpt
-status: open
+status: submitted
 depends_on:
 - T-001
 blocker: null
-started_at: null
+started_at: '2026-11-02T06:30:16Z'
 finished_at: null
 error: null
 evidence:
@@ -21,5 +21,21 @@ acceptance:
 - id: T-012-A2
   criterion: 'Optionally: rebuild with Python 3.13 and compare CAD STEP hashes (byte-reproducible per D-016)'
   check: build output
-results: []
+results:
+- agent: claude
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  files:
+  - .github/workflows/kartal-ci.yml
+  tests: 'Environment-independent check (NOT agent-independent): CI step runs coreutils ''sha256sum -c'' (not the
+    project''s Python code) on audit/2026-11-02: WHL-001..004.step, vehicle_cad.step, manifest.json, latest.txt
+    all OK; test_fresh_build_reproduces_snapshot_cad ok on the GitHub runner (CAD STEP rebuilt from source equals
+    the snapshot byte for byte). Agent independence still requires ChatGPT''s own verdict. CI at bf31d4d: push run
+    https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test
+    125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
+    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  confidence: HIGH
+  known_defects:
+  - Claude produced both the snapshot and this check; only a second agent can supply independence
+  open_questions: []
 reviews: []

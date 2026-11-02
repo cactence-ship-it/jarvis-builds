@@ -8,23 +8,24 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #30** - 2026-11-02 06:30 UTC
-- **Commit:** bu kaydı içeren commit = `d9010e1` commit'inin hemen ardından gelen commit
+- **Checkpoint #31** - 2026-11-02 06:40 UTC
+- **Commit:** bu kaydı içeren commit = `bf31d4d` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** evidence(kartal-s-twin): explicit short/full SHA semantics, result rounds, T-019 provenance, verbose CI test log
-- **Testler:** PASS - Ran 101 tests in 54.095s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): CI evidence at bf31d4d recorded in T-011/T-012/T-013/T-018/T-019; review request batch 3 for ChatGPT
+- **Testler:** PASS - Ran 101 tests in 52.690s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
     M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/TASKS.md
+    A	kartal-s-twin/agents/REVIEW_REQUEST_BATCH_3.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/scripts/run_tests.sh
-    M	kartal-s-twin/src/kartal_twin/tasks.py
     M	kartal-s-twin/tasks/T-011.yaml
+    M	kartal-s-twin/tasks/T-012.yaml
     M	kartal-s-twin/tasks/T-013.yaml
+    M	kartal-s-twin/tasks/T-018.yaml
     M	kartal-s-twin/tasks/T-019.yaml
+    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tests/test_tasks.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -49,6 +50,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 22 | bf31d4d CI kanıtı kaydedildi (101 test adıyla, sha256sum 7/7, 411 blob 0 bulgu); 3. inceleme paketi agents/REVIEW_REQUEST_BATCH_3.md | TAMAM | (otomatik kayda bakın) |
 | 21 | Kanıt tamamlama (ChatGPT isteği): 652e8e2 CI kesin doğrulandı; SHA kısa/tam semantiği (D-024); tur kayıtları; T-019 kaynak bilgisi; CI'da test isimleri ve coreutils sha256sum | TAMAM | (otomatik kayda bakın) |
 | 20 | Kayıt bütünlüğü (sahte SHA'lar düzeltildi, D-023), T-018 hash doğrulama, T-019 gizlilik (VIN/anahtar, tüm geçmiş: 0 bulgu), T-013 strict sınır, T-011 kameradan bağımsız seçim | TAMAM | (otomatik kayda bakın) |
 | 19 | ChatGPT 2. parti: T-001/T-010/T-014/T-015/T-017 ACCEPT kaydedildi; T-011 (testler artık doğruluyor) ve T-013 (en kötü durum toleransı, D-022) düzeltildi | TAMAM | (otomatik kayda bakın) |
@@ -66,7 +68,8 @@
 - Görüntüleyici: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (yeniden yayın: `python tools/package_viewer.py` + aynı dosya yolu ile yayınla).
 
 ## Sıradaki görevler (öncelik sırasıyla)
-0. **Görev kuyruğu artık TASKS.md** (tasks/*.yaml). Sıradaki engelsiz görev oradan alınır.
+0. **ChatGPT 3. inceleme paketi:** agents/REVIEW_REQUEST_BATCH_3.md (bf31d4d). Hiçbir görev kendi kendine ACCEPT edilmez.
+   **Görev kuyruğu artık TASKS.md** (tasks/*.yaml). Sıradaki engelsiz görev oradan alınır.
    **ChatGPT denetimi:** COLLAB_REVIEW_CLAUDE.md bölüm E'deki sorular; gelen bulguları B listesine işle.
    Ölçü gelmezse: girişim/boşluk kontrol modülü (G bölümü).
 1. **Sahip ölçüleri gelirse:** `python tools/record_measurement.py --state "..." --tol 5 M01=... ` ->

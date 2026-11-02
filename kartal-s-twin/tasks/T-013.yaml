@@ -88,6 +88,22 @@ results:
   open_questions: []
   response_to_review: relative_difference_below is now strict, matching its 'below' name and the DC-003 wording.
   round: 4
+  superseded_by: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+- agent: claude
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  files:
+  - src/kartal_twin/consistency.py
+  - tests/test_consistency.py
+  tests: 'Deliverable unchanged since 88e1d36; CI log lists all 13 consistency tests ok (incl. test_relative_difference_exact_limit_is_not_pass,
+    test_metre_entry_is_caught, test_sum_at_most_boundaries). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
+    (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
+    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  confidence: HIGH
+  known_defects:
+  - Tire-radius uncertainty models only the rim-diameter tolerance
+  open_questions: []
+  round: 5
 reviews:
 - reviewer: chatgpt
   commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
@@ -105,5 +121,6 @@ round_summary:
 - 'round 1: bbeefcf (superseded)'
 - 'round 2: c665cfb8245cc2c896bf77008b4b0c350ef786b8 (superseded)'
 - 'round 3: cf87630 (superseded)'
-- 'round 4: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6 (CURRENT)'
+- 'round 4: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6 (superseded)'
+- 'round 5: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e (CURRENT)'
 - 'review: chatgpt CHANGES_REQUESTED on c665cfb'

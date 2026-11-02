@@ -73,6 +73,22 @@ results:
   response_to_review: Selection no longer depends on the camera angle; every interaction asserted; non-zero exit
     on failure.
   round: 4
+  superseded_by: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+- agent: claude
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  files:
+  - viewer/index.html
+  - tools/viewer_smoke/smoke.js
+  - tools/viewer_smoke/run.sh
+  tests: 'Deliverable unchanged since 88e1d36 (viewer job success in both runs). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
+    (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
+    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  confidence: HIGH
+  known_defects:
+  - SwiftShader software rendering only
+  open_questions: []
+  round: 5
 reviews:
 - reviewer: chatgpt
   commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
@@ -90,5 +106,6 @@ round_summary:
 - 'round 1: ca1fe01 (superseded)'
 - 'round 2: c665cfb8245cc2c896bf77008b4b0c350ef786b8 (superseded)'
 - 'round 3: cf87630 (superseded)'
-- 'round 4: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6 (CURRENT)'
+- 'round 4: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6 (superseded)'
+- 'round 5: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e (CURRENT)'
 - 'review: chatgpt CHANGES_REQUESTED on c665cfb'

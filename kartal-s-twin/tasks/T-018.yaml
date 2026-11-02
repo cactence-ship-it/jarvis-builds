@@ -39,4 +39,22 @@ results:
   known_defects:
   - Local-only originals (public repo policy) cannot be verified in CI by design
   open_questions: []
+- agent: claude
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  files:
+  - src/kartal_twin/hashes.py
+  - tests/test_hashes.py
+  - src/kartal_twin/tasks.py
+  - tests/test_tasks.py
+  tests: 'CI log lists test_modified_file_is_mismatch, test_missing_file_is_missing, test_corrupt_line_is_malformed,
+    test_path_escape_is_rejected, test_intact_snapshot_is_ok, test_failures_lists_only_problems, test_repository_hashes_are_intact:
+    all ok; SHA semantics (D-024): test_short_and_full_sha_are_equivalent, test_invalid_sha_forms_are_rejected,
+    test_every_recorded_commit_resolves_to_exactly_one_commit: ok. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
+    (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job
+    125131042884 log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  confidence: HIGH
+  known_defects:
+  - Local-only originals cannot be verified in CI by design (D-012)
+  open_questions: []
 reviews: []
