@@ -17,6 +17,9 @@ class Part:
     used: dict = field(default_factory=dict)
     geometry_status: str = "PLACEHOLDER"
     note: str = ""
+    # False = engineering part in its own local frame: its position in the vehicle has no
+    # evidence, so it is exported alone but kept out of the vehicle assembly and clearance checks.
+    placed: bool = True
 
 
 class BuildContext:
@@ -30,8 +33,9 @@ class BuildContext:
     def resolver(self) -> Resolver:
         return self.base.fork()
 
-    def add(self, component_id: str, assembly: str, bodies, r: Resolver, note: str = "") -> Part:
+    def add(self, component_id: str, assembly: str, bodies, r: Resolver, note: str = "",
+            placed: bool = True) -> Part:
         part = Part(component_id, assembly, self.representation, list(bodies), dict(r.used),
-                    r.geometry_status, note)
+                    r.geometry_status, note, placed)
         self.parts.append(part)
         return part

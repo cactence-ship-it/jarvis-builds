@@ -33,6 +33,14 @@ class Inventory(unittest.TestCase):
                            capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stdout)
 
+    def test_data_dictionary_is_up_to_date(self):
+        import subprocess
+        import sys
+        from kartal_twin import PROJECT_ROOT
+        r = subprocess.run([sys.executable, str(PROJECT_ROOT / "tools" / "data_dictionary.py"), "--check"],
+                           capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout)
+
     def test_measurement_guide_summary_matches_spec_counts(self):
         # ChatGPT T-020 review: the summary once printed a hard-coded "0 VERIFIED".
         import re

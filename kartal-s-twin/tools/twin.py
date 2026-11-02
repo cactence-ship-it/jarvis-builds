@@ -39,6 +39,8 @@ def validate() -> int:
         "task registry": _task_errors(),
         "hash integrity (audit snapshots, refs manifest)": __import__("kartal_twin.hashes", fromlist=["x"]).failures(
             __import__("kartal_twin.hashes", fromlist=["x"]).verify_project()),
+        "configuration (engine variant separation)": __import__(
+            "kartal_twin.configuration", fromlist=["x"]).check(s),
         "dimensional consistency": [f"{r['id']} FAIL: {r['description']} (lhs {r['lhs']:.1f}, rhs {r['rhs']:.1f}, "
                                     f"tolerance {r['combined_tolerance']:.1f})"
                                     for r in __import__("kartal_twin.consistency", fromlist=["x"]).evaluate(s)

@@ -41,4 +41,8 @@ assumptions:
   tire_static_deflection: {value: 12, unit: mm, rationale: "loaded radius = free radius minus deflection"}
   mirror_protrusion:   {value: 110, unit: mm, replaces: body_profile.mirror_protrusion, rationale: "mirror housing beyond the body side"}
   # --- appearance (colour is UNKNOWN; neutral grey signals 'not the real paint')
-  paint_rgba:          {value: [0.73, 0.75, 0.77, 1.0], unit: null, rationale: "neutral placeholder - exterior colour UNKNOWN"}
+  paint_rgba:          {value: [0.11, 0.54, 0.50, 1.0], unit: null, rationale: "turquoise-green approximation of the registered colour name TURKUAZ YESIL (E-014, E-015, E-017); the RGB value itself is a guess, no paint code known"}
+  # --- LPG tank position (visual only; CAD keeps the tank unplaced, D-016/D-026) ---------
+  lpg_tank_centre_x: {value: 2950, unit: mm, replaces: lpg_system.tank_centre_x, rationale: "behind the rear axle (wheelbase ~2490) in the luggage compartment, where a spare-wheel well usually is; pure guess"}
+  lpg_tank_centre_y: {value: 0, unit: mm, replaces: lpg_system.tank_centre_y, rationale: "on the centre line; pure guess"}
+  lpg_tank_base_z:   {value: 350, unit: mm, replaces: lpg_system.tank_base_z, rationale: "on the luggage floor / well floor; load-floor height unknown; pure guess"}

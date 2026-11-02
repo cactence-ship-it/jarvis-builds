@@ -17,7 +17,11 @@ from . import EVIDENCE_PATH, SPEC_PATH
 STATUSES = ("VERIFIED", "ESTIMATED", "UNKNOWN")
 CONFIDENCES = ("HIGH", "MEDIUM", "LOW", "NONE")
 EVIDENCE_TYPES = ("USER_STATEMENT", "PHOTO", "DOCUMENT", "MEASUREMENT",
-                  "LEGACY_MODEL", "LITERATURE", "ENVIRONMENT_TEST")
+                  "LEGACY_MODEL", "LITERATURE", "ENVIRONMENT_TEST", "ASSUMPTION")
+# Data classes shown to people (D-026). DERIVED from status, confidence and evidence type -
+# never stored, so they cannot drift from the evidence rules (D-005).
+DATA_CLASSES = ("MEASURED", "DOCUMENT_CONFIRMED", "USER_CONFIRMED", "SOURCE_SUPPORTED",
+                "ESTIMATED", "UNKNOWN")
 EVIDENCE_STATES = ("RECEIVED", "RECORDED", "REPORTED", "NOT_RECEIVED", "SUPERSEDED")
 # Only these evidence types, once RECEIVED (file checksummed in refs/MANIFEST.csv),
 # can make a vehicle value VERIFIED. Owner statements alone give ESTIMATED at most.
@@ -146,6 +150,9 @@ def validate_spec(spec: dict, evidence: dict[str, Evidence]) -> list[str]:
                 if not ok:
                     err(f"{st} numeric value needs a tolerance (± {unit}); "
                         f"{'> 0' if st == 'ESTIMATED' else '>= 0'}")
+        kinds = {evidence[s].type for s in src if s in evidence}
+        if kinds and kinds <= {"ASSUMPTION"} and conf != "LOW":
+            err("a value supported only by ASSUMPTION evidence must have confidence LOW (D-026)")
         if st == "VERIFIED":
             if conf != "HIGH":
                 err("VERIFIED requires confidence: HIGH")
@@ -153,6 +160,28 @@ def validate_spec(spec: dict, evidence: dict[str, Evidence]) -> list[str]:
                 err("VERIFIED requires a RECEIVED PHOTO/DOCUMENT/MEASUREMENT evidence item "
                     "(owner statements alone are ESTIMATED at most)")
     return errs
+
+
+def data_class(p: dict, evidence: dict[str, Evidence]) -> str:
+    """USER_CONFIRMED / DOCUMENT_CONFIRMED / MEASURED / SOURCE_SUPPORTED / ESTIMATED / UNKNOWN (D-026).
+
+    VERIFIED: MEASURED if a measurement supports it, otherwise DOCUMENT_CONFIRMED.
+    ESTIMATED: USER_CONFIRMED when the owner stated it directly (USER_STATEMENT, confidence HIGH);
+    SOURCE_SUPPORTED when a literature source supports it with confidence MEDIUM or HIGH;
+    otherwise ESTIMATED (aggregators are capped LOW by D-020; ASSUMPTION is always ESTIMATED).
+    """
+    st = p.get("status")
+    if st == "UNKNOWN":
+        return "UNKNOWN"
+    types = {evidence[s].type for s in p.get("source") or [] if s in evidence}
+    if st == "VERIFIED":
+        prim = {evidence[s].type for s in primary_sources(p.get("source") or [], evidence)}
+        return "MEASURED" if "MEASUREMENT" in prim else "DOCUMENT_CONFIRMED"
+    if "USER_STATEMENT" in types and p.get("confidence") == "HIGH":
+        return "USER_CONFIRMED"
+    if "LITERATURE" in types and p.get("confidence") in ("MEDIUM", "HIGH"):
+        return "SOURCE_SUPPORTED"
+    return "ESTIMATED"
 
 
 def status_counts(spec: dict) -> Counter:

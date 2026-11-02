@@ -2,6 +2,7 @@
 import copy
 import json
 import math
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -121,18 +122,22 @@ class EngineeringCad(unittest.TestCase):
         with self.assertRaises(UnknownParameter):
             Resolver(allow_placeholders=False).get("body_profile.belt_z")
 
+    TIRES = ["WHL-001", "WHL-002", "WHL-003", "WHL-004"]
+
     def test_tire_envelopes_are_draft_without_placeholders(self):
-        self.assertEqual(sorted(self.cad), ["WHL-001", "WHL-002", "WHL-003", "WHL-004"])
-        for p in self.cad.values():
+        self.assertTrue(set(self.TIRES) <= set(self.cad))
+        for p in self.cad.values():                      # every CAD part, incl. rims and LPG tank
             self.assertEqual(p["geometry_status"], "DRAFT")
             self.assertNotIn("PLACEHOLDER", p["parameters"].values())
 
     def test_step_volume_and_position_match_the_designation(self):
         r = Resolver()
-        od = 14 * 25.4 + 2 * 0.70 * 175                       # 175/70 R14 designation
-        vol = math.pi / 4 * (od ** 2 - (14 * 25.4) ** 2) * 175
+        m = re.fullmatch(r"(\d{3})/(\d{2}) R(\d{2})", r.get("wheels_tires.tire_size_front"))
+        w, aspect, rim_in = float(m.group(1)), int(m.group(2)) / 100, float(m.group(3))
+        od = rim_in * 25.4 + 2 * aspect * w                   # e.g. 185/70 R14 -> 614.6 mm
+        vol = math.pi / 4 * (od ** 2 - (rim_in * 25.4) ** 2) * w
         c = self.r["checks"]["cad"]
-        for cid in self.cad:
+        for cid in self.TIRES:
             self.assertTrue(c[cid]["valid"])
             self.assertAlmostEqual(c[cid]["volume_mm3"], vol, delta=vol * 1e-9)
         lo, hi = (np.array(v) for v in c["WHL-002"]["bbox_mm"])   # front right

@@ -1,4 +1,4 @@
-# Test run 2026-11-02T07:24:49Z on commit base a68e7e4
+# Test run 2026-11-02T07:54:04Z on commit base e81efa1
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -7,14 +7,44 @@
 [PASS] privacy (public repo)
 [PASS] task registry
 [PASS] hash integrity (audit snapshots, refs manifest)
+[PASS] configuration (engine variant separation)
 [PASS] dimensional consistency
-spec: 112 parameters (VERIFIED 7, ESTIMATED 24, UNKNOWN 81) | inventory: 143 components | evidence: 16 items
+spec: 133 parameters (VERIFIED 7, ESTIMATED 40, UNKNOWN 86) | inventory: 157 components | evidence: 21 items
 ## unittest
 test_glb_is_valid_metres_and_y_up (tests.test_cad_toolchain.CadToolchain.test_glb_is_valid_metres_and_y_up) ... ok
 test_kernel_builds_valid_solid (tests.test_cad_toolchain.CadToolchain.test_kernel_builds_valid_solid) ... ok
 test_step_reopens_identically (tests.test_cad_toolchain.CadToolchain.test_step_reopens_identically) ... ok
 test_stl_is_watertight_outward_and_to_scale (tests.test_cad_toolchain.CadToolchain.test_stl_is_watertight_outward_and_to_scale) ... ok
 test_vcs_to_gltf_mapping_is_a_proper_rotation (tests.test_cad_toolchain.CadToolchain.test_vcs_to_gltf_mapping_is_a_proper_rotation) ... ok
+test_no_build_errors (tests.test_configuration_cad.BuiltConfiguration.test_no_build_errors) ... ok
+test_rims_built_placed_and_inside_their_tires (tests.test_configuration_cad.BuiltConfiguration.test_rims_built_placed_and_inside_their_tires) ... ok
+test_tank_clearance_rules_are_blocked_not_passed (tests.test_configuration_cad.BuiltConfiguration.test_tank_clearance_rules_are_blocked_not_passed) ... ok
+test_tank_is_draft_unplaced_and_exported (tests.test_configuration_cad.BuiltConfiguration.test_tank_is_draft_unplaced_and_exported) ... ok
+test_visual_tank_is_placeholder (tests.test_configuration_cad.BuiltConfiguration.test_visual_tank_is_placeholder) ... ok
+test_capacity_above_geometry_fails (tests.test_configuration_cad.CapacityVersusGeometry.test_capacity_above_geometry_fails) ... ok
+test_overlap_is_indeterminate (tests.test_configuration_cad.CapacityVersusGeometry.test_overlap_is_indeterminate) ... ok
+test_small_capacity_fits (tests.test_configuration_cad.CapacityVersusGeometry.test_small_capacity_fits) ... ok
+test_assumption_only_value_must_be_low_confidence (tests.test_configuration_cad.DataClasses.test_assumption_only_value_must_be_low_confidence) ... ok
+test_mapping (tests.test_configuration_cad.DataClasses.test_mapping) ... ok
+test_no_owner_assumption_is_shown_as_confirmed (tests.test_configuration_cad.DataClasses.test_no_owner_assumption_is_shown_as_confirmed) ... ok
+test_injection_source_rejected_for_carburettor_engine (tests.test_configuration_cad.EngineVariant.test_injection_source_rejected_for_carburettor_engine) ... ok
+test_live_spec_is_carburettor_and_clean (tests.test_configuration_cad.EngineVariant.test_live_spec_is_carburettor_and_clean) ... ok
+test_same_source_allowed_for_other_variant (tests.test_configuration_cad.EngineVariant.test_same_source_allowed_for_other_variant) ... ok
+test_numeric_wheel_and_lpg_values_positive (tests.test_configuration_cad.NewParametersArePositive.test_numeric_wheel_and_lpg_values_positive) ... ok
+test_resolver_reads_them_without_placeholders (tests.test_configuration_cad.NewParametersArePositive.test_resolver_reads_them_without_placeholders) ... ok
+test_cad_volume_matches_analytic_section (tests.test_configuration_cad.RimGeometry.test_cad_volume_matches_analytic_section) ... ok
+test_derived_dimensions (tests.test_configuration_cad.RimGeometry.test_derived_dimensions) ... ok
+test_non_positive_values_are_rejected (tests.test_configuration_cad.RimGeometry.test_non_positive_values_are_rejected) ... ok
+test_rim_fits_inside_the_tire (tests.test_configuration_cad.RimGeometry.test_rim_fits_inside_the_tire) ... ok
+test_cad_volumes_match_pappus (tests.test_configuration_cad.TankGeometry.test_cad_volumes_match_pappus) ... ok
+test_circular_section_equals_classical_torus (tests.test_configuration_cad.TankGeometry.test_circular_section_equals_classical_torus) ... ok
+test_invalid_geometry_is_rejected (tests.test_configuration_cad.TankGeometry.test_invalid_geometry_is_rejected) ... ok
+test_parametric_not_fixed (tests.test_configuration_cad.TankGeometry.test_parametric_not_fixed) ... ok
+test_stadium_volume_by_hand (tests.test_configuration_cad.TankGeometry.test_stadium_volume_by_hand) ... ok
+test_usable_lpg_at_fill_limit (tests.test_configuration_cad.TankGeometry.test_usable_lpg_at_fill_limit) ... ok
+test_cad_envelope_volume_matches_designation (tests.test_configuration_cad.TireGeometry.test_cad_envelope_volume_matches_designation) ... ok
+test_outer_diameter_from_designation (tests.test_configuration_cad.TireGeometry.test_outer_diameter_from_designation) ... ok
+test_pass_and_fail (tests.test_configuration_cad.WithinBoxRule.test_pass_and_fail) ... ok
 test_centimetre_entry_is_caught (tests.test_consistency.Consistency.test_centimetre_entry_is_caught) ... ok
 test_centimetre_track_is_caught (tests.test_consistency.Consistency.test_centimetre_track_is_caught) ... ok
 test_clearance_safe_over_whole_range (tests.test_consistency.Consistency.test_clearance_safe_over_whole_range) ... ok
@@ -50,6 +80,7 @@ test_missing_geometry_is_reported_not_skipped (tests.test_interfaces.Rules.test_
 test_touching_is_not_clearance (tests.test_interfaces.Rules.test_touching_is_not_clearance) ... ok
 test_tire_clearances_match_analytic_values (tests.test_interfaces.VehicleCad.test_tire_clearances_match_analytic_values) ... ok
 test_unloaded_tires_touch_ground (tests.test_interfaces.VehicleCad.test_unloaded_tires_touch_ground) ... ok
+test_data_dictionary_is_up_to_date (tests.test_inventory.Inventory.test_data_dictionary_is_up_to_date) ... ok
 test_detects_dependency_cycle (tests.test_inventory.Inventory.test_detects_dependency_cycle) ... ok
 test_detects_duplicate_id (tests.test_inventory.Inventory.test_detects_duplicate_id) ... ok
 test_detects_unknown_dependency (tests.test_inventory.Inventory.test_detects_unknown_dependency) ... ok
@@ -120,7 +151,7 @@ test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval
 test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
 
 ----------------------------------------------------------------------
-Ran 108 tests in 63.700s
+Ran 138 tests in 107.967s
 
 OK
 ## result: validate=0 unittest=0

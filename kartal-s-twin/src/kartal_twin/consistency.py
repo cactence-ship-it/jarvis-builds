@@ -45,7 +45,35 @@ def _derived(params: dict) -> dict:
             if rim and rim["status"] != "UNKNOWN" and rim["value"] is not None:
                 r_mm = float(rim["value"]) * 25.4 / 2 + width * aspect
                 out[f"tire_radius_{axle}"] = (r_mm, float(rim["tolerance"] or 0.0) * 25.4 / 2)
+    rw = _value("wheels_tires.wheel_rim_width", params, {})
+    if rw is not None:
+        out["rim_width_mm"] = (rw[0] * 25.4, rw[1] * 25.4)
+    tr, sw = _value("dimensions.rear_track", params, {}), out.get("tire_section_width_rear")
+    if tr is not None and sw is not None:   # free space between the inner faces of the rear tires
+        out["rear_tire_inner_gap"] = (tr[0] - sw[0], tr[1] + sw[1])
+    vol = _tank_volume(params)
+    if vol is not None:
+        out["lpg_tank_internal_volume"] = vol
     return out
+
+
+def _tank_volume(params: dict):
+    """Geometric water capacity (L) of the simplified tank, with a worst-case tolerance from
+    the corners of the input intervals (volume rises with D and h, falls with opening and wall)."""
+    from .layout import ToroidalTank
+    keys = ("lpg_system.tank_outer_diameter", "lpg_system.tank_central_opening_diameter",
+            "lpg_system.tank_height", "lpg_system.tank_wall_thickness")
+    vals = [_value(k, params, {}) for k in keys]
+    if any(v is None for v in vals):
+        return None
+    (D, tD), (d, td), (h, th), (w, tw) = vals
+
+    def vol(D, d, h, w):
+        return ToroidalTank.volume_l(D - 2 * w, d + 2 * w, h - 2 * w)
+    nom = vol(D, d, h, w)
+    hi = vol(D + tD, max(d - td, 0.0), h + th, max(w - tw, 0.0))
+    lo = vol(D - tD, d + td, h - th, w + tw)
+    return nom, max(hi - nom, nom - lo)
 
 
 def _value(key: str, params: dict, derived: dict):

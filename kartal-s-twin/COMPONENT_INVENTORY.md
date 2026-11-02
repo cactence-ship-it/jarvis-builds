@@ -2,10 +2,10 @@
 
 <!-- GENERATED from assembly/vehicle_master.yaml by `python tools/twin.py inventory`. Do not edit by hand; edit the YAML and regenerate. -->
 
-Source of truth: `assembly/vehicle_master.yaml` (revision 0.5.0). Components: **143** in **17** assemblies.
+Source of truth: `assembly/vehicle_master.yaml` (revision 0.6.0). Components: **157** in **17** assemblies.
 
-Verification status: VERIFIED 0, ESTIMATED 0, UNKNOWN 143.  
-Geometry with any content (visual / CAD / mechanical): 35 / 4 / 0.
+Verification status: VERIFIED 0, ESTIMATED 6, UNKNOWN 151.  
+Geometry with any content (visual / CAD / mechanical): 35 / 9 / 0.
 
 Legend: fitment = CONFIRMED / UNCONFIRMED / ABSENT on this vehicle; `opt` = may not be fitted; geometry states NONE < PLACEHOLDER < LEGACY_IMPORT < DRAFT < VALIDATED.
 
@@ -24,10 +24,10 @@ Legend: fitment = CONFIRMED / UNCONFIRMED / ABSENT on this vehicle; `opt` = may 
 | REAR_SUSPENSION | RSU | 8 | 9 |
 | STEERING | STR | 8 | 5 |
 | BRAKING | BRK | 8 | 8 |
-| FUEL_SYSTEM | FUL | 7 | 4 |
+| FUEL_SYSTEM | FUL | 7 | 14 |
 | EXHAUST | EXH | 7 | 4 |
 | ELECTRICAL | ELE | 9 | 9 |
-| WHEELS_AND_TIRES | WHL | 4 | 5 |
+| WHEELS_AND_TIRES | WHL | 4 | 9 |
 
 ## BODY_ASSEMBLY
 
@@ -143,7 +143,7 @@ Engine variant UNKNOWN (U-001) - no engine geometry until it is identified. Alte
 | ENG-004 | Oil pan (sump) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | ENG-001 | - |
 | ENG-005 | Intake system (manifold, air filter) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | ENG-002 | - |
 | ENG-006 | Exhaust manifold | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | ENG-002 | - |
-| ENG-007 | Engine fuel delivery (carburettor or injection - variant UNKNOWN) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | ENG-005, FUL-002 | - |
+| ENG-007 | Carburettor (petrol fuel delivery; fuel-injected variants excluded) | UNCONFIRMED | ESTIMATED | NONE | NONE | NONE | ENG-005, FUL-002 | E-017, E-012, E-013 |
 | ENG-008 | Cooling system (radiator, pump, thermostat, hoses, fan) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | ENG-001, BDY-001 | - |
 | ENG-009 | Alternator | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | ENG-001, ELE-007 | - |
 | ENG-010 | Starter motor | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | ENG-001, ELE-007 | - |
@@ -243,7 +243,7 @@ Brake types per axle UNKNOWN (spec brakes.*).
 
 ## FUEL_SYSTEM
 
-Fuel storage and supply. Engine-side delivery is ENG-007. Possible LPG system to be checked (spec engine.fuel_type).
+Fuel storage and supply. Petrol system FUL-001..004; LPG system FUL-005..014 kept as separate components (registered LPG conversion E-014/E-015, D-026). Engine-side petrol delivery is ENG-007.
 
 | ID | Component | Fitment | Status | Visual | CAD | Mech | Depends on | Sources |
 |---|---|---|---|---|---|---|---|---|
@@ -251,6 +251,16 @@ Fuel storage and supply. Engine-side delivery is ENG-007. Possible LPG system to
 | FUL-002 | Fuel lines and routing | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-001, CHS-001 | - |
 | FUL-003 | Fuel filler neck and cap | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-001 | - |
 | FUL-004 | Fuel pump (mechanical or electric - variant UNKNOWN) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-002 | - |
+| FUL-005 | LPG tank, toroidal, luggage compartment (40 L nominal) | CONFIRMED | ESTIMATED | NONE | DRAFT | NONE | CHS-001 | E-014, E-015, E-017 |
+| FUL-006 | LPG multivalve on the tank (fill stop, outlet, gauge, excess-flow) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-005 | - |
+| FUL-007 | LPG filler valve (external filling point) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-008 | - |
+| FUL-008 | LPG high-pressure line, tank to engine bay | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-006, CHS-001 | - |
+| FUL-009 | LPG solenoid shut-off valve with filter | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-008 | - |
+| FUL-010 | LPG vaporiser / pressure regulator (coolant heated) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-009, ENG-008 | - |
+| FUL-011 | LPG gas-air mixer (venturi) at the carburettor intake | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-010, ENG-005 | - |
+| FUL-012 | Petrol cut-off solenoid valve (carburettor feed) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-002 | - |
+| FUL-013 | Petrol / LPG changeover switch | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-009, FUL-012 | - |
+| FUL-014 | LPG tank mounting frame / straps and gas-tight housing or vent | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | FUL-005, CHS-001 | - |
 
 ## EXHAUST
 
@@ -290,3 +300,7 @@ Road wheels and tires. Sizes UNKNOWN (spec wheels_tires.*).
 | WHL-003 | Wheel and tire, rear LH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | DRAFT | NONE | RSU-007 | - |
 | WHL-004 | Wheel and tire, rear RH | UNCONFIRMED | UNKNOWN | PLACEHOLDER | DRAFT | NONE | RSU-008 | - |
 | WHL-005 | Spare wheel (opt) | UNCONFIRMED | UNKNOWN | NONE | NONE | NONE | - | - |
+| WHL-006 | Steel wheel rim, front LH | UNCONFIRMED | ESTIMATED | NONE | DRAFT | NONE | FSU-009 | E-017, E-018 |
+| WHL-007 | Steel wheel rim, front RH | UNCONFIRMED | ESTIMATED | NONE | DRAFT | NONE | FSU-010 | E-017, E-018 |
+| WHL-008 | Steel wheel rim, rear LH | UNCONFIRMED | ESTIMATED | NONE | DRAFT | NONE | RSU-007 | E-017, E-018 |
+| WHL-009 | Steel wheel rim, rear RH | UNCONFIRMED | ESTIMATED | NONE | DRAFT | NONE | RSU-008 | E-017, E-018 |

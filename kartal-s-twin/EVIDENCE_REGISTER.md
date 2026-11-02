@@ -4,7 +4,8 @@ Every value in `specs/kartal_s_1997.yaml` and every component in `assembly/vehic
 cites evidence by ID from this table. `tools/twin.py validate` parses the rows below. Keep the
 column order, and never put a `|` inside a cell.
 
-**Types:** USER_STATEMENT, PHOTO, DOCUMENT, MEASUREMENT, LEGACY_MODEL, LITERATURE, ENVIRONMENT_TEST.
+**Types:** USER_STATEMENT, PHOTO, DOCUMENT, MEASUREMENT, LEGACY_MODEL, LITERATURE, ENVIRONMENT_TEST, ASSUMPTION
+(provisional modelling value, not observed: supports ESTIMATED with confidence LOW only, D-026).
 **States:** RECEIVED (file ingested and checksummed in `refs/MANIFEST.csv`), RECORDED (result
 captured in this repository), REPORTED (statement only, no artifact), NOT_RECEIVED (expected
 but not yet available), SUPERSEDED.
@@ -30,3 +31,8 @@ Owner statements give ESTIMATED at most.
 | E-014 | Owner document photo: vehicle registration, traffic form (older format) | DOCUMENT | RECEIVED | R-0001 | 2026-11-02 | Fields used: Markası MURAT, Modeli 1997, Cinsi H.OTO LPG, Tipi KARTAL S, Rengi TURKUAZ YEŞİLİ, Net ağırlığı 1125 kg, İstiap haddi 04 kişi; Azami yüklü ağırlığı empty. Plate, VIN, engine number, document serials and dates are withheld (D-012) |
 | E-015 | Owner document photo: vehicle registration certificate (newer format) | DOCUMENT | RECEIVED | R-0002 | 2026-11-02 | Same fields as E-014 (colour TURKUAZ YEŞİL) plus Silindir hacmi 1581 cm3 (partly under glare, read as 1581), İmalatı yerli (domestic), Römork takmaz, Takoğraf yok; Motor gücü and Azami yüklü ağırlığı empty. Plate, VIN, engine number, serials and dates withheld (D-012) |
 | E-016 | Owner document photo: exhaust emission form | DOCUMENT | RECEIVED | R-0003 | 2026-11-02 | Handwritten; model year written as 97. No technical data beyond E-014/E-015. Plate, VIN and inspection details withheld (D-012) |
+| E-017 | Owner configuration statement (2026-11-02): Tofaş Kartal S 1997, turquoise green, registered net weight 1125 kg, 1.6 carburettor engine, petrol + LPG, toroidal LPG tank in the luggage compartment of 40 L nominal capacity, black pressed-steel 14 in wheels | USER_STATEMENT | REPORTED | - | 2026-11-02 | Direct owner statement in chat. Owner statements give ESTIMATED at most (D-005); shown as USER_CONFIRMED (D-026) |
+| E-018 | Owner-supplied PROVISIONAL CAD values (2026-11-02): rim width 5.5J, tire 185/70 R14, LPG tank 600 x 180 mm, about 80 % fill | ASSUMPTION | REPORTED | - | 2026-11-02 | Explicitly NOT measured on the car ("geçici varsayım"). Tire size conflicts with listing value 175/70 R14 (E-010); the sidewall photo decides |
+| E-019 | Engineering assumptions for provisional CAD (Claude, authorised by the owner's directive of 2026-11-02): steel thickness of rim barrel and disc, LPG tank wall thickness, simplified stadium tank section and central opening | ASSUMPTION | REPORTED | - | 2026-11-02 | Chosen to make geometry buildable; every value is ESTIMATED LOW with a tolerance and a verify_by note. Never a substitute for measurement |
+| E-020 | Literature: toroidal LPG tank listings (nagaz24.com) | LITERATURE | REPORTED | - | 2026-11-02 | https://nagaz24.com/tanks-and-accessories-tanks/4 - search summary of vendor listings, not manufacturer data: 600 x 180 mm (external type) 38 L water capacity / 30.4 L usable; 600 x 200 mm internal types 42-43 L / 33.6-34.4 L usable; usable = 80 % of water capacity in every listing. No 600 x 180 mm tank rated 40 L water capacity was found |
+| E-021 | Literature: J rim-flange contour, flange height G = 17.5 mm +/- 1.0 mm (US patent application 2010/0096910 citing TRA and JATMA) | LITERATURE | REPORTED | - | 2026-11-02 | https://patents.justia.com/patent/20100096910 - via search summary; primary standard is ISO 4000-2 / ETRTO (not read) |

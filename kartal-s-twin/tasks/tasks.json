@@ -493,6 +493,42 @@
       ],
       "last_result_commit": "826c4bad6e2f4c5b28db9d897b1d28c16337728c",
       "last_review": "chatgpt:CHANGES_REQUESTED"
+    },
+    {
+      "task_id": "T-021",
+      "title": "Owner vehicle configuration, carburettor variant separation, steel-rim and LPG toroidal tank CAD",
+      "description": "Apply the owner's configuration of 2026-11-02 (E-017) and provisional CAD values (E-018) on a separate branch stacked on PR 1; derived data classes (D-026); parametric 40 L toroidal LPG tank, 14 in steel rims, provisional 185/70 R14 tire geometry; consistency and clearance checks; measurement guide and data dictionary.",
+      "priority": "P1",
+      "depends_on": [
+        "T-020"
+      ],
+      "acceptance_criteria": [
+        "Owner-stated values are ESTIMATED (USER_CONFIRMED) unless a document verifies them; provisional values are ASSUMPTION evidence with confidence LOW; nothing new is VERIFIED",
+        "Carburettor variant kept separate from fuel-injected variants by an enforced rule",
+        "Tire OD equals the designation arithmetic (614.6 mm for 185/70 R14); rim and tank volumes match independent analytic formulas (torus 2*pi^2*R*r^2, Pappus) against OpenCascade",
+        "Tank is parametric (diameter, height, opening, wall) and rejects zero, negative and impossible geometry",
+        "Clearance checks that lack evidence report NOT_EVALUATED with the blocking reason, never PASS",
+        "All exports re-open; CAD byte-reproducible; new audit snapshot; full suite and viewer smoke test pass locally and in CI"
+      ],
+      "owner_agent": "claude",
+      "status": "IN_PROGRESS",
+      "registry_status": "in_progress",
+      "test_result": null,
+      "error": null,
+      "started_at": "2026-11-02T07:40:00Z",
+      "finished_at": null,
+      "evidence": [
+        "specs/kartal_s_1997.yaml",
+        "specs/configuration_rules.yaml",
+        "src/kartal_twin/layout.py",
+        "src/kartal_twin/assemblies/fuel_system.py",
+        "src/kartal_twin/assemblies/wheels_and_tires.py",
+        "tests/test_configuration_cad.py",
+        "docs/VERI_SOZLUGU.md",
+        "audit/2026-11-02-r2/SHA256SUMS"
+      ],
+      "last_result_commit": null,
+      "last_review": null
     }
   ]
 }

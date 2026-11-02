@@ -1,8 +1,21 @@
-assemblies: Kaporta 7 | Dış trim 10 | Camlar 8 | Aydınlatma 6 | Tekerlekler 4
-info after tap: BDY-003 · Hood (bonnet)
-      MontajKaporta (BODY_ASSEMBLY)
-      GeometriPLACEHOLDER · visual
-      Parametre29 adet, 19 tanesi varsayım (kanıt değil)
-      No
+ok: viewer has 36 parts, manifest has 36
+assemblies: Kaporta 7 | Dış trim 10 | Camlar 8 | Aydınlatma 6 | Yakıt 1 | Tekerlekler 4
+ok: assembly toggle counts sum to 36
+ok: BDY-003 has a visible point in the iso view
+ok: iso view: tap on BDY-003 selects BDY-003 (got BDY-003)
+ok: iso view: info panel shows BDY-003 and its status
+ok: WHL-001 has a visible point in the iso view
+ok: iso view: tap on WHL-001 selects WHL-001 (got WHL-001)
+ok: iso view: info panel shows WHL-001 and its status
+ok: BDY-008 has a visible point in the left view
+ok: left view: tap on BDY-008 selects BDY-008 (got BDY-008)
+ok: left view: info panel shows BDY-008 and its status
+ok: explode moves parts (max displacement 1.424 m)
+ok: explode 0 restores the original positions
+ok: GLAZING has 8 parts
+ok: GLAZING parts hidden
+ok: other assemblies still visible
+ok: GLAZING parts visible again
+ok: no console errors []
 errors: []
 screenshots: /tmp/kartal_viewer_smoke/iso.png /tmp/kartal_viewer_smoke/exploded.png

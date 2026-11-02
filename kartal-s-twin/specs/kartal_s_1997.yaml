@@ -13,7 +13,7 @@
 # this repository is public (D-012).
 
 schema_version: 1
-revision: "0.6.1"
+revision: "0.7.0"
 last_updated: 2026-11-02
 vehicle_alias: VEH-01   # public alias for the owner's car (real registration withheld)
 
@@ -53,9 +53,9 @@ parameters:
       status: ESTIMATED
       confidence: HIGH
       tolerance: null
-      source: [E-001, E-014, E-015]
+      source: [E-001, E-014, E-015, E-017]
       verify_by: Ruhsat 'Markası' field or VIN plate photo
-      notes: Owner-declared (E-001). The registration documents (E-014, E-015) name the make as 'MURAT', the brand under which Tofaş registered its cars, not 'Tofaş'; the equivalence is general knowledge, not printed on the document, so this stays ESTIMATED.
+      notes: Owner-declared (E-001) and re-stated (E-017). The registration documents (E-014, E-015) name the make as 'MURAT', the brand under which Tofaş registered its cars, not 'Tofaş'; the equivalence is general knowledge, not printed on the document, so this stays ESTIMATED.
     model:
       name: Model / series
       value: Kartal
@@ -63,7 +63,7 @@ parameters:
       status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-014, E-015]
+      source: [E-014, E-015, E-017]
       verify_by: Ruhsat 'Tipi' / 'Ticari adı' field
       notes: Ruhsat 'Tipi' = 'KARTAL S'. Registration documents E-014/E-015 (owner photos 2026-11-02).
     variant:
@@ -73,7 +73,7 @@ parameters:
       status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-014, E-015]
+      source: [E-014, E-015, E-017]
       verify_by: Badge photo + ruhsat 'Tipi' field
       notes: Ruhsat 'Tipi' = 'KARTAL S'. Registration documents E-014/E-015 (owner photos 2026-11-02). Badge not yet photographed.
     model_year:
@@ -83,7 +83,7 @@ parameters:
       status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-014, E-015, E-016]
+      source: [E-014, E-015, E-016, E-017]
       verify_by: Ruhsat 'Model yılı' field
       notes: Ruhsat 'Modeli' = 1997 on both registration documents; emission form '97'. Registration documents E-014/E-015 (owner photos 2026-11-02).
     body_style:
@@ -113,7 +113,7 @@ parameters:
       status: VERIFIED
       confidence: HIGH
       tolerance: null
-      source: [E-014, E-015]
+      source: [E-014, E-015, E-017]
       verify_by: Photos + ruhsat 'Rengi' field
       notes: Ruhsat 'Rengi' = 'TURKUAZ YEŞİLİ' (E-014) / 'TURKUAZ YEŞİL' (E-015). This is the registered colour NAME only; no paint code or measured shade. A repaint would not change it (U-010).
   # ---------------------------------------------------------------- Exterior dimensions - unladen, at the VCS reference state (U-008)
@@ -411,7 +411,7 @@ parameters:
       status: VERIFIED
       confidence: HIGH
       tolerance: 1
-      source: [E-014, E-015]
+      source: [E-014, E-015, E-017]
       verify_by: Ruhsat 'Net ağırlığı' field; note the document's definition
       notes: 'Ruhsat ''Net ağırlığı'' = 1125 kg on both registration documents. This is the REGISTERED value; the document does not define fuel, fluids or driver, and the car''s present mass (LPG kit, modifications) is not measured: weigh it for that (axle_load_*_measured). Supersedes the listing estimate 1060 kg (E-010), which was 65 kg low.'
     gross_vehicle_mass:
@@ -581,21 +581,21 @@ parameters:
       value: petrol
       unit: null
       status: ESTIMATED
-      confidence: LOW
+      confidence: HIGH
       tolerance: null
-      source: [E-011, E-013]
+      source: [E-017, E-011, E-013]
       verify_by: Engine-bay photos (carburettor or injection system, LPG mixer / injectors, change-over switch)
-      notes: 'NOT printed on the registration documents (ChatGPT T-020 review, 4284df3). Literature reports a petrol 1.6 (carburettor) for this family; LPG kits of this kind are fitted to spark-ignition engines. Whether the petrol system still works (bi-fuel) is unknown.'
+      notes: NOT printed on the registration documents (ChatGPT T-020 review, 4284df3). The owner states petrol + LPG (E-017), i.e. a bi-fuel conversion of a petrol carburettor engine; literature reports a petrol 1.6 for this family. Owner statement -> ESTIMATED (USER_CONFIRMED), not VERIFIED.
     fuel_system_type:
       name: Fuel system (carburettor / single-point / multi-point injection)
       value: carburettor
       unit: null
       status: ESTIMATED
-      confidence: LOW
+      confidence: HIGH
       tolerance: null
-      source: [E-012, E-013]
+      source: [E-017, E-012, E-013]
       verify_by: Engine bay photo of the intake
-      notes: Kartal S listings and the 1997 SLX page report a carburettor; the 1.6 i.e. (injection) is a different variant. Confirm with an engine-bay photo.
+      notes: 'Owner states a carburettor engine (E-017); literature for the S trim agrees (E-012, E-013). Fuel-injected 1.6 i.e. engines (e.g. 96 hp, E-009) are a DIFFERENT variant: specs/configuration_rules.yaml forbids engine.* values sourced from them while this value is ''carburettor''. Carburettor model/make not known: engine-bay photo.'
     ignition_type:
       name: Ignition system type
       value: null
@@ -872,44 +872,44 @@ parameters:
   wheels_tires:
     tire_size_front:
       name: Front tire size and load/speed index
-      value: 175/70 R14
+      value: 185/70 R14
       unit: null
       status: ESTIMATED
       confidence: LOW
       tolerance: null
-      source: [E-010]
+      source: [E-018]
       verify_by: Sidewall photo (also record the DOT date code)
-      notes: Kartal S listings give 175/70 R14 (E-010); aggregators also list 185/70 R14 for the Kartal. Fitted tires on VEH-01 unknown - photograph the sidewall.
+      notes: 'PROVISIONAL CAD value given by the owner (E-018) - NOT a confirmed factory or fitted size. Sale listings report 175/70 R14 (E-010). Free outer diameter from the designation: 14 x 25.4 + 2 x 0.70 x 185 = 614.6 mm (175/70 R14 would give 600.6 mm). Decide from a sidewall photo.'
     tire_size_rear:
       name: Rear tire size and load/speed index
-      value: 175/70 R14
+      value: 185/70 R14
       unit: null
       status: ESTIMATED
       confidence: LOW
       tolerance: null
-      source: [E-010]
+      source: [E-018]
       verify_by: Sidewall photo
-      notes: Kartal S listings give 175/70 R14 (E-010); aggregators also list 185/70 R14 for the Kartal. Fitted tires on VEH-01 unknown - photograph the sidewall.
+      notes: 'PROVISIONAL CAD value given by the owner (E-018) - NOT a confirmed factory or fitted size. Sale listings report 175/70 R14 (E-010). Free outer diameter from the designation: 14 x 25.4 + 2 x 0.70 x 185 = 614.6 mm (175/70 R14 would give 600.6 mm). Decide from a sidewall photo.'
     wheel_rim_diameter:
       name: Rim diameter
       value: 14
       unit: in
       status: ESTIMATED
-      confidence: LOW
-      tolerance: 1
-      source: [E-010]
+      confidence: HIGH
+      tolerance: 0.5
+      source: [E-017, E-010]
       verify_by: Sidewall marking / rim stamping
-      notes: Follows from the listed tire size; 13 in cannot be excluded.
+      notes: 'Owner states 14 in black pressed-steel wheels (E-017); listings agree (E-010). Tolerance 0.5 in only separates 14 from 13/15 (rim diameters are whole inches). Verify: rim stamping (e.g. ''5 1/2 J x 14'').'
     wheel_rim_width:
       name: Rim width
-      value: null
+      value: 5.5
       unit: in
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.5
+      source: [E-018]
       verify_by: Rim stamping
-      notes: ''
+      notes: 'PROVISIONAL CAD value given by the owner (E-018), not measured. 5.5 in = 139.7 mm between the flanges. Verify: rim stamping or inside width between the flanges.'
     wheel_offset_et:
       name: Wheel offset (ET)
       value: null
@@ -952,14 +952,14 @@ parameters:
       notes: ''
     wheel_material:
       name: Wheel material (steel / alloy)
-      value: null
+      value: pressed steel
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-017]
       verify_by: Wheel photo
-      notes: ''
+      notes: Owner states black pressed-steel ('kara sac') wheels (E-017).
     spare_wheel_location:
       name: Spare wheel location
       value: null
@@ -969,6 +969,218 @@ parameters:
       tolerance: null
       source: []
       verify_by: Cargo compartment / underbody photo
+      notes: ''
+    wheel_colour:
+      name: Wheel finish / colour
+      value: black (painted)
+      unit: null
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: null
+      source: [E-017]
+      verify_by: Wheel photo
+      notes: Owner states black ('kara') steel wheels (E-017).
+    wheel_rim_flange_contour:
+      name: Rim flange contour letter
+      value: J
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-018]
+      verify_by: Rim stamping
+      notes: Taken from the provisional 5.5J designation (E-018); not seen on the rim.
+    wheel_rim_flange_height:
+      name: Rim flange height above the bead seat (contour J)
+      value: 17.5
+      unit: mm
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 1.0
+      source: [E-021]
+      verify_by: ISO 4000-2 / ETRTO table, or a profile gauge on the rim
+      notes: 'J contour: G = 17.5 +/- 1.0 mm (E-021). Valid only if the contour really is J (wheel_rim_flange_contour).'
+    wheel_rim_steel_thickness:
+      name: Rim barrel and flange steel thickness
+      value: 3.0
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1.0
+      source: [E-019]
+      verify_by: Calliper at the flange edge
+      notes: Engineering assumption for provisional CAD (E-019); typical pressed-steel passenger rims are a few millimetres thick. Not measured.
+    wheel_disc_thickness:
+      name: Wheel disc (centre) steel thickness
+      value: 4.0
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1.5
+      source: [E-019]
+      verify_by: Calliper at a vent hole
+      notes: Engineering assumption for provisional CAD (E-019). Disc shape, vent holes, PCD, centre bore and offset ET are NOT modelled (UNKNOWN).
+  # ---------------------------------------------------------------- LPG system (separate from the petrol system, D-026)
+  lpg_system:
+    kit_type:
+      name: LPG kit type (venturi mixer or vapour injection)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: 'Engine-bay photo: mixer in the air intake vs injector rail'
+      notes: ''
+    tank_type:
+      name: LPG tank type
+      value: toroidal (ring) tank
+      unit: null
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: null
+      source: [E-017]
+      verify_by: Cargo-area photo and tank label
+      notes: Owner statement (E-017).
+    tank_location:
+      name: LPG tank location
+      value: luggage compartment (rear)
+      unit: null
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: null
+      source: [E-017]
+      verify_by: Cargo-area photo
+      notes: Owner statement (E-017). Exact position is UNKNOWN (tank_centre_x/y, tank_base_z).
+    tank_nominal_capacity:
+      name: LPG tank nominal capacity
+      value: 40
+      unit: L
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: 1
+      source: [E-017]
+      verify_by: 'Tank label (ECE R67 plate: ''capacity'' in litres, dimensions, serial)'
+      notes: Owner statement (E-017). Not known whether 40 L is the water capacity or the usable volume; rule DC-017 compares it with the tank geometry.
+    tank_outer_diameter:
+      name: LPG tank outer diameter
+      value: 600
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 30
+      source: [E-018]
+      verify_by: Tank label (e.g. '600x180') or tape across the tank
+      notes: PROVISIONAL (owner, E-018), not measured. Toroidal tanks come in steps such as 570/600/630/650 mm.
+    tank_height:
+      name: LPG tank height
+      value: 180
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 20
+      source: [E-018]
+      verify_by: Tank label or tape
+      notes: PROVISIONAL (owner, E-018), not measured. Common heights 180/200/220/250/270 mm (E-020).
+    tank_central_opening_diameter:
+      name: LPG tank central opening diameter
+      value: 130
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-019, E-020]
+      verify_by: Tape across the central opening
+      notes: 'Engineering assumption (E-019): chosen so the simplified stadium section of a 600 x 180 mm tank gives about 38 L water capacity, the figure listed for that size (E-020). Not measured.'
+    tank_wall_thickness:
+      name: LPG tank wall thickness
+      value: 3.0
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1.0
+      source: [E-019]
+      verify_by: Manufacturer data for the labelled tank
+      notes: Engineering assumption (E-019).
+    tank_section_shape:
+      name: LPG tank cross-section model
+      value: stadium
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-019]
+      verify_by: Tank photo from the side
+      notes: 'Modelling simplification (E-019): flat top and bottom, semicircular inner and outer edges. Real tanks are pressed shells; volume error is part of the DC-017 uncertainty.'
+    max_fill_fraction:
+      name: Maximum fill (fill-stop) fraction of water capacity
+      value: 80
+      unit: '%'
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 2
+      source: [E-018, E-020]
+      verify_by: Tank label / multivalve type
+      notes: 'Owner assumes about 80 % (E-018); every listed tank gives usable = 80 % of water capacity (E-020), the fill-stop limit of ECE R67 equipment. Usable LPG at 40 L nominal: 32 L.'
+    tank_centre_x:
+      name: LPG tank centre X (VCS, rearward from front axle)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Tape from the rear wheel centre to the tank centre, plus wheelbase
+      notes: ''
+    tank_centre_y:
+      name: LPG tank centre Y (VCS, right positive)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Tape from the body centre line
+      notes: ''
+    tank_base_z:
+      name: LPG tank underside height above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Tape from the ground to the tank bottom (or floor of the well)
+      notes: ''
+    multivalve_orientation:
+      name: Multivalve clock position on the tank
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Cargo-area photo
+      notes: ''
+    filler_location:
+      name: LPG filler valve location
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Exterior photo (bumper / fuel flap / body side)
+      notes: ''
+    tank_mounting:
+      name: Tank mounting (frame, straps, bolts)
+      value: null
+      unit: null
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Cargo-area photo; no mounting is modelled
       notes: ''
   # ---------------------------------------------------------------- Electrical
   electrical:

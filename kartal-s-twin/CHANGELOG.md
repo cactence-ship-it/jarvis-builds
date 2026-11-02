@@ -2,6 +2,25 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.10.0] - 2026-11-02 - Owner configuration, LPG tank and steel-rim CAD (T-021, branch ccr-b5d82c24-config-lpg-wheels)
+
+### Added
+- E-017 (owner configuration statement), E-018 (owner provisional CAD values, type ASSUMPTION), E-019 (engineering assumptions), E-020 (toroidal tank listings), E-021 (J flange height).
+- D-026: derived data classes (USER_CONFIRMED, DOCUMENT_CONFIRMED, MEASURED, SOURCE_SUPPORTED, ESTIMATED, UNKNOWN); evidence type ASSUMPTION (LOW only, enforced); engine-variant separation rule (`specs/configuration_rules.yaml`, `kartal_twin.configuration`, part of `validate`); unplaced CAD parts.
+- Spec 0.7.0: group `lpg_system` (16 parameters) and 5 rim parameters; 133 parameters, 7 VERIFIED / 40 ESTIMATED / 86 UNKNOWN.
+- CAD: steel rims WHL-006..009 (simplified J-contour section, DRAFT, placed); LPG toroidal tank FUL-005 (parametric stadium-section shell, DRAFT, local frame, NOT placed); visual tank at a placeholder position; inventory FUL-005..014 (LPG, separate from petrol FUL-001..004), ENG-007 = carburettor.
+- Consistency DC-016..DC-020 (rim vs tire width, tank capacity vs geometry, tank vs rear tire gap, tank vs arch width); clearance CL-003..CL-012 (rims inside tires; tank vs tires, floor, rear axle, exhaust, suspension - BLOCKED with reasons); new rule kind `within_bbox`.
+- `tools/data_dictionary.py` -> `docs/VERI_SOZLUGU.md` (generated, sync test); measurement guide codes M32-M38 (tank and luggage compartment) and tank-label / rim-stamping photos.
+- `tests/test_configuration_cad.py` (29 tests); audit snapshot `audit/2026-11-02-r2`.
+
+### Changed
+- Tire size 175/70 R14 (listing, LOW) -> 185/70 R14 (owner provisional, LOW); free OD 614.6 mm. Rim diameter 14 in owner-confirmed (tolerance 0.5 in), material pressed steel, colour black; engine fuel system carburettor and base fuel petrol owner-confirmed (still ESTIMATED).
+- Visual paint is a turquoise-green approximation of the registered colour name (RGB still a guess).
+- Tests that hard-coded 175/70 R14 now pin their own inputs or compute expected values from the spec designation.
+
+### Findings
+- DC-018 INDETERMINATE: 600 x 180 mm holds about 38.2 L in the simplified shape (listings: 38 L), below the owner's 40 L at nominal values (U-013).
+
 ## [0.9.1] - 2026-11-02 - ChatGPT batch-3 review: T-018 and T-020 reworked
 
 ### Recorded

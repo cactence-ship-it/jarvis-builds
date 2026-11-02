@@ -81,3 +81,29 @@ rules:
     kind: less_than
     a: tire_radius_rear
     b: dimensions.wheel_centre_to_arch_rr
+  # --- wheels and LPG tank (owner configuration 2026-11-02, D-026) -------------------------
+  - id: DC-016
+    description: Rim width between the flanges is less than the front tire section width (catches inch/mm or code errors)
+    kind: less_than
+    a: rim_width_mm
+    b: tire_section_width_front
+  - id: DC-017
+    description: Rim width between the flanges is less than the rear tire section width
+    kind: less_than
+    a: rim_width_mm
+    b: tire_section_width_rear
+  - id: DC-018
+    description: LPG tank nominal capacity does not exceed the geometric water capacity of the tank shape (outer diameter, height, central opening, wall)
+    kind: at_most
+    a: lpg_system.tank_nominal_capacity
+    b: lpg_tank_internal_volume
+  - id: DC-019
+    description: LPG tank outer diameter is less than the free width between the inner faces of the rear tires (rear track minus one section width)
+    kind: less_than
+    a: lpg_system.tank_outer_diameter
+    b: rear_tire_inner_gap
+  - id: DC-020
+    description: LPG tank outer diameter is less than the luggage-compartment width between the wheel arches
+    kind: less_than
+    a: lpg_system.tank_outer_diameter
+    b: body.cargo_width_between_arches
