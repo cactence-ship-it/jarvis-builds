@@ -260,12 +260,12 @@
       "owner_agent": "claude",
       "status": "NEEDS_REVIEW",
       "registry_status": "submitted",
-      "test_result": "11 assertions pass locally: model loaded (hook), 35 parts == manifest, toggle sum 35, tap selects BDY-003, info shows BDY-003 + PLACEHOLDER, explode max displacement 1.424 m, explode 0 restores exactly, GLAZING 8 hidden/others visible/restored, 0 console errors. Negative run with EXPECTED_PARTS=34 exits 1. [commit field corrected from a placeholder text to the real SHA on 2026-11-02]",
+      "test_result": "Local at 88e1d36: 21 assertions pass; selection by projected visible point for BDY-003 and WHL-001 (iso) and BDY-008 (left view); negative run (EXPECTED_PARTS=34) exits 1.",
       "error": null,
       "started_at": "2026-11-02T05:56:16Z",
       "finished_at": null,
       "evidence": [],
-      "last_result_commit": "cf87630",
+      "last_result_commit": "88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6",
       "last_review": "chatgpt:CHANGES_REQUESTED"
     },
     {
@@ -308,7 +308,7 @@
       "owner_agent": "claude",
       "status": "NEEDS_REVIEW",
       "registry_status": "submitted",
-      "test_result": "9 tests: safe clearance PASS (335 > 313.0), overlapping bands INDETERMINATE (305 < 313.0 < 310), definitely insufficient FAIL (255 < 287.6), exact strict '<' boundary INDETERMINATE, sum_at_most PASS at 1590<=1590, INDETERMINATE at +1 mm, FAIL at 1611>1610, UNKNOWN NOT_EVALUATED; cm-for-mm and 100 mm typo still FAIL. Current spec: DC-003/004/005 PASS with worst-case margins 4.8/46/105 mm. [commit field corrected from a placeholder text to the real SHA on 2026-11-02]",
+      "test_result": "Local at 88e1d36: 99/99 suite; test_consistency 13 tests incl. exact 1 % limit -> FAIL (strict), 2475.01 -> PASS, 2474 -> FAIL; tolerance band PASS/INDETERMINATE; metre (2.49) and cm (164.2) entries FAIL.",
       "error": null,
       "started_at": "2026-11-02T05:51:12Z",
       "finished_at": null,
@@ -317,7 +317,7 @@
         "specs/consistency_rules.yaml",
         "tests/test_consistency.py"
       ],
-      "last_result_commit": "cf87630",
+      "last_result_commit": "88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6",
       "last_review": "chatgpt:CHANGES_REQUESTED"
     },
     {
@@ -430,9 +430,9 @@
         "Every SHA recorded in tasks/*.yaml exists in git history (CI uses full history)"
       ],
       "owner_agent": "claude",
-      "status": "IN_PROGRESS",
-      "registry_status": "in_progress",
-      "test_result": null,
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Local at 88e1d36: 7 hash tests (OK, MISMATCH, MISSING, MALFORMED, UNSAFE_PATH, failures list, project clean); validate '[PASS] hash integrity'; all recorded SHAs exist in git.",
       "error": null,
       "started_at": "2026-11-02T06:21:18Z",
       "finished_at": null,
@@ -440,7 +440,7 @@
         "src/kartal_twin/hashes.py",
         "tests/test_hashes.py"
       ],
-      "last_result_commit": null,
+      "last_result_commit": "88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6",
       "last_review": null
     },
     {
@@ -455,9 +455,9 @@
         "Whole-history audit reports 0 findings and runs in CI"
       ],
       "owner_agent": "claude",
-      "status": "IN_PROGRESS",
-      "registry_status": "in_progress",
-      "test_result": null,
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Local at 88e1d36: privacy tests pass (4 patterns detected, values not echoed; no false positives on SHAs/IDs); history audit 364 blobs, 0 findings.",
       "error": null,
       "started_at": "2026-11-02T06:21:18Z",
       "finished_at": null,
@@ -465,7 +465,7 @@
         "src/kartal_twin/privacy.py",
         "tools/privacy_history_audit.py"
       ],
-      "last_result_commit": null,
+      "last_result_commit": "88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6",
       "last_review": null
     }
   ]

@@ -5,7 +5,7 @@ description: Extends the public-repository guard (D-012) beyond plates, e-mails 
 priority: P1
 phase: '11'
 owner: claude
-status: in_progress
+status: submitted
 depends_on: []
 blocker: null
 started_at: '2026-11-02T06:21:18Z'
@@ -24,5 +24,18 @@ acceptance:
 - id: T-019-A3
   criterion: Whole-history audit reports 0 findings and runs in CI
   check: tools/privacy_history_audit.py
-results: []
+results:
+- agent: claude
+  commit: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
+  files:
+  - src/kartal_twin/privacy.py
+  - tools/privacy_history_audit.py
+  - tests/test_privacy.py
+  tests: 'Local at 88e1d36: privacy tests pass (4 patterns detected, values not echoed; no false positives on SHAs/IDs);
+    history audit 364 blobs, 0 findings.'
+  confidence: HIGH
+  known_defects:
+  - 'Regex-based: does not read image pixels or binary contents; plate formats outside the Turkish scheme are not
+    covered'
+  open_questions: []
 reviews: []

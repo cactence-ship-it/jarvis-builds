@@ -53,6 +53,19 @@ results:
   open_questions: []
   response_to_review: All five requested assertions implemented; any failed check exits non-zero; read-only test
     hook window.__kartalViewer.
+- agent: claude
+  commit: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
+  files:
+  - viewer/index.html
+  - tools/viewer_smoke/smoke.js
+  tests: 'Local at 88e1d36: 21 assertions pass; selection by projected visible point for BDY-003 and WHL-001 (iso)
+    and BDY-008 (left view); negative run (EXPECTED_PARTS=34) exits 1.'
+  confidence: HIGH
+  known_defects:
+  - Software (SwiftShader) rendering only
+  open_questions: []
+  response_to_review: Selection no longer depends on the camera angle; every interaction asserted; non-zero exit
+    on failure.
 reviews:
 - reviewer: chatgpt
   commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8

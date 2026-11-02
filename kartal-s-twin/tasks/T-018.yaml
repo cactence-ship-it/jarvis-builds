@@ -5,7 +5,7 @@ description: kartal_twin.hashes verifies every audit/<date>/SHA256SUMS and refs/
 priority: P2
 phase: '11'
 owner: claude
-status: in_progress
+status: submitted
 depends_on:
 - T-015
 blocker: null
@@ -25,5 +25,18 @@ acceptance:
 - id: T-018-A3
   criterion: Every SHA recorded in tasks/*.yaml exists in git history (CI uses full history)
   check: tests/test_tasks.py
-results: []
+results:
+- agent: claude
+  commit: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
+  files:
+  - src/kartal_twin/hashes.py
+  - tests/test_hashes.py
+  - tools/twin.py
+  - tests/test_tasks.py
+  tests: 'Local at 88e1d36: 7 hash tests (OK, MISMATCH, MISSING, MALFORMED, UNSAFE_PATH, failures list, project
+    clean); validate ''[PASS] hash integrity''; all recorded SHAs exist in git.'
+  confidence: HIGH
+  known_defects:
+  - Local-only originals (public repo policy) cannot be verified in CI by design
+  open_questions: []
 reviews: []

@@ -8,39 +8,21 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #28** - 2026-11-02 06:22 UTC
-- **Commit:** bu kaydı içeren commit = `aec719c` commit'inin hemen ardından gelen commit
+- **Checkpoint #29** - 2026-11-02 06:23 UTC
+- **Commit:** bu kaydı içeren commit = `88e1d36` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** feat(kartal-s-twin): record integrity, SHA-256 verification, wider privacy guard; T-013 strict limit; T-011 camera-independent selection
-- **Testler:** PASS - Ran 99 tests in 54.350s; ## result: validate=0 unittest=0
+- **Başlık:** chore(kartal-s-twin): record T-011, T-013, T-018, T-019 results at 88e1d36
+- **Testler:** PASS - Ran 99 tests in 54.170s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
-    M	kartal-s-twin/HANDOFF.md
     M	kartal-s-twin/TASKS.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/src/kartal_twin/consistency.py
-    A	kartal-s-twin/src/kartal_twin/hashes.py
-    M	kartal-s-twin/src/kartal_twin/privacy.py
-    M	kartal-s-twin/src/kartal_twin/tasks.py
     M	kartal-s-twin/tasks/T-011.yaml
-    M	kartal-s-twin/tasks/T-012.yaml
     M	kartal-s-twin/tasks/T-013.yaml
-    M	kartal-s-twin/tasks/T-014.yaml
-    M	kartal-s-twin/tasks/T-015.yaml
-    A	kartal-s-twin/tasks/T-018.yaml
-    A	kartal-s-twin/tasks/T-019.yaml
+    M	kartal-s-twin/tasks/T-018.yaml
+    M	kartal-s-twin/tasks/T-019.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/tests/test_consistency.py
-    A	kartal-s-twin/tests/test_hashes.py
-    M	kartal-s-twin/tests/test_privacy.py
-    M	kartal-s-twin/tests/test_tasks.py
-    A	kartal-s-twin/tools/privacy_history_audit.py
-    M	kartal-s-twin/tools/twin.py
-    M	kartal-s-twin/tools/viewer_smoke/smoke.js
-    M	kartal-s-twin/viewer/index.html
 ```
 <!-- AUTO-CHECKPOINT:END -->
 

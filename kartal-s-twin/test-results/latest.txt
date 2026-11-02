@@ -1,4 +1,4 @@
-# Test run 2026-11-02T06:21:19Z on commit base aec719c
+# Test run 2026-11-02T06:22:43Z on commit base 88e1d36
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -12,7 +12,7 @@ spec: 111 parameters (VERIFIED 0, ESTIMATED 27, UNKNOWN 84) | inventory: 143 com
 ## unittest
 ...................................................................................................
 ----------------------------------------------------------------------
-Ran 99 tests in 54.350s
+Ran 99 tests in 54.170s
 
 OK
 ## result: validate=0 unittest=0
