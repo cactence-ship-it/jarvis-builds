@@ -18,7 +18,8 @@
 | 1b | Test kapısı: checkpoint testler geçmezse commit etmiyor; sonuçlar test-results/latest.txt | TAMAM | 9b76991 |
 | 2 | CAD hattı: Resolver (köken takibi), GLB yazıcı, build/export/doğrulama, 24 PLACEHOLDER parça, önizleme render | TAMAM | e27266d |
 | 3 | Android 3D görüntüleyici (tek dosya, GLB gömülü), headless Chromium testi; yayın: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk | TAMAM | 0877612 |
-| 4 | Kapı/kaput/bagaj kapağı ayrı bileşen (panel boşluklu), 30 parça; smoke test port hatası düzeltildi | TAMAM | (bu commit) |
+| 4 | Kapı/kaput/bagaj kapağı ayrı bileşen (panel boşluklu), 30 parça; smoke test port hatası düzeltildi | TAMAM | 8f0119a |
+| 5 | Ölçüm rehberi docs/OLCUM_REHBERI.md (34 kodlu ölçü, ruhsat alanları, foto listesi), senkron testi | TAMAM | (bu commit) |
 
 ## Bilinen eksikler / engeller
 - Sahip fotoğrafları (9 adet) ve `Kartal_S_Studyo.zip` hâlâ yüklenmedi -> Faz 2 başlayamıyor.

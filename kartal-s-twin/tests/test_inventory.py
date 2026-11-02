@@ -25,6 +25,13 @@ class Inventory(unittest.TestCase):
         self.assertEqual(INVENTORY_MD_PATH.read_text(encoding="utf-8"),
                          inventory.render_markdown(self.m))
 
+    def test_measurement_guide_is_up_to_date(self):
+        import subprocess, sys
+        from kartal_twin import PROJECT_ROOT
+        r = subprocess.run([sys.executable, str(PROJECT_ROOT / "tools" / "measurement_guide.py"), "--check"],
+                           capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout)
+
     def test_every_assembly_has_a_builder_module(self):
         for name, asm in self.m["assemblies"].items():
             mod = importlib.import_module(MODULES[name])
