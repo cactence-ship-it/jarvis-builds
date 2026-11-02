@@ -1,6 +1,7 @@
 id: T-012
 title: Independent SHA-256 / rebuild verification of the audit snapshot (open item from T-001 review)
-description: Independent SHA-256 / rebuild check of the audit snapshot by a second agent.
+description: Independent SHA-256 / rebuild check by a SECOND agent (ChatGPT). Claude's own tooling exists (T-018)
+  but cannot count as independent verification.
 priority: P2
 phase: '11'
 owner: chatgpt

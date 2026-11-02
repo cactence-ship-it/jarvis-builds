@@ -1,4 +1,4 @@
-# Test run 2026-11-02T06:15:00Z on commit base 996cce5
+# Test run 2026-11-02T06:21:19Z on commit base aec719c
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -6,12 +6,13 @@
 [PASS] inventory markdown in sync
 [PASS] privacy (public repo)
 [PASS] task registry
+[PASS] hash integrity (audit snapshots, refs manifest)
 [PASS] dimensional consistency
 spec: 111 parameters (VERIFIED 0, ESTIMATED 27, UNKNOWN 84) | inventory: 143 components | evidence: 13 items
 ## unittest
-....................................................................................
+...................................................................................................
 ----------------------------------------------------------------------
-Ran 84 tests in 53.878s
+Ran 99 tests in 54.350s
 
 OK
 ## result: validate=0 unittest=0

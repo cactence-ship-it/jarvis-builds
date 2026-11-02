@@ -91,7 +91,7 @@ def evaluate(spec: dict, rules: list[dict] | None = None) -> list[dict]:
                 (a, ta), (b, tb) = vals[r["a"]], vals[r["b"]]
                 x, tx = abs(a - b), ta + tb           # |a - b| lies in [diff - tx, diff + tx]
                 y, ty = r["limit"] * max(a, b), r["limit"] * max(ta, tb)
-                strict = False
+                strict = True                         # "below" = strictly less than the limit
             elif r["kind"] in ("less_than", "at_most"):
                 (x, tx), (y, ty) = vals[r["a"]], vals[r["b"]]
                 strict = r["kind"] == "less_than"

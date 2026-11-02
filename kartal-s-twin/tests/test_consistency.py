@@ -76,6 +76,39 @@ class Consistency(unittest.TestCase):
         self.assertEqual(self._track(1406, 10, 1600, 10), "INDETERMINATE")
         self.assertEqual(self._track(1446, 10, 1600, 10), "FAIL")      # x- 1611 > y+ 1610
 
+    # --- relative_difference_below is strict ('below' the limit) ------------------------------
+    def _wb(self, lh, rh, tol):
+        s = copy.deepcopy(self.base)
+        setp(s, "dimensions.wheelbase_lh", lh, tol)
+        setp(s, "dimensions.wheelbase_rh", rh, tol)
+        return self._res(s)["DC-003"]
+
+    def test_relative_difference_exact_limit_is_not_pass(self):
+        # zero tolerance: |2500 - 2475| = 25 = 1 % of 2500 exactly -> equality must not PASS
+        r = self._wb(2475.0, 2500.0, 0.0)
+        self.assertNotEqual(r["status"], "PASS")
+        self.assertEqual(r["status"], "FAIL")
+        self.assertEqual(self._wb(2475.01, 2500.0, 0.0)["status"], "PASS")   # just below the limit
+        self.assertEqual(self._wb(2474.0, 2500.0, 0.0)["status"], "FAIL")    # just above
+
+    def test_relative_difference_tolerance_band(self):
+        # diff 10 +/- 10 against limit 25.0 +/- 0.05: worst 20 < 24.95 -> PASS
+        self.assertEqual(self._wb(2490.0, 2500.0, 5.0)["status"], "PASS")
+        # diff 20 +/- 10: worst 30 > 24.95 but best 10 < 25.05 -> INDETERMINATE
+        self.assertEqual(self._wb(2480.0, 2500.0, 5.0)["status"], "INDETERMINATE")
+
+    # --- unit mix-ups ---------------------------------------------------------------------------
+    def test_metre_entry_is_caught(self):
+        s = copy.deepcopy(self.base)
+        setp(s, "dimensions.wheelbase_lh", 2.49, 0.005)            # entered in metres
+        self.assertEqual(self._res(s)["DC-003"]["status"], "FAIL")
+
+    def test_centimetre_track_is_caught(self):
+        s = copy.deepcopy(self.base)
+        setp(s, "dimensions.overall_length", 4396)
+        setp(s, "dimensions.overall_width_body", 164.2, 1.0)        # width in cm
+        self.assertEqual(self._res(s)["DC-004"]["status"], "FAIL")
+
     # --- entry errors (kept from the first version) -----------------------------------------
     def test_length_identity_pass_and_fail(self):
         s = copy.deepcopy(self.base)

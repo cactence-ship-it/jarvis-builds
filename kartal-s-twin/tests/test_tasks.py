@@ -59,6 +59,26 @@ class TaskRegistry(unittest.TestCase):
         for tid, ext in expect.items():
             self.assertEqual(rows[tid]["status"], ext, tid)
 
+    def test_every_recorded_commit_exists_in_git(self):
+        # Needs full history (CI checks out with fetch-depth: 0); a shallow clone fails loudly.
+        import subprocess
+        from kartal_twin import PROJECT_ROOT
+        shallow = subprocess.run(["git", "rev-parse", "--is-shallow-repository"], cwd=PROJECT_ROOT,
+                                 capture_output=True, text=True).stdout.strip()
+        self.assertEqual(shallow, "false", "full git history required to verify recorded SHAs")
+        missing = []
+        for tid, t in self.t.items():
+            for x in t["results"] + t["reviews"]:
+                if subprocess.run(["git", "cat-file", "-e", str(x["commit"]) + "^{commit}"],
+                                  cwd=PROJECT_ROOT, capture_output=True).returncode:
+                    missing.append((tid, x["commit"]))
+        self.assertEqual(missing, [])
+
+    def test_placeholder_commit_text_is_rejected(self):
+        t = copy.deepcopy(self.t)
+        t["T-001"]["results"][0]["commit"] = "see HANDOFF.md"
+        self.assertTrue(any("real git SHA" in e for e in tasks.validate(t)))
+
     def test_blocked_requires_named_blocker(self):
         t = copy.deepcopy(self.t)
         t["T-009"]["blocker"] = None

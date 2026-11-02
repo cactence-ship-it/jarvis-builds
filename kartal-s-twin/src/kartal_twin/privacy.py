@@ -19,6 +19,14 @@ PLATE = re.compile(r"\b(?:0[1-9]|[1-7]\d|8[01])[ -]?"
                    r"(?:[A-Z][ -]?\d{4,5}|[A-Z]{2}[ -]?\d{3,4}|[A-Z]{3}[ -]?\d{2,3})\b")
 EMAIL = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}\b")
 ALLOWED_EMAILS = {"noreply@anthropic.com"}
+# VIN (ISO 3779): 17 characters, no I/O/Q, containing both digits and letters.
+VIN = re.compile(r"\b(?=[A-HJ-NPR-Z0-9]*\d)(?=[A-HJ-NPR-Z0-9]*[A-HJ-NPR-Z])[A-HJ-NPR-Z0-9]{17}\b")
+# Credentials: GitHub, Anthropic, OpenAI, AWS access keys, PEM private keys.
+SECRET = re.compile(r"ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{40,}|sk-ant-[A-Za-z0-9_-]{20,}"
+                    r"|\bsk-(?:proj-)?[A-Za-z0-9_-]{32,}|\bAKIA[0-9A-Z]{16}\b|-----BEGIN [A-Z ]*PRIVATE KEY-----")
+SCOPE_NOTE = ("Scans the current tree (tracked + untracked, not ignored), text files <= 2 MB: plates, e-mails, "
+              "VINs, credentials, private media types. Does not inspect image pixels, binary contents, "
+              "files > 2 MB, ignored files, or git history (see tools/privacy_history_audit.py).")
 MEDIA_EXT = {".jpg", ".jpeg", ".png", ".heic", ".heif", ".webp", ".gif", ".bmp", ".tif",
              ".tiff", ".zip", ".7z", ".rar", ".tar", ".gz", ".mp4", ".mov", ".pdf"}
 
@@ -42,6 +50,10 @@ def scan_text(text: str, where: str) -> list[str]:
         for m in EMAIL.finditer(line):
             if m.group(0).lower() not in ALLOWED_EMAILS:
                 issues.append(f"{where}:{n}: personal e-mail address")
+        if VIN.search(line):
+            issues.append(f"{where}:{n}: looks like a VIN (vehicle identification number)")
+        if SECRET.search(line):
+            issues.append(f"{where}:{n}: looks like a credential or private key (value not shown)")
     return issues
 
 

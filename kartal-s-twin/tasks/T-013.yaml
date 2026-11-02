@@ -30,7 +30,7 @@ acceptance:
   check: tools/twin.py validate
 results:
 - agent: claude
-  commit: see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)
+  commit: bbeefcf
   files: &id001
   - src/kartal_twin/consistency.py
   - specs/consistency_rules.yaml
@@ -38,7 +38,8 @@ results:
   - tools/twin.py
   - tools/record_measurement.py
   tests: '5 tests: current spec 0 FAIL (DC-003/004/005 PASS, 12 NOT_EVALUATED); cm entry 249 -> DC-003 FAIL; +100
-    mm rear overhang -> DC-001 FAIL; arch 250 mm < tire radius 300.3 -> DC-012 FAIL'
+    mm rear overhang -> DC-001 FAIL; arch 250 mm < tire radius 300.3 -> DC-012 FAIL [commit field corrected from
+    a placeholder text to the real SHA on 2026-11-02]'
   confidence: HIGH
   known_defects: &id002
   - Worst-case tolerance stacking is conservative; may pass marginal errors smaller than the combined tolerance
@@ -51,7 +52,7 @@ results:
   known_defects: *id002
   open_questions: []
 - agent: claude
-  commit: see AUTO-CHECKPOINT record in HANDOFF.md (fix commit after c665cfb)
+  commit: cf87630
   files:
   - src/kartal_twin/consistency.py
   - tests/test_consistency.py
@@ -60,7 +61,8 @@ results:
   tests: '9 tests: safe clearance PASS (335 > 313.0), overlapping bands INDETERMINATE (305 < 313.0 < 310), definitely
     insufficient FAIL (255 < 287.6), exact strict ''<'' boundary INDETERMINATE, sum_at_most PASS at 1590<=1590,
     INDETERMINATE at +1 mm, FAIL at 1611>1610, UNKNOWN NOT_EVALUATED; cm-for-mm and 100 mm typo still FAIL. Current
-    spec: DC-003/004/005 PASS with worst-case margins 4.8/46/105 mm.'
+    spec: DC-003/004/005 PASS with worst-case margins 4.8/46/105 mm. [commit field corrected from a placeholder
+    text to the real SHA on 2026-11-02]'
   confidence: HIGH
   known_defects:
   - Rim-diameter tolerance is the only tire-radius uncertainty modelled (tire size string has no tolerance)

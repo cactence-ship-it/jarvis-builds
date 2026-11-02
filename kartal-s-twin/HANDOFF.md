@@ -8,11 +8,11 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #27** - 2026-11-02 06:15 UTC
-- **Commit:** bu kaydı içeren commit = `996cce5` commit'inin hemen ardından gelen commit
+- **Checkpoint #28** - 2026-11-02 06:22 UTC
+- **Commit:** bu kaydı içeren commit = `aec719c` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** fix(kartal-s-twin): T-011 asserting viewer test, T-013 worst-case interval semantics (ChatGPT batch-2 review)
-- **Testler:** PASS - Ran 84 tests in 53.878s; ## result: validate=0 unittest=0
+- **Başlık:** feat(kartal-s-twin): record integrity, SHA-256 verification, wider privacy guard; T-013 strict limit; T-011 camera-independent selection
+- **Testler:** PASS - Ran 99 tests in 54.350s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
     M	kartal-s-twin/CHANGELOG.md
@@ -21,19 +21,24 @@
     M	kartal-s-twin/TASKS.md
     M	kartal-s-twin/persistence/checkpoint.json
     M	kartal-s-twin/src/kartal_twin/consistency.py
-    M	kartal-s-twin/tasks/T-001.yaml
-    M	kartal-s-twin/tasks/T-010.yaml
+    A	kartal-s-twin/src/kartal_twin/hashes.py
+    M	kartal-s-twin/src/kartal_twin/privacy.py
+    M	kartal-s-twin/src/kartal_twin/tasks.py
     M	kartal-s-twin/tasks/T-011.yaml
+    M	kartal-s-twin/tasks/T-012.yaml
     M	kartal-s-twin/tasks/T-013.yaml
     M	kartal-s-twin/tasks/T-014.yaml
     M	kartal-s-twin/tasks/T-015.yaml
-    M	kartal-s-twin/tasks/T-017.yaml
+    A	kartal-s-twin/tasks/T-018.yaml
+    A	kartal-s-twin/tasks/T-019.yaml
     M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
     M	kartal-s-twin/tests/test_consistency.py
+    A	kartal-s-twin/tests/test_hashes.py
+    M	kartal-s-twin/tests/test_privacy.py
     M	kartal-s-twin/tests/test_tasks.py
-    M	kartal-s-twin/tools/record_measurement.py
-    M	kartal-s-twin/tools/viewer_smoke/run.sh
+    A	kartal-s-twin/tools/privacy_history_audit.py
+    M	kartal-s-twin/tools/twin.py
     M	kartal-s-twin/tools/viewer_smoke/smoke.js
     M	kartal-s-twin/viewer/index.html
 ```
@@ -60,6 +65,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 20 | Kayıt bütünlüğü (sahte SHA'lar düzeltildi, D-023), T-018 hash doğrulama, T-019 gizlilik (VIN/anahtar, tüm geçmiş: 0 bulgu), T-013 strict sınır, T-011 kameradan bağımsız seçim | TAMAM | (otomatik kayda bakın) |
 | 19 | ChatGPT 2. parti: T-001/T-010/T-014/T-015/T-017 ACCEPT kaydedildi; T-011 (testler artık doğruluyor) ve T-013 (en kötü durum toleransı, D-022) düzeltildi | TAMAM | (otomatik kayda bakın) |
 | 18 | CI: lint (T-017) + görüntüleyici tarayıcı testi (T-011) yeşil; viewer hatası (sunucu hazır değildi) düzeltildi | TAMAM | (otomatik kayda bakın) |
 | 17 | FAZ 0 denetimi; T-013 tutarlılık kuralları; T-014 yanlış ölçü kodu örnekleri düzeltildi; T-015 CAD golden testi; görev şeması + tasks.json (n8n için) | TAMAM | (otomatik kayda bakın) |

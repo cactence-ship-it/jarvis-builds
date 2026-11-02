@@ -1,0 +1,28 @@
+id: T-019
+title: 'Privacy scan: VINs, credentials, private keys; full git-history audit'
+description: Extends the public-repository guard (D-012) beyond plates, e-mails and media; audits every blob ever
+  committed.
+priority: P1
+phase: '11'
+owner: claude
+status: in_progress
+depends_on: []
+blocker: null
+started_at: '2026-11-02T06:21:18Z'
+finished_at: null
+error: null
+evidence:
+- src/kartal_twin/privacy.py
+- tools/privacy_history_audit.py
+acceptance:
+- id: T-019-A1
+  criterion: VIN, GitHub/Anthropic/OpenAI/AWS keys and PEM private keys are detected; values are never echoed
+  check: tests/test_privacy.py
+- id: T-019-A2
+  criterion: No false positives on hashes, commit SHAs or component IDs
+  check: tests/test_privacy.py
+- id: T-019-A3
+  criterion: Whole-history audit reports 0 findings and runs in CI
+  check: tools/privacy_history_audit.py
+results: []
+reviews: []

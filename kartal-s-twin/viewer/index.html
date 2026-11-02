@@ -218,6 +218,23 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       parts: () => parts.map(p => ({ id: p.data.id, assembly: p.data.assembly, visible: p.node.visible,
         position: p.node.position.toArray() })),
       selected: () => (selected ? selected.data.id : null),
+      // Screen position (CSS px, page coordinates) of a visible point of a part: the first ray hit
+      // on that part when sampling its bounding box, so the test never depends on the camera angle.
+      screenPoint: (id) => {
+        const p = parts.find(q => q.data.id === id); if (!p) return null;
+        const r = renderer.domElement.getBoundingClientRect();
+        const box = new THREE.Box3().setFromObject(p.node), c = new THREE.Vector3(), v = new THREE.Vector3();
+        for (let i = 0; i <= 8; i++) for (let j = 0; j <= 8; j++) for (const k of [0.5, 0, 1]) {
+          v.set(box.min.x + (box.max.x - box.min.x) * i / 8, box.min.y + (box.max.y - box.min.y) * k,
+                box.min.z + (box.max.z - box.min.z) * j / 8).project(camera);
+          if (Math.abs(v.x) > 0.98 || Math.abs(v.y) > 0.98) continue;
+          ray.setFromCamera(new THREE.Vector2(v.x, v.y), camera);
+          const hit = ray.intersectObjects(parts.filter(q => q.node.visible).flatMap(q => q.meshes), false)[0];
+          if (hit && p.meshes.includes(hit.object))
+            return { x: r.left + (v.x + 1) / 2 * r.width, y: r.top + (1 - v.y) / 2 * r.height };
+        }
+        return null;
+      },
     };
   }
   const fail = err => { msg.textContent = 'Model yüklenemedi: ' + (err && err.message || err); };

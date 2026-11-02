@@ -77,9 +77,13 @@ def validate(tasks: dict[str, dict]) -> list[str]:
                 e("result entries need agent, commit, files, tests, confidence, known_defects")
             elif r["agent"] not in AGENTS or r["confidence"] not in CONFIDENCE:
                 e("result agent/confidence invalid")
+            elif not re.fullmatch(r"[0-9a-f]{7,40}", str(r["commit"])):
+                e(f"result commit must be a real git SHA, got {str(r['commit'])[:40]!r}")
         for v in t["reviews"]:
             if not {"reviewer", "commit", "verdict", "findings"} <= set(v):
                 e("review entries need reviewer, commit, verdict, findings")
+            elif not re.fullmatch(r"[0-9a-f]{7,40}", str(v["commit"])):
+                e(f"review commit must be a real git SHA, got {str(v['commit'])[:40]!r}")
             elif v["verdict"] not in VERDICTS or v["reviewer"] not in AGENTS:
                 e("review verdict/reviewer invalid")
         if t["status"] in ("submitted", "accepted") and not t["results"]:

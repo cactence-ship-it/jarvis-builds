@@ -22,11 +22,11 @@ acceptance:
   check: documented in ENGINEERING_DECISIONS
 results:
 - agent: claude
-  commit: see AUTO-CHECKPOINT in HANDOFF.md (commit introducing this result)
+  commit: bbeefcf
   files: &id001
   - tests/test_golden_cad.py
   tests: '2 tests pass; sensitivity proven: wheelbase_rh 2490 -> 2491 makes only cad/WHL-004.step differ (c82663cc...
-    vs 3c68982d...)'
+    vs 3c68982d...) [commit field corrected from a placeholder text to the real SHA on 2026-11-02]'
   confidence: HIGH
   known_defects: &id002
   - Byte equality across OS/OCCT versions is assumed by the pinned lock; a different OCCT build would need a new

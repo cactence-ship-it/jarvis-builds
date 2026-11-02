@@ -37,6 +37,8 @@ def validate() -> int:
         else ["COMPONENT_INVENTORY.md is stale - run: python tools/twin.py inventory"],
         "privacy (public repo)": privacy.scan_repository(_repo_root()),
         "task registry": _task_errors(),
+        "hash integrity (audit snapshots, refs manifest)": __import__("kartal_twin.hashes", fromlist=["x"]).failures(
+            __import__("kartal_twin.hashes", fromlist=["x"]).verify_project()),
         "dimensional consistency": [f"{r['id']} FAIL: {r['description']} (lhs {r['lhs']:.1f}, rhs {r['rhs']:.1f}, "
                                     f"tolerance {r['combined_tolerance']:.1f})"
                                     for r in __import__("kartal_twin.consistency", fromlist=["x"]).evaluate(s)

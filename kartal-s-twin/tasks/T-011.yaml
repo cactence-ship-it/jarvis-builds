@@ -38,14 +38,15 @@ results:
   known_defects: *id002
   open_questions: []
 - agent: claude
-  commit: see AUTO-CHECKPOINT record in HANDOFF.md (fix commit after c665cfb)
+  commit: cf87630
   files:
   - tools/viewer_smoke/smoke.js
   - tools/viewer_smoke/run.sh
   - viewer/index.html
   tests: '11 assertions pass locally: model loaded (hook), 35 parts == manifest, toggle sum 35, tap selects BDY-003,
     info shows BDY-003 + PLACEHOLDER, explode max displacement 1.424 m, explode 0 restores exactly, GLAZING 8 hidden/others
-    visible/restored, 0 console errors. Negative run with EXPECTED_PARTS=34 exits 1.'
+    visible/restored, 0 console errors. Negative run with EXPECTED_PARTS=34 exits 1. [commit field corrected from
+    a placeholder text to the real SHA on 2026-11-02]'
   confidence: HIGH
   known_defects:
   - BDY-003 selection depends on the default iso camera; a camera change needs the expected ID updated

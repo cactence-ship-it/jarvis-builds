@@ -25,14 +25,23 @@ const check = (cond, m) => { if (!cond) fail(m); console.log('ok: ' + m); };
   check(toggleSum === parts.length, `assembly toggle counts sum to ${toggleSum}`);
   await p.screenshot({ path: 'iso.png' });
 
-  // 2. Tap in the centre selects BDY-003 (hood) and the info panel shows it.
-  const c = await (await p.$('canvas')).boundingBox();
-  await p.mouse.click(c.x + c.width * 0.5, c.y + c.height * 0.5);
-  await p.waitForTimeout(300);
-  const sel = await p.evaluate(() => window.__kartalViewer.selected());
-  check(sel === 'BDY-003', `tap selects BDY-003 (got ${sel})`);
-  const info = await p.textContent('#info');
-  check(info.includes('BDY-003') && info.includes('PLACEHOLDER'), 'info panel shows BDY-003 and its status');
+  // 2. Selection, independent of the camera: tap the projected visible point of a part and
+  //    require that exact part to be selected - for two different parts and two views.
+  const tapAndCheck = async (id, view) => {
+    const pt = await p.evaluate((x) => window.__kartalViewer.screenPoint(x), id);
+    check(pt !== null, `${id} has a visible point in the ${view} view`);
+    await p.mouse.click(pt.x, pt.y);
+    await p.waitForTimeout(250);
+    const sel = await p.evaluate(() => window.__kartalViewer.selected());
+    check(sel === id, `${view} view: tap on ${id} selects ${id} (got ${sel})`);
+    const info = await p.textContent('#info');
+    check(info.includes(id) && info.includes('PLACEHOLDER'), `${view} view: info panel shows ${id} and its status`);
+  };
+  await tapAndCheck('BDY-003', 'iso');
+  await tapAndCheck('WHL-001', 'iso');
+  await p.click('#v-left'); await p.waitForTimeout(250);
+  await tapAndCheck('BDY-008', 'left');
+  await p.click('#v-iso'); await p.waitForTimeout(250);
 
   // 3. Explode moves parts; returning the slider to 0 restores them exactly.
   const pos0 = Object.fromEntries((await p.evaluate(() => window.__kartalViewer.parts())).map(x => [x.id, x.position]));

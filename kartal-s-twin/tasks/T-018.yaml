@@ -1,0 +1,29 @@
+id: T-018
+title: SHA-256 verification tool for audit snapshots and the reference manifest
+description: kartal_twin.hashes verifies every audit/<date>/SHA256SUMS and refs/MANIFEST.csv; part of validate and
+  CI.
+priority: P2
+phase: '11'
+owner: claude
+status: in_progress
+depends_on:
+- T-015
+blocker: null
+started_at: '2026-11-02T06:21:18Z'
+finished_at: null
+error: null
+evidence:
+- src/kartal_twin/hashes.py
+- tests/test_hashes.py
+acceptance:
+- id: T-018-A1
+  criterion: OK, MISMATCH, MISSING, MALFORMED and UNSAFE_PATH are each produced by a dedicated test
+  check: tests/test_hashes.py
+- id: T-018-A2
+  criterion: The repository's own snapshots verify clean in validate and CI
+  check: tools/twin.py validate
+- id: T-018-A3
+  criterion: Every SHA recorded in tasks/*.yaml exists in git history (CI uses full history)
+  check: tests/test_tasks.py
+results: []
+reviews: []

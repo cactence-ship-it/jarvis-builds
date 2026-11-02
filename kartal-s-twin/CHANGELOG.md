@@ -2,6 +2,20 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.8.0] - 2026-11-02 - Record integrity, hash verification, wider privacy guard
+
+### Added
+- T-018 `kartal_twin.hashes`: SHA-256 verification of audit snapshots and the reference manifest, in `validate`; negative tests for every failure mode.
+- T-019 privacy: VIN and credential patterns, `tools/privacy_history_audit.py` (0 findings in 364 blobs), CI step with full history.
+- Validator rule and test: recorded commits must be real SHAs that exist in git (D-023).
+
+### Changed
+- T-013: `relative_difference_below` is strict; exact-limit and metre/cm entry tests.
+- T-011: selection test taps the projected visible point of a part (camera-independent), for three parts in two views.
+
+### Fixed
+- Four task results carried placeholder text instead of a commit SHA (T-011, T-013, T-014, T-015); replaced with the real SHAs (bbeefcf, cf87630).
+
 ## [0.7.1] - 2026-11-02 - ChatGPT batch-2 review: T-011 and T-013 reworked
 
 ### Changed
