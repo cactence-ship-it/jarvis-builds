@@ -12,7 +12,7 @@ def build(ctx):
     base = ctx.resolver()
     g = layout.greenhouse(base)
     m = base.get("pillar_width")
-    xb, xc = base.get("b_pillar_x"), base.get("c_pillar_x")
+    xb, xc = base.get("body_profile.b_pillar_x"), base.get("body_profile.c_pillar_x")
     gf, gr = (g.x_belt_front, g.x_roof_front), (g.x_belt_rear, g.x_roof_rear)
 
     def add(cid, quad, outward):

@@ -65,8 +65,15 @@ def validate_evidence(evidence: dict[str, Evidence]) -> list[str]:
 
 
 def primary_sources(sources, evidence: dict[str, Evidence]) -> list[str]:
-    return [s for s in sources if s in evidence and evidence[s].type in PRIMARY_TYPES
-            and evidence[s].state == "RECEIVED"]
+    """Evidence able to support VERIFIED (D-005, D-015).
+
+    A received photo/document/measurement file, or an owner tape measurement whose values
+    are RECORDED in evidence/measurements/ (the committed log is the artifact).
+    """
+    def ok(e: Evidence) -> bool:
+        return (e.type in PRIMARY_TYPES and e.state == "RECEIVED") or \
+               (e.type == "MEASUREMENT" and e.state == "RECORDED")
+    return [s for s in sources if s in evidence and ok(evidence[s])]
 
 
 def load_spec(path: Path = SPEC_PATH) -> dict:

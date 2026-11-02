@@ -11,8 +11,8 @@ CHROME = (0.78, 0.79, 0.80, 1.0)
 def build(ctx):
     base = ctx.resolver()
     p = layout.profile(base)
-    bz, bh = base.get("bumper_bottom_z"), base.get("bumper_height")
-    hw, nt = p.half_width, base.get("nose_top_z")
+    bz, bh = base.get("body_profile.bumper_bottom_z"), base.get("body_profile.bumper_height")
+    hw, nt = p.half_width, base.get("body_profile.nose_top_z")
 
     def add(cid, solid, col, note=""):
         r = ctx.resolver()
@@ -26,7 +26,7 @@ def build(ctx):
     add("EXT-003", box(p.x_nose - 8, p.x_nose + 2, -(hw - 430), hw - 430, nt - 190, nt - 60),
         BLACK, "Grille area between headlamps")
     g = layout.greenhouse(base)
-    mp = base.get("mirror_protrusion")
+    mp = base.get("body_profile.mirror_protrusion")
     xm = g.x_belt_front + 120
     for cid, s in (("EXT-004", -1), ("EXT-005", 1)):
         y0, y1 = sorted((s * hw, s * (hw + mp)))

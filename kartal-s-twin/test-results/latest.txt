@@ -1,15 +1,15 @@
-# Test run 2026-11-02T00:56:13Z on commit base 8f0119a
+# Test run 2026-11-02T00:58:38Z on commit base 04f0f57
 ## validate
 [PASS] evidence register
 [PASS] master spec
 [PASS] component inventory
 [PASS] inventory markdown in sync
 [PASS] privacy (public repo)
-spec: 96 parameters (VERIFIED 0, ESTIMATED 17, UNKNOWN 79) | inventory: 143 components | evidence: 10 items
+spec: 111 parameters (VERIFIED 0, ESTIMATED 17, UNKNOWN 94) | inventory: 143 components | evidence: 10 items
 ## unittest
-...........................................
+..............................................
 ----------------------------------------------------------------------
-Ran 43 tests in 5.609s
+Ran 46 tests in 5.574s
 
 OK
 ## result: validate=0 unittest=0

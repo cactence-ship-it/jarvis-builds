@@ -19,7 +19,8 @@
 | 2 | CAD hattı: Resolver (köken takibi), GLB yazıcı, build/export/doğrulama, 24 PLACEHOLDER parça, önizleme render | TAMAM | e27266d |
 | 3 | Android 3D görüntüleyici (tek dosya, GLB gömülü), headless Chromium testi; yayın: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk | TAMAM | 0877612 |
 | 4 | Kapı/kaput/bagaj kapağı ayrı bileşen (panel boşluklu), 30 parça; smoke test port hatası düzeltildi | TAMAM | 8f0119a |
-| 5 | Ölçüm rehberi docs/OLCUM_REHBERI.md (34 kodlu ölçü, ruhsat alanları, foto listesi), senkron testi | TAMAM | (bu commit) |
+| 5 | Ölçüm rehberi docs/OLCUM_REHBERI.md, senkron testi | TAMAM | 04f0f57 |
+| 6 | Ölçüm girişi: tools/record_measurement.py, body_profile spec alanları (15), D-015; 31 ölçü kodu | TAMAM | (bu commit) |
 
 ## Bilinen eksikler / engeller
 - Sahip fotoğrafları (9 adet) ve `Kartal_S_Studyo.zip` hâlâ yüklenmedi -> Faz 2 başlayamıyor.

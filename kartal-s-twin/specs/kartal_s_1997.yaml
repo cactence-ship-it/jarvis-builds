@@ -1032,3 +1032,155 @@ parameters:
       source: []
       verify_by: Photo
       notes: ''
+  # ---------------------------------------------------------------- Body profile (VCS) - shape values; placeholders stand in until measured (docs/OLCUM_REHBERI.md)
+  body_profile:
+    bumper_protrusion:
+      name: Bumper face beyond the body face (front and rear)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    bumper_height:
+      name: Bumper vertical height
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    bumper_bottom_z:
+      name: Bumper lower edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    sill_z:
+      name: Body-side (sill) lower edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    nose_bottom_z:
+      name: Front panel lower edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    nose_top_z:
+      name: Hood leading edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    cowl_x:
+      name: Windshield base, X behind the front wheel centre
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    belt_z:
+      name: Side-window sill (beltline) above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    rear_bottom_z:
+      name: Rear panel lower edge above ground
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    windshield_top_x:
+      name: Windshield top edge, X behind the front wheel centre
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    roof_rear_inset:
+      name: Roof end ahead of the rear body face
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    roof_width:
+      name: Roof width (side to side, at the roof)
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    b_pillar_x:
+      name: B-pillar centre, X behind the front wheel centre
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    c_pillar_x:
+      name: Rear-door rear edge, X behind the front wheel centre
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+    mirror_protrusion:
+      name: Mirror housing beyond the body side
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
+      notes: Placeholder in specs/placeholder_assumptions.yaml until measured

@@ -19,8 +19,8 @@ PHASE = 4
 
 def body_shell(r) -> bd.Shape:
     p, g = layout.profile(r), layout.greenhouse(r)
-    sill, nb, nt = r.get("sill_z"), r.get("nose_bottom_z"), r.get("nose_top_z")
-    belt, rb, cowl = r.get("belt_z"), r.get("rear_bottom_z"), r.get("cowl_x")
+    sill, nb, nt = r.get("body_profile.sill_z"), r.get("body_profile.nose_bottom_z"), r.get("body_profile.nose_top_z")
+    belt, rb, cowl = r.get("body_profile.belt_z"), r.get("body_profile.rear_bottom_z"), r.get("body_profile.cowl_x")
     side = [(p.x_nose, nb), (p.x_nose, nt), (cowl, belt), (p.x_tail, belt), (p.x_tail, rb),
             (p.x_tail - 150, sill), (p.x_nose + 150, sill)]
     # Sketch in the XZ plane (VCS X, Z), extrude symmetrically across the body width.
@@ -56,9 +56,9 @@ def _prism_xz(pts, y0, y1) -> bd.Solid:
 def closure_regions(r) -> dict:
     """Region solids for each closure: (cut region, panel region shrunk by GAP)."""
     p = layout.profile(r)
-    hw, sill, belt = p.half_width, r.get("sill_z"), r.get("belt_z")
-    nt, cowl = r.get("nose_top_z"), r.get("cowl_x")
-    xb, xc, rb = r.get("b_pillar_x"), r.get("c_pillar_x"), r.get("rear_bottom_z")
+    hw, sill, belt = p.half_width, r.get("body_profile.sill_z"), r.get("body_profile.belt_z")
+    nt, cowl = r.get("body_profile.nose_top_z"), r.get("body_profile.cowl_x")
+    xb, xc, rb = r.get("body_profile.b_pillar_x"), r.get("body_profile.c_pillar_x"), r.get("body_profile.rear_bottom_z")
     out = {}
     doors = {"BDY-008": (-1, cowl - 30, xb - 2), "BDY-009": (1, cowl - 30, xb - 2),
              "BDY-010": (-1, xb + 2, xc - 4), "BDY-011": (1, xb + 2, xc - 4)}

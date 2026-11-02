@@ -52,6 +52,8 @@ class Resolver:
             self.used[key] = "PLACEHOLDER"
             return self.assumptions[alt]["value"]
         if p is None and key in self.assumptions:
+            if self.assumptions[key].get("replaces"):
+                raise KeyError(f"{key} stands in for {self.assumptions[key]['replaces']} - read that spec key")
             self.used[key] = "PLACEHOLDER"
             return self.assumptions[key]["value"]
         raise UnknownParameter(f"{key} is UNKNOWN and has no placeholder - geometry cannot be built")

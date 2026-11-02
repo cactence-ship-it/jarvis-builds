@@ -38,24 +38,21 @@ TAPE = {
 }
 # P1b - placeholder shape assumptions, measured in the vehicle coordinate system.
 SHAPE = {
-    "front_track": "Yukarıdaki ön iz genişliği ölçüsü bunu da değiştirir.",
-    "rear_track": "Yukarıdaki arka iz genişliği ölçüsü bunu da değiştirir.",
-    "front_overhang": "Yukarıdaki ön çıkıntı ölçüsü bunu da değiştirir.",
-    "nose_top_z": "Kaputun ön kenarının yerden yüksekliği.",
-    "nose_bottom_z": "Ön panelin (tampon arkası) alt kenarının yerden yüksekliği.",
-    "bumper_bottom_z": "Ön tamponun alt kenarının yerden yüksekliği.",
-    "bumper_height": "Tamponun dikey yüksekliği.",
-    "bumper_protrusion": "Tamponun kaportadan ne kadar dışarı çıktığı.",
-    "sill_z": "Kapı altı marşpiyelin alt kenarının yerden yüksekliği.",
-    "belt_z": "Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği.",
-    "cowl_x": "Ön jant merkezinden ön camın alt kenarına yatay mesafe.",
-    "windshield_top_x": "Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle).",
-    "b_pillar_x": "Ön jant merkezinden orta direğin (ön/arka kapı arası) ortasına.",
-    "c_pillar_x": "Ön jant merkezinden arka kapının arka kenarına.",
-    "roof_rear_inset": "Tavanın arka bitişi ile arka tampon dışındaki gövde arasındaki yatay fark.",
-    "rear_bottom_z": "Bagaj kapağı altındaki arka panelin alt kenarının yerden yüksekliği.",
-    "greenhouse_inset_roof": "Tavanın genişliği (yandan yana), ölçülen değeri yazın.",
-    "mirror_protrusion": "Aynanın gövde yanından dışarı taşma mesafesi.",
+    "body_profile.nose_top_z": "Kaputun ön kenarının yerden yüksekliği.",
+    "body_profile.nose_bottom_z": "Ön panelin (tampon arkası) alt kenarının yerden yüksekliği.",
+    "body_profile.bumper_bottom_z": "Ön tamponun alt kenarının yerden yüksekliği.",
+    "body_profile.bumper_height": "Tamponun dikey yüksekliği.",
+    "body_profile.bumper_protrusion": "Tamponun kaportadan ne kadar dışarı çıktığı.",
+    "body_profile.sill_z": "Kapı altı marşpiyelin alt kenarının yerden yüksekliği.",
+    "body_profile.belt_z": "Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği.",
+    "body_profile.cowl_x": "Ön jant merkezinden ön camın alt kenarına yatay mesafe.",
+    "body_profile.windshield_top_x": "Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle).",
+    "body_profile.b_pillar_x": "Ön jant merkezinden orta direğin (ön/arka kapı arası) ortasına.",
+    "body_profile.c_pillar_x": "Ön jant merkezinden arka kapının arka kenarına.",
+    "body_profile.roof_rear_inset": "Tavanın arka bitişi ile arka gövde yüzeyi arasındaki yatay fark.",
+    "body_profile.rear_bottom_z": "Bagaj kapağı altındaki arka panelin alt kenarının yerden yüksekliği.",
+    "body_profile.roof_width": "Tavanın yandan yana genişliği.",
+    "body_profile.mirror_protrusion": "Aynanın gövde yanından dışarı taşma mesafesi.",
 }
 # P2 - registration certificate (ruhsat) fields. Owner data must be covered before photographing.
 RUHSAT = [
@@ -79,6 +76,11 @@ PHOTOS = [
     "Tam yan profil: aracın tam ortasından, 6-8 m uzaktan, telefon yere paralel (lens distorsiyonu az).",
     "Tam önden ve tam arkadan: aynı şekilde, aracın orta ekseninde.",
 ]
+
+
+def codes() -> dict[str, str]:
+    """Stable mapping measurement code (M01...) -> spec parameter id."""
+    return {f"M{i:02d}": pid for i, pid in enumerate(list(TAPE) + list(SHAPE), 1)}
 
 
 def render() -> str:
@@ -113,11 +115,12 @@ def render() -> str:
         lines.append(f"| M{n:02d} | {params[pid]['name']} (`{pid}`) | {how} | {st(pid)} |")
     lines += ["", "## 2. Biçim ölçüleri (şu an PLACEHOLDER varsayım)", "",
               "Koordinat: X = ön jant merkezinden **geriye** doğru yatay mesafe, Z = **yerden** yükseklik.", "",
-              "| Kod | Ölçü | Nasıl ölçülür | Şu anki varsayım |", "|---|---|---|---|"]
-    for key, how in SHAPE.items():
+              "| Kod | Ölçü | Nasıl ölçülür | Şu anki değer |", "|---|---|---|---|"]
+    by_spec = {a["replaces"]: a for a in asm.values() if a.get("replaces")}
+    for pid, how in SHAPE.items():
         n += 1
-        a = asm[key]
-        lines.append(f"| M{n:02d} | `{key}` | {how} | {a['value']} {a['unit'] or ''} (PLACEHOLDER) |")
+        cur = st(pid) if params[pid]["status"] != "UNKNOWN" else f"PLACEHOLDER {by_spec[pid]['value']} mm"
+        lines.append(f"| M{n:02d} | {params[pid]['name']} (`{pid}`) | {how} | {cur} |")
     lines += ["", "## 3. Ruhsat bilgileri", "",
               "Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plaka** alanlarını kapatın. "
               "Sadece aşağıdaki teknik alanlar gerekli; yazıyla göndermeniz de yeterli.", "",

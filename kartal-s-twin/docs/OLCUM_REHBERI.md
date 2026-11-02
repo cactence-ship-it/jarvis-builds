@@ -33,26 +33,23 @@ Bu rehber, dijital ikizdeki **tahminleri (ESTIMATED)** ve **varsayımları (PLAC
 
 Koordinat: X = ön jant merkezinden **geriye** doğru yatay mesafe, Z = **yerden** yükseklik.
 
-| Kod | Ölçü | Nasıl ölçülür | Şu anki varsayım |
+| Kod | Ölçü | Nasıl ölçülür | Şu anki değer |
 |---|---|---|---|
-| M17 | `front_track` | Yukarıdaki ön iz genişliği ölçüsü bunu da değiştirir. | 1380 mm (PLACEHOLDER) |
-| M18 | `rear_track` | Yukarıdaki arka iz genişliği ölçüsü bunu da değiştirir. | 1350 mm (PLACEHOLDER) |
-| M19 | `front_overhang` | Yukarıdaki ön çıkıntı ölçüsü bunu da değiştirir. | 830 mm (PLACEHOLDER) |
-| M20 | `nose_top_z` | Kaputun ön kenarının yerden yüksekliği. | 760 mm (PLACEHOLDER) |
-| M21 | `nose_bottom_z` | Ön panelin (tampon arkası) alt kenarının yerden yüksekliği. | 300 mm (PLACEHOLDER) |
-| M22 | `bumper_bottom_z` | Ön tamponun alt kenarının yerden yüksekliği. | 300 mm (PLACEHOLDER) |
-| M23 | `bumper_height` | Tamponun dikey yüksekliği. | 130 mm (PLACEHOLDER) |
-| M24 | `bumper_protrusion` | Tamponun kaportadan ne kadar dışarı çıktığı. | 60 mm (PLACEHOLDER) |
-| M25 | `sill_z` | Kapı altı marşpiyelin alt kenarının yerden yüksekliği. | 200 mm (PLACEHOLDER) |
-| M26 | `belt_z` | Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği. | 960 mm (PLACEHOLDER) |
-| M27 | `cowl_x` | Ön jant merkezinden ön camın alt kenarına yatay mesafe. | 1060 mm (PLACEHOLDER) |
-| M28 | `windshield_top_x` | Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle). | 1660 mm (PLACEHOLDER) |
-| M29 | `b_pillar_x` | Ön jant merkezinden orta direğin (ön/arka kapı arası) ortasına. | 1760 mm (PLACEHOLDER) |
-| M30 | `c_pillar_x` | Ön jant merkezinden arka kapının arka kenarına. | 2600 mm (PLACEHOLDER) |
-| M31 | `roof_rear_inset` | Tavanın arka bitişi ile arka tampon dışındaki gövde arasındaki yatay fark. | 120 mm (PLACEHOLDER) |
-| M32 | `rear_bottom_z` | Bagaj kapağı altındaki arka panelin alt kenarının yerden yüksekliği. | 420 mm (PLACEHOLDER) |
-| M33 | `greenhouse_inset_roof` | Tavanın genişliği (yandan yana), ölçülen değeri yazın. | 140 mm (PLACEHOLDER) |
-| M34 | `mirror_protrusion` | Aynanın gövde yanından dışarı taşma mesafesi. | 110 mm (PLACEHOLDER) |
+| M17 | Hood leading edge above ground (`body_profile.nose_top_z`) | Kaputun ön kenarının yerden yüksekliği. | PLACEHOLDER 760 mm |
+| M18 | Front panel lower edge above ground (`body_profile.nose_bottom_z`) | Ön panelin (tampon arkası) alt kenarının yerden yüksekliği. | PLACEHOLDER 300 mm |
+| M19 | Bumper lower edge above ground (`body_profile.bumper_bottom_z`) | Ön tamponun alt kenarının yerden yüksekliği. | PLACEHOLDER 300 mm |
+| M20 | Bumper vertical height (`body_profile.bumper_height`) | Tamponun dikey yüksekliği. | PLACEHOLDER 130 mm |
+| M21 | Bumper face beyond the body face (front and rear) (`body_profile.bumper_protrusion`) | Tamponun kaportadan ne kadar dışarı çıktığı. | PLACEHOLDER 60 mm |
+| M22 | Body-side (sill) lower edge above ground (`body_profile.sill_z`) | Kapı altı marşpiyelin alt kenarının yerden yüksekliği. | PLACEHOLDER 200 mm |
+| M23 | Side-window sill (beltline) above ground (`body_profile.belt_z`) | Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği. | PLACEHOLDER 960 mm |
+| M24 | Windshield base, X behind the front wheel centre (`body_profile.cowl_x`) | Ön jant merkezinden ön camın alt kenarına yatay mesafe. | PLACEHOLDER 1060 mm |
+| M25 | Windshield top edge, X behind the front wheel centre (`body_profile.windshield_top_x`) | Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle). | PLACEHOLDER 1660 mm |
+| M26 | B-pillar centre, X behind the front wheel centre (`body_profile.b_pillar_x`) | Ön jant merkezinden orta direğin (ön/arka kapı arası) ortasına. | PLACEHOLDER 1760 mm |
+| M27 | Rear-door rear edge, X behind the front wheel centre (`body_profile.c_pillar_x`) | Ön jant merkezinden arka kapının arka kenarına. | PLACEHOLDER 2600 mm |
+| M28 | Roof end ahead of the rear body face (`body_profile.roof_rear_inset`) | Tavanın arka bitişi ile arka gövde yüzeyi arasındaki yatay fark. | PLACEHOLDER 120 mm |
+| M29 | Rear panel lower edge above ground (`body_profile.rear_bottom_z`) | Bagaj kapağı altındaki arka panelin alt kenarının yerden yüksekliği. | PLACEHOLDER 420 mm |
+| M30 | Roof width (side to side, at the roof) (`body_profile.roof_width`) | Tavanın yandan yana genişliği. | PLACEHOLDER 1362 mm |
+| M31 | Mirror housing beyond the body side (`body_profile.mirror_protrusion`) | Aynanın gövde yanından dışarı taşma mesafesi. | PLACEHOLDER 110 mm |
 
 ## 3. Ruhsat bilgileri
 
@@ -83,4 +80,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 96 parametre: 17 ESTIMATED, 79 UNKNOWN, 0 VERIFIED. Varsayım dosyası: 25 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 111 parametre: 17 ESTIMATED, 94 UNKNOWN, 0 VERIFIED. Varsayım dosyası: 25 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.

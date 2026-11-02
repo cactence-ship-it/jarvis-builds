@@ -2,6 +2,14 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.3.0] - 2026-11-02 - Measurement intake
+
+### Added
+- `docs/OLCUM_REHBERI.md` (generated): 31 coded measurements, registration fields and the required photo list.
+- `body_profile` spec group (15 UNKNOWN slots; placeholders now `replaces` them). 111 spec parameters in total.
+- `tools/record_measurement.py`: owner measurement log, then a MEASUREMENT evidence row, then VERIFIED values (D-015).
+- Resolver guard: a stand-in placeholder can only be read through its spec key. 46 tests.
+
 ## [0.2.1] - 2026-11-02 - Closures as separate components
 
 ### Added

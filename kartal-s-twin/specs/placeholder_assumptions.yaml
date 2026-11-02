@@ -19,26 +19,26 @@ assumptions:
   rear_track:       {value: 1350, unit: mm, replaces: dimensions.rear_track, rationale: "slightly narrower than front, typical for a live-axle RWD estate; pure guess"}
   front_overhang:   {value: 830,  unit: mm, replaces: dimensions.front_overhang, rationale: "split of literature length minus wheelbase (1906 mm); estates carry the longer overhang at the rear"}
   # --- body side profile (VCS: X rearward from front axle, Z up from ground) -
-  bumper_protrusion:   {value: 60,  unit: mm, rationale: "bumper face ahead of / behind the body face"}
-  bumper_height:       {value: 130, unit: mm, rationale: "bar-type bumper of the era"}
-  bumper_bottom_z:     {value: 300, unit: mm, rationale: "proportion guess"}
-  sill_z:              {value: 200, unit: mm, rationale: "body-side lower edge above ground"}
-  nose_bottom_z:       {value: 300, unit: mm, rationale: "front lower edge"}
-  nose_top_z:          {value: 760, unit: mm, rationale: "top edge of the front face (hood leading edge)"}
-  cowl_x:              {value: 1060, unit: mm, rationale: "windshield base behind the front axle"}
-  belt_z:              {value: 960, unit: mm, rationale: "side-window sill (beltline) height"}
-  rear_bottom_z:       {value: 420, unit: mm, rationale: "lower edge of the rear face"}
-  windshield_top_x:    {value: 1660, unit: mm, rationale: "gives a ~55 deg windshield rake typical of the period"}
-  roof_rear_inset:     {value: 120, unit: mm, rationale: "roof ends this far ahead of the rear body face (near-vertical tailgate)"}
+  bumper_protrusion:   {value: 60,  unit: mm, replaces: body_profile.bumper_protrusion, rationale: "bumper face ahead of / behind the body face"}
+  bumper_height:       {value: 130, unit: mm, replaces: body_profile.bumper_height, rationale: "bar-type bumper of the era"}
+  bumper_bottom_z:     {value: 300, unit: mm, replaces: body_profile.bumper_bottom_z, rationale: "proportion guess"}
+  sill_z:              {value: 200, unit: mm, replaces: body_profile.sill_z, rationale: "body-side lower edge above ground"}
+  nose_bottom_z:       {value: 300, unit: mm, replaces: body_profile.nose_bottom_z, rationale: "front lower edge"}
+  nose_top_z:          {value: 760, unit: mm, replaces: body_profile.nose_top_z, rationale: "top edge of the front face (hood leading edge)"}
+  cowl_x:              {value: 1060, unit: mm, replaces: body_profile.cowl_x, rationale: "windshield base behind the front axle"}
+  belt_z:              {value: 960, unit: mm, replaces: body_profile.belt_z, rationale: "side-window sill (beltline) height"}
+  rear_bottom_z:       {value: 420, unit: mm, replaces: body_profile.rear_bottom_z, rationale: "lower edge of the rear face"}
+  windshield_top_x:    {value: 1660, unit: mm, replaces: body_profile.windshield_top_x, rationale: "gives a ~55 deg windshield rake typical of the period"}
+  roof_rear_inset:     {value: 120, unit: mm, replaces: body_profile.roof_rear_inset, rationale: "roof ends this far ahead of the rear body face (near-vertical tailgate)"}
   tail_rear_inset:     {value: 25,  unit: mm, rationale: "greenhouse rear face inset at belt height"}
   greenhouse_inset_belt: {value: 45, unit: mm, rationale: "side glass inset from the body side at the beltline"}
-  greenhouse_inset_roof: {value: 140, unit: mm, rationale: "tumblehome: roof narrower than the body"}
-  b_pillar_x:          {value: 1760, unit: mm, rationale: "front/rear door split"}
-  c_pillar_x:          {value: 2600, unit: mm, rationale: "rear door ends near the rear wheel arch"}
+  roof_width:          {value: 1362, unit: mm, replaces: body_profile.roof_width, rationale: "body width 1642 minus ~140 mm tumblehome per side"}
+  b_pillar_x:          {value: 1760, unit: mm, replaces: body_profile.b_pillar_x, rationale: "front/rear door split"}
+  c_pillar_x:          {value: 2600, unit: mm, replaces: body_profile.c_pillar_x, rationale: "rear door ends near the rear wheel arch"}
   pillar_width:        {value: 70,  unit: mm, rationale: "visible pillar / frame width around glass"}
   arch_clearance:      {value: 45,  unit: mm, rationale: "wheel-arch radius minus tire radius"}
   arch_depth:          {value: 260, unit: mm, rationale: "wheel-arch cut depth from the body side"}
   tire_static_deflection: {value: 12, unit: mm, rationale: "loaded radius = free radius minus deflection"}
-  mirror_protrusion:   {value: 110, unit: mm, rationale: "mirror housing beyond the body side"}
+  mirror_protrusion:   {value: 110, unit: mm, replaces: body_profile.mirror_protrusion, rationale: "mirror housing beyond the body side"}
   # --- appearance (colour is UNKNOWN; neutral grey signals 'not the real paint')
   paint_rgba:          {value: [0.73, 0.75, 0.77, 1.0], unit: null, rationale: "neutral placeholder - exterior colour UNKNOWN"}

@@ -16,8 +16,8 @@ RED = (0.75, 0.05, 0.05, 1.0)
 def build(ctx):
     base = ctx.resolver()
     p = layout.profile(base)
-    nt, hw = base.get("nose_top_z"), p.half_width
-    belt = base.get("belt_z")
+    nt, hw = base.get("body_profile.nose_top_z"), p.half_width
+    belt = base.get("body_profile.belt_z")
     d = 10.0                                       # lens stands proud of the face
     lamps = [  # cid, x-face, sign of x outward, y range (RH; mirrored for LH), z range, colour
         ("LGT-001", p.x_nose, -1, -1, (hw - 420, hw - 160), (nt - 190, nt - 60), WHITE),

@@ -62,7 +62,7 @@ class Profile:
 def profile(r: Resolver) -> Profile:
     length = r.get("dimensions.overall_length")
     fo = r.get("dimensions.front_overhang")
-    bp = r.get("bumper_protrusion")
+    bp = r.get("body_profile.bumper_protrusion")
     x_front = -fo
     x_rear = x_front + length
     return Profile(x_front, x_rear, x_front + bp, x_rear - bp,
@@ -90,8 +90,8 @@ class Greenhouse:
 
 def greenhouse(r: Resolver) -> Greenhouse:
     p = profile(r)
-    return Greenhouse(r.get("cowl_x"), p.x_tail - r.get("tail_rear_inset"),
-                      r.get("windshield_top_x"), p.x_tail - r.get("roof_rear_inset"),
+    return Greenhouse(r.get("body_profile.cowl_x"), p.x_tail - r.get("tail_rear_inset"),
+                      r.get("body_profile.windshield_top_x"), p.x_tail - r.get("body_profile.roof_rear_inset"),
                       p.half_width - r.get("greenhouse_inset_belt"),
-                      p.half_width - r.get("greenhouse_inset_roof"),
-                      r.get("belt_z"), p.height)
+                      r.get("body_profile.roof_width") / 2,
+                      r.get("body_profile.belt_z"), p.height)
