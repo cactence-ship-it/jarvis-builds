@@ -3,8 +3,26 @@
 > Bu dosya her aşamada güncellenir. Oturum yarıda kesilirse buradan devam edin.
 
 **Son güncelleme:** 2026-11-02 · **Branch:** `ccr-b5d82c24-huyj0b` · **PR:** #1 (açık, merge edilmedi)
-**Son doğrulanmış commit:** `bash kartal-s-twin/scripts/checkpoint.sh --verify` komutunun çıktısına bakın
-(aşağıdaki tabloda her aşamanın SHA'sı var).
+**Çalışma düzeni:** OTONOM (sahip onayı 2026-11-02). Protokol: `CLAUDE.md` -> "Autonomous work protocol".
+**Son doğrulanmış commit:** aşağıdaki otomatik checkpoint kaydı + `bash kartal-s-twin/scripts/checkpoint.sh --verify`.
+
+<!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
+## Son checkpoint (otomatik)
+- **Checkpoint #12** - 2026-11-02 01:05 UTC
+- **Commit:** bu kaydı içeren commit = `8d037b8` commit'inin hemen ardından gelen commit
+  (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
+- **Başlık:** feat(kartal-s-twin): autonomous work mode - automatic HANDOFF record and WIP checkpoints
+- **Testler:** PASS - Ran 48 tests in 8.409s; ## result: validate=0 unittest=0
+- **Değişen dosyalar:**
+```
+    M	kartal-s-twin/CLAUDE.md
+    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/persistence/checkpoint.json
+    M	kartal-s-twin/scripts/checkpoint.sh
+    M	kartal-s-twin/test-results/latest.txt
+    M	kartal-s-twin/tools/twin.py
+```
+<!-- AUTO-CHECKPOINT:END -->
 
 ## Yeni oturumda devam etmek için
 1. `git checkout ccr-b5d82c24-huyj0b` (PR #1 merge edilmediyse)
@@ -22,7 +40,8 @@
 | 5 | Ölçüm rehberi docs/OLCUM_REHBERI.md, senkron testi | TAMAM | 04f0f57 |
 | 6 | Ölçüm girişi: tools/record_measurement.py, body_profile spec alanları (15), D-015; 31 ölçü kodu | TAMAM | c2743e3 |
 | 7 | Teslim paketi (scripts/package_delivery.sh, ZIP gönderildi) + eski arşiv analiz aracı (tools/analyze_legacy.py) | TAMAM | 73de919 |
-| 8 | Dış detay: tavan yuvarlatma, 4 kapı kolu, silecekler, jant göbeği -> 35 parça; görüntüleyici v3 | TAMAM | (bu commit) |
+| 8 | Dış detay: tavan yuvarlatma, 4 kapı kolu, silecekler, jant göbeği -> 35 parça; görüntüleyici v3 | TAMAM | 8d037b8 |
+| 9 | Otonom düzen: checkpoint.sh HANDOFF'a otomatik kayıt yazar, --wip acil kayıt modu, CLAUDE.md protokolü (yerel sahte remote ile test edildi) | TAMAM | (otomatik kayda bakın) |
 
 ## Sayılar (son durum)
 - Spec 111 parametre: 0 VERIFIED / 17 ESTIMATED / 94 UNKNOWN. Kanıt: E-001..E-010.

@@ -28,3 +28,21 @@ environment unless something indicates it changed.
    and CHANGELOG.md.
 10. Ask the owner only when a decision materially affects the real vehicle configuration
     or engineering correctness, or is reserved to them (for example privacy or publishing).
+
+## Autonomous work protocol (owner instruction, 2026-11-02)
+The owner has authorised autonomous work: do not wait for approval on routine engineering
+decisions. Still ask only for decisions reserved to the owner (privacy/publishing, real
+vehicle configuration that evidence cannot settle).
+
+- **Start of session:** `git checkout ccr-b5d82c24-huyj0b` (until PR #1 is merged), then
+  `bash scripts/setup_env.sh`, then read HANDOFF.md ("Sıradaki görevler" + the AUTO-CHECKPOINT
+  block). Check `/mnt/user-data/uploads` for new owner files first: evidence beats everything.
+- **Every significant stage:** `bash scripts/checkpoint.sh "type(kartal-s-twin): ..."`. It runs
+  the privacy scan, validation and all tests, writes the AUTO-CHECKPOINT block in HANDOFF.md
+  (parent commit, test result, changed files), commits, pushes and verifies the remote SHA.
+- **Before usage runs out, or when work is half done:** `bash scripts/checkpoint.sh --wip "..."`
+  saves even with failing tests (still privacy-gated) and marks the record WIP. Then update the
+  hand-written sections of HANDOFF.md (stage table, next tasks) in the next normal checkpoint.
+- **Never:** commit owner photos, archives, scans, the plate, VIN or personal data; model
+  internals without evidence; mark anything VERIFIED without a primary evidence item.
+- **Hand-off guarantee:** a new assistant needs only this file, HANDOFF.md and the repository.

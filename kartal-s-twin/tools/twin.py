@@ -7,6 +7,7 @@
   python tools/twin.py status            evidence-status counts per spec group / assembly
   python tools/twin.py build             build + export + validate -> build/ (manifest.json)
   python tools/twin.py sync-inventory    copy built geometry statuses into the inventory
+  python tools/twin.py privacy           privacy scan only (also gates WIP checkpoints)
 """
 import sys
 from collections import Counter
@@ -102,6 +103,12 @@ def sync_inventory() -> int:
 
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "privacy":
+        issues = privacy.scan_repository(_repo_root())
+        for i in issues:
+            print("  ", i)
+        print("[PASS] privacy" if not issues else f"[FAIL] privacy - {len(issues)} issue(s)")
+        sys.exit(1 if issues else 0)
     if len(sys.argv) > 1 and sys.argv[1] == "build":
         sys.exit(build())
     if len(sys.argv) > 1 and sys.argv[1] == "sync-inventory":
