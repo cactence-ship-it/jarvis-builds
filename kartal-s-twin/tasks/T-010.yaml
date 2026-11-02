@@ -2,7 +2,7 @@ id: T-010
 title: Upgrade CI actions to Node 24 releases, pinned by SHA (from T-005 review)
 phase: '11'
 owner: claude
-status: in_progress
+status: submitted
 depends_on:
 - T-005
 blocker: null
@@ -13,5 +13,15 @@ acceptance:
 - id: T-010-A2
   criterion: CI green with no Node 20 deprecation warning
   check: GitHub Actions job log
-results: []
+results:
+- agent: claude
+  commit: c29f5fe
+  files:
+  - .github/workflows/kartal-ci.yml
+  tests: 'action.yml of checkout v5.1.0 (fbc6f39) and setup-python v6.3.0 (ece7cb0) declare node24 (raw files read).
+    CI on 19505cb (workflow unchanged since c29f5fe): jobs 125105038877 and 125105126024 success, ''Ran 71 tests
+    ... OK'', and the Node.js 20 deprecation warning present in job 125097402634 no longer appears.'
+  confidence: HIGH
+  known_defects: []
+  open_questions: []
 reviews: []

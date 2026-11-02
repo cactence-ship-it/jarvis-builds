@@ -8,17 +8,16 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #20** - 2026-11-02 05:04 UTC
-- **Commit:** bu kaydı içeren commit = `784ceb9` commit'inin hemen ardından gelen commit
+- **Checkpoint #21** - 2026-11-02 05:09 UTC
+- **Commit:** bu kaydı içeren commit = `19505cb` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** review(kartal-s-twin): T-001 resubmitted for re-review (fix 784ceb9); re-review request R2
-- **Testler:** PASS - Ran 71 tests in 42.250s; ## result: validate=0 unittest=0
+- **Başlık:** chore(kartal-s-twin): record T-010 result - CI green on Node 24 actions, deprecation warning gone
+- **Testler:** PASS - Ran 71 tests in 43.277s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
     M	kartal-s-twin/TASKS.md
-    A	kartal-s-twin/agents/REVIEW_REQUEST_T-001-R2.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/tasks/T-001.yaml
+    M	kartal-s-twin/tasks/T-010.yaml
     M	kartal-s-twin/test-results/latest.txt
 ```
 <!-- AUTO-CHECKPOINT:END -->
