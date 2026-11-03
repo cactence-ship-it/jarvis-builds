@@ -8,18 +8,18 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #44** - 2026-11-03 02:48 UTC
-- **Commit:** bu kaydı içeren commit = `8d9f16f` commit'inin hemen ardından gelen commit
+- **Checkpoint #45** - 2026-11-03 02:54 UTC
+- **Commit:** bu kaydı içeren commit = `048d352` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** docs(kartal-s-twin): correct part count - 150 visual + 9 CAD (159 was the combined total)
-- **Testler:** PASS - Ran 147 tests in 206.564s; ## result: validate=0 unittest=0
+- **Başlık:** evidence(kartal-s-twin): T-023 result recorded at 8d9f16f with CI links; review request
+- **Testler:** PASS - Ran 147 tests in 205.577s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
-    M	kartal-s-twin/HANDOFF.md
-    M	kartal-s-twin/PROJECT_STATUS.md
+    M	kartal-s-twin/TASKS.md
+    A	kartal-s-twin/agents/REVIEW_REQUEST_T-023.md
     M	kartal-s-twin/persistence/checkpoint.json
+    M	kartal-s-twin/tasks/T-023.yaml
+    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
 ```
 <!-- AUTO-CHECKPOINT:END -->

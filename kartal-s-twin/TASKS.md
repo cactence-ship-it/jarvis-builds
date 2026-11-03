@@ -28,4 +28,4 @@ Dependency order. A task is ACCEPTED only after a review of the same commit by a
 | T-020 | 3 | Registration documents (ruhsat) as primary evidence for identity, mass, displacement and fuel type | claude | **submitted** | - | result claude@826c4bad6e2f4c5b28db9d897b1d28c16337728c (HIGH) |
 | T-021 | 4 | Owner vehicle configuration, carburettor variant separation, steel-rim and LPG toroidal tank CAD | claude | **submitted** | T-020 | result claude@ffd3f8fe5c04e48f282b872176d31f44c3382c0a (MEDIUM) |
 | T-022 | 2 | Owner photo evidence: LPG tank, interior, underbody, engine bay and tire size | claude | **submitted** | T-021 | result claude@e3fe56ed94f0bb3fe8ed18768204cc950437b387 (MEDIUM) |
-| T-023 | 5 | Complete-vehicle PLACEHOLDER package: every assembly modelled and assembled | claude | **in_progress** | T-022 | - |
+| T-023 | 5 | Complete-vehicle PLACEHOLDER package: every assembly modelled and assembled | claude | **submitted** | T-022 | result claude@8d9f16fc035440ec7b73f62072f45a2ad626e333 (MEDIUM) |

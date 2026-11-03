@@ -6,7 +6,7 @@ description: 'Owner master directive 2026-11-03: build the whole vehicle as an i
 priority: P1
 phase: '5'
 owner: claude
-status: in_progress
+status: submitted
 depends_on:
 - T-022
 blocker: null
@@ -31,5 +31,32 @@ acceptance:
 - id: T-023-A4
   criterion: CAD STEP bytes independent of the visual model; geometry unchanged vs r3
   check: test_golden_cad against audit/2026-11-02-r4; diff of non-occurrence lines = 0
-results: []
+results:
+- agent: claude
+  commit: 8d9f16fc035440ec7b73f62072f45a2ad626e333
+  round: 1
+  superseded_by: null
+  files:
+  - src/kartal_twin/cad/mech.py
+  - src/kartal_twin/assemblies/*.py (11 new builders, 4 extended)
+  - src/kartal_twin/pipeline.py
+  - specs/placeholder_assumptions.yaml
+  - viewer/index.html
+  - tools/render_preview.py
+  - tests/test_full_vehicle.py
+  - tests/test_pipeline.py
+  - audit/2026-11-02-r4/SHA256SUMS
+  - ENGINEERING_DECISIONS.md
+  tests: 'Local: validate PASS; unittest 147/147 OK (4 new in tests/test_full_vehicle.py); build: 150 visual + 9 CAD parts,
+    0 skipped assemblies, STEP 349/349 solids re-opened valid, STL 0 normal flips, GLB no issues, all meshes closed; viewer
+    smoke 150 parts, errors [] in 4/4 runs after the screenPoint fix (1 failure in 2 runs before it); ruff clean; CAD STEP
+    identical to r3 except occurrence-id lines. CI at 8d9f16f: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41567984550
+    and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41567989478: success.'
+  confidence: MEDIUM
+  known_defects:
+  - Commit message of 8d9f16f says '159 visual parts'; correct is 150 visual + 9 CAD (fixed in docs at 048d352)
+  - 'Whole mechanical package is PLACEHOLDER: arrangement from photos, every size a guess'
+  - 'Not built: roof/fenders/quarters as separate panels, seals, LPG filler (location UNKNOWN); no tread pattern; no engine
+    internals (no evidence)'
+  open_questions: []
 reviews: []

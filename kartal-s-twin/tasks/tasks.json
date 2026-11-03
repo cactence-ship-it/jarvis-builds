@@ -576,9 +576,9 @@
         "CAD STEP bytes independent of the visual model; geometry unchanged vs r3"
       ],
       "owner_agent": "claude",
-      "status": "IN_PROGRESS",
-      "registry_status": "in_progress",
-      "test_result": null,
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Local: validate PASS; unittest 147/147 OK (4 new in tests/test_full_vehicle.py); build: 150 visual + 9 CAD parts, 0 skipped assemblies, STEP 349/349 solids re-opened valid, STL 0 normal flips, GLB no issues, all meshes closed; viewer smoke 150 parts, errors [] in 4/4 runs after the screenPoint fix (1 failure in 2 runs before it); ruff clean; CAD STEP identical to r3 except occurrence-id lines. CI at 8d9f16f: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41567984550 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41567989478: success.",
       "error": null,
       "started_at": "2026-11-03T00:00:00Z",
       "finished_at": null,
@@ -588,7 +588,7 @@
         "tests/test_full_vehicle.py",
         "audit/2026-11-02-r4/SHA256SUMS"
       ],
-      "last_result_commit": null,
+      "last_result_commit": "8d9f16fc035440ec7b73f62072f45a2ad626e333",
       "last_review": null
     }
   ]
