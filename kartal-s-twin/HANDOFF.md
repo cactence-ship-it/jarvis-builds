@@ -8,61 +8,19 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #43** - 2026-11-03 02:44 UTC
-- **Commit:** bu kaydı içeren commit = `d995028` commit'inin hemen ardından gelen commit
+- **Checkpoint #44** - 2026-11-03 02:48 UTC
+- **Commit:** bu kaydı içeren commit = `8d9f16f` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** feat(kartal-s-twin): complete-vehicle PLACEHOLDER package - all 17 assemblies (159 visual parts), CAD exported first (STEP counter), viewer hook timing fix, audit r4 (T-023, D-027)
-- **Testler:** PASS - Ran 147 tests in 210.088s; ## result: validate=0 unittest=0
+- **Başlık:** docs(kartal-s-twin): correct part count - 150 visual + 9 CAD (159 was the combined total)
+- **Testler:** PASS - Ran 147 tests in 206.564s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
     M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/COMPONENT_INVENTORY.md
     M	kartal-s-twin/ENGINEERING_DECISIONS.md
     M	kartal-s-twin/HANDOFF.md
     M	kartal-s-twin/PROJECT_STATUS.md
-    M	kartal-s-twin/TASKS.md
-    M	kartal-s-twin/assembly/vehicle_master.yaml
-    A	kartal-s-twin/audit/2026-11-02-r4/SHA256SUMS
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/FUL-005.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/WHL-001.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/WHL-002.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/WHL-003.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/WHL-004.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/WHL-006.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/WHL-007.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/WHL-008.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/WHL-009.step
-    A	kartal-s-twin/audit/2026-11-02-r4/cad/vehicle_cad.step
-    A	kartal-s-twin/audit/2026-11-02-r4/latest.txt
-    A	kartal-s-twin/audit/2026-11-02-r4/manifest.json
-    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/specs/placeholder_assumptions.yaml
-    M	kartal-s-twin/src/kartal_twin/assemblies/braking.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/chassis.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/drivetrain.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/electrical.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/engine.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/exhaust.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/exterior_trim.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/front_suspension.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/fuel_system.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/interior.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/lighting.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/rear_suspension.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/steering.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/transmission.py
-    M	kartal-s-twin/src/kartal_twin/assemblies/wheels_and_tires.py
-    A	kartal-s-twin/src/kartal_twin/cad/mech.py
-    M	kartal-s-twin/src/kartal_twin/pipeline.py
-    A	kartal-s-twin/tasks/T-023.yaml
-    M	kartal-s-twin/tasks/tasks.json
     M	kartal-s-twin/test-results/latest.txt
-    M	kartal-s-twin/test-results/viewer_smoke.txt
-    A	kartal-s-twin/tests/test_full_vehicle.py
-    M	kartal-s-twin/tests/test_pipeline.py
-    M	kartal-s-twin/tools/render_preview.py
-    M	kartal-s-twin/viewer/index.html
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -87,7 +45,7 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
-| 27 | Tam araç PLACEHOLDER paketi (D-027): 17 montajın hepsi, 159 görsel parça (motor, şanzıman, aks, şasi, süspansiyon, direksiyon, fren, egzoz, elektrik mimarisi, iç mekân, yakıt/LPG); CAD önce export (STEP sayaç bağımlılığı düzeltildi, audit r4); viewer test kancası zamanlama düzeltmesi | TAMAM | (otomatik kayda bakın) |
+| 27 | Tam araç PLACEHOLDER paketi (D-027): 17 montajın hepsi, 150 görsel parça (+9 CAD) (motor, şanzıman, aks, şasi, süspansiyon, direksiyon, fren, egzoz, elektrik mimarisi, iç mekân, yakıt/LPG); CAD önce export (STEP sayaç bağımlılığı düzeltildi, audit r4); viewer test kancası zamanlama düzeltmesi | TAMAM | (otomatik kayda bakın) |
 | 26 | Sahip fotoğrafları (28 adet, yalnız yerel; plaka/VIN/isim yazılmadı): LPG tankı ATIKER E7 67R-01 + ALBIEN multivalf, LHD, manuel, MacPherson, rijit arka aks, hidrolik direksiyon, lastik 185/65 R14 (OD 596,1 mm), 25 VERIFIED, audit r3; Gemini devir raporu depoda karşılığı olmadığı için uygulanmadı | TAMAM | (otomatik kayda bakın) |
 | 25 | Araç konfigürasyonu (ayrı dal ccr-b5d82c24-config-lpg-wheels, PR #1 üstüne): veri sınıfları (D-026), karbüratör varyant kuralı, LPG grubu + FUL-005..014, parametrik toroidal tank (yerleştirilmemiş CAD), çelik jant WHL-006..009, geçici 185/70 R14, DC-016..020, CL-003..012, veri sözlüğü, M32-M38, audit 2026-11-02-r2 | TAMAM | (otomatik kayda bakın) |
 | 24 | ChatGPT 3. paket: T-011/T-012/T-013/T-019 ACCEPT (bf31d4d); T-018 eksik bütünlük dosyası artık hata (6 test); T-020 yakıt değeri ayrıldı (engine.base_fuel ESTIMATED), rehber özeti düzeltildi | TAMAM | (otomatik kayda bakın) |
