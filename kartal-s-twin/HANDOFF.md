@@ -8,16 +8,15 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #47** - 2026-11-03 03:44 UTC
-- **Commit:** bu kaydı içeren commit = `74dde9c` commit'inin hemen ardından gelen commit
+- **Checkpoint #48** - 2026-11-03 03:50 UTC
+- **Commit:** bu kaydı içeren commit = `f322be1` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** feat(kartal-s-twin): smooth lofted body envelope (rounded nose, shoulders, ends); closed meshes; CAD unchanged
-- **Testler:** PASS - Ran 147 tests in 265.067s; ## result: validate=0 unittest=0
+- **Başlık:** docs(kartal-s-twin): handoff prompt for ChatGPT - photoreal studio twin (Blender subdivision body, PBR, Cycles, verification loop)
+- **Testler:** PASS - Ran 147 tests in 267.322s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/CHANGELOG.md
+    A	kartal-s-twin/agents/PROMPT_GPT_REALISTIC_TWIN.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/src/kartal_twin/assemblies/body_assembly.py
     M	kartal-s-twin/test-results/latest.txt
 ```
 <!-- AUTO-CHECKPOINT:END -->
