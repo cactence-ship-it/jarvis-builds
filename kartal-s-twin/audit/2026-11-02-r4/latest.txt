@@ -1,0 +1,166 @@
+# Test run 2026-11-03T02:33:27Z on commit base d995028
+## validate
+[PASS] evidence register
+[PASS] master spec
+[PASS] component inventory
+[PASS] inventory markdown in sync
+[PASS] privacy (public repo)
+[PASS] task registry
+[PASS] hash integrity (audit snapshots, refs manifest)
+[PASS] configuration (engine variant separation)
+[PASS] dimensional consistency
+spec: 134 parameters (VERIFIED 25, ESTIMATED 35, UNKNOWN 74) | inventory: 157 components | evidence: 28 items
+## unittest
+test_glb_is_valid_metres_and_y_up (tests.test_cad_toolchain.CadToolchain.test_glb_is_valid_metres_and_y_up) ... ok
+test_kernel_builds_valid_solid (tests.test_cad_toolchain.CadToolchain.test_kernel_builds_valid_solid) ... ok
+test_step_reopens_identically (tests.test_cad_toolchain.CadToolchain.test_step_reopens_identically) ... ok
+test_stl_is_watertight_outward_and_to_scale (tests.test_cad_toolchain.CadToolchain.test_stl_is_watertight_outward_and_to_scale) ... ok
+test_vcs_to_gltf_mapping_is_a_proper_rotation (tests.test_cad_toolchain.CadToolchain.test_vcs_to_gltf_mapping_is_a_proper_rotation) ... ok
+test_no_build_errors (tests.test_configuration_cad.BuiltConfiguration.test_no_build_errors) ... ok
+test_rims_built_placed_and_inside_their_tires (tests.test_configuration_cad.BuiltConfiguration.test_rims_built_placed_and_inside_their_tires) ... ok
+test_tank_clearance_rules_are_blocked_not_passed (tests.test_configuration_cad.BuiltConfiguration.test_tank_clearance_rules_are_blocked_not_passed) ... ok
+test_tank_is_draft_unplaced_and_exported (tests.test_configuration_cad.BuiltConfiguration.test_tank_is_draft_unplaced_and_exported) ... ok
+test_visual_tank_is_placeholder (tests.test_configuration_cad.BuiltConfiguration.test_visual_tank_is_placeholder) ... ok
+test_capacity_above_geometry_fails (tests.test_configuration_cad.CapacityVersusGeometry.test_capacity_above_geometry_fails) ... ok
+test_overlap_is_indeterminate (tests.test_configuration_cad.CapacityVersusGeometry.test_overlap_is_indeterminate) ... ok
+test_small_capacity_fits (tests.test_configuration_cad.CapacityVersusGeometry.test_small_capacity_fits) ... ok
+test_assumption_only_value_must_be_low_confidence (tests.test_configuration_cad.DataClasses.test_assumption_only_value_must_be_low_confidence) ... ok
+test_mapping (tests.test_configuration_cad.DataClasses.test_mapping) ... ok
+test_no_owner_assumption_is_shown_as_confirmed (tests.test_configuration_cad.DataClasses.test_no_owner_assumption_is_shown_as_confirmed) ... ok
+test_injection_source_rejected_for_carburettor_engine (tests.test_configuration_cad.EngineVariant.test_injection_source_rejected_for_carburettor_engine) ... ok
+test_live_spec_is_carburettor_and_clean (tests.test_configuration_cad.EngineVariant.test_live_spec_is_carburettor_and_clean) ... ok
+test_same_source_allowed_for_other_variant (tests.test_configuration_cad.EngineVariant.test_same_source_allowed_for_other_variant) ... ok
+test_numeric_wheel_and_lpg_values_positive (tests.test_configuration_cad.NewParametersArePositive.test_numeric_wheel_and_lpg_values_positive) ... ok
+test_resolver_reads_them_without_placeholders (tests.test_configuration_cad.NewParametersArePositive.test_resolver_reads_them_without_placeholders) ... ok
+test_cad_volume_matches_analytic_section (tests.test_configuration_cad.RimGeometry.test_cad_volume_matches_analytic_section) ... ok
+test_derived_dimensions (tests.test_configuration_cad.RimGeometry.test_derived_dimensions) ... ok
+test_non_positive_values_are_rejected (tests.test_configuration_cad.RimGeometry.test_non_positive_values_are_rejected) ... ok
+test_rim_fits_inside_the_tire (tests.test_configuration_cad.RimGeometry.test_rim_fits_inside_the_tire) ... ok
+test_cad_volumes_match_pappus (tests.test_configuration_cad.TankGeometry.test_cad_volumes_match_pappus) ... ok
+test_circular_section_equals_classical_torus (tests.test_configuration_cad.TankGeometry.test_circular_section_equals_classical_torus) ... ok
+test_invalid_geometry_is_rejected (tests.test_configuration_cad.TankGeometry.test_invalid_geometry_is_rejected) ... ok
+test_parametric_not_fixed (tests.test_configuration_cad.TankGeometry.test_parametric_not_fixed) ... ok
+test_stadium_volume_by_hand (tests.test_configuration_cad.TankGeometry.test_stadium_volume_by_hand) ... ok
+test_usable_lpg_at_fill_limit (tests.test_configuration_cad.TankGeometry.test_usable_lpg_at_fill_limit) ... ok
+test_cad_envelope_volume_matches_designation (tests.test_configuration_cad.TireGeometry.test_cad_envelope_volume_matches_designation) ... ok
+test_outer_diameter_from_designation (tests.test_configuration_cad.TireGeometry.test_outer_diameter_from_designation) ... ok
+test_pass_and_fail (tests.test_configuration_cad.WithinBoxRule.test_pass_and_fail) ... ok
+test_centimetre_entry_is_caught (tests.test_consistency.Consistency.test_centimetre_entry_is_caught) ... ok
+test_centimetre_track_is_caught (tests.test_consistency.Consistency.test_centimetre_track_is_caught) ... ok
+test_clearance_safe_over_whole_range (tests.test_consistency.Consistency.test_clearance_safe_over_whole_range) ... ok
+test_current_spec_has_no_failures (tests.test_consistency.Consistency.test_current_spec_has_no_failures) ... ok
+test_definitely_insufficient (tests.test_consistency.Consistency.test_definitely_insufficient) ... ok
+test_exact_less_than_boundaries (tests.test_consistency.Consistency.test_exact_less_than_boundaries) ... ok
+test_length_identity_pass_and_fail (tests.test_consistency.Consistency.test_length_identity_pass_and_fail) ... ok
+test_metre_entry_is_caught (tests.test_consistency.Consistency.test_metre_entry_is_caught) ... ok
+test_nominally_positive_but_bands_overlap (tests.test_consistency.Consistency.test_nominally_positive_but_bands_overlap) ... ok
+test_relative_difference_exact_limit_is_not_pass (tests.test_consistency.Consistency.test_relative_difference_exact_limit_is_not_pass) ... ok
+test_relative_difference_tolerance_band (tests.test_consistency.Consistency.test_relative_difference_tolerance_band) ... ok
+test_sum_at_most_boundaries (tests.test_consistency.Consistency.test_sum_at_most_boundaries) ... ok
+test_unknown_inputs_are_not_evaluated (tests.test_consistency.Consistency.test_unknown_inputs_are_not_evaluated) ... ok
+test_cabin_and_engine_bay_parts_inside_the_body (tests.test_full_vehicle.FullVehicle.test_cabin_and_engine_bay_parts_inside_the_body) ... ok
+test_every_component_has_visual_geometry_or_a_reason (tests.test_full_vehicle.FullVehicle.test_every_component_has_visual_geometry_or_a_reason) ... ok
+test_mechanical_package_is_placeholder_only (tests.test_full_vehicle.FullVehicle.test_mechanical_package_is_placeholder_only) ... ok
+test_no_assembly_skipped (tests.test_full_vehicle.FullVehicle.test_no_assembly_skipped) ... ok
+test_fresh_build_reproduces_snapshot_cad (tests.test_golden_cad.GoldenCad.test_fresh_build_reproduces_snapshot_cad) ... ok
+test_snapshot_is_internally_consistent (tests.test_golden_cad.GoldenCad.test_snapshot_is_internally_consistent) ... ok
+test_complete_project_passes (tests.test_hashes.MissingIntegrityFiles.test_complete_project_passes) ... ok
+test_empty_sums_file_fails (tests.test_hashes.MissingIntegrityFiles.test_empty_sums_file_fails) ... ok
+test_manifest_without_header_fails (tests.test_hashes.MissingIntegrityFiles.test_manifest_without_header_fails) ... ok
+test_missing_manifest_fails (tests.test_hashes.MissingIntegrityFiles.test_missing_manifest_fails) ... ok
+test_no_audit_snapshot_fails (tests.test_hashes.MissingIntegrityFiles.test_no_audit_snapshot_fails) ... ok
+test_sums_file_passed_directly_but_absent_fails (tests.test_hashes.MissingIntegrityFiles.test_sums_file_passed_directly_but_absent_fails) ... ok
+test_repository_hashes_are_intact (tests.test_hashes.ProjectVerification.test_repository_hashes_are_intact) ... ok
+test_corrupt_line_is_malformed (tests.test_hashes.SnapshotVerification.test_corrupt_line_is_malformed) ... ok
+test_failures_lists_only_problems (tests.test_hashes.SnapshotVerification.test_failures_lists_only_problems) ... ok
+test_intact_snapshot_is_ok (tests.test_hashes.SnapshotVerification.test_intact_snapshot_is_ok) ... ok
+test_missing_file_is_missing (tests.test_hashes.SnapshotVerification.test_missing_file_is_missing) ... ok
+test_modified_file_is_mismatch (tests.test_hashes.SnapshotVerification.test_modified_file_is_mismatch) ... ok
+test_path_escape_is_rejected (tests.test_hashes.SnapshotVerification.test_path_escape_is_rejected) ... ok
+test_gap_touch_and_overlap (tests.test_interfaces.Primitives.test_gap_touch_and_overlap) ... ok
+test_detects_interference (tests.test_interfaces.Rules.test_detects_interference) ... ok
+test_floating_part_fails_ground_contact (tests.test_interfaces.Rules.test_floating_part_fails_ground_contact) ... ok
+test_missing_geometry_is_reported_not_skipped (tests.test_interfaces.Rules.test_missing_geometry_is_reported_not_skipped) ... ok
+test_touching_is_not_clearance (tests.test_interfaces.Rules.test_touching_is_not_clearance) ... ok
+test_tire_clearances_match_analytic_values (tests.test_interfaces.VehicleCad.test_tire_clearances_match_analytic_values) ... ok
+test_unloaded_tires_touch_ground (tests.test_interfaces.VehicleCad.test_unloaded_tires_touch_ground) ... ok
+test_data_dictionary_is_up_to_date (tests.test_inventory.Inventory.test_data_dictionary_is_up_to_date) ... ok
+test_detects_dependency_cycle (tests.test_inventory.Inventory.test_detects_dependency_cycle) ... ok
+test_detects_duplicate_id (tests.test_inventory.Inventory.test_detects_duplicate_id) ... ok
+test_detects_unknown_dependency (tests.test_inventory.Inventory.test_detects_unknown_dependency) ... ok
+test_detects_unsupported_confirmation (tests.test_inventory.Inventory.test_detects_unsupported_confirmation) ... ok
+test_every_assembly_has_a_builder_module (tests.test_inventory.Inventory.test_every_assembly_has_a_builder_module) ... ok
+test_exactly_the_17_master_assemblies (tests.test_inventory.Inventory.test_exactly_the_17_master_assemblies) ... ok
+test_geometry_claims_within_evidence (tests.test_inventory.Inventory.test_geometry_claims_within_evidence) ... ok
+test_inventory_is_valid (tests.test_inventory.Inventory.test_inventory_is_valid) ... ok
+test_markdown_is_up_to_date (tests.test_inventory.Inventory.test_markdown_is_up_to_date) ... ok
+test_measurement_guide_is_up_to_date (tests.test_inventory.Inventory.test_measurement_guide_is_up_to_date) ... ok
+test_measurement_guide_summary_matches_spec_counts (tests.test_inventory.Inventory.test_measurement_guide_summary_matches_spec_counts) ... ok
+test_generic_json_named_lists (tests.test_legacy.LegacyAnalyser.test_generic_json_named_lists) ... ok
+test_threejs_objects_classified (tests.test_legacy.LegacyAnalyser.test_threejs_objects_classified) ... ok
+test_measurement_becomes_verified_and_drives_geometry (tests.test_measurements.MeasurementIntake.test_measurement_becomes_verified_and_drives_geometry) ... ok
+test_placeholder_cannot_bypass_spec_key (tests.test_measurements.MeasurementIntake.test_placeholder_cannot_bypass_spec_key) ... ok
+test_rejects_unknown_code_and_zero_tolerance (tests.test_measurements.MeasurementIntake.test_rejects_unknown_code_and_zero_tolerance) ... ok
+test_recovers_known_points_despite_roll (tests.test_photo_scale.PhotoScale.test_recovers_known_points_despite_roll) ... ok
+test_rejects_non_side_quantities (tests.test_photo_scale.PhotoScale.test_rejects_non_side_quantities) ... ok
+test_cad_resolver_refuses_placeholders (tests.test_pipeline.EngineeringCad.test_cad_resolver_refuses_placeholders) ... ok
+test_step_volume_and_position_match_the_designation (tests.test_pipeline.EngineeringCad.test_step_volume_and_position_match_the_designation) ... ok
+test_tire_envelopes_are_draft_without_placeholders (tests.test_pipeline.EngineeringCad.test_tire_envelopes_are_draft_without_placeholders) ... ok
+test_every_export_reopens_cleanly (tests.test_pipeline.Pipeline.test_every_export_reopens_cleanly) ... ok
+test_gltf_front_is_plus_z_and_up_is_plus_y (tests.test_pipeline.Pipeline.test_gltf_front_is_plus_z_and_up_is_plus_y) ... ok
+test_inventory_records_built_geometry (tests.test_pipeline.Pipeline.test_inventory_records_built_geometry) ... ok
+test_no_build_errors_and_manifest_written (tests.test_pipeline.Pipeline.test_no_build_errors_and_manifest_written) ... ok
+test_no_part_better_than_its_evidence (tests.test_pipeline.Pipeline.test_no_part_better_than_its_evidence) ... ok
+test_overall_dimensions_match_spec (tests.test_pipeline.Pipeline.test_overall_dimensions_match_spec) ... ok
+test_manifest_lists_only_this_runs_outputs (tests.test_pipeline.Reproducibility.test_manifest_lists_only_this_runs_outputs) ... ok
+test_two_builds_give_identical_cad_step_and_glb (tests.test_pipeline.Reproducibility.test_two_builds_give_identical_cad_step_and_glb) ... ok
+test_estimated_only_gives_draft_never_validated (tests.test_pipeline.ResolverRules.test_estimated_only_gives_draft_never_validated) ... ok
+test_placeholder_marks_provenance (tests.test_pipeline.ResolverRules.test_placeholder_marks_provenance) ... ok
+test_spec_value_beats_placeholder (tests.test_pipeline.ResolverRules.test_spec_value_beats_placeholder) ... ok
+test_unknown_without_placeholder_raises (tests.test_pipeline.ResolverRules.test_unknown_without_placeholder_raises) ... ok
+test_cad_rear_wheels_use_their_own_side (tests.test_pipeline.WheelbaseAsymmetry.test_cad_rear_wheels_use_their_own_side) ... ok
+test_visual_rear_wheels_use_their_own_side (tests.test_pipeline.WheelbaseAsymmetry.test_visual_rear_wheels_use_their_own_side) ... ok
+test_detects_plate_and_email (tests.test_privacy.Privacy.test_detects_plate_and_email) ... ok
+test_detects_vin_and_credentials_without_echoing_them (tests.test_privacy.Privacy.test_detects_vin_and_credentials_without_echoing_them) ... ok
+test_hashes_and_ids_are_not_flagged (tests.test_privacy.Privacy.test_hashes_and_ids_are_not_flagged) ... ok
+test_no_false_positive_on_engineering_text (tests.test_privacy.Privacy.test_no_false_positive_on_engineering_text) ... ok
+test_policy_blocks_media_while_public (tests.test_privacy.Privacy.test_policy_blocks_media_while_public) ... ok
+test_repository_is_clean (tests.test_privacy.Privacy.test_repository_is_clean) ... ok
+test_copy_is_byte_identical_read_only_and_recorded (tests.test_refs.IngestTool.test_copy_is_byte_identical_read_only_and_recorded) ... ok
+test_duplicate_is_not_stored_twice_and_restore_works (tests.test_refs.IngestTool.test_duplicate_is_not_stored_twice_and_restore_works) ... ok
+test_never_overwrites (tests.test_refs.IngestTool.test_never_overwrites) ... ok
+test_manifest_rows_match_files (tests.test_refs.ManifestIntegrity.test_manifest_rows_match_files) ... ok
+test_range_and_list_parsing (tests.test_spec.ReceivedEvidenceRefs.test_range_and_list_parsing) ... ok
+test_received_with_known_refs_passes (tests.test_spec.ReceivedEvidenceRefs.test_received_with_known_refs_passes) ... ok
+test_received_with_unknown_ref_fails (tests.test_spec.ReceivedEvidenceRefs.test_received_with_unknown_ref_fails) ... ok
+test_received_without_manifest_ref_fails (tests.test_spec.ReceivedEvidenceRefs.test_received_without_manifest_ref_fails) ... ok
+test_repository_register_matches_manifest (tests.test_spec.ReceivedEvidenceRefs.test_repository_register_matches_manifest) ... ok
+test_accepts_properly_sourced_estimate (tests.test_spec.SpecIntegrity.test_accepts_properly_sourced_estimate) ... ok
+test_evidence_register_is_valid (tests.test_spec.SpecIntegrity.test_evidence_register_is_valid) ... ok
+test_master_spec_is_valid (tests.test_spec.SpecIntegrity.test_master_spec_is_valid) ... ok
+test_no_verified_values_without_received_evidence (tests.test_spec.SpecIntegrity.test_no_verified_values_without_received_evidence) ... ok
+test_rejects_estimate_without_tolerance (tests.test_spec.SpecIntegrity.test_rejects_estimate_without_tolerance) ... ok
+test_rejects_missing_field (tests.test_spec.SpecIntegrity.test_rejects_missing_field) ... ok
+test_rejects_unknown_with_a_number (tests.test_spec.SpecIntegrity.test_rejects_unknown_with_a_number) ... ok
+test_rejects_unregistered_evidence (tests.test_spec.SpecIntegrity.test_rejects_unregistered_evidence) ... ok
+test_rejects_verified_from_owner_statement_only (tests.test_spec.SpecIntegrity.test_rejects_verified_from_owner_statement_only) ... ok
+test_units_and_coordinate_system_declared (tests.test_spec.SpecIntegrity.test_units_and_coordinate_system_declared) ... ok
+test_accepted_requires_finished_at (tests.test_tasks.TaskRegistry.test_accepted_requires_finished_at) ... ok
+test_blocked_requires_named_blocker (tests.test_tasks.TaskRegistry.test_blocked_requires_named_blocker) ... ok
+test_dependency_cycle_detected (tests.test_tasks.TaskRegistry.test_dependency_cycle_detected) ... ok
+test_every_recorded_commit_resolves_to_exactly_one_commit (tests.test_tasks.TaskRegistry.test_every_recorded_commit_resolves_to_exactly_one_commit) ... ok
+test_independent_review_is_accepted (tests.test_tasks.TaskRegistry.test_independent_review_is_accepted) ... ok
+test_invalid_sha_forms_are_rejected (tests.test_tasks.TaskRegistry.test_invalid_sha_forms_are_rejected) ... ok
+test_json_export_maps_statuses (tests.test_tasks.TaskRegistry.test_json_export_maps_statuses) ... ok
+test_later_changes_request_blocks_acceptance (tests.test_tasks.TaskRegistry.test_later_changes_request_blocks_acceptance) ... ok
+test_placeholder_commit_text_is_rejected (tests.test_tasks.TaskRegistry.test_placeholder_commit_text_is_rejected) ... ok
+test_registry_valid_and_board_in_sync (tests.test_tasks.TaskRegistry.test_registry_valid_and_board_in_sync) ... ok
+test_review_of_other_commit_is_rejected (tests.test_tasks.TaskRegistry.test_review_of_other_commit_is_rejected) ... ok
+test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval_is_rejected) ... ok
+test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
+
+----------------------------------------------------------------------
+Ran 147 tests in 206.448s
+
+OK
+## result: validate=0 unittest=0

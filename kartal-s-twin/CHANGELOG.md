@@ -2,6 +2,19 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.12.0] - 2026-11-03 - Complete-vehicle PLACEHOLDER package (T-023)
+
+### Added
+- Visual geometry for all 17 assemblies (0 skipped): engine, transmission, drivetrain, chassis (floor pan with spare-wheel well, rails, crossmembers), MacPherson front suspension, rigid-axle rear suspension, steering, brakes, exhaust, electrical architecture (schematic looms, battery, fuses, relays, ignition, grounds), interior (dashboard, cluster, sport wheel, column, pedals, gear lever, handbrake, console, seats, door cards, headliner, carpets, trim), petrol system and LPG kit parts; roof rails, rear wiper, tailgate handle, mouldings, side repeaters, plate and interior lamps; separate visual rims with valve stems and the loose spare wheel. 159 visual parts (all PLACEHOLDER) + 9 CAD parts (DRAFT).
+- 31 package assumptions `pkg_*` and `roof_rail_height` in `specs/placeholder_assumptions.yaml` (visual only, each with a rationale).
+- `src/kartal_twin/cad/mech.py` primitives; `tests/test_full_vehicle.py` (completeness, PLACEHOLDER-only mechanical package, cabin parts inside the body); mechanical and interior preview sheets in `tools/render_preview.py`.
+- D-027; audit snapshot `audit/2026-11-02-r4`.
+
+### Fixed
+- CAD STEP bytes depended on the number of visual solids (OpenCascade occurrence counter shared across exports); CAD is now exported first. Geometry identical to r3 (only the occurrence id lines differ).
+- Viewer test hook `screenPoint` used stale camera matrices after a slow frame; it now refreshes them (smoke test passed 4/4 runs after the fix, failed 1 of 2 before).
+- Cabin parts spilled into the rear wheel-arch cut-outs (found by measuring volume outside the body envelope); now kept inside the arch line.
+
 ## [0.11.0] - 2026-11-02 - Owner photo evidence: LPG tank, interior, underbody, engine bay, tire size (T-022)
 
 ### Added

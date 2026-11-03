@@ -1,4 +1,4 @@
-# Test run 2026-11-02T17:59:36Z on commit base e3fe56e
+# Test run 2026-11-03T02:41:01Z on commit base d995028
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -58,6 +58,10 @@ test_relative_difference_exact_limit_is_not_pass (tests.test_consistency.Consist
 test_relative_difference_tolerance_band (tests.test_consistency.Consistency.test_relative_difference_tolerance_band) ... ok
 test_sum_at_most_boundaries (tests.test_consistency.Consistency.test_sum_at_most_boundaries) ... ok
 test_unknown_inputs_are_not_evaluated (tests.test_consistency.Consistency.test_unknown_inputs_are_not_evaluated) ... ok
+test_cabin_and_engine_bay_parts_inside_the_body (tests.test_full_vehicle.FullVehicle.test_cabin_and_engine_bay_parts_inside_the_body) ... ok
+test_every_component_has_visual_geometry_or_a_reason (tests.test_full_vehicle.FullVehicle.test_every_component_has_visual_geometry_or_a_reason) ... ok
+test_mechanical_package_is_placeholder_only (tests.test_full_vehicle.FullVehicle.test_mechanical_package_is_placeholder_only) ... ok
+test_no_assembly_skipped (tests.test_full_vehicle.FullVehicle.test_no_assembly_skipped) ... ok
 test_fresh_build_reproduces_snapshot_cad (tests.test_golden_cad.GoldenCad.test_fresh_build_reproduces_snapshot_cad) ... ok
 test_snapshot_is_internally_consistent (tests.test_golden_cad.GoldenCad.test_snapshot_is_internally_consistent) ... ok
 test_complete_project_passes (tests.test_hashes.MissingIntegrityFiles.test_complete_project_passes) ... ok
@@ -156,7 +160,7 @@ test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval
 test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
 
 ----------------------------------------------------------------------
-Ran 143 tests in 96.076s
+Ran 147 tests in 210.088s
 
 OK
 ## result: validate=0 unittest=0

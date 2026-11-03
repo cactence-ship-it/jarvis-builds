@@ -34,4 +34,16 @@ def build(ctx):
         y0, y1 = sorted((side * ya, side * yb))
         ctx.add(cid, ASSEMBLY, [(box(x0, x1, y0, y1, za, zb), col)], r,
                 "Position/shape not from evidence")
+    g = layout.greenhouse(base)
+    rb = base.get("body_profile.rear_bottom_z")
+    extra = [("LGT-005", [(box(320, 380, -hw - 4, -hw + 1, nt - 140, nt - 110), AMBER)], "Side repeater (position guessed)"),
+             ("LGT-006", [(box(320, 380, hw - 1, hw + 4, nt - 140, nt - 110), AMBER)], "Side repeater (position guessed)"),
+             ("LGT-009", [(box(p.x_tail + 2, p.x_tail + 14, -60, 60, rb + 95, rb + 115), WHITE)], "Licence-plate lamp in the handle bar (guessed)"),
+             ("LGT-010", [(box(g.x_roof_front + 40, g.x_roof_front + 240, -110, 110, g.z_roof - 90, g.z_roof - 50), (0.15, 0.15, 0.16, 1.0)),
+                          (box(g.x_roof_front + 80, g.x_roof_front + 200, -80, 80, g.z_roof - 94, g.z_roof - 90), WHITE)],
+              "Overhead console with lamp (photos E-024)")]
+    for cid, bodies, note in extra:
+        r = ctx.resolver()
+        r.absorb(base)
+        ctx.add(cid, ASSEMBLY, bodies, r, note)
     return ctx.parts

@@ -560,6 +560,36 @@
       ],
       "last_result_commit": "e3fe56ed94f0bb3fe8ed18768204cc950437b387",
       "last_review": null
+    },
+    {
+      "task_id": "T-023",
+      "title": "Complete-vehicle PLACEHOLDER package: every assembly modelled and assembled",
+      "description": "Owner master directive 2026-11-03: build the whole vehicle as an inspectable assembly. Visual PLACEHOLDER geometry for all remaining assemblies from labelled package assumptions; arrangement from photos only; unknown types as neutral envelopes; no measurement fabricated or presented as verified.",
+      "priority": "P1",
+      "depends_on": [
+        "T-022"
+      ],
+      "acceptance_criteria": [
+        "All 17 assemblies build; every component has visual geometry or a stated reason",
+        "Mechanical package is PLACEHOLDER only; unknown types drawn as neutral envelopes with notes",
+        "Exports re-open (STEP/STL/GLB), meshes closed, cabin parts inside the body, viewer smoke passes",
+        "CAD STEP bytes independent of the visual model; geometry unchanged vs r3"
+      ],
+      "owner_agent": "claude",
+      "status": "IN_PROGRESS",
+      "registry_status": "in_progress",
+      "test_result": null,
+      "error": null,
+      "started_at": "2026-11-03T00:00:00Z",
+      "finished_at": null,
+      "evidence": [
+        "specs/placeholder_assumptions.yaml",
+        "src/kartal_twin/assemblies",
+        "tests/test_full_vehicle.py",
+        "audit/2026-11-02-r4/SHA256SUMS"
+      ],
+      "last_result_commit": null,
+      "last_review": null
     }
   ]
 }

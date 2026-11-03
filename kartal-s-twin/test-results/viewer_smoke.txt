@@ -1,6 +1,6 @@
-ok: viewer has 36 parts, manifest has 36
-assemblies: Kaporta 7 | Dış trim 10 | Camlar 8 | Aydınlatma 6 | Yakıt 1 | Tekerlekler 4
-ok: assembly toggle counts sum to 36
+ok: viewer has 150 parts, manifest has 150
+assemblies: Kaporta 7 | Dış trim 15 | Camlar 8 | Aydınlatma 10 | İç mekan 21 | Motor 11 | Şanzıman 3 | Aktarma 3 | Şasi 4 | Ön süsp. 11 | Arka süsp. 9 | Direksiyon 5 | Fren 8 | Yakıt 13 | Egzoz 4 | Elektrik 9 | Tekerlekler 9
+ok: assembly toggle counts sum to 150
 ok: BDY-003 has a visible point in the iso view
 ok: iso view: tap on BDY-003 selects BDY-003 (got BDY-003)
 ok: iso view: info panel shows BDY-003 and its status

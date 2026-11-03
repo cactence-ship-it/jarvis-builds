@@ -82,13 +82,14 @@ class Pipeline(unittest.TestCase):
         r = Resolver()
         lo, hi = (np.array(v) for v in self.r["checks"]["stl"]["bbox_mm"])
         self.assertAlmostEqual(hi[0] - lo[0], r.get("dimensions.overall_length"), delta=0.5)
-        self.assertAlmostEqual(hi[2], r.get("dimensions.overall_height"), delta=0.5)
+        # Tallest point: the roof rails (EXT-012/013) define the height over rails (spec slot, PLACEHOLDER).
+        self.assertAlmostEqual(hi[2], r.get("dimensions.overall_height_roof_rails"), delta=0.5)
         self.assertAlmostEqual(lo[0], -r.get("dimensions.front_overhang"), delta=0.5)
 
     def test_gltf_front_is_plus_z_and_up_is_plus_y(self):
         js, tris, _ = xc.read_glb(self.out / "vehicle.glb")
         lo, hi = tris.reshape(-1, 3).min(0), tris.reshape(-1, 3).max(0)
-        self.assertAlmostEqual(hi[1], Resolver().get("dimensions.overall_height") / 1000, delta=1e-3)
+        self.assertAlmostEqual(hi[1], Resolver().get("dimensions.overall_height_roof_rails") / 1000, delta=1e-3)
         self.assertGreater(hi[2], 0.5)          # front overhang ahead of the front axle (+Z)
         self.assertLess(lo[2], -3.0)            # rear of the car towards -Z
         names = [n.get("name") for n in js["nodes"]]

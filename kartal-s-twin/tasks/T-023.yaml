@@ -1,0 +1,35 @@
+id: T-023
+title: 'Complete-vehicle PLACEHOLDER package: every assembly modelled and assembled'
+description: 'Owner master directive 2026-11-03: build the whole vehicle as an inspectable assembly. Visual PLACEHOLDER geometry
+  for all remaining assemblies from labelled package assumptions; arrangement from photos only; unknown types as neutral envelopes;
+  no measurement fabricated or presented as verified.'
+priority: P1
+phase: '5'
+owner: claude
+status: in_progress
+depends_on:
+- T-022
+blocker: null
+started_at: '2026-11-03T00:00:00Z'
+finished_at: null
+error: null
+evidence:
+- specs/placeholder_assumptions.yaml
+- src/kartal_twin/assemblies
+- tests/test_full_vehicle.py
+- audit/2026-11-02-r4/SHA256SUMS
+acceptance:
+- id: T-023-A1
+  criterion: All 17 assemblies build; every component has visual geometry or a stated reason
+  check: tests/test_full_vehicle.py
+- id: T-023-A2
+  criterion: Mechanical package is PLACEHOLDER only; unknown types drawn as neutral envelopes with notes
+  check: test_mechanical_package_is_placeholder_only; manifest notes
+- id: T-023-A3
+  criterion: Exports re-open (STEP/STL/GLB), meshes closed, cabin parts inside the body, viewer smoke passes
+  check: twin.py build, test_full_vehicle, tools/viewer_smoke
+- id: T-023-A4
+  criterion: CAD STEP bytes independent of the visual model; geometry unchanged vs r3
+  check: test_golden_cad against audit/2026-11-02-r4; diff of non-occurrence lines = 0
+results: []
+reviews: []

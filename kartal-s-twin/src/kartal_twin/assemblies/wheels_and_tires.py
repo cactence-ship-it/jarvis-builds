@@ -40,7 +40,24 @@ def build(ctx):
         # Cylinder axis is Z; turn it to the lateral Y axis, outer (recessed) face outward.
         rot = bd.Rot(-90, 0, 0) if y > 0 else bd.Rot(90, 0, 0)
         place = bd.Pos(x, y, z) * rot
-        ctx.add(cid, ASSEMBLY, [(place * tyre, RUBBER), (place * rim, BLACK_STEEL)], r)
+        ctx.add(cid, ASSEMBLY, [(place * tyre, RUBBER)], r, "Tire (smooth envelope: tread pattern not modelled)")
+        rr = ctx.resolver()
+        rr.absorb(base)
+        m = layout.rim(rr)
+        s = 1 if y > 0 else -1
+        valve = bd.Pos(x, y + s * 20, z + m.bead_seat_radius - 25) * bd.Rot(90, 0, 0) * bd.Cylinder(5, 40)
+        ctx.add(RIM_IDS[key], ASSEMBLY, [(bd.Pos(x, y, z) * bd.Rot(90, 0, 0) * rim_solid(m), BLACK_STEEL), (valve, (0.1, 0.1, 0.1, 1.0))], rr,
+                "Pressed-steel rim (simplified section) with valve stem (valve angle guessed)")
+    r = ctx.resolver()
+    r.absorb(base)
+    t = layout.tire(r, "rear")
+    m = layout.rim(r)
+    sx, sy = r.get("pkg_spare_wheel")
+    zc = r.get("pkg_cargo_floor_z") + t.outer_diameter / 2
+    tyre, _ = wheel(t)
+    ctx.add("WHL-005", ASSEMBLY, [(bd.Pos(sx, sy, zc) * bd.Rot(90, 0, 0) * tyre, RUBBER),
+                                  (bd.Pos(sx, sy, zc) * bd.Rot(90, 0, 0) * rim_solid(m), BLACK_STEEL)], r,
+            "Spare wheel standing loose in the luggage compartment (photos E-022); position guessed")
     return ctx.parts
 
 

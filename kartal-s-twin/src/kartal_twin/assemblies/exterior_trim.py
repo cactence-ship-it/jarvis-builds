@@ -43,4 +43,27 @@ def build(ctx):
     blades = [(box(xw - 12, xw, ya, yb, g.z_belt, g.z_belt + 14), BLACK)
               for ya, yb in ((-hw + 160, -60), (40, hw - 260))]
     ctx.add("EXT-015", ASSEMBLY, blades, r, "Wiper layout not from evidence")
+    from ..cad.mech import cyl, pipe
+    sill, rb = base.get("body_profile.sill_z"), base.get("body_profile.rear_bottom_z")
+    add("EXT-010", box(p.x_tail, p.x_tail + 12, -110, 110, rb + 120, rb + 150), BLACK, "Tailgate handle bar above the plate (photos E-026); size guessed")
+    r = ctx.resolver()
+    r.absorb(base)
+    strips = []
+    for s in (-1, 1):
+        y0, y1 = sorted((s * hw, s * (hw + 8)))
+        strips.append((box(p.x_nose + 250, p.x_tail - 250, y0, y1, sill + 40, sill + 90), BLACK))
+    ctx.add("EXT-011", ASSEMBLY, strips, r, "Lower side mouldings (photos E-026); height guessed")
+    for cid, s in (("EXT-012", -1), ("EXT-013", 1)):
+        r = ctx.resolver()
+        r.absorb(base)
+        y = s * (g.half_roof - 60)
+        z = g.z_roof
+        zt = r.get("dimensions.overall_height_roof_rails") - 14          # tube centre; tube top = height over rails
+        feet = [(g.x_roof_front + 80, y, z), (g.x_roof_front + 80, y, zt), (g.x_roof_rear - 80, y, zt), (g.x_roof_rear - 80, y, z)]
+        ctx.add(cid, ASSEMBLY, pipe(feet, 14, (0.10, 0.52, 0.50, 1.0)), r, "Body-colour roof rail (photos E-026); shape guessed")
+    r = ctx.resolver()
+    r.absorb(base)
+    pv = (p.x_tail + 10, 0, g.z_belt + 40)
+    ctx.add("EXT-016", ASSEMBLY, [(cyl(pv, (p.x_tail + 30, 260, g.z_belt + 300), 9), BLACK), (box(p.x_tail, p.x_tail + 20, -20, 20, g.z_belt + 20, g.z_belt + 60), BLACK)],
+            r, "Rear wiper on the tailgate glass (photos E-026)")
     return ctx.parts
