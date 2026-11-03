@@ -9,6 +9,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the mas
 - `tools/render_studio.sh` + `tools/viewer_smoke/studio.js`: studio renders to build/renders/*.png (cinema, front, rear, left, iso, mechanical).
 - Visual detail: wrap-around black bumpers, wheel nuts and vent marks on the visual rims (CAD rims unchanged).
 
+- Smooth body envelope: lower body lofted (ruled) through 8 rounded sections - rounded nose, hood edge, shoulders and ends; a smooth B-spline loft was rejected because it sagged ~40 mm over the hood and split the hood panel in two; rounded cabin plan corners were rejected because their mesh seams did not close. All meshes closed, STEP 385/385.
+
 ### Changed
 - Placeholders from photo proportions (E-026, no scale): nose_top_z 760 -> 840 (flatter hood), bumper height 130 -> 180, bumper bottom 300 -> 280. CAD output unchanged (byte-identical to audit r4).
 
