@@ -42,8 +42,8 @@ Koordinat: X = ön jant merkezinden **geriye** doğru yatay mesafe, Z = **yerden
 | M21 | Bumper face beyond the body face (front and rear) (`body_profile.bumper_protrusion`) | Tamponun kaportadan ne kadar dışarı çıktığı. | PLACEHOLDER 60 mm |
 | M22 | Body-side (sill) lower edge above ground (`body_profile.sill_z`) | Kapı altı marşpiyelin alt kenarının yerden yüksekliği. | PLACEHOLDER 200 mm |
 | M23 | Side-window sill (beltline) above ground (`body_profile.belt_z`) | Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği. | PLACEHOLDER 960 mm |
-| M24 | Windshield base, X behind the front wheel centre (`body_profile.cowl_x`) | Ön jant merkezinden ön camın alt kenarına yatay mesafe. | PLACEHOLDER 1060 mm |
-| M25 | Windshield top edge, X behind the front wheel centre (`body_profile.windshield_top_x`) | Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle). | PLACEHOLDER 1660 mm |
+| M24 | Windshield base, X behind the front wheel centre (`body_profile.cowl_x`) | Ön jant merkezinden ön camın alt kenarına yatay mesafe. | PLACEHOLDER 850 mm |
+| M25 | Windshield top edge, X behind the front wheel centre (`body_profile.windshield_top_x`) | Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle). | PLACEHOLDER 1450 mm |
 | M26 | B-pillar centre, X behind the front wheel centre (`body_profile.b_pillar_x`) | Ön jant merkezinden orta direğin (ön/arka kapı arası) ortasına. | PLACEHOLDER 1760 mm |
 | M27 | Rear-door rear edge, X behind the front wheel centre (`body_profile.c_pillar_x`) | Ön jant merkezinden arka kapının arka kenarına. | PLACEHOLDER 2600 mm |
 | M28 | Roof end ahead of the rear body face (`body_profile.roof_rear_inset`) | Tavanın arka bitişi ile arka gövde yüzeyi arasındaki yatay fark. | PLACEHOLDER 120 mm |

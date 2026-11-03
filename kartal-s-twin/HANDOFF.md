@@ -8,16 +8,28 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #48** - 2026-11-03 03:50 UTC
-- **Commit:** bu kaydı içeren commit = `f322be1` commit'inin hemen ardından gelen commit
+- **Checkpoint #49** - 2026-11-03 06:38 UTC
+- **Commit:** bu kaydı içeren commit = `0ea2466` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** docs(kartal-s-twin): handoff prompt for ChatGPT - photoreal studio twin (Blender subdivision body, PBR, Cycles, verification loop)
-- **Testler:** PASS - Ran 147 tests in 267.322s; ## result: validate=0 unittest=0
+- **Başlık:** feat(kartal-s-twin): realistic rotatable studio model via Blender (D-028), placeholder cowl from photos
+- **Testler:** PASS - Ran 147 tests in 313.013s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    A	kartal-s-twin/agents/PROMPT_GPT_REALISTIC_TWIN.md
+    M	kartal-s-twin/CHANGELOG.md
+    M	kartal-s-twin/ENGINEERING_DECISIONS.md
+    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/PROJECT_STATUS.md
+    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
+    M	kartal-s-twin/specs/placeholder_assumptions.yaml
     M	kartal-s-twin/test-results/latest.txt
+    A	kartal-s-twin/tools/blender/README.md
+    A	kartal-s-twin/tools/blender/export_params.py
+    A	kartal-s-twin/tools/blender/kartal_body.py
+    A	kartal-s-twin/tools/blender/package_studio.py
+    A	kartal-s-twin/tools/blender/smoke_studio.sh
+    A	kartal-s-twin/tools/viewer_smoke/studio_glb.js
+    A	kartal-s-twin/viewer/studio.html
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -65,6 +77,7 @@
 - Görüntüleyici: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (yeniden yayın: `python tools/package_viewer.py` + aynı dosya yolu ile yayınla).
 
 ## Sıradaki görevler (öncelik sırasıyla)
+00. **Gerçekçi stüdyo modeli (D-028, sahip önceliği):** tools/blender/README.md. Yayın: https://claude.ai/artifact/9D8o5byLmjc6xJ6ba2BzVR. Sonraki iyileştirmeler: ön cam yansımaları, koltuk rengi, kapı çizgileri, plaka boş kalır. bpy ayrı venv'de (CI dışında).
 0a. **Konfigürasyon dalı:** `ccr-b5d82c24-config-lpg-wheels` (PR #1 dalının üstüne, ayrı taslak PR). T-021 ChatGPT incelemesi bekliyor. Sahipten: tank etiketi (kapasite/ölçü, U-013), lastik yanağı (U-012), jant damgası (U-015), M32-M38 (tank konumu, U-014).
 0. **ChatGPT 3. paket sonuçlandı:** T-011/T-012/T-013/T-019 ACCEPT (bf31d4d). T-018 ve T-020 2. tur düzeltmeleri yapıldı, agents/REVIEW_REQUEST_BATCH_4.md ile yeniden incelemede. Hiçbir görev kendi kendine ACCEPT edilmez.
    **Görev kuyruğu artık TASKS.md** (tasks/*.yaml). Sıradaki engelsiz görev oradan alınır.

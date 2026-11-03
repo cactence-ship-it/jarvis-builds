@@ -2,6 +2,22 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.13.0] - 2026-11-03 - Realistic rotatable studio model (owner priority)
+
+### Added
+- D-028: realistic visual body in Blender (`tools/blender/`): smooth body, glass and pillars, S-series front (grille, lamps, indicators), bumpers, roof rails, tail lamps, revolved tires and black steel rims, simple interior. Cycles studio preview and GLB (125 meshes, about 1.3 MB).
+- `viewer/studio.html`: phone studio page (dark studio, reflections, floor shadow, auto-rotate, Front/Side/Rear buttons); packaged with the GLB embedded by `tools/blender/package_studio.py`; `tools/blender/smoke_studio.sh` checks it in headless Chromium at phone size. Published: https://claude.ai/artifact/9D8o5byLmjc6xJ6ba2BzVR
+- Read-only test hook `window.__kartalStudio` (`state()`, `pick(x, y)`) for camera and part checks.
+
+### Fixed (found by the headless check before publishing)
+- Hidden loading overlay still covered the page and swallowed touches (CSS `display` overrode `hidden`).
+- Canvas drawn at device-pixel size without CSS size: on phones only the top-left corner was visible.
+- Portrait framing: camera distance now fits the car length to the horizontal field of view.
+- B and C pillars were slanted 45 degrees (positioned by row fraction); now at fixed x.
+
+### Changed
+- Placeholders from photo proportions (E-026, no scale): cowl_x 1060 -> 850, windshield_top_x 1660 -> 1450; package guesses (firewall, dash, steering wheel, front seat, pedals, gear lever, handbrake) moved with the cowl. docs/OLCUM_REHBERI.md regenerated.
+
 ## [0.12.1] - 2026-11-03 - Studio rendering (owner feedback: "realistic, cinematic studio")
 
 ### Added

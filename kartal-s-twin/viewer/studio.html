@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kartal S Stüdyo</title>
+<style>
+  /* single dark studio look, by design: the car sits in a dark photo studio in every theme */
+  :root { --bg: #0d0e10; --ink: #e9ecee; --muted: #9aa3a8; --accent: #2fb3ad; --accent-ink: #062a28;
+          --chip: rgba(255,255,255,.08); --chip-line: rgba(255,255,255,.16); color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+  #stage { position: fixed; inset: 0; }
+  canvas { display: block; width: 100% !important; height: 100% !important; touch-action: none; }
+  header { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px));
+           top: calc(14px + env(safe-area-inset-top, 0px)); pointer-events: none; }
+  h1 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: .2px; }
+  .sub { color: var(--muted); font-size: 12.5px; margin-top: 3px; }
+  #bar { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; gap: 8px; }
+  button { background: var(--chip); color: var(--ink); border: 1px solid var(--chip-line); border-radius: 999px;
+           padding: 10px 14px; font-size: 14px; backdrop-filter: blur(6px); }
+  button.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #msg { position: fixed; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 14px; pointer-events: none; }
+  #msg[hidden] { display: none; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<header><h1>Tofaş Kartal S · 1997</h1><div class="sub">Stüdyo 3D · çevirmek için sürükleyin, yakınlaştırmak için iki parmak · görsel model, ölçüler tahmini</div></header>
+<div id="bar"><button id="spin" class="on">Döndür</button><button id="front">Ön</button><button id="side">Yan</button><button id="rear">Arka</button></div>
+<div id="msg">Model yükleniyor…</div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>
+(function () {
+  const stage = document.getElementById('stage'), msg = document.getElementById('msg');
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.physicallyCorrectLights = true;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  stage.appendChild(renderer.domElement);
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color('#0d0e10'); scene.fog = new THREE.Fog('#0d0e10', 10, 24);
+  scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new THREE.RoomEnvironment(), 0.035).texture;
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.05, 100);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  Object.assign(controls, { enableDamping: true, enablePan: false, minDistance: 3.2, maxDistance: 14,
+                            maxPolarAngle: Math.PI * 0.49, autoRotate: true, autoRotateSpeed: 0.8 });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { controls.autoRotate = false; document.getElementById('spin').classList.remove('on'); }
+  const key = new THREE.DirectionalLight(0xffffff, 3.0); key.position.set(-3, 7, 4);
+  key.castShadow = true; key.shadow.mapSize.set(2048, 2048); key.shadow.radius = 6; key.shadow.bias = -0.0003;
+  Object.assign(key.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4, near: 1, far: 20 });
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0xbfd4ff, 1.6); rim.position.set(5, 3, -6); scene.add(rim);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x101010, 0.35));
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(40, 96),
+    new THREE.MeshStandardMaterial({ color: 0x030304, roughness: 0.32, metalness: 0, envMapIntensity: 0.6 }));
+  floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+
+  let centre = new THREE.Vector3(), dist = 7, halfLen = 2.3, box = null;
+  // Distance at which the car's full length fits the narrower of the two fields of view.
+  function fit() {
+    const vHalf = THREE.MathUtils.degToRad(camera.fov / 2);
+    const hHalf = Math.atan(Math.tan(vHalf) * camera.aspect);
+    dist = halfLen * 1.12 / Math.tan(Math.min(vHalf, hHalf));
+    controls.minDistance = Math.min(3, dist * 0.5); controls.maxDistance = dist * 1.8;
+    scene.fog.near = dist + 4; scene.fog.far = dist + 22;
+  }
+  function resize() {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setSize(w, h); camera.aspect = w / Math.max(h, 1);
+    camera.fov = camera.aspect < 0.8 ? 55 : 32; camera.updateProjectionMatrix();
+    if (box) { const d = camera.position.clone().sub(controls.target); fit(); camera.position.copy(controls.target).add(d.setLength(dist)); }
+  }
+  window.addEventListener('resize', resize); resize();
+
+  function view(dir) {
+    const v = new THREE.Vector3(...dir).normalize().multiplyScalar(dist);
+    camera.position.copy(centre).add(v); controls.target.copy(centre); controls.update();
+  }
+  function onModel(gltf) {
+    const root = gltf.scene; scene.add(root);
+    root.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true;
+      const m = o.material; if (m && m.transparent) { o.castShadow = false; m.depthWrite = false; m.envMapIntensity = 0.45; }
+      if (m && /frame|rubber|plastic/.test(m.name)) { m.envMapIntensity = 0.3; if ('clearcoat' in m) m.clearcoat = 0; } } });
+    box = new THREE.Box3().setFromObject(root);
+    box.getCenter(centre); centre.y = (box.min.y + box.max.y) * 0.42;
+    floor.position.y = box.min.y;
+    const size = box.getSize(new THREE.Vector3()); halfLen = Math.max(size.x, size.z) / 2; fit();
+    view([-0.85, 0.32, 0.75]); msg.hidden = true;
+    window.__kartalStudio = { loaded: true, meshes: (() => { let n = 0; root.traverse(o => { if (o.isMesh) n++; }); return n; })(),
+      state: () => ({ box: [box.min.toArray(), box.max.toArray()], target: controls.target.toArray(),
+                      camera: camera.position.toArray(), aspect: camera.aspect, fov: camera.fov, dist }),
+      pick: (x, y) => { const rc = new THREE.Raycaster(); camera.updateMatrixWorld();
+        rc.setFromCamera(new THREE.Vector2(x / stage.clientWidth * 2 - 1, -(y / stage.clientHeight) * 2 + 1), camera);
+        return rc.intersectObject(root, true).slice(0, 4).map(h => [h.object.name, h.object.material.name, +h.distance.toFixed(3)]); } };
+  }
+  const spin = document.getElementById('spin');
+  spin.onclick = () => { controls.autoRotate = !controls.autoRotate; spin.classList.toggle('on', controls.autoRotate); };
+  const stop = () => { controls.autoRotate = false; spin.classList.remove('on'); };
+  document.getElementById('front').onclick = () => { stop(); view([-1, 0.18, 0]); };
+  document.getElementById('side').onclick = () => { stop(); view([0, 0.15, 1]); };
+  document.getElementById('rear').onclick = () => { stop(); view([1, 0.22, 0.25]); };
+  const fail = e => { msg.textContent = 'Model yüklenemedi: ' + (e && e.message || e); };
+  const data = document.getElementById('glb-data');
+  if (data) {
+    const bin = atob(data.textContent.trim()), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    new THREE.GLTFLoader().parse(buf.buffer, '', onModel, fail);
+  } else new THREE.GLTFLoader().load('kartal_studio.glb', onModel, undefined, fail);
+  (function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Project Status - Tofaş Kartal S (1997) digital twin (VEH-01)
 
-**Updated:** 2026-11-02 · **Spec rev:** 0.8.0 · **Branch:** `ccr-b5d82c24-config-lpg-wheels` (stacked on `ccr-b5d82c24-huyj0b`, PR #1 open)
+**Updated:** 2026-11-03 · **Spec rev:** 0.8.0 · **Branch:** `ccr-b5d82c24-config-lpg-wheels` (stacked on `ccr-b5d82c24-huyj0b`, PR #1 open)
 Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session log: [HANDOFF.md](HANDOFF.md). Rules: [CLAUDE.md](CLAUDE.md).
 
 ## Phase tracker
@@ -19,7 +19,8 @@ Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session
 - Spec: 134 parameters, 25 VERIFIED / 35 ESTIMATED / 74 UNKNOWN. Data classes (D-026): 25 DOCUMENT_CONFIRMED (documents and photos), 4 USER_CONFIRMED, 2 SOURCE_SUPPORTED, 29 ESTIMATED, 74 UNKNOWN - see docs/VERI_SOZLUGU.md. Evidence items: E-001..E-028 (photos E-022..E-028, originals local-only) (E-014..E-016 registration documents, originals local-only; E-017 owner configuration; E-018/E-019 provisional assumptions).
 - Built: 150 visual parts covering 150 of 157 inventory components (all PLACEHOLDER; every assembly built, 7 components excepted with a reason) + 9 engineering CAD (tire envelopes 185/65 R14, steel rims, LPG tank unplaced; DRAFT); mechanical: none. Previews: build/previews/{sheet,mechanical_sheet,interior_sheet}.png.
 - Tests: see test-results/latest.txt (all passing at last checkpoint) (`test-results/latest.txt`). Viewer smoke test: `test-results/viewer_smoke.txt`.
-- Viewer: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk
+- Viewer: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (engineering, part by part)
+- Studio 3D (realistic visual model, D-028, rotatable on the phone): https://claude.ai/artifact/9D8o5byLmjc6xJ6ba2BzVR
 
 ## Owner actions that unblock the most
 1. Send the tape measurements in `docs/OLCUM_REHBERI.md` (`M06 = 2488` format; M06 = left wheelbase).

@@ -25,10 +25,10 @@ assumptions:
   sill_z:              {value: 200, unit: mm, replaces: body_profile.sill_z, rationale: "body-side lower edge above ground"}
   nose_bottom_z:       {value: 300, unit: mm, replaces: body_profile.nose_bottom_z, rationale: "front lower edge"}
   nose_top_z:          {value: 840, unit: mm, replaces: body_profile.nose_top_z, rationale: "top edge of the front face; photos E-026 show a nearly flat hood and a tall front face (was 760, too wedge-shaped); no scale"}
-  cowl_x:              {value: 1060, unit: mm, replaces: body_profile.cowl_x, rationale: "windshield base behind the front axle"}
+  cowl_x:              {value: 850, unit: mm, replaces: body_profile.cowl_x, rationale: "windshield base behind the front axle; side photos E-026 put the A-pillar base near the front of the front door (was 1060, which gave a 1.8 m hood); no scale"}
   belt_z:              {value: 960, unit: mm, replaces: body_profile.belt_z, rationale: "side-window sill (beltline) height"}
   rear_bottom_z:       {value: 420, unit: mm, replaces: body_profile.rear_bottom_z, rationale: "lower edge of the rear face"}
-  windshield_top_x:    {value: 1660, unit: mm, replaces: body_profile.windshield_top_x, rationale: "gives a ~55 deg windshield rake typical of the period"}
+  windshield_top_x:    {value: 1450, unit: mm, replaces: body_profile.windshield_top_x, rationale: "windshield top; keeps the period rake with the new cowl_x (photos E-026); no scale"}
   roof_rear_inset:     {value: 120, unit: mm, replaces: body_profile.roof_rear_inset, rationale: "roof ends this far ahead of the rear body face (near-vertical tailgate)"}
   tail_rear_inset:     {value: 25,  unit: mm, rationale: "greenhouse rear face inset at belt height"}
   greenhouse_inset_belt: {value: 45, unit: mm, rationale: "side glass inset from the body side at the beltline"}
@@ -57,7 +57,7 @@ assumptions:
   pkg_block_half_w:   {value: 150,  unit: mm, rationale: "half width of the block; guess"}
   pkg_gearbox_len:    {value: 660,  unit: mm, rationale: "bellhousing + 5-speed-size case length (gear count UNKNOWN); guess"}
   pkg_radiator_x:     {value: -640, unit: mm, rationale: "radiator behind the grille (photos E-027); guess"}
-  pkg_firewall_x:     {value: 1000, unit: mm, rationale: "rear wall of the engine bay just ahead of the cowl (body_profile.cowl_x 1060); guess"}
+  pkg_firewall_x:     {value: 790, unit: mm, rationale: "rear wall of the engine bay just ahead of the cowl (body_profile.cowl_x 850); guess"}
   pkg_floor_z:        {value: 215,  unit: mm, rationale: "cabin floor top just above the sill line (body_profile.sill_z 200); guess"}
   pkg_cargo_floor_z:  {value: 430,  unit: mm, rationale: "luggage floor above the rear axle, near the tailgate sill; guess"}
   pkg_well_floor_z:   {value: 330,  unit: mm, rationale: "spare-wheel well floor; well protrudes below the floor (photos E-025); guess"}
@@ -72,13 +72,13 @@ assumptions:
   pkg_rear_silencer:  {value: [2800, 3300, 520, 230, 70], unit: mm, rationale: "x0, x1, y, z, radius: rear silencer beside the spare-wheel well (photos E-025); numbers guessed"}
   pkg_petrol_tank:    {value: [2560, 3300, -550, -340, 230, 480], unit: mm, rationale: "x0, x1, y0, y1, z0, z1: rectangular tank beside the well, inside the wheel-arch line (photos E-025); about 39 L envelope vs 52 L literature (E-010); guess"}
   pkg_battery:        {value: [-560, -320, 330, 505, 330, 520], unit: mm, rationale: "x0, x1, y0, y1, z0, z1: battery in a front corner of the engine bay beside the radiator (photos E-027); side and size guessed"}
-  pkg_dash:           {value: [1060, 1300, 650, 900], unit: mm, rationale: "x0, x1, z0, z1 of the dashboard under the windshield base; guess"}
-  pkg_steering_wheel: {value: [1360, -370, 870, 170], unit: mm, rationale: "x, y, z, radius: LHD (E-024), small aftermarket sport wheel (E-024); guess"}
-  pkg_front_seat:     {value: [1650, 2150, 180, 680, 380, 500, 1080], unit: mm, rationale: "x0, x1, |y| inner, |y| outer, cushion z0, z1, backrest top z; guess"}
+  pkg_dash:           {value: [850, 1090, 650, 900], unit: mm, rationale: "x0, x1, z0, z1 of the dashboard under the windshield base; guess"}
+  pkg_steering_wheel: {value: [1150, -370, 870, 170], unit: mm, rationale: "x, y, z, radius: LHD (E-024), small aftermarket sport wheel (E-024); guess"}
+  pkg_front_seat:     {value: [1380, 1880, 180, 680, 380, 500, 1080], unit: mm, rationale: "x0, x1, |y| inner, |y| outer, cushion z0, z1, backrest top z; guess"}
   pkg_rear_seat:      {value: [2300, 2760, 540, 400, 510, 1000], unit: mm, rationale: "x0, x1, |y| outer (between the rear wheel arches), cushion z0, z1, backrest top z (rear bench, E-024); guess"}
-  pkg_pedals:         {value: [1150, -480, -260, 260, 450], unit: mm, rationale: "x, y of the clutch (LH), y of the accelerator (RH), z0, z1 (three pedals, E-024); guess"}
-  pkg_gear_lever_x:   {value: 1180, unit: mm, rationale: "floor gear lever on the tunnel (E-024); guess"}
-  pkg_handbrake_x:    {value: 1560, unit: mm, rationale: "handbrake lever between the front seats; guess"}
+  pkg_pedals:         {value: [940, -480, -260, 260, 450], unit: mm, rationale: "x, y of the clutch (LH), y of the accelerator (RH), z0, z1 (three pedals, E-024); guess"}
+  pkg_gear_lever_x:   {value: 1020, unit: mm, rationale: "floor gear lever on the tunnel (E-024); guess"}
+  pkg_handbrake_x:    {value: 1350, unit: mm, rationale: "handbrake lever between the front seats; guess"}
   pkg_harness_r:      {value: 9,    unit: mm, rationale: "visual radius of a wiring-harness bundle; routing is schematic, no pinout or wiring data"}
   pkg_brake_r:        {value: 115,  unit: mm, rationale: "brake envelope radius inside a 14 in wheel; front type (disc/drum) UNKNOWN, rear drum ESTIMATED; guess"}
   pkg_spare_wheel:    {value: [3000, 560], unit: mm, rationale: "x, y of the spare wheel standing upright on the RH side of the luggage compartment (photos E-022); numbers guessed"}
