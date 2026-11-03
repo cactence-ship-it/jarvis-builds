@@ -35,10 +35,10 @@ Koordinat: X = ön jant merkezinden **geriye** doğru yatay mesafe, Z = **yerden
 
 | Kod | Ölçü | Nasıl ölçülür | Şu anki değer |
 |---|---|---|---|
-| M17 | Hood leading edge above ground (`body_profile.nose_top_z`) | Kaputun ön kenarının yerden yüksekliği. | PLACEHOLDER 760 mm |
+| M17 | Hood leading edge above ground (`body_profile.nose_top_z`) | Kaputun ön kenarının yerden yüksekliği. | PLACEHOLDER 840 mm |
 | M18 | Front panel lower edge above ground (`body_profile.nose_bottom_z`) | Ön panelin (tampon arkası) alt kenarının yerden yüksekliği. | PLACEHOLDER 300 mm |
-| M19 | Bumper lower edge above ground (`body_profile.bumper_bottom_z`) | Ön tamponun alt kenarının yerden yüksekliği. | PLACEHOLDER 300 mm |
-| M20 | Bumper vertical height (`body_profile.bumper_height`) | Tamponun dikey yüksekliği. | PLACEHOLDER 130 mm |
+| M19 | Bumper lower edge above ground (`body_profile.bumper_bottom_z`) | Ön tamponun alt kenarının yerden yüksekliği. | PLACEHOLDER 280 mm |
+| M20 | Bumper vertical height (`body_profile.bumper_height`) | Tamponun dikey yüksekliği. | PLACEHOLDER 180 mm |
 | M21 | Bumper face beyond the body face (front and rear) (`body_profile.bumper_protrusion`) | Tamponun kaportadan ne kadar dışarı çıktığı. | PLACEHOLDER 60 mm |
 | M22 | Body-side (sill) lower edge above ground (`body_profile.sill_z`) | Kapı altı marşpiyelin alt kenarının yerden yüksekliği. | PLACEHOLDER 200 mm |
 | M23 | Side-window sill (beltline) above ground (`body_profile.belt_z`) | Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği. | PLACEHOLDER 960 mm |

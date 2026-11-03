@@ -20,11 +20,11 @@ assumptions:
   front_overhang:   {value: 830,  unit: mm, replaces: dimensions.front_overhang, rationale: "split of literature length minus wheelbase (1906 mm); estates carry the longer overhang at the rear"}
   # --- body side profile (VCS: X rearward from front axle, Z up from ground) -
   bumper_protrusion:   {value: 60,  unit: mm, replaces: body_profile.bumper_protrusion, rationale: "bumper face ahead of / behind the body face"}
-  bumper_height:       {value: 130, unit: mm, replaces: body_profile.bumper_height, rationale: "bar-type bumper of the era"}
-  bumper_bottom_z:     {value: 300, unit: mm, replaces: body_profile.bumper_bottom_z, rationale: "proportion guess"}
+  bumper_height:       {value: 180, unit: mm, replaces: body_profile.bumper_height, rationale: "deep black plastic bumpers of the S series (photos E-026); no scale"}
+  bumper_bottom_z:     {value: 280, unit: mm, replaces: body_profile.bumper_bottom_z, rationale: "proportion guess from photos E-026"}
   sill_z:              {value: 200, unit: mm, replaces: body_profile.sill_z, rationale: "body-side lower edge above ground"}
   nose_bottom_z:       {value: 300, unit: mm, replaces: body_profile.nose_bottom_z, rationale: "front lower edge"}
-  nose_top_z:          {value: 760, unit: mm, replaces: body_profile.nose_top_z, rationale: "top edge of the front face (hood leading edge)"}
+  nose_top_z:          {value: 840, unit: mm, replaces: body_profile.nose_top_z, rationale: "top edge of the front face; photos E-026 show a nearly flat hood and a tall front face (was 760, too wedge-shaped); no scale"}
   cowl_x:              {value: 1060, unit: mm, replaces: body_profile.cowl_x, rationale: "windshield base behind the front axle"}
   belt_z:              {value: 960, unit: mm, replaces: body_profile.belt_z, rationale: "side-window sill (beltline) height"}
   rear_bottom_z:       {value: 420, unit: mm, replaces: body_profile.rear_bottom_z, rationale: "lower edge of the rear face"}

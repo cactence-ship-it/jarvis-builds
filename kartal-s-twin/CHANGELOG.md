@@ -2,6 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.12.1] - 2026-11-03 - Studio rendering (owner feedback: "realistic, cinematic studio")
+
+### Added
+- Viewer studio look: image-based lighting (three.js RoomEnvironment), ACES filmic tone mapping, soft shadow-casting key light and rim light, dark studio floor, "Sinema" camera; materials by part class (clear-coated metallic paint, dark tinted glass as on VEH-01, chrome, rubber, black plastic, lamp lenses). Visual only.
+- `tools/render_studio.sh` + `tools/viewer_smoke/studio.js`: studio renders to build/renders/*.png (cinema, front, rear, left, iso, mechanical).
+- Visual detail: wrap-around black bumpers, wheel nuts and vent marks on the visual rims (CAD rims unchanged).
+
+### Changed
+- Placeholders from photo proportions (E-026, no scale): nose_top_z 760 -> 840 (flatter hood), bumper height 130 -> 180, bumper bottom 300 -> 280. CAD output unchanged (byte-identical to audit r4).
+
 ## [0.12.0] - 2026-11-03 - Complete-vehicle PLACEHOLDER package (T-023)
 
 ### Added

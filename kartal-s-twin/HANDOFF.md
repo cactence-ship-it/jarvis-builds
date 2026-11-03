@@ -8,19 +8,23 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #45** - 2026-11-03 02:54 UTC
-- **Commit:** bu kaydı içeren commit = `048d352` commit'inin hemen ardından gelen commit
+- **Checkpoint #46** - 2026-11-03 03:25 UTC
+- **Commit:** bu kaydı içeren commit = `22f7f69` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** evidence(kartal-s-twin): T-023 result recorded at 8d9f16f with CI links; review request
-- **Testler:** PASS - Ran 147 tests in 205.577s; ## result: validate=0 unittest=0
+- **Başlık:** feat(kartal-s-twin): studio rendering in the viewer (IBL, filmic tone mapping, shadows, class materials), studio render script, flatter hood and wrap-around bumpers from photo proportions
+- **Testler:** PASS - Ran 147 tests in 224.381s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
-    M	kartal-s-twin/TASKS.md
-    A	kartal-s-twin/agents/REVIEW_REQUEST_T-023.md
+    M	kartal-s-twin/CHANGELOG.md
+    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/tasks/T-023.yaml
-    M	kartal-s-twin/tasks/tasks.json
+    M	kartal-s-twin/specs/placeholder_assumptions.yaml
+    M	kartal-s-twin/src/kartal_twin/assemblies/exterior_trim.py
+    M	kartal-s-twin/src/kartal_twin/assemblies/wheels_and_tires.py
     M	kartal-s-twin/test-results/latest.txt
+    A	kartal-s-twin/tools/render_studio.sh
+    A	kartal-s-twin/tools/viewer_smoke/studio.js
+    M	kartal-s-twin/viewer/index.html
 ```
 <!-- AUTO-CHECKPOINT:END -->
 

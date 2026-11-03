@@ -2,6 +2,8 @@
 
 CAD: WHL-001..004 tire design envelopes, WHL-006..009 pressed-steel rims (simplified section).
 """
+import math
+
 import build123d as bd
 
 from .. import layout
@@ -46,8 +48,16 @@ def build(ctx):
         m = layout.rim(rr)
         s = 1 if y > 0 else -1
         valve = bd.Pos(x, y + s * 20, z + m.bead_seat_radius - 25) * bd.Rot(90, 0, 0) * bd.Cylinder(5, 40)
-        ctx.add(RIM_IDS[key], ASSEMBLY, [(bd.Pos(x, y, z) * bd.Rot(90, 0, 0) * rim_solid(m), BLACK_STEEL), (valve, (0.1, 0.1, 0.1, 1.0))], rr,
-                "Pressed-steel rim (simplified section) with valve stem (valve angle guessed)")
+        face_y = y - s * 0  # disc sits on the rim centre plane
+        detail = []
+        for i in range(4):                     # visual only: 4 wheel nuts (E-026) and 4 oval vents
+            a = math.radians(45 + 90 * i)
+            detail.append((bd.Pos(x + 50 * math.cos(a), face_y + s * (m.disc / 2 + 8), z + 50 * math.sin(a)) * bd.Rot(90, 0, 0) * bd.Cylinder(9, 16), (0.35, 0.35, 0.36, 1.0)))
+            b = math.radians(90 * i)
+            detail.append((bd.Pos(x + 120 * math.cos(b), face_y + s * (m.disc / 2 + 1), z + 120 * math.sin(b)) * bd.Rot(0, -math.degrees(b), 0) * bd.Box(60, 2, 24), (0.02, 0.02, 0.02, 1.0)))
+        detail.append((bd.Pos(x, face_y + s * (m.disc / 2 + 10), z) * bd.Rot(90, 0, 0) * bd.Cylinder(30, 20), BLACK_STEEL))
+        ctx.add(RIM_IDS[key], ASSEMBLY, [(bd.Pos(x, y, z) * bd.Rot(90, 0, 0) * rim_solid(m), BLACK_STEEL), (valve, (0.1, 0.1, 0.1, 1.0))] + detail, rr,
+                "Pressed-steel rim (simplified section) with valve stem, wheel nuts and vent marks (visual detail, positions guessed)")
     r = ctx.resolver()
     r.absorb(base)
     t = layout.tire(r, "rear")

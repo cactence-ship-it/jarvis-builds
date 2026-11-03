@@ -1,4 +1,6 @@
 """EXTERIOR_TRIM (EXT) - Phase 4. PLACEHOLDER bumpers, grille and mirrors."""
+import build123d as bd
+
 from .. import layout
 from ..cad.shapes import box
 
@@ -19,10 +21,21 @@ def build(ctx):
         r.absorb(base)
         ctx.add(cid, ASSEMBLY, [(solid, col)], r, note)
 
-    add("EXT-001", box(p.x_front, p.x_nose + 20, -hw + 15, hw - 15, bz, bz + bh), BLACK,
-        "Bumper bar; front face defines overall length")
-    add("EXT-002", box(p.x_tail - 20, p.x_rear, -hw + 15, hw - 15, bz, bz + bh), BLACK,
-        "Bumper bar; rear face defines overall length")
+    def bumper(x0, x1, xw0, xw1):
+        """Bar plus wrap-around ends along both sides (S-series plastic bumpers, photos E-026)."""
+        bar = box(x0, x1, -hw + 15, hw - 15, bz, bz + bh)
+        for s in (-1, 1):
+            y0, y1 = sorted((s * (hw - 20), s * (hw + 12)))
+            bar = bar.fuse(box(xw0, xw1, y0, y1, bz, bz + bh))
+        try:
+            bar = bar.fillet(18, bar.edges().filter_by(bd.Axis.Z))
+        except Exception:
+            pass
+        return bar.clean()
+    add("EXT-001", bumper(p.x_front, p.x_nose + 20, p.x_front + 20, p.x_nose + 200), BLACK,
+        "Wrap-around bumper; front face defines overall length")
+    add("EXT-002", bumper(p.x_tail - 20, p.x_rear, p.x_tail - 220, p.x_rear - 20), BLACK,
+        "Wrap-around bumper; rear face defines overall length")
     add("EXT-003", box(p.x_nose - 8, p.x_nose + 2, -(hw - 430), hw - 430, nt - 190, nt - 60),
         BLACK, "Grille area between headlamps")
     g = layout.greenhouse(base)
