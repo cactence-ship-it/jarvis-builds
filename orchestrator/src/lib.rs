@@ -1,6 +1,7 @@
 //! Offline-first orchestration primitives. No provider network calls are implemented.
 
 pub mod guard;
+pub mod panel;
 
 /// System prompt for model providers: senior-engineer conduct and the report format
 /// that `guard::scan_engineering_report` checks. Single source; the owner-facing copy
@@ -31,6 +32,7 @@ pub enum ProviderKind {
     Mock,
     OpenAi,
     Anthropic,
+    Gemini,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -249,6 +251,14 @@ mod tests {
         let p = engineer_prompt("  lastik zarfını kontrol et \n");
         assert!(p.starts_with("ROL: BAŞ MÜHENDİS"));
         assert!(p.ends_with("GÖREV\nlastik zarfını kontrol et\n"));
+    }
+
+    #[test]
+    fn gemini_is_paid_and_blocked_by_default() {
+        assert_eq!(
+            Policy::default().authorize(&task(ProviderKind::Gemini)),
+            Err(BlockReason::PaidDispatchDisabled)
+        );
     }
 
     #[test]

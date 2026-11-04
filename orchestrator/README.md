@@ -5,7 +5,7 @@ Rust M0 skeleton for the Kartal S digital-twin repository.
 ## Current guarantees
 
 - Offline mock provider only; no HTTP client and no API integrations.
-- OpenAI/Anthropic dispatch is blocked by default in policy.
+- OpenAI/Anthropic/Gemini dispatch is blocked by default in policy.
 - Per-run budget ceiling, bounded retry planning, idempotency ledger, and independent-review SHA check.
 - Standard-library-only implementation; no third-party crates or dependency downloads.
 - Existing YAML task queue and Python CAD pipeline remain authoritative and untouched.
@@ -20,6 +20,10 @@ Rust M0 skeleton for the Kartal S digital-twin repository.
   trade-offs, failure modes, minimal change, evidence-backed verification), units and
   VERIFIED/ESTIMATED/UNKNOWN on every value, and a fixed report format that
   `check-report` enforces.
+
+- Three-partner panel (`src/panel.rs`): GPT, Claude and Gemini rotate as author; the other
+  two review the exact commit. Both must accept; one rejection blocks; a split goes to the
+  owner; self-reviews and reviews of older commits do not count. Approval never merges.
 
 ## Guard CLI
 

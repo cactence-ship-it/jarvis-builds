@@ -1,6 +1,7 @@
 use std::io::Read;
 
 use kartal_agent_orchestrator::guard::{self, Finding, Verdict};
+use kartal_agent_orchestrator::panel;
 use kartal_agent_orchestrator::{
     engineer_prompt, MockProvider, Policy, Provider, ProviderKind, Task, ENGINEER_SYSTEM_PROMPT,
 };
@@ -77,6 +78,16 @@ fn smoke() -> i32 {
     println!("task_id={}", task.id);
     println!("result={}", response.text);
     println!("guard={}", v.as_str());
+    let author = panel::author_for(0);
+    let reviewers: Vec<_> = panel::reviewers_for(author)
+        .iter()
+        .map(|p| p.name())
+        .collect();
+    println!(
+        "panel author={} reviewers={}",
+        author.name(),
+        reviewers.join(",")
+    );
     println!("paid_api_calls=0");
     v.exit_code()
 }
