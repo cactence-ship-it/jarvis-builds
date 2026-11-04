@@ -1,7 +1,10 @@
 //! Offline-first orchestration primitives. No provider network calls are implemented.
 
 pub mod guard;
+pub mod json;
 pub mod panel;
+pub mod providers;
+pub mod run;
 
 /// System prompt for model providers: senior-engineer conduct and the report format
 /// that `guard::scan_engineering_report` checks. Single source; the owner-facing copy
@@ -92,6 +95,12 @@ impl Policy {
         }
         self.spent_micros = next;
         Ok(())
+    }
+
+    /// Record money already spent by a completed call. Unlike `record_spend` this never
+    /// refuses: the money is gone, and an overrun must block the next `authorize`.
+    pub fn charge(&mut self, amount_micros: u64) {
+        self.spent_micros = self.spent_micros.saturating_add(amount_micros);
     }
 }
 
@@ -251,6 +260,21 @@ mod tests {
         let p = engineer_prompt("  lastik zarfını kontrol et \n");
         assert!(p.starts_with("ROL: BAŞ MÜHENDİS"));
         assert!(p.ends_with("GÖREV\nlastik zarfını kontrol et\n"));
+    }
+
+    #[test]
+    fn charge_always_records_and_overrun_blocks_next_call() {
+        let mut p = Policy {
+            paid_dispatch_enabled: true,
+            per_run_budget_micros: 100,
+            ..Policy::default()
+        };
+        p.charge(150);
+        assert_eq!(p.spent_micros, 150);
+        assert_eq!(
+            p.authorize(&task(ProviderKind::OpenAi)),
+            Err(BlockReason::BudgetExceeded)
+        );
     }
 
     #[test]

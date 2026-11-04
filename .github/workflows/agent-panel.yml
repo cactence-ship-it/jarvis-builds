@@ -1,0 +1,62 @@
+name: Agent panel
+
+# Manually started by the owner: one partner writes an engineering report for the task,
+# the guard checks it, the other two review it. Results appear on the run page.
+# Nothing is pushed, no PR is opened, nothing is merged.
+#
+# Paid calls happen only when BOTH repository variables are set by the owner:
+#   KARTAL_PAID_DISPATCH = on          (kill switch: anything else blocks every call)
+#   KARTAL_RUN_BUDGET_MICROS = 500000  (USD micro-dollars per run; 500000 = $0.50)
+# Keys live only in repository secrets: OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY.
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: "Görev (Türkçe, tek paragraf yeterli)"
+        required: true
+        type: string
+      author:
+        description: "Bu görevi kim yazsın? Diğer ikisi inceler."
+        required: true
+        type: choice
+        options: [openai, anthropic, gemini]
+        default: anthropic
+
+permissions:
+  contents: read
+
+# One run at a time: two parallel runs could each spend a full budget.
+concurrency:
+  group: agent-panel
+  cancel-in-progress: false
+
+jobs:
+  panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install stable Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build
+        run: cargo build --manifest-path orchestrator/Cargo.toml --locked --release
+      - name: Run panel
+        env:
+          KARTAL_TASK: ${{ inputs.task }}
+          AUTHOR: ${{ inputs.author }}
+          KARTAL_PAID_DISPATCH: ${{ vars.KARTAL_PAID_DISPATCH }}
+          KARTAL_RUN_BUDGET_MICROS: ${{ vars.KARTAL_RUN_BUDGET_MICROS }}
+          KARTAL_OPENAI_MODEL: ${{ vars.KARTAL_OPENAI_MODEL }}
+          KARTAL_OPENAI_PRICE_IN: ${{ vars.KARTAL_OPENAI_PRICE_IN }}
+          KARTAL_OPENAI_PRICE_OUT: ${{ vars.KARTAL_OPENAI_PRICE_OUT }}
+          KARTAL_ANTHROPIC_MODEL: ${{ vars.KARTAL_ANTHROPIC_MODEL }}
+          KARTAL_ANTHROPIC_PRICE_IN: ${{ vars.KARTAL_ANTHROPIC_PRICE_IN }}
+          KARTAL_ANTHROPIC_PRICE_OUT: ${{ vars.KARTAL_ANTHROPIC_PRICE_OUT }}
+          KARTAL_GEMINI_MODEL: ${{ vars.KARTAL_GEMINI_MODEL }}
+          KARTAL_GEMINI_PRICE_IN: ${{ vars.KARTAL_GEMINI_PRICE_IN }}
+          KARTAL_GEMINI_PRICE_OUT: ${{ vars.KARTAL_GEMINI_PRICE_OUT }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: orchestrator/target/release/kartal-orchestrator panel-run --author "$AUTHOR"
