@@ -459,6 +459,176 @@ pub fn scan_commit_subjects(log: &str) -> Vec<Finding> {
     out
 }
 
+/// Sections every engineering report must have: (rule label, accepted heading keywords).
+const REPORT_SECTIONS: &[(&str, &[&str])] = &[
+    ("problem", &["sorun", "problem"]),
+    ("root-cause", &["kök neden", "root cause"]),
+    (
+        "options",
+        &["seçenek", "alternatif", "options", "alternatives"],
+    ),
+    ("change", &["değişiklik", "change"]),
+    ("verification", &["doğrulama", "verification"]),
+    ("risks", &["risk"]),
+];
+
+/// Honest "I did not verify" statements; acceptable instead of evidence.
+const NOT_VERIFIED: &[&str] = &[
+    "çalıştırmadım",
+    "çalıştırılmadı",
+    "doğrulanmadı",
+    "doğrulayamadım",
+    "doğrulanamadı",
+    "not run",
+    "not verified",
+    "could not verify",
+];
+
+/// Physical quantities that must carry a unit when a number is given.
+const QUANTITIES: &[&str] = &[
+    "uzunluk",
+    "genişlik",
+    "yükseklik",
+    "çap",
+    "mesafe",
+    "boşluk",
+    "kalınlık",
+    "ağırlık",
+    "kütle",
+    "basınç",
+    "tork",
+    "voltaj",
+    "gerilim",
+    "akım",
+    "sıcaklık",
+    "hacim",
+    "dingil",
+    "length",
+    "width",
+    "height",
+    "diameter",
+    "distance",
+    "clearance",
+    "thickness",
+    "weight",
+    "mass",
+    "pressure",
+    "torque",
+    "voltage",
+    "current",
+    "temperature",
+    "volume",
+    "wheelbase",
+];
+
+const UNITS: &[&str] = &[
+    "mm", "cm", "m", "km", "µm", "um", "kg", "g", "t", "n", "kn", "n·m", "nm", "n.m", "bar", "kpa",
+    "mpa", "pa", "psi", "°", "°c", "°f", "c", "k", "v", "mv", "kv", "a", "ma", "w", "kw", "hp",
+    "bg", "ps", "l", "ml", "cc", "cm³", "m³", "rpm", "d/d", "dev/dak", "%", "s", "ms", "h", "hz",
+    "khz", "inç", "inch", "in", "\"", "ah", "wh", "kwh",
+];
+
+fn heading_text(line: &str) -> Option<String> {
+    let t = line.trim();
+    if t.starts_with('#') || t.starts_with("**") {
+        Some(
+            t.trim_matches(|c| c == '#' || c == '*' || c == ' ')
+                .to_lowercase(),
+        )
+    } else {
+        None
+    }
+}
+
+fn has_unit(line: &str) -> bool {
+    line.split_whitespace().any(|tok| {
+        let tok = tok.trim_matches(|c: char| ",;:()[]".contains(c));
+        let rest = tok.trim_start_matches(|c: char| c.is_ascii_digit() || ".,±+-~".contains(c));
+        let rest = rest.trim_end_matches('.').to_lowercase();
+        !rest.is_empty() && UNITS.contains(&rest.as_str())
+    })
+}
+
+fn has_number(line: &str) -> bool {
+    line.split_whitespace().any(|tok| {
+        let tok = tok.trim_matches(|c: char| ",;:()[]".contains(c));
+        tok.chars().next().is_some_and(|c| c.is_ascii_digit())
+    })
+}
+
+/// Scan an engineering report: everything `scan_response` checks, plus
+/// * every section of the report format is present (missing -> Reject),
+/// * the verification section carries evidence or says plainly that nothing was run,
+/// * a physical quantity given as a number carries a unit (missing -> Warning).
+pub fn scan_engineering_report(text: &str) -> Vec<Finding> {
+    let mut out = scan_response(text);
+    let lines: Vec<&str> = text.lines().collect();
+    let headings: Vec<(usize, String)> = lines
+        .iter()
+        .enumerate()
+        .filter_map(|(i, l)| heading_text(l).map(|h| (i, h)))
+        .collect();
+
+    for (rule, keys) in REPORT_SECTIONS {
+        if !headings
+            .iter()
+            .any(|(_, h)| keys.iter().any(|k| h.contains(k)))
+        {
+            out.push(Finding {
+                severity: Severity::Reject,
+                rule: "missing-section",
+                file: String::new(),
+                line: 0,
+                detail: format!(
+                    "engineering report has no `{rule}` section ({})",
+                    keys.join(" / ")
+                ),
+            });
+        }
+    }
+
+    // Body of the verification section: from its heading to the next heading.
+    let verification = headings
+        .iter()
+        .position(|(_, h)| REPORT_SECTIONS[4].1.iter().any(|k| h.contains(k)));
+    if let Some(pos) = verification {
+        let start = headings[pos].0 + 1;
+        let end = headings.get(pos + 1).map_or(lines.len(), |(i, _)| *i);
+        let body = lines[start..end].join("\n");
+        let lower = body.to_lowercase();
+        let honest = NOT_VERIFIED.iter().any(|p| lower.contains(p));
+        let proven = has_run_evidence(&lower) && has_commit_sha(&body);
+        if !honest && !proven {
+            out.push(Finding {
+                severity: Severity::Reject,
+                rule: "verification-without-evidence",
+                file: String::new(),
+                line: headings[pos].0 + 1,
+                detail: "verification needs a command exit status or CI run link plus the \
+                         commit SHA, or an explicit statement that it was not run"
+                    .to_string(),
+            });
+        }
+    }
+
+    for (idx, raw) in lines.iter().enumerate() {
+        if heading_text(raw).is_some() {
+            continue;
+        }
+        let lower = raw.to_lowercase();
+        if QUANTITIES.iter().any(|q| lower.contains(q)) && has_number(raw) && !has_unit(raw) {
+            out.push(Finding {
+                severity: Severity::Warning,
+                rule: "unitless-value",
+                file: String::new(),
+                line: idx + 1,
+                detail: "physical quantity given without a unit".to_string(),
+            });
+        }
+    }
+    out
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -619,6 +789,78 @@ diff --git a/.github/workflows/rust-orchestrator.yml b/.github/workflows/rust-or
         let f = scan_commit_subjects(log);
         assert_eq!(f.len(), 2);
         assert_eq!(verdict(&f), Verdict::Accept);
+    }
+
+    const GOOD_REPORT: &str = "\
+## Sorun
+Lastik zarfı çapı yanlış.
+## Kök neden
+Spec 175/70 R14 kullanıyor, sahip 185/70 R14 bildirdi.
+## Seçenekler
+1. Spec'i değiştir. 2. İki konfigürasyon tut. İkincisi seçildi: geri alınabilir.
+## Değişiklik
+Dış çap 614.6 mm (ESTIMATED, ± 3 mm).
+## Doğrulama
+`pytest -q` exit code 0 at 8d9f16f, https://github.com/o/r/actions/runs/42
+## Riskler ve açık kalanlar
+Jant ölçüsü şerit metreyle ölçülmedi.
+";
+
+    #[test]
+    fn complete_engineering_report_is_accepted() {
+        let f = scan_engineering_report(GOOD_REPORT);
+        assert!(f.is_empty(), "{f:?}");
+    }
+
+    #[test]
+    fn report_without_root_cause_and_options_is_rejected() {
+        let text = "## Sorun\nx\n## Değişiklik\ny\n## Doğrulama\nÇalıştırmadım.\n## Riskler\nz\n";
+        let f = scan_engineering_report(text);
+        assert_eq!(rules(&f), vec!["missing-section", "missing-section"]);
+        assert_eq!(verdict(&f), Verdict::Reject);
+    }
+
+    #[test]
+    fn verification_without_evidence_is_rejected_but_honesty_is_accepted() {
+        let vague = GOOD_REPORT.replace(
+            "`pytest -q` exit code 0 at 8d9f16f, https://github.com/o/r/actions/runs/42",
+            "Kontrol ettim, sorun yok.",
+        );
+        assert_eq!(
+            rules(&scan_engineering_report(&vague)),
+            vec!["verification-without-evidence"]
+        );
+
+        let honest = GOOD_REPORT.replace(
+            "`pytest -q` exit code 0 at 8d9f16f, https://github.com/o/r/actions/runs/42",
+            "Testleri çalıştırmadım: ortamda build123d yok.",
+        );
+        assert!(scan_engineering_report(&honest).is_empty());
+    }
+
+    #[test]
+    fn quantities_need_units() {
+        assert!(has_unit("dingil mesafesi 2440 mm"));
+        assert!(has_unit("basınç 2.2bar"));
+        assert!(has_unit("tork 105 N·m"));
+        assert!(!has_unit("dingil mesafesi 2440"));
+        let text = GOOD_REPORT.replace("Dış çap 614.6 mm", "Dış çap 614.6");
+        assert_eq!(
+            rules(&scan_engineering_report(&text)),
+            vec!["unitless-value"]
+        );
+    }
+
+    #[test]
+    fn engineer_prompt_requires_the_checked_report_format() {
+        let prompt = crate::ENGINEER_SYSTEM_PROMPT;
+        let headings: Vec<String> = prompt.lines().filter_map(heading_text).collect();
+        for (rule, keys) in REPORT_SECTIONS {
+            assert!(
+                headings.iter().any(|h| keys.iter().any(|k| h.contains(k))),
+                "prompt report format lacks `{rule}`"
+            );
+        }
     }
 
     #[test]

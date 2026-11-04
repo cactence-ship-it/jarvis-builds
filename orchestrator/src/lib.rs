@@ -2,6 +2,16 @@
 
 pub mod guard;
 
+/// System prompt for model providers: senior-engineer conduct and the report format
+/// that `guard::scan_engineering_report` checks. Single source; the owner-facing copy
+/// in kartal-s-twin/agents/GPT_DAVRANIS_KURALLARI.md points here.
+pub const ENGINEER_SYSTEM_PROMPT: &str = include_str!("../prompts/engineer_tr.txt");
+
+/// Full request text for a provider: engineer rules, then the task instruction.
+pub fn engineer_prompt(instruction: &str) -> String {
+    format!("{ENGINEER_SYSTEM_PROMPT}\nGÖREV\n{}\n", instruction.trim())
+}
+
 use std::collections::HashSet;
 use std::fs::{File, OpenOptions};
 use std::io::{self, Write};
@@ -232,6 +242,13 @@ mod tests {
         let result = MockProvider.execute("hello").unwrap();
         assert_eq!(result.text, "MOCK_ONLY: hello");
         assert_eq!(result.input_tokens, 0);
+    }
+
+    #[test]
+    fn engineer_prompt_wraps_the_task() {
+        let p = engineer_prompt("  lastik zarfını kontrol et \n");
+        assert!(p.starts_with("ROL: BAŞ MÜHENDİS"));
+        assert!(p.ends_with("GÖREV\nlastik zarfını kontrol et\n"));
     }
 
     #[test]

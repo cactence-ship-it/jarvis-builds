@@ -15,10 +15,18 @@ Rust M0 skeleton for the Kartal S digital-twin repository.
   `pull_request_target`), skipped or deleted tests, and marks owner-only switches (paid dispatch,
   VERIFIED/VALIDATED promotion, force push) as NEEDS_OWNER. Runs on every PR diff in CI.
 
+- Senior-engineer system prompt (`prompts/engineer_tr.txt`, exposed as
+  `ENGINEER_SYSTEM_PROMPT` / `engineer_prompt()`): method (problem, root cause, options and
+  trade-offs, failure modes, minimal change, evidence-backed verification), units and
+  VERIFIED/ESTIMATED/UNKNOWN on every value, and a fixed report format that
+  `check-report` enforces.
+
 ## Guard CLI
 
 ```sh
 B=orchestrator/target/debug/kartal-orchestrator
+$B prompt "task text"                   # engineer system prompt + task, for any chat model
+$B check-report report.txt              # engineering report: sections, evidence, units
 $B check-response answer.txt            # chat/model answer
 git diff origin/main...HEAD | $B check-diff -
 git log --format=%s origin/main..HEAD | $B check-commits -
