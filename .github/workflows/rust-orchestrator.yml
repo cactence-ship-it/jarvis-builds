@@ -1,0 +1,33 @@
+name: Rust orchestrator
+
+on:
+  push:
+    branches: ["feat/rust-agent-orchestrator-plan"]
+    paths:
+      - "orchestrator/**"
+      - ".github/workflows/rust-orchestrator.yml"
+  pull_request:
+    paths:
+      - "orchestrator/**"
+      - ".github/workflows/rust-orchestrator.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install stable Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Format check
+        run: cargo fmt --manifest-path orchestrator/Cargo.toml -- --check
+      - name: Unit tests
+        run: cargo test --manifest-path orchestrator/Cargo.toml --locked
+      - name: Offline smoke run
+        run: cargo run --manifest-path orchestrator/Cargo.toml --locked
