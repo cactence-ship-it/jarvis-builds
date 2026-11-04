@@ -14,9 +14,9 @@ Initial ownership:
 |---|---|
 | Task state and evidence | Existing YAML task files and Python validators remain authoritative |
 | Scheduling, dispatch, retries, timeout, budget accounting | Rust orchestrator |
-| Model-provider calls | Separate OpenAI and Anthropic adapters behind one trait |
+| Model-provider calls | Separate OpenAI, Anthropic and Google Gemini adapters behind one trait |
 | CAD geometry and exports | Existing Python/CAD tools; invoked only through explicit, tested interfaces |
-| Independent review | Different provider/agent reviews the exact proposed commit |
+| Independent review | Three-partner panel: one of GPT / Claude / Gemini authors (rotating), the other two review the exact proposed commit |
 | User approval | Required for budget activation and high-impact repository actions |
 
 ## 2. Runtime shape
@@ -40,6 +40,7 @@ orchestrator/
       mod.rs
       openai.rs
       anthropic.rs
+      gemini.rs
     git/
       mod.rs
   tests/
@@ -68,7 +69,7 @@ A review can only satisfy the cross-review rule when it is performed by a differ
 5. Dispatch to the selected provider with a hard timeout and bounded response size.
 6. Validate the response schema; record provider usage and a redacted audit event.
 7. Apply output only on a dedicated feature branch and only within the task's allowed paths. Open a PR; never push agent changes directly to `main`.
-8. Ask a different provider/agent to review the exact proposed commit. Record the verdict and findings.
+8. Ask the other two partners to review the exact proposed commit (`panel::decide`): both must accept; one rejection blocks; a split goes to the owner. Record the verdicts and findings.
 9. Re-run repository validation and CI. A task is not ACCEPTED merely because a model says it is complete.
 10. Stop and request owner action on budget exhaustion, repeated failures, policy violations, ambiguous evidence, or any operation requiring elevated permission.
 
@@ -77,7 +78,7 @@ Retries must be finite (initial default: at most 2 retries after the first attem
 ## 5. Safety and cost policy
 
 - API calls are **disabled by default** until the owner explicitly supplies and authorises a budget.
-- OpenAI and Anthropic API keys are separate provider credentials. Read them only from the runner's secret store or environment; never put them in YAML task files, source, artifacts, issue comments, logs, or prompts.
+- OpenAI, Anthropic and Gemini API keys (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`) are separate provider credentials. Read them only from the runner's secret store or environment; never put them in YAML task files, source, artifacts, issue comments, logs, or prompts.
 - Never echo environment variables or request/print the owner's keys in chat.
 - Enforce both per-run and monthly hard spend limits. If usage/cost cannot be calculated reliably, stop before the next paid call.
 - Use least-privilege GitHub permissions. The agent worker may create feature branches, commits, and PRs; it must not merge PRs, change repository settings, delete branches, or alter secrets.
@@ -98,7 +99,7 @@ Retries must be finite (initial default: at most 2 retries after the first attem
 - No network calls and no GitHub writes in this milestone.
 
 ### M2 — provider adapters
-- Add OpenAI and Anthropic adapters separately.
+- Add OpenAI, Anthropic and Gemini adapters separately.
 - Test using mock HTTP responses first; add live API smoke tests only behind explicit opt-in and a small owner-approved budget.
 - Normalize usage and errors without logging secrets or full sensitive prompts.
 

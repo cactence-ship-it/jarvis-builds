@@ -226,12 +226,31 @@ fn is_test_marker(path: &str, trimmed: &str) -> bool {
             && (trimmed.starts_with("def test_") || trimmed.starts_with("async def test_")))
 }
 
+/// `|| true` is legitimate where failure is expected and harmless: cleanup in a trap,
+/// killing a process that may already be gone, removing a file that may not exist, or
+/// reading an optional stamp file. It is never legitimate on a build or test command.
+fn is_cleanup_or_probe(line: &str) -> bool {
+    line.starts_with("trap ")
+        || line.contains("kill ")
+        || line.contains("rm -f ")
+        || line.contains("$(cat ")
+}
+
+/// D-029: new code is Rust. A new Python file is allowed only for Blender (its API is
+/// Python only) and as a test of the existing Python modules.
+fn is_disallowed_new_python(path: &str) -> bool {
+    path.ends_with(".py")
+        && !path.starts_with("kartal-s-twin/tools/blender/")
+        && !path.starts_with("kartal-s-twin/tests/")
+}
+
 /// Scan a unified diff (`git diff base...head`) for changes that make checks weaker,
 /// delete tests, or flip owner-only switches.
 pub fn scan_diff(diff: &str) -> Vec<Finding> {
     let mut out = Vec::new();
     let mut file = String::new();
     let mut old_file = String::new();
+    let mut new_file = false;
     let mut tests_removed = 0usize;
     let mut tests_added = 0usize;
     let mut first_removed_test: Option<(String, usize)> = None;
@@ -254,13 +273,27 @@ pub fn scan_diff(diff: &str) -> Vec<Finding> {
                 Some(p) => p.to_string(),
                 None => old_file.clone(),
             };
+            if new_file && is_disallowed_new_python(&file) {
+                push(
+                    &mut out,
+                    Severity::Reject,
+                    "new-python-file",
+                    &file,
+                    n,
+                    "new code must be Rust (D-029); new .py only under tools/blender/ or tests/"
+                        .to_string(),
+                );
+            }
+            new_file = false;
             continue;
         }
         if let Some(rest) = raw.strip_prefix("--- ") {
+            new_file = rest == "/dev/null";
             old_file = rest.strip_prefix("a/").unwrap_or(rest).to_string();
             continue;
         }
         if raw.starts_with("diff --git ") {
+            new_file = false;
             continue;
         }
 
@@ -329,7 +362,7 @@ pub fn scan_diff(diff: &str) -> Vec<Finding> {
         }
 
         if is_script_or_ci(&file) && !script_comment {
-            if t.contains("|| true") || t.contains("|| :") {
+            if (t.contains("|| true") || t.contains("|| :")) && !is_cleanup_or_probe(t) {
                 push(
                     &mut out,
                     Severity::Reject,
@@ -778,6 +811,37 @@ diff --git a/.github/workflows/rust-orchestrator.yml b/.github/workflows/rust-or
 +# never add || true
 ";
         assert!(scan_diff(diff).is_empty());
+    }
+
+    #[test]
+    fn cleanup_and_probe_true_is_allowed_but_not_on_checks() {
+        let diff = "\
++++ b/kartal-s-twin/tools/viewer_smoke/run.sh
++trap 'kill $srv 2>/dev/null || true' EXIT
++have=\"$(cat \"$STAMP\" 2>/dev/null || true)\"
++rm -f build/tmp.json || true
+";
+        assert!(scan_diff(diff).is_empty());
+        let bad = "+++ b/kartal-s-twin/scripts/run_tests.sh\n+cargo test 2>/dev/null || true\n";
+        assert_eq!(rules(&scan_diff(bad)), vec!["check-weakened"]);
+    }
+
+    #[test]
+    fn new_python_files_are_rejected_outside_blender_and_tests() {
+        let new = |path: &str| {
+            format!("diff --git a/{path} b/{path}\nnew file mode 100644\n--- /dev/null\n+++ b/{path}\n+import os\n")
+        };
+        assert_eq!(
+            rules(&scan_diff(&new("kartal-s-twin/tools/new_tool.py"))),
+            vec!["new-python-file"]
+        );
+        assert!(scan_diff(&new("kartal-s-twin/tools/blender/lamps.py")).is_empty());
+        assert!(scan_diff(&new("kartal-s-twin/tests/test_new.py")).is_empty());
+        assert!(scan_diff(&new("orchestrator/src/new.rs")).is_empty());
+
+        // Editing existing Python is allowed.
+        let edit = "--- a/kartal-s-twin/tools/twin.py\n+++ b/kartal-s-twin/tools/twin.py\n+x = 1\n";
+        assert!(scan_diff(edit).is_empty());
     }
 
     /// Regression: four identical commits on feat/rust-agent-orchestrator-plan.

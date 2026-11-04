@@ -1,0 +1,40 @@
+name: PR guard
+
+# Runs on every pull request, whatever it touches: weakened checks, removed or skipped
+# tests, pull_request_target and new Python files outside Blender/tests (D-029) fail the
+# job; owner-only switches are annotated as warnings.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install stable Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build guard
+        run: cargo build --manifest-path orchestrator/Cargo.toml --locked
+      - name: Check PR diff
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set +e
+          git diff "$BASE_SHA"...HEAD | orchestrator/target/debug/kartal-orchestrator check-diff -
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "::warning title=needs-owner::This PR changes owner-only settings; the owner must approve them explicitly."
+          elif [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
+      - name: Check commit subjects
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: git log --format=%s "$BASE_SHA"..HEAD | orchestrator/target/debug/kartal-orchestrator check-commits -
