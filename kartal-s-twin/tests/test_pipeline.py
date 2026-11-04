@@ -2,6 +2,7 @@
 import copy
 import json
 import math
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -81,13 +82,14 @@ class Pipeline(unittest.TestCase):
         r = Resolver()
         lo, hi = (np.array(v) for v in self.r["checks"]["stl"]["bbox_mm"])
         self.assertAlmostEqual(hi[0] - lo[0], r.get("dimensions.overall_length"), delta=0.5)
-        self.assertAlmostEqual(hi[2], r.get("dimensions.overall_height"), delta=0.5)
+        # Tallest point: the roof rails (EXT-012/013) define the height over rails (spec slot, PLACEHOLDER).
+        self.assertAlmostEqual(hi[2], r.get("dimensions.overall_height_roof_rails"), delta=0.5)
         self.assertAlmostEqual(lo[0], -r.get("dimensions.front_overhang"), delta=0.5)
 
     def test_gltf_front_is_plus_z_and_up_is_plus_y(self):
         js, tris, _ = xc.read_glb(self.out / "vehicle.glb")
         lo, hi = tris.reshape(-1, 3).min(0), tris.reshape(-1, 3).max(0)
-        self.assertAlmostEqual(hi[1], Resolver().get("dimensions.overall_height") / 1000, delta=1e-3)
+        self.assertAlmostEqual(hi[1], Resolver().get("dimensions.overall_height_roof_rails") / 1000, delta=1e-3)
         self.assertGreater(hi[2], 0.5)          # front overhang ahead of the front axle (+Z)
         self.assertLess(lo[2], -3.0)            # rear of the car towards -Z
         names = [n.get("name") for n in js["nodes"]]
@@ -121,18 +123,22 @@ class EngineeringCad(unittest.TestCase):
         with self.assertRaises(UnknownParameter):
             Resolver(allow_placeholders=False).get("body_profile.belt_z")
 
+    TIRES = ["WHL-001", "WHL-002", "WHL-003", "WHL-004"]
+
     def test_tire_envelopes_are_draft_without_placeholders(self):
-        self.assertEqual(sorted(self.cad), ["WHL-001", "WHL-002", "WHL-003", "WHL-004"])
-        for p in self.cad.values():
+        self.assertTrue(set(self.TIRES) <= set(self.cad))
+        for p in self.cad.values():                      # every CAD part, incl. rims and LPG tank
             self.assertEqual(p["geometry_status"], "DRAFT")
             self.assertNotIn("PLACEHOLDER", p["parameters"].values())
 
     def test_step_volume_and_position_match_the_designation(self):
         r = Resolver()
-        od = 14 * 25.4 + 2 * 0.70 * 175                       # 175/70 R14 designation
-        vol = math.pi / 4 * (od ** 2 - (14 * 25.4) ** 2) * 175
+        m = re.fullmatch(r"(\d{3})/(\d{2}) R(\d{2})", r.get("wheels_tires.tire_size_front"))
+        w, aspect, rim_in = float(m.group(1)), int(m.group(2)) / 100, float(m.group(3))
+        od = rim_in * 25.4 + 2 * aspect * w                   # e.g. 185/70 R14 -> 614.6 mm
+        vol = math.pi / 4 * (od ** 2 - (rim_in * 25.4) ** 2) * w
         c = self.r["checks"]["cad"]
-        for cid in self.cad:
+        for cid in self.TIRES:
             self.assertTrue(c[cid]["valid"])
             self.assertAlmostEqual(c[cid]["volume_mm3"], vol, delta=vol * 1e-9)
         lo, hi = (np.array(v) for v in c["WHL-002"]["bbox_mm"])   # front right

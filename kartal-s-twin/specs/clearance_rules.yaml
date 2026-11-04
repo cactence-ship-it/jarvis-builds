@@ -17,3 +17,67 @@ rules:
     components: [WHL-001, WHL-002, WHL-003, WHL-004]
     tolerance_mm: 0.01
     basis: definitional (VCS Z = 0 is the ground plane, D-003; unloaded position, D-016)
+  # --- rims (D-026). The tire envelope is a full annulus, so rim and envelope overlap at the bead
+  # by construction; the definitional check is that each rim lies inside its tire's envelope box.
+  - id: CL-003
+    description: Each rim lies inside the bounding box of its own tire envelope (front LH)
+    kind: within_bbox
+    components: [WHL-006, WHL-001]
+    basis: definitional (the rim sits inside the tire it carries)
+  - id: CL-004
+    description: Each rim lies inside the bounding box of its own tire envelope (front RH)
+    kind: within_bbox
+    components: [WHL-007, WHL-002]
+    basis: definitional
+  - id: CL-005
+    description: Each rim lies inside the bounding box of its own tire envelope (rear LH)
+    kind: within_bbox
+    components: [WHL-008, WHL-003]
+    basis: definitional
+  - id: CL-006
+    description: Each rim lies inside the bounding box of its own tire envelope (rear RH)
+    kind: within_bbox
+    components: [WHL-009, WHL-004]
+    basis: definitional
+  - id: CL-007
+    description: Rims of different wheels do not intersect
+    kind: no_interference
+    components: [WHL-006, WHL-007, WHL-008, WHL-009]
+    min_clearance_mm: 0.0
+    basis: definitional
+  # --- LPG tank FUL-005: needs an evidence-based tank position and the neighbouring geometry.
+  - id: CL-008
+    description: LPG tank does not intersect the rear tire envelopes
+    kind: no_interference
+    components: [FUL-005, WHL-003, WHL-004]
+    min_clearance_mm: 0.0
+    basis: definitional
+    blocked_by: tank position UNKNOWN (lpg_system.tank_centre_x/y, tank_base_z); FUL-005 exists only in its local frame
+  - id: CL-009
+    description: LPG tank does not intersect the floor pan / luggage floor
+    kind: no_interference
+    components: [FUL-005, CHS-001]
+    min_clearance_mm: 0.0
+    basis: definitional
+    blocked_by: tank position UNKNOWN; floor pan CHS-001 has no geometry (no underbody evidence)
+  - id: CL-010
+    description: LPG tank does not intersect the rear axle (differential, axle shafts, hubs)
+    kind: no_interference
+    components: [FUL-005, DRV-002, DRV-003, RSU-007, RSU-008]
+    min_clearance_mm: 0.0
+    basis: definitional
+    blocked_by: tank position UNKNOWN; rear axle geometry has no evidence
+  - id: CL-011
+    description: LPG tank does not intersect the exhaust (silencer, routing, tailpipe)
+    kind: no_interference
+    components: [FUL-005, EXH-002, EXH-003, EXH-004]
+    min_clearance_mm: 0.0
+    basis: definitional (any thermal-clearance target would need a regulation reference and evidence)
+    blocked_by: tank position UNKNOWN; exhaust geometry has no evidence
+  - id: CL-012
+    description: LPG tank does not intersect the rear suspension (springs, dampers, links)
+    kind: no_interference
+    components: [FUL-005, RSU-001, RSU-002, RSU-003, RSU-004, RSU-005]
+    min_clearance_mm: 0.0
+    basis: definitional
+    blocked_by: tank position UNKNOWN; rear suspension geometry has no evidence

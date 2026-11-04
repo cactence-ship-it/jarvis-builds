@@ -25,10 +25,16 @@ VIEWS = {  # camera direction (from eye towards the car) in VCS, up vector
 }
 
 
-def collect():
-    parts, _ = build_parts()
+SKIN = {"BODY_ASSEMBLY", "GLAZING", "EXTERIOR_TRIM", "LIGHTING"}
+MECH_HIDE = SKIN | {"INTERIOR"}
+
+
+def collect(parts=None, hide=frozenset()):
+    parts = parts if parts is not None else build_parts()[0]
     tris, cols = [], []
     for p in parts:
+        if p.assembly in hide:
+            continue
         for shape, rgba in p.bodies:
             pos, _, idx = tessellate(shape, 1.0, 0.4)
             t = pos[idx]
@@ -37,7 +43,7 @@ def collect():
     return np.concatenate(tris), np.concatenate(cols)
 
 
-def render(tris, cols, view, size=(1200, 760)):
+def render(tris, cols, view, size=(1200, 760), title="PLACEHOLDER envelope"):
     d, up = VIEWS[view]
     d = d / np.linalg.norm(d)
     right = np.cross(d, up)
@@ -69,14 +75,15 @@ def render(tris, cols, view, size=(1200, 760)):
         s = shade[i]
         fill = (int(255 * r * s), int(255 * g * s), int(255 * b * s), int(255 * a))
         dr.polygon(list(zip(X[i], Y[i])), fill=fill)
-    dr.text((12, 10), f"VEH-01 PLACEHOLDER envelope - {view} - not the real car shape", fill=(60, 60, 60))
+    dr.text((12, 10), f"VEH-01 {title} - {view} - not the real car shape", fill=(60, 60, 60))
     return img
 
 
 def main():
     out = BUILD_DIR / "previews"
     out.mkdir(parents=True, exist_ok=True)
-    tris, cols = collect()
+    parts, _ = build_parts()
+    tris, cols = collect(parts)
     imgs = {}
     for v in VIEWS:
         imgs[v] = render(tris, cols, v)
@@ -89,7 +96,18 @@ def main():
     sheet.paste(imgs["rear"].resize((w // 2, h // 2)), (0, h + h // 2))
     sheet.paste(imgs["top"].resize((w // 2, h // 2)), (w // 2, h + h // 2))
     sheet.save(out / "sheet.png")
-    print(f"wrote {len(imgs) + 1} previews to {out}")
+    # Mechanical package (body, glass, trim, lamps and interior hidden) and interior (skin hidden).
+    for name, hide, title in (("mechanical", MECH_HIDE, "mechanical PLACEHOLDER package (body hidden)"),
+                              ("interior", SKIN, "interior + mechanical PLACEHOLDER (body hidden)")):
+        mt, mc = collect(parts, hide)
+        views = {v: render(mt, mc, v, title=title) for v in ("iso", "side", "top", "front")}
+        s = Image.new("RGB", (w, h * 2), (255, 255, 255))
+        s.paste(views["iso"], (0, 0))
+        s.paste(views["side"].resize((w // 2, h // 2)), (0, h))
+        s.paste(views["top"].resize((w // 2, h // 2)), (w // 2, h))
+        s.paste(views["front"].resize((w // 2, h // 2)), (0, h + h // 2))
+        s.save(out / f"{name}_sheet.png")
+    print(f"wrote {len(imgs) + 3} previews to {out}")
 
 
 if __name__ == "__main__":

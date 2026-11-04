@@ -54,6 +54,17 @@ SHAPE = {
     "body_profile.roof_width": "Tavanın yandan yana genişliği.",
     "body_profile.mirror_protrusion": "Aynanın gövde yanından dışarı taşma mesafesi.",
 }
+# P1c - LPG tank and luggage compartment (owner configuration 2026-11-02, D-026). Appended after
+# SHAPE so the existing codes M01-M31 never change.
+LPG = {
+    "lpg_system.tank_outer_diameter": "Tankın dış çapı: şerit metreyi tankın üstünden, merkezden geçecek şekilde uçtan uca tutun (veya tank etiketindeki '600x180' gibi değeri yazın).",
+    "lpg_system.tank_height": "Tankın yüksekliği: tabandan üst yüzeye dik mesafe (etiketteki ikinci sayı).",
+    "lpg_system.tank_central_opening_diameter": "Tankın ortasındaki deliğin çapı (varsa).",
+    "lpg_system.tank_centre_x": "Ön jant merkezinden tank merkezine yatay mesafe (araç boyunca, yerde çekülle işaretleyerek).",
+    "lpg_system.tank_centre_y": "Aracın orta çizgisinden tank merkezine yanal mesafe (sağa +, sola -).",
+    "lpg_system.tank_base_z": "Tankın alt yüzeyinin (veya oturduğu stepne yuvası tabanının) yerden yüksekliği; araç altından ölçün.",
+    "body.cargo_width_between_arches": "Bagajda iki arka çamurluk kemeri arasındaki en dar genişlik.",
+}
 # P2 - registration certificate (ruhsat) fields. Owner data must be covered before photographing.
 RUHSAT = [
     ("Markası / Tipi / Ticari adı", "identity.make, identity.model, identity.variant"),
@@ -67,6 +78,9 @@ RUHSAT = [
     ("İstiap haddi (kişi) - koltuk sayısı yorumla çıkar, ESTIMATED kalır", "interior.seating_capacity"),
 ]
 PHOTOS = [
+    "LPG tank etiketi (ECE R67 plakası): kapasite (litre), ölçüler (ör. 600x180), üretim yılı. Seri numarasını kapatabilirsiniz.",
+    "Bagaj: tankın üstten ve yandan fotoğrafı (çoklu valf ve bağlantı kayışları görünecek şekilde; plaka görünmesin).",
+    "Jantın iç yüzündeki damga (ör. '5 1/2 J x 14', ET değeri) - jant genişliği şu an geçici varsayım.",
     "Motor bölmesi: kaput açık, üstten ve iki yandan (motor tipi, karbüratör/enjeksiyon, servo fren).",
     "Alt gövde: arka aksın ve şaftın göründüğü açı (arkadan itişli mi, arka süspansiyon tipi).",
     "Ön tekerlek: direksiyon tam kırık, tekerlek arkasından süspansiyon ve fren.",
@@ -80,7 +94,7 @@ PHOTOS = [
 
 def codes() -> dict[str, str]:
     """Stable mapping measurement code (M01...) -> spec parameter id."""
-    return {f"M{i:02d}": pid for i, pid in enumerate(list(TAPE) + list(SHAPE), 1)}
+    return {f"M{i:02d}": pid for i, pid in enumerate(list(TAPE) + list(SHAPE) + list(LPG), 1)}
 
 
 def render() -> str:
@@ -121,6 +135,16 @@ def render() -> str:
     for pid, how in SHAPE.items():
         n += 1
         cur = st(pid) if params[pid]["status"] != "UNKNOWN" else f"PLACEHOLDER {by_spec[pid]['value']} mm"
+        lines.append(f"| M{n:02d} | {params[pid]['name']} (`{pid}`) | {how} | {cur} |")
+    lines += ["", "## 2b. LPG tankı ve bagaj (şu an geçici değer / bilinmiyor)", "",
+              "Tank ölçüleri şu an **geçici varsayım** (600 x 180 mm). Gerçek ölçü veya tank etiketi bunları "
+              "doğrular. Tankın araçtaki yeri bilinmediği için tank-aks/egzoz/süspansiyon/taban çakışma kontrolleri "
+              "şu an **BLOCKED**. Bu bir montaj talimatı değildir; LPG donanımına dokunmayın, sadece ölçün.", "",
+              "| Kod | Ölçü | Nasıl ölçülür | Şu anki durum |", "|---|---|---|---|"]
+    for pid, how in LPG.items():
+        n += 1
+        cur = st(pid) if params[pid]["status"] != "UNKNOWN" else (
+            f"PLACEHOLDER {by_spec[pid]['value']} mm (sadece görsel)" if pid in by_spec else "UNKNOWN")
         lines.append(f"| M{n:02d} | {params[pid]['name']} (`{pid}`) | {how} | {cur} |")
     lines += ["", "## 3. Ruhsat bilgileri", "",
               "Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plaka** alanlarını kapatın. "

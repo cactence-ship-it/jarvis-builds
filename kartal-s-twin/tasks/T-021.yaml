@@ -1,0 +1,94 @@
+id: T-021
+title: Owner vehicle configuration, carburettor variant separation, steel-rim and LPG toroidal tank CAD
+description: Apply the owner's configuration of 2026-11-02 (E-017) and provisional CAD values (E-018) on a separate branch
+  stacked on PR 1; derived data classes (D-026); parametric 40 L toroidal LPG tank, 14 in steel rims, provisional 185/70 R14
+  tire geometry; consistency and clearance checks; measurement guide and data dictionary.
+priority: P1
+phase: '4'
+owner: claude
+status: submitted
+depends_on:
+- T-020
+blocker: null
+started_at: '2026-11-02T07:40:00Z'
+finished_at: null
+error: null
+evidence:
+- specs/kartal_s_1997.yaml
+- specs/configuration_rules.yaml
+- src/kartal_twin/layout.py
+- src/kartal_twin/assemblies/fuel_system.py
+- src/kartal_twin/assemblies/wheels_and_tires.py
+- tests/test_configuration_cad.py
+- docs/VERI_SOZLUGU.md
+- audit/2026-11-02-r2/SHA256SUMS
+acceptance:
+- id: T-021-A1
+  criterion: Owner-stated values are ESTIMATED (USER_CONFIRMED) unless a document verifies them; provisional values are ASSUMPTION
+    evidence with confidence LOW; nothing new is VERIFIED
+  check: tools/twin.py validate; test_configuration_cad.DataClasses
+- id: T-021-A2
+  criterion: Carburettor variant kept separate from fuel-injected variants by an enforced rule
+  check: test_configuration_cad.EngineVariant; validate 'configuration (engine variant separation)'
+- id: T-021-A3
+  criterion: Tire OD equals the designation arithmetic (614.6 mm for 185/70 R14); rim and tank volumes match independent analytic
+    formulas (torus 2*pi^2*R*r^2, Pappus) against OpenCascade
+  check: test_configuration_cad.TireGeometry/RimGeometry/TankGeometry
+- id: T-021-A4
+  criterion: Tank is parametric (diameter, height, opening, wall) and rejects zero, negative and impossible geometry
+  check: test_configuration_cad.TankGeometry
+- id: T-021-A5
+  criterion: Clearance checks that lack evidence report NOT_EVALUATED with the blocking reason, never PASS
+  check: test_configuration_cad.BuiltConfiguration
+- id: T-021-A6
+  criterion: All exports re-open; CAD byte-reproducible; new audit snapshot; full suite and viewer smoke test pass locally
+    and in CI
+  check: run_tests.sh, tools/viewer_smoke/run.sh, CI
+results:
+- agent: claude
+  commit: ffd3f8fe5c04e48f282b872176d31f44c3382c0a
+  round: 1
+  superseded_by: null
+  files:
+  - specs/kartal_s_1997.yaml
+  - specs/configuration_rules.yaml
+  - specs/consistency_rules.yaml
+  - specs/clearance_rules.yaml
+  - specs/placeholder_assumptions.yaml
+  - assembly/vehicle_master.yaml
+  - EVIDENCE_REGISTER.md
+  - src/kartal_twin/spec.py
+  - src/kartal_twin/configuration.py
+  - src/kartal_twin/layout.py
+  - src/kartal_twin/consistency.py
+  - src/kartal_twin/interfaces.py
+  - src/kartal_twin/pipeline.py
+  - src/kartal_twin/cad/part.py
+  - src/kartal_twin/assemblies/fuel_system.py
+  - src/kartal_twin/assemblies/wheels_and_tires.py
+  - tools/data_dictionary.py
+  - tools/measurement_guide.py
+  - tools/twin.py
+  - tests/test_configuration_cad.py
+  - tests/test_consistency.py
+  - tests/test_interfaces.py
+  - tests/test_pipeline.py
+  - tests/test_inventory.py
+  - docs/VERI_SOZLUGU.md
+  - docs/OLCUM_REHBERI.md
+  - audit/2026-11-02-r2/SHA256SUMS
+  tests: 'Local: validate all PASS; unittest 138/138 OK (29 new in tests/test_configuration_cad.py); viewer smoke 36 parts,
+    errors []; ruff 0.15.0 clean; second fresh build reproduces all 10 CAD STEP files byte for byte. CI at ffd3f8f: push run
+    https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41409480479 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41409524922
+    (jobs test 125159116299, viewer 125159116086): success; log ''Ran 138 tests ... OK''; coreutils sha256sum -c audit/2026-11-02-r2
+    12/12 OK and audit/2026-11-02 7/7 OK; privacy audit 531 blobs, 0 findings.'
+  confidence: MEDIUM
+  known_defects:
+  - 'DC-018 INDETERMINATE: owner 40 L vs about 38.2 L for the provisional 600 x 180 mm shape (U-013)'
+  - 'Tank clearance rules CL-008..CL-012 BLOCKED: tank position and floor/axle/exhaust/suspension geometry have no evidence
+    (U-014)'
+  - Tire 185/70 R14, rim 5.5J, tank 600 x 180 mm, opening, wall and steel thicknesses are assumptions (ESTIMATED LOW)
+  - 'Rim section simplified: no well, vent holes, PCD, centre bore or offset ET; tank section simplified to a stadium'
+  open_questions:
+  - Is 40 L the water capacity on the tank label, or the usable volume?
+reviews: []

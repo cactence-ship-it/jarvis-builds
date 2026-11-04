@@ -53,11 +53,13 @@ def export_cad(parts: list[Part], out: Path) -> dict:
     for p in parts:
         shape = p.bodies[0][0]
         shape.label = p.component_id
-        children.append(shape)
+        if p.placed:
+            children.append(shape)
         f = d / f"{p.component_id}.step"
         bd.export_step(shape, f, timestamp=STEP_TIMESTAMP)
         back = bd.import_step(f)
         rep[p.component_id] = {"file": str(f.relative_to(out)), "bytes": f.stat().st_size, "sha256": _sha(f),
+                               "placed_in_vehicle": p.placed,
                                "valid": back.is_valid, "volume_mm3": back.volume,
                                "volume_rel_error": abs(back.volume - shape.volume) / shape.volume,
                                "bbox_mm": [[round(v, 3) for v in (back.bounding_box().min.X, back.bounding_box().min.Y, back.bounding_box().min.Z)],
@@ -179,24 +181,31 @@ def run(out: Path = BUILD_DIR) -> dict:
     t0 = time.time()
     out.mkdir(parents=True, exist_ok=True)
     _clean(out)
-    parts, skipped = build_parts()
-    errors = check_parts(parts)
-    report = export_all(parts, out) if not errors else {"files": {}, "checks": {}}
+    # Engineering CAD is exported FIRST: OpenCascade numbers STEP assembly occurrences with a
+    # process-wide counter, so exporting the visual vehicle first made the CAD STEP bytes depend
+    # on how many visual solids exist (found when the visual package grew, 2026-11-03).
     cad_parts, _ = build_parts("cad")
     cad_errors = check_parts(cad_parts)
-    errors += [f"cad: {e}" for e in cad_errors]
+    errors = [f"cad: {e}" for e in cad_errors]
+    cad_checks = {}
     if cad_parts and not cad_errors:
-        report["checks"]["cad"] = export_cad(cad_parts, out)
+        cad_checks["cad"] = export_cad(cad_parts, out)
         from .interfaces import check as clearance_check
-        cl = clearance_check({p.component_id: p.bodies[0][0] for p in cad_parts})
-        report["checks"]["clearance"] = cl
+        cl = clearance_check({p.component_id: p.bodies[0][0] for p in cad_parts if p.placed})
+        cad_checks["clearance"] = cl
         errors += [f"clearance {r['id']} FAILED" for r in cl if r["status"] == "FAIL"]
+    parts, skipped = build_parts()
+    vis_errors = check_parts(parts)
+    errors = vis_errors + errors
+    report = export_all(parts, out) if not vis_errors else {"files": {}, "checks": {}}
+    report["checks"].update(cad_checks)
     parts = parts + cad_parts
     report["files"] = _list_outputs(out)
     report.update({
         "errors": errors, "skipped_assemblies": skipped, "seconds": round(time.time() - t0, 1),
         "parts": [{"id": p.component_id, "assembly": p.assembly, "representation": p.representation,
-                   "geometry_status": p.geometry_status, "parameters": p.used, "note": p.note}
+                   "geometry_status": p.geometry_status, "parameters": p.used, "note": p.note,
+                   "placed_in_vehicle": p.placed}
                   for p in parts]})
     (out).mkdir(parents=True, exist_ok=True)
     (out / "manifest.json").write_text(json.dumps(report, indent=2, default=float))

@@ -20,15 +20,15 @@ assumptions:
   front_overhang:   {value: 830,  unit: mm, replaces: dimensions.front_overhang, rationale: "split of literature length minus wheelbase (1906 mm); estates carry the longer overhang at the rear"}
   # --- body side profile (VCS: X rearward from front axle, Z up from ground) -
   bumper_protrusion:   {value: 60,  unit: mm, replaces: body_profile.bumper_protrusion, rationale: "bumper face ahead of / behind the body face"}
-  bumper_height:       {value: 130, unit: mm, replaces: body_profile.bumper_height, rationale: "bar-type bumper of the era"}
-  bumper_bottom_z:     {value: 300, unit: mm, replaces: body_profile.bumper_bottom_z, rationale: "proportion guess"}
+  bumper_height:       {value: 180, unit: mm, replaces: body_profile.bumper_height, rationale: "deep black plastic bumpers of the S series (photos E-026); no scale"}
+  bumper_bottom_z:     {value: 280, unit: mm, replaces: body_profile.bumper_bottom_z, rationale: "proportion guess from photos E-026"}
   sill_z:              {value: 200, unit: mm, replaces: body_profile.sill_z, rationale: "body-side lower edge above ground"}
   nose_bottom_z:       {value: 300, unit: mm, replaces: body_profile.nose_bottom_z, rationale: "front lower edge"}
-  nose_top_z:          {value: 760, unit: mm, replaces: body_profile.nose_top_z, rationale: "top edge of the front face (hood leading edge)"}
-  cowl_x:              {value: 1060, unit: mm, replaces: body_profile.cowl_x, rationale: "windshield base behind the front axle"}
+  nose_top_z:          {value: 840, unit: mm, replaces: body_profile.nose_top_z, rationale: "top edge of the front face; photos E-026 show a nearly flat hood and a tall front face (was 760, too wedge-shaped); no scale"}
+  cowl_x:              {value: 850, unit: mm, replaces: body_profile.cowl_x, rationale: "windshield base behind the front axle; side photos E-026 put the A-pillar base near the front of the front door (was 1060, which gave a 1.8 m hood); no scale"}
   belt_z:              {value: 960, unit: mm, replaces: body_profile.belt_z, rationale: "side-window sill (beltline) height"}
   rear_bottom_z:       {value: 420, unit: mm, replaces: body_profile.rear_bottom_z, rationale: "lower edge of the rear face"}
-  windshield_top_x:    {value: 1660, unit: mm, replaces: body_profile.windshield_top_x, rationale: "gives a ~55 deg windshield rake typical of the period"}
+  windshield_top_x:    {value: 1450, unit: mm, replaces: body_profile.windshield_top_x, rationale: "windshield top; keeps the period rake with the new cowl_x (photos E-026); no scale"}
   roof_rear_inset:     {value: 120, unit: mm, replaces: body_profile.roof_rear_inset, rationale: "roof ends this far ahead of the rear body face (near-vertical tailgate)"}
   tail_rear_inset:     {value: 25,  unit: mm, rationale: "greenhouse rear face inset at belt height"}
   greenhouse_inset_belt: {value: 45, unit: mm, rationale: "side glass inset from the body side at the beltline"}
@@ -41,4 +41,45 @@ assumptions:
   tire_static_deflection: {value: 12, unit: mm, rationale: "loaded radius = free radius minus deflection"}
   mirror_protrusion:   {value: 110, unit: mm, replaces: body_profile.mirror_protrusion, rationale: "mirror housing beyond the body side"}
   # --- appearance (colour is UNKNOWN; neutral grey signals 'not the real paint')
-  paint_rgba:          {value: [0.73, 0.75, 0.77, 1.0], unit: null, rationale: "neutral placeholder - exterior colour UNKNOWN"}
+  paint_rgba:          {value: [0.11, 0.54, 0.50, 1.0], unit: null, rationale: "turquoise-green approximation of the registered colour name TURKUAZ YESIL (E-014, E-015, E-017); the RGB value itself is a guess, no paint code known"}
+  # --- LPG tank position (visual only; CAD keeps the tank unplaced, D-016/D-026) ---------
+  lpg_tank_centre_x: {value: 3150, unit: mm, replaces: lpg_system.tank_centre_x, rationale: "photos E-022 show the tank in the spare-wheel well at the rear of the luggage floor near the tailgate sill; the number itself is a guess (no scale)"}
+  lpg_tank_centre_y: {value: 0, unit: mm, replaces: lpg_system.tank_centre_y, rationale: "on the centre line; pure guess"}
+  lpg_tank_base_z:   {value: 350, unit: mm, replaces: lpg_system.tank_base_z, rationale: "on the luggage floor / well floor; load-floor height unknown; pure guess"}
+  # --- mechanical package (VISUAL ONLY, all PLACEHOLDER; owner directive 2026-11-03) ------------
+  # Layout guesses so the twin is a complete assembly. Photos E-022..E-028 fix only the ARRANGEMENT
+  # (longitudinal engine, MacPherson front, rigid rear axle with a transverse rod, LHD, manual,
+  # power steering, electric fan, battery in the engine bay, LPG tank in the spare-wheel well,
+  # rear silencer beside it); every number below is a proportion guess, never a measurement.
+  pkg_engine_x0:      {value: -150, unit: mm, rationale: "front face of the block; longitudinal engine mostly behind the front axle line (photos E-027); guess"}
+  pkg_engine_len:     {value: 470,  unit: mm, rationale: "block length of a 4-cylinder 1.6 l; proportion guess"}
+  pkg_crank_z:        {value: 300,  unit: mm, rationale: "crankshaft centre height; keeps the air cleaner under the hood line; guess"}
+  pkg_block_half_w:   {value: 150,  unit: mm, rationale: "half width of the block; guess"}
+  pkg_gearbox_len:    {value: 660,  unit: mm, rationale: "bellhousing + 5-speed-size case length (gear count UNKNOWN); guess"}
+  pkg_radiator_x:     {value: -640, unit: mm, rationale: "radiator behind the grille (photos E-027); guess"}
+  pkg_firewall_x:     {value: 790, unit: mm, rationale: "rear wall of the engine bay just ahead of the cowl (body_profile.cowl_x 850); guess"}
+  pkg_floor_z:        {value: 215,  unit: mm, rationale: "cabin floor top just above the sill line (body_profile.sill_z 200); guess"}
+  pkg_cargo_floor_z:  {value: 430,  unit: mm, rationale: "luggage floor above the rear axle, near the tailgate sill; guess"}
+  pkg_well_floor_z:   {value: 330,  unit: mm, rationale: "spare-wheel well floor; well protrudes below the floor (photos E-025); guess"}
+  pkg_front_rail_y:   {value: 380,  unit: mm, rationale: "half spacing of the front longitudinal members; guess"}
+  pkg_strut_top_z:    {value: 700,  unit: mm, rationale: "MacPherson strut top mounts on the inner wings (photos E-027), below the hood; height guess"}
+  pkg_strut_inset:    {value: 150,  unit: mm, rationale: "strut top inboard of the wheel centre; guess"}
+  pkg_arm_inner_y:    {value: 330,  unit: mm, rationale: "front lower arm inner pivots; guess"}
+  pkg_rear_spring_y:  {value: 520,  unit: mm, rationale: "rear spring position on the axle; spring TYPE is UNKNOWN (neutral envelope only); guess"}
+  pkg_axle_tube_r:    {value: 38,   unit: mm, rationale: "rear axle tube radius; guess"}
+  pkg_diff_r:         {value: 140,  unit: mm, rationale: "differential housing radius; guess"}
+  pkg_exhaust_y:      {value: 220,  unit: mm, rationale: "exhaust run offset to the RH side of the tunnel; side and offset are guesses"}
+  pkg_rear_silencer:  {value: [2800, 3300, 520, 230, 70], unit: mm, rationale: "x0, x1, y, z, radius: rear silencer beside the spare-wheel well (photos E-025); numbers guessed"}
+  pkg_petrol_tank:    {value: [2560, 3300, -550, -340, 230, 480], unit: mm, rationale: "x0, x1, y0, y1, z0, z1: rectangular tank beside the well, inside the wheel-arch line (photos E-025); about 39 L envelope vs 52 L literature (E-010); guess"}
+  pkg_battery:        {value: [-560, -320, 330, 505, 330, 520], unit: mm, rationale: "x0, x1, y0, y1, z0, z1: battery in a front corner of the engine bay beside the radiator (photos E-027); side and size guessed"}
+  pkg_dash:           {value: [850, 1090, 650, 900], unit: mm, rationale: "x0, x1, z0, z1 of the dashboard under the windshield base; guess"}
+  pkg_steering_wheel: {value: [1150, -370, 870, 170], unit: mm, rationale: "x, y, z, radius: LHD (E-024), small aftermarket sport wheel (E-024); guess"}
+  pkg_front_seat:     {value: [1380, 1880, 180, 680, 380, 500, 1080], unit: mm, rationale: "x0, x1, |y| inner, |y| outer, cushion z0, z1, backrest top z; guess"}
+  pkg_rear_seat:      {value: [2300, 2760, 540, 400, 510, 1000], unit: mm, rationale: "x0, x1, |y| outer (between the rear wheel arches), cushion z0, z1, backrest top z (rear bench, E-024); guess"}
+  pkg_pedals:         {value: [940, -480, -260, 260, 450], unit: mm, rationale: "x, y of the clutch (LH), y of the accelerator (RH), z0, z1 (three pedals, E-024); guess"}
+  pkg_gear_lever_x:   {value: 1020, unit: mm, rationale: "floor gear lever on the tunnel (E-024); guess"}
+  pkg_handbrake_x:    {value: 1350, unit: mm, rationale: "handbrake lever between the front seats; guess"}
+  pkg_harness_r:      {value: 9,    unit: mm, rationale: "visual radius of a wiring-harness bundle; routing is schematic, no pinout or wiring data"}
+  pkg_brake_r:        {value: 115,  unit: mm, rationale: "brake envelope radius inside a 14 in wheel; front type (disc/drum) UNKNOWN, rear drum ESTIMATED; guess"}
+  pkg_spare_wheel:    {value: [3000, 560], unit: mm, rationale: "x, y of the spare wheel standing upright on the RH side of the luggage compartment (photos E-022); numbers guessed"}
+  roof_rail_height:   {value: 1570, unit: mm, replaces: dimensions.overall_height_roof_rails, rationale: "roof rails seen in the photos (E-026); about 74 mm above the 1496 mm literature roof height; guess"}

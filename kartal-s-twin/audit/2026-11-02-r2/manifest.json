@@ -1,0 +1,1874 @@
+{
+  "files": {
+    "vehicle.step": {
+      "bytes": 1069395,
+      "sha256": "b8797d405d6e0a402bb5d6226b9c34433b89c52d50b463fbec7e136dbfed4504"
+    },
+    "vehicle.stl": {
+      "bytes": 805684,
+      "sha256": "a1ea8f94e4ddbd35eb05bac5d950b1b0bf3960ee6e655032d42f8307997e4044"
+    },
+    "vehicle.glb": {
+      "bytes": 530576,
+      "sha256": "55f5c8b55ac889df2395f4f34cb4be093becb66ed8f7580a3ada518eb4e0c882"
+    },
+    "assemblies/BODY_ASSEMBLY.glb": {
+      "bytes": 65916,
+      "sha256": "050f6696be64d00359293072c399cc4de08d79cc2c11bbb058d1e35522c3ea53"
+    },
+    "assemblies/EXTERIOR_TRIM.glb": {
+      "bytes": 23732,
+      "sha256": "1ccb9f29efc423871a2b41e35ae19b08b9650fda6823f0b0492620445f2dfa1d"
+    },
+    "assemblies/FUEL_SYSTEM.glb": {
+      "bytes": 95544,
+      "sha256": "03292f2a39730df7be7780e4f11386e3b3af433cecef8fb1fba16e9247b13166"
+    },
+    "assemblies/GLAZING.glb": {
+      "bytes": 17548,
+      "sha256": "76dd156434dd2b4e7cc5ba4b19abf3acc06b1524b12afe10a1718916079b88e0"
+    },
+    "assemblies/LIGHTING.glb": {
+      "bytes": 11900,
+      "sha256": "923f2ab3c5f452cb4adf9e4f924f6b493fd10ff5d5743ec3cbd5cd3d98d8235b"
+    },
+    "assemblies/WHEELS_AND_TIRES.glb": {
+      "bytes": 317248,
+      "sha256": "9248fecf173eb5f0c504a7f7d0882237f0ae465468f4033c4a1f27bd89e0c2ce"
+    },
+    "cad/FUL-005.step": {
+      "bytes": 17304,
+      "sha256": "933df825c0e69b7d3b6fa2ee09871d0467d85996a2bf4f316b9cf5aad5986e11"
+    },
+    "cad/WHL-001.step": {
+      "bytes": 10864,
+      "sha256": "7d41dc965e4d6330097afe3ea09f237a9484b0ea7a83e4f422467b3ba2f2ff38"
+    },
+    "cad/WHL-002.step": {
+      "bytes": 10863,
+      "sha256": "c8fbfb2efd005817984bf30b59e2c71feef7ad294326c49cd7148fdecbfe11d0"
+    },
+    "cad/WHL-003.step": {
+      "bytes": 10871,
+      "sha256": "5d7f071029ede5f1aad0cdb982e6f1fa1054d7424f71e13e1cf9d6b579ca4463"
+    },
+    "cad/WHL-004.step": {
+      "bytes": 10870,
+      "sha256": "1f120aae5ead0477c238ef903a452b212e4ef070d45da0fb04c3d2354121bad0"
+    },
+    "cad/WHL-006.step": {
+      "bytes": 22816,
+      "sha256": "d35204133019dac771f707451a7d810b9fce8df737dcbbe5230cd0735ee3f3d4"
+    },
+    "cad/WHL-007.step": {
+      "bytes": 22815,
+      "sha256": "4d734e7d2b77051012f83db076ea6a5cac21ab4641344851f6c893a678951fce"
+    },
+    "cad/WHL-008.step": {
+      "bytes": 22823,
+      "sha256": "b6e7c503688497efcc1a5e8d5d05db94521aa7a9fb42271deccfba6571beb539"
+    },
+    "cad/WHL-009.step": {
+      "bytes": 22822,
+      "sha256": "2e3ada674b0a946f00deea98d8e524f0c22b092d2f762d9e58781e57dd84d2d8"
+    },
+    "cad/vehicle_cad.step": {
+      "bytes": 128741,
+      "sha256": "1045003af4e010fbec2cb4cfc3d84887997381430657143ca5de3b8ff3bf2c4f"
+    }
+  },
+  "checks": {
+    "step": {
+      "solids_written": 41,
+      "solids_read": 41,
+      "volume_rel_error": 2.0542162866657402e-13,
+      "valid": true
+    },
+    "stl": {
+      "triangles": 16112,
+      "normal_flips": 0,
+      "bbox_mm": [
+        [
+          -830.0,
+          -931.0,
+          -11.1
+        ],
+        [
+          3566.0,
+          931.0,
+          1496.0
+        ]
+      ]
+    },
+    "glb": {
+      "triangles": 16112,
+      "issues": [],
+      "bytes": 530576,
+      "bbox_m": [
+        [
+          -0.931,
+          -0.0111,
+          -3.566
+        ],
+        [
+          0.931,
+          1.496,
+          0.83
+        ]
+      ]
+    },
+    "glb:BODY_ASSEMBLY": {
+      "triangles": 1380,
+      "issues": [],
+      "bytes": 65916,
+      "bbox_m": [
+        [
+          -0.821,
+          0.2,
+          -3.506
+        ],
+        [
+          0.821,
+          1.496,
+          0.77
+        ]
+      ]
+    },
+    "glb:EXTERIOR_TRIM": {
+      "triangles": 132,
+      "issues": [],
+      "bytes": 23732,
+      "bbox_m": [
+        [
+          -0.931,
+          0.3,
+          -3.566
+        ],
+        [
+          0.931,
+          1.04,
+          0.83
+        ]
+      ]
+    },
+    "glb:FUEL_SYSTEM": {
+      "triangles": 3696,
+      "issues": [],
+      "bytes": 95544,
+      "bbox_m": [
+        [
+          -0.2989,
+          0.35,
+          -3.2497
+        ],
+        [
+          0.2989,
+          0.53,
+          -2.6503
+        ]
+      ]
+    },
+    "glb:GLAZING": {
+      "triangles": 96,
+      "issues": [],
+      "bytes": 17548,
+      "bbox_m": [
+        [
+          -0.7766,
+          0.9826,
+          -3.4834
+        ],
+        [
+          0.7766,
+          1.4771,
+          -1.0797
+        ]
+      ]
+    },
+    "glb:LIGHTING": {
+      "triangles": 72,
+      "issues": [],
+      "bytes": 11900,
+      "bbox_m": [
+        [
+          -0.781,
+          0.57,
+          -3.516
+        ],
+        [
+          0.781,
+          0.9,
+          0.78
+        ]
+      ]
+    },
+    "glb:WHEELS_AND_TIRES": {
+      "triangles": 10736,
+      "issues": [],
+      "bytes": 317248,
+      "bbox_m": [
+        [
+          -0.7855,
+          -0.0111,
+          -2.7973
+        ],
+        [
+          0.7855,
+          0.6017,
+          0.3073
+        ]
+      ]
+    },
+    "mesh_closed_outward": {
+      "failed_bodies": []
+    },
+    "cad": {
+      "FUL-005": {
+        "file": "cad/FUL-005.step",
+        "bytes": 17304,
+        "sha256": "933df825c0e69b7d3b6fa2ee09871d0467d85996a2bf4f316b9cf5aad5986e11",
+        "placed_in_vehicle": false,
+        "valid": true,
+        "volume_mm3": 2291282.2121221125,
+        "volume_rel_error": 3.414293353032568e-14,
+        "bbox_mm": [
+          [
+            -300.0,
+            -300.0,
+            0.0
+          ],
+          [
+            300.0,
+            300.0,
+            180.0
+          ]
+        ]
+      },
+      "WHL-001": {
+        "file": "cad/WHL-001.step",
+        "bytes": 10864,
+        "sha256": "7d41dc965e4d6330097afe3ea09f237a9484b0ea7a83e4f422467b3ba2f2ff38",
+        "placed_in_vehicle": true,
+        "valid": true,
+        "volume_mm3": 36510908.879813716,
+        "volume_rel_error": 2.2447095698424614e-14,
+        "bbox_mm": [
+          [
+            -307.3,
+            -785.5,
+            0.0
+          ],
+          [
+            307.3,
+            -600.5,
+            614.6
+          ]
+        ]
+      },
+      "WHL-006": {
+        "file": "cad/WHL-006.step",
+        "bytes": 22816,
+        "sha256": "d35204133019dac771f707451a7d810b9fce8df737dcbbe5230cd0735ee3f3d4",
+        "placed_in_vehicle": true,
+        "valid": true,
+        "volume_mm3": 991226.2662738317,
+        "volume_rel_error": 2.3606597689523104e-14,
+        "bbox_mm": [
+          [
+            -195.3,
+            -765.85,
+            112.0
+          ],
+          [
+            195.3,
+            -620.15,
+            502.6
+          ]
+        ]
+      },
+      "WHL-002": {
+        "file": "cad/WHL-002.step",
+        "bytes": 10863,
+        "sha256": "c8fbfb2efd005817984bf30b59e2c71feef7ad294326c49cd7148fdecbfe11d0",
+        "placed_in_vehicle": true,
+        "valid": true,
+        "volume_mm3": 36510908.879813716,
+        "volume_rel_error": 2.2447095698424614e-14,
+        "bbox_mm": [
+          [
+            -307.3,
+            600.5,
+            0.0
+          ],
+          [
+            307.3,
+            785.5,
+            614.6
+          ]
+        ]
+      },
+      "WHL-007": {
+        "file": "cad/WHL-007.step",
+        "bytes": 22815,
+        "sha256": "4d734e7d2b77051012f83db076ea6a5cac21ab4641344851f6c893a678951fce",
+        "placed_in_vehicle": true,
+        "valid": true,
+        "volume_mm3": 991226.2662738317,
+        "volume_rel_error": 2.3606597689523104e-14,
+        "bbox_mm": [
+          [
+            -195.3,
+            620.15,
+            112.0
+          ],
+          [
+            195.3,
+            765.85,
+            502.6
+          ]
+        ]
+      },
+      "WHL-003": {
+        "file": "cad/WHL-003.step",
+        "bytes": 10871,
+        "sha256": "5d7f071029ede5f1aad0cdb982e6f1fa1054d7424f71e13e1cf9d6b579ca4463",
+        "placed_in_vehicle": true,
+        "valid": true,
+        "volume_mm3": 36510908.879813716,
+        "volume_rel_error": 2.2855224711123253e-14,
+        "bbox_mm": [
+          [
+            2182.7,
+            -756.0,
+            0.0
+          ],
+          [
+            2797.3,
+            -571.0,
+            614.6
+          ]
+        ]
+      },
+      "WHL-008": {
+        "file": "cad/WHL-008.step",
+        "bytes": 22823,
+        "sha256": "b6e7c503688497efcc1a5e8d5d05db94521aa7a9fb42271deccfba6571beb539",
+        "placed_in_vehicle": true,
+        "valid": true,
+        "volume_mm3": 991226.2662738308,
+        "volume_rel_error": 2.1727465535133187e-14,
+        "bbox_mm": [
+          [
+            2294.7,
+            -736.35,
+            112.0
+          ],
+          [
+            2685.3,
+            -590.65,
+            502.6
+          ]
+        ]
+      },
+      "WHL-004": {
+        "file": "cad/WHL-004.step",
+        "bytes": 10870,
+        "sha256": "1f120aae5ead0477c238ef903a452b212e4ef070d45da0fb04c3d2354121bad0",
+        "placed_in_vehicle": true,
+        "valid": true,
+        "volume_mm3": 36510908.879813716,
+        "volume_rel_error": 2.2855224711123253e-14,
+        "bbox_mm": [
+          [
+            2182.7,
+            571.0,
+            0.0
+          ],
+          [
+            2797.3,
+            756.0,
+            614.6
+          ]
+        ]
+      },
+      "WHL-009": {
+        "file": "cad/WHL-009.step",
+        "bytes": 22822,
+        "sha256": "2e3ada674b0a946f00deea98d8e524f0c22b092d2f762d9e58781e57dd84d2d8",
+        "placed_in_vehicle": true,
+        "valid": true,
+        "volume_mm3": 991226.2662738308,
+        "volume_rel_error": 2.1727465535133187e-14,
+        "bbox_mm": [
+          [
+            2294.7,
+            590.65,
+            112.0
+          ],
+          [
+            2685.3,
+            736.35,
+            502.6
+          ]
+        ]
+      },
+      "_assembly": {
+        "file": "cad/vehicle_cad.step",
+        "bytes": 128741,
+        "sha256": "1045003af4e010fbec2cb4cfc3d84887997381430657143ca5de3b8ff3bf2c4f",
+        "solids_written": 8,
+        "solids_read": 8,
+        "valid": true
+      }
+    },
+    "clearance": [
+      {
+        "id": "CL-001",
+        "kind": "no_interference",
+        "description": "Road-wheel tire envelopes must not intersect each other",
+        "components": [
+          "WHL-001",
+          "WHL-002",
+          "WHL-003",
+          "WHL-004"
+        ],
+        "measurements": [
+          {
+            "pair": [
+              "WHL-001",
+              "WHL-002"
+            ],
+            "clearance_mm": 1201.0,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-001",
+              "WHL-003"
+            ],
+            "clearance_mm": 1875.4,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-001",
+              "WHL-004"
+            ],
+            "clearance_mm": 2211.2298,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-002",
+              "WHL-003"
+            ],
+            "clearance_mm": 2211.2298,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-002",
+              "WHL-004"
+            ],
+            "clearance_mm": 1875.4,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-003",
+              "WHL-004"
+            ],
+            "clearance_mm": 1142.0,
+            "interference_mm3": 0.0,
+            "pass": true
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "id": "CL-002",
+        "kind": "ground_contact",
+        "description": "Unloaded tire envelopes rest on the ground plane (Z = 0) in the design position",
+        "components": [
+          "WHL-001",
+          "WHL-002",
+          "WHL-003",
+          "WHL-004"
+        ],
+        "measurements": [
+          {
+            "component": "WHL-001",
+            "z_min_mm": 0.0,
+            "pass": true
+          },
+          {
+            "component": "WHL-002",
+            "z_min_mm": 0.0,
+            "pass": true
+          },
+          {
+            "component": "WHL-003",
+            "z_min_mm": 0.0,
+            "pass": true
+          },
+          {
+            "component": "WHL-004",
+            "z_min_mm": 0.0,
+            "pass": true
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "id": "CL-003",
+        "kind": "within_bbox",
+        "description": "Each rim lies inside the bounding box of its own tire envelope (front LH)",
+        "components": [
+          "WHL-006",
+          "WHL-001"
+        ],
+        "measurements": [
+          {
+            "pair": [
+              "WHL-006",
+              "WHL-001"
+            ],
+            "min_margin_mm": 19.65,
+            "pass": true
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "id": "CL-004",
+        "kind": "within_bbox",
+        "description": "Each rim lies inside the bounding box of its own tire envelope (front RH)",
+        "components": [
+          "WHL-007",
+          "WHL-002"
+        ],
+        "measurements": [
+          {
+            "pair": [
+              "WHL-007",
+              "WHL-002"
+            ],
+            "min_margin_mm": 19.65,
+            "pass": true
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "id": "CL-005",
+        "kind": "within_bbox",
+        "description": "Each rim lies inside the bounding box of its own tire envelope (rear LH)",
+        "components": [
+          "WHL-008",
+          "WHL-003"
+        ],
+        "measurements": [
+          {
+            "pair": [
+              "WHL-008",
+              "WHL-003"
+            ],
+            "min_margin_mm": 19.65,
+            "pass": true
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "id": "CL-006",
+        "kind": "within_bbox",
+        "description": "Each rim lies inside the bounding box of its own tire envelope (rear RH)",
+        "components": [
+          "WHL-009",
+          "WHL-004"
+        ],
+        "measurements": [
+          {
+            "pair": [
+              "WHL-009",
+              "WHL-004"
+            ],
+            "min_margin_mm": 19.65,
+            "pass": true
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "id": "CL-007",
+        "kind": "no_interference",
+        "description": "Rims of different wheels do not intersect",
+        "components": [
+          "WHL-006",
+          "WHL-007",
+          "WHL-008",
+          "WHL-009"
+        ],
+        "measurements": [
+          {
+            "pair": [
+              "WHL-006",
+              "WHL-007"
+            ],
+            "clearance_mm": 1240.3,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-006",
+              "WHL-008"
+            ],
+            "clearance_mm": 2099.5672,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-006",
+              "WHL-009"
+            ],
+            "clearance_mm": 2423.534,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-007",
+              "WHL-008"
+            ],
+            "clearance_mm": 2423.534,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-007",
+              "WHL-009"
+            ],
+            "clearance_mm": 2099.5672,
+            "interference_mm3": 0.0,
+            "pass": true
+          },
+          {
+            "pair": [
+              "WHL-008",
+              "WHL-009"
+            ],
+            "clearance_mm": 1181.3,
+            "interference_mm3": 0.0,
+            "pass": true
+          }
+        ],
+        "status": "PASS"
+      },
+      {
+        "id": "CL-008",
+        "kind": "no_interference",
+        "description": "LPG tank does not intersect the rear tire envelopes",
+        "components": [
+          "FUL-005",
+          "WHL-003",
+          "WHL-004"
+        ],
+        "measurements": [],
+        "status": "NOT_EVALUATED",
+        "missing": [
+          "FUL-005"
+        ],
+        "blocked_by": "tank position UNKNOWN (lpg_system.tank_centre_x/y, tank_base_z); FUL-005 exists only in its local frame"
+      },
+      {
+        "id": "CL-009",
+        "kind": "no_interference",
+        "description": "LPG tank does not intersect the floor pan / luggage floor",
+        "components": [
+          "FUL-005",
+          "CHS-001"
+        ],
+        "measurements": [],
+        "status": "NOT_EVALUATED",
+        "missing": [
+          "FUL-005",
+          "CHS-001"
+        ],
+        "blocked_by": "tank position UNKNOWN; floor pan CHS-001 has no geometry (no underbody evidence)"
+      },
+      {
+        "id": "CL-010",
+        "kind": "no_interference",
+        "description": "LPG tank does not intersect the rear axle (differential, axle shafts, hubs)",
+        "components": [
+          "FUL-005",
+          "DRV-002",
+          "DRV-003",
+          "RSU-007",
+          "RSU-008"
+        ],
+        "measurements": [],
+        "status": "NOT_EVALUATED",
+        "missing": [
+          "FUL-005",
+          "DRV-002",
+          "DRV-003",
+          "RSU-007",
+          "RSU-008"
+        ],
+        "blocked_by": "tank position UNKNOWN; rear axle geometry has no evidence"
+      },
+      {
+        "id": "CL-011",
+        "kind": "no_interference",
+        "description": "LPG tank does not intersect the exhaust (silencer, routing, tailpipe)",
+        "components": [
+          "FUL-005",
+          "EXH-002",
+          "EXH-003",
+          "EXH-004"
+        ],
+        "measurements": [],
+        "status": "NOT_EVALUATED",
+        "missing": [
+          "FUL-005",
+          "EXH-002",
+          "EXH-003",
+          "EXH-004"
+        ],
+        "blocked_by": "tank position UNKNOWN; exhaust geometry has no evidence"
+      },
+      {
+        "id": "CL-012",
+        "kind": "no_interference",
+        "description": "LPG tank does not intersect the rear suspension (springs, dampers, links)",
+        "components": [
+          "FUL-005",
+          "RSU-001",
+          "RSU-002",
+          "RSU-003",
+          "RSU-004",
+          "RSU-005"
+        ],
+        "measurements": [],
+        "status": "NOT_EVALUATED",
+        "missing": [
+          "FUL-005",
+          "RSU-001",
+          "RSU-002",
+          "RSU-003",
+          "RSU-004",
+          "RSU-005"
+        ],
+        "blocked_by": "tank position UNKNOWN; rear suspension geometry has no evidence"
+      }
+    ]
+  },
+  "errors": [],
+  "skipped_assemblies": [
+    "INTERIOR",
+    "ENGINE",
+    "TRANSMISSION",
+    "DRIVETRAIN",
+    "CHASSIS",
+    "FRONT_SUSPENSION",
+    "REAR_SUSPENSION",
+    "STEERING",
+    "BRAKING",
+    "EXHAUST",
+    "ELECTRICAL"
+  ],
+  "seconds": 8.9,
+  "parts": [
+    {
+      "id": "BDY-008",
+      "assembly": "BODY_ASSEMBLY",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "paint_rgba": "PLACEHOLDER",
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.sill_z": "PLACEHOLDER",
+        "body_profile.nose_bottom_z": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.rear_bottom_z": "PLACEHOLDER",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "arch_clearance": "PLACEHOLDER",
+        "arch_depth": "PLACEHOLDER",
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Cut from the placeholder envelope; outline not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "BDY-009",
+      "assembly": "BODY_ASSEMBLY",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "paint_rgba": "PLACEHOLDER",
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.sill_z": "PLACEHOLDER",
+        "body_profile.nose_bottom_z": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.rear_bottom_z": "PLACEHOLDER",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "arch_clearance": "PLACEHOLDER",
+        "arch_depth": "PLACEHOLDER",
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Cut from the placeholder envelope; outline not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "BDY-010",
+      "assembly": "BODY_ASSEMBLY",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "paint_rgba": "PLACEHOLDER",
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.sill_z": "PLACEHOLDER",
+        "body_profile.nose_bottom_z": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.rear_bottom_z": "PLACEHOLDER",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "arch_clearance": "PLACEHOLDER",
+        "arch_depth": "PLACEHOLDER",
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Cut from the placeholder envelope; outline not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "BDY-011",
+      "assembly": "BODY_ASSEMBLY",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "paint_rgba": "PLACEHOLDER",
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.sill_z": "PLACEHOLDER",
+        "body_profile.nose_bottom_z": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.rear_bottom_z": "PLACEHOLDER",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "arch_clearance": "PLACEHOLDER",
+        "arch_depth": "PLACEHOLDER",
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Cut from the placeholder envelope; outline not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "BDY-003",
+      "assembly": "BODY_ASSEMBLY",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "paint_rgba": "PLACEHOLDER",
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.sill_z": "PLACEHOLDER",
+        "body_profile.nose_bottom_z": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.rear_bottom_z": "PLACEHOLDER",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "arch_clearance": "PLACEHOLDER",
+        "arch_depth": "PLACEHOLDER",
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Cut from the placeholder envelope; outline not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "BDY-012",
+      "assembly": "BODY_ASSEMBLY",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "paint_rgba": "PLACEHOLDER",
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.sill_z": "PLACEHOLDER",
+        "body_profile.nose_bottom_z": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.rear_bottom_z": "PLACEHOLDER",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "arch_clearance": "PLACEHOLDER",
+        "arch_depth": "PLACEHOLDER",
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Cut from the placeholder envelope; outline not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "BDY-001",
+      "assembly": "BODY_ASSEMBLY",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "paint_rgba": "PLACEHOLDER",
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.sill_z": "PLACEHOLDER",
+        "body_profile.nose_bottom_z": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.rear_bottom_z": "PLACEHOLDER",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "arch_clearance": "PLACEHOLDER",
+        "arch_depth": "PLACEHOLDER",
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Envelope minus closures; fenders, quarters and roof not yet separated",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-001",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER"
+      },
+      "note": "Bumper bar; front face defines overall length",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-002",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER"
+      },
+      "note": "Bumper bar; rear face defines overall length",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-003",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER"
+      },
+      "note": "Grille area between headlamps",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-004",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.mirror_protrusion": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-005",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.mirror_protrusion": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-006",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.mirror_protrusion": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Handle position not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-007",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.mirror_protrusion": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Handle position not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-008",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.mirror_protrusion": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Handle position not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-009",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.mirror_protrusion": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Handle position not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "EXT-015",
+      "assembly": "EXTERIOR_TRIM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.bumper_bottom_z": "PLACEHOLDER",
+        "body_profile.bumper_height": "PLACEHOLDER",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "body_profile.mirror_protrusion": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "Wiper layout not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "GLZ-001",
+      "assembly": "GLAZING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "pillar_width": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "GLZ-002",
+      "assembly": "GLAZING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "pillar_width": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "GLZ-003",
+      "assembly": "GLAZING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "pillar_width": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "GLZ-004",
+      "assembly": "GLAZING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "pillar_width": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "GLZ-005",
+      "assembly": "GLAZING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "pillar_width": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "GLZ-006",
+      "assembly": "GLAZING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "pillar_width": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "GLZ-007",
+      "assembly": "GLAZING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "pillar_width": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "GLZ-008",
+      "assembly": "GLAZING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.cowl_x": "PLACEHOLDER",
+        "tail_rear_inset": "PLACEHOLDER",
+        "body_profile.windshield_top_x": "PLACEHOLDER",
+        "body_profile.roof_rear_inset": "PLACEHOLDER",
+        "greenhouse_inset_belt": "PLACEHOLDER",
+        "body_profile.roof_width": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER",
+        "pillar_width": "PLACEHOLDER",
+        "body_profile.b_pillar_x": "PLACEHOLDER",
+        "body_profile.c_pillar_x": "PLACEHOLDER"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "LGT-001",
+      "assembly": "LIGHTING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER"
+      },
+      "note": "Position/shape not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "LGT-002",
+      "assembly": "LIGHTING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER"
+      },
+      "note": "Position/shape not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "LGT-003",
+      "assembly": "LIGHTING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER"
+      },
+      "note": "Position/shape not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "LGT-004",
+      "assembly": "LIGHTING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER"
+      },
+      "note": "Position/shape not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "LGT-007",
+      "assembly": "LIGHTING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER"
+      },
+      "note": "Position/shape not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "LGT-008",
+      "assembly": "LIGHTING",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.overall_length": "ESTIMATED",
+        "dimensions.front_overhang": "PLACEHOLDER",
+        "body_profile.bumper_protrusion": "PLACEHOLDER",
+        "dimensions.overall_width_body": "ESTIMATED",
+        "dimensions.overall_height": "ESTIMATED",
+        "body_profile.nose_top_z": "PLACEHOLDER",
+        "body_profile.belt_z": "PLACEHOLDER"
+      },
+      "note": "Position/shape not from evidence",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "FUL-005",
+      "assembly": "FUEL_SYSTEM",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "lpg_system.tank_section_shape": "ESTIMATED",
+        "lpg_system.tank_outer_diameter": "ESTIMATED",
+        "lpg_system.tank_height": "ESTIMATED",
+        "lpg_system.tank_central_opening_diameter": "ESTIMATED",
+        "lpg_system.tank_wall_thickness": "ESTIMATED",
+        "lpg_system.tank_centre_x": "PLACEHOLDER",
+        "lpg_system.tank_centre_y": "PLACEHOLDER",
+        "lpg_system.tank_base_z": "PLACEHOLDER"
+      },
+      "note": "LPG toroidal tank 600 x 180 mm, PLACEHOLDER position",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-001",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-002",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-003",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-004",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "visual",
+      "geometry_status": "PLACEHOLDER",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "tire_static_deflection": "PLACEHOLDER",
+        "wheels_tires.tire_size_rear": "ESTIMATED"
+      },
+      "note": "",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "FUL-005",
+      "assembly": "FUEL_SYSTEM",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "lpg_system.tank_section_shape": "ESTIMATED",
+        "lpg_system.tank_outer_diameter": "ESTIMATED",
+        "lpg_system.tank_height": "ESTIMATED",
+        "lpg_system.tank_central_opening_diameter": "ESTIMATED",
+        "lpg_system.tank_wall_thickness": "ESTIMATED"
+      },
+      "note": "LPG toroidal tank shell 600 x 180 mm, opening 130 mm, wall 3 mm; internal volume 38.24 L (simplified stadium section); LOCAL frame, not placed in the vehicle (position UNKNOWN); mounting, multivalve, filler and lines not modelled",
+      "placed_in_vehicle": false
+    },
+    {
+      "id": "WHL-001",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "wheels_tires.tire_size_rear": "ESTIMATED"
+      },
+      "note": "Tire design envelope 185/70 R14: OD 614.6 mm, bead seat 355.6 mm; rim, shoulders and static deflection not modelled; unloaded position",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-006",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "wheels_tires.wheel_rim_flange_contour": "ESTIMATED",
+        "wheels_tires.wheel_rim_width": "ESTIMATED",
+        "wheels_tires.wheel_rim_flange_height": "ESTIMATED",
+        "wheels_tires.wheel_rim_steel_thickness": "ESTIMATED",
+        "wheels_tires.wheel_disc_thickness": "ESTIMATED"
+      },
+      "note": "Pressed-steel rim 5.5J x 14 (simplified section): flange tip diameter 390.6 mm, overall width 145.7 mm; well, vent holes, PCD, centre bore and offset ET not modelled",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-002",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "wheels_tires.tire_size_rear": "ESTIMATED"
+      },
+      "note": "Tire design envelope 185/70 R14: OD 614.6 mm, bead seat 355.6 mm; rim, shoulders and static deflection not modelled; unloaded position",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-007",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "wheels_tires.wheel_rim_flange_contour": "ESTIMATED",
+        "wheels_tires.wheel_rim_width": "ESTIMATED",
+        "wheels_tires.wheel_rim_flange_height": "ESTIMATED",
+        "wheels_tires.wheel_rim_steel_thickness": "ESTIMATED",
+        "wheels_tires.wheel_disc_thickness": "ESTIMATED"
+      },
+      "note": "Pressed-steel rim 5.5J x 14 (simplified section): flange tip diameter 390.6 mm, overall width 145.7 mm; well, vent holes, PCD, centre bore and offset ET not modelled",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-003",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "wheels_tires.tire_size_rear": "ESTIMATED"
+      },
+      "note": "Tire design envelope 185/70 R14: OD 614.6 mm, bead seat 355.6 mm; rim, shoulders and static deflection not modelled; unloaded position",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-008",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "wheels_tires.wheel_rim_flange_contour": "ESTIMATED",
+        "wheels_tires.wheel_rim_width": "ESTIMATED",
+        "wheels_tires.wheel_rim_flange_height": "ESTIMATED",
+        "wheels_tires.wheel_rim_steel_thickness": "ESTIMATED",
+        "wheels_tires.wheel_disc_thickness": "ESTIMATED"
+      },
+      "note": "Pressed-steel rim 5.5J x 14 (simplified section): flange tip diameter 390.6 mm, overall width 145.7 mm; well, vent holes, PCD, centre bore and offset ET not modelled",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-004",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "wheels_tires.tire_size_rear": "ESTIMATED"
+      },
+      "note": "Tire design envelope 185/70 R14: OD 614.6 mm, bead seat 355.6 mm; rim, shoulders and static deflection not modelled; unloaded position",
+      "placed_in_vehicle": true
+    },
+    {
+      "id": "WHL-009",
+      "assembly": "WHEELS_AND_TIRES",
+      "representation": "cad",
+      "geometry_status": "DRAFT",
+      "parameters": {
+        "dimensions.front_track": "ESTIMATED",
+        "dimensions.rear_track": "ESTIMATED",
+        "dimensions.wheelbase_lh": "ESTIMATED",
+        "dimensions.wheelbase_rh": "ESTIMATED",
+        "wheels_tires.tire_size_front": "ESTIMATED",
+        "wheels_tires.wheel_rim_diameter": "ESTIMATED",
+        "wheels_tires.tire_size_rear": "ESTIMATED",
+        "wheels_tires.wheel_rim_flange_contour": "ESTIMATED",
+        "wheels_tires.wheel_rim_width": "ESTIMATED",
+        "wheels_tires.wheel_rim_flange_height": "ESTIMATED",
+        "wheels_tires.wheel_rim_steel_thickness": "ESTIMATED",
+        "wheels_tires.wheel_disc_thickness": "ESTIMATED"
+      },
+      "note": "Pressed-steel rim 5.5J x 14 (simplified section): flange tip diameter 390.6 mm, overall width 145.7 mm; well, vent holes, PCD, centre bore and offset ET not modelled",
+      "placed_in_vehicle": true
+    }
+  ]
+}

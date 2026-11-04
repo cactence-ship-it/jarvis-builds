@@ -13,7 +13,7 @@ import yaml
 from . import PROJECT_ROOT
 
 RULES_PATH = PROJECT_ROOT / "specs" / "clearance_rules.yaml"
-KINDS = ("no_interference", "ground_contact")
+KINDS = ("no_interference", "ground_contact", "within_bbox")
 
 
 def load_rules(path: Path = RULES_PATH) -> list[dict]:
@@ -49,6 +49,8 @@ def check(shapes: dict[str, object], rules: list[dict] | None = None) -> list[di
                "components": rule["components"], "measurements": []}
         if missing:
             res.update(status="NOT_EVALUATED", missing=missing)
+            if rule.get("blocked_by"):
+                res["blocked_by"] = rule["blocked_by"]
             results.append(res)
             continue
         ok = True
@@ -66,6 +68,14 @@ def check(shapes: dict[str, object], rules: list[dict] | None = None) -> list[di
                 passed = abs(zmin) <= rule["tolerance_mm"]
                 ok &= passed
                 res["measurements"].append({"component": c, "z_min_mm": round(zmin, 4), "pass": passed})
+        elif rule["kind"] == "within_bbox":
+            # components = [inner, outer]: inner's axis-aligned box lies inside outer's (VCS axes)
+            a, b = (shapes[c].bounding_box() for c in rule["components"])
+            tol = rule.get("tolerance_mm", 1e-6)
+            margins = [a.min.X - b.min.X, a.min.Y - b.min.Y, a.min.Z - b.min.Z,
+                       b.max.X - a.max.X, b.max.Y - a.max.Y, b.max.Z - a.max.Z]
+            ok = min(margins) >= -tol
+            res["measurements"].append({"pair": rule["components"], "min_margin_mm": round(min(margins), 4), "pass": ok})
         res["status"] = "PASS" if ok else "FAIL"
         results.append(res)
     return results

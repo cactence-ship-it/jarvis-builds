@@ -2,6 +2,83 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [0.13.0] - 2026-11-03 - Realistic rotatable studio model (owner priority)
+
+### Added
+- D-028: realistic visual body in Blender (`tools/blender/`): smooth body, glass and pillars, S-series front (grille, lamps, indicators), bumpers, roof rails, tail lamps, revolved tires and black steel rims, simple interior. Cycles studio preview and GLB (125 meshes, about 1.3 MB).
+- `viewer/studio.html`: phone studio page (dark studio, reflections, floor shadow, auto-rotate, Front/Side/Rear buttons); packaged with the GLB embedded by `tools/blender/package_studio.py`; `tools/blender/smoke_studio.sh` checks it in headless Chromium at phone size. Published: https://claude.ai/artifact/9D8o5byLmjc6xJ6ba2BzVR
+- Read-only test hook `window.__kartalStudio` (`state()`, `pick(x, y)`) for camera and part checks.
+
+### Fixed (found by the headless check before publishing)
+- Hidden loading overlay still covered the page and swallowed touches (CSS `display` overrode `hidden`).
+- Canvas drawn at device-pixel size without CSS size: on phones only the top-left corner was visible.
+- Portrait framing: camera distance now fits the car length to the horizontal field of view.
+- B and C pillars were slanted 45 degrees (positioned by row fraction); now at fixed x.
+
+### Changed
+- Placeholders from photo proportions (E-026, no scale): cowl_x 1060 -> 850, windshield_top_x 1660 -> 1450; package guesses (firewall, dash, steering wheel, front seat, pedals, gear lever, handbrake) moved with the cowl. docs/OLCUM_REHBERI.md regenerated.
+
+## [0.12.1] - 2026-11-03 - Studio rendering (owner feedback: "realistic, cinematic studio")
+
+### Added
+- Viewer studio look: image-based lighting (three.js RoomEnvironment), ACES filmic tone mapping, soft shadow-casting key light and rim light, dark studio floor, "Sinema" camera; materials by part class (clear-coated metallic paint, dark tinted glass as on VEH-01, chrome, rubber, black plastic, lamp lenses). Visual only.
+- `tools/render_studio.sh` + `tools/viewer_smoke/studio.js`: studio renders to build/renders/*.png (cinema, front, rear, left, iso, mechanical).
+- Visual detail: wrap-around black bumpers, wheel nuts and vent marks on the visual rims (CAD rims unchanged).
+
+- Smooth body envelope: lower body lofted (ruled) through 8 rounded sections - rounded nose, hood edge, shoulders and ends; a smooth B-spline loft was rejected because it sagged ~40 mm over the hood and split the hood panel in two; rounded cabin plan corners were rejected because their mesh seams did not close. All meshes closed, STEP 385/385.
+
+### Changed
+- Placeholders from photo proportions (E-026, no scale): nose_top_z 760 -> 840 (flatter hood), bumper height 130 -> 180, bumper bottom 300 -> 280. CAD output unchanged (byte-identical to audit r4).
+
+## [0.12.0] - 2026-11-03 - Complete-vehicle PLACEHOLDER package (T-023)
+
+### Added
+- Visual geometry for all 17 assemblies (0 skipped): engine, transmission, drivetrain, chassis (floor pan with spare-wheel well, rails, crossmembers), MacPherson front suspension, rigid-axle rear suspension, steering, brakes, exhaust, electrical architecture (schematic looms, battery, fuses, relays, ignition, grounds), interior (dashboard, cluster, sport wheel, column, pedals, gear lever, handbrake, console, seats, door cards, headliner, carpets, trim), petrol system and LPG kit parts; roof rails, rear wiper, tailgate handle, mouldings, side repeaters, plate and interior lamps; separate visual rims with valve stems and the loose spare wheel. 150 visual parts (all PLACEHOLDER) + 9 CAD parts (DRAFT) = 159 built parts.
+- 31 package assumptions `pkg_*` and `roof_rail_height` in `specs/placeholder_assumptions.yaml` (visual only, each with a rationale).
+- `src/kartal_twin/cad/mech.py` primitives; `tests/test_full_vehicle.py` (completeness, PLACEHOLDER-only mechanical package, cabin parts inside the body); mechanical and interior preview sheets in `tools/render_preview.py`.
+- D-027; audit snapshot `audit/2026-11-02-r4`.
+
+### Fixed
+- CAD STEP bytes depended on the number of visual solids (OpenCascade occurrence counter shared across exports); CAD is now exported first. Geometry identical to r3 (only the occurrence id lines differ).
+- Viewer test hook `screenPoint` used stale camera matrices after a slow frame; it now refreshes them (smoke test passed 4/4 runs after the fix, failed 1 of 2 before).
+- Cabin parts spilled into the rear wheel-arch cut-outs (found by measuring volume outside the body envelope); now kept inside the arch line.
+
+## [0.11.0] - 2026-11-02 - Owner photo evidence: LPG tank, interior, underbody, engine bay, tire size (T-022)
+
+### Added
+- 28 owner photos ingested as R-0004..R-0031 (originals local-only; SHA-256 in `refs/MANIFEST.csv`; plate, VIN stamping, names and stickers never transcribed): evidence E-022 (luggage compartment / LPG tank), E-023 (multivalve), E-024 (interior), E-025 (rear underbody), E-026 (exterior), E-027 (engine bay), E-028 (tire sidewall).
+- `validate`: a RECEIVED evidence item must cite refs/MANIFEST.csv ids in its Ref column (ranges like `R-0004..R-0007` allowed); 5 tests.
+- Spec 0.8.0 (134 parameters, 25 VERIFIED / 35 ESTIMATED / 74 UNKNOWN): VERIFIED from photos - body style, side doors, LHD, manual gearbox, MacPherson front, rigid rear axle, power steering, cooling system, longitudinal engine, rim 14 in, pressed-steel black wheels with 4 nuts, LPG tank type/location/mounting/multivalve, new `lpg_system.tank_marking` (ATIKER, E7 67R-01 0049401). ESTIMATED: rear drum brakes (MEDIUM), spare-wheel location.
+- Inventory: 32 components CONFIRMED from photos (history appended); FUL-005 and FUL-006 VERIFIED.
+- Audit snapshot `audit/2026-11-02-r3` (tire envelopes now 185/65 R14).
+
+### Changed
+- Tire size 185/70 R14 (owner provisional) -> 185/65 R14 (photo of one tire, ESTIMATED MEDIUM per axle); free OD 614.6 -> 596.1 mm.
+- Visual-only LPG tank placeholder moved towards the tailgate sill (X 3150 mm), per photo E-022.
+- U-010, U-012 (partly resolved), U-013, U-014 updated.
+
+### Fixed
+- Two tests depended on live data (BDY-001 had no photo evidence; unitless counts have no tolerance); they now test the rule.
+
+## [0.10.0] - 2026-11-02 - Owner configuration, LPG tank and steel-rim CAD (T-021, branch ccr-b5d82c24-config-lpg-wheels)
+
+### Added
+- E-017 (owner configuration statement), E-018 (owner provisional CAD values, type ASSUMPTION), E-019 (engineering assumptions), E-020 (toroidal tank listings), E-021 (J flange height).
+- D-026: derived data classes (USER_CONFIRMED, DOCUMENT_CONFIRMED, MEASURED, SOURCE_SUPPORTED, ESTIMATED, UNKNOWN); evidence type ASSUMPTION (LOW only, enforced); engine-variant separation rule (`specs/configuration_rules.yaml`, `kartal_twin.configuration`, part of `validate`); unplaced CAD parts.
+- Spec 0.7.0: group `lpg_system` (16 parameters) and 5 rim parameters; 133 parameters, 7 VERIFIED / 40 ESTIMATED / 86 UNKNOWN.
+- CAD: steel rims WHL-006..009 (simplified J-contour section, DRAFT, placed); LPG toroidal tank FUL-005 (parametric stadium-section shell, DRAFT, local frame, NOT placed); visual tank at a placeholder position; inventory FUL-005..014 (LPG, separate from petrol FUL-001..004), ENG-007 = carburettor.
+- Consistency DC-016..DC-020 (rim vs tire width, tank capacity vs geometry, tank vs rear tire gap, tank vs arch width); clearance CL-003..CL-012 (rims inside tires; tank vs tires, floor, rear axle, exhaust, suspension - BLOCKED with reasons); new rule kind `within_bbox`.
+- `tools/data_dictionary.py` -> `docs/VERI_SOZLUGU.md` (generated, sync test); measurement guide codes M32-M38 (tank and luggage compartment) and tank-label / rim-stamping photos.
+- `tests/test_configuration_cad.py` (29 tests); audit snapshot `audit/2026-11-02-r2`.
+
+### Changed
+- Tire size 175/70 R14 (listing, LOW) -> 185/70 R14 (owner provisional, LOW); free OD 614.6 mm. Rim diameter 14 in owner-confirmed (tolerance 0.5 in), material pressed steel, colour black; engine fuel system carburettor and base fuel petrol owner-confirmed (still ESTIMATED).
+- Visual paint is a turquoise-green approximation of the registered colour name (RGB still a guess).
+- Tests that hard-coded 175/70 R14 now pin their own inputs or compute expected values from the spec designation.
+
+### Findings
+- DC-018 INDETERMINATE: 600 x 180 mm holds about 38.2 L in the simplified shape (listings: 38 L), below the owner's 40 L at nominal values (U-013).
+
 ## [0.9.1] - 2026-11-02 - ChatGPT batch-3 review: T-018 and T-020 reworked
 
 ### Recorded

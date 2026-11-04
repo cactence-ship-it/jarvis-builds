@@ -17,21 +17,35 @@ ASSEMBLY = "BODY_ASSEMBLY"
 PHASE = 4
 
 
+def _section(x, zb, zt, half, rr):
+    """Rounded-rectangle body section in the YZ plane at station x (VCS mm)."""
+    pl = bd.Plane(origin=(x, 0, (zb + zt) / 2), x_dir=(0, 1, 0), z_dir=(1, 0, 0))
+    return pl * bd.RectangleRounded(2 * half, zt - zb, min(rr, (zt - zb) / 2.2, half * 0.9))
+
+
 def body_shell(r) -> bd.Shape:
+    """Smooth PLACEHOLDER envelope: the lower body is lofted through rounded sections (rounded nose,
+    hood edge and shoulders, slight taper at both ends, photos E-026 for the character, no scale);
+    the cabin is lofted from the beltline to the roof (rounded plan corners gave non-matching mesh seams)."""
     p, g = layout.profile(r), layout.greenhouse(r)
     sill, nb, nt = r.get("body_profile.sill_z"), r.get("body_profile.nose_bottom_z"), r.get("body_profile.nose_top_z")
     belt, rb, cowl = r.get("body_profile.belt_z"), r.get("body_profile.rear_bottom_z"), r.get("body_profile.cowl_x")
-    side = [(p.x_nose, nb), (p.x_nose, nt), (cowl, belt), (p.x_tail, belt), (p.x_tail, rb),
-            (p.x_tail - 150, sill), (p.x_nose + 150, sill)]
-    # Sketch in the XZ plane (VCS X, Z), extrude symmetrically across the body width.
-    wire = bd.Wire.make_polygon([bd.Vector(x, 0, z) for x, z in side], close=True)
-    lower = bd.Solid.extrude(bd.Face(wire), bd.Vector(0, 2 * p.half_width, 0))
-    lower = bd.Pos(0, -p.half_width, 0) * lower
-    try:
-        vertical = lower.edges().filter_by(bd.Axis.Y)
-        lower = lower.fillet(40, vertical)
-    except Exception:  # fillet is cosmetic; keep the sharp envelope if OCC refuses
-        pass
+    hw = p.half_width
+
+    def ztop(x):
+        return nt + (belt - nt) * (x - p.x_nose) / (cowl - p.x_nose) if x < cowl else belt
+
+    def zbot(x):
+        if x < p.x_nose + 150:
+            return nb + (sill - nb) * (x - p.x_nose) / 150
+        if x > p.x_tail - 150:
+            return sill + (rb - sill) * (x - (p.x_tail - 150)) / 150
+        return sill
+    stations = [  # x, top inset, half-width inset, corner radius
+        (p.x_nose, 18, 34, 95), (p.x_nose + 45, 4, 10, 85), (p.x_nose + 320, 0, 2, 75), (cowl, 0, 0, 70),
+        ((cowl + p.x_tail) / 2, 0, 0, 70), (p.x_tail - 320, 0, 2, 75), (p.x_tail - 45, 0, 8, 80), (p.x_tail, 0, 26, 90)]   # no top inset at the rear: the cabin sits on it
+    secs = [_section(x, zbot(x), ztop(x) - dt, hw - dw, rr).face() for x, dt, dw, rr in stations]
+    lower = bd.loft(secs, ruled=True)          # ruled: follows the profile exactly (a smooth loft sagged ~40 mm over the hood)
     bottom = bd.Pos((g.x_belt_front + g.x_belt_rear) / 2, 0, g.z_belt) * bd.Rectangle(
         g.x_belt_rear - g.x_belt_front, 2 * g.half_belt)
     top = bd.Pos((g.x_roof_front + g.x_roof_rear) / 2, 0, g.z_roof) * bd.Rectangle(

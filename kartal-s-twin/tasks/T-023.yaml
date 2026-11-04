@@ -1,0 +1,62 @@
+id: T-023
+title: 'Complete-vehicle PLACEHOLDER package: every assembly modelled and assembled'
+description: 'Owner master directive 2026-11-03: build the whole vehicle as an inspectable assembly. Visual PLACEHOLDER geometry
+  for all remaining assemblies from labelled package assumptions; arrangement from photos only; unknown types as neutral envelopes;
+  no measurement fabricated or presented as verified.'
+priority: P1
+phase: '5'
+owner: claude
+status: submitted
+depends_on:
+- T-022
+blocker: null
+started_at: '2026-11-03T00:00:00Z'
+finished_at: null
+error: null
+evidence:
+- specs/placeholder_assumptions.yaml
+- src/kartal_twin/assemblies
+- tests/test_full_vehicle.py
+- audit/2026-11-02-r4/SHA256SUMS
+acceptance:
+- id: T-023-A1
+  criterion: All 17 assemblies build; every component has visual geometry or a stated reason
+  check: tests/test_full_vehicle.py
+- id: T-023-A2
+  criterion: Mechanical package is PLACEHOLDER only; unknown types drawn as neutral envelopes with notes
+  check: test_mechanical_package_is_placeholder_only; manifest notes
+- id: T-023-A3
+  criterion: Exports re-open (STEP/STL/GLB), meshes closed, cabin parts inside the body, viewer smoke passes
+  check: twin.py build, test_full_vehicle, tools/viewer_smoke
+- id: T-023-A4
+  criterion: CAD STEP bytes independent of the visual model; geometry unchanged vs r3
+  check: test_golden_cad against audit/2026-11-02-r4; diff of non-occurrence lines = 0
+results:
+- agent: claude
+  commit: 8d9f16fc035440ec7b73f62072f45a2ad626e333
+  round: 1
+  superseded_by: null
+  files:
+  - src/kartal_twin/cad/mech.py
+  - src/kartal_twin/assemblies/*.py (11 new builders, 4 extended)
+  - src/kartal_twin/pipeline.py
+  - specs/placeholder_assumptions.yaml
+  - viewer/index.html
+  - tools/render_preview.py
+  - tests/test_full_vehicle.py
+  - tests/test_pipeline.py
+  - audit/2026-11-02-r4/SHA256SUMS
+  - ENGINEERING_DECISIONS.md
+  tests: 'Local: validate PASS; unittest 147/147 OK (4 new in tests/test_full_vehicle.py); build: 150 visual + 9 CAD parts,
+    0 skipped assemblies, STEP 349/349 solids re-opened valid, STL 0 normal flips, GLB no issues, all meshes closed; viewer
+    smoke 150 parts, errors [] in 4/4 runs after the screenPoint fix (1 failure in 2 runs before it); ruff clean; CAD STEP
+    identical to r3 except occurrence-id lines. CI at 8d9f16f: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41567984550
+    and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41567989478: success.'
+  confidence: MEDIUM
+  known_defects:
+  - Commit message of 8d9f16f says '159 visual parts'; correct is 150 visual + 9 CAD (fixed in docs at 048d352)
+  - 'Whole mechanical package is PLACEHOLDER: arrangement from photos, every size a guess'
+  - 'Not built: roof/fenders/quarters as separate panels, seals, LPG filler (location UNKNOWN); no tread pattern; no engine
+    internals (no evidence)'
+  open_questions: []
+reviews: []

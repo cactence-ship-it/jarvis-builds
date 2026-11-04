@@ -1,5 +1,6 @@
 """Clearance / interference checks (T-001): exact B-rep results against analytic values."""
 import math
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -47,6 +48,12 @@ class Rules(unittest.TestCase):
         self.assertEqual(r[0]["missing"], ["B"])
 
 
+def designation(size: str):
+    """'185/70 R14' -> (185.0, 0.70, 14.0), parsed here independently of kartal_twin.layout."""
+    m = re.fullmatch(r"\s*(\d{3})/(\d{2})\s*R\s*(\d{2})\s*", size)
+    return float(m.group(1)), int(m.group(2)) / 100, float(m.group(3))
+
+
 class VehicleCad(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -63,7 +70,8 @@ class VehicleCad(unittest.TestCase):
         r = Resolver()
         tf, tr = r.get("dimensions.front_track"), r.get("dimensions.rear_track")
         wb = r.get("dimensions.wheelbase_lh")
-        od, w = 14 * 25.4 + 2 * 0.70 * 175, 175.0
+        w, aspect, rim_in = designation(r.get("wheels_tires.tire_size_front"))
+        od = rim_in * 25.4 + 2 * aspect * w                     # ISO metric designation
         expect = {("WHL-001", "WHL-002"): tf - w, ("WHL-003", "WHL-004"): tr - w,
                   ("WHL-001", "WHL-003"): wb - od,
                   ("WHL-001", "WHL-004"): math.hypot(wb - od, tf / 2 - w / 2 + tr / 2 - w / 2)}

@@ -74,5 +74,34 @@ class SpecIntegrity(unittest.TestCase):
                                             tolerance=50, source=["E-001"]), [])
 
 
+
+class ReceivedEvidenceRefs(unittest.TestCase):
+    """RECEIVED means 'file ingested and checksummed': its Ref cell must name refs/MANIFEST.csv ids."""
+
+    def test_range_and_list_parsing(self):
+        self.assertEqual(spec.manifest_ref_ids("R-0004..R-0006, R-0012"), ["R-0004", "R-0005", "R-0006", "R-0012"])
+        self.assertEqual(spec.manifest_ref_ids("-"), [])
+
+    def test_received_without_manifest_ref_fails(self):
+        ev = {"E-900": spec.Evidence("E-900", "photo", "PHOTO", "RECEIVED", "-")}
+        self.assertTrue(spec.validate_evidence(ev, {"R-0001"}))
+
+    def test_received_with_unknown_ref_fails(self):
+        ev = {"E-900": spec.Evidence("E-900", "photo", "PHOTO", "RECEIVED", "R-0001..R-0003")}
+        errs = spec.validate_evidence(ev, {"R-0001", "R-0002"})
+        self.assertTrue(any("R-0003" in e for e in errs), errs)
+
+    def test_received_with_known_refs_passes(self):
+        ev = {"E-900": spec.Evidence("E-900", "photo", "PHOTO", "RECEIVED", "R-0001, R-0002")}
+        self.assertEqual(spec.validate_evidence(ev, {"R-0001", "R-0002"}), [])
+
+    def test_repository_register_matches_manifest(self):
+        import csv
+        from kartal_twin import PROJECT_ROOT
+        with open(PROJECT_ROOT / "refs" / "MANIFEST.csv", newline="", encoding="utf-8") as f:
+            ids = {row["ref_id"] for row in csv.DictReader(f)}
+        self.assertEqual(spec.validate_evidence(spec.load_evidence(), ids), [])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -67,7 +67,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   <div id="msg">3D model yükleniyor…</div>
   <div id="views" role="toolbar" aria-label="Kamera görünümleri">
     <button id="v-iso" class="on">İzo</button><button id="v-front">Ön</button><button id="v-rear">Arka</button>
-    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button>
+    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button><button id="v-cinema">Sinema</button>
   </div>
 </div>
 
@@ -95,6 +95,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
 <script>
 (function () {
   const stage = document.getElementById('stage'), msg = document.getElementById('msg');
@@ -108,21 +109,34 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputEncoding = THREE.sRGBEncoding;
+  // Studio look: filmic tone mapping, soft shadows, image-based lighting from a studio room.
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
+  renderer.physicallyCorrectLights = true;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   stage.prepend(renderer.domElement);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(35, 1, 0.05, 100);
   const controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8f8c, 0.85));
-  const sun = new THREE.DirectionalLight(0xffffff, 0.9); sun.position.set(3, 5, 4); scene.add(sun);
-  const grid = new THREE.GridHelper(8, 16, 0x888888, 0xbbbbbb); grid.material.opacity = 0.35; grid.material.transparent = true; scene.add(grid);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
+  scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x202020, 0.6));
+  const sun = new THREE.DirectionalLight(0xffffff, 2.6); sun.position.set(3.5, 6, 4.5);
+  sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -0.0004; sun.shadow.radius = 4;
+  Object.assign(sun.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4, near: 0.5, far: 20 });
+  scene.add(sun);
+  const rim = new THREE.DirectionalLight(0xcfe0ff, 1.4); rim.position.set(-4, 3, -5); scene.add(rim);
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(9, 64),
+    new THREE.MeshStandardMaterial({ color: 0x0d0e10, roughness: 0.55, metalness: 0.0, envMapIntensity: 0.08 }));
+  floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+  const grid = { position: floor.position };          // kept for the layout code below
 
   function resize() {
     const w = stage.clientWidth, h = stage.clientHeight;
     renderer.setSize(w, h, false); camera.aspect = w / Math.max(h, 1); camera.updateProjectionMatrix();
   }
   new ResizeObserver(resize).observe(stage); resize();
-  function bgFromTheme() { scene.background = new THREE.Color(css('--stage') || '#e3e6e3'); }
+  function bgFromTheme() { scene.background = new THREE.Color('#16181b'); scene.fog = new THREE.Fog('#16181b', 9, 22); }
   bgFromTheme(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', bgFromTheme);
   new MutationObserver(bgFromTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
@@ -134,12 +148,12 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
     const d = radius * 1.08 / Math.sin(Math.min(vf, hf) / 2), c = centre;
     const dir = { iso: [.62, .42, .68], front: [0, .12, 1], rear: [0, .12, -1],
-      left: [1, .12, 0], right: [-1, .12, 0], top: [0, 1, 0.001] }[name];
+      left: [1, .12, 0], right: [-1, .12, 0], top: [0, 1, 0.001], cinema: [.78, .16, .58] }[name];
     const v = new THREE.Vector3(...dir).normalize().multiplyScalar(d);
     camera.position.set(c.x + v.x, c.y + v.y, c.z + v.z);
     controls.target.copy(c); controls.update();
   }
-  ['iso', 'front', 'rear', 'left', 'right', 'top'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
+  ['iso', 'front', 'rear', 'left', 'right', 'top', 'cinema'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
 
   const statusColor = s => new THREE.Color(css(s === 'VALIDATED' ? '--ok' : s === 'DRAFT' ? '--draft' : '--ph'));
   function paint() {
@@ -185,6 +199,20 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     showInfo(selected); paint();
   });
 
+  // Material from the part's assembly and colour (visual only - says nothing about real materials).
+  function studioMaterial(src, u) {
+    const c = src.color.clone(), hsl = c.getHSL({}), asm = u.assembly, id = u.id || '';
+    const phys = o => new THREE.MeshPhysicalMaterial(Object.assign({ color: c }, o));
+    if (asm === 'GLAZING') return phys({ color: 0x06090b, metalness: 0.35, roughness: 0.02, transparent: true, opacity: 0.93, clearcoat: 1, envMapIntensity: 2.2 });
+    if (asm === 'LIGHTING' && hsl.s > 0.5) return phys({ roughness: 0.12, transparent: true, opacity: 0.88, clearcoat: 1, emissive: c, emissiveIntensity: 0.08 });
+    if (asm === 'LIGHTING' && hsl.l > 0.7) return phys({ color: 0xdfe6ea, metalness: 0.7, roughness: 0.08, clearcoat: 1 });
+    if (hsl.s > 0.35 && hsl.h > 0.38 && hsl.h < 0.56) return phys({ metalness: 0.55, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.06 });
+    if (/^WHL-00[1-5]$/.test(id) && hsl.l < 0.1) return phys({ roughness: 0.92, metalness: 0, envMapIntensity: 0.25 });
+    if (hsl.s < 0.08 && hsl.l > 0.55) return phys({ metalness: 1, roughness: 0.18 });
+    if (hsl.l < 0.12) return phys({ roughness: 0.6, metalness: 0.0, envMapIntensity: 0.35 });
+    return phys({ roughness: 0.5, metalness: 0.25 });
+  }
+
   function onModel(gltf) {
     root = gltf.scene; scene.add(root);
     const box = new THREE.Box3().setFromObject(root);
@@ -193,7 +221,8 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const groups = {};
     root.traverse(o => {
       if (!o.userData || !o.userData.id) return;
-      const meshes = []; o.traverse(m => { if (m.isMesh) { m.userData.orig = m.material; meshes.push(m); } });
+      const meshes = []; o.traverse(m => { if (m.isMesh) { m.userData.orig = studioMaterial(m.material, o.userData); m.material = m.userData.orig;
+        m.castShadow = o.userData.assembly !== 'GLAZING'; m.receiveShadow = true; meshes.push(m); } });
       const c = new THREE.Box3().setFromObject(o).getCenter(new THREE.Vector3());
       const dir = c.clone().sub(centre); dir.y = Math.max(dir.y, 0) * 1.4;
       const p = { node: o, data: o.userData, meshes, home: o.position.clone(), dir,
@@ -222,6 +251,9 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       // on that part when sampling its bounding box, so the test never depends on the camera angle.
       screenPoint: (id) => {
         const p = parts.find(q => q.data.id === id); if (!p) return null;
+        // three.js refreshes matrixWorld only when a frame renders; a slow frame after setView()
+        // left the iso matrices in place and made this hook flaky (seen on the 150-part model).
+        camera.updateMatrixWorld();
         const r = renderer.domElement.getBoundingClientRect();
         const box = new THREE.Box3().setFromObject(p.node), c = new THREE.Vector3(), v = new THREE.Vector3();
         for (let i = 0; i <= 8; i++) for (let j = 0; j <= 8; j++) for (const k of [0.5, 0, 1]) {

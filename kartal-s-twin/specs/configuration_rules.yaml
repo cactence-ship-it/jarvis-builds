@@ -1,0 +1,11 @@
+# Vehicle configuration rules (D-026). Not values - rules about WHICH sources may describe
+# THIS car's configuration. Values stay in specs/kartal_s_1997.yaml (single source of truth).
+#
+# engine_variant_exclusions: keyed by the value of engine.fuel_system_type. While the spec says
+# that value, no engine.* parameter may cite the listed evidence, because it describes a
+# different engine variant. A cited source that is also needed for non-engine values (e.g. body
+# dimensions) stays allowed outside the engine group.
+schema_version: 1
+engine_variant_exclusions:
+  carburettor:
+    E-009: "auto-data.net 'Tofaş Kartal 1.6 i.e. (96 hp)' page - fuel-injected variant"

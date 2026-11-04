@@ -493,6 +493,103 @@
       ],
       "last_result_commit": "826c4bad6e2f4c5b28db9d897b1d28c16337728c",
       "last_review": "chatgpt:CHANGES_REQUESTED"
+    },
+    {
+      "task_id": "T-021",
+      "title": "Owner vehicle configuration, carburettor variant separation, steel-rim and LPG toroidal tank CAD",
+      "description": "Apply the owner's configuration of 2026-11-02 (E-017) and provisional CAD values (E-018) on a separate branch stacked on PR 1; derived data classes (D-026); parametric 40 L toroidal LPG tank, 14 in steel rims, provisional 185/70 R14 tire geometry; consistency and clearance checks; measurement guide and data dictionary.",
+      "priority": "P1",
+      "depends_on": [
+        "T-020"
+      ],
+      "acceptance_criteria": [
+        "Owner-stated values are ESTIMATED (USER_CONFIRMED) unless a document verifies them; provisional values are ASSUMPTION evidence with confidence LOW; nothing new is VERIFIED",
+        "Carburettor variant kept separate from fuel-injected variants by an enforced rule",
+        "Tire OD equals the designation arithmetic (614.6 mm for 185/70 R14); rim and tank volumes match independent analytic formulas (torus 2*pi^2*R*r^2, Pappus) against OpenCascade",
+        "Tank is parametric (diameter, height, opening, wall) and rejects zero, negative and impossible geometry",
+        "Clearance checks that lack evidence report NOT_EVALUATED with the blocking reason, never PASS",
+        "All exports re-open; CAD byte-reproducible; new audit snapshot; full suite and viewer smoke test pass locally and in CI"
+      ],
+      "owner_agent": "claude",
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Local: validate all PASS; unittest 138/138 OK (29 new in tests/test_configuration_cad.py); viewer smoke 36 parts, errors []; ruff 0.15.0 clean; second fresh build reproduces all 10 CAD STEP files byte for byte. CI at ffd3f8f: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41409480479 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41409524922 (jobs test 125159116299, viewer 125159116086): success; log 'Ran 138 tests ... OK'; coreutils sha256sum -c audit/2026-11-02-r2 12/12 OK and audit/2026-11-02 7/7 OK; privacy audit 531 blobs, 0 findings.",
+      "error": null,
+      "started_at": "2026-11-02T07:40:00Z",
+      "finished_at": null,
+      "evidence": [
+        "specs/kartal_s_1997.yaml",
+        "specs/configuration_rules.yaml",
+        "src/kartal_twin/layout.py",
+        "src/kartal_twin/assemblies/fuel_system.py",
+        "src/kartal_twin/assemblies/wheels_and_tires.py",
+        "tests/test_configuration_cad.py",
+        "docs/VERI_SOZLUGU.md",
+        "audit/2026-11-02-r2/SHA256SUMS"
+      ],
+      "last_result_commit": "ffd3f8fe5c04e48f282b872176d31f44c3382c0a",
+      "last_review": null
+    },
+    {
+      "task_id": "T-022",
+      "title": "Owner photo evidence: LPG tank, interior, underbody, engine bay and tire size",
+      "description": "Ingest the owner photo sets 2 and 3 (28 photos, originals local-only), register evidence E-022..E-028, update only what the photos show (VERIFIED where directly visible, ESTIMATED where inferred), switch the tire geometry to the photographed 185/65 R14 and refresh the CAD snapshot. Never transcribe plate, VIN stamping, names or stickers.",
+      "priority": "P1",
+      "depends_on": [
+        "T-021"
+      ],
+      "acceptance_criteria": [
+        "Every newly VERIFIED value is directly visible in a cited RECEIVED photo; inferences stay ESTIMATED (tire size per axle, rear drum, spare-wheel location, carburettor)",
+        "No plate, VIN, personal names or stickers in any committed file or history",
+        "RECEIVED evidence must cite manifest ids; enforced by validate and tested",
+        "Tire envelope OD equals 185/65 R14 arithmetic (596.1 mm); new snapshot reproducible; earlier snapshots unchanged"
+      ],
+      "owner_agent": "claude",
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Local: validate all PASS; unittest 143/143 OK (5 new ReceivedEvidenceRefs tests); viewer smoke 36 parts, errors []; ruff 0.15.0 clean; second fresh build reproduces all 10 CAD STEP files; privacy_history_audit 577 blobs, 0 findings; git log --all -p has 0 hits for plate, VIN, name and sticker strings. CI at e3fe56e: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41495432712 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41495441835: success.",
+      "error": null,
+      "started_at": "2026-11-02T08:30:00Z",
+      "finished_at": null,
+      "evidence": [
+        "EVIDENCE_REGISTER.md",
+        "refs/MANIFEST.csv",
+        "specs/kartal_s_1997.yaml",
+        "assembly/vehicle_master.yaml",
+        "audit/2026-11-02-r3/SHA256SUMS"
+      ],
+      "last_result_commit": "e3fe56ed94f0bb3fe8ed18768204cc950437b387",
+      "last_review": null
+    },
+    {
+      "task_id": "T-023",
+      "title": "Complete-vehicle PLACEHOLDER package: every assembly modelled and assembled",
+      "description": "Owner master directive 2026-11-03: build the whole vehicle as an inspectable assembly. Visual PLACEHOLDER geometry for all remaining assemblies from labelled package assumptions; arrangement from photos only; unknown types as neutral envelopes; no measurement fabricated or presented as verified.",
+      "priority": "P1",
+      "depends_on": [
+        "T-022"
+      ],
+      "acceptance_criteria": [
+        "All 17 assemblies build; every component has visual geometry or a stated reason",
+        "Mechanical package is PLACEHOLDER only; unknown types drawn as neutral envelopes with notes",
+        "Exports re-open (STEP/STL/GLB), meshes closed, cabin parts inside the body, viewer smoke passes",
+        "CAD STEP bytes independent of the visual model; geometry unchanged vs r3"
+      ],
+      "owner_agent": "claude",
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Local: validate PASS; unittest 147/147 OK (4 new in tests/test_full_vehicle.py); build: 150 visual + 9 CAD parts, 0 skipped assemblies, STEP 349/349 solids re-opened valid, STL 0 normal flips, GLB no issues, all meshes closed; viewer smoke 150 parts, errors [] in 4/4 runs after the screenPoint fix (1 failure in 2 runs before it); ruff clean; CAD STEP identical to r3 except occurrence-id lines. CI at 8d9f16f: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41567984550 and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41567989478: success.",
+      "error": null,
+      "started_at": "2026-11-03T00:00:00Z",
+      "finished_at": null,
+      "evidence": [
+        "specs/placeholder_assumptions.yaml",
+        "src/kartal_twin/assemblies",
+        "tests/test_full_vehicle.py",
+        "audit/2026-11-02-r4/SHA256SUMS"
+      ],
+      "last_result_commit": "8d9f16fc035440ec7b73f62072f45a2ad626e333",
+      "last_review": null
     }
   ]
 }

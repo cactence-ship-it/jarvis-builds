@@ -19,6 +19,15 @@ R_FRONT = 14 * 25.4 / 2 + 175 * 0.70        # 300.3 mm free radius from 175/70 R
 R_TOL = 1 * 25.4 / 2                          # 12.7 mm from the rim-diameter tolerance (+/-1 in)
 
 
+def pin_tires(s):
+    """Fix the tire inputs these boundary tests were written for (175/70 R14, rim +/-1 in), so
+    they do not depend on whatever provisional tire size the live spec carries."""
+    w = s["parameters"]["wheels_tires"]
+    for ax in ("front", "rear"):
+        w[f"tire_size_{ax}"].update(value="175/70 R14", status="ESTIMATED", confidence="LOW", source=["E-010"])
+    w["wheel_rim_diameter"].update(value=14, status="ESTIMATED", confidence="LOW", tolerance=1, source=["E-010"])
+
+
 class Consistency(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -29,6 +38,7 @@ class Consistency(unittest.TestCase):
 
     def _arch(self, value, tol):
         s = copy.deepcopy(self.base)
+        pin_tires(s)
         setp(s, "dimensions.wheel_centre_to_arch_fl", value, tol)
         return self._res(s)["DC-012"]
 
@@ -65,6 +75,7 @@ class Consistency(unittest.TestCase):
     # --- sum_at_most boundaries (front track + tire width <= body width) ---------------------
     def _track(self, track, t_tol, width, w_tol):
         s = copy.deepcopy(self.base)
+        pin_tires(s)
         setp(s, "dimensions.front_track", track, t_tol)
         setp(s, "dimensions.overall_width_body", width, w_tol)
         return self._res(s)["DC-004"]["status"]

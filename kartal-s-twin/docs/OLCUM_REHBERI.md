@@ -35,21 +35,35 @@ Koordinat: X = ön jant merkezinden **geriye** doğru yatay mesafe, Z = **yerden
 
 | Kod | Ölçü | Nasıl ölçülür | Şu anki değer |
 |---|---|---|---|
-| M17 | Hood leading edge above ground (`body_profile.nose_top_z`) | Kaputun ön kenarının yerden yüksekliği. | PLACEHOLDER 760 mm |
+| M17 | Hood leading edge above ground (`body_profile.nose_top_z`) | Kaputun ön kenarının yerden yüksekliği. | PLACEHOLDER 840 mm |
 | M18 | Front panel lower edge above ground (`body_profile.nose_bottom_z`) | Ön panelin (tampon arkası) alt kenarının yerden yüksekliği. | PLACEHOLDER 300 mm |
-| M19 | Bumper lower edge above ground (`body_profile.bumper_bottom_z`) | Ön tamponun alt kenarının yerden yüksekliği. | PLACEHOLDER 300 mm |
-| M20 | Bumper vertical height (`body_profile.bumper_height`) | Tamponun dikey yüksekliği. | PLACEHOLDER 130 mm |
+| M19 | Bumper lower edge above ground (`body_profile.bumper_bottom_z`) | Ön tamponun alt kenarının yerden yüksekliği. | PLACEHOLDER 280 mm |
+| M20 | Bumper vertical height (`body_profile.bumper_height`) | Tamponun dikey yüksekliği. | PLACEHOLDER 180 mm |
 | M21 | Bumper face beyond the body face (front and rear) (`body_profile.bumper_protrusion`) | Tamponun kaportadan ne kadar dışarı çıktığı. | PLACEHOLDER 60 mm |
 | M22 | Body-side (sill) lower edge above ground (`body_profile.sill_z`) | Kapı altı marşpiyelin alt kenarının yerden yüksekliği. | PLACEHOLDER 200 mm |
 | M23 | Side-window sill (beltline) above ground (`body_profile.belt_z`) | Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği. | PLACEHOLDER 960 mm |
-| M24 | Windshield base, X behind the front wheel centre (`body_profile.cowl_x`) | Ön jant merkezinden ön camın alt kenarına yatay mesafe. | PLACEHOLDER 1060 mm |
-| M25 | Windshield top edge, X behind the front wheel centre (`body_profile.windshield_top_x`) | Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle). | PLACEHOLDER 1660 mm |
+| M24 | Windshield base, X behind the front wheel centre (`body_profile.cowl_x`) | Ön jant merkezinden ön camın alt kenarına yatay mesafe. | PLACEHOLDER 850 mm |
+| M25 | Windshield top edge, X behind the front wheel centre (`body_profile.windshield_top_x`) | Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle). | PLACEHOLDER 1450 mm |
 | M26 | B-pillar centre, X behind the front wheel centre (`body_profile.b_pillar_x`) | Ön jant merkezinden orta direğin (ön/arka kapı arası) ortasına. | PLACEHOLDER 1760 mm |
 | M27 | Rear-door rear edge, X behind the front wheel centre (`body_profile.c_pillar_x`) | Ön jant merkezinden arka kapının arka kenarına. | PLACEHOLDER 2600 mm |
 | M28 | Roof end ahead of the rear body face (`body_profile.roof_rear_inset`) | Tavanın arka bitişi ile arka gövde yüzeyi arasındaki yatay fark. | PLACEHOLDER 120 mm |
 | M29 | Rear panel lower edge above ground (`body_profile.rear_bottom_z`) | Bagaj kapağı altındaki arka panelin alt kenarının yerden yüksekliği. | PLACEHOLDER 420 mm |
 | M30 | Roof width (side to side, at the roof) (`body_profile.roof_width`) | Tavanın yandan yana genişliği. | PLACEHOLDER 1362 mm |
 | M31 | Mirror housing beyond the body side (`body_profile.mirror_protrusion`) | Aynanın gövde yanından dışarı taşma mesafesi. | PLACEHOLDER 110 mm |
+
+## 2b. LPG tankı ve bagaj (şu an geçici değer / bilinmiyor)
+
+Tank ölçüleri şu an **geçici varsayım** (600 x 180 mm). Gerçek ölçü veya tank etiketi bunları doğrular. Tankın araçtaki yeri bilinmediği için tank-aks/egzoz/süspansiyon/taban çakışma kontrolleri şu an **BLOCKED**. Bu bir montaj talimatı değildir; LPG donanımına dokunmayın, sadece ölçün.
+
+| Kod | Ölçü | Nasıl ölçülür | Şu anki durum |
+|---|---|---|---|
+| M32 | LPG tank outer diameter (`lpg_system.tank_outer_diameter`) | Tankın dış çapı: şerit metreyi tankın üstünden, merkezden geçecek şekilde uçtan uca tutun (veya tank etiketindeki '600x180' gibi değeri yazın). | ESTIMATED (600) |
+| M33 | LPG tank height (`lpg_system.tank_height`) | Tankın yüksekliği: tabandan üst yüzeye dik mesafe (etiketteki ikinci sayı). | ESTIMATED (180) |
+| M34 | LPG tank central opening diameter (`lpg_system.tank_central_opening_diameter`) | Tankın ortasındaki deliğin çapı (varsa). | ESTIMATED (130) |
+| M35 | LPG tank centre X (VCS, rearward from front axle) (`lpg_system.tank_centre_x`) | Ön jant merkezinden tank merkezine yatay mesafe (araç boyunca, yerde çekülle işaretleyerek). | PLACEHOLDER 3150 mm (sadece görsel) |
+| M36 | LPG tank centre Y (VCS, right positive) (`lpg_system.tank_centre_y`) | Aracın orta çizgisinden tank merkezine yanal mesafe (sağa +, sola -). | PLACEHOLDER 0 mm (sadece görsel) |
+| M37 | LPG tank underside height above ground (`lpg_system.tank_base_z`) | Tankın alt yüzeyinin (veya oturduğu stepne yuvası tabanının) yerden yüksekliği; araç altından ölçün. | PLACEHOLDER 350 mm (sadece görsel) |
+| M38 | Cargo width between wheel arches (`body.cargo_width_between_arches`) | Bagajda iki arka çamurluk kemeri arasındaki en dar genişlik. | UNKNOWN |
 
 ## 3. Ruhsat bilgileri
 
@@ -69,15 +83,18 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## 4. İstenen fotoğraflar
 
-1. Motor bölmesi: kaput açık, üstten ve iki yandan (motor tipi, karbüratör/enjeksiyon, servo fren).
-2. Alt gövde: arka aksın ve şaftın göründüğü açı (arkadan itişli mi, arka süspansiyon tipi).
-3. Ön tekerlek: direksiyon tam kırık, tekerlek arkasından süspansiyon ve fren.
-4. Lastik yanağı yakın çekim: ebat ve DOT kodu okunacak şekilde (4 lastik).
-5. Jant: ET/offset ve ebat damgası varsa yakın çekim.
-6. Akü etiketi (V, Ah, CCA) ve sigorta kutusu.
-7. Tam yan profil: aracın tam ortasından, 6-8 m uzaktan, telefon yere paralel (lens distorsiyonu az).
-8. Tam önden ve tam arkadan: aynı şekilde, aracın orta ekseninde.
+1. LPG tank etiketi (ECE R67 plakası): kapasite (litre), ölçüler (ör. 600x180), üretim yılı. Seri numarasını kapatabilirsiniz.
+2. Bagaj: tankın üstten ve yandan fotoğrafı (çoklu valf ve bağlantı kayışları görünecek şekilde; plaka görünmesin).
+3. Jantın iç yüzündeki damga (ör. '5 1/2 J x 14', ET değeri) - jant genişliği şu an geçici varsayım.
+4. Motor bölmesi: kaput açık, üstten ve iki yandan (motor tipi, karbüratör/enjeksiyon, servo fren).
+5. Alt gövde: arka aksın ve şaftın göründüğü açı (arkadan itişli mi, arka süspansiyon tipi).
+6. Ön tekerlek: direksiyon tam kırık, tekerlek arkasından süspansiyon ve fren.
+7. Lastik yanağı yakın çekim: ebat ve DOT kodu okunacak şekilde (4 lastik).
+8. Jant: ET/offset ve ebat damgası varsa yakın çekim.
+9. Akü etiketi (V, Ah, CCA) ve sigorta kutusu.
+10. Tam yan profil: aracın tam ortasından, 6-8 m uzaktan, telefon yere paralel (lens distorsiyonu az).
+11. Tam önden ve tam arkadan: aynı şekilde, aracın orta ekseninde.
 
 ## Özet
 
-Spec: 112 parametre: 7 VERIFIED, 24 ESTIMATED, 81 UNKNOWN. Varsayım dosyası: 25 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 134 parametre: 25 VERIFIED, 35 ESTIMATED, 74 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.

@@ -4,6 +4,7 @@ Every function takes a Resolver, so provenance of every derived number is record
 """
 from __future__ import annotations
 
+import math
 import re
 from dataclasses import dataclass
 
@@ -34,6 +35,110 @@ def tire(r: Resolver, axle: str = "front") -> Tire:
     if int(m.group(3)) != int(rim):
         raise ValueError(f"tire size {size} conflicts with rim diameter {rim} in")
     return Tire(float(m.group(1)), int(m.group(2)) / 100, float(rim))
+
+
+@dataclass(frozen=True)
+class Rim:
+    """Pressed-steel road wheel, simplified revolved section (no well, vent holes, PCD, ET)."""
+    diameter_in: float          # nominal (bead seat) diameter
+    width_in: float             # between the flanges
+    flange_height: float        # above the bead seat, mm
+    steel: float                # barrel / flange thickness, mm
+    disc: float                 # disc thickness, mm
+
+    def __post_init__(self):
+        for f in ("diameter_in", "width_in", "flange_height", "steel", "disc"):
+            if not getattr(self, f) > 0:
+                raise ValueError(f"rim {f} must be > 0, got {getattr(self, f)}")
+
+    @property
+    def bead_seat_radius(self) -> float:
+        return self.diameter_in * 25.4 / 2
+
+    @property
+    def width_between_flanges(self) -> float:
+        return self.width_in * 25.4
+
+    @property
+    def outer_radius(self) -> float:            # flange tip
+        return self.bead_seat_radius + self.flange_height
+
+    @property
+    def overall_width(self) -> float:           # outer faces of the flanges
+        return self.width_between_flanges + 2 * self.steel
+
+
+def rim(r: Resolver) -> Rim:
+    if str(r.get("wheels_tires.wheel_rim_flange_contour")).strip().upper() != "J":
+        raise ValueError("only the J flange contour is modelled (wheel_rim_flange_height is the J value)")
+    return Rim(float(r.get("wheels_tires.wheel_rim_diameter")), float(r.get("wheels_tires.wheel_rim_width")),
+               float(r.get("wheels_tires.wheel_rim_flange_height")), float(r.get("wheels_tires.wheel_rim_steel_thickness")),
+               float(r.get("wheels_tires.wheel_disc_thickness")))
+
+
+@dataclass(frozen=True)
+class ToroidalTank:
+    """Ring tank with a stadium cross-section (flat top/bottom, semicircular inner and outer
+    edges), revolved about the vertical axis. All lengths in mm, volumes in litres.
+    Local frame: axis = Z through the tank centre, underside at Z = 0."""
+    outer_diameter: float
+    height: float
+    opening_diameter: float     # central opening
+    wall: float
+
+    def __post_init__(self):
+        for f in ("outer_diameter", "height", "opening_diameter", "wall"):
+            if not getattr(self, f) > 0:
+                raise ValueError(f"tank {f} must be > 0, got {getattr(self, f)}")
+        if self.opening_diameter >= self.outer_diameter:
+            raise ValueError("tank central opening must be smaller than the outer diameter")
+        if 2 * self.wall >= min(self.height, self.section_width):
+            raise ValueError("tank wall too thick for its section")
+        if self.section_width < self.height:
+            raise ValueError("stadium section needs radial width >= height (flat tank); "
+                             f"got width {self.section_width:.1f} < height {self.height:.1f}")
+
+    @property
+    def section_width(self) -> float:           # radial width of the ring section
+        return (self.outer_diameter - self.opening_diameter) / 2
+
+    @property
+    def centroid_radius(self) -> float:
+        return (self.outer_diameter + self.opening_diameter) / 4
+
+    @staticmethod
+    def volume_l(D: float, d: float, h: float) -> float:
+        """Pappus: 2*pi*R_c*A for a rounded-rectangle section of width (D-d)/2, height h and
+        corner radius min(width, height)/2 (= stadium when width >= height)."""
+        w, rc = (D - d) / 2, (D + d) / 4
+        rad = min(w, h) / 2
+        area = w * h - (4 - math.pi) * rad * rad
+        return 2 * math.pi * rc * area / 1e6
+
+    @property
+    def external_volume_l(self) -> float:
+        return self.volume_l(self.outer_diameter, self.opening_diameter, self.height)
+
+    @property
+    def internal_volume_l(self) -> float:       # geometric water capacity of the simplified shell
+        t = self.wall
+        return self.volume_l(self.outer_diameter - 2 * t, self.opening_diameter + 2 * t, self.height - 2 * t)
+
+
+def usable_lpg_l(nominal_l: float, fill_pct: float) -> float:
+    """Usable LPG volume at the fill-stop limit (e.g. 40 L x 80 % = 32 L)."""
+    if not (nominal_l > 0 and 0 < fill_pct <= 100):
+        raise ValueError(f"need capacity > 0 and 0 < fill <= 100 %, got {nominal_l}, {fill_pct}")
+    return nominal_l * fill_pct / 100
+
+
+def toroidal_tank(r: Resolver) -> ToroidalTank:
+    shape = str(r.get("lpg_system.tank_section_shape")).strip().lower()
+    if shape != "stadium":
+        raise ValueError(f"tank section shape {shape!r} is not modelled (only 'stadium')")
+    return ToroidalTank(float(r.get("lpg_system.tank_outer_diameter")), float(r.get("lpg_system.tank_height")),
+                        float(r.get("lpg_system.tank_central_opening_diameter")),
+                        float(r.get("lpg_system.tank_wall_thickness")))
 
 
 def axle_positions(r: Resolver) -> dict[str, tuple[float, float]]:

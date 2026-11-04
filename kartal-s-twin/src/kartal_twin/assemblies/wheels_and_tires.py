@@ -1,4 +1,9 @@
-"""WHEELS_AND_TIRES (WHL) - Phase 4. Road wheels from the (ESTIMATED) tire size."""
+"""WHEELS_AND_TIRES (WHL) - Phase 4. Road wheels from the (ESTIMATED) tire size.
+
+CAD: WHL-001..004 tire design envelopes, WHL-006..009 pressed-steel rims (simplified section).
+"""
+import math
+
 import build123d as bd
 
 from .. import layout
@@ -7,7 +12,9 @@ ASSEMBLY = "WHEELS_AND_TIRES"
 PHASE = 4
 RUBBER = (0.06, 0.06, 0.07, 1.0)
 STEEL = (0.62, 0.64, 0.66, 1.0)
+BLACK_STEEL = (0.08, 0.08, 0.09, 1.0)        # owner: black pressed-steel wheels (E-017)
 IDS = {"FL": "WHL-001", "FR": "WHL-002", "RL": "WHL-003", "RR": "WHL-004"}
+RIM_IDS = {"FL": "WHL-006", "FR": "WHL-007", "RL": "WHL-008", "RR": "WHL-009"}
 
 
 def wheel(t: layout.Tire):
@@ -35,7 +42,32 @@ def build(ctx):
         # Cylinder axis is Z; turn it to the lateral Y axis, outer (recessed) face outward.
         rot = bd.Rot(-90, 0, 0) if y > 0 else bd.Rot(90, 0, 0)
         place = bd.Pos(x, y, z) * rot
-        ctx.add(cid, ASSEMBLY, [(place * tyre, RUBBER), (place * rim, STEEL)], r)
+        ctx.add(cid, ASSEMBLY, [(place * tyre, RUBBER)], r, "Tire (smooth envelope: tread pattern not modelled)")
+        rr = ctx.resolver()
+        rr.absorb(base)
+        m = layout.rim(rr)
+        s = 1 if y > 0 else -1
+        valve = bd.Pos(x, y + s * 20, z + m.bead_seat_radius - 25) * bd.Rot(90, 0, 0) * bd.Cylinder(5, 40)
+        face_y = y - s * 0  # disc sits on the rim centre plane
+        detail = []
+        for i in range(4):                     # visual only: 4 wheel nuts (E-026) and 4 oval vents
+            a = math.radians(45 + 90 * i)
+            detail.append((bd.Pos(x + 50 * math.cos(a), face_y + s * (m.disc / 2 + 8), z + 50 * math.sin(a)) * bd.Rot(90, 0, 0) * bd.Cylinder(9, 16), (0.35, 0.35, 0.36, 1.0)))
+            b = math.radians(90 * i)
+            detail.append((bd.Pos(x + 120 * math.cos(b), face_y + s * (m.disc / 2 + 1), z + 120 * math.sin(b)) * bd.Rot(0, -math.degrees(b), 0) * bd.Box(60, 2, 24), (0.02, 0.02, 0.02, 1.0)))
+        detail.append((bd.Pos(x, face_y + s * (m.disc / 2 + 10), z) * bd.Rot(90, 0, 0) * bd.Cylinder(30, 20), BLACK_STEEL))
+        ctx.add(RIM_IDS[key], ASSEMBLY, [(bd.Pos(x, y, z) * bd.Rot(90, 0, 0) * rim_solid(m), BLACK_STEEL), (valve, (0.1, 0.1, 0.1, 1.0))] + detail, rr,
+                "Pressed-steel rim (simplified section) with valve stem, wheel nuts and vent marks (visual detail, positions guessed)")
+    r = ctx.resolver()
+    r.absorb(base)
+    t = layout.tire(r, "rear")
+    m = layout.rim(r)
+    sx, sy = r.get("pkg_spare_wheel")
+    zc = r.get("pkg_cargo_floor_z") + t.outer_diameter / 2
+    tyre, _ = wheel(t)
+    ctx.add("WHL-005", ASSEMBLY, [(bd.Pos(sx, sy, zc) * bd.Rot(90, 0, 0) * tyre, RUBBER),
+                                  (bd.Pos(sx, sy, zc) * bd.Rot(90, 0, 0) * rim_solid(m), BLACK_STEEL)], r,
+            "Spare wheel standing loose in the luggage compartment (photos E-022); position guessed")
     return ctx.parts
 
 
@@ -46,6 +78,20 @@ def tire_envelope(t: layout.Tire) -> bd.Solid:
     sidewall bulge and the rim are NOT modelled (no evidence)."""
     w, ro, ri = t.section_width, t.outer_diameter / 2, t.rim_radius
     return bd.Cylinder(ro, w).cut(bd.Cylinder(ri, w + 2)).solid()
+
+
+def rim_solid(m: layout.Rim) -> bd.Solid:
+    """Revolved simplified steel wheel, axis = Z, centred on the rim centre plane:
+    barrel (bead-seat radius, inward by the steel thickness) between the flanges, two J flanges
+    of the given height, and a flat disc on the centre plane. NOT modelled (no evidence): drop
+    centre well, bead humps, vent holes, PCD / bolt holes, centre bore, offset ET (the disc is
+    placed on the centre plane, which is not a claim that ET = 0)."""
+    rb, t, w = m.bead_seat_radius, m.steel, m.width_between_flanges
+    barrel = bd.Cylinder(rb, w + 2 * t) - bd.Cylinder(rb - t, w + 2 * t + 2)
+    flange = bd.Cylinder(m.outer_radius, t) - bd.Cylinder(rb - t, t + 2)
+    disc = bd.Cylinder(rb - t / 2, m.disc)                     # overlaps the barrel by t/2: one solid
+    body = barrel + bd.Pos(0, 0, (w + t) / 2) * flange + bd.Pos(0, 0, -(w + t) / 2) * flange + disc
+    return body.clean().solid()
 
 
 def cad_wheel_centres(r) -> dict[str, tuple[float, float, float]]:
@@ -71,4 +117,11 @@ def build_cad(ctx):
                 f"Tire design envelope {t.section_width:.0f}/{t.aspect*100:.0f} R{t.rim_diameter_in:.0f}: "
                 f"OD {t.outer_diameter:.1f} mm, bead seat {2*t.rim_radius:.1f} mm; rim, shoulders and "
                 "static deflection not modelled; unloaded position")
+        rr = ctx.resolver()
+        rr.absorb(base)
+        m = layout.rim(rr)
+        ctx.add(RIM_IDS[key], ASSEMBLY, [(bd.Pos(x, y, z) * bd.Rot(90, 0, 0) * rim_solid(m), BLACK_STEEL)], rr,
+                f"Pressed-steel rim {m.width_in:g}J x {m.diameter_in:g} (simplified section): flange tip "
+                f"diameter {2*m.outer_radius:.1f} mm, overall width {m.overall_width:.1f} mm; well, vent "
+                "holes, PCD, centre bore and offset ET not modelled")
     return ctx.parts

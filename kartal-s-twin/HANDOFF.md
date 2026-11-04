@@ -8,17 +8,28 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #37** - 2026-11-02 07:25 UTC
-- **Commit:** bu kaydı içeren commit = `a68e7e4` commit'inin hemen ardından gelen commit
+- **Checkpoint #49** - 2026-11-03 06:38 UTC
+- **Commit:** bu kaydı içeren commit = `0ea2466` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** evidence(kartal-s-twin): T-020 round-2 record lists push-run job IDs
-- **Testler:** PASS - Ran 108 tests in 63.700s; ## result: validate=0 unittest=0
+- **Başlık:** feat(kartal-s-twin): realistic rotatable studio model via Blender (D-028), placeholder cowl from photos
+- **Testler:** PASS - Ran 147 tests in 313.013s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
+    M	kartal-s-twin/CHANGELOG.md
+    M	kartal-s-twin/ENGINEERING_DECISIONS.md
+    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/PROJECT_STATUS.md
+    M	kartal-s-twin/docs/OLCUM_REHBERI.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/tasks/T-020.yaml
-    M	kartal-s-twin/tasks/tasks.json
+    M	kartal-s-twin/specs/placeholder_assumptions.yaml
     M	kartal-s-twin/test-results/latest.txt
+    A	kartal-s-twin/tools/blender/README.md
+    A	kartal-s-twin/tools/blender/export_params.py
+    A	kartal-s-twin/tools/blender/kartal_body.py
+    A	kartal-s-twin/tools/blender/package_studio.py
+    A	kartal-s-twin/tools/blender/smoke_studio.sh
+    A	kartal-s-twin/tools/viewer_smoke/studio_glb.js
+    A	kartal-s-twin/viewer/studio.html
 ```
 <!-- AUTO-CHECKPOINT:END -->
 
@@ -43,6 +54,9 @@
 | 10 | Literatür: iz genişliği 1386/1327, motor ailesi (karbüratörlü SOHC 1.6, 1581 cc, ~61 kW), GVM 1550 -> 27 ESTIMATED; E-011..E-013 | TAMAM | 0359b1c |
 | 11 | Faz 2 hazırlık: tools/photo_scale.py + sentetik testler, 50/50 | TAMAM | f44a5c9 |
 | 12 | Bağımsız denetim: COLLAB_REVIEW_CLAUDE.md; ilk CAD parçası (4 lastik zarfı, DRAFT, D-016); audit/2026-11-02; 55/55 | TAMAM | 044d49d |
+| 27 | Tam araç PLACEHOLDER paketi (D-027): 17 montajın hepsi, 150 görsel parça (+9 CAD) (motor, şanzıman, aks, şasi, süspansiyon, direksiyon, fren, egzoz, elektrik mimarisi, iç mekân, yakıt/LPG); CAD önce export (STEP sayaç bağımlılığı düzeltildi, audit r4); viewer test kancası zamanlama düzeltmesi | TAMAM | (otomatik kayda bakın) |
+| 26 | Sahip fotoğrafları (28 adet, yalnız yerel; plaka/VIN/isim yazılmadı): LPG tankı ATIKER E7 67R-01 + ALBIEN multivalf, LHD, manuel, MacPherson, rijit arka aks, hidrolik direksiyon, lastik 185/65 R14 (OD 596,1 mm), 25 VERIFIED, audit r3; Gemini devir raporu depoda karşılığı olmadığı için uygulanmadı | TAMAM | (otomatik kayda bakın) |
+| 25 | Araç konfigürasyonu (ayrı dal ccr-b5d82c24-config-lpg-wheels, PR #1 üstüne): veri sınıfları (D-026), karbüratör varyant kuralı, LPG grubu + FUL-005..014, parametrik toroidal tank (yerleştirilmemiş CAD), çelik jant WHL-006..009, geçici 185/70 R14, DC-016..020, CL-003..012, veri sözlüğü, M32-M38, audit 2026-11-02-r2 | TAMAM | (otomatik kayda bakın) |
 | 24 | ChatGPT 3. paket: T-011/T-012/T-013/T-019 ACCEPT (bf31d4d); T-018 eksik bütünlük dosyası artık hata (6 test); T-020 yakıt değeri ayrıldı (engine.base_fuel ESTIMATED), rehber özeti düzeltildi | TAMAM | (otomatik kayda bakın) |
 | 23 | Ruhsat belgeleri birincil kanıt (E-014..E-016, asılları yalnız yerelde): 7 parametre VERIFIED, D-025; plaka/VIN/motor no repoya girmedi | TAMAM | 4284df3 |
 | 22 | bf31d4d CI kanıtı kaydedildi (101 test adıyla, sha256sum 7/7, 411 blob 0 bulgu); 3. inceleme paketi agents/REVIEW_REQUEST_BATCH_3.md | TAMAM | (otomatik kayda bakın) |
@@ -57,12 +71,14 @@
 | 13 | Kartal Jarvis: T-001 boşluk/girişim modülü (D-018), görev kaydı + çapraz inceleme kuralı (D-019, tasks/, TASKS.md), ROADMAP.md, docs/AUTOMATION_ARCHITECTURE.md, ChatGPT inceleme talebi; 68/68 | TAMAM | (otomatik kayda bakın) |
 
 ## Sayılar (son durum)
-- Spec 112 parametre: 7 VERIFIED / 24 ESTIMATED / 81 UNKNOWN. Kanıt: E-001..E-016 (E-014..E-016 ruhsat belgeleri).
-- 143 bileşen: 35 görsel (PLACEHOLDER), 4 CAD (WHL lastik zarfı, DRAFT), 0 mekanik.
+- Spec 134 parametre: 25 VERIFIED / 35 ESTIMATED / 74 UNKNOWN (sınıflar: docs/VERI_SOZLUGU.md). Kanıt: E-001..E-028.
+- 157 bileşen: 36 görsel (PLACEHOLDER), 9 CAD (4 lastik zarfı, 4 çelik jant, 1 LPG tankı yerleştirilmemiş; DRAFT), 0 mekanik.
 - Testler: son sonuç `test-results/latest.txt` (sayı orada; elle yazılmaz); görüntüleyici tarayıcı testi -> `test-results/viewer_smoke.txt`.
 - Görüntüleyici: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (yeniden yayın: `python tools/package_viewer.py` + aynı dosya yolu ile yayınla).
 
 ## Sıradaki görevler (öncelik sırasıyla)
+00. **Gerçekçi stüdyo modeli (D-028, sahip önceliği):** tools/blender/README.md. Yayın: https://claude.ai/artifact/9D8o5byLmjc6xJ6ba2BzVR. Sonraki iyileştirmeler: ön cam yansımaları, koltuk rengi, kapı çizgileri, plaka boş kalır. bpy ayrı venv'de (CI dışında).
+0a. **Konfigürasyon dalı:** `ccr-b5d82c24-config-lpg-wheels` (PR #1 dalının üstüne, ayrı taslak PR). T-021 ChatGPT incelemesi bekliyor. Sahipten: tank etiketi (kapasite/ölçü, U-013), lastik yanağı (U-012), jant damgası (U-015), M32-M38 (tank konumu, U-014).
 0. **ChatGPT 3. paket sonuçlandı:** T-011/T-012/T-013/T-019 ACCEPT (bf31d4d). T-018 ve T-020 2. tur düzeltmeleri yapıldı, agents/REVIEW_REQUEST_BATCH_4.md ile yeniden incelemede. Hiçbir görev kendi kendine ACCEPT edilmez.
    **Görev kuyruğu artık TASKS.md** (tasks/*.yaml). Sıradaki engelsiz görev oradan alınır.
    **ChatGPT denetimi:** COLLAB_REVIEW_CLAUDE.md bölüm E'deki sorular; gelen bulguları B listesine işle.
