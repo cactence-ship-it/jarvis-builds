@@ -24,10 +24,45 @@ jobs:
       - name: Install stable Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          components: rustfmt
-      - name: Format Rust sources
-        run: cargo fmt --manifest-path orchestrator/Cargo.toml
+          components: rustfmt, clippy
+      # A check must be able to fail: keep --check here.
+      - name: Format check
+        run: cargo fmt --manifest-path orchestrator/Cargo.toml --check
+      - name: Clippy
+        run: cargo clippy --manifest-path orchestrator/Cargo.toml --locked --all-targets -- -D warnings
       - name: Unit tests
         run: cargo test --manifest-path orchestrator/Cargo.toml --locked
       - name: Offline smoke run
         run: cargo run --manifest-path orchestrator/Cargo.toml --locked
+
+  # Every PR diff goes through the output guard: weakened checks, removed or skipped
+  # tests and pull_request_target fail the job; owner-only switches are annotated.
+  guard:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install stable Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build guard
+        run: cargo build --manifest-path orchestrator/Cargo.toml --locked
+      - name: Check PR diff
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set +e
+          git diff "$BASE_SHA"...HEAD | orchestrator/target/debug/kartal-orchestrator check-diff -
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "::warning title=needs-owner::This PR changes owner-only settings; the owner must approve them explicitly."
+          elif [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
+      - name: Check commit subjects
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: git log --format=%s "$BASE_SHA"..HEAD | orchestrator/target/debug/kartal-orchestrator check-commits -
