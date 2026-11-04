@@ -1,0 +1,21 @@
+[package]
+name = "kartal-agent-orchestrator"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Offline-first, policy-gated task orchestration core for the Kartal S digital twin"
+license = "MIT"
+
+[lib]
+name = "kartal_agent_orchestrator"
+path = "src/lib.rs"
+
+[[bin]]
+name = "kartal-orchestrator"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
