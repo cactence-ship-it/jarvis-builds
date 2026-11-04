@@ -1,0 +1,498 @@
+{
+  "schema": "kartal-jarvis-tasks/1",
+  "tasks": [
+    {
+      "task_id": "T-001",
+      "title": "Assembly interface and clearance check module (exact B-rep)",
+      "description": "Exact B-rep minimum-distance and interference checks driven by rule files; first rules CL-001/CL-002 on the tire envelopes.",
+      "priority": "P1",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Minimum distance and interference volume are exact B-rep values matching analytic cases",
+        "Interference, touching (0 mm) and floating parts are reported as FAIL; missing geometry as NOT_EVALUATED",
+        "Tire envelope clearances equal track-width, wheelbase-OD and the diagonal formula within 0.001 mm",
+        "Rules live in specs/clearance_rules.yaml and contain only definitional requirements",
+        "A FAIL rule makes the build report an error"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. T-001 files unchanged 784ceb9..c665cfb (git diff empty).",
+      "error": null,
+      "started_at": "2026-11-02T04:36:21Z",
+      "finished_at": "2026-11-02T06:11:38Z",
+      "evidence": [
+        "src/kartal_twin/interfaces.py",
+        "tests/test_interfaces.py",
+        "https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41391939368"
+      ],
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-002",
+      "title": "Independent review of the tire-envelope CAD (D-016) and T-001",
+      "description": "ChatGPT reviews the tire-envelope CAD and T-001 independently (manual relay while no API exists).",
+      "priority": "P1",
+      "depends_on": [
+        "T-001"
+      ],
+      "acceptance_criteria": [
+        "Reviewer re-derives OD 600.6 mm, bead seat 355.6 mm and the analytic tire volume",
+        "Reviewer re-checks audit/2026-11-02/SHA256SUMS and, if possible, rebuilds and compares SHA-256",
+        "Reviewer records verdict ACCEPT / CHANGES_REQUESTED / REJECT with findings in tasks/T-001.yaml"
+      ],
+      "owner_agent": "chatgpt",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Independent recalculation of OD, bead seat, volume and four clearances; workflow inspection. Relayed verbatim by the owner in the Claude session on 2026-11-02; Claude cannot see the ChatGPT session itself.",
+      "error": null,
+      "started_at": "2026-11-02T04:36:21Z",
+      "finished_at": "2026-11-02T04:59:23Z",
+      "evidence": [
+        "tasks/T-001.yaml",
+        "agents/REVIEW_REQUEST_T-002.md"
+      ],
+      "last_result_commit": "fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf",
+      "last_review": "claude:ACCEPT"
+    },
+    {
+      "task_id": "T-003",
+      "title": "Owner tape measurements M01-M16 and reference state",
+      "description": "Owner measures the wheel-reference set first (M06-M09, M13-M16) with the reference state; body profile later.",
+      "priority": "P1",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Values sent in 'Mxx = value' form with the reference state"
+      ],
+      "owner_agent": "owner",
+      "status": "TODO",
+      "registry_status": "open",
+      "test_result": null,
+      "error": null,
+      "started_at": null,
+      "finished_at": null,
+      "evidence": [
+        "docs/OLCUM_REHBERI.md"
+      ],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-004",
+      "title": "Ingest the 9 owner photos and Kartal_S_Studyo.zip (private, not in git)",
+      "description": "Owner photos and legacy archive are ingested privately (hash only in git) and analysed.",
+      "priority": "P1",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Files ingested with SHA-256 into refs/MANIFEST.csv; originals not committed",
+        "Legacy archive analysed: objects, mesh/procedural split, scale"
+      ],
+      "owner_agent": "owner",
+      "status": "BLOCKED",
+      "registry_status": "blocked",
+      "test_result": null,
+      "error": "Files not uploaded to any session; private storage decision U-009 pending",
+      "started_at": null,
+      "finished_at": null,
+      "evidence": [
+        "tools/ingest_refs.py",
+        "tools/analyze_legacy.py"
+      ],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-005",
+      "title": "Continuous integration on GitHub Actions (tests on every push and PR, no secrets)",
+      "description": "GitHub Actions runs validation, all tests and the build on every push and PR without secrets.",
+      "priority": "P1",
+      "depends_on": [
+        "T-001"
+      ],
+      "acceptance_criteria": [
+        "Workflow runs setup + validation + all unit tests on push and pull_request",
+        "permissions: contents read; no secrets; no pull_request_target; actions pinned by commit SHA"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Workflow identical to 3e152a7 (`git diff --stat 3e152a7 fa2f8cd` empty). CI at fa2f8cd: runs 41389973155 and 41389967732 success; job log 125097402634 (run 41389454020) shows 'Ran 68 tests ... OK'.",
+      "error": null,
+      "started_at": "2026-11-02T04:36:49Z",
+      "finished_at": "2026-11-02T04:59:23Z",
+      "evidence": [
+        ".github/workflows/kartal-ci.yml",
+        "https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41389454020"
+      ],
+      "last_result_commit": "fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-006",
+      "title": "Body side profile as DRAFT CAD from measurements and side photo",
+      "description": "Body side profile as DRAFT CAD once body_profile values come from measurement or photo.",
+      "priority": "P1",
+      "depends_on": [
+        "T-003",
+        "T-004"
+      ],
+      "acceptance_criteria": [
+        "All body_profile.* values ESTIMATED or VERIFIED; no placeholder in the CAD build",
+        "Photo-derived and tape values agree within tolerance"
+      ],
+      "owner_agent": "claude",
+      "status": "BLOCKED",
+      "registry_status": "blocked",
+      "test_result": null,
+      "error": "Needs T-003 measurements and a side-profile photo",
+      "started_at": null,
+      "finished_at": null,
+      "evidence": [],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-007",
+      "title": "Wheel rim and hub interface CAD (width, ET, PCD, centre bore)",
+      "description": "Rim and hub interface CAD (width, ET, PCD, centre bore) from rim stamping or measurement.",
+      "priority": "P2",
+      "depends_on": [
+        "T-003"
+      ],
+      "acceptance_criteria": [
+        "Rim CAD built only from ESTIMATED/VERIFIED values; tire envelope seats on the rim bead diameter"
+      ],
+      "owner_agent": "claude",
+      "status": "BLOCKED",
+      "registry_status": "blocked",
+      "test_result": null,
+      "error": "Rim width, ET, PCD and centre bore are UNKNOWN (need rim stamping photo or measurement)",
+      "started_at": null,
+      "finished_at": null,
+      "evidence": [],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-008",
+      "title": "Clearance rule CL-003 tire envelope to wheel arch (static and steering lock)",
+      "description": "Tire-to-arch clearance rule with an evidence-based target, static and at steering lock.",
+      "priority": "P2",
+      "depends_on": [
+        "T-001",
+        "T-006"
+      ],
+      "acceptance_criteria": [
+        "Rule added with evidence-based target; check runs in CI"
+      ],
+      "owner_agent": "claude",
+      "status": "BLOCKED",
+      "registry_status": "blocked",
+      "test_result": null,
+      "error": "Wheel-arch geometry is still a placeholder; steering lock angle UNKNOWN",
+      "started_at": null,
+      "finished_at": null,
+      "evidence": [],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-009",
+      "title": "Agent orchestration (task dispatch to Claude/OpenAI APIs, cross-review, reports)",
+      "description": "Paid agent orchestration (API dispatch, automatic cross-review) - only with an explicit budget.",
+      "priority": "P3",
+      "depends_on": [
+        "T-005"
+      ],
+      "acceptance_criteria": [
+        "Design documented with threat model; nothing that spends money runs without a budget"
+      ],
+      "owner_agent": "claude",
+      "status": "BLOCKED",
+      "registry_status": "blocked",
+      "test_result": null,
+      "error": "No Anthropic API credit, no OpenAI API key, no n8n host, no budget authorisation; consumer subscriptions do not include API access",
+      "started_at": null,
+      "finished_at": null,
+      "evidence": [
+        "docs/AUTOMATION_ARCHITECTURE.md"
+      ],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-010",
+      "title": "Upgrade CI actions to Node 24 releases, pinned by SHA (from T-005 review)",
+      "description": "Move CI actions to Node 24 releases pinned by SHA.",
+      "priority": "P3",
+      "depends_on": [
+        "T-005"
+      ],
+      "acceptance_criteria": [
+        "checkout v5.1.0 and setup-python v6.3.0 pinned by commit SHA; their action.yml declares node24",
+        "CI green with no Node 20 deprecation warning"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. Workflow at c665cfb keeps the T-010 Node 24 pins (checkout fbc6f39, setup-python ece7cb0) unchanged; the file additionally gained the lint step and viewer job (6b388a8, T-011/T-017).",
+      "error": null,
+      "started_at": "2026-11-02T04:58:36Z",
+      "finished_at": "2026-11-02T06:11:38Z",
+      "evidence": [
+        "https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41391939368"
+      ],
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-011",
+      "title": "Run the viewer browser smoke test in CI (from T-005 review)",
+      "description": "Run the viewer browser smoke test in CI.",
+      "priority": "P3",
+      "depends_on": [
+        "T-005"
+      ],
+      "acceptance_criteria": [
+        "CI job installs three.js@0.147.0 from npm and runs tools/viewer_smoke/run.sh with 0 console errors"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable unchanged since 88e1d36 (viewer job success in both runs). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
+      "error": null,
+      "started_at": "2026-11-02T05:56:16Z",
+      "finished_at": "2026-11-02T07:15:57Z",
+      "evidence": [],
+      "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-012",
+      "title": "Independent SHA-256 / rebuild verification of the audit snapshot (open item from T-001 review)",
+      "description": "Independent SHA-256 / rebuild check by a SECOND agent (ChatGPT). Claude's own tooling exists (T-018) but cannot count as independent verification.",
+      "priority": "P2",
+      "depends_on": [
+        "T-001"
+      ],
+      "acceptance_criteria": [
+        "Reviewer recomputes SHA-256 of audit/2026-11-02 files from the raw URLs and matches SHA256SUMS",
+        "Optionally: rebuild with Python 3.13 and compare CAD STEP hashes (byte-reproducible per D-016)"
+      ],
+      "owner_agent": "chatgpt",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Environment-independent check (NOT agent-independent): CI step runs coreutils 'sha256sum -c' (not the project's Python code) on audit/2026-11-02: WHL-001..004.step, vehicle_cad.step, manifest.json, latest.txt all OK; test_fresh_build_reproduces_snapshot_cad ok on the GitHub runner (CAD STEP rebuilt from source equals the snapshot byte for byte). Agent independence still requires ChatGPT's own verdict. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
+      "error": null,
+      "started_at": "2026-11-02T06:30:16Z",
+      "finished_at": "2026-11-02T07:15:57Z",
+      "evidence": [
+        "audit/2026-11-02/SHA256SUMS"
+      ],
+      "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-013",
+      "title": "Dimensional consistency rules between spec parameters",
+      "description": "Identities and inequalities every correct measurement set must satisfy (length identity, L/R wheelbase, track fits body, arch clears tire...). Catches unit and code entry errors.",
+      "priority": "P1",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Rules contain only relations, no vehicle values",
+        "Inputs with UNKNOWN status give NOT_EVALUATED, never PASS",
+        "A cm-for-mm entry, a 100 mm length typo and an arch below the tire radius are each reported FAIL",
+        "A FAIL blocks validation and therefore every checkpoint commit"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable unchanged since 88e1d36; CI log lists all 13 consistency tests ok (incl. test_relative_difference_exact_limit_is_not_pass, test_metre_entry_is_caught, test_sum_at_most_boundaries). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
+      "error": null,
+      "started_at": "2026-11-02T05:51:12Z",
+      "finished_at": "2026-11-02T07:15:57Z",
+      "evidence": [
+        "src/kartal_twin/consistency.py",
+        "specs/consistency_rules.yaml",
+        "tests/test_consistency.py"
+      ],
+      "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-014",
+      "title": "Fix misleading measurement-code examples (M05 vs M06)",
+      "description": "The guide, the intake tool and the status file showed 'M05 = 2488' (M05 is roof-rail height; 2488 is a wheelbase) and 'M20=955' (M20 is bumper height). Found in the Phase 0 audit.",
+      "priority": "P1",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Every example uses the code that matches the quantity (M06 wheelbase LH, M23 beltline)"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. Guide and examples as at bbeefcf; measurement_guide.py later changed only by a lint refactor (lambda -> def, 7147c05); generated guide unchanged (--check up to date).",
+      "error": null,
+      "started_at": "2026-11-02T05:51:12Z",
+      "finished_at": "2026-11-02T06:11:38Z",
+      "evidence": [
+        "docs/OLCUM_REHBERI.md",
+        "tools/record_measurement.py"
+      ],
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-015",
+      "title": "CI regression gate on engineering CAD: compare fresh STEP SHA-256 with the committed audit snapshot",
+      "description": "CAD STEP export is byte-reproducible (D-016); CI rebuilds and compares, so any unintended geometry change fails CI.",
+      "priority": "P2",
+      "depends_on": [
+        "T-005"
+      ],
+      "acceptance_criteria": [
+        "CI step runs sha256sum -c on the audit snapshot and compares freshly built CAD STEP hashes",
+        "A deliberate geometry change requires a new dated audit snapshot"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. tests/test_golden_cad.py and audit/2026-11-02 unchanged bbeefcf..c665cfb.",
+      "error": null,
+      "started_at": "2026-11-02T05:40:00Z",
+      "finished_at": "2026-11-02T06:11:38Z",
+      "evidence": [],
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-016",
+      "title": "n8n workflow 'Kartal Jarvis' reads the real task queue (tasks/tasks.json) instead of sample rows",
+      "description": "Map tasks/tasks.json (public raw URL, no credentials) to Data Table kartal_jarvis_tasks; sample rows must not be treated as engineering work.",
+      "priority": "P3",
+      "depends_on": [
+        "T-013"
+      ],
+      "acceptance_criteria": [
+        "Workflow imports tasks.json via HTTP Request (GET, no auth) and upserts rows keyed by task_id (idempotent)",
+        "No paid API node is used"
+      ],
+      "owner_agent": "owner",
+      "status": "BLOCKED",
+      "registry_status": "blocked",
+      "test_result": null,
+      "error": "Claude has no access to the owner's n8n Cloud account (workflow uNAtlFn3mbCDpbUF, table MO4PtI0gTwCXTk6B) from this environment; n8n Cloud is a time-limited trial, not a permanent free service",
+      "started_at": null,
+      "finished_at": null,
+      "evidence": [
+        "tasks/tasks.json"
+      ],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-017",
+      "title": "Lint gate (ruff 0.15.0, E/F/W) in CI and locally",
+      "description": "Static checks on src, tools and tests; 11 findings fixed (unused imports, multiple statements per line, lambda assignments).",
+      "priority": "P3",
+      "depends_on": [
+        "T-005"
+      ],
+      "acceptance_criteria": [
+        "ruff check src tools tests reports no findings locally and in CI"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "Deliverable as reviewed at c665cfb. ruff.toml and workflow lint step unchanged ca1fe01..c665cfb; CI test job (with lint) green at ca1fe01.",
+      "error": null,
+      "started_at": "2026-11-02T05:56:16Z",
+      "finished_at": "2026-11-02T06:11:38Z",
+      "evidence": [
+        "ruff.toml",
+        ".github/workflows/kartal-ci.yml"
+      ],
+      "last_result_commit": "c665cfb8245cc2c896bf77008b4b0c350ef786b8",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-018",
+      "title": "SHA-256 verification tool for audit snapshots and the reference manifest",
+      "description": "kartal_twin.hashes verifies every audit/<date>/SHA256SUMS and refs/MANIFEST.csv; part of validate and CI.",
+      "priority": "P2",
+      "depends_on": [
+        "T-015"
+      ],
+      "acceptance_criteria": [
+        "OK, MISMATCH, MISSING, MALFORMED and UNSAFE_PATH are each produced by a dedicated test",
+        "The repository's own snapshots verify clean in validate and CI",
+        "Every SHA recorded in tasks/*.yaml exists in git history (CI uses full history)"
+      ],
+      "owner_agent": "claude",
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Addresses ChatGPT CHANGES_REQUESTED on bf31d4d. Missing refs/MANIFEST.csv -> MISSING; manifest without required header columns -> MALFORMED; no audit/<date>/SHA256SUMS at all -> MISSING; SHA256SUMS without entries -> EMPTY; absent SHA256SUMS passed to verify_sums -> MISSING. New class MissingIntegrityFiles (6 tests: test_complete_project_passes [positive control], test_missing_manifest_fails, test_manifest_without_header_fails, test_no_audit_snapshot_fails, test_empty_sums_file_fails, test_sums_file_passed_directly_but_absent_fails). Run against the previous hashes.py (9d6c467): 4 FAIL + 1 ERROR, positive control ok; with the fix 13/13 ok. Local full suite 108/108. CI at 826c4ba: pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405724412 (tests merge commit 0f92fa9; jobs test 125147169352, viewer 125147168961: success; log lists all 108 tests by name, coreutils sha256sum -c 7/7 OK, privacy audit 467 blobs 0 findings) and push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405718716 (tests 826c4ba itself; jobs test 125147150539, viewer 125147150806: success).",
+      "error": null,
+      "started_at": "2026-11-02T06:21:18Z",
+      "finished_at": null,
+      "evidence": [
+        "src/kartal_twin/hashes.py",
+        "tests/test_hashes.py"
+      ],
+      "last_result_commit": "826c4bad6e2f4c5b28db9d897b1d28c16337728c",
+      "last_review": "chatgpt:CHANGES_REQUESTED"
+    },
+    {
+      "task_id": "T-019",
+      "title": "Privacy scan: VINs, credentials, private keys; full git-history audit",
+      "description": "Extends the public-repository guard (D-012) beyond plates, e-mails and media; audits every blob ever committed.",
+      "priority": "P1",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "VIN, GitHub/Anthropic/OpenAI/AWS keys and PEM private keys are detected; values are never echoed",
+        "No false positives on hashes, commit SHAs or component IDs",
+        "Whole-history audit reports 0 findings and runs in CI"
+      ],
+      "owner_agent": "claude",
+      "status": "PASS",
+      "registry_status": "accepted",
+      "test_result": "CI history audit at bf31d4d (pull_request run, merge ref): 'scanned 411 blobs across all refs; findings: 0'. Scope limits recorded in the round-1 provenance (no image pixels, no binary contents, no text > 2 MB, Turkish plate scheme only). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707 (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884 log: 'Ran 101 tests ... OK', every test listed by name (unittest -v).",
+      "error": null,
+      "started_at": "2026-11-02T06:21:18Z",
+      "finished_at": "2026-11-02T07:15:57Z",
+      "evidence": [
+        "src/kartal_twin/privacy.py",
+        "tools/privacy_history_audit.py"
+      ],
+      "last_result_commit": "bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e",
+      "last_review": "chatgpt:ACCEPT"
+    },
+    {
+      "task_id": "T-020",
+      "title": "Registration documents (ruhsat) as primary evidence for identity, mass, displacement and fuel type",
+      "description": "Ingest the owner's three registration/emission document photos (originals local-only, hashes in refs/MANIFEST.csv), register them as DOCUMENT evidence and update only the spec parameters the documents state, without committing plate, VIN, engine number, serials or dates.",
+      "priority": "P1",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Each changed parameter matches the field printed on the document (model, variant, model year, colour, net weight, displacement, fuel type); empty document fields (Motor gücü, Azami yüklü ağırlığı) are not filled",
+        "No plate, VIN, engine number, document serial or registration date in any committed file or history",
+        "Interpretations beyond the printed text stay ESTIMATED (make 'MURAT' = Tofaş; 'İstiap haddi 04 kişi' = 5 seats)"
+      ],
+      "owner_agent": "claude",
+      "status": "NEEDS_REVIEW",
+      "registry_status": "submitted",
+      "test_result": "Addresses ChatGPT CHANGES_REQUESTED on 4284df3. engine.fuel_type value is now only 'LPG (registered conversion)' (VERIFIED); the petrol base engine moved to new parameter engine.base_fuel (ESTIMATED, LOW, E-011/E-013, 'not printed on the registration documents'). verify_by names the real fields ('Cinsi' carries the fuel suffix; 'İstiap haddi' for persons; no 'Yakıt cinsi' / 'Koltuk sayısı' field). Guide summary had a hard-coded '0 VERIFIED' (its ESTIMATED/UNKNOWN numbers were computed: 23/81); now counted, and test_measurement_guide_summary_matches_spec_counts compares it with the spec (112: 7 VERIFIED / 24 ESTIMATED / 81 UNKNOWN). HANDOFF counts updated. Local full suite 108/108. CI at 826c4ba: pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405724412 (tests merge commit 0f92fa9; jobs test 125147169352, viewer 125147168961: success; log lists all 108 tests by name, coreutils sha256sum -c 7/7 OK, privacy audit 467 blobs 0 findings) and push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405718716 (tests 826c4ba itself; jobs test 125147150539, viewer 125147150806: success).",
+      "error": null,
+      "started_at": "2026-11-02T06:50:50Z",
+      "finished_at": null,
+      "evidence": [
+        "EVIDENCE_REGISTER.md",
+        "refs/MANIFEST.csv",
+        "specs/kartal_s_1997.yaml"
+      ],
+      "last_result_commit": "826c4bad6e2f4c5b28db9d897b1d28c16337728c",
+      "last_review": "chatgpt:CHANGES_REQUESTED"
+    }
+  ]
+}

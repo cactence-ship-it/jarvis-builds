@@ -1,0 +1,4 @@
+ref_id,stored_name,original_name,sha256,bytes,media_type,ingested_utc,storage,source,note
+R-0001,R-0001_62036d33-image.jpg,62036d33-image.jpg,248e60f00f3833c34c77e8993abf4ef789ff9605161fbd838884e8aeaa977355,2597181,image/jpeg,2026-11-02T06:50:50Z,local-only,owner chat upload 2026-11-02,"Vehicle registration document photo (traffic form, older format). PRIVATE: shows plate, VIN, engine no."
+R-0002,R-0002_cdc428ca-image.png,cdc428ca-image.png,373e10c3c0bec7c55b8ae5af35fec2491118f0847b1a822fa12318eb970be56f,6293372,image/png,2026-11-02T06:50:50Z,local-only,owner chat upload 2026-11-02,"Vehicle registration certificate photo (newer format). PRIVATE: shows plate, VIN, engine no."
+R-0003,R-0003_d621bca8-image.jpg,d621bca8-image.jpg,bfce717ba7dcf33de1fc8beeecf1d47e336eab308f7897ba58f6c2694627c591,2444633,image/jpeg,2026-11-02T06:50:50Z,local-only,owner chat upload 2026-11-02,"Exhaust emission form photo. PRIVATE: shows plate, VIN."

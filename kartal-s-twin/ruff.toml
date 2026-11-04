@@ -1,0 +1,5 @@
+# Lint configuration shared by local runs and CI (kartal-ci.yml).
+line-length = 120
+[lint]
+select = ["E", "F", "W"]
+ignore = ["E501"]

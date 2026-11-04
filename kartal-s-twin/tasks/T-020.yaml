@@ -1,0 +1,95 @@
+id: T-020
+title: Registration documents (ruhsat) as primary evidence for identity, mass, displacement and fuel type
+description: Ingest the owner's three registration/emission document photos (originals local-only, hashes in refs/MANIFEST.csv),
+  register them as DOCUMENT evidence and update only the spec parameters the documents state, without committing plate, VIN,
+  engine number, serials or dates.
+priority: P1
+phase: '3'
+owner: claude
+status: submitted
+depends_on: []
+blocker: null
+started_at: '2026-11-02T06:50:50Z'
+finished_at: null
+error: null
+evidence:
+- EVIDENCE_REGISTER.md
+- refs/MANIFEST.csv
+- specs/kartal_s_1997.yaml
+acceptance:
+- id: T-020-A1
+  criterion: Each changed parameter matches the field printed on the document (model, variant, model year, colour, net weight,
+    displacement, fuel type); empty document fields (Motor gücü, Azami yüklü ağırlığı) are not filled
+  check: reviewer compares EVIDENCE_REGISTER E-014/E-015 notes with the spec diff (the photos are private and not in git)
+- id: T-020-A2
+  criterion: No plate, VIN, engine number, document serial or registration date in any committed file or history
+  check: tools/privacy_history_audit.py and a manual read of the diff
+- id: T-020-A3
+  criterion: Interpretations beyond the printed text stay ESTIMATED (make 'MURAT' = Tofaş; 'İstiap haddi 04 kişi' = 5 seats)
+  check: spec status fields
+results:
+- agent: claude
+  commit: 4284df321e4f248f70ae980eb03118a347b1d8df
+  files:
+  - EVIDENCE_REGISTER.md
+  - refs/MANIFEST.csv
+  - specs/kartal_s_1997.yaml
+  - UNCERTAINTY_REGISTER.md
+  - ENGINEERING_DECISIONS.md
+  - tests/test_spec.py
+  - tests/test_measurements.py
+  tests: 'Local: validate 0 FAIL, unittest 101/101 OK; tools/privacy_history_audit.py 438 blobs, 0 findings; git log --all
+    -p has 0 hits for the plate, VIN, engine-number and document-serial strings. CI at 4284df3: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402952218
+    and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41402959189, both success.'
+  confidence: MEDIUM
+  known_defects:
+  - The photos are private and not in git, so a reviewer cannot re-read the fields; only the owner can confirm the transcription
+  - Silindir hacmi is partly under glare on E-015 (read as 1581, agrees with literature)
+  - Two tests assumed fixed VERIFIED counts (0, 2); rewritten to check the rule instead
+  open_questions:
+  - Is 'İstiap haddi 04 kişi' passengers excluding the driver (5 seats)? Kept ESTIMATED until an interior photo
+  round: 1
+  superseded_by: 826c4bad6e2f4c5b28db9d897b1d28c16337728c
+- agent: claude
+  commit: 826c4bad6e2f4c5b28db9d897b1d28c16337728c
+  round: 2
+  superseded_by: null
+  files:
+  - specs/kartal_s_1997.yaml
+  - tools/measurement_guide.py
+  - docs/OLCUM_REHBERI.md
+  - tests/test_inventory.py
+  - HANDOFF.md
+  tests: 'Addresses ChatGPT CHANGES_REQUESTED on 4284df3. engine.fuel_type value is now only ''LPG (registered conversion)''
+    (VERIFIED); the petrol base engine moved to new parameter engine.base_fuel (ESTIMATED, LOW, E-011/E-013, ''not printed
+    on the registration documents''). verify_by names the real fields (''Cinsi'' carries the fuel suffix; ''İstiap haddi''
+    for persons; no ''Yakıt cinsi'' / ''Koltuk sayısı'' field). Guide summary had a hard-coded ''0 VERIFIED'' (its ESTIMATED/UNKNOWN
+    numbers were computed: 23/81); now counted, and test_measurement_guide_summary_matches_spec_counts compares it with the
+    spec (112: 7 VERIFIED / 24 ESTIMATED / 81 UNKNOWN). HANDOFF counts updated. Local full suite 108/108. CI at 826c4ba: pull_request
+    run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405724412 (tests merge commit 0f92fa9; jobs test
+    125147169352, viewer 125147168961: success; log lists all 108 tests by name, coreutils sha256sum -c 7/7 OK, privacy audit
+    467 blobs 0 findings) and push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405718716 (tests 826c4ba
+    itself; jobs test 125147150539, viewer 125147150806: success).'
+  confidence: HIGH
+  known_defects:
+  - The photos remain private; transcription against the photo can only be confirmed by the owner
+  open_questions: []
+reviews:
+- reviewer: chatgpt
+  commit: 4284df321e4f248f70ae980eb03118a347b1d8df
+  verdict: CHANGES_REQUESTED
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-3 review of 4284df3).
+  findings:
+  - Model, variant, model year, registered colour, registered net weight and displacement consistent with the document notes
+  - MURAT->Tofaş and 5 seats correctly kept ESTIMATED
+  - Motor gücü and azami yüklü ağırlık correctly left unverified (empty fields)
+  - 'engine.fuel_type value ''petrol base engine'' is not printed on the document: separate it; keep only the registered LPG
+    conversion VERIFIED, make the petrol base-engine reading ESTIMATED or UNKNOWN'
+  - docs/OLCUM_REHBERI.md summary still says 0 VERIFIED / 27 ESTIMATED / 84 UNKNOWN; must match spec 0.6.0
+  - verify_by says 'Yakıt cinsi' but the document field is 'Cinsi'; explain consistently
+  - 'Reviewer could not see the private photos: this verdict covers internal consistency and privacy, not the transcription
+    against the photo'
+round_summary:
+- 'round 1: 4284df321e4f248f70ae980eb03118a347b1d8df (superseded)'
+- 'round 2: 826c4bad6e2f4c5b28db9d897b1d28c16337728c (CURRENT)'
+- 'review: chatgpt CHANGES_REQUESTED on 4284df3'

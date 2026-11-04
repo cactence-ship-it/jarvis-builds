@@ -1,0 +1,50 @@
+id: T-002
+title: Independent review of the tire-envelope CAD (D-016) and T-001
+description: ChatGPT reviews the tire-envelope CAD and T-001 independently (manual relay while no API exists).
+priority: P1
+phase: '11'
+owner: chatgpt
+status: accepted
+depends_on:
+- T-001
+blocker: null
+started_at: '2026-11-02T04:36:21Z'
+finished_at: '2026-11-02T04:59:23Z'
+error: null
+evidence:
+- tasks/T-001.yaml
+- agents/REVIEW_REQUEST_T-002.md
+acceptance:
+- id: T-002-A1
+  criterion: Reviewer re-derives OD 600.6 mm, bead seat 355.6 mm and the analytic tire volume
+  check: independent calculation
+- id: T-002-A2
+  criterion: Reviewer re-checks audit/2026-11-02/SHA256SUMS and, if possible, rebuilds and compares SHA-256
+  check: sha256sum -c; python tools/twin.py build
+- id: T-002-A3
+  criterion: Reviewer records verdict ACCEPT / CHANGES_REQUESTED / REJECT with findings in tasks/T-001.yaml
+  check: task registry validator
+results:
+- agent: chatgpt
+  commit: fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf
+  files:
+  - tasks/T-001.yaml
+  - tasks/T-005.yaml
+  tests: Independent recalculation of OD, bead seat, volume and four clearances; workflow inspection. Relayed verbatim
+    by the owner in the Claude session on 2026-11-02; Claude cannot see the ChatGPT session itself.
+  confidence: MEDIUM
+  known_defects:
+  - STEP SHA-256 not recomputed
+  - CI log not independently retrieved
+  open_questions: []
+reviews:
+- reviewer: claude
+  commit: fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf
+  verdict: ACCEPT
+  findings:
+  - All recalculated values match the build and the analytic formulas (600.6, 355.6, 32199027, 1211.0, 1152.0, 1889.4,
+    2228.40).
+  - The review covers the acceptance criteria T-002-A1 and T-002-A3; T-002-A2 (SHA-256 / rebuild) was not performed
+    and is carried to T-012.
+  - The STEP files are ASCII (ISO 10303-21), not binary; they are directly readable at the raw URLs added to the
+    review request.

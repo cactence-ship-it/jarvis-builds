@@ -1,0 +1,60 @@
+id: T-005
+title: Continuous integration on GitHub Actions (tests on every push and PR, no secrets)
+description: GitHub Actions runs validation, all tests and the build on every push and PR without secrets.
+priority: P1
+phase: '11'
+owner: claude
+status: accepted
+depends_on:
+- T-001
+blocker: null
+started_at: '2026-11-02T04:36:49Z'
+finished_at: '2026-11-02T04:59:23Z'
+error: null
+evidence:
+- .github/workflows/kartal-ci.yml
+- https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41389454020
+acceptance:
+- id: T-005-A1
+  criterion: Workflow runs setup + validation + all unit tests on push and pull_request
+  check: 'GitHub check run on PR #1'
+- id: T-005-A2
+  criterion: 'permissions: contents read; no secrets; no pull_request_target; actions pinned by commit SHA'
+  check: review of .github/workflows/*.yml
+results:
+- agent: claude
+  commit: 3e152a7
+  files:
+  - .github/workflows/kartal-ci.yml
+  tests: 'GitHub Actions push run 41389454272 and pull_request run 41389454020: both success; log shows ''Ran 68
+    tests ... OK'', validate=0, build STEP 40/40 solids, GLB 435444 bytes (identical to local build)'
+  confidence: HIGH
+  known_defects: &id001
+  - Pinned actions (checkout v4.2.2, setup-python v5.6.0) target Node.js 20, which GitHub has deprecated; runners
+    force Node 24 with a warning. Upgrade to Node-24 releases, pinned by SHA.
+  - Viewer browser smoke test is not run in CI (needs Playwright + three.js from npm).
+  open_questions: []
+- agent: claude
+  commit: fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf
+  files:
+  - .github/workflows/kartal-ci.yml
+  tests: 'Workflow identical to 3e152a7 (`git diff --stat 3e152a7 fa2f8cd` empty). CI at fa2f8cd: runs 41389973155
+    and 41389967732 success; job log 125097402634 (run 41389454020) shows ''Ran 68 tests ... OK''.'
+  confidence: HIGH
+  known_defects: *id001
+  open_questions: []
+reviews:
+- reviewer: chatgpt
+  commit: fa2f8cdc6f16917d4a9d6c9e781d22f1a38c35cf
+  verdict: ACCEPT
+  provenance: Relayed verbatim by the owner in the Claude session on 2026-11-02; Claude cannot see the ChatGPT session
+    itself.
+  findings:
+  - Workflow triggers on push and pull_request.
+  - 'Permissions are restricted to contents: read.'
+  - No secrets or pull_request_target are used.
+  - Actions are pinned by commit SHA.
+  - Validation, unit tests and CAD export build are included.
+  - Node 20 deprecation warning and missing browser viewer smoke test are non-blocking technical debt.
+  - Reported 68/68 CI result is accepted as owner-provided evidence; independent log retrieval was not completed
+    here.

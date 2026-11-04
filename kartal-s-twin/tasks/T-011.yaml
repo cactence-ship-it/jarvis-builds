@@ -1,0 +1,118 @@
+id: T-011
+title: Run the viewer browser smoke test in CI (from T-005 review)
+description: Run the viewer browser smoke test in CI.
+priority: P3
+phase: '11'
+owner: claude
+status: accepted
+depends_on:
+- T-005
+blocker: null
+started_at: '2026-11-02T05:56:16Z'
+finished_at: '2026-11-02T07:15:57Z'
+error: null
+evidence: []
+acceptance:
+- id: T-011-A1
+  criterion: CI job installs three.js@0.147.0 from npm and runs tools/viewer_smoke/run.sh with 0 console errors
+  check: GitHub Actions job log
+results:
+- agent: claude
+  commit: ca1fe01
+  files: &id001
+  - .github/workflows/kartal-ci.yml
+  - tools/viewer_smoke/run.sh
+  tests: 'CI runs 41397314733 and 41397308324 at ca1fe01: viewer job success; log job 125121322473 shows ''assemblies: Kaporta
+    7 | Dış trim 10 | Camlar 8 | Aydınlatma 6 | Tekerlekler 4'', tap selects BDY-003, ''errors: []''. History: first attempt
+    at 7147c05 failed (ERR_CONNECTION_REFUSED, npx http-server not ready after 2 s); fixed with python3 http.server + readiness
+    polling (attempt 1 of 3).'
+  confidence: HIGH
+  known_defects: &id002
+  - Swiftshader software rendering only; no GPU-specific checks
+  open_questions: []
+  round: 1
+  superseded_by: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+- agent: claude
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  files: *id001
+  tests: As reviewed at c665cfb.
+  confidence: HIGH
+  known_defects: *id002
+  open_questions: []
+  round: 2
+  superseded_by: cf87630
+- agent: claude
+  commit: cf87630
+  files:
+  - tools/viewer_smoke/smoke.js
+  - tools/viewer_smoke/run.sh
+  - viewer/index.html
+  tests: '11 assertions pass locally: model loaded (hook), 35 parts == manifest, toggle sum 35, tap selects BDY-003, info
+    shows BDY-003 + PLACEHOLDER, explode max displacement 1.424 m, explode 0 restores exactly, GLAZING 8 hidden/others visible/restored,
+    0 console errors. Negative run with EXPECTED_PARTS=34 exits 1. [commit field corrected from a placeholder text to the
+    real SHA on 2026-11-02]'
+  confidence: HIGH
+  known_defects:
+  - BDY-003 selection depends on the default iso camera; a camera change needs the expected ID updated
+  open_questions: []
+  response_to_review: All five requested assertions implemented; any failed check exits non-zero; read-only test hook window.__kartalViewer.
+  round: 3
+  superseded_by: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
+- agent: claude
+  commit: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
+  files:
+  - viewer/index.html
+  - tools/viewer_smoke/smoke.js
+  tests: 'Local at 88e1d36: 21 assertions pass; selection by projected visible point for BDY-003 and WHL-001 (iso) and BDY-008
+    (left view); negative run (EXPECTED_PARTS=34) exits 1.'
+  confidence: HIGH
+  known_defects:
+  - Software (SwiftShader) rendering only
+  open_questions: []
+  response_to_review: Selection no longer depends on the camera angle; every interaction asserted; non-zero exit on failure.
+  round: 4
+  superseded_by: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+- agent: claude
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  files:
+  - viewer/index.html
+  - tools/viewer_smoke/smoke.js
+  - tools/viewer_smoke/run.sh
+  tests: 'Deliverable unchanged since 88e1d36 (viewer job success in both runs). CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591
+    (tests bf31d4d itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884
+    log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  confidence: HIGH
+  known_defects:
+  - SwiftShader software rendering only
+  open_questions: []
+  round: 5
+reviews:
+- reviewer: chatgpt
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  verdict: CHANGES_REQUESTED
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-2 review of c665cfb).
+  findings:
+  - smoke.js performs interactions but does not assert their results.
+  - Verify that BDY-003 is really selected.
+  - Verify that the explode control changes the model state.
+  - Verify that assembly visibility toggling works.
+  - The test must not pass before the model has loaded.
+  - Wrong selection or interaction must exit non-zero.
+  - Then run CI.
+- reviewer: chatgpt
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  verdict: ACCEPT
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-3 review of bf31d4d).
+  findings:
+  - Viewer load, selection, explode/reset, assembly visibility and console-error checks reviewed
+  - Selection verified for three parts in two camera views
+  - Push and pull_request CI test and viewer jobs succeeded
+  - 'Limitation: SwiftShader software rendering; no GPU-specific test'
+round_summary:
+- 'round 1: ca1fe01 (superseded)'
+- 'round 2: c665cfb8245cc2c896bf77008b4b0c350ef786b8 (superseded)'
+- 'round 3: cf87630 (superseded)'
+- 'round 4: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6 (superseded)'
+- 'round 5: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e (CURRENT)'
+- 'review: chatgpt CHANGES_REQUESTED on c665cfb'

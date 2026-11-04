@@ -1,0 +1,24 @@
+id: T-004
+title: Ingest the 9 owner photos and Kartal_S_Studyo.zip (private, not in git)
+description: Owner photos and legacy archive are ingested privately (hash only in git) and analysed.
+priority: P1
+phase: '2'
+owner: owner
+status: blocked
+depends_on: []
+blocker: Files not uploaded to any session; private storage decision U-009 pending
+started_at: null
+finished_at: null
+error: null
+evidence:
+- tools/ingest_refs.py
+- tools/analyze_legacy.py
+acceptance:
+- id: T-004-A1
+  criterion: Files ingested with SHA-256 into refs/MANIFEST.csv; originals not committed
+  check: tests/test_refs.py; privacy scan
+- id: T-004-A2
+  criterion: 'Legacy archive analysed: objects, mesh/procedural split, scale'
+  check: tools/analyze_legacy.py report
+results: []
+reviews: []

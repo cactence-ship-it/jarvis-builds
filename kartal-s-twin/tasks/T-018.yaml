@@ -1,0 +1,99 @@
+id: T-018
+title: SHA-256 verification tool for audit snapshots and the reference manifest
+description: kartal_twin.hashes verifies every audit/<date>/SHA256SUMS and refs/MANIFEST.csv; part of validate and CI.
+priority: P2
+phase: '11'
+owner: claude
+status: submitted
+depends_on:
+- T-015
+blocker: null
+started_at: '2026-11-02T06:21:18Z'
+finished_at: null
+error: null
+evidence:
+- src/kartal_twin/hashes.py
+- tests/test_hashes.py
+acceptance:
+- id: T-018-A1
+  criterion: OK, MISMATCH, MISSING, MALFORMED and UNSAFE_PATH are each produced by a dedicated test
+  check: tests/test_hashes.py
+- id: T-018-A2
+  criterion: The repository's own snapshots verify clean in validate and CI
+  check: tools/twin.py validate
+- id: T-018-A3
+  criterion: Every SHA recorded in tasks/*.yaml exists in git history (CI uses full history)
+  check: tests/test_tasks.py
+results:
+- agent: claude
+  commit: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6
+  files:
+  - src/kartal_twin/hashes.py
+  - tests/test_hashes.py
+  - tools/twin.py
+  - tests/test_tasks.py
+  tests: 'Local at 88e1d36: 7 hash tests (OK, MISMATCH, MISSING, MALFORMED, UNSAFE_PATH, failures list, project clean); validate
+    ''[PASS] hash integrity''; all recorded SHAs exist in git.'
+  confidence: HIGH
+  known_defects:
+  - Local-only originals (public repo policy) cannot be verified in CI by design
+  open_questions: []
+  round: 1
+  superseded_by: null
+- agent: claude
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  files:
+  - src/kartal_twin/hashes.py
+  - tests/test_hashes.py
+  - src/kartal_twin/tasks.py
+  - tests/test_tasks.py
+  tests: 'CI log lists test_modified_file_is_mismatch, test_missing_file_is_missing, test_corrupt_line_is_malformed, test_path_escape_is_rejected,
+    test_intact_snapshot_is_ok, test_failures_lists_only_problems, test_repository_hashes_are_intact: all ok; SHA semantics
+    (D-024): test_short_and_full_sha_are_equivalent, test_invalid_sha_forms_are_rejected, test_every_recorded_commit_resolves_to_exactly_one_commit:
+    ok. CI at bf31d4d: push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400318591 (tests bf31d4d
+    itself; jobs test 125130536151, viewer 125130535862: success) and pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41400487707
+    (tests merge commit 3af0aef of bf31d4d into main; jobs test 125131042884, viewer 125131042597: success). Job 125131042884
+    log: ''Ran 101 tests ... OK'', every test listed by name (unittest -v).'
+  confidence: HIGH
+  known_defects:
+  - Local-only originals cannot be verified in CI by design (D-012)
+  open_questions: []
+  round: 2
+  superseded_by: 826c4bad6e2f4c5b28db9d897b1d28c16337728c
+- agent: claude
+  commit: 826c4bad6e2f4c5b28db9d897b1d28c16337728c
+  round: 3
+  superseded_by: null
+  files:
+  - src/kartal_twin/hashes.py
+  - tests/test_hashes.py
+  tests: 'Addresses ChatGPT CHANGES_REQUESTED on bf31d4d. Missing refs/MANIFEST.csv -> MISSING; manifest without required
+    header columns -> MALFORMED; no audit/<date>/SHA256SUMS at all -> MISSING; SHA256SUMS without entries -> EMPTY; absent
+    SHA256SUMS passed to verify_sums -> MISSING. New class MissingIntegrityFiles (6 tests: test_complete_project_passes [positive
+    control], test_missing_manifest_fails, test_manifest_without_header_fails, test_no_audit_snapshot_fails, test_empty_sums_file_fails,
+    test_sums_file_passed_directly_but_absent_fails). Run against the previous hashes.py (9d6c467): 4 FAIL + 1 ERROR, positive
+    control ok; with the fix 13/13 ok. Local full suite 108/108. CI at 826c4ba: pull_request run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405724412
+    (tests merge commit 0f92fa9; jobs test 125147169352, viewer 125147168961: success; log lists all 108 tests by name, coreutils
+    sha256sum -c 7/7 OK, privacy audit 467 blobs 0 findings) and push run https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41405718716
+    (tests 826c4ba itself; jobs test 125147150539, viewer 125147150806: success).'
+  confidence: HIGH
+  known_defects:
+  - 'A header-only manifest (no rows) is still valid: a project may have ingested nothing yet'
+  open_questions: []
+reviews:
+- reviewer: chatgpt
+  commit: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e
+  verdict: CHANGES_REQUESTED
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-3 review of bf31d4d).
+  findings:
+  - verify_manifest returns an empty list when refs/MANIFEST.csv is missing, so failures() reports nothing and validate can
+    pass the integrity check by mistake
+  - verify_project raises no missing-snapshot error when no audit/<date>/SHA256SUMS exists
+  - Negative tests needed for a missing manifest and a missing audit snapshot
+  - Validation must fail when expected integrity files are absent, not return a clean result
+  - Hash checks of existing files and CI are fine; the request is limited to missing-file scenarios
+round_summary:
+- 'round 1: 88e1d368ca39f002e4c1b3e5abe8d200bf6d2bf6 (superseded)'
+- 'round 2: bf31d4d5a3dde13aca4c3bdc954f9f94d6228a8e (superseded)'
+- 'round 3: 826c4bad6e2f4c5b28db9d897b1d28c16337728c (CURRENT)'
+- 'review: chatgpt CHANGES_REQUESTED on bf31d4d'

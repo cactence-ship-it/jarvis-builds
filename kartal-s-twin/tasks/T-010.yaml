@@ -1,0 +1,48 @@
+id: T-010
+title: Upgrade CI actions to Node 24 releases, pinned by SHA (from T-005 review)
+description: Move CI actions to Node 24 releases pinned by SHA.
+priority: P3
+phase: '11'
+owner: claude
+status: accepted
+depends_on:
+- T-005
+blocker: null
+started_at: '2026-11-02T04:58:36Z'
+finished_at: '2026-11-02T06:11:38Z'
+error: null
+evidence:
+- https://github.com/cactence-ship-it/jarvis-builds/actions/runs/41391939368
+acceptance:
+- id: T-010-A1
+  criterion: checkout v5.1.0 and setup-python v6.3.0 pinned by commit SHA; their action.yml declares node24
+  check: review of workflow + raw action.yml
+- id: T-010-A2
+  criterion: CI green with no Node 20 deprecation warning
+  check: GitHub Actions job log
+results:
+- agent: claude
+  commit: c29f5fe
+  files: &id001
+  - .github/workflows/kartal-ci.yml
+  tests: 'action.yml of checkout v5.1.0 (fbc6f39) and setup-python v6.3.0 (ece7cb0) declare node24 (raw files read).
+    CI on 19505cb (workflow unchanged since c29f5fe): jobs 125105038877 and 125105126024 success, ''Ran 71 tests
+    ... OK'', and the Node.js 20 deprecation warning present in job 125097402634 no longer appears.'
+  confidence: HIGH
+  known_defects: &id002 []
+  open_questions: []
+- agent: claude
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  files: *id001
+  tests: Deliverable as reviewed at c665cfb. Workflow at c665cfb keeps the T-010 Node 24 pins (checkout fbc6f39,
+    setup-python ece7cb0) unchanged; the file additionally gained the lint step and viewer job (6b388a8, T-011/T-017).
+  confidence: HIGH
+  known_defects: *id002
+  open_questions: []
+reviews:
+- reviewer: chatgpt
+  commit: c665cfb8245cc2c896bf77008b4b0c350ef786b8
+  verdict: ACCEPT
+  provenance: Relayed by the owner on 2026-11-02 (ChatGPT batch-2 review of c665cfb). Only the verdict was relayed
+    for ACCEPT decisions; no finding text.
+  findings: []

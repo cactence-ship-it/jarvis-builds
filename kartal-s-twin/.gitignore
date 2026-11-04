@@ -1,0 +1,12 @@
+# Reproducible / regenerated - never committed
+.venv/
+build/
+__pycache__/
+*.pyc
+
+# PRIVATE originals: kept out of git while the repository is public (D-012).
+# Remove these lines only after the owner makes the repo private AND authorises it.
+refs/original/*
+!refs/original/README.md
+refs/derived/*
+!refs/derived/README.md

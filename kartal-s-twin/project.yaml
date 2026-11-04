@@ -1,0 +1,14 @@
+# Project configuration (read by tools/twin.py, tools/ingest_refs.py and the tests)
+project: Tofaş Kartal S (1997) complete vehicle digital twin
+project_id: KARTAL-S-1997
+vehicle_alias: VEH-01        # public alias; the real registration is withheld (D-012)
+repository:
+  name: cactence-ship-it/jarvis-builds
+  project_root: kartal-s-twin/
+  visibility: public         # checked 2026-11-01 via the GitHub API (E-005); re-check if it changes
+privacy:
+  # false while the repository is public: original photos, archives and document scans
+  # stay out of git (refs/original is git-ignored). Flip to true ONLY after the owner has
+  # made the repository private (or chosen a private store) AND authorised it explicitly.
+  allow_private_media_in_git: false
+  media_allowlist: []        # repo-relative path prefixes allowed to hold images (e.g. CAD renders)
