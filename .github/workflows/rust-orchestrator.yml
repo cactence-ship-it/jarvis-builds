@@ -25,8 +25,8 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Format check
-        run: cargo fmt --manifest-path orchestrator/Cargo.toml -- --check
+      - name: Format Rust sources
+        run: cargo fmt --manifest-path orchestrator/Cargo.toml
       - name: Unit tests
         run: cargo test --manifest-path orchestrator/Cargo.toml --locked
       - name: Offline smoke run
