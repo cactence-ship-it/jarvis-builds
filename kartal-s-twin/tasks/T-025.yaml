@@ -1,0 +1,31 @@
+id: T-025
+title: "Electrical harness route matrix and branch-level CAD"
+description: "Create a branch-level wiring harness map for battery/charging, ignition, lighting, dash, rear body, wiper/washer, cooling fan, petrol sender, LPG selector/solenoids and grounds. Routes are schematic until the exact factory diagram and vehicle loom evidence arrive; never invent wire colours, gauge, fuse ratings or pinouts."
+priority: P1
+phase: "9"
+owner: chatgpt
+status: in_progress
+depends_on:
+  - T-023
+blocker: "Factory wiring diagram, fuse/relay map and loom connector photos not received."
+started_at: "2026-11-06T00:00:00Z"
+finished_at: null
+error: null
+evidence:
+  - specs/electrical_harness_route_matrix.yaml
+  - docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md
+acceptance:
+  - id: T-025-A1
+    criterion: "Every electrical branch has source/destination nodes, route corridor, evidence needs and UNKNOWN electrical specifications."
+    check: "review specs/electrical_harness_route_matrix.yaml"
+  - id: T-025-A2
+    criterion: "High-tension ignition and LPG control remain separate harness groups."
+    check: "route matrix review"
+  - id: T-025-A3
+    criterion: "No wire colour, cross-section, fuse rating, connector pinout or route length is fabricated."
+    check: "schema and evidence audit"
+  - id: T-025-A4
+    criterion: "Branch geometry is independently selectable and exports/re-opens with the full vehicle."
+    check: "electrical assembly and STEP/GLB round-trip tests"
+results: []
+reviews: []
