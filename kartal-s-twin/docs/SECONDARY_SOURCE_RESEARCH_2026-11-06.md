@@ -46,6 +46,24 @@ Aktaş's Kartal brake category lists front discs/pads, rear brake shoes and rear
 ### General parts taxonomy
 Parcacim's M131 / SLX catalogue groups engine belts, cooling, alternator, suspension, ignition, brake and clutch/transmission categories, and exposes multiple engine options by year. This reinforces the need to keep model-year and engine-variant filters explicit in any part-number lookup.
 
+### Rubber-hose catalogue cross-check (supplier catalogue; fitment not verified)
+
+MES KAUÇUK's published *MES Auto Hoses Catalogue*, TOFAŞ section (printed pages 361–363), provides a useful exclusion check:
+
+| Catalogue item | Description | Listed Kartal applicability | Catalogue/OEM reference | VEH-01 decision |
+|---|---|---|---|---|
+| 2500 / 2501 | Radiator upper / lower hose | Kartal 1.6, 1985–1996 | OEM 7584255 / 7584256 | Does not list 1997; do not assign to this vehicle without physical shape/code comparison |
+| 2510 | Carburettor choke hose, 7 × 27 cm | Kartal 1.6, 1985–1996 | OEM 4333269 | Candidate family only; 1997 fitment not established |
+| 2511 | Air-filter hose | Kartal 1.6, 1985–1996 | OEM 4221427 | Candidate family only; 1997 fitment not established |
+| 2512 | Engine-ventilation hose | Kartal 1.6, 1985–1996 | OEM 4476231 | Candidate family only; 1997 fitment not established |
+| 2514 | Brake-booster vacuum hose, 11 × 17 mm, 80 cm | Kartal 1.6, 1985–1996 | OEM 14206880 | Candidate family only; 1997 fitment not established |
+| 2516 | Vacuum hose, 4 × 9 mm, 71 cm NBR | Kartal 1.6, 1985–1996 | OEM 7616008 | Candidate family only; 1997 fitment not established |
+| 2550 / 2551 / 2552 | Radiator upper / lower / thermostat hose | Doğan 1.6 IE/i.e., 1997–2002 (not a Kartal carburettor listing) | OEM 7675992 / 7675991 / 7765734 | Exclude from VEH-01 carburettor BOM unless the actual car is identified as the listed IE configuration |
+
+The catalogue's year/vehicle filters are explicit: the listed Kartal carburettor-era hoses stop at 1996, while the later 1997–2002 cooling-hose entries in this section are for Doğan IE/i.e. applications. This is a **catalogue-coverage gap**, not proof that the 1997 Kartal has no replacement hose. Do not infer hose shape, inside diameter, length, material or interchangeability from the item names. To resolve a 1997 part, compare the old hose's moulded/printed number, both end IDs, centreline shape, length and terminal orientation, then obtain written supplier confirmation for 1997 Kartal S carburettor fitment.
+
+Source: MES KAUÇUK, *MES Auto Hoses Catalogue*, TOFAŞ section, printed pp. 361–363: https://www.meskaucuk.com.tr/uploads/catalogue/MES%20AUTO%20HOSES%20Catalogue.pdf
+
 ## 4. Evidence ranking and limits
 
 - **Vehicle-specific evidence remains primary:** E-017 owner configuration; E-022 LPG label/tank photo; E-024 cabin; E-025 rear underbody; E-027 engine bay; E-028 tyre sidewall.
