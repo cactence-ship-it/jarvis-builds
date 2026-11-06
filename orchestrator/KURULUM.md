@@ -67,3 +67,19 @@ altındaysa panel ortada durur ve bunu söyler.
 4. Bitince çalıştırmaya tıkla: özet sayfasında rapor, iki inceleme ve harcama tablosu var.
 
 Acil durdurma: Variables → `KARTAL_PAID_DISPATCH` değerini `off` yap. Bir sonraki çağrı yapılmaz.
+
+
+## Seviye 6 ekip lideri (planlama modu)
+
+Bu PR ayrıca `kartal-s-twin/agents/LEVEL6_TEAM_LEADER_PROTOCOL.md` ve
+`orchestrator/prompts/team_leader_tr.txt` dosyalarını ekler. Yerel Rust aracıyla
+koordinatör talimatını almak için:
+
+```sh
+cargo run --manifest-path orchestrator/Cargo.toml -- leader-prompt "Kartal motor bölümü için eksik kanıtları ve paralel işleri planla"
+```
+
+Bu komut yalnızca ekip lideri talimatını üretir; kendiliğinden ücretli API çağrısı,
+alt ajan çalıştırma, dosya değiştirme veya PR açma yapmaz. Sağlayıcı çağrısı için mevcut
+`panel-run` akışı, kill switch ve bütçe korumaları geçerlidir. Gerçek otomatik alt-ajan
+dispatch'i ayrı bir sonraki aşamadır; bu PR bunu çalışır gibi göstermemektedir.
