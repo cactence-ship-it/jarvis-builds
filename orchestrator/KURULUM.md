@@ -32,6 +32,10 @@ Bu sistem, GitHub'daki **Actions → Agent panel** düğmesine bastığında şu
 
 Sistem **kod yazmaz, push etmez, PR açmaz, birleştirmez.** Sadece rapor ve inceleme üretir.
 
+Görevi sen yazarsın: panel `kartal-s-twin/tasks/*.yaml` kuyruğunu okumaz ve görevleri
+kendiliğinden seçip çalıştırmaz. Workflow yalnız `main` dalından çalışır; başka bir daldan
+başlatılırsa anahtarlar verilmez ve iş atlanır.
+
 ## Bir kerelik kurulum
 
 Hepsi GitHub'da: depo → **Settings → Secrets and variables → Actions**.

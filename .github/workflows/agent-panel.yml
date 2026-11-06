@@ -32,6 +32,9 @@ concurrency:
 
 jobs:
   panel:
+    # Provider secrets only for the protected default branch: a workflow definition
+    # from any other branch never receives them.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:

@@ -13,6 +13,8 @@ Rust M0 skeleton for the Kartal S digital-twin repository.
 - Per-run budget ceiling, bounded retry planning, idempotency ledger, and independent-review SHA check.
 - Standard-library-only implementation; no third-party crates or dependency downloads.
 - Existing YAML task queue and Python CAD pipeline remain authoritative and untouched.
+  `panel-run` takes a task the owner types; it does not read `kartal-s-twin/tasks/*.yaml`
+  and is not autonomous dispatch.
 - Output guard (`src/guard.rs`): model text and model diffs are untrusted. It rejects success
   claims without a CI run link / exit status and commit SHA, flags flattery, rejects weakened
   checks (`cargo fmt` without `--check`, `|| true`, `continue-on-error`, `--no-verify`,
