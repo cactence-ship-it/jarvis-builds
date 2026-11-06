@@ -614,7 +614,8 @@
       "finished_at": null,
       "evidence": [
         "specs/mechanical_subassembly_register.yaml",
-        "docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md"
+        "docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md",
+        "docs/ENGINE_BAY_PHOTO_INSPECTION_2026-11-06.md"
       ],
       "last_result_commit": null,
       "last_review": null
@@ -642,7 +643,8 @@
       "finished_at": null,
       "evidence": [
         "specs/electrical_harness_route_matrix.yaml",
-        "docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md"
+        "docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md",
+        "docs/ENGINE_BAY_PHOTO_INSPECTION_2026-11-06.md"
       ],
       "last_result_commit": null,
       "last_review": null
