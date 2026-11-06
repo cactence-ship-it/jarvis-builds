@@ -11,7 +11,7 @@ The photographs provide useful multi-angle coverage of the engine bay, radiator/
 
 **Disposition: ACCEPT AS PHOTOGRAPHIC PACKAGING EVIDENCE; NOT ACCEPTED AS DIMENSIONAL OR FUNCTIONAL VERIFICATION.**
 
-Do not release the engine-bay CAD as manufacturing-ready. The photographs alone do not resolve the engine code/architecture, carburettor identity, accessory identities, pulley planes, hose routing, wiring pinouts, reservoir functions, or hard dimensions. Separate trim/year-specific secondary research makes a 1.6 SOHC 8-valve Tempra-family carburettor engine the leading provisional architecture for the 1997 Kartal S, with 131.D2.016 as an unverified code candidate. The exact code on this vehicle remains UNKNOWN; CAD geometry remains PLACEHOLDER.
+Do not release the engine-bay CAD as manufacturing-ready. The photographs alone do not resolve the engine code/architecture, carburettor identity, accessory identities, pulley planes, hose routing, wiring pinouts, reservoir functions, or hard dimensions. Separate trim/year-specific secondary research makes a 1.6 SOHC 8-valve Tempra-family carburettor engine the leading provisional architecture for the 1997 Kartal S. Exact code remains UNKNOWN: 131.D2.016 is a Şahin S cross-model clue, not a verified Kartal code; D1/D2 mapping conflicts. S-specific and listing-derived power values also conflict (about 86 hp DIN; 83 hp listing; 92 hp SAE cross-model; generic 81 bhp). CAD geometry remains PLACEHOLDER.
 
 ## 2. Directly visible observations
 
