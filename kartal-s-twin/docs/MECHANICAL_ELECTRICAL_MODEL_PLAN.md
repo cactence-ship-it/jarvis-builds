@@ -8,7 +8,7 @@
 
 The project evidence register and owner photo handoff describe a longitudinal front engine, carburettor configuration, manual transmission, rear-wheel drive, MacPherson front suspension, rigid rear axle, hydraulic steering, battery in the engine bay, electric radiator fan, and a toroidal LPG tank in the rear spare-wheel-well region. These are arrangement/configuration observations, not dimensional drawings. The private photo originals remain outside the public repository.
 
-The carburettor variant is mandatory. Do not import 1.6 i.e. fuel-injection ECU, injector, fuel-pump relay or injection-only sender geometry. Secondary catalogues show separate 81 bhp carburettor and 96 bhp single-point-injection model records; engine architecture and distributor subtype must still be verified on VEH-01.
+The carburettor variant is mandatory. Do not import 1.6 i.e. fuel-injection ECU, injector, fuel-pump relay or injection-only sender geometry. Trim/year-specific secondary evidence now makes a 1.6 SOHC 8-valve Tempra-family carburettor architecture the leading provisional candidate for a 1997 Kartal S; 131.D2.016 is the leading but unverified code candidate. This is stronger than a generic 81 bhp Kartal carburettor listing, but it remains secondary evidence: keep the exact engine code, head/drive geometry, output rating and ignition subtype unverified. See `docs/SECONDARY_SOURCE_RESEARCH_2026-11-06.md` for variant evidence and source conflicts.
 
 ## 2. Mechanical CAD work breakdown
 
