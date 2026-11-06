@@ -68,7 +68,7 @@ Routes are schematic centre-lines, not wire cut lengths. The exact factory wirin
 
 ### New photo audit (2026-11-06)
 
-Seven additional owner-supplied engine-bay views have been reviewed. See `docs/ENGINE_BAY_PHOTO_AUDIT_2026-11-06.md` for the OBSERVED/UNKNOWN register, photo-only safety holds, engine-variant caveat and metric survey plan. The new photos improve visual arrangement evidence but provide no calibrated dimensions and do not resolve the engine code or OHV/SOHC architecture. Do not promote the accessory-pump identity, reservoir circuit assignments or harness pinouts from visual appearance alone.
+Seven additional owner-supplied engine-bay views have been reviewed. See `docs/ENGINE_BAY_PHOTO_INSPECTION_2026-11-06.md` for the OBSERVED/UNKNOWN register, photo-only safety holds, engine-variant caveat and metric survey plan. The new photos improve visual arrangement evidence but provide no calibrated dimensions and do not resolve the engine code or OHV/SOHC architecture. Do not promote the accessory-pump identity, reservoir circuit assignments or harness pinouts from visual appearance alone.
 
 ## 4. Immediate evidence collection priority
 
