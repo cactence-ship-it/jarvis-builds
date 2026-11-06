@@ -1,5 +1,27 @@
 # Üç ortağı otomatik çalıştırma: kurulum (sahip için)
 
+## Ücretli model API'si olmadan çalışma — önerilen varsayılan
+
+Bu projeyi API anahtarı veya ücretli model çağrısı olmadan sürdürebiliriz. Bunun için:
+- `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` ve `GEMINI_API_KEY` ekleme.
+- `KARTAL_PAID_DISPATCH` değişkenini oluşturma; varsa `off` yap.
+- `KARTAL_RUN_BUDGET_MICROS` tanımlama. Böylece gerçek sağlayıcı çağrıları kapalı kalır.
+- Bu ChatGPT oturumunu mühendislik koordinatörü olarak kullan; GitHub'a yapılan değişiklikler ve depo CI kontrolleri model API anahtarı gerektirmez.
+
+Yerel/çevrimdışı kontrol komutları:
+
+```sh
+cargo test --manifest-path orchestrator/Cargo.toml --locked
+cargo run --manifest-path orchestrator/Cargo.toml --locked
+KARTAL_TASK="T-024 için eksik kanıtları ve kabul ölçütlerini kontrol et" \
+  cargo run --manifest-path orchestrator/Cargo.toml --locked -- panel-run --author openai --mock
+cargo run --manifest-path orchestrator/Cargo.toml --locked -- leader-prompt "Kartal projesinin sıradaki görevlerini planla"
+```
+
+**Önemli ayrım:** `--mock` ağ kullanmayan deterministik test sağlayıcıları çalıştırır. Bu GPT, Claude veya Gemini değildir; gerçek mühendislik incelemesi yapmaz ve yalnızca orkestratörün rapor/inceleme akışını sınar. Gerçek analiz ve dosya değişikliklerini bu ChatGPT oturumunda ben yapacağım; sonuçları testlerden geçirip GitHub'a kaydedeceğim. Üç farklı modelin bağımsız görüşü, API'siz ve o modeller yerelde kurulu değilken taklit edilmeyecektir.
+
+---
+
 Bu sistem, GitHub'daki **Actions → Agent panel** düğmesine bastığında şunu yapar:
 
 1. Seçtiğin ortak (GPT, Claude ya da Gemini) görevi baş mühendis kurallarıyla rapor olarak yazar.
