@@ -29,3 +29,5 @@ Dependency order. A task is ACCEPTED only after a review of the same commit by a
 | T-021 | 4 | Owner vehicle configuration, carburettor variant separation, steel-rim and LPG toroidal tank CAD | claude | **submitted** | T-020 | result claude@ffd3f8fe5c04e48f282b872176d31f44c3382c0a (MEDIUM) |
 | T-022 | 2 | Owner photo evidence: LPG tank, interior, underbody, engine bay and tire size | claude | **submitted** | T-021 | result claude@e3fe56ed94f0bb3fe8ed18768204cc950437b387 (MEDIUM) |
 | T-023 | 5 | Complete-vehicle PLACEHOLDER package: every assembly modelled and assembled | claude | **submitted** | T-022 | result claude@8d9f16fc035440ec7b73f62072f45a2ad626e333 (MEDIUM) |
+| T-024 | 6 | Mechanical subassembly decomposition and evidence-gated CAD detail | chatgpt | **in_progress** | T-023 | Engine code and mechanical interface measurements pending |
+| T-025 | 9 | Electrical harness route matrix and branch-level CAD | chatgpt | **in_progress** | T-023 | Factory wiring diagram and loom connector photos pending |
