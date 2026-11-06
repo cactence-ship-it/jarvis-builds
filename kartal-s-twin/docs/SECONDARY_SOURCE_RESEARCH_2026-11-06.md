@@ -46,23 +46,29 @@ Aktaş's Kartal brake category lists front discs/pads, rear brake shoes and rear
 ### General parts taxonomy
 Parcacim's M131 / SLX catalogue groups engine belts, cooling, alternator, suspension, ignition, brake and clutch/transmission categories, and exposes multiple engine options by year. This reinforces the need to keep model-year and engine-variant filters explicit in any part-number lookup.
 
-### Rubber-hose catalogue cross-check (supplier catalogue; fitment not verified)
+### Rubber-hose catalogue cross-check — conflicting year filters (supplier catalogues; fitment not verified)
 
-MES KAUÇUK's published *MES Auto Hoses Catalogue*, TOFAŞ section (printed pages 361–363), provides a useful exclusion check:
+The MES KAUÇUK *MES Auto Hoses Catalogue*, TOFAŞ section (printed pp. 366–369), and YTT Automotive's online Kartal catalogue share several OEM references but do **not** share the same model-year coverage. This is a supplier-catalogue conflict, not proof of interchangeability or non-fitment.
 
-| Catalogue item | Description | Listed Kartal applicability | Catalogue/OEM reference | VEH-01 decision |
-|---|---|---|---|---|
-| 2500 / 2501 | Radiator upper / lower hose | Kartal 1.6, 1985–1996 | OEM 7584255 / 7584256 | Does not list 1997; do not assign to this vehicle without physical shape/code comparison |
-| 2510 | Carburettor choke hose, 7 × 27 cm | Kartal 1.6, 1985–1996 | OEM 4333269 | Candidate family only; 1997 fitment not established |
-| 2511 | Air-filter hose | Kartal 1.6, 1985–1996 | OEM 4221427 | Candidate family only; 1997 fitment not established |
-| 2512 | Engine-ventilation hose | Kartal 1.6, 1985–1996 | OEM 4476231 | Candidate family only; 1997 fitment not established |
-| 2514 | Brake-booster vacuum hose, 11 × 17 mm, 80 cm | Kartal 1.6, 1985–1996 | OEM 14206880 | Candidate family only; 1997 fitment not established |
-| 2516 | Vacuum hose, 4 × 9 mm, 71 cm NBR | Kartal 1.6, 1985–1996 | OEM 7616008 | Candidate family only; 1997 fitment not established |
-| 2550 / 2551 / 2552 | Radiator upper / lower / thermostat hose | Doğan 1.6 IE/i.e., 1997–2002 (not a Kartal carburettor listing) | OEM 7675992 / 7675991 / 7765734 | Exclude from VEH-01 carburettor BOM unless the actual car is identified as the listed IE configuration |
+| Hose family | MES reference / stated Kartal coverage | YTT reference / stated Kartal coverage | VEH-01 decision |
+|---|---|---|---|
+| Radiator upper | MES 2500; OEM 7584255; Kartal 1.6 1985–1996 | Y30100; OEM 7584255; Tofaş/Kartal 1985–2002 | Candidate for 1997; fitment conflict must be resolved by geometry/OEM confirmation |
+| Radiator lower | MES 2501; OEM 7584256; Kartal 1.6 1985–1996 | Y30101; OEM 7584256; Tofaş/Kartal 1985–2002 | Candidate for 1997; fitment conflict must be resolved |
+| Thermostat hose | MES 2504; OEM 4339938; Kartal 1.6 1985–1996 | Y30104; OEM 4339938; Tofaş/Kartal 1985–2002 | Candidate for 1997; fitment conflict must be resolved |
+| Engine ventilation | MES 2505; OEM 85011144; Kartal 1.6 1985–1996 | Y30108; OEM 85011144; Tofaş/Kartal 1985–2002 | Candidate for 1997; verify shape/end diameters |
+| Engine ventilation (alternate) | MES 2512; OEM 4476231; Kartal 1.6 1985–1996 | Y30106; OEM 4476231; Tofaş/Kartal 1985–2002 | Candidate for 1997; verify which branch/component the car uses |
+| Carburettor choke hose | MES 2510; 7 mm × 27 cm; OEM 4333269; Kartal 1.6 1985–1996 | Y30112; OEM 4333269 / 7589463; Tofaş/Kartal 1985–2002 | Candidate for 1997; dimensions from MES are supplier-stated, still compare ends/shape |
+| Brake-servo vacuum hose | MES 2514 / 2514A; 11 × 17 mm, 80 cm; OEM 14206880; Kartal 1.6 1985–1996 | Y30902; OEM 14206880; Tofaş/Kartal 1985–2002 | Candidate only; confirm servo/pump connections, routing and hose specification |
+| Air-filter hose | MES 2511; OEM 4221427; Kartal 1.6 1985–1996 | No matching YTT record captured in this catalogue extract | Candidate only; geometry and 1997 coverage unresolved |
+| Vacuum hose | MES 2516; 4 × 9 mm, 71 cm NBR; OEM 7616008; Kartal 1.6 1985–1996 | No matching YTT record captured in this catalogue extract | Candidate only; verify circuit and actual length |
 
-The catalogue's year/vehicle filters are explicit: the listed Kartal carburettor-era hoses stop at 1996, while the later 1997–2002 cooling-hose entries in this section are for Doğan IE/i.e. applications. This is a **catalogue-coverage gap**, not proof that the 1997 Kartal has no replacement hose. Do not infer hose shape, inside diameter, length, material or interchangeability from the item names. To resolve a 1997 part, compare the old hose's moulded/printed number, both end IDs, centreline shape, length and terminal orientation, then obtain written supplier confirmation for 1997 Kartal S carburettor fitment.
+Separate IE entries in MES (for example Doğan 1.6 IE radiator hoses 2550/2551/2552, OEM 7675992/7675991/7765734) are not to be substituted into VEH-01's owner-reported carburettor build. The exact engine subtype must remain unresolved until physical engine identification.
 
-Source: MES KAUÇUK, *MES Auto Hoses Catalogue*, TOFAŞ section, printed pp. 361–363: https://www.meskaucuk.com.tr/uploads/catalogue/MES%20AUTO%20HOSES%20Catalogue.pdf
+**Correct interpretation:** a YTT year range reaching 2002 is evidence that the supplier catalogues the OEM-reference family for Kartal through that year; the MES filter ending in 1996 is evidence of narrower catalogue coverage. Neither database proves that the same hose shape fits every 1997 Kartal S carburettor variation. Do not order or promote a part to VERIFIED solely from either year filter. The best desk-based next action is cross-source OEM matching, followed by image/shape comparison against the vehicle's photographed routing and a written fitment confirmation from the supplier.
+
+Sources:
+1. MES KAUÇUK, *MES Auto Hoses Catalogue*, TOFAŞ section, printed pp. 366–369 (PDF content lines record MES codes, OEM references and model-year filters): https://www.meskaucuk.com.tr/uploads/catalogue/MES%20AUTO%20HOSES%20Catalogue.pdf
+2. YTT Automotive, Tofaş/Kartal hose catalogue; entries Y30100, Y30101, Y30104, Y30106, Y30108, Y30109, Y30110, Y30112, Y30113 and Y30902: https://www.yttotomotiv.com/tr/katalog/tofas/kartal
 
 ## 4. Evidence ranking and limits
 
