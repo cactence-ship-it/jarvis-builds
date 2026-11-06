@@ -11,6 +11,14 @@ pub mod run;
 /// in kartal-s-twin/agents/GPT_DAVRANIS_KURALLARI.md points here.
 pub const ENGINEER_SYSTEM_PROMPT: &str = include_str!("../prompts/engineer_tr.txt");
 
+/// Level-6 coordinator prompt: decomposes work and dispatches; does not produce artifacts.
+pub const TEAM_LEADER_SYSTEM_PROMPT: &str = include_str!("../prompts/team_leader_tr.txt");
+
+/// Full team-leader instruction with the owner's task appended.
+pub fn team_leader_prompt(instruction: &str) -> String {
+    format!("{TEAM_LEADER_SYSTEM_PROMPT}\\nSAHİP TALEBİ\\n{}\\n", instruction.trim())
+}
+
 /// Full request text for a provider: engineer rules, then the task instruction.
 pub fn engineer_prompt(instruction: &str) -> String {
     format!("{ENGINEER_SYSTEM_PROMPT}\nGÖREV\n{}\n", instruction.trim())
