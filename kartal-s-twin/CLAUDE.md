@@ -34,7 +34,7 @@ The owner has authorised autonomous work: do not wait for approval on routine en
 decisions. Still ask only for decisions reserved to the owner (privacy/publishing, real
 vehicle configuration that evidence cannot settle).
 
-- **Start of session:** `git checkout ccr-b5d82c24-huyj0b` (until PR #1 is merged), then
+- **Start of session:** `git checkout main` (PR #1 merged 2026-11-05), then
   `bash scripts/setup_env.sh`, then read HANDOFF.md ("Sıradaki görevler" + the AUTO-CHECKPOINT
   block). Check `/mnt/user-data/uploads` for new owner files first: evidence beats everything.
 - **Every significant stage:** `bash scripts/checkpoint.sh "type(kartal-s-twin): ..."`. It runs
@@ -46,3 +46,7 @@ vehicle configuration that evidence cannot settle).
 - **Never:** commit owner photos, archives, scans, the plate, VIN or personal data; model
   internals without evidence; mark anything VERIFIED without a primary evidence item.
 - **Hand-off guarantee:** a new assistant needs only this file, HANDOFF.md and the repository.
+
+## Partners (owner rule, 2026-11-06)
+No API keys, no paid API. ChatGPT and Claude work through the free chat interfaces with the
+repository as the only bridge: `agents/IS_BOLUMU_CHATGPT_CLAUDE.md`.
