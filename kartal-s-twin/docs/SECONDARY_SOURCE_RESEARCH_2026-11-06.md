@@ -58,6 +58,27 @@ Aktaş's Kartal brake category lists front discs/pads, rear brake shoes and rear
 ### General parts taxonomy
 Parcacim's M131 / SLX catalogue groups engine belts, cooling, alternator, suspension, ignition, brake and clutch/transmission categories, and exposes multiple engine options by year. This reinforces the need to keep model-year and engine-variant filters explicit in any part-number lookup.
 
+### 1997 Kartal S listing cross-check — model dimensions and conflicting tyre / engine values
+
+Several Arabam.com listings have EİDS-confirmed make/model/year metadata for 1997 Tofaş Kartal S and display common technical fields of 1,581 cc, 83 hp, 131 Nm, 4,396 mm length, 1,642 mm width, 1,496 mm height, 2,490 mm wheelbase, 1,060 kg kerb mass, 52 L fuel tank and 175/70R14 tyre size. These records are useful as S-trim-specific corroboration, but engine power, tank capacity, tyre size and dimensions are marketplace/listing fields, not a manufacturer type-approval sheet for VEH-01.
+
+Cross-source comparison:
+- The 4,396 mm length is consistent with a separate model-database record, while Carbrands lists 4,361 mm; keep overall length as a candidate conflict until an authoritative body drawing is found.
+- The listing's 175/70R14 conflicts with the owner vehicle photo E-028, which visibly reads 185/65R14 86T on one pictured tyre. Use 185/65R14 only for that photographed tyre; do not assume the other three tyres match or that it is the approved homologation size.
+- Listing engine values (1,581 cc / 83 hp / 131 Nm) conflict with the Kartal S engine chronology's approximately 86 hp DIN, the 131.D2.016 Şahin S cross-model data (92 hp SAE / 123 Nm SAE), and a generic 1995–2001 Kartal carburettor database entry (81 bhp / 124 Nm / 1,585 cc). Do not convert or average those outputs; keep them as separate source records.
+- The listing's 52 L petrol tank capacity differs from a generic model database's 50 L. Neither is verified against VEH-01's tank label.
+
+Sources:
+1. Arabam.com, 1997 Kartal S, listing-derived specification record: https://www.arabam.com/ilan/sahibinden-satilik-tofas-kartal-s/sahibinden-tofas-kartal-s-1997-model/41307998
+2. Arabam.com, second 1997 Kartal S listing with matching technical fields: https://www.arabam.com/ilan/sahibinden-satilik-tofas-kartal-s/sahibinden-tofas-kartal-s-1997-model/37965928
+3. TofaşTeam, *Tofaş Kullanıcı Kılavuzu* — forum post states the 1996–2000 booklet covers Kartal S/SLX/SLX i.e.; the post points to a Fiat PDF. The PDF was not retrieved/read in this research pass, so do not use it for a specification claim: https://www.tofasteam.com/konu-tofas-kullanici-kilavuzu-pdf-formatinda-8468
+
+### Additional hose supplier cross-reference
+
+Narin Kauçuk's Kartal product list shows OEM-reference hose families for a Kartal 1.6: radiator inlet/outlet 7584255/7584256, thermostat 4339938, bypass 4339937, engine-ventilation 4476231 and air-filter hose 4221427. This is a useful third supplier cross-reference alongside MES and YTT. The extracted product list does not show a 1997 year range or explicit S-trim engine-code applicability; it does **not** settle the MES/YTT year-filter conflict or prove individual-vehicle fitment.
+
+Source: Narin Kauçuk, TOFAŞ / KARTAL product list: https://www.narinkaucuk.com.tr/urun_list%26model%3D709
+
 ### Rubber-hose catalogue cross-check — conflicting year filters (supplier catalogues; fitment not verified)
 
 The MES KAUÇUK *MES Auto Hoses Catalogue*, TOFAŞ section (printed pp. 366–369), and YTT Automotive's online Kartal catalogue share several OEM references but do **not** share the same model-year coverage. This is a supplier-catalogue conflict, not proof of interchangeability or non-fitment.
