@@ -1,0 +1,177 @@
+schema_version: 1
+vehicle: VEH-01
+model: "1997 Tofaş Kartal S"
+variant_gate: "carburettor petrol + LPG conversion; do not import 1.6 i.e. ECU/injector circuits"
+scope: "visual CAD routing and evidence collection only; not a wiring or repair instruction"
+units:
+  route_coordinates: mm
+  wire_gauge: UNKNOWN
+  wire_colour: UNKNOWN
+  fuse_rating: UNKNOWN
+  connector_pinout: UNKNOWN
+evidence:
+  arrangement_photos: [E-022, E-024, E-025, E-027, E-028]
+  secondary_catalogue_sources:
+    - "https://otiva.com.tr/yedek-parcalar/tofas/tofas-kartal"
+    - "https://www.parcacim.tr/tofas/sahin-dogan-kartal"
+  factory_wiring_diagram: NOT_RECEIVED
+  loom_label_photos: NOT_RECEIVED
+routing_principles:
+  - "All route polylines are schematic centre-lines; no route length is a cut length."
+  - "Do not assign wire colours, cross-sections, fuse ratings, relay terminals or connector pins without the exact year/variant wiring diagram or direct loom evidence."
+  - "Keep engine-bay harness, HT ignition leads, LPG electrical branches and low-level sender/sensor branches as separate CAD groups."
+  - "Use existing body clips/grommets where photographed; otherwise clip and pass-through positions remain UNKNOWN."
+  - "Protect routes from exhaust heat, sharp edges, steering/suspension travel, water ingress and moving driveline components; exact clearances require inspection."
+  - "LPG system wiring and all fuel/brake/steering installations must be checked by qualified automotive/LPG personnel."
+route_groups:
+  - id: HAR-BAT
+    name: Battery, starter and charging backbone
+    source_node: "battery positive/negative terminals"
+    destination_nodes: ["starter motor main terminal", "alternator B+ terminal", "body ground", "engine block ground"]
+    corridor: ["front battery tray", "engine bay side rail", "starter/alternator service area", "body ground studs"]
+    circuit_family: "high-current supply and charging"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    evidence_needed: ["battery label and terminal photo", "alternator label", "starter terminal photo", "ground strap photos"]
+  - id: HAR-IGN
+    name: Carburettor-engine ignition primary and engine signals
+    source_node: "ignition switch / ignition feed (exact source UNKNOWN)"
+    destination_nodes: ["ignition coil", "distributor low-voltage terminal", "oil pressure sender", "coolant temperature sender"]
+    corridor: ["cabin bulkhead grommet", "upper engine rear/side perimeter", "coil and distributor service zone"]
+    circuit_family: "ignition primary and engine indication"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    note: "Distributor points/electronic subtype, coil terminals and sender types are not yet identified."
+    evidence_needed: ["distributor cap and body markings", "coil label and terminal photo", "sender connector photos", "exact variant wiring diagram"]
+  - id: HAR-HT
+    name: High-tension ignition leads
+    source_node: "distributor cap"
+    destination_nodes: ["spark plugs 1-4"]
+    corridor: ["engine top; retain photographed clip/comb routing only"]
+    circuit_family: "high-voltage ignition"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: NOT_APPLICABLE
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    note: "Firing order and lead lengths must not be guessed from an unrelated engine family."
+    evidence_needed: ["engine code", "distributor cap terminal arrangement", "lead set part number"]
+  - id: HAR-LIGHT-F
+    name: Front lighting and horn
+    source_node: "fuse/relay panel (location and pinout UNKNOWN)"
+    destination_nodes: ["LH headlamp", "RH headlamp", "LH front indicator", "RH front indicator", "horn(s)"]
+    corridor: ["bulkhead/front crossmember", "LH and RH front lamp pockets", "front grille support"]
+    circuit_family: "front lighting and horn"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    evidence_needed: ["lamp connector close-ups", "front loom clips", "fuse/relay panel label and diagram"]
+  - id: HAR-DASH
+    name: Instrument panel and cabin controls
+    source_node: "fuse/relay panel"
+    destination_nodes: ["instrument cluster", "ignition switch", "lighting switches", "wiper switch", "heater blower switch", "warning lamps"]
+    corridor: ["bulkhead grommet", "behind dashboard cross-car beam", "steering-column switch zone"]
+    circuit_family: "instrumentation and driver controls"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    evidence_needed: ["cluster rear connector photos", "switch connector photos", "fuse panel front/back photos"]
+  - id: HAR-REAR
+    name: Rear body and tailgate
+    source_node: "cabin main loom at LH rear quarter"
+    destination_nodes: ["LH tail lamp", "RH tail lamp", "rear indicators", "brake lamps", "reverse lamp if fitted", "number plate lamps", "rear wiper/washer if fitted", "fuel sender"]
+    corridor: ["LH sill / inner quarter", "rear cargo side trim", "tailgate hinge/flexible boot"]
+    circuit_family: "rear lamps, sender and tailgate accessories"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    evidence_needed: ["rear loom clips", "tailgate flex boot", "sender connector", "tail lamp pinouts"]
+  - id: HAR-WIPER
+    name: Front wiper and washer
+    source_node: "fuse/relay panel and dashboard switch"
+    destination_nodes: ["wiper motor", "washer pump"]
+    corridor: ["behind dashboard", "bulkhead grommet", "cowl/plenum"]
+    circuit_family: "wiper and washer"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    evidence_needed: ["wiper motor label", "motor connector", "washer pump connector", "cowl grommet photos"]
+  - id: HAR-COOL
+    name: Cooling fan control
+    source_node: "fuse/relay panel (exact architecture UNKNOWN)"
+    destination_nodes: ["fan motor", "temperature switch/sender (exact control UNKNOWN)"]
+    corridor: ["front bulkhead/inner wing", "radiator fan shroud", "radiator switch boss"]
+    circuit_family: "cooling fan power and control"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    evidence_needed: ["fan motor label", "fan relay and fuse photo", "radiator switch connector"]
+  - id: HAR-FUEL
+    name: Petrol sender and fuel indication
+    source_node: "instrument cluster fuel gauge"
+    destination_nodes: ["petrol tank sender"]
+    corridor: ["dashboard", "LH/RH floor sill route to rear tank access"]
+    circuit_family: "low-current fuel level signal"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    evidence_needed: ["sender type and resistance markings", "tank top connector", "cluster pinout"]
+  - id: HAR-LPG
+    name: LPG selector and solenoid control
+    source_node: "dashboard LPG selector (brand/model UNKNOWN)"
+    destination_nodes: ["LPG reducer shutoff solenoid", "tank multivalve solenoid if electrically actuated"]
+    corridor: ["dashboard switch zone", "existing protected body route", "rear tank service zone"]
+    circuit_family: "LPG system control; exact architecture UNKNOWN"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: UNKNOWN
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    note: "ATIKER E7 67R-01 / ALBIEN multivalve identification is from the private photo handoff; confirm exact electrical terminals from part labels. No pinout or installation steps are inferred."
+    evidence_needed: ["LPG ECU/selector label", "reducer solenoid label", "multivalve coil/connector close-up", "certified installer wiring diagram"]
+  - id: HAR-GND
+    name: Grounding network
+    source_node: "battery negative"
+    destination_nodes: ["engine block", "body shell", "dashboard ground point", "rear body ground point"]
+    corridor: ["battery tray", "engine ground strap", "bulkhead ground studs", "rear quarter ground stud"]
+    circuit_family: "return / bonding"
+    wire_gauge: UNKNOWN
+    wire_colour: UNKNOWN
+    fuse_rating: NOT_APPLICABLE
+    connectors: UNKNOWN
+    route_length: UNKNOWN
+    cad_status: PLACEHOLDER
+    evidence_needed: ["ground strap end photos", "body ground stud photos", "continuity test records"]
+validation:
+  - "No route is VALIDATED until checked against the actual vehicle loom or a matching factory diagram."
+  - "No conductor colour, cross-section, fuse rating, relay pin, connector pin or exact route length may be inferred."
+  - "Harness CAD must be a separate assembly with branch IDs and service-loop/connector objects."
+  - "Keep HT leads and LPG wiring as distinct groups in the viewer."
