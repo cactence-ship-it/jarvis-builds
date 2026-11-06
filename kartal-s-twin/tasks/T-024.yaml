@@ -1,0 +1,31 @@
+id: T-024
+title: "Mechanical subassembly decomposition and evidence-gated CAD detail"
+description: "Break down engine, clutch/gearbox, propeller shaft/differential/axle, front and rear suspension, steering, brakes, petrol/LPG and exhaust into stable-ID components. Keep geometry PLACEHOLDER until evidence supports exact dimensions; do not mix carburettor and 1.6 i.e. variants."
+priority: P1
+phase: "6"
+owner: chatgpt
+status: in_progress
+depends_on:
+  - T-023
+blocker: "Engine code, drivetrain interfaces and suspension/brake measurements are not yet available."
+started_at: "2026-11-06T00:00:00Z"
+finished_at: null
+error: null
+evidence:
+  - specs/mechanical_subassembly_register.yaml
+  - docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md
+acceptance:
+  - id: T-024-A1
+    criterion: "Every major mechanical system is decomposed into independent stable-ID components."
+    check: "review specs/mechanical_subassembly_register.yaml"
+  - id: T-024-A2
+    criterion: "Carburettor and 1.6 i.e. architecture are explicitly separated; unresolved engine subtype remains UNKNOWN."
+    check: "variant gate and engine identity review"
+  - id: T-024-A3
+    criterion: "No unknown dimensions or part types are promoted to VERIFIED or manufacturing-ready geometry."
+    check: "evidence/status audit"
+  - id: T-024-A4
+    criterion: "Mechanical CAD parts remain separate solids and export/re-open checks pass."
+    check: "tests/test_full_vehicle.py and STEP round-trip"
+results: []
+reviews: []
