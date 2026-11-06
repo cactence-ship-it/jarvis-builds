@@ -16,7 +16,10 @@ pub const TEAM_LEADER_SYSTEM_PROMPT: &str = include_str!("../prompts/team_leader
 
 /// Full team-leader instruction with the owner's task appended.
 pub fn team_leader_prompt(instruction: &str) -> String {
-    format!("{TEAM_LEADER_SYSTEM_PROMPT}\nSAHİP TALEBİ\n{}\n", instruction.trim())
+    format!(
+        "{TEAM_LEADER_SYSTEM_PROMPT}\nSAHİP TALEBİ\n{}\n",
+        instruction.trim()
+    )
 }
 
 /// Full request text for a provider: engineer rules, then the task instruction.
