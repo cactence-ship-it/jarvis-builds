@@ -1,0 +1,124 @@
+schema_version: 1
+vehicle: VEH-01
+model: "1997 Tofaş Kartal S"
+scope: "mechanical digital-twin decomposition; not a repair or manufacturing drawing"
+units: mm
+coordinate_system: VCS
+status_legend:
+  VERIFIED: "supported by received vehicle measurement/photo/document under D-005"
+  ESTIMATED: "supported by owner statement or secondary source; not an exact fitment proof"
+  UNKNOWN: "must remain null / neutral envelope until evidence arrives"
+  PLACEHOLDER: "visual CAD envelope only; never a production solid"
+variant_gate:
+  required_variant: "1997 Kartal S, carburettor, petrol + LPG"
+  exclude:
+    - "1.6 i.e. single-point injection components"
+    - "SLX injection fuel pump, ECU, injector rail and injection-only tank sender"
+    - "parts whose fitment is listed only for a different engine family"
+  unresolved_engine_identity:
+    status: UNKNOWN
+    note: "Carburettor is owner-reported. Trim/year-specific secondary evidence makes 1.6 SOHC 8V Tempra-family carburettor architecture the leading provisional CAD candidate for a 1997 Kartal S. Exact code is UNKNOWN: 131.D2.016 is listed for Şahin S and cannot be assigned to this Kartal; D1/D2 mapping varies across sources. S-specific sources report ~86 hp DIN; 1997 marketplace listings give 83 hp / 131 Nm / 1,581 cc; D2 cross-model data give 92 hp SAE / 123 Nm; generic Kartal gives 81 bhp. Keep engine code, output, bore/stroke, compression and ignition subtype UNKNOWN until vehicle-specific evidence resolves them."
+assemblies:
+  - id: ENG
+    name: Engine and ancillaries
+    architecture: "longitudinal inline-four; carburettor reported; leading provisional candidate is 1.6 SOHC 8V Tempra-family; exact D1/D2/code UNKNOWN"
+    arrangement_evidence: [E-017, E-027]
+    geometry_status: PLACEHOLDER
+    components:
+      - {id: ENG-BLOCK, name: cylinder block, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: ENG-HEAD, name: cylinder head and valve train, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: ENG-CRANK, name: crankshaft and main bearings, geometry: NONE, dimensions: UNKNOWN}
+      - {id: ENG-PISTON, name: pistons, rings and connecting rods, geometry: NONE, dimensions: UNKNOWN}
+      - {id: ENG-CAM, name: camshaft / timing drive, geometry: NONE, dimensions: UNKNOWN, note: "SOHC 8V Tempra-family is the leading provisional Kartal S candidate; exact engine code and cam/timing drive details UNKNOWN; D1/D2 mappings conflict across sources"}
+      - {id: ENG-OIL, name: oil pump, pickup, sump and filter, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: ENG-CARB, name: carburettor, choke and throttle linkage, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: ENG-IGN, name: distributor, coil, cap, rotor and HT leads, geometry: PLACEHOLDER, dimensions: UNKNOWN, note: "points/electronic ignition subtype UNKNOWN"}
+      - {id: ENG-COOL, name: water pump, thermostat, radiator, fan and hoses, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: ENG-AUX, name: alternator, starter and belt-driven accessories, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+    blockers: ["engine block stamp/code photo", "front and side engine-bay photos with scale", "carburettor and distributor identification"]
+  - id: TRN
+    name: Clutch, gearbox and gear control
+    architecture: "manual transmission owner-reported; gear count and exact gearbox code UNKNOWN"
+    arrangement_evidence: [E-017, E-024, E-027]
+    geometry_status: PLACEHOLDER
+    components:
+      - {id: TRN-CLUTCH, name: flywheel, clutch cover, friction disc and release bearing, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: TRN-GEARBOX, name: gearbox casing and gearsets, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: TRN-LEVER, name: gear lever, selector rods/linkage and mounts, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: TRN-MOUNTS, name: gearbox crossmember and mounts, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+    blockers: ["gearbox casting/code", "input/output spline counts", "mount spacing", "shaft flange photo"]
+  - id: DRV
+    name: Propeller shaft, differential and rear axle
+    architecture: "rear-wheel drive; rigid rear axle arrangement reported from photos"
+    arrangement_evidence: [E-017, E-025]
+    geometry_status: PLACEHOLDER
+    components:
+      - {id: DRV-SHAFT, name: propeller shaft, centre bearing if fitted, universal joints and flanges, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: DRV-DIFF, name: differential carrier, crown wheel and pinion, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: DRV-AXLE, name: axle tubes, half-shafts and hubs, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: DRV-LINK, name: rear lateral locating rod / links, geometry: PLACEHOLDER, dimensions: UNKNOWN, note: "exact link topology to be confirmed from underbody view"}
+    blockers: ["shaft overall length and joint centre distances", "diff tag/ratio", "axle flange and hub dimensions", "rear-link pickup coordinates"]
+  - id: FSU
+    name: Front suspension and steering
+    architecture: "MacPherson arrangement and hydraulic steering reported; detailed steering gear type UNKNOWN"
+    arrangement_evidence: [E-017, E-025, E-027]
+    geometry_status: PLACEHOLDER
+    components:
+      - {id: FSU-STRUT, name: LH/RH strut, spring, damper and top mount, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: FSU-ARM, name: LH/RH lower control arm and bushes, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: FSU-KNUCKLE, name: steering knuckle, hub and wheel bearing, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: FSU-ARB, name: anti-roll bar, links and bushes, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: FSU-STEER, name: steering wheel, column, joints, rack/box, pump and hoses, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+    blockers: ["strut top centre coordinates", "lower arm pivot coordinates", "hub PCD/centre bore", "steering gear identification and lock-to-lock"]
+  - id: RSU
+    name: Rear suspension
+    architecture: "rigid axle arrangement reported; spring type and exact locating-link design UNKNOWN"
+    arrangement_evidence: [E-017, E-025]
+    geometry_status: PLACEHOLDER
+    components:
+      - {id: RSU-SPRING, name: LH/RH rear spring units and seats, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: RSU-DAMPER, name: LH/RH rear dampers and mounts, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: RSU-LINK, name: lateral rod / trailing links / brackets, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+    blockers: ["spring type confirmation", "spring seat centres", "damper eye-to-eye lengths", "link and bracket coordinates"]
+  - id: BRK
+    name: Hydraulic brakes and parking brake
+    architecture: "front disc / rear drum is a secondary-source baseline only; vehicle hardware must confirm"
+    arrangement_evidence: [E-025]
+    geometry_status: PLACEHOLDER
+    components:
+      - {id: BRK-MC, name: master cylinder and reservoir, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: BRK-SERVO, name: brake booster, geometry: PLACEHOLDER, dimensions: UNKNOWN, fitment: UNKNOWN}
+      - {id: BRK-FRONT, name: LH/RH front discs, calipers, pads and carriers, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: BRK-REAR, name: LH/RH drums, shoes, wheel cylinders and adjusters, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: BRK-LINES, name: hard lines, flex hoses and parking-brake cables, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+    blockers: ["front caliper/disc photos and stamped MIN thickness", "rear drum diameter", "master cylinder and booster IDs", "line clips and route photos"]
+  - id: FUL
+    name: Petrol and LPG fuel systems
+    architecture: "carburettor petrol supply plus LPG conversion; exact LPG component routing must be documented"
+    arrangement_evidence: [E-017, E-022, E-025, E-027]
+    geometry_status: PLACEHOLDER
+    components:
+      - {id: FUL-PETROL-TANK, name: petrol tank, sender, filler neck and vent, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: FUL-PETROL-LINE, name: mechanical fuel pump, filter and carburettor feed/return if fitted, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: FUL-LPG-TANK, name: toroidal LPG tank, geometry: DRAFT_LOCAL_FRAME_ONLY, dimensions: UNKNOWN, note: "owner reported about 40 L; previous 600x180 estimate is not a verified tank size"}
+      - {id: FUL-LPG-MULTI, name: ATIKER E7 67R-01 multivalve and ALBIEN multivalve identification from photo record, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: FUL-LPG-REDUCER, name: LPG reducer/vaporizer, solenoids, filter and mixer, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: FUL-LPG-LINES, name: approved LPG liquid/vapour lines, protection and filler, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+    blockers: ["tank label and stamped dimensions", "reducer brand/model", "filler location", "certified LPG installer route inspection"]
+  - id: EXH
+    name: Exhaust system
+    architecture: "engine manifold to rear silencer; exact routing and heat shields UNKNOWN"
+    arrangement_evidence: [E-025, E-027]
+    geometry_status: PLACEHOLDER
+    components:
+      - {id: EXH-MAN, name: exhaust manifold/downpipe, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: EXH-PIPE, name: intermediate pipe, flex joint and hangers, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: EXH-SIL, name: rear silencer and tailpipe, geometry: PLACEHOLDER, dimensions: UNKNOWN}
+      - {id: EXH-HEAT, name: heat shields and body clearances, geometry: NONE, dimensions: UNKNOWN}
+    blockers: ["underbody full-length photos", "pipe outside diameters", "silencer shell dimensions", "hanger locations"]
+modelling_rules:
+  - "Keep each component as an independent named solid/mesh with a stable ID."
+  - "Use vehicle coordinate system VCS; do not silently change handedness or origin."
+  - "Unknown part types use neutral envelopes; unknown dimensions remain null."
+  - "All estimated geometry remains PLACEHOLDER until evidence and acceptance tests upgrade it."
+  - "No brake, steering, suspension or LPG geometry is an installation or manufacturing drawing."

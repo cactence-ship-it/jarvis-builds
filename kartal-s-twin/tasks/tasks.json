@@ -590,6 +590,64 @@
       ],
       "last_result_commit": "8d9f16fc035440ec7b73f62072f45a2ad626e333",
       "last_review": null
+    },
+    {
+      "task_id": "T-024",
+      "title": "Mechanical subassembly decomposition and evidence-gated CAD detail",
+      "description": "Break down engine, clutch/gearbox, propeller shaft/differential/axle, front and rear suspension, steering, brakes, petrol/LPG and exhaust into stable-ID components. Keep geometry PLACEHOLDER until evidence supports exact dimensions; do not mix carburettor and 1.6 i.e. variants.",
+      "priority": "P1",
+      "depends_on": [
+        "T-023"
+      ],
+      "acceptance_criteria": [
+        "Every major mechanical system is decomposed into independent stable-ID components.",
+        "Carburettor and 1.6 i.e. architecture are explicitly separated; unresolved engine subtype remains UNKNOWN.",
+        "No unknown dimensions or part types are promoted to VERIFIED or manufacturing-ready geometry.",
+        "Mechanical CAD parts remain separate solids and export/re-open checks pass."
+      ],
+      "owner_agent": "chatgpt",
+      "status": "IN_PROGRESS",
+      "registry_status": "in_progress",
+      "test_result": null,
+      "error": "Engine code, drivetrain interfaces and suspension/brake measurements are not yet available.",
+      "started_at": "2026-11-06T00:00:00Z",
+      "finished_at": null,
+      "evidence": [
+        "specs/mechanical_subassembly_register.yaml",
+        "docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md",
+        "docs/ENGINE_BAY_PHOTO_INSPECTION_2026-11-06.md"
+      ],
+      "last_result_commit": null,
+      "last_review": null
+    },
+    {
+      "task_id": "T-025",
+      "title": "Electrical harness route matrix and branch-level CAD",
+      "description": "Create a branch-level wiring harness map for battery/charging, ignition, lighting, dash, rear body, wiper/washer, cooling fan, petrol sender, LPG selector/solenoids and grounds. Routes are schematic until the exact factory diagram and vehicle loom evidence arrive; never invent wire colours, gauge, fuse ratings or pinouts.",
+      "priority": "P1",
+      "depends_on": [
+        "T-023"
+      ],
+      "acceptance_criteria": [
+        "Every electrical branch has source/destination nodes, route corridor, evidence needs and UNKNOWN electrical specifications.",
+        "High-tension ignition and LPG control remain separate harness groups.",
+        "No wire colour, cross-section, fuse rating, connector pinout or route length is fabricated.",
+        "Branch geometry is independently selectable and exports/re-opens with the full vehicle."
+      ],
+      "owner_agent": "chatgpt",
+      "status": "IN_PROGRESS",
+      "registry_status": "in_progress",
+      "test_result": null,
+      "error": "Factory wiring diagram, fuse/relay map and loom connector photos not received.",
+      "started_at": "2026-11-06T00:00:00Z",
+      "finished_at": null,
+      "evidence": [
+        "specs/electrical_harness_route_matrix.yaml",
+        "docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md",
+        "docs/ENGINE_BAY_PHOTO_INSPECTION_2026-11-06.md"
+      ],
+      "last_result_commit": null,
+      "last_review": null
     }
   ]
 }
