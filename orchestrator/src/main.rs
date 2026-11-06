@@ -2,7 +2,7 @@ use std::io::Read;
 
 use kartal_agent_orchestrator::guard::{self, Finding, Verdict};
 use kartal_agent_orchestrator::{
-    engineer_prompt, MockProvider, Policy, Provider, ProviderKind, Task, ENGINEER_SYSTEM_PROMPT,
+    engineer_prompt, team_leader_prompt, MockProvider, Policy, Provider, ProviderKind, Task,\n    ENGINEER_SYSTEM_PROMPT, TEAM_LEADER_SYSTEM_PROMPT,
 };
 use kartal_agent_orchestrator::{panel, providers, run};
 
@@ -246,6 +246,15 @@ fn main() {
         Some("check-commits") => guard::scan_commit_subjects,
         Some("check-report") => guard::scan_engineering_report,
         Some("panel-run") => std::process::exit(panel_run(&args[1..])),
+        Some("leader-prompt") => {
+            let task = args[1..].join(" ");
+            if task.trim().is_empty() {
+                print!("{TEAM_LEADER_SYSTEM_PROMPT}");
+            } else {
+                print!("{}", team_leader_prompt(&task));
+            }
+            return;
+        }
         Some("prompt") => {
             let task = args[1..].join(" ");
             if task.trim().is_empty() {
