@@ -66,6 +66,10 @@ Routes are schematic centre-lines, not wire cut lengths. The exact factory wirin
 6. Harness and fuel/LPG routes are checked for heat, abrasion, water, moving-part and service-access conflicts.
 7. LPG electrical and fuel-system details are reviewed by a qualified LPG technician; this CAD is not an installation guide.
 
+### New photo audit (2026-11-06)
+
+Seven additional owner-supplied engine-bay views have been reviewed. See `docs/ENGINE_BAY_PHOTO_AUDIT_2026-11-06.md` for the OBSERVED/UNKNOWN register, photo-only safety holds, engine-variant caveat and metric survey plan. The new photos improve visual arrangement evidence but provide no calibrated dimensions and do not resolve the engine code or OHV/SOHC architecture. Do not promote the accessory-pump identity, reservoir circuit assignments or harness pinouts from visual appearance alone.
+
 ## 4. Immediate evidence collection priority
 
 1. Engine block stamping and clear photos of both engine sides, carburettor, distributor, coil, alternator and starter labels.
