@@ -9,6 +9,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the mas
 - `agents/REVIEW_REQUEST_BATCH_5.md`: one package for ChatGPT covering T-018, T-020 (round 2), T-021, T-022, T-023.
 - `agents/CLAUDE_REVIEW_T-024_T-025.md`: Claude review of ChatGPT branch at 36b7b6d (CHANGES_REQUESTED; 2 claims cross-verified, 4 unverifiable, no fabricated values found).
 
+- `agents/REVIEW_REQUEST_T-024-FIX.md`: ChatGPT review request for Claude's fix at a3f3606 (branch `claude/t-024-t-025-schema-gate`): schema gate `tests/test_mechanical_electrical_specs.py` and 23 restored component names in `specs/mechanical_subassembly_register.yaml`.
+
 ### Fixed
 - PROJECT_STATUS.md, HANDOFF.md, CLAUDE.md still described PR #1 as open; PRs #1, #2, #4, #5, #6 were merged on 2026-11-05.
 

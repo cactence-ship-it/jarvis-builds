@@ -38,6 +38,7 @@ DOĞRULANAMADI olan değerler bu notta zaten "ikincil, VERIFIED değil" olarak i
 
 | # | Seviye | Dosya | Bulgu |
 |---|---|---|---|
+| 0 | S2 | specs/mechanical_subassembly_register.yaml | **Veri bozulmasi:** akis eslemesi icinde alintisiz virgul 41 bilesenin 23'unde adi kesmis. `{id: ENG-OIL, name: oil pump, pickup, sump and filter, geometry: ...}` YAML'da `name: "oil pump"` arti `pickup: None` ve `sump and filter: None` olur. Dosyayi okuyan her kod yanlis isim alir. Etkilenenler: ENG-PISTON, ENG-OIL, ENG-CARB, ENG-IGN, ENG-COOL, ENG-AUX, TRN-CLUTCH, TRN-LEVER, DRV-SHAFT, DRV-DIFF, DRV-AXLE, FSU-STRUT, FSU-KNUCKLE, FSU-ARB, FSU-STEER, BRK-FRONT, BRK-REAR, BRK-LINES, FUL-PETROL-TANK, FUL-PETROL-LINE, FUL-LPG-REDUCER, FUL-LPG-LINES, EXH-PIPE. **Duzeltildi:** dal `claude/t-024-t-025-schema-gate`, commit a3f3606. |
 | 1 | S2 | tasks/T-024.yaml, T-025.yaml | A4 (STEP/GLB gidiş-dönüş) için hiçbir kod yok: `mechanical_subassembly_register.yaml` ve `electrical_harness_route_matrix.yaml` hiçbir Python/Rust kodu, test ya da CI tarafından okunmuyor. Şu an kayıt, CAD değil. Durum `in_progress` doğru; "tamamlandı" denmemiş. |
 | 2 | S2 | specs/*.yaml (yeni iki dosya) | Şema doğrulaması yok. Bir test bu iki dosyayı yüklemeli, her bileşende `status` ∈ {VERIFIED, ESTIMATED, UNKNOWN, PLACEHOLDER} ve VERIFIED için E-0xx kanıtı zorunlu olmalı; aksi halde ileride sessiz terfi yakalanmaz. |
 | 3 | S2 | tasks/T-024.yaml, T-025.yaml | `results: []` iken `evidence` listesi dolu; sonuç kaydı (commit, dosyalar, çalıştırılan testler) eklenmeli ki inceleme bir SHA'ya bağlanabilsin. |
@@ -50,7 +51,21 @@ DOĞRULANAMADI olan değerler bu notta zaten "ikincil, VERIFIED değil" olarak i
 - Motor kodu D1/D2 UNKNOWN bırakılmış; güç değerleri farklı standartlar (DIN/SAE/listeleme) olarak ayrı tutulmuş, ortalama alınmamış.
 - Lastik çelişkisi (ilan 175/70R14 ↔ E-028 fotoğrafı 185/65R14) fotoğraf lehine ve yalnız o lastik için çözülmüş.
 
-## Kapatmak için gereken en küçük değişiklik
+## Claude'un uyguladigi duzeltme (inceleme ciktisi)
+
+`claude/t-024-t-025-schema-gate` dali, 36b7b6d uzerine, commit **a3f3606**:
+
+- `tests/test_mechanical_electrical_specs.py` (yeni): iki kayit icin sema kapisi. Beklenmeyen bilesen
+  anahtari, UNKNOWN olmayan olcu, kayitta olmayan E-0xx kaniti, tekrar ID, eksik alan, uydurma kablo
+  kesiti / sigorta / rota uzunlugu ve bos kanit listesi reddedilir. Her kural icin negatif kontrol var.
+- `specs/mechanical_subassembly_register.yaml`: 23 bilesen adi alintiya alindi; baska degisiklik yok.
+- Dogrulama: test duzeltme oncesi 23 bulguyla FAILED, sonra 13 test OK. `validate` tum PASS
+  (134 parametre 25/35/74 degismedi). ruff 0.15.0 temiz. Tam paket bu dalda 102 test, 7 hata + 1
+  basarisizlik; temel 36b7b6d'de 89 test, ayni 7 + 1. Hepsi ortam kaynakli (cadquery yok, sig klon).
+  CI'da calistirilmadi.
+- Bu duzeltmeyi ChatGPT incelemeli: yazar Claude oldugu icin kendi isini onaylayamaz.
+
+## Kapatmak icin gereken en kucuk degisiklik
 
 1. İki YAML için şema testi (`tests/` altında, mevcut Python test dosyasına ya da yeni test dosyasına; D-029 buna izin verir).
 2. T-024/T-025'e `results` kaydı (tam SHA).
