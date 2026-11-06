@@ -17,11 +17,11 @@ variant_gate:
     - "parts whose fitment is listed only for a different engine family"
   unresolved_engine_identity:
     status: UNKNOWN
-    note: "Carburettor is owner-reported. Trim/year-specific secondary evidence makes 1.6 SOHC 8V Tempra-family carburettor architecture the leading provisional CAD candidate for a 1997 Kartal S; 131.D2.016 is the leading but unverified code candidate. Generic 81 hp Kartal, earlier OHV and IE listings conflict. Keep the exact engine code, head details and ignition subtype UNKNOWN until a vehicle-specific source resolves them."
+    note: "Carburettor is owner-reported. Trim/year-specific secondary evidence makes 1.6 SOHC 8V Tempra-family carburettor architecture the leading provisional CAD candidate for a 1997 Kartal S. Exact code is UNKNOWN: 131.D2.016 is listed for Şahin S and cannot be assigned to this Kartal; D1/D2 mapping varies across sources. S-specific sources report ~86 hp DIN; 1997 marketplace listings give 83 hp / 131 Nm / 1,581 cc; D2 cross-model data give 92 hp SAE / 123 Nm; generic Kartal gives 81 bhp. Keep engine code, output, bore/stroke, compression and ignition subtype UNKNOWN until vehicle-specific evidence resolves them."
 assemblies:
   - id: ENG
     name: Engine and ancillaries
-    architecture: "longitudinal inline-four; carburettor reported; leading provisional candidate is 1.6 SOHC 8V Tempra-family (131.D2.016 unverified)"
+    architecture: "longitudinal inline-four; carburettor reported; leading provisional candidate is 1.6 SOHC 8V Tempra-family; exact D1/D2/code UNKNOWN"
     arrangement_evidence: [E-017, E-027]
     geometry_status: PLACEHOLDER
     components:
@@ -29,7 +29,7 @@ assemblies:
       - {id: ENG-HEAD, name: cylinder head and valve train, geometry: PLACEHOLDER, dimensions: UNKNOWN}
       - {id: ENG-CRANK, name: crankshaft and main bearings, geometry: NONE, dimensions: UNKNOWN}
       - {id: ENG-PISTON, name: pistons, rings and connecting rods, geometry: NONE, dimensions: UNKNOWN}
-      - {id: ENG-CAM, name: camshaft / timing drive, geometry: NONE, dimensions: UNKNOWN, note: "SOHC 8V is the leading provisional Kartal S candidate; retain OHV and D1-family alternatives until exact code is verified"}
+      - {id: ENG-CAM, name: camshaft / timing drive, geometry: NONE, dimensions: UNKNOWN, note: "SOHC 8V Tempra-family is the leading provisional Kartal S candidate; exact engine code and cam/timing drive details UNKNOWN; D1/D2 mappings conflict across sources"}
       - {id: ENG-OIL, name: oil pump, pickup, sump and filter, geometry: PLACEHOLDER, dimensions: UNKNOWN}
       - {id: ENG-CARB, name: carburettor, choke and throttle linkage, geometry: PLACEHOLDER, dimensions: UNKNOWN}
       - {id: ENG-IGN, name: distributor, coil, cap, rotor and HT leads, geometry: PLACEHOLDER, dimensions: UNKNOWN, note: "points/electronic ignition subtype UNKNOWN"}
