@@ -14,6 +14,7 @@ error: null
 evidence:
   - specs/electrical_harness_route_matrix.yaml
   - docs/MECHANICAL_ELECTRICAL_MODEL_PLAN.md
+  - docs/ENGINE_BAY_PHOTO_AUDIT_2026-11-06.md
 acceptance:
   - id: T-025-A1
     criterion: "Every electrical branch has source/destination nodes, route corridor, evidence needs and UNKNOWN electrical specifications."
