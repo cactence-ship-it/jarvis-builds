@@ -76,6 +76,10 @@ etmez. Fiyat girilmemiş bir ortak hiç çağrılmaz, çünkü maliyeti hesaplan
   isteği başka bir Claude modeliyle tekrar dener (fallback); o model farklı fiyatlı olabilir.
 - Çağrıdan sonra gerçek token kullanımı kaydedilir ve sayfada tablo olarak gösterilir.
 - Aynı anda yalnız bir panel çalışır, iki çalıştırma bütçeyi ikiye katlayamaz.
+- Aynı görev, aynı commit'te, aynı yazarla **ikinci kez ücretlendirilmez**: panel her ücretli
+  çalıştırmayı kaydeder (90 gün saklanır) ve tekrarını çağrı yapmadan reddeder. Bilerek tekrar
+  çalıştırmak istersen **allow_repeat** kutusunu işaretle. Hiç çağrı yapmadan duran bir
+  çalıştırma (ör. ayar eksik) kaydedilmez; ayarı düzeltip aynı görevi yeniden başlatabilirsin.
 - Yazarın raporu bekçiden geçemezse inceleme çağrıları hiç yapılmaz. İlk inceleyen
   reddederse ikinci incelemeye para harcanmaz.
 

@@ -16,6 +16,8 @@ usage:
   kartal-orchestrator check-report [FILE]   engineering report: sections, evidence, units
   kartal-orchestrator prompt [TASK...]      print the senior-engineer system prompt (+ task)
   kartal-orchestrator leader-prompt [TASK...] print the Level-6 coordinator prompt (+ task)
+  kartal-orchestrator panel-key --author openai|anthropic|gemini
+                                            print the dispatch key for KARTAL_TASK at GITHUB_SHA
   kartal-orchestrator panel-run --author openai|anthropic|gemini [--mock]
                                             author writes, guard checks, other two review.
                                             Task text from KARTAL_TASK or stdin. Paid calls need
@@ -137,6 +139,34 @@ impl run::Partner for MockPartner {
     }
 }
 
+fn parse_author(args: &[String]) -> Option<ProviderKind> {
+    match args {
+        [flag, name] if flag == "--author" => match name.as_str() {
+            "openai" => Some(ProviderKind::OpenAi),
+            "anthropic" => Some(ProviderKind::Anthropic),
+            "gemini" => Some(ProviderKind::Gemini),
+            _ => None,
+        },
+        _ => None,
+    }
+}
+
+fn panel_key(args: &[String]) -> i32 {
+    let Some(author) = parse_author(args) else {
+        eprintln!("panel-key needs --author openai|anthropic|gemini");
+        return 64;
+    };
+    let (Some(task), Some(sha)) = (
+        env("KARTAL_TASK").filter(|t| !t.trim().is_empty()),
+        env("GITHUB_SHA").filter(|s| !s.trim().is_empty()),
+    ) else {
+        eprintln!("panel-key needs KARTAL_TASK and GITHUB_SHA");
+        return 64;
+    };
+    println!("{}", run::dispatch_key(author, &sha, &task));
+    0
+}
+
 fn panel_run(args: &[String]) -> i32 {
     let mut author = None;
     let mut mock = false;
@@ -189,6 +219,9 @@ fn panel_run(args: &[String]) -> i32 {
             Ok(p) => p,
             Err(e) => {
                 eprintln!("{e}");
+                // Nothing was called: the workflow must not record this as a paid dispatch.
+                println!("verdict=BLOCKED");
+                println!("spent_micros=0");
                 return 3;
             }
         };
@@ -210,6 +243,7 @@ fn panel_run(args: &[String]) -> i32 {
                 eprintln!("config: {p}");
             }
             println!("verdict=BLOCKED");
+            println!("spent_micros=0");
             return 3;
         }
         let refs: Vec<&dyn run::Partner> =
@@ -247,6 +281,7 @@ fn main() {
         Some("check-commits") => guard::scan_commit_subjects,
         Some("check-report") => guard::scan_engineering_report,
         Some("panel-run") => std::process::exit(panel_run(&args[1..])),
+        Some("panel-key") => std::process::exit(panel_key(&args[1..])),
         Some("leader-prompt") => {
             let task = args[1..].join(" ");
             if task.trim().is_empty() {

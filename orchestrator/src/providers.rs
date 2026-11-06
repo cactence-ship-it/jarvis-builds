@@ -22,6 +22,8 @@ const ANTHROPIC_VERSION: &str = "2026-10-21";
 const ANTHROPIC_FALLBACK_BETA: &str = "server-side-fallback-2026-07-01";
 /// Fallback models may cost more per token than the configured model; budget for it.
 const ANTHROPIC_FALLBACK_MARGIN_PERCENT: u64 = 25;
+/// Largest response body accepted, enforced by curl (`max-filesize`) and again here.
+pub const MAX_RESPONSE_BYTES: usize = 8_000_000;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ProviderConfig {
@@ -339,7 +341,7 @@ pub fn curl_config(req: &HttpRequest, timeout: Duration) -> String {
     }
     cfg.push_str(&format!("data-binary = {}\n", curl_quote(&req.body)));
     cfg.push_str(&format!("max-time = {}\n", timeout.as_secs().max(1)));
-    cfg.push_str("max-filesize = 8000000\n");
+    cfg.push_str(&format!("max-filesize = {MAX_RESPONSE_BYTES}\n"));
     cfg.push_str("silent\nshow-error\n");
     cfg.push_str("proto = \"=https\"\n");
     cfg.push_str("write-out = \"\\n%{http_code}\"\n");
@@ -413,7 +415,14 @@ impl<T: Transport> HttpProvider<T> {
         let (status, body) = self
             .transport
             .post(&req, self.config.timeout)
-            .map_err(|e| redact(&e, &self.key))?;
+            .map_err(|e| format!("{}: {}", self.config.kind.name(), redact(&e, &self.key)))?;
+        if body.len() > MAX_RESPONSE_BYTES {
+            return Err(format!(
+                "{}: response is {} bytes, above the {MAX_RESPONSE_BYTES}-byte limit",
+                self.config.kind.name(),
+                body.len()
+            ));
+        }
         let body = redact(&body, &self.key);
         if !(200..300).contains(&status) {
             let detail = json::parse(&body)
@@ -619,5 +628,162 @@ mod tests {
         let e = p.complete("s", "u").unwrap_err();
         assert!(e.contains("HTTP 401") && !e.contains(key), "{e}");
         assert!(HttpProvider::new(cfg(ProviderKind::OpenAi), " ".into(), CurlTransport).is_err());
+    }
+}
+
+/// Gate 6: every malformed, empty, oversized, refused, truncated or failed response is an
+/// error for every provider, so no partial output can reach the next partner.
+#[cfg(test)]
+mod response_validation {
+    use super::*;
+
+    const KINDS: [ProviderKind; 3] = [
+        ProviderKind::OpenAi,
+        ProviderKind::Anthropic,
+        ProviderKind::Gemini,
+    ];
+
+    struct Canned(Result<(u16, String), String>);
+    impl Transport for Canned {
+        fn post(&self, _: &HttpRequest, _: Duration) -> Result<(u16, String), String> {
+            self.0.clone()
+        }
+    }
+
+    fn provider(kind: ProviderKind, reply: Result<(u16, String), String>) -> HttpProvider<Canned> {
+        let cfg = ProviderConfig {
+            kind,
+            model: "m".into(),
+            max_output_tokens: 100,
+            price_in_micros_per_mtok: 1,
+            price_out_micros_per_mtok: 1,
+            timeout: Duration::from_secs(1),
+        };
+        HttpProvider::new(cfg, "sk-test-0000000000".into(), Canned(reply)).unwrap()
+    }
+
+    fn fails(kind: ProviderKind, reply: Result<(u16, String), String>) -> String {
+        provider(kind, reply)
+            .complete("s", "u")
+            .expect_err("must not produce an answer")
+    }
+
+    #[test]
+    fn empty_and_malformed_bodies_are_errors() {
+        for kind in KINDS {
+            for body in [
+                "",
+                " ",
+                "{",
+                "null",
+                "[]",
+                "{}",
+                "\"text\"",
+                "<html>502</html>",
+                "{\"choices\":[]}",
+            ] {
+                let e = fails(kind, Ok((200, body.into())));
+                assert!(e.starts_with(kind.name()), "{kind:?} {body:?}: {e}");
+            }
+        }
+    }
+
+    #[test]
+    fn answers_with_empty_text_are_errors() {
+        let bodies = [
+            (
+                ProviderKind::OpenAi,
+                r#"{"choices":[{"finish_reason":"stop","message":{"content":"  "}}],"usage":{"prompt_tokens":1,"completion_tokens":1}}"#,
+            ),
+            (
+                ProviderKind::Anthropic,
+                r#"{"content":[{"type":"thinking","thinking":""}],"stop_reason":"end_turn","usage":{"input_tokens":1,"output_tokens":1}}"#,
+            ),
+            (
+                ProviderKind::Gemini,
+                r#"{"candidates":[{"finishReason":"STOP","content":{"parts":[{"text":"x","thought":true}]}}],"usageMetadata":{"promptTokenCount":1,"candidatesTokenCount":1}}"#,
+            ),
+        ];
+        for (kind, body) in bodies {
+            assert!(
+                fails(kind, Ok((200, body.into()))).contains("empty answer"),
+                "{kind:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn truncated_answers_are_errors_for_every_provider() {
+        let bodies = [
+            (
+                ProviderKind::OpenAi,
+                r#"{"choices":[{"finish_reason":"length","message":{"content":"half"}}],"usage":{"prompt_tokens":1,"completion_tokens":1}}"#,
+            ),
+            (
+                ProviderKind::Anthropic,
+                r#"{"content":[{"type":"text","text":"half"}],"stop_reason":"max_tokens","usage":{"input_tokens":1,"output_tokens":1}}"#,
+            ),
+            (
+                ProviderKind::Gemini,
+                r#"{"candidates":[{"finishReason":"MAX_TOKENS","content":{"parts":[{"text":"half"}]}}],"usageMetadata":{"promptTokenCount":1,"candidatesTokenCount":1}}"#,
+            ),
+        ];
+        for (kind, body) in bodies {
+            assert!(
+                fails(kind, Ok((200, body.into()))).contains("ended early"),
+                "{kind:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn timeouts_and_transport_failures_are_errors_without_the_key() {
+        for kind in KINDS {
+            // What CurlTransport reports for curl exit 28 (timeout) and 63 (max-filesize).
+            for msg in [
+                "curl exited with exit status: 28: Operation timed out after 1000 milliseconds",
+                "curl exited with exit status: 63: Maximum file size exceeded",
+                "cannot start curl: No such file or directory",
+            ] {
+                let e = fails(kind, Err(format!("{msg} sk-test-0000000000")));
+                assert!(e.contains(msg.split(':').next().unwrap()), "{e}");
+                assert!(!e.contains("sk-test-0000000000"), "key leaked: {e}");
+            }
+        }
+    }
+
+    #[test]
+    fn oversized_bodies_are_rejected_before_parsing() {
+        let big = format!("{{\"pad\":\"{}\"}}", "x".repeat(MAX_RESPONSE_BYTES));
+        for kind in KINDS {
+            assert!(
+                fails(kind, Ok((200, big.clone()))).contains("byte limit"),
+                "{kind:?}"
+            );
+        }
+        let cfg = curl_config(
+            &HttpRequest {
+                url: "https://x.test".into(),
+                headers: vec![],
+                body: "{}".into(),
+            },
+            Duration::from_secs(3),
+        );
+        assert!(cfg.contains(&format!("max-filesize = {MAX_RESPONSE_BYTES}")));
+        assert!(cfg.contains("max-time = 3"));
+    }
+
+    #[test]
+    fn http_errors_are_errors_for_every_provider() {
+        for kind in KINDS {
+            for (code, body) in [
+                (429, r#"{"error":{"message":"rate limited"}}"#),
+                (500, "oops"),
+                (503, ""),
+            ] {
+                let e = fails(kind, Ok((code, body.into())));
+                assert!(e.contains(&format!("HTTP {code}")), "{kind:?}: {e}");
+            }
+        }
     }
 }

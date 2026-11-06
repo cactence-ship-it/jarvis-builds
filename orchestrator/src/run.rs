@@ -63,6 +63,19 @@ pub fn report_id(report: &str) -> String {
     format!("r{h:016x}")
 }
 
+/// Key for one paid dispatch: the same task text, repository commit and author always give
+/// the same key. The workflow refuses a key that already has a recorded run, so a repeated
+/// dispatch cannot bill twice. Whitespace around the task does not change the key.
+pub fn dispatch_key(author: ProviderKind, commit: &str, task: &str) -> String {
+    let material = format!("{}\0{}\0{}", author.name(), commit.trim(), task.trim());
+    let mut h: u64 = 0xcbf2_9ce4_8422_2325;
+    for b in material.as_bytes() {
+        h ^= u64::from(*b);
+        h = h.wrapping_mul(0x0100_0000_01b3);
+    }
+    format!("p{h:016x}")
+}
+
 pub fn review_prompt(author: ProviderKind, task: &str, report: &str, id: &str) -> String {
     format!(
         "İNCELEME GÖREVİ\n\
@@ -592,6 +605,33 @@ mod tests {
             &mut open_policy(10_000),
         );
         assert!(matches!(run.outcome, Outcome::Blocked(ref w) if w.contains("gemini")));
+    }
+
+    #[test]
+    fn dispatch_key_is_stable_and_separates_task_commit_and_author() {
+        let k = dispatch_key(ProviderKind::OpenAi, "abc123", "fren hattı");
+        assert_eq!(
+            k,
+            dispatch_key(ProviderKind::OpenAi, " abc123 ", "fren hattı\n")
+        );
+        assert_eq!(k.len(), 17);
+        assert_ne!(
+            k,
+            dispatch_key(ProviderKind::Gemini, "abc123", "fren hattı")
+        );
+        assert_ne!(
+            k,
+            dispatch_key(ProviderKind::OpenAi, "abc124", "fren hattı")
+        );
+        assert_ne!(
+            k,
+            dispatch_key(ProviderKind::OpenAi, "abc123", "fren hattı 2")
+        );
+        // The separator keeps field boundaries: "a"+"bc" differs from "ab"+"c".
+        assert_ne!(
+            dispatch_key(ProviderKind::OpenAi, "a", "bc"),
+            dispatch_key(ProviderKind::OpenAi, "ab", "c")
+        );
     }
 
     #[test]

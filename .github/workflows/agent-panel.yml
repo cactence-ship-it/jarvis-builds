@@ -21,9 +21,16 @@ on:
         type: choice
         options: [openai, anthropic, gemini]
         default: anthropic
+      allow_repeat:
+        description: "Aynı görevi aynı commit'te bilerek tekrar çalıştır (yeniden ücretlendirilir)"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
+  # Read-only access to this repository's run artifacts: the dispatch record lives there.
+  actions: read
 
 # One run at a time: two parallel runs could each spend a full budget.
 concurrency:
@@ -44,7 +51,32 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       - name: Build
         run: cargo build --manifest-path orchestrator/Cargo.toml --locked --release
+      # Durable idempotency: one record (a tiny artifact named after the dispatch key) per
+      # task + commit + author. A repeated dispatch is refused before any paid call. The
+      # concurrency group above serialises runs, so check-then-run cannot race. If the
+      # check itself fails, the step fails and nothing is called (fail closed).
+      - name: Dispatch key
+        id: key
+        env:
+          KARTAL_TASK: ${{ inputs.task }}
+          AUTHOR: ${{ inputs.author }}
+        run: echo "key=$(orchestrator/target/release/kartal-orchestrator panel-key --author "$AUTHOR")" >> "$GITHUB_OUTPUT"
+      - name: Refuse a repeated dispatch
+        id: refuse
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KEY: ${{ steps.key.outputs.key }}
+          ALLOW_REPEAT: ${{ inputs.allow_repeat }}
+        run: |
+          count=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=panel-$KEY&per_page=100" \
+            --jq '[.artifacts[] | select(.expired == false)] | length')
+          echo "earlier runs with key $KEY: $count"
+          if [ "$count" -gt 0 ] && [ "$ALLOW_REPEAT" != "true" ]; then
+            echo "::error title=already-run::This task already ran at this commit with this author. Set allow_repeat to run (and pay) again."
+            exit 1
+          fi
       - name: Run panel
+        id: panel
         env:
           KARTAL_TASK: ${{ inputs.task }}
           AUTHOR: ${{ inputs.author }}
@@ -62,4 +94,28 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: orchestrator/target/release/kartal-orchestrator panel-run --author "$AUTHOR"
+        run: |
+          set -o pipefail
+          orchestrator/target/release/kartal-orchestrator panel-run --author "$AUTHOR" | tee "$RUNNER_TEMP/panel.out"
+      # Record the dispatch whenever money may have been spent, including a run that failed
+      # half-way. Only a run that provably spent nothing (blocked before any call) is not
+      # recorded, so the owner can fix the configuration and dispatch again.
+      - name: Decide whether to record
+        id: spent
+        if: always() && steps.refuse.outcome == 'success'
+        env:
+          KEY: ${{ steps.key.outputs.key }}
+        run: |
+          if grep -qx 'spent_micros=0' "$RUNNER_TEMP/panel.out" 2>/dev/null; then
+            echo "record=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "record=true" >> "$GITHUB_OUTPUT"
+          fi
+          printf 'key=%s\nrun=%s\nsha=%s\n' "$KEY" "$GITHUB_RUN_ID" "$GITHUB_SHA" > "$RUNNER_TEMP/dispatch-record.txt"
+      - name: Record dispatch
+        if: always() && steps.spent.outputs.record == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: panel-${{ steps.key.outputs.key }}
+          path: ${{ runner.temp }}/dispatch-record.txt
+          retention-days: 90
