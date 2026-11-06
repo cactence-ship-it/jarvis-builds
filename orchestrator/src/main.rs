@@ -14,6 +14,7 @@ usage:
   kartal-orchestrator check-commits [FILE]  commit subjects, one per line: blind retries
   kartal-orchestrator check-report [FILE]   engineering report: sections, evidence, units
   kartal-orchestrator prompt [TASK...]      print the senior-engineer system prompt (+ task)
+  kartal-orchestrator leader-prompt [TASK...] print the Level-6 coordinator prompt (+ task)
   kartal-orchestrator panel-run --author openai|anthropic|gemini [--mock]
                                             author writes, guard checks, other two review.
                                             Task text from KARTAL_TASK or stdin. Paid calls need
