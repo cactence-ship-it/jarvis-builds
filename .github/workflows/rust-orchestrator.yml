@@ -34,3 +34,7 @@ jobs:
         run: cargo test --manifest-path orchestrator/Cargo.toml --locked
       - name: Offline smoke run
         run: cargo run --manifest-path orchestrator/Cargo.toml --locked
+      - name: Offline panel run (mock partners, no network)
+        env:
+          KARTAL_TASK: "CI smoke: write and review a placeholder report"
+        run: cargo run --manifest-path orchestrator/Cargo.toml --locked -- panel-run --author anthropic --mock

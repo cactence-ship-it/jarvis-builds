@@ -99,6 +99,7 @@ Retries must be finite (initial default: at most 2 retries after the first attem
 - No network calls and no GitHub writes in this milestone.
 
 ### M2 — provider adapters
+**Status (2026-11-04): implemented** in `orchestrator/src/providers.rs` and `run.rs`, with mock-transport tests and an opt-in live transport test (invalid key, 401, nothing billed). Live panel runs are owner-started (`agent-panel.yml`) and stay off until the owner sets the kill switch and budget.
 - Add OpenAI, Anthropic and Gemini adapters separately.
 - Test using mock HTTP responses first; add live API smoke tests only behind explicit opt-in and a small owner-approved budget.
 - Normalize usage and errors without logging secrets or full sensitive prompts.
