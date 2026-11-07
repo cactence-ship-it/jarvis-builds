@@ -2,6 +2,11 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Tripo v3.1 multiview (front fixed)
+
+### Changed
+- Owner feedback: the front of the rear-photo mesh was wrong (front was hallucinated). Regenerated with Tripo v3.1 multiview from four owner photos (front-left, rear-left, rear, front-right three-quarters): front lamps, grille and bumper now match the car. Pre-correction residual width +17.0 %, height +21.2 % (INCONSISTENT); corrected with scale node (1, 0.825, 0.855) per D-032; heading front +x checked visually. Alternative v3.1 from the front photo alone: +9.8 % / +11.3 %. 80 credits.
+
 ## [Unreleased] - 2026-11-07 - Tripo v3.1 model, no correction
 
 ### Changed
