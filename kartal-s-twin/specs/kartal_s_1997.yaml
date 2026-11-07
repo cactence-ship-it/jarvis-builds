@@ -825,6 +825,46 @@ parameters:
       source: [E-044]
       verify_by: Measure the removed damper
       notes: KYB 343142 (stroke 190 mm).
+    front_lower_arm_length:
+      name: Front lower arm (with ball joint) length
+      value: 289
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-046]
+      verify_by: Measure the removed arm
+      notes: AYD 00016 listing; reference points of the length not stated.
+    front_strut_bore:
+      name: Front strut damper bore
+      value: 27
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-048]
+      verify_by: Strut insert data sheet
+      notes: Monroe 11002, Fiat 131 saloon.
+    front_strut_rod_diameter:
+      name: Front strut piston-rod diameter
+      value: 20
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-048]
+      verify_by: Caliper on the rod
+      notes: Monroe 11002.
+    front_wheel_bearing:
+      name: Front wheel taper bearing (bore x OD x width)
+      value: 28 x 57.15 x 17.462
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.1
+      source: [E-047]
+      verify_by: Bearing marking
+      notes: SKF 639297/Q, J15585/J15520.
   steering:
     steering_gear_type:
       name: Steering gear type (rack-and-pinion / recirculating ball)
@@ -857,6 +897,16 @@ parameters:
       verify_by: Count with a tape mark on the wheel rim
       notes: ''
   # ---------------------------------------------------------------- Brakes
+    tie_rod_length:
+      name: Tie rod (rot mili) length
+      value: 282.5
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-045]
+      verify_by: Measure the removed tie rod
+      notes: 282-283 mm (two listings), M14x1.5; mechanical-steering part, power-steering cars may differ.
   brakes:
     front_brake_type:
       name: Front brake type (disc / drum)

@@ -2,6 +2,14 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Front suspension and steering from listings (D-039)
+
+### Added
+- Evidence E-045..E-048; 5 spec parameters (tie rod, lower arm, front bearing, strut bore and rod): spec 149 parameters, 25 VERIFIED / 72 ESTIMATED / 52 UNKNOWN.
+- Geometry: catalogue-length track-control arms with ball joints, struts sized from bore/rod, hubs with taper bearings and spindles, rack-and-pinion with boots and pinion housing, tie rods of catalogue length with ball joints.
+- U-017: rack vs engine package interference and unrealistic sump ground clearance of the package guess.
+- Tests: build (STEP 487 solids valid, no open bodies), unit tests, validate, viewer smoke test pass; page 15.3 MB.
+
 ## [Unreleased] - 2026-11-07 - Dimensions from spare-part listings (D-038)
 
 ### Added
