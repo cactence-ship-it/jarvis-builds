@@ -24,7 +24,9 @@ Koordinat ve referanslar: `CAD_COORDINATE_SYSTEM.md` (D-003). Ölçümler araç 
 | mass.axle_load_front_measured | Front axle load, measured | Weighbridge at the reference state | ±10 kg |
 | mass.axle_load_rear_measured | Rear axle load, measured | Weighbridge at the reference state | ±10 kg |
 | engine.engine_code | Engine type code | Engine-number stamping photo / documents | okunan değer |
+| transmission.clutch_disc_diameter | Clutch disc diameter | Read the disc stamping when the clutch is out | ±5 mm |
 | suspension.rear_antiroll_bar_fitted | Rear anti-roll bar fitted | Underbody photo | okunan değer |
+| suspension.panhard_rod_length | Panhard rod length, hole to hole | Measure the rod under the car | ±5 mm |
 | lpg_system.kit_type | LPG kit type (venturi mixer or vapour injection) | Engine-bay photo: mixer in the air intake vs injector rail | okunan değer |
 | lpg_system.tank_centre_x | LPG tank centre X (VCS, rearward from front axle) | Tape from the rear wheel centre to the tank centre, plus wheelbase | ±5 mm |
 | lpg_system.tank_centre_y | LPG tank centre Y (VCS, right positive) | Tape from the body centre line | ±5 mm |

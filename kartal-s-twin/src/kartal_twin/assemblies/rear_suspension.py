@@ -31,18 +31,25 @@ def build(ctx):
             "(Fiat 131 saloon KYB 343142, E-044, ESTIMATED LOW); lower eye guessed, upper eye follows the length")
         hy = w["RL" if s < 0 else "RR"][1] - s * 110
         add(hub, [(cyl((xa, hy, za), (xa, hy + s * 40, za), 70), STEEL)], "Axle end / hub flange envelope")
-    links = [(cyl((xa + 60, -sy + 40, za + 20), (xa + 90, sy + 80, za + 90), 15), DARK)]
+    ll, lu = base.get("suspension.rear_lower_link_length"), base.get("suspension.rear_upper_link_length")   # E-056/E-057
+    links, ends = [], []
     for s in (-1, 1):
-        links.append((cyl((xa - 20, s * (sy - 60), za - 60), (xa - 520, s * (sy - 40), za - 30), 18), DARK))
-    add("RSU-005", links, "Transverse locating rod (photos E-025) and two trailing links (ASSUMED)")
-    bush = []
-    for s in (-1, 1):
-        for x, y, z in ((xa - 520, s * (sy - 40), za - 30), (xa - 20, s * (sy - 60), za - 60)):
-            bush.append((cyl((x, y - 25, z), (x, y + 25, z), 22), (0.1, 0.1, 0.1, 1.0)))
-    add("RSU-006", bush, "Link bushings")
+        ra = (xa - 20, s * (sy - 60), za - 70)                      # lower arm axle bracket (guessed)
+        fa = (ra[0] - (ll * ll - 60 * 60) ** 0.5, s * (sy - 40), ra[2] + 60)   # 617 mm forward, 60 mm up
+        rb = (xa - 30, s * 160, za + 95)                            # upper arm on the axle casing top (guessed)
+        fb = (rb[0] - (lu * lu - 40 * 40) ** 0.5, s * 200, rb[2] + 40)
+        links += [(cyl(ra, fa, 17), DARK), (cyl(rb, fb, 14), DARK)]
+        ends += [ra, fa, rb, fb]
+    pr = [(xa + 60, -sy + 40, za + 20), (xa + 90, sy + 80, za + 90)]
+    links.append((cyl(pr[0], pr[1], 15), DARK))
+    add("RSU-005", links,
+        f"Four links and Panhard rod: two lower trailing arms {ll} mm and two short upper arms {lu} mm (Fiat 131 parts, "
+        "E-056/E-057, ESTIMATED LOW; Kartal fit not confirmed), Panhard rod length UNKNOWN (photo E-025 shows a "
+        "transverse rod); all mounting points guessed")
+    bush = [(cyl((x, y - 25, z), (x, y + 25, z), 22), (0.1, 0.1, 0.1, 1.0)) for x, y, z in ends + pr]
+    add("RSU-006", bush, "Link and Panhard bushings at the link ends")
     mnt = []
-    for x, y, z in ((xa - 540, -sy + 40, za + 10), (xa - 540, sy - 40, za + 10), (xa + 90, sy + 80, za + 130),
-                    (xa + 150, -(sy + 25), cz_ - 120), (xa + 150, sy + 25, cz_ - 120)):
+    for x, y, z in [e for i, e in enumerate(ends) if i % 2 == 1] + [pr[1], (xa + 150, -(sy + 25), cz_ - 120), (xa + 150, sy + 25, cz_ - 120)]:
         mnt += block(x - 25, x + 25, y - 25, y + 25, z - 25, z + 25, STEEL)
-    add("RSU-009", mnt, "Body-side mounting points (guessed)")
+    add("RSU-009", mnt, "Body-side mounting points (forward link ends, Panhard body end, damper tops; guessed)")
     return ctx.parts

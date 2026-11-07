@@ -687,7 +687,7 @@ parameters:
       tolerance: 0.01
       source: [E-031]
       verify_by: Workshop manual
-      notes: Forum-quoted 5-speed ratios for Şahin up to 1996 / Doğan up to 1993; ratios vary by model and engine, so they may not match VEH-01.
+      notes: Tofaş forum ratios (E-031). Fiat 131 (1979+) 5-speed quoted as 3.612 / 2.045 / 1.357 / 1.000 / 0.834 (E-056); variants differ, not merged.
     reverse_ratio:
       name: Reverse gear ratio
       value: 3.526
@@ -705,9 +705,9 @@ parameters:
       status: ESTIMATED
       confidence: LOW
       tolerance: 0.05
-      source: [E-031]
+      source: [E-031, E-056]
       verify_by: Workshop manual / axle tag
-      notes: 4.10 quoted on two forums (E-031); 1.3 versions reportedly differ. Verify from the axle tag or by counting propshaft turns per wheel turn.
+      notes: 4.10 (10/41) in forum ratios (E-031) and in the owner summary (Fiat 4321374, E-056); 9/40 and 3.58 exist for other versions.
     clutch_actuation:
       name: Clutch actuation (cable / hydraulic)
       value: cable
@@ -719,6 +719,36 @@ parameters:
       verify_by: Pedal box or bell-housing photo
       notes: 'Clutch cable sold for Doğan/Kartal/Şahin 1.6 (E-035). Verify: cable at the pedal box or a master cylinder on the bulkhead.'
   # ---------------------------------------------------------------- Drivetrain
+    clutch_disc_diameter:
+      name: Clutch disc diameter
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Read the disc stamping when the clutch is out
+      notes: Candidates 190 / 200 / 215 mm (E-054, E-056). Valeo 826522 is 200 mm, 20 teeth, hub 20.9 x 15.2 but no Fiat 131 fitment and one 240 mm listing; Fiat 131 kit 003348 has hub 23.07 x 20.11 (E-057). Unresolved.
+    gearbox_input_bearing:
+      name: Gearbox input (main) bearing, bore x OD x width
+      value: 30 x 75 x 19
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Bearing marking
+      notes: ORS/QJ 630106 (owner summary only).
+    gearbox_output_bearing:
+      name: Gearbox rear output bearing, bore x OD x width
+      value: 25 x 52 x 21
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Bearing marking
+      notes: Arnold Classic 1178168 (owner summary only).
   drivetrain:
     drive_layout:
       name: Drive layout (e.g. front-engine RWD / FWD)
@@ -731,6 +761,96 @@ parameters:
       verify_by: 'Underbody photo: propeller shaft and differential housing (U-006)'
       notes: Literature (E-009); supports hypothesis U-006. Confirm with an underbody photo before modelling the driveline.
   # ---------------------------------------------------------------- Chassis and fuel
+    propshaft_construction:
+      name: Propeller shaft construction
+      value: two-piece, flexible coupling at the gearbox, centre bearing, universal joints
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Look under the car
+      notes: From parts that exist for the family (guibo 4516801, centre bearing 4181556); VEH-01 not checked.
+    propshaft_tube_od:
+      name: Propeller shaft tube outer diameter
+      value: 69.85
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.5
+      source: [E-056]
+      verify_by: Caliper on the tube
+      notes: Wall 1.6 mm (or 70 x 2), Uzman Kardan M124/131 (owner summary only).
+    flex_coupling_od:
+      name: Flexible coupling (guibo) outer diameter
+      value: 130
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-056]
+      verify_by: Caliper
+      notes: Inner 52 mm, thickness 47 mm, bolt circle 101 mm, 6 x 12 mm holes; Fiat 4516801 (owner summary only).
+    flex_coupling_thickness:
+      name: Flexible coupling thickness
+      value: 47
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-056]
+      verify_by: Caliper
+      notes: 61 mm including bushes (Arnold 1176031).
+    ujoint_cross:
+      name: Universal-joint cross (cup diameter x span)
+      value: 23.8 x 61.2
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Caliper on a removed cross
+      notes: Tirsan / Uzman Kardan listings (owner summary only).
+    axle_shaft_length:
+      name: Rear half-shaft overall length
+      value: 690
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 10
+      source: [E-056]
+      verify_by: Measure a removed half-shaft
+      notes: 4472221 per owner summary (E-056), not found in the spot-check (E-057); conflicts with the 1327 mm rear track (U-018). Shaft lengths differ by version.
+    axle_shaft_spline_diameter:
+      name: Rear half-shaft spline diameter
+      value: 24
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.5
+      source: [E-056, E-057]
+      verify_by: Caliper on the splines
+      notes: 24 mm splines confirmed for Fiat 131 4420483 (E-057).
+    rear_wheel_bearing:
+      name: Rear wheel bearing, bore x OD x width
+      value: 30 x 65 x 21
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Bearing marking
+      notes: 630374; collar 30 x 47 x 13.5, seal 30 x 45 x 8 (owner summary only).
+    diff_side_bearing:
+      name: Differential side bearing (taper)
+      value: 38.112 x 71.016 x 18.258
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Bearing marking
+      notes: SKF BT1-0017 / 639330Q (owner summary only).
   chassis:
     fuel_tank_capacity:
       name: Fuel tank capacity
@@ -865,6 +985,36 @@ parameters:
       source: [E-047]
       verify_by: Bearing marking
       notes: SKF 639297/Q, J15585/J15520.
+    rear_upper_link_length:
+      name: Rear upper (short) link, hole to hole
+      value: 315
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-056, E-057]
+      verify_by: Measure removed link
+      notes: Arnold 1774001 "compression strut short, Fiat 131" 315 mm (confirmed E-057).
+    rear_lower_link_length:
+      name: Rear lower (long) trailing arm, hole to hole
+      value: 617
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-056, E-057]
+      verify_by: Measure removed arm
+      notes: Arnold 1174003 617 mm, listed for 124 Spider; long lower arm shared by 124 and 131 to 1978 (E-057). Kartal fit not confirmed.
+    panhard_rod_length:
+      name: Panhard rod length, hole to hole
+      value: null
+      unit: mm
+      status: UNKNOWN
+      confidence: NONE
+      tolerance: null
+      source: []
+      verify_by: Measure the rod under the car
+      notes: Kartal-specific 7733924 claimed (E-056) but not found (E-057); Fiat 124/131 references 1010 (1070 overall) straight or ~935 curved do not apply to the estate without proof.
   steering:
     steering_gear_type:
       name: Steering gear type (rack-and-pinion / recirculating ball)
@@ -895,7 +1045,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Count with a tape mark on the wheel rim
-      notes: ''
+      notes: Fiat 131 manual rack 3.4 turns (E-056); VEH-01 has power assistance, so not adopted. Count on the car.
   # ---------------------------------------------------------------- Brakes
     tie_rod_length:
       name: Tie rod (rot mili) length
@@ -907,6 +1057,16 @@ parameters:
       source: [E-045]
       verify_by: Measure the removed tie rod
       notes: 282-283 mm (two listings), M14x1.5; mechanical-steering part, power-steering cars may differ.
+    steering_gear_overall_length:
+      name: Steering gear overall length (catalogue)
+      value: 1112
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-056]
+      verify_by: Measure end to end on the car
+      notes: Hydraulic box 7799432 / MGA 90400 / TRW 1110-1115 (owner summary); mechanical 4461468 1088-1093. Measurement points not stated; the model's outer tie-rod joints are 1126 mm apart (consistent within 1.3 %).
   brakes:
     front_brake_type:
       name: Front brake type (disc / drum)

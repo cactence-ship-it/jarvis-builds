@@ -59,3 +59,5 @@ Güncelleme: 2026-11-07. Tam kayıt `EVIDENCE_REGISTER.md` (tek doğru kaynak); 
 | E-053 | Literature: wheelmeasure.com Fiat 131 (1974-1984) wheel data | LITERATURE | D | 2026-11-07 |
 | E-054 | Literature: OEM cross-reference listings (aktasotoyedekparca.com, ozcanturotomotiv.com, otoerdem.com, unluoto.com.tr, amazon.com, ricambio.co.uk, spareto.com) | LITERATURE | D | 2026-11-07 |
 | E-055 | Owner photo: front seats and console | PHOTO | A (etiket okuma) / C (yorum) | 2026-11-07 |
+| E-056 | Owner-supplied research summary (2026-11-07): gearbox, propshaft, rear axle, rear links, steering gear | LITERATURE | D | 2026-11-07 |
+| E-057 | Claude spot-check of E-056 (search summaries) | LITERATURE | D | 2026-11-07 |

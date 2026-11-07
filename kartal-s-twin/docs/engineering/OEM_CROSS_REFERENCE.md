@@ -35,3 +35,27 @@ Hiçbiri fabrika kataloğuyla doğrulanmadı. Birden fazla bağımsız satıcı 
 2. Direksiyon kutusu: VEH-01 hidrolik destekli (pompa fotoğrafta), 4461468 ise mekanik kutu kodu.
 3. Ön disk: MY ≤ 2000 için 227,5 mm; bir ilan 2000-02 SLX için 240 mm.
 4. Araç boyu: aggregatorlerde 4361 ve 4396 mm (spec 4396, ESTIMATED LOW).
+
+## Aktarma, arka aks ve arka süspansiyon (owner özeti E-056, spot-check E-057)
+
+| Parça | OEM / referans | Ölçü | Doğrulama |
+|---|---|---|---|
+| Şanzıman giriş rulmanı | ORS / QJ 630106 | 30 × 75 × 19 | Yalnız E-056 |
+| Prizdirek iğneli rulman | Fiat 4216165 | 19,3 × 25,3 × 19,8 | Yalnız E-056 |
+| Şanzıman çıkış rulmanı | Arnold 1178168 | 25 × 52 × 21 | Yalnız E-056 |
+| Kuyruk keçesi | - | 32 × 56 × 10 | Yalnız E-056 |
+| Debriyaj | Valeo 826522 / Sachs 3000 198 001 | Ø200, 20 diş, göbek 20,9 × 15,2 | E-057: ölçü doğrulandı ama Fiat 131 uyumu yazılmamış; bir satıcı 240 mm diyor; Fiat 131 kiti 003348'in göbeği 23,07 × 20,11 → **çelişki** |
+| Esnek kaplin (guibo) | Fiat 4516801 | Ø130 / Ø52 / 47 mm, bijon dairesi 101 mm | Yalnız E-056 |
+| Orta askı yatağı | Fiat 4181556 / 4234725 / 5950748 | iç Ø25, delik aralığı 76 | Yalnız E-056 |
+| Mafsal istavrozu | Tirsan / Uzman Kardan | 23,8 × 61,2 | Yalnız E-056 |
+| Şaft borusu | Uzman Kardan M124/131 | Ø69,85 × 1,6 | Yalnız E-056 |
+| Aks mili | Fiat 4472221 / 4438573 | 690 mm, 24 diş | E-057: 24 mm freze doğrulandı (4420483); 4472221 ve 690 mm bulunamadı; 1327 mm iz ile çelişiyor (U-018) |
+| Arka teker rulmanı | 630374 | 30 × 65 × 21 | Yalnız E-056 |
+| Diferansiyel yan rulmanı | SKF BT1-0017 / 639330Q | 38,112 × 71,016 × 18,258 | Yalnız E-056 |
+| Mahruti rulmanı | SKF 639331 | 34 × 66 × 17,9 | Yalnız E-056 |
+| Ayna-mahruti | Fiat 4321374 | 10/41 (4,10) | E-031 forum değeriyle aynı (iki kaynak, ikisi de D) |
+| Arka kısa kol | Fiat 85009446 / Arnold 1774001 | 315 mm | **E-057 doğrulandı** (Fiat 131) |
+| Arka uzun alt kol | Fiat 4389943 / Arnold 1174003 | 617 mm | E-057: değer doğrulandı, ilan 124 Spider; uzun kol 124 ve 1978'e kadar 131'de ortak |
+| Panhard çubuğu | Kartal 7733924 (iddia), Şahin/Doğan 4337930 | Kartal: bilinmiyor | E-057: 7733924 bulunamadı → UNKNOWN |
+| Arka yay (Kartal) | Fiat 140424 (iddia) | Fiat 131 sedan 274-292 / Ø120-123 / tel 10,5-11,8 | Kartal yayı farklı; girilmedi |
+| Hidrolik direksiyon kutusu | 7799432 / MGA 90400 / Zegen ZSR1003 | 1110-1115 (TRW) | Yalnız E-056; modeldeki dış rot uçları arası 1126 mm (%1,3 uyumlu) |

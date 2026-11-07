@@ -2,6 +2,15 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Drivetrain and rear links from owner research (D-041)
+
+### Added
+- Evidence E-056 (owner research summary) and E-057 (spot-check); 16 spec parameters (gearbox bearings, clutch UNKNOWN, propshaft, coupling, cross, half-shaft, bearings, rear links, Panhard UNKNOWN, steering-gear length): spec 165 parameters, 27 VERIFIED / 92 ESTIMATED / 46 UNKNOWN.
+- Geometry: two-piece propshaft (coupling, centre bearing, crosses), drive flange, wheel bearings, half-shafts; rear four-link axle (617 / 315 mm) with Panhard rod, bushes and body mounts.
+- U-018: quoted 690 mm half-shaft contradicts the rear track.
+- OEM_CROSS_REFERENCE.md extended; engineering documents regenerated.
+- Tests: build (STEP 507 solids valid), unit tests, validate, viewer smoke test pass.
+
 ## [Unreleased] - 2026-11-07 - 52 unknown values pass, engineering documents (D-040)
 
 ### Added

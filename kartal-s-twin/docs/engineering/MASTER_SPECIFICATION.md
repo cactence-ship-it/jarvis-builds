@@ -30,7 +30,7 @@ Güncelleme: 2026-11-07. Bu dosya `specs/kartal_s_1997.yaml` dosyasından üreti
 | engine.engine_code | Engine type code | - | UNKNOWN | MEASURE_REQUIRED | - | - | Candidates: 131.D1.016 (carburettor, Doğan/Kartal 1.6 S/SL/SLX 1992-2002, wikipedia table E-040) or 131.F3.016 (i.e. cat 1998-2002). VEH-01 is a 1997 carburettor car (air cleaner on a carburettor, E-027), so 131.D1.016 is the only candidate that fits; still UNKNOWN until the block stamping is read. |
 | engine.ignition_type | Ignition system type | electronic (breakerless) module | ESTIMATED | PROVISIONAL | D | E-051 | Module-like unit on the LH inner wing (photo). Listings sell both breaker-point and module distributors for the family; distributor not visible. |
 | suspension.rear_antiroll_bar_fitted | Rear anti-roll bar fitted | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
-| steering.turns_lock_to_lock | Steering-wheel turns, lock to lock | - | UNKNOWN | UNKNOWN | - | - |  |
+| steering.turns_lock_to_lock | Steering-wheel turns, lock to lock | - | UNKNOWN | UNKNOWN | - | - | Fiat 131 manual rack 3.4 turns (E-056); VEH-01 has power assistance, so not adopted. Count on the car. |
 | brakes.brake_booster_fitted | Brake booster (servo) fitted | True | ESTIMATED | PROVISIONAL | C | E-050 | Round unit behind the master cylinder at the LH bulkhead (photo interpretation). |
 | brakes.parking_brake_type | Parking brake type | centre lever, cables to rear drums | ESTIMATED | PROVISIONAL | C | E-055, E-042 | Lever seen in the interior photo; cables inferred. |
 | wheels_tires.wheel_offset_et | Wheel offset (ET) | 29 mm | ESTIMATED | PROVISIONAL | D | E-053 | Fiat 131 4x98 wheels (single source); VEH-01 black steel 14 in rims not checked. |
@@ -131,9 +131,21 @@ Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor:
 | transmission.forward_gear_count | Number of forward gears | 5 | - | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-031, E-012 |
 | transmission.gear_ratios | Forward gear ratios (1st..nth) | [3.667, 2.1, 1.361, 1.0, 0.881] ratio | 0.01 | ESTIMATED | D | E-031 |
 | transmission.reverse_ratio | Reverse gear ratio | 3.526 ratio | 0.01 | ESTIMATED | D | E-031 |
-| transmission.final_drive_ratio | Final drive ratio | 4.1 ratio | 0.05 | ESTIMATED | D | E-031 |
+| transmission.final_drive_ratio | Final drive ratio | 4.1 ratio | 0.05 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-031, E-056 |
 | transmission.clutch_actuation | Clutch actuation (cable / hydraulic) | cable | - | ESTIMATED | D | E-035 |
+| transmission.clutch_disc_diameter | Clutch disc diameter | - | - | UNKNOWN | - | - |
+| transmission.gearbox_input_bearing | Gearbox input (main) bearing, bore x OD x width | 30 x 75 x 19 | - | ESTIMATED | D | E-056 |
+| transmission.gearbox_output_bearing | Gearbox rear output bearing, bore x OD x width | 25 x 52 x 21 | - | ESTIMATED | D | E-056 |
 | drivetrain.drive_layout | Drive layout (e.g. front-engine RWD / FWD) | front-engine, rear-wheel drive | - | ESTIMATED | D | E-009 |
+| drivetrain.propshaft_construction | Propeller shaft construction | two-piece, flexible coupling at the gearbox, centre bearing, universal joints | - | ESTIMATED | D | E-056 |
+| drivetrain.propshaft_tube_od | Propeller shaft tube outer diameter | 69.85 mm | 0.5 | ESTIMATED | D | E-056 |
+| drivetrain.flex_coupling_od | Flexible coupling (guibo) outer diameter | 130 mm | 2 | ESTIMATED | D | E-056 |
+| drivetrain.flex_coupling_thickness | Flexible coupling thickness | 47 mm | 2 | ESTIMATED | D | E-056 |
+| drivetrain.ujoint_cross | Universal-joint cross (cup diameter x span) | 23.8 x 61.2 | - | ESTIMATED | D | E-056 |
+| drivetrain.axle_shaft_length | Rear half-shaft overall length | 690 mm | 10 | ESTIMATED | D | E-056 |
+| drivetrain.axle_shaft_spline_diameter | Rear half-shaft spline diameter | 24 mm | 0.5 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-056, E-057 |
+| drivetrain.rear_wheel_bearing | Rear wheel bearing, bore x OD x width | 30 x 65 x 21 | - | ESTIMATED | D | E-056 |
+| drivetrain.diff_side_bearing | Differential side bearing (taper) | 38.112 x 71.016 x 18.258 | - | ESTIMATED | D | E-056 |
 | chassis.fuel_tank_capacity | Fuel tank capacity | 52 L | 3 | ESTIMATED | D | E-010 |
 | suspension.front_suspension_type | Front suspension type | MacPherson strut | - | VERIFIED | A | E-027 |
 | suspension.rear_suspension_type | Rear suspension type | rigid (live) rear axle | - | VERIFIED | A | E-025 |
@@ -147,10 +159,14 @@ Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor:
 | suspension.front_strut_bore | Front strut damper bore | 27 mm | 1 | ESTIMATED | D | E-048 |
 | suspension.front_strut_rod_diameter | Front strut piston-rod diameter | 20 mm | 1 | ESTIMATED | D | E-048 |
 | suspension.front_wheel_bearing | Front wheel taper bearing (bore x OD x width) | 28 x 57.15 x 17.462 | 0.1 | ESTIMATED | D | E-047 |
+| suspension.rear_upper_link_length | Rear upper (short) link, hole to hole | 315 mm | 2 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-056, E-057 |
+| suspension.rear_lower_link_length | Rear lower (long) trailing arm, hole to hole | 617 mm | 3 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-056, E-057 |
+| suspension.panhard_rod_length | Panhard rod length, hole to hole | - | - | UNKNOWN | - | - |
 | steering.steering_gear_type | Steering gear type (rack-and-pinion / recirculating ball) | rack-and-pinion | - | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-039, E-038 |
 | steering.power_assisted | Power assisted | yes (hydraulic, belt-driven pump) | - | VERIFIED | A | E-027 |
 | steering.turns_lock_to_lock | Steering-wheel turns, lock to lock | - | - | UNKNOWN | - | - |
 | steering.tie_rod_length | Tie rod (rot mili) length | 282.5 mm | 1 | ESTIMATED | D | E-045 |
+| steering.steering_gear_overall_length | Steering gear overall length (catalogue) | 1112 mm | 5 | ESTIMATED | D | E-056 |
 | brakes.front_brake_type | Front brake type (disc / drum) | disc | - | ESTIMATED | D | E-032 |
 | brakes.front_disc_diameter | Front disc diameter | 227.5 mm | 1 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-037, E-038 |
 | brakes.rear_brake_type | Rear brake type (disc / drum) | drum | - | ESTIMATED | C | E-025 |
