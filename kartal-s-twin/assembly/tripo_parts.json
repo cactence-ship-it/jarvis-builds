@@ -1,0 +1,12 @@
+{
+  "note": "Plan A: one Tripo mesh of the whole car (wheels included), placed on the twin by tools/meshfit. Plan B (body + wheel): tripo_parts_split.json. GLB files live in refs/derived/tripo/ (git-ignored: textures can show the plate). Shapes are visual estimates, never measurements (D-006, D-030).",
+  "parts": [
+    {
+      "id": "VIS-TRIPO-CAR",
+      "label": "Bütün araç (tekerler dahil)",
+      "file": "car.glb",
+      "kind": "car",
+      "front": "+z"
+    }
+  ]
+}

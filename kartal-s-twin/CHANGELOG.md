@@ -8,6 +8,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the mas
 - Evidence E-029..E-036 (literature, via search summaries; source pages not readable from the build environment).
 - 18 parameters moved from UNKNOWN to ESTIMATED, each with source, tolerance and a verify-by note: engine bore 86.4 mm and stroke 67.4 mm (MEDIUM; 4 cylinders give 1580.6 cm3 against the registered 1581 cm3), compression ratio 9.2, power/torque speeds 5500/3000 rpm, 5 forward gears with ratios 3.667/2.1/1.361/1.0/0.881, reverse 3.526, final drive 4.10, cable clutch, coil springs front and rear, front anti-roll bar, front disc brakes, 4x98 PCD, 846 L luggage volume, 12 V system, H4 headlamps.
 
+### Added (Tripo assembly, D-030)
+- `tools/meshfit` (Rust, std-only): reads a GLB's bounds, turns the car front onto +Z, scales it to the twin's length (wheel: tire diameter), places it (car on the ground, body from the roof line, wheel at the four wheel centres) and reports width/height deviation: CONSISTENT < 3 %, WARN < 8 %, INCONSISTENT otherwise. 8 unit tests.
+- `viewer/tripo.html`: phone page for the placed meshes, with a measurement frame, wheel-centre circles and a FRONT arrow; `tools/viewer_smoke/tripo.sh` fits and checks it in headless Chromium (`--self-test` uses the twin's own GLB: 0.0 % width, +0.7 % height deviation).
+- `assembly/tripo_parts.json` (plan A, whole car) and `tripo_parts_split.json` (plan B, body + wheel); `docs/TRIPO_URETIM.md`, the owner's phone guide.
+
 ### Not filled (no consistent public source)
 - Engine type code, ignition type, steering-gear type, brake disc/drum diameters, wheel offset and centre bore, battery and alternator ratings; all vehicle-specific measurements (arch gaps, axle loads, LPG tank position, body profile). They stay UNKNOWN.
 

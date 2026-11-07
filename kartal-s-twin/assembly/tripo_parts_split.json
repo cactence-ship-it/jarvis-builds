@@ -1,0 +1,7 @@
+{
+  "note": "Plan B: Tripo body without wheels + one wheel copied to the four resolved wheel centres. Use instead of tripo_parts.json (plan A, whole car), never together.",
+  "parts": [
+    {"id": "VIS-TRIPO-BODY", "label": "Gövde (tekersiz)", "file": "body.glb", "kind": "body", "front": "+z"},
+    {"id": "VIS-TRIPO-WHEEL", "label": "Teker + lastik (4 yere kopyalanır)", "file": "wheel.glb", "kind": "wheel"}
+  ]
+}

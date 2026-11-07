@@ -23,6 +23,7 @@ Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session
 - Studio 3D (realistic visual model, D-028, rotatable on the phone): https://claude.ai/artifact/9D8o5byLmjc6xJ6ba2BzVR
 
 ## Owner actions that unblock the most
+0. Generate the car on tripo3d.ai from your photos and send `car.glb` here (phone guide: `docs/TRIPO_URETIM.md`). Claude fits it to the twin and publishes the phone viewer.
 1. Send the tape measurements in `docs/OLCUM_REHBERI.md` (`M06 = 2488` format; M06 = left wheelbase).
 2. Attach the 9 photos and `Kartal_S_Studyo.zip` in a session.
 3. DONE: registration documents received 2026-11-02 (T-020). Still useful: engine-bay and cargo-area photos (LPG tank location, fuel system).
