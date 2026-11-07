@@ -346,6 +346,8 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       document.getElementById('s-on').onclick = () => setShellOpacity(1);
       document.getElementById('s-off').onclick = () => setShellOpacity(0);
       setShellOpacity(1);
+      const chip = document.getElementById('statusChip'); chip.className = 'chip draft';
+      chip.textContent = 'Dış görünüm: fotoğraftan (görsel tahmin) · iç parçalar PLACEHOLDER';
       if (window.__kartalViewer) window.__kartalViewer.shell = true;
     }, e => { console.warn('shell', e); });
   }
