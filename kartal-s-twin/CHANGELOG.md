@@ -2,6 +2,11 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Shell proportions fixed (D-035)
+
+### Changed
+- Photo shell: pitch levelled (3.8°) and length re-proportioned to the twin's wheel centres (rear overhang 17.5 % -> 24.5 % of length). Then width/height scale node (1, 0.869, 0.850). Tool: `tools/meshfit/scripts/reprop.mjs`.
+
 ## [Unreleased] - 2026-11-07 - Rear bench replaced
 
 ### Changed
