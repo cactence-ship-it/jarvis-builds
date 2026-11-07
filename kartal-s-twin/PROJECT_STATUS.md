@@ -20,6 +20,7 @@ Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session
 - Built: 150 visual parts covering 150 of 157 inventory components (all PLACEHOLDER; every assembly built, 7 components excepted with a reason) + 9 engineering CAD (tire envelopes 185/65 R14, steel rims, LPG tank unplaced; DRAFT); mechanical: none. Previews: build/previews/{sheet,mechanical_sheet,interior_sheet}.png.
 - Tests: see test-results/latest.txt (all passing at last checkpoint) (`test-results/latest.txt`). Viewer smoke test: `test-results/viewer_smoke.txt`.
 - Viewer: https://claude.ai/artifact/7hGubrkeaHVUZSJ4AeGchk (engineering, part by part)
+- Tripo 3D (automatic, text-generated, fitted, D-031): https://claude.ai/artifact/N6Wiwb9pzGy2QmLDPF2Xq3
 - Studio 3D (realistic visual model, D-028, rotatable on the phone): https://claude.ai/artifact/9D8o5byLmjc6xJ6ba2BzVR
 
 ## Owner actions that unblock the most

@@ -2,6 +2,13 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Automatic Tripo model and literature pass 2
+
+### Added
+- Evidence E-037..E-040: front disc 227.5 mm (OEM 4208311, up to MY2000), rack-and-pinion steering, Fiat 131 turning circle 10.3 m, engine-code and alternator candidates. 3 parameters UNKNOWN -> ESTIMATED.
+- Automatic Tripo pipeline (D-031): 5 text-to-model candidates via the Tripo API (150 credits). Best candidate (task 75965f78) residual before correction: width +13.4 %, height +6.5 % (INCONSISTENT). Corrected with one scale node (0.882, 0.939, 1); after correction CONSISTENT by construction. Heading and wheel centres checked visually in the viewer.
+- Phone viewer with the corrected model embedded (texture 2048 px, mesh simplified to 40 %, quantized): https://claude.ai/artifact/N6Wiwb9pzGy2QmLDPF2Xq3
+
 ## [Unreleased] - 2026-11-07 - Public-literature data pass
 
 ### Added
