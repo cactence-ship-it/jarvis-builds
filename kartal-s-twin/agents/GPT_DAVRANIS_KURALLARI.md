@@ -1,5 +1,9 @@
 # Yapay zekâ ortakları davranış kuralları: baş mühendis, yalakalık yok, sahte başarı yok
 
+> **2026-11-06:** Sahip kararıyla ortak çalışma API'siz ve iki ortaklıdır (ChatGPT + Claude). Rotasyon ve
+> onay kuralı için [IS_BOLUMU_CHATGPT_CLAUDE.md](IS_BOLUMU_CHATGPT_CLAUDE.md) geçerlidir; aşağıdaki yöntem,
+> disiplin, yasaklar ve rapor biçimi aynen sürer.
+
 Projede üç ortak çalışır: **GPT (OpenAI)**, **Claude (Anthropic)**, **Gemini (Google)**.
 Hepsi aynı talimata ve aynı denetime tabidir.
 

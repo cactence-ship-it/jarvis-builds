@@ -2,7 +2,8 @@
 
 > Bu dosya her aşamada güncellenir. Oturum yarıda kesilirse buradan devam edin.
 
-**Son güncelleme:** 2026-11-02 · **Branch:** `ccr-b5d82c24-huyj0b` · **PR:** #1 (açık, merge edilmedi)
+**Son güncelleme:** 2026-11-06 · **Branch:** `main` · **PR:** #1, #2, #4, #5, #6 birleştirildi (2026-11-05)
+**Ortak çalışma:** API'siz, ChatGPT + Claude: `agents/IS_BOLUMU_CHATGPT_CLAUDE.md`
 **Çalışma düzeni:** OTONOM (sahip onayı 2026-11-02). Protokol: `CLAUDE.md` -> "Autonomous work protocol".
 **Son doğrulanmış commit:** aşağıdaki otomatik checkpoint kaydı + `bash kartal-s-twin/scripts/checkpoint.sh --verify`.
 
@@ -34,7 +35,7 @@
 <!-- AUTO-CHECKPOINT:END -->
 
 ## Yeni oturumda devam etmek için
-1. `git checkout ccr-b5d82c24-huyj0b` (PR #1 merge edilmediyse)
+1. `git checkout main`
 2. `bash kartal-s-twin/scripts/setup_env.sh`
 3. `kartal-s-twin/CLAUDE.md` ve bu dosyayı okuyun, "Sıradaki görevler" listesinden devam edin.
 

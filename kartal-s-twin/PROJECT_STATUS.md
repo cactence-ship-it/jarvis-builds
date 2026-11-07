@@ -1,6 +1,6 @@
 # Project Status - Tofaş Kartal S (1997) digital twin (VEH-01)
 
-**Updated:** 2026-11-03 · **Spec rev:** 0.8.0 · **Branch:** `ccr-b5d82c24-config-lpg-wheels` (stacked on `ccr-b5d82c24-huyj0b`, PR #1 open)
+**Updated:** 2026-11-06 · **Spec rev:** 0.8.0 · **Branch:** `main` (PR #1, #2, #4, #5, #6 merged 2026-11-05)
 Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session log: [HANDOFF.md](HANDOFF.md). Rules: [CLAUDE.md](CLAUDE.md).
 
 ## Phase tracker
@@ -26,4 +26,12 @@ Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session
 1. Send the tape measurements in `docs/OLCUM_REHBERI.md` (`M06 = 2488` format; M06 = left wheelbase).
 2. Attach the 9 photos and `Kartal_S_Studyo.zip` in a session.
 3. DONE: registration documents received 2026-11-02 (T-020). Still useful: engine-bay and cargo-area photos (LPG tank location, fuel system).
-4. Decide private storage for originals (U-009); merge PR #1 when satisfied.
+4. Decide private storage for originals (U-009).
+5. Forward `agents/REVIEW_REQUEST_BATCH_5.md` to ChatGPT (API-free protocol: `agents/IS_BOLUMU_CHATGPT_CLAUDE.md`) and bring the YAML answer back.
+6. Do not merge branch `ccr-215f9b0e-pfveg4` (`agent-panel.yml` needs paid API keys; owner rule 2026-11-06: no API).
+
+## Open branches (not merged)
+| Branch | Author | State |
+|---|---|---|
+| `feat/veh01-mechanical-harness-foundation` | ChatGPT | T-024/T-025 in progress; Claude review: `agents/CLAUDE_REVIEW_T-024_T-025.md` (CHANGES_REQUESTED) |
+| `ccr-215f9b0e-pfveg4` | Claude + owner | API-based agent panel; parked under the no-API rule |
