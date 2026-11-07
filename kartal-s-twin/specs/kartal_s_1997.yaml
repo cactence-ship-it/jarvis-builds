@@ -217,7 +217,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Plumb line at the front extremity to the front hub centre
-      notes: ''
+      notes: Not published. Sum of overhangs = length - wheelbase = 1906 mm (4396) or 1871 mm (4361); the split needs a measurement.
     rear_overhang:
       name: Rear overhang (rear axle to rear extremity)
       value: null
@@ -227,17 +227,17 @@ parameters:
       tolerance: null
       source: []
       verify_by: Plumb line at the rear extremity to the rear hub centre
-      notes: ''
+      notes: 'See front_overhang: only the sum is derivable from published length and wheelbase.'
     ground_clearance_min:
       name: Minimum ground clearance (unladen)
-      value: null
+      value: 120
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 20
+      source: [E-052]
       verify_by: Lowest underbody point to the ground; name the component in notes
-      notes: ''
+      notes: Fiat 131 Panorama figure; Kartal and this car (LPG tank in the spare-wheel well protrudes below the floor, E-025) may differ. Measure.
     wheel_centre_to_arch_fl:
       name: Hub centre to wheel-arch lip, front left
       value: null
@@ -455,7 +455,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Engine-number stamping photo / documents
-      notes: 'Candidates (E-040): 131.D1.016 (carburettor, more likely given E-027) or 131.F3.016 (i.e.). Read the engine-number stamping to settle.'
+      notes: 'Candidates: 131.D1.016 (carburettor, Doğan/Kartal 1.6 S/SL/SLX 1992-2002, wikipedia table E-040) or 131.F3.016 (i.e. cat 1998-2002). VEH-01 is a 1997 carburettor car (air cleaner on a carburettor, E-027), so 131.D1.016 is the only candidate that fits; still UNKNOWN until the block stamping is read.'
     displacement:
       name: Displacement
       value: 1581
@@ -598,14 +598,14 @@ parameters:
       notes: 'Owner states a carburettor engine (E-017); literature for the S trim agrees (E-012, E-013); the round air cleaner on top of the engine (E-027) is typical of a downdraught carburettor, but the carburettor itself is hidden, so this stays ESTIMATED. Fuel-injected 1.6 i.e. engines (E-009) are a DIFFERENT variant: specs/configuration_rules.yaml forbids engine.* values sourced from them while this value is ''carburettor''.'
     ignition_type:
       name: Ignition system type
-      value: null
+      value: electronic (breakerless) module
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-051]
       verify_by: Engine bay photo (distributor, coil)
-      notes: ''
+      notes: Module-like unit on the LH inner wing (photo). Listings sell both breaker-point and module distributors for the family; distributor not visible.
     cooling_system_type:
       name: Cooling system type
       value: liquid-cooled; front radiator with electric fan; separate expansion tank
@@ -970,24 +970,24 @@ parameters:
       notes: Minimum 9 mm (E-037).
     brake_booster_fitted:
       name: Brake booster (servo) fitted
-      value: null
+      value: true
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-050]
       verify_by: Engine bay photo behind the master cylinder
-      notes: ''
+      notes: Round unit behind the master cylinder at the LH bulkhead (photo interpretation).
     parking_brake_type:
       name: Parking brake type
-      value: null
+      value: centre lever, cables to rear drums
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-055, E-042]
       verify_by: Photo of the lever and underbody cables
-      notes: ''
+      notes: Lever seen in the interior photo; cables inferred.
   # ---------------------------------------------------------------- Wheels and tires
   wheels_tires:
     tire_size_front:
@@ -1032,14 +1032,14 @@ parameters:
       notes: 'PROVISIONAL CAD value given by the owner (E-018), not measured. 5.5 in = 139.7 mm between the flanges. Verify: rim stamping or inside width between the flanges.'
     wheel_offset_et:
       name: Wheel offset (ET)
-      value: null
+      value: 29
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-053]
       verify_by: Rim stamping
-      notes: ''
+      notes: Fiat 131 4x98 wheels (single source); VEH-01 black steel 14 in rims not checked.
     wheel_pcd:
       name: Bolt-circle diameter (PCD)
       value: 98
@@ -1062,14 +1062,14 @@ parameters:
       notes: Four wheel nuts on the front wheel in one exterior photo (E-026); other wheels assumed the same. PCD and centre bore not measurable from photos.
     wheel_centre_bore:
       name: Wheel centre bore
-      value: null
+      value: 58.1
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.5
+      source: [E-053]
       verify_by: Measure with the wheel off
-      notes: ''
+      notes: Generic Fiat 4x98 hub bore; matches E-053.
     wheel_material:
       name: Wheel material (steel / alloy)
       value: pressed steel
@@ -1336,34 +1336,34 @@ parameters:
       notes: ''
     battery_capacity:
       name: Battery capacity
-      value: null
+      value: 72
       unit: Ah
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-049]
       verify_by: Battery label photo
-      notes: ''
+      notes: Label of the fitted battery (İnci Formul A Taurus). The original factory battery is not known.
     battery_cold_cranking:
       name: Battery cold-cranking current
-      value: null
+      value: 700
       unit: A
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-049]
       verify_by: Battery label photo
-      notes: ''
+      notes: 700 A (EN) per label.
     battery_case_length:
       name: Battery case length
-      value: 242
+      value: 278
       unit: mm
       status: ESTIMATED
       confidence: LOW
-      tolerance: 36
-      source: [E-043]
+      tolerance: 10
+      source: [E-043, E-049]
       verify_by: Tape on the battery
-      notes: İnci Formul A 60 Ah L2 case; if the battery is 72 Ah (label partly reads ...2 Ah) about 278 mm, hence the tolerance.
+      notes: '72 Ah case (E-049): 278 x 175 x 175 is the common 72 Ah size (Exide FA722, Tudor TA722); İnci''s own 72 Ah sheet not found.'
     battery_case_width:
       name: Battery case width
       value: 175
@@ -1371,19 +1371,19 @@ parameters:
       status: ESTIMATED
       confidence: LOW
       tolerance: 2
-      source: [E-043]
+      source: [E-043, E-049]
       verify_by: Tape on the battery
       notes: Same 175 mm for 60 and 72 Ah cases.
     battery_case_height:
       name: Battery case height
-      value: 190
+      value: 175
       unit: mm
       status: ESTIMATED
       confidence: LOW
       tolerance: 15
-      source: [E-043]
+      source: [E-043, E-049]
       verify_by: Tape on the battery
-      notes: 190 mm (60 Ah) or about 175 mm (72 Ah).
+      notes: Common 72 Ah case height; İnci 60 Ah is 190 mm.
     alternator_rated_current:
       name: Alternator rated current
       value: null

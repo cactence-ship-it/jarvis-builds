@@ -2,6 +2,15 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - 52 unknown values pass, engineering documents (D-040)
+
+### Added
+- Evidence E-049..E-055 (battery label photo, booster/ignition/handbrake photos, Fiat 131 clearance and wheel data, OEM cross references).
+- Spec: battery 72 Ah / 700 A VERIFIED; battery case 278 x 175 x 175 (LOW); brake booster, parking brake, ignition type, ground clearance, wheel ET and centre bore ESTIMATED. Spec 149 parameters: 27 VERIFIED / 78 ESTIMATED / 44 UNKNOWN.
+- docs/engineering/: MASTER_SPECIFICATION, OEM_CROSS_REFERENCE, UNKNOWN_VALUES_REGISTER, DIMENSION_MEASUREMENT_GUIDE, CAD_COORDINATE_SYSTEM, SOURCE_REGISTER, ENGINEERING_CHANGELOG.
+- Battery CAD and Tripo battery skin resized to the 72 Ah case.
+- Tests: build, unit tests, validate, viewer smoke test pass.
+
 ## [Unreleased] - 2026-11-07 - Front suspension and steering from listings (D-039)
 
 ### Added

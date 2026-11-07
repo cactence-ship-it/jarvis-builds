@@ -9,11 +9,11 @@ Spec revizyonu 0.8.0: 149 parametre. Değerler ve açıklamalar `specs/kartal_s_
 | Sınıf | Anlamı | Adet |
 |---|---|---|
 | MEASURED | Araç üzerinde fiziksel ölçümle elde edildi (MEASUREMENT kanıtı, VERIFIED). | 0 |
-| DOCUMENT_CONFIRMED | Ruhsat veya teknik belgeyle doğrulandı (DOCUMENT/PHOTO kanıtı, VERIFIED). | 25 |
+| DOCUMENT_CONFIRMED | Ruhsat veya teknik belgeyle doğrulandı (DOCUMENT/PHOTO kanıtı, VERIFIED). | 27 |
 | USER_CONFIRMED | Araç sahibi doğrudan söyledi (USER_STATEMENT, güven HIGH); belge veya ölçü olmadan ESTIMATED kalır. | 4 |
-| SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 9 |
-| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 59 |
-| UNKNOWN | Henüz bilinmiyor; değer yok. | 52 |
+| SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 10 |
+| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 64 |
+| UNKNOWN | Henüz bilinmiyor; değer yok. | 44 |
 
 Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomatik türetilir. ESTIMATED değerler kesin ölçü değildir; gerekçeleri ve nasıl doğrulanacakları spec'teki `notes` ve `verify_by` alanlarındadır.
 
@@ -39,7 +39,7 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `dimensions.rear_track` | Rear track (tyre tread centre to centre) | 1327 mm | ± 15 | ESTIMATED | ESTIMATED / LOW | E-011 | Tread centres at the ground |
 | `dimensions.front_overhang` | Front overhang (front axle to front extremity) | - |  | UNKNOWN | UNKNOWN / NONE | - | Plumb line at the front extremity to the front hub centre |
 | `dimensions.rear_overhang` | Rear overhang (rear axle to rear extremity) | - |  | UNKNOWN | UNKNOWN / NONE | - | Plumb line at the rear extremity to the rear hub centre |
-| `dimensions.ground_clearance_min` | Minimum ground clearance (unladen) | - |  | UNKNOWN | UNKNOWN / NONE | - | Lowest underbody point to the ground; name the component in notes |
+| `dimensions.ground_clearance_min` | Minimum ground clearance (unladen) | 120 mm | ± 20 | ESTIMATED | ESTIMATED / LOW | E-052 | Lowest underbody point to the ground; name the component in notes |
 | `dimensions.wheel_centre_to_arch_fl` | Hub centre to wheel-arch lip, front left | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge (records ride height) |
 | `dimensions.wheel_centre_to_arch_fr` | Hub centre to wheel-arch lip, front right | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
 | `dimensions.wheel_centre_to_arch_rl` | Hub centre to wheel-arch lip, rear left | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
@@ -75,7 +75,7 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `engine.fuel_type` | Fuel type as registered (check for LPG conversion) | LPG (registered conversion) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-014, E-015 | Ruhsat 'Cinsi' field, which carries the fuel suffix (here 'H.OTO LPG'); these documents have no separate 'Yakıt cinsi' field |
 | `engine.base_fuel` | Base fuel of the engine before the LPG conversion | petrol |  | USER_CONFIRMED | ESTIMATED / HIGH | E-017, E-011, E-013 | Engine-bay photos (carburettor or injection system, LPG mixer / injectors, change-over switch) |
 | `engine.fuel_system_type` | Fuel system (carburettor / single-point / multi-point injection) | carburettor |  | USER_CONFIRMED | ESTIMATED / HIGH | E-017, E-012, E-013, E-027 | Engine bay photo of the intake |
-| `engine.ignition_type` | Ignition system type | - |  | UNKNOWN | UNKNOWN / NONE | - | Engine bay photo (distributor, coil) |
+| `engine.ignition_type` | Ignition system type | electronic (breakerless) module |  | ESTIMATED | ESTIMATED / LOW | E-051 | Engine bay photo (distributor, coil) |
 | `engine.cooling_system_type` | Cooling system type | liquid-cooled; front radiator with electric fan; separate expansion tank |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Engine bay photo |
 | `engine.radiator_core_width` | Radiator core width | 470 mm | ± 5 | ESTIMATED | ESTIMATED / LOW | E-041 | Tape across the radiator core |
 | `engine.radiator_core_height` | Radiator core height | 292 mm | ± 5 | ESTIMATED | ESTIMATED / LOW | E-041 | Tape on the radiator core |
@@ -111,16 +111,16 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `brakes.rear_drum_diameter` | Rear drum diameter | 228 mm | ± 2 | ESTIMATED | ESTIMATED / LOW | E-042 | Manual / measurement with the wheel off |
 | `brakes.rear_drum_width` | Rear drum width | 47.7 mm | ± 1 | ESTIMATED | ESTIMATED / LOW | E-042 | Caliper with the drum off |
 | `brakes.front_disc_thickness` | Front disc thickness (new) | 10.8 mm | ± 0.2 | ESTIMATED | ESTIMATED / LOW | E-037 | Caliper on the disc |
-| `brakes.brake_booster_fitted` | Brake booster (servo) fitted | - |  | UNKNOWN | UNKNOWN / NONE | - | Engine bay photo behind the master cylinder |
-| `brakes.parking_brake_type` | Parking brake type | - |  | UNKNOWN | UNKNOWN / NONE | - | Photo of the lever and underbody cables |
+| `brakes.brake_booster_fitted` | Brake booster (servo) fitted | True |  | ESTIMATED | ESTIMATED / MEDIUM | E-050 | Engine bay photo behind the master cylinder |
+| `brakes.parking_brake_type` | Parking brake type | centre lever, cables to rear drums |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-055, E-042 | Photo of the lever and underbody cables |
 | `wheels_tires.tire_size_front` | Front tire size and load/speed index | 185/65 R14 |  | ESTIMATED | ESTIMATED / MEDIUM | E-028 | Sidewall photo (also record the DOT date code) |
 | `wheels_tires.tire_size_rear` | Rear tire size and load/speed index | 185/65 R14 |  | ESTIMATED | ESTIMATED / MEDIUM | E-028 | Sidewall photo |
 | `wheels_tires.wheel_rim_diameter` | Rim diameter | 14 in | ± 0.5 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-017, E-010, E-028 | Sidewall marking / rim stamping |
 | `wheels_tires.wheel_rim_width` | Rim width | 5.5 in | ± 0.5 | ESTIMATED | ESTIMATED / LOW | E-018 | Rim stamping |
-| `wheels_tires.wheel_offset_et` | Wheel offset (ET) | - |  | UNKNOWN | UNKNOWN / NONE | - | Rim stamping |
+| `wheels_tires.wheel_offset_et` | Wheel offset (ET) | 29 mm | ± 5 | ESTIMATED | ESTIMATED / LOW | E-053 | Rim stamping |
 | `wheels_tires.wheel_pcd` | Bolt-circle diameter (PCD) | 98 mm | ± 0.5 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-033, E-026 | Measure across studs / documents |
 | `wheels_tires.wheel_fastener_count` | Number of wheel bolts or studs | 4 |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-026 | Wheel photo |
-| `wheels_tires.wheel_centre_bore` | Wheel centre bore | - |  | UNKNOWN | UNKNOWN / NONE | - | Measure with the wheel off |
+| `wheels_tires.wheel_centre_bore` | Wheel centre bore | 58.1 mm | ± 0.5 | ESTIMATED | ESTIMATED / LOW | E-053 | Measure with the wheel off |
 | `wheels_tires.wheel_material` | Wheel material (steel / alloy) | pressed steel |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-017, E-026, E-028 | Wheel photo |
 | `wheels_tires.spare_wheel_location` | Spare wheel location | not in the spare-wheel well (the LPG tank occupies it); a wheel stood loose in the luggage compartment in the photos |  | ESTIMATED | ESTIMATED / MEDIUM | E-022 | Cargo compartment / underbody photo |
 | `wheels_tires.wheel_colour` | Wheel finish / colour | black (painted) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-017, E-026 | Wheel photo |
@@ -147,11 +147,11 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `lpg_system.tank_marking` | LPG tank maker and approval marking | maker ATIKER; approval mark 'E7 67R-01 0049401' (UN Regulation No. 67, 01 series) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-022 | Photo of the tank top |
 | `electrical.system_voltage` | System voltage | 12 V | ± 0.5 | ESTIMATED | ESTIMATED / MEDIUM | E-027 | Battery label photo |
 | `electrical.earth_polarity` | Earth polarity | - |  | UNKNOWN | UNKNOWN / NONE | - | Battery terminal photo |
-| `electrical.battery_capacity` | Battery capacity | - |  | UNKNOWN | UNKNOWN / NONE | - | Battery label photo |
-| `electrical.battery_cold_cranking` | Battery cold-cranking current | - |  | UNKNOWN | UNKNOWN / NONE | - | Battery label photo |
-| `electrical.battery_case_length` | Battery case length | 242 mm | ± 36 | ESTIMATED | ESTIMATED / LOW | E-043 | Tape on the battery |
-| `electrical.battery_case_width` | Battery case width | 175 mm | ± 2 | ESTIMATED | ESTIMATED / LOW | E-043 | Tape on the battery |
-| `electrical.battery_case_height` | Battery case height | 190 mm | ± 15 | ESTIMATED | ESTIMATED / LOW | E-043 | Tape on the battery |
+| `electrical.battery_capacity` | Battery capacity | 72 Ah | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-049 | Battery label photo |
+| `electrical.battery_cold_cranking` | Battery cold-cranking current | 700 A | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-049 | Battery label photo |
+| `electrical.battery_case_length` | Battery case length | 278 mm | ± 10 | ESTIMATED | ESTIMATED / LOW | E-043, E-049 | Tape on the battery |
+| `electrical.battery_case_width` | Battery case width | 175 mm | ± 2 | ESTIMATED | ESTIMATED / LOW | E-043, E-049 | Tape on the battery |
+| `electrical.battery_case_height` | Battery case height | 175 mm | ± 15 | ESTIMATED | ESTIMATED / LOW | E-043, E-049 | Tape on the battery |
 | `electrical.alternator_rated_current` | Alternator rated current | - |  | UNKNOWN | UNKNOWN / NONE | - | Alternator label photo |
 | `electrical.headlamp_type` | Headlamp type / bulb | H4 halogen |  | ESTIMATED | ESTIMATED / LOW | E-036 | Headlamp photo / bulb marking |
 | `electrical.fuse_box_location` | Fuse box location | - |  | UNKNOWN | UNKNOWN / NONE | - | Photo |

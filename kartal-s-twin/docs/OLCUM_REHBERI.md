@@ -23,7 +23,7 @@ Bu rehber, dijital ikizdeki **tahminleri (ESTIMATED)** ve **varsayımları (PLAC
 | M09 | Rear track (tyre tread centre to centre) (`dimensions.rear_track`) | Arka iki lastiğin diş ortasından ortasına. | ESTIMATED (1327) |
 | M10 | Front overhang (front axle to front extremity) (`dimensions.front_overhang`) | Ön jant merkezinden tamponun en ön noktasına (yatay, yerde çekülle). | UNKNOWN |
 | M11 | Rear overhang (rear axle to rear extremity) (`dimensions.rear_overhang`) | Arka jant merkezinden tamponun en arka noktasına. | UNKNOWN |
-| M12 | Minimum ground clearance (unladen) (`dimensions.ground_clearance_min`) | Gövdenin en alçak noktasından yere; hangi parça olduğunu yazın. | UNKNOWN |
+| M12 | Minimum ground clearance (unladen) (`dimensions.ground_clearance_min`) | Gövdenin en alçak noktasından yere; hangi parça olduğunu yazın. | ESTIMATED (120) |
 | M13 | Hub centre to wheel-arch lip, front left (`dimensions.wheel_centre_to_arch_fl`) | Sol ön: jant merkezinden çamurluk kemerinin kenarına dik mesafe. | UNKNOWN |
 | M14 | Hub centre to wheel-arch lip, front right (`dimensions.wheel_centre_to_arch_fr`) | Sağ ön: aynı ölçü. | UNKNOWN |
 | M15 | Hub centre to wheel-arch lip, rear left (`dimensions.wheel_centre_to_arch_rl`) | Sol arka: aynı ölçü. | UNKNOWN |
@@ -97,4 +97,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 149 parametre: 25 VERIFIED, 72 ESTIMATED, 52 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 149 parametre: 27 VERIFIED, 78 ESTIMATED, 44 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
