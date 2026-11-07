@@ -386,6 +386,34 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     applyLayers();   // layer 1: not drawn, still raycast
     document.getElementById('s-on').classList.toggle('on', o > 0.01); document.getElementById('s-off').classList.toggle('on', o <= 0.01);
   }
+  // Glass lenses over the shell's lamp areas (D-036): the photo texture shows through, the lens adds
+  // the specular highlight a flat texture cannot. Children of the shell, so they hide with it.
+  function addLenses() {
+    const items = jsonTag('lens-data'); if (!items) return;
+    shell.updateMatrixWorld(true);
+    const rc = new THREE.Raycaster(), inv = new THREE.Matrix4().copy(shell.matrixWorld).invert();
+    const shellMeshes = []; shell.traverse(m => { if (m.isMesh) shellMeshes.push(m); });
+    shellMeshes.forEach(m => { m.userData.rc = m.raycast; m.raycast = THREE.Mesh.prototype.raycast; });
+    items.forEach(it => {
+      const cx = (it.x[0] + it.x[1]) / 2, cy = (it.y[0] + it.y[1]) / 2, w = Math.abs(it.x[1] - it.x[0]), h = it.y[1] - it.y[0];
+      const front = it.face === 'front', dir = new THREE.Vector3(0, 0, front ? -1 : 1);
+      const zs = [];   // depth at the centre and 4 inner points, so the lens follows the face
+      for (const [dx, dy] of [[0, 0], [-.35, -.35], [.35, -.35], [-.35, .35], [.35, .35]]) {
+        rc.set(new THREE.Vector3(cx + dx * w, cy + dy * h, front ? 5 : -10), dir);
+        const hit = rc.intersectObjects(shellMeshes, false)[0]; if (hit) zs.push(hit.point.z);
+      }
+      if (!zs.length) return;
+      const z = front ? Math.max(...zs) + 0.004 : Math.min(...zs) - 0.004;
+      const head = it.kind === 'head';
+      const mat = new THREE.MeshPhysicalMaterial({ color: head ? 0xf4f8ff : 0xff2a1a, transparent: true, opacity: head ? 0.22 : 0.35,
+        roughness: 0.04, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 2.4, depthWrite: false,
+        emissive: head ? 0x111316 : 0x2a0400 });
+      const lens = new THREE.Mesh(new THREE.BoxGeometry(w * 0.98, h * 0.96, 0.006), mat);
+      lens.position.set(cx, cy, z); lens.name = 'lens:' + it.label; lens.raycast = () => {};
+      shell.attach(lens);
+    });
+    shellMeshes.forEach(m => { m.raycast = m.userData.rc; });
+  }
   function setupShell() {
     const data = document.getElementById('glb-shell'), place = jsonTag('shell-place');
     if (!data || !place) return;
@@ -395,6 +423,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       shell = g.scene; shell.position.set(...place.position); shell.quaternion.set(...place.quaternion); shell.scale.setScalar(place.scale);
       shell.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.raycast = () => {}; shellMats.push(m.material); } });
       root.add(shell);
+      addLenses();
       document.getElementById('shellRow').hidden = false;
       document.getElementById('xray').oninput = e => setShellOpacity(e.target.value / 100);
       document.getElementById('s-on').onclick = () => setShellOpacity(1);

@@ -2,6 +2,13 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Shell symmetry and lamp glass (D-036)
+
+### Changed
+- Photo shell: plan-view shear removed (front fascia and rear face now centred, lamps symmetric).
+- Viewer: glass lenses over headlamps and tail lamps of the shell.
+- Tests: viewer smoke test passes, no console errors.
+
 ## [Unreleased] - 2026-11-07 - Shell proportions fixed (D-035)
 
 ### Changed

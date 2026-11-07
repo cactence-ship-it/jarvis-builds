@@ -88,6 +88,9 @@ def main() -> int:
         shell = base64.b64encode(args.shell.read_bytes()).decode()
         tag += f'<script type="application/octet-stream" id="glb-shell">{shell}</script>\n'
         tag += f'<script type="application/json" id="shell-place">{json.dumps(inst)}</script>\n'
+        lenses = json.loads((ROOT / "assembly" / "tripo_parts.json").read_text(encoding="utf-8")).get("lenses")
+        if lenses:
+            tag += f'<script type="application/json" id="lens-data">{json.dumps(lenses["items"])}</script>\n'
     marker = '<script src="https://cdn.jsdelivr.net/npm/three@'
     if marker not in page:
         sys.exit("viewer/index.html: three.js script tag not found")

@@ -1,12 +1,69 @@
 {
-  "note": "Plan A: one Tripo mesh of the whole car (wheels included), placed on the twin by tools/meshfit. Plan B (body + wheel): tripo_parts_split.json. GLB files live in refs/derived/tripo/ (git-ignored: textures can show the plate). Shapes are visual estimates, never measurements (D-006, D-030).",
-  "parts": [
-    {
-      "id": "VIS-TRIPO-CAR",
-      "label": "Bütün araç (tekerler dahil)",
-      "file": "car.glb",
-      "kind": "car",
-      "front": "+x"
-    }
+ "note": "Plan A: one Tripo mesh of the whole car (wheels included), placed on the twin by tools/meshfit. Plan B (body + wheel): tripo_parts_split.json. GLB files live in refs/derived/tripo/ (git-ignored: textures can show the plate). Shapes are visual estimates, never measurements (D-006, D-030).",
+ "parts": [
+  {
+   "id": "VIS-TRIPO-CAR",
+   "label": "Bütün araç (tekerler dahil)",
+   "file": "car.glb",
+   "kind": "car",
+   "front": "+x"
+  }
+ ],
+ "lenses": {
+  "note": "Glass lenses laid over the lamp areas of the photo shell (D-036). Rectangles in the twin frame (metres, glTF: x right-left, y up), measured on orthographic front/rear renders of the fitted shell, mirrored to the mean of both sides. Depth comes from a ray onto the shell at run time. Visual only.",
+  "items": [
+   {
+    "label": "Far (sol)",
+    "face": "front",
+    "x": [
+     0.38,
+     0.755
+    ],
+    "y": [
+     0.59,
+     0.795
+    ],
+    "kind": "head"
+   },
+   {
+    "label": "Far (sağ)",
+    "face": "front",
+    "x": [
+     -0.755,
+     -0.38
+    ],
+    "y": [
+     0.59,
+     0.795
+    ],
+    "kind": "head"
+   },
+   {
+    "label": "Stop (sol)",
+    "face": "rear",
+    "x": [
+     0.615,
+     0.745
+    ],
+    "y": [
+     0.46,
+     0.73
+    ],
+    "kind": "tail"
+   },
+   {
+    "label": "Stop (sağ)",
+    "face": "rear",
+    "x": [
+     -0.745,
+     -0.615
+    ],
+    "y": [
+     0.46,
+     0.73
+    ],
+    "kind": "tail"
+   }
   ]
+ }
 }
