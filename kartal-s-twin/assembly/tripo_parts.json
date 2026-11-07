@@ -6,7 +6,7 @@
       "label": "Bütün araç (tekerler dahil)",
       "file": "car.glb",
       "kind": "car",
-      "front": "+z"
+      "front": "-x"
     }
   ]
 }

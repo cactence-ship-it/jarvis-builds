@@ -2,6 +2,13 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Tripo v3.1 model, no correction
+
+### Changed
+- Owner decision 2026-11-07: plates may stay visible in Tripo uploads and textures; owner originals are never edited. GLBs still stay out of the public repository (D-012).
+- Earlier API calls used Tripo's default (older) model version. Regenerated with the Tripo CLI (`tripo make`, v3.1-20260211, PBR, detailed texture) from the original rear three-quarter photo: width -4.3 %, height -3.8 % (WARN), so the mesh is used unedited (uniform scale only, no D-031/D-032 correction). Heading front -x, checked visually; wheels sit on the reference wheel centres. Other candidates: v3.1 from the front three-quarter photo (+12.2 % / +13.2 %), P2 (+18.2 % / +7.7 %, no texture). 200 credits.
+- Phone viewer: mesh simplified to 15 %, textures 2048 px WebP, embedded (7.9 MB page).
+
 ## [Unreleased] - 2026-11-07 - Tripo model from owner photos
 
 ### Changed
