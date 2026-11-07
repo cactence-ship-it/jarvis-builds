@@ -106,21 +106,25 @@ def build(ctx):
         "Exhaust manifold: four runners into a collector on the RH side (side guessed)")
     add("ENG-007", block(xm - 60, xm + 60, -100, 20, zc + 20, zc + 95, ALU),
         "Carburettor envelope under the air cleaner (carburettor itself hidden in the photos)")
-    rz0, rz1 = 250, 650
-    rfan = rx + 60
-    add("ENG-008", block(rx - 15, rx + 15, -260, 260, rz0, rz1, (0.20, 0.20, 0.21, 1.0))              # core
-        + block(rx - 22, rx + 22, -300, -260, rz0 - 20, rz1 + 20, PLASTIC)                       # LH tank
-        + block(rx - 22, rx + 22, 260, 300, rz0 - 20, rz1 + 20, PLASTIC)                         # RH tank
-        + [(cyl((rx, 280, rz1 + 20), (rx, 280, rz1 + 45), 16), STEEL),
-           (disc((rx, 280, rz1 + 50), (0, 0, 1), 28, 10), STEEL)]                                 # filler neck + cap
-        + [(ring((rfan, 0, (rz0 + rz1) / 2), (1, 0, 0), 182, 172, 50), PLASTIC)]                 # fan shroud
-        + fan((rfan, 0, (rz0 + rz1) / 2), 40, 165, 7, PLASTIC)
-        + [(cyl((rfan + 20, 0, (rz0 + rz1) / 2), (rfan + 75, 0, (rz0 + rz1) / 2), 45), DARK)]   # fan motor
-        + pipe([(rx + 22, 280, rz1 - 30), (rx + 160, 260, rz1 - 10), (x0 - 120, 120, zh + 40), (x0 - 10, 60, zh + 40)], 19, RUBBER)
-        + pipe([(rx + 22, -280, rz0 + 40), (rx + 180, -240, rz0 + 20), (xf - 40, -90, cz + 40), (xf, 0, cz + 150)], 19, RUBBER)
+    cw, ch, cd = (base.get(k) for k in ("engine.radiator_core_width", "engine.radiator_core_height", "engine.radiator_core_depth"))  # E-041
+    rzm = 450                                                       # radiator centre height (guess)
+    rz0, rz1, hwc = rzm - ch / 2, rzm + ch / 2, cw / 2
+    rfan = rx + cd / 2 + 45
+    fr = min(ch / 2 - 8, 150)                                       # fan must fit the core height
+    add("ENG-008", block(rx - cd / 2, rx + cd / 2, -hwc, hwc, rz0, rz1, (0.20, 0.20, 0.21, 1.0))        # core
+        + block(rx - cd / 2 - 8, rx + cd / 2 + 8, -hwc - 45, -hwc, rz0 - 15, rz1 + 15, PLASTIC)          # LH tank
+        + block(rx - cd / 2 - 8, rx + cd / 2 + 8, hwc, hwc + 45, rz0 - 15, rz1 + 15, PLASTIC)            # RH tank
+        + [(cyl((rx, hwc + 22, rz1 + 15), (rx, hwc + 22, rz1 + 40), 16), STEEL),
+           (disc((rx, hwc + 22, rz1 + 45), (0, 0, 1), 28, 10), STEEL)]                                   # filler neck + cap
+        + [(ring((rfan, 0, rzm), (1, 0, 0), fr + 12, fr + 4, 45), PLASTIC)]                              # fan shroud
+        + fan((rfan, 0, rzm), 38, fr, 7, PLASTIC)
+        + [(cyl((rfan + 20, 0, rzm), (rfan + 75, 0, rzm), 45), DARK)]                                   # fan motor
+        + pipe([(rx + cd / 2 + 8, hwc + 22, rz1 - 30), (rx + 160, hwc, rz1 - 10), (x0 - 120, 120, zh + 40), (x0 - 10, 60, zh + 40)], 19, RUBBER)
+        + pipe([(rx + cd / 2 + 8, -hwc - 22, rz0 + 30), (rx + 180, -hwc, rz0 + 20), (xf - 40, -90, cz + 40), (xf, 0, cz + 150)], 19, RUBBER)
         + [(disc((xf, 0, cz + 150), (1, 0, 0), 55, 18), ALU)],                                    # water-pump pulley
-        "Radiator (core, side tanks, filler cap on the RH tank as in owner photos), electric fan behind "
-        "it with shroud and motor, upper/lower hoses and water-pump pulley; sizes guessed")
+        f"Radiator core {cw} x {ch} x {cd} mm (2-row aluminium, plastic side tanks; aftermarket M131 1.6 listing E-041, "
+        "ESTIMATED LOW), filler cap on the RH tank (owner photos), electric fan sized to the core with shroud and motor, "
+        "hoses and water-pump pulley (positions guessed)")
     pulleys = [(0, cz, 65), (0, cz + 150, 55), (-hw - 120, zh - 20, 35), (200, zh + 50, 60)]
     add("ENG-009", [(cyl((x0 + 10, -hw - 120, zh - 20), (x0 + 120, -hw - 120, zh - 20), 62), ALU),
                     (disc((xf, -hw - 120, zh - 20), (1, 0, 0), 35, 18), STEEL),

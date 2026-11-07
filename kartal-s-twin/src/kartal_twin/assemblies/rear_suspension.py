@@ -13,14 +13,22 @@ def build(ctx):
     w = layout.wheel_centres(base)
     xa, za = w["RL"][0], w["RL"][2]
     sy, tr, cz_ = base.get("pkg_rear_spring_y"), base.get("pkg_axle_tube_r"), base.get("pkg_cargo_floor_z")
+    dmin, dmax = base.get("suspension.rear_damper_length_compressed"), base.get("suspension.rear_damper_length_extended")
     add = adder(ctx, ASSEMBLY, base)
     for s, spr, dmp, hub in ((-1, "RSU-001", "RSU-003", "RSU-007"), (1, "RSU-002", "RSU-004", "RSU-008")):
         y = s * sy
         add(spr, [(cyl((xa, y, za + tr), (xa, y, cz_ - 110), 75), (0.55, 0.55, 0.60, 1.0))],
             "Spring ENVELOPE only: coil or leaf is UNKNOWN (suspension.rear_spring_type)")
-        add(dmp, [(cyl((xa + 70, s * (sy + 70), za - 30), (xa + 120, s * (sy + 40), za + 160), 25), DARK),
-                  (cyl((xa + 120, s * (sy + 40), za + 160), (xa + 150, s * (sy + 25), cz_ - 120), 10), STEEL)],
-            "Telescopic damper; mounting points guessed")
+        lo, up = (xa + 70, s * (sy + 70), za - 30), (xa + 150, s * (sy + 25), cz_ - 120)   # guessed eyes
+        d = [b - a for a, b in zip(lo, up)]
+        n = sum(v * v for v in d) ** 0.5
+        L = (dmin + dmax) / 2                                           # mid-stroke eye-to-eye (E-044)
+        u = [v / n for v in d]
+        top = tuple(a + v * L for a, v in zip(lo, u))
+        body = tuple(a + v * (dmin - 40) for a, v in zip(lo, u))
+        add(dmp, [(cyl(lo, body, 25), DARK), (cyl(body, top, 10), STEEL)],
+            f"Telescopic damper drawn at mid stroke, eye-to-eye {L:.0f} mm between {dmin} and {dmax} mm "
+            "(Fiat 131 saloon KYB 343142, E-044, ESTIMATED LOW); lower eye guessed, upper eye follows the length")
         hy = w["RL" if s < 0 else "RR"][1] - s * 110
         add(hub, [(cyl((xa, hy, za), (xa, hy + s * 40, za), 70), STEEL)], "Axle end / hub flange envelope")
     links = [(cyl((xa + 60, -sy + 40, za + 20), (xa + 90, sy + 80, za + 90), 15), DARK)]

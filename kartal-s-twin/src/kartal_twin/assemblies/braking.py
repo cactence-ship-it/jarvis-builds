@@ -1,8 +1,8 @@
-"""BRAKING (BRK) - PLACEHOLDER brake envelopes and hydraulic layout. Front brake TYPE is UNKNOWN
-(neutral envelope); rear drums are ESTIMATED from one photo (E-025). Master cylinder and booster
+"""BRAKING (BRK) - PLACEHOLDER brake envelopes and hydraulic layout. Front discs (E-032/E-037) and rear
+drums (E-025/E-042) sized from parts listings and the Fiat 131 catalogue (ESTIMATED LOW). Master cylinder and booster
 at the LH bulkhead (LHD, E-024); lines and cables are schematic routes, not measured."""
 from .. import layout
-from ..cad.mech import ALU, DARK, STEEL, adder, cyl, disc, pipe
+from ..cad.mech import ALU, DARK, STEEL, adder, cyl, disc, pipe, ring
 
 ASSEMBLY = "BRAKING"
 PHASE = 8
@@ -18,13 +18,25 @@ def build(ctx):
     add("BRK-001", [(cyl((mx - 140, my, mz), (mx, my, mz), 30), ALU), (cyl((mx - 90, my, mz + 30), (mx - 90, my, mz + 80), 35), (0.8, 0.8, 0.7, 1.0))],
         "Master cylinder with reservoir at the LH bulkhead (position guessed)")
     add("BRK-002", [(disc((mx + 60, my, mz), (1, 0, 0), 110, 110), DARK)], "Brake booster (servo) envelope; fitment UNKNOWN (brakes.brake_booster_fitted)")
-    for cid, key, note in (("BRK-004", "FL", "Front brake ENVELOPE: disc or drum is UNKNOWN (brakes.front_brake_type)"),
-                           ("BRK-005", "FR", "Front brake ENVELOPE: disc or drum is UNKNOWN (brakes.front_brake_type)"),
-                           ("BRK-006", "RL", "Rear drum brake (ESTIMATED from photo E-025); size guessed"),
-                           ("BRK-007", "RR", "Rear drum brake (ESTIMATED from photo E-025); size guessed")):
+    dd, dt = base.get("brakes.front_disc_diameter"), base.get("brakes.front_disc_thickness")      # E-037
+    rd, rw = base.get("brakes.rear_drum_diameter"), base.get("brakes.rear_drum_width")            # E-042
+    for cid, key in (("BRK-004", "FL"), ("BRK-005", "FR")):
         x, y, z = w[key]
         s = 1 if y > 0 else -1
-        add(cid, [(disc((x, y - s * 45, z), (0, 1, 0), br, 45 if key[0] == "R" else 22), DARK if key[0] == "R" else STEEL)], note)
+        yc = y - s * 60
+        add(cid, [(disc((x, yc, z), (0, 1, 0), dd / 2, dt), STEEL),
+                  (disc((x, yc + s * 12, z), (0, 1, 0), 70, 18), DARK),                         # hat
+                  (cyl((x + 55, yc - 22, z + 75), (x + 55, yc + 22, z + 75), 38), DARK)],          # caliper
+            f"Front disc {dd} mm x {dt} mm (aftermarket listings E-037, ESTIMATED LOW) with a single-piston "
+            "sliding caliper behind the axle line (caliper size and position guessed)")
+    for cid, key in (("BRK-006", "RL"), ("BRK-007", "RR")):
+        x, y, z = w[key]
+        s = 1 if y > 0 else -1
+        yc = y - s * 70
+        add(cid, [(ring((x, yc, z), (0, 1, 0), rd / 2 + 10, rd / 2, rw), DARK),
+                  (disc((x, yc + s * (rw / 2 + 3), z), (0, 1, 0), rd / 2 + 10, 6), DARK),             # drum face
+                  (disc((x, yc - s * (rw / 2 + 3), z), (0, 1, 0), rd / 2 + 4, 6), STEEL)],             # back plate
+            f"Rear drum {rd} mm x {rw} mm (Fiat 131 catalogue E-042, ESTIMATED LOW); wall thickness and back plate guessed")
     lines = []
     for key in ("FL", "FR", "RL", "RR"):
         x, y, z = w[key]

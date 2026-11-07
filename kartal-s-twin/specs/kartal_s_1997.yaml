@@ -616,6 +616,36 @@ parameters:
       source: [E-027]
       verify_by: Engine bay photo
       notes: Engine-bay photos (E-027). Radiator cap marked '0.9' (presumably bar); not recorded as a parameter.
+    radiator_core_width:
+      name: Radiator core width
+      value: 470
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-041]
+      verify_by: Tape across the radiator core
+      notes: Aftermarket KALE 0106092AL for M131 1.6 (2-row aluminium, plastic tanks).
+    radiator_core_height:
+      name: Radiator core height
+      value: 292
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-041]
+      verify_by: Tape on the radiator core
+      notes: E-041
+    radiator_core_depth:
+      name: Radiator core depth
+      value: 32
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-041]
+      verify_by: Caliper on the core
+      notes: 32 mm (one listing 34 mm).
     engine_orientation:
       name: Engine orientation (longitudinal / transverse)
       value: longitudinal
@@ -775,13 +805,33 @@ parameters:
       verify_by: Underbody photo
       notes: ''
   # ---------------------------------------------------------------- Steering
+    rear_damper_length_compressed:
+      name: Rear damper eye-to-eye length, compressed
+      value: 337
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 20
+      source: [E-044]
+      verify_by: Measure the removed damper
+      notes: KYB 343142, Fiat 131 saloon application; estate may differ.
+    rear_damper_length_extended:
+      name: Rear damper eye-to-eye length, extended
+      value: 527
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 20
+      source: [E-044]
+      verify_by: Measure the removed damper
+      notes: KYB 343142 (stroke 190 mm).
   steering:
     steering_gear_type:
       name: Steering gear type (rack-and-pinion / recirculating ball)
       value: rack-and-pinion
       unit: null
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: null
       source: [E-039, E-038]
       verify_by: Underbody or engine bay photo
@@ -823,7 +873,7 @@ parameters:
       value: 227.5
       unit: mm
       status: ESTIMATED
-      confidence: MEDIUM
+      confidence: LOW
       tolerance: 1
       source: [E-037, E-038]
       verify_by: Tape across the disc (wheel off) / manual
@@ -840,14 +890,34 @@ parameters:
       notes: Round brake housing behind the rear wheel in one underbody photo (E-025) is consistent with a drum brake; not certain. Verify with a photo through the wheel or with the wheel off.
     rear_drum_diameter:
       name: Rear drum diameter
-      value: null
+      value: 228
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-042]
       verify_by: Manual / measurement with the wheel off
-      notes: ''
+      notes: Fiat 131 1.6 rear drum (Brembo catalogue), max 230 mm; Tofaş OEM 85015914 listings give no size.
+    rear_drum_width:
+      name: Rear drum width
+      value: 47.7
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-042]
+      verify_by: Caliper with the drum off
+      notes: Fiat 131 1.6 (Brembo catalogue).
+    front_disc_thickness:
+      name: Front disc thickness (new)
+      value: 10.8
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.2
+      source: [E-037]
+      verify_by: Caliper on the disc
+      notes: Minimum 9 mm (E-037).
     brake_booster_fitted:
       name: Brake booster (servo) fitted
       value: null
@@ -1234,6 +1304,36 @@ parameters:
       source: []
       verify_by: Battery label photo
       notes: ''
+    battery_case_length:
+      name: Battery case length
+      value: 242
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 36
+      source: [E-043]
+      verify_by: Tape on the battery
+      notes: İnci Formul A 60 Ah L2 case; if the battery is 72 Ah (label partly reads ...2 Ah) about 278 mm, hence the tolerance.
+    battery_case_width:
+      name: Battery case width
+      value: 175
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-043]
+      verify_by: Tape on the battery
+      notes: Same 175 mm for 60 and 72 Ah cases.
+    battery_case_height:
+      name: Battery case height
+      value: 190
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 15
+      source: [E-043]
+      verify_by: Tape on the battery
+      notes: 190 mm (60 Ah) or about 175 mm (72 Ah).
     alternator_rated_current:
       name: Alternator rated current
       value: null

@@ -2,6 +2,17 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Dimensions from spare-part listings (D-038)
+
+### Added
+- Evidence E-041..E-044; 9 new spec parameters (radiator core, battery case, rear drum width, front disc thickness, rear damper lengths) and rear drum diameter filled: spec 144 parameters, 25 VERIFIED / 67 ESTIMATED / 52 UNKNOWN.
+- Geometry now reads them: radiator core and fan sized to the core, front discs with hat and caliper, rear drums with back plates, battery case with terminals, rear dampers at catalogue mid-stroke length.
+- U-016 (rear damper upper eye vs placeholder cargo floor).
+
+### Changed
+- Confidence of listing-based values lowered to LOW (D-020).
+- Tests: build (STEP 471 solids valid, no open bodies), unit tests, validate and viewer smoke test pass; page 15.1 MB.
+
 ## [Unreleased] - 2026-11-07 - Engine bay rev 2, sequential exploded view (D-037)
 
 ### Changed

@@ -21,8 +21,14 @@ def build(ctx):
     dx0, dx1, dz0, dz1 = base.get("pkg_dash")
     sy = base.get("pkg_steering_wheel")[1]
     add = adder(ctx, ASSEMBLY, base)
-    add("ELE-001", block(bx0, bx1, by0, by1, bz0, bz1, (0.75, 0.76, 0.78, 1.0)) + block(bx0 + 20, bx0 + 60, by0 + 20, by0 + 60, bz1, bz1 + 20, DARK),
-        "12 V battery in the engine bay (photos E-027); capacity UNKNOWN")
+    bl, bw, bh = (base.get(k) for k in ("electrical.battery_case_length", "electrical.battery_case_width", "electrical.battery_case_height"))  # E-043
+    bcx, bcy = (bx0 + bx1) / 2, (by0 + by1) / 2                       # keep the photo-based position (pkg_battery)
+    bx0, bx1, by0, by1, bz1 = bcx - bw / 2, bcx + bw / 2, bcy - bl / 2, bcy + bl / 2, bz0 + bh
+    add("ELE-001", block(bx0, bx1, by0, by1, bz0, bz1, (0.75, 0.76, 0.78, 1.0))
+        + [(cyl((bcx, by0 + 30, bz1), (bcx, by0 + 30, bz1 + 18), 9), (0.65, 0.12, 0.10, 1.0)),
+           (cyl((bcx, by1 - 30, bz1), (bcx, by1 - 30, bz1 + 18), 8), DARK)],
+        f"12 V battery {bl} x {bw} x {bh} mm, İnci Formul A L2 case (E-043, ESTIMATED LOW: the label is only partly "
+        "readable, 60 or 72 Ah); terminals at the case ends; position from photos E-027")
     fb = (dx0 + 60, -620, dz0 - 40)
     add("ELE-002", block(fb[0] - 60, fb[0] + 60, fb[1] - 80, fb[1] + 80, fb[2] - 30, fb[2] + 30, (0.25, 0.30, 0.55, 1.0)), "Fuse box under the LH dash (position guessed)")
     add("ELE-003", block(fw - 80, fw - 20, 300, 420, 700, 760, DARK), "Relay group at the bulkhead (guessed)")
