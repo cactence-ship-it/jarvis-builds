@@ -2,6 +2,19 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Public-literature data pass
+
+### Added
+- Evidence E-029..E-036 (literature, via search summaries; source pages not readable from the build environment).
+- 18 parameters moved from UNKNOWN to ESTIMATED, each with source, tolerance and a verify-by note: engine bore 86.4 mm and stroke 67.4 mm (MEDIUM; 4 cylinders give 1580.6 cm3 against the registered 1581 cm3), compression ratio 9.2, power/torque speeds 5500/3000 rpm, 5 forward gears with ratios 3.667/2.1/1.361/1.0/0.881, reverse 3.526, final drive 4.10, cable clutch, coil springs front and rear, front anti-roll bar, front disc brakes, 4x98 PCD, 846 L luggage volume, 12 V system, H4 headlamps.
+
+### Not filled (no consistent public source)
+- Engine type code, ignition type, steering-gear type, brake disc/drum diameters, wheel offset and centre bore, battery and alternator ratings; all vehicle-specific measurements (arch gaps, axle loads, LPG tank position, body profile). They stay UNKNOWN.
+
+### Changed
+- `tests/test_pipeline.py`: `test_unknown_without_placeholder_raises` now forces `engine.bore` to UNKNOWN in a copy of the spec, like the neighbouring placeholder test, so the rule stays tested when real data arrives.
+- Regenerated `docs/VERI_SOZLUGU.md` and `docs/OLCUM_REHBERI.md`.
+
 ## [0.13.0] - 2026-11-03 - Realistic rotatable studio model (owner priority)
 
 ### Added

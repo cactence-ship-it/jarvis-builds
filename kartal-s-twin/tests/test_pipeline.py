@@ -16,8 +16,14 @@ from kartal_twin.params import Resolver, UnknownParameter
 
 class ResolverRules(unittest.TestCase):
     def test_unknown_without_placeholder_raises(self):
+        # Independent of current data: force a record with no placeholder to UNKNOWN.
+        base = Resolver()
+        spec = copy.deepcopy(base.spec)
+        spec["parameters"]["engine"]["bore"].update(
+            value=None, status="UNKNOWN", confidence="NONE", tolerance=None, source=[])
+        self.assertNotIn("engine.bore", str(base.assumptions))
         with self.assertRaises(UnknownParameter):
-            Resolver().get("engine.bore")
+            Resolver(spec, base.assumptions).get("engine.bore")
 
     def test_placeholder_marks_provenance(self):
         # Independent of current data: force the record to UNKNOWN so the placeholder is used.

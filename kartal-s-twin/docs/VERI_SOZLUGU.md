@@ -11,9 +11,9 @@ Spec revizyonu 0.8.0: 134 parametre. Değerler ve açıklamalar `specs/kartal_s_
 | MEASURED | Araç üzerinde fiziksel ölçümle elde edildi (MEASUREMENT kanıtı, VERIFIED). | 0 |
 | DOCUMENT_CONFIRMED | Ruhsat veya teknik belgeyle doğrulandı (DOCUMENT/PHOTO kanıtı, VERIFIED). | 25 |
 | USER_CONFIRMED | Araç sahibi doğrudan söyledi (USER_STATEMENT, güven HIGH); belge veya ölçü olmadan ESTIMATED kalır. | 4 |
-| SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 2 |
-| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 29 |
-| UNKNOWN | Henüz bilinmiyor; değer yok. | 74 |
+| SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 9 |
+| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 40 |
+| UNKNOWN | Henüz bilinmiyor; değer yok. | 56 |
 
 Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomatik türetilir. ESTIMATED değerler kesin ölçü değildir; gerekçeleri ve nasıl doğrulanacakları spec'teki `notes` ve `verify_by` alanlarındadır.
 
@@ -52,7 +52,7 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `body.tailgate_opening_width` | Tailgate opening width | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape across the opening at its narrowest point |
 | `body.tailgate_opening_height` | Tailgate opening height | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape from sill to header at the centre |
 | `body.load_sill_height` | Load sill height | - |  | UNKNOWN | UNKNOWN / NONE | - | Ground to top of the rear sill |
-| `body.cargo_volume` | Cargo volume (state the method in notes) | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner's manual or brochure; record the measuring method |
+| `body.cargo_volume` | Cargo volume (state the method in notes) | 846 L | ± 50 | ESTIMATED | ESTIMATED / LOW | E-034 | Owner's manual or brochure; record the measuring method |
 | `interior.seating_capacity` | Seating capacity | 5 | ± 1 | ESTIMATED | ESTIMATED / MEDIUM | E-014, E-015, E-024 | Ruhsat 'İstiap haddi' (persons) field plus an interior photo; the documents have no 'Koltuk sayısı' field |
 | `interior.steering_side` | Steering side (LHD / RHD) | left-hand drive (LHD) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-024 | Dashboard photo |
 | `interior.steering_wheel_diameter` | Steering wheel outer diameter | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape across the rim |
@@ -65,13 +65,13 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `engine.cylinder_count` | Number of cylinders | 4 |  | ESTIMATED | ESTIMATED / LOW | E-011 | Engine bay photo / documents |
 | `engine.cylinder_layout` | Cylinder layout | inline |  | ESTIMATED | ESTIMATED / LOW | E-011 | Engine bay photo |
 | `engine.valvetrain` | Valvetrain (OHV / SOHC / DOHC) | SOHC |  | ESTIMATED | ESTIMATED / LOW | E-012 | Engine bay photo (cam cover, timing cover) / manual |
-| `engine.bore` | Bore | - |  | UNKNOWN | UNKNOWN / NONE | - | Workshop manual |
-| `engine.stroke` | Stroke | - |  | UNKNOWN | UNKNOWN / NONE | - | Workshop manual |
-| `engine.compression_ratio` | Compression ratio | - |  | UNKNOWN | UNKNOWN / NONE | - | Workshop manual |
+| `engine.bore` | Bore | 86.4 mm | ± 0.1 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-029 | Workshop manual |
+| `engine.stroke` | Stroke | 67.4 mm | ± 0.1 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-029 | Workshop manual |
+| `engine.compression_ratio` | Compression ratio | 9.2 ratio | ± 0.3 | ESTIMATED | ESTIMATED / LOW | E-029 | Workshop manual |
 | `engine.max_power` | Maximum power | 61 kW | ± 3 | ESTIMATED | ESTIMATED / LOW | E-011, E-013 | Ruhsat 'Motor gücü' field / manual |
-| `engine.max_power_speed` | Engine speed at maximum power | - |  | UNKNOWN | UNKNOWN / NONE | - | Manual |
+| `engine.max_power_speed` | Engine speed at maximum power | 5500 rpm | ± 250 | ESTIMATED | ESTIMATED / LOW | E-030 | Manual |
 | `engine.max_torque` | Maximum torque | 131 N·m | ± 6 | ESTIMATED | ESTIMATED / LOW | E-013 | Manual |
-| `engine.max_torque_speed` | Engine speed at maximum torque | - |  | UNKNOWN | UNKNOWN / NONE | - | Manual |
+| `engine.max_torque_speed` | Engine speed at maximum torque | 3000 rpm | ± 250 | ESTIMATED | ESTIMATED / LOW | E-030 | Manual |
 | `engine.fuel_type` | Fuel type as registered (check for LPG conversion) | LPG (registered conversion) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-014, E-015 | Ruhsat 'Cinsi' field, which carries the fuel suffix (here 'H.OTO LPG'); these documents have no separate 'Yakıt cinsi' field |
 | `engine.base_fuel` | Base fuel of the engine before the LPG conversion | petrol |  | USER_CONFIRMED | ESTIMATED / HIGH | E-017, E-011, E-013 | Engine-bay photos (carburettor or injection system, LPG mixer / injectors, change-over switch) |
 | `engine.fuel_system_type` | Fuel system (carburettor / single-point / multi-point injection) | carburettor |  | USER_CONFIRMED | ESTIMATED / HIGH | E-017, E-012, E-013, E-027 | Engine bay photo of the intake |
@@ -79,23 +79,23 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `engine.cooling_system_type` | Cooling system type | liquid-cooled; front radiator with electric fan; separate expansion tank |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Engine bay photo |
 | `engine.engine_orientation` | Engine orientation (longitudinal / transverse) | longitudinal |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Engine bay photo |
 | `transmission.transmission_type` | Transmission type (manual / automatic) | manual (floor-mounted lever, three pedals) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-024 | Gear lever photo |
-| `transmission.forward_gear_count` | Number of forward gears | - |  | UNKNOWN | UNKNOWN / NONE | - | Gear-knob shift pattern photo |
-| `transmission.gear_ratios` | Forward gear ratios (1st..nth) | - |  | UNKNOWN | UNKNOWN / NONE | - | Workshop manual |
-| `transmission.reverse_ratio` | Reverse gear ratio | - |  | UNKNOWN | UNKNOWN / NONE | - | Workshop manual |
-| `transmission.final_drive_ratio` | Final drive ratio | - |  | UNKNOWN | UNKNOWN / NONE | - | Workshop manual / axle tag |
-| `transmission.clutch_actuation` | Clutch actuation (cable / hydraulic) | - |  | UNKNOWN | UNKNOWN / NONE | - | Pedal box or bell-housing photo |
+| `transmission.forward_gear_count` | Number of forward gears | 5 |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-031, E-012 | Gear-knob shift pattern photo |
+| `transmission.gear_ratios` | Forward gear ratios (1st..nth) | [3.667, 2.1, 1.361, 1.0, 0.881] ratio | ± 0.01 | ESTIMATED | ESTIMATED / LOW | E-031 | Workshop manual |
+| `transmission.reverse_ratio` | Reverse gear ratio | 3.526 ratio | ± 0.01 | ESTIMATED | ESTIMATED / LOW | E-031 | Workshop manual |
+| `transmission.final_drive_ratio` | Final drive ratio | 4.1 ratio | ± 0.05 | ESTIMATED | ESTIMATED / LOW | E-031 | Workshop manual / axle tag |
+| `transmission.clutch_actuation` | Clutch actuation (cable / hydraulic) | cable |  | ESTIMATED | ESTIMATED / LOW | E-035 | Pedal box or bell-housing photo |
 | `drivetrain.drive_layout` | Drive layout (e.g. front-engine RWD / FWD) | front-engine, rear-wheel drive |  | ESTIMATED | ESTIMATED / LOW | E-009 | Underbody photo: propeller shaft and differential housing (U-006) |
 | `chassis.fuel_tank_capacity` | Fuel tank capacity | 52 L | ± 3 | ESTIMATED | ESTIMATED / LOW | E-010 | Owner's manual |
 | `suspension.front_suspension_type` | Front suspension type | MacPherson strut |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Wheel-arch photo, wheel turned to full lock |
 | `suspension.rear_suspension_type` | Rear suspension type | rigid (live) rear axle |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-025 | Underbody photo behind the rear wheels |
-| `suspension.front_spring_type` | Front spring type | - |  | UNKNOWN | UNKNOWN / NONE | - | Wheel-arch photo |
-| `suspension.rear_spring_type` | Rear spring type (coil / leaf) | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody photo |
-| `suspension.front_antiroll_bar_fitted` | Front anti-roll bar fitted | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody photo |
+| `suspension.front_spring_type` | Front spring type | coil |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-032, E-027 | Wheel-arch photo |
+| `suspension.rear_spring_type` | Rear spring type (coil / leaf) | coil |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-032, E-025 | Underbody photo |
+| `suspension.front_antiroll_bar_fitted` | Front anti-roll bar fitted | True |  | ESTIMATED | ESTIMATED / LOW | E-032 | Underbody photo |
 | `suspension.rear_antiroll_bar_fitted` | Rear anti-roll bar fitted | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody photo |
 | `steering.steering_gear_type` | Steering gear type (rack-and-pinion / recirculating ball) | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody or engine bay photo |
 | `steering.power_assisted` | Power assisted | yes (hydraulic, belt-driven pump) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Engine bay photo (pump, reservoir) |
 | `steering.turns_lock_to_lock` | Steering-wheel turns, lock to lock | - |  | UNKNOWN | UNKNOWN / NONE | - | Count with a tape mark on the wheel rim |
-| `brakes.front_brake_type` | Front brake type (disc / drum) | - |  | UNKNOWN | UNKNOWN / NONE | - | Photo through the wheel |
+| `brakes.front_brake_type` | Front brake type (disc / drum) | disc |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-032 | Photo through the wheel |
 | `brakes.front_disc_diameter` | Front disc diameter | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape across the disc (wheel off) / manual |
 | `brakes.rear_brake_type` | Rear brake type (disc / drum) | drum |  | ESTIMATED | ESTIMATED / MEDIUM | E-025 | Photo through the wheel |
 | `brakes.rear_drum_diameter` | Rear drum diameter | - |  | UNKNOWN | UNKNOWN / NONE | - | Manual / measurement with the wheel off |
@@ -106,7 +106,7 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `wheels_tires.wheel_rim_diameter` | Rim diameter | 14 in | ± 0.5 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-017, E-010, E-028 | Sidewall marking / rim stamping |
 | `wheels_tires.wheel_rim_width` | Rim width | 5.5 in | ± 0.5 | ESTIMATED | ESTIMATED / LOW | E-018 | Rim stamping |
 | `wheels_tires.wheel_offset_et` | Wheel offset (ET) | - |  | UNKNOWN | UNKNOWN / NONE | - | Rim stamping |
-| `wheels_tires.wheel_pcd` | Bolt-circle diameter (PCD) | - |  | UNKNOWN | UNKNOWN / NONE | - | Measure across studs / documents |
+| `wheels_tires.wheel_pcd` | Bolt-circle diameter (PCD) | 98 mm | ± 0.5 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-033, E-026 | Measure across studs / documents |
 | `wheels_tires.wheel_fastener_count` | Number of wheel bolts or studs | 4 |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-026 | Wheel photo |
 | `wheels_tires.wheel_centre_bore` | Wheel centre bore | - |  | UNKNOWN | UNKNOWN / NONE | - | Measure with the wheel off |
 | `wheels_tires.wheel_material` | Wheel material (steel / alloy) | pressed steel |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-017, E-026, E-028 | Wheel photo |
@@ -133,12 +133,12 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `lpg_system.filler_location` | LPG filler valve location | - |  | UNKNOWN | UNKNOWN / NONE | - | Exterior photo (bumper / fuel flap / body side) |
 | `lpg_system.tank_mounting` | Tank mounting (frame, straps, bolts) | bolted through the floor of the spare-wheel well at the tank centre (two brackets in the central opening, two bolt heads visible from below); opening closed by a black cover with two holes |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-022, E-025 | Cargo-area photo; no mounting is modelled |
 | `lpg_system.tank_marking` | LPG tank maker and approval marking | maker ATIKER; approval mark 'E7 67R-01 0049401' (UN Regulation No. 67, 01 series) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-022 | Photo of the tank top |
-| `electrical.system_voltage` | System voltage | - |  | UNKNOWN | UNKNOWN / NONE | - | Battery label photo |
+| `electrical.system_voltage` | System voltage | 12 V | ± 0.5 | ESTIMATED | ESTIMATED / MEDIUM | E-027 | Battery label photo |
 | `electrical.earth_polarity` | Earth polarity | - |  | UNKNOWN | UNKNOWN / NONE | - | Battery terminal photo |
 | `electrical.battery_capacity` | Battery capacity | - |  | UNKNOWN | UNKNOWN / NONE | - | Battery label photo |
 | `electrical.battery_cold_cranking` | Battery cold-cranking current | - |  | UNKNOWN | UNKNOWN / NONE | - | Battery label photo |
 | `electrical.alternator_rated_current` | Alternator rated current | - |  | UNKNOWN | UNKNOWN / NONE | - | Alternator label photo |
-| `electrical.headlamp_type` | Headlamp type / bulb | - |  | UNKNOWN | UNKNOWN / NONE | - | Headlamp photo / bulb marking |
+| `electrical.headlamp_type` | Headlamp type / bulb | H4 halogen |  | ESTIMATED | ESTIMATED / LOW | E-036 | Headlamp photo / bulb marking |
 | `electrical.fuse_box_location` | Fuse box location | - |  | UNKNOWN | UNKNOWN / NONE | - | Photo |
 | `body_profile.bumper_protrusion` | Bumper face beyond the body face (front and rear) | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.bumper_height` | Bumper vertical height | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |

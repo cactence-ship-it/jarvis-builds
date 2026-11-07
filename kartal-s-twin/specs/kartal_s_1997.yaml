@@ -362,14 +362,14 @@ parameters:
       notes: ''
     cargo_volume:
       name: Cargo volume (state the method in notes)
-      value: null
+      value: 846
       unit: L
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-034]
       verify_by: Owner's manual or brochure; record the measuring method
-      notes: ''
+      notes: 846 L repeated in owner-entered listings; seat position not stated, likely seats folded.
   # ---------------------------------------------------------------- Interior
   interior:
     seating_capacity:
@@ -498,34 +498,34 @@ parameters:
       notes: Listings describe an overhead-cam 'Tempra' engine. Confirm with an engine-bay photo.
     bore:
       name: Bore
-      value: null
+      value: 86.4
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 0.1
+      source: [E-029]
       verify_by: Workshop manual
-      notes: ''
+      notes: 'Fiat SOHC 1581 cm3 version (E-029). Consistent with the VERIFIED displacement: 4 x pi/4 x 86.4^2 x 67.4 mm = 1580.6 cm3 vs 1581 cm3 (E-015). Fiat data, Tofaş installation not confirmed.'
     stroke:
       name: Stroke
-      value: null
+      value: 67.4
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 0.1
+      source: [E-029]
       verify_by: Workshop manual
-      notes: ''
+      notes: Fiat SOHC 1581 cm3 version (E-029); with bore 86.4 mm gives 1580.6 cm3, matching E-015 (1581 cm3).
     compression_ratio:
       name: Compression ratio
-      value: null
+      value: 9.2
       unit: ratio
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.3
+      source: [E-029]
       verify_by: Workshop manual
-      notes: ''
+      notes: 9.2:1 is quoted for the fuel-injected Tempra 1.6 i.e.; no figure found for the carburettor version.
     max_power:
       name: Maximum power
       value: 61
@@ -538,14 +538,14 @@ parameters:
       notes: 83 HP (61 kW) reported for the carburettor 1.6; 81-84 hp listed elsewhere (60-62 kW). The ruhsat field 'Motor gücü' is EMPTY on the registration certificate (E-015), so the document cannot confirm it.
     max_power_speed:
       name: Engine speed at maximum power
-      value: null
+      value: 5500
       unit: rpm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 250
+      source: [E-030]
       verify_by: Manual
-      notes: ''
+      notes: 83 hp at 5500 rpm for the Kartal 1.6 i SLX (aggregator).
     max_torque:
       name: Maximum torque
       value: 131
@@ -558,14 +558,14 @@ parameters:
       notes: Reported for the 1997 SLX carburettor 1.6.
     max_torque_speed:
       name: Engine speed at maximum torque
-      value: null
+      value: 3000
       unit: rpm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 250
+      source: [E-030]
       verify_by: Manual
-      notes: ''
+      notes: 125 Nm at 3000 rpm (E-030); E-013 gives 131 Nm without speed.
     fuel_type:
       name: Fuel type as registered (check for LPG conversion)
       value: LPG (registered conversion)
@@ -640,54 +640,54 @@ parameters:
       notes: Floor gear lever and three pedals in the interior photos (E-024). Number of forward gears not readable (forward_gear_count UNKNOWN).
     forward_gear_count:
       name: Number of forward gears
-      value: null
+      value: 5
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-031, E-012]
       verify_by: Gear-knob shift pattern photo
-      notes: ''
+      notes: Kartal of this period sold as '5 vites'; forum ratios (E-031) list five forward gears. Count the gear-lever pattern to verify.
     gear_ratios:
       name: Forward gear ratios (1st..nth)
-      value: null
+      value: [3.667, 2.1, 1.361, 1.0, 0.881]
       unit: ratio
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.01
+      source: [E-031]
       verify_by: Workshop manual
-      notes: ''
+      notes: Forum-quoted 5-speed ratios for Şahin up to 1996 / Doğan up to 1993; ratios vary by model and engine, so they may not match VEH-01.
     reverse_ratio:
       name: Reverse gear ratio
-      value: null
+      value: 3.526
       unit: ratio
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.01
+      source: [E-031]
       verify_by: Workshop manual
-      notes: ''
+      notes: Forum-quoted (E-031).
     final_drive_ratio:
       name: Final drive ratio
-      value: null
+      value: 4.1
       unit: ratio
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.05
+      source: [E-031]
       verify_by: Workshop manual / axle tag
-      notes: ''
+      notes: 4.10 quoted on two forums (E-031); 1.3 versions reportedly differ. Verify from the axle tag or by counting propshaft turns per wheel turn.
     clutch_actuation:
       name: Clutch actuation (cable / hydraulic)
-      value: null
+      value: cable
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-035]
       verify_by: Pedal box or bell-housing photo
-      notes: ''
+      notes: 'Clutch cable sold for Doğan/Kartal/Şahin 1.6 (E-035). Verify: cable at the pedal box or a master cylinder on the bulkhead.'
   # ---------------------------------------------------------------- Drivetrain
   drivetrain:
     drive_layout:
@@ -736,34 +736,34 @@ parameters:
       notes: 'Axle tube spanning both rear wheels and a transverse locating rod in the underbody photos (E-025). Spring type (coil or leaf) not visible: rear_spring_type stays UNKNOWN.'
     front_spring_type:
       name: Front spring type
-      value: null
+      value: coil
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-032, E-027]
       verify_by: Wheel-arch photo
-      notes: ''
+      notes: MacPherson struts with coil springs (E-032); strut tops seen in the engine bay (E-027).
     rear_spring_type:
       name: Rear spring type (coil / leaf)
-      value: null
+      value: coil
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-032, E-025]
       verify_by: Underbody photo
-      notes: ''
+      notes: Live axle on coil springs with a Panhard rod (E-032); the transverse locating rod seen under the car (E-025) is consistent.
     front_antiroll_bar_fitted:
       name: Front anti-roll bar fitted
-      value: null
+      value: true
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-032]
       verify_by: Underbody photo
-      notes: ''
+      notes: An anti-roll bar is mentioned for the Şahin (E-032); position not stated in the summary. Check under the front crossmember.
     rear_antiroll_bar_fitted:
       name: Rear anti-roll bar fitted
       value: null
@@ -810,14 +810,14 @@ parameters:
   brakes:
     front_brake_type:
       name: Front brake type (disc / drum)
-      value: null
+      value: disc
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-032]
       verify_by: Photo through the wheel
-      notes: ''
+      notes: Front discs with single-piston sliding calipers, rear drums (E-032).
     front_disc_diameter:
       name: Front disc diameter
       value: null
@@ -922,14 +922,14 @@ parameters:
       notes: ''
     wheel_pcd:
       name: Bolt-circle diameter (PCD)
-      value: null
+      value: 98
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 0.5
+      source: [E-033, E-026]
       verify_by: Measure across studs / documents
-      notes: ''
+      notes: 4x98 sold for Şahin/Doğan/Kartal (E-033); four wheel nuts seen (E-026).
     wheel_fastener_count:
       name: Number of wheel bolts or studs
       value: 4
@@ -1196,14 +1196,14 @@ parameters:
   electrical:
     system_voltage:
       name: System voltage
-      value: null
+      value: 12
       unit: V
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 0.5
+      source: [E-027]
       verify_by: Battery label photo
-      notes: ''
+      notes: 12 V battery seen in the engine bay (E-027).
     earth_polarity:
       name: Earth polarity
       value: null
@@ -1246,14 +1246,14 @@ parameters:
       notes: ''
     headlamp_type:
       name: Headlamp type / bulb
-      value: null
+      value: H4 halogen
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-036]
       verify_by: Headlamp photo / bulb marking
-      notes: ''
+      notes: H4 bulbs listed for the Şahin (E-036); same body family. Read the bulb code to verify.
     fuse_box_location:
       name: Fuse box location
       value: null

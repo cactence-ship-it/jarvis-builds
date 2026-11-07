@@ -97,4 +97,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 134 parametre: 25 VERIFIED, 35 ESTIMATED, 74 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 134 parametre: 25 VERIFIED, 53 ESTIMATED, 56 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.

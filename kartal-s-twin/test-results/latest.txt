@@ -1,4 +1,4 @@
-# Test run 2026-11-03T06:33:23Z on commit base 0ea2466
+# Test run 2026-11-07T07:28:28Z on commit base 5786f86
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -9,7 +9,7 @@
 [PASS] hash integrity (audit snapshots, refs manifest)
 [PASS] configuration (engine variant separation)
 [PASS] dimensional consistency
-spec: 134 parameters (VERIFIED 25, ESTIMATED 35, UNKNOWN 74) | inventory: 157 components | evidence: 28 items
+spec: 134 parameters (VERIFIED 25, ESTIMATED 53, UNKNOWN 56) | inventory: 157 components | evidence: 36 items
 ## unittest
 test_glb_is_valid_metres_and_y_up (tests.test_cad_toolchain.CadToolchain.test_glb_is_valid_metres_and_y_up) ... ok
 test_kernel_builds_valid_solid (tests.test_cad_toolchain.CadToolchain.test_kernel_builds_valid_solid) ... ok
@@ -160,7 +160,7 @@ test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval
 test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
 
 ----------------------------------------------------------------------
-Ran 147 tests in 313.013s
+Ran 147 tests in 122.966s
 
 OK
 ## result: validate=0 unittest=0
