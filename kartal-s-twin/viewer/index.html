@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Kartal S Dijital İkiz</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
@@ -67,11 +68,21 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   <div id="msg">3D model yükleniyor…</div>
   <div id="views" role="toolbar" aria-label="Kamera görünümleri">
     <button id="v-iso" class="on">İzo</button><button id="v-front">Ön</button><button id="v-rear">Arka</button>
-    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button><button id="v-cinema">Sinema</button>
+    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button><button id="v-bottom">Alt</button><button id="v-cinema">Sinema</button>
   </div>
 </div>
 
 <section id="sheet" aria-label="Kontroller">
+  <div class="row" id="shellRow" hidden>
+    <label class="lbl" for="xray">Kaporta</label>
+    <button id="s-on" class="on">Gerçek görünüm</button><button id="s-off">Mühendislik</button>
+    <input id="xray" type="range" min="0" max="100" value="100" aria-label="Gerçek kaporta opaklığı (X-ray)">
+    <span class="hint" style="flex-basis:100%">Gerçek görünüm senin fotoğraflarından üretilen tek parça Tripo modelidir (görsel tahmin). Kaydırıcıyı sola çekince içindeki mühendislik parçaları görünür; açılan kapılar mühendislik katmanıdır.</span>
+  </div>
+  <div class="row" id="closeRow" hidden>
+    <span class="lbl">Aç / kapat</span>
+    <div id="closures" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+  </div>
   <div class="row">
     <label class="lbl" for="explode">Patlatma</label>
     <input id="explode" type="range" min="0" max="100" value="0">
@@ -120,7 +131,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   controls.enableDamping = true;
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
-  scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x202020, 0.6));
+  const hemi = new THREE.HemisphereLight(0xdfe8ff, 0x202020, 0.6); scene.add(hemi);
   const sun = new THREE.DirectionalLight(0xffffff, 2.6); sun.position.set(3.5, 6, 4.5);
   sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -0.0004; sun.shadow.radius = 4;
   Object.assign(sun.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4, near: 0.5, far: 20 });
@@ -148,12 +159,14 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
     const d = radius * 1.08 / Math.sin(Math.min(vf, hf) / 2), c = centre;
     const dir = { iso: [.62, .42, .68], front: [0, .12, 1], rear: [0, .12, -1],
-      left: [1, .12, 0], right: [-1, .12, 0], top: [0, 1, 0.001], cinema: [.78, .16, .58] }[name];
+      left: [1, .12, 0], right: [-1, .12, 0], top: [0, 1, 0.001], bottom: [0, -1, 0.001], cinema: [.78, .16, .58] }[name];
     const v = new THREE.Vector3(...dir).normalize().multiplyScalar(d);
     camera.position.set(c.x + v.x, c.y + v.y, c.z + v.z);
+    // Underside view: hide the floor so the camera can look up through it.
+    floor.visible = name !== 'bottom'; hemi.groundColor.setHex(name === 'bottom' ? 0x8a8f96 : 0x202020);
     controls.target.copy(c); controls.update();
   }
-  ['iso', 'front', 'rear', 'left', 'right', 'top', 'cinema'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
+  ['iso', 'front', 'rear', 'left', 'right', 'top', 'bottom', 'cinema'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
 
   const statusColor = s => new THREE.Color(css(s === 'VALIDATED' ? '--ok' : s === 'DRAFT' ? '--draft' : '--ph'));
   function paint() {
@@ -186,7 +199,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       <div class="prov">${chips}</div>`;
   }
 
-  const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+  const ray = new THREE.Raycaster(), ptr = new THREE.Vector2(); ray.layers.enable(1);
   let down = null;
   renderer.domElement.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; });
   renderer.domElement.addEventListener('pointerup', e => {
@@ -240,6 +253,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const statuses = new Set(parts.map(p => p.data.geometry_status));
     const chip = document.getElementById('statusChip');
     if (!statuses.has('PLACEHOLDER')) { chip.className = 'chip draft'; chip.textContent = 'DRAFT · kanıta dayalı taslak'; }
+    setupClosures(); setupShell();
     msg.hidden = true; setView('iso');
     // Read-only hook for the automated browser test (tools/viewer_smoke): exposes state, changes nothing.
     window.__kartalViewer = {
@@ -269,6 +283,73 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       },
     };
   }
+  // ---- Closures (doors, hood, tailgate): visual hinge animation, NOT measured hinge geometry ----
+  // Hinge lines are taken from each closure's bounding box (doors: front vertical edge, hood: front
+  // edge as seen on VEH-01 photos, tailgate: top edge). The closure map (which parts move with which
+  // closure) comes from assembly/vehicle_master.yaml dependencies, embedded by tools/package_viewer.py.
+  const closures = [];
+  function jsonTag(id) { const t = document.getElementById(id); try { return t ? JSON.parse(t.textContent) : null; } catch (e) { return null; } }
+  function setupClosures() {
+    const map = jsonTag('closures-data'); if (!map) return;
+    root.updateMatrixWorld(true);   // attach() needs real world matrices before the first frame
+    const row = document.getElementById('closures');
+    Object.entries(map).forEach(([id, c]) => {
+      const main = parts.find(p => p.data.id === id); if (!main) return;
+      const b = new THREE.Box3().setFromObject(main.node), pivot = new THREE.Object3D();
+      let axis, max;
+      if (c.kind === 'door') { pivot.position.set((b.max.x + b.min.x) / 2 > centre.x ? b.max.x : b.min.x, (b.min.y + b.max.y) / 2, b.max.z);
+        // Rotate so the rear edge swings outward (away from the car centre line), about 63 degrees.
+        axis = new THREE.Vector3(0, 1, 0); max = (b.max.x + b.min.x) / 2 > centre.x ? -1.1 : 1.1; }
+      else if (c.kind === 'hood') { pivot.position.set(centre.x, b.max.y, b.max.z); axis = new THREE.Vector3(1, 0, 0); max = 1.0; }
+      else { pivot.position.set(centre.x, b.max.y, b.max.z); axis = new THREE.Vector3(1, 0, 0); max = 1.35; }
+      main.node.parent.add(pivot); pivot.updateMatrixWorld(true);
+      const moving = parts.filter(p => p.data.id === id || (c.deps || []).includes(p.data.id));
+      moving.forEach(p => { pivot.attach(p.node); p.home = p.node.position.clone(); });
+      const cl = { id, c, pivot, axis, max, t: 0, target: 0 };
+      closures.push(cl);
+      const btn = document.createElement('button'); btn.textContent = c.label;
+      btn.onclick = () => { cl.target = cl.target ? 0 : 1; btn.classList.toggle('on', !!cl.target);
+        if (cl.target && shell && shellOpacity > 0.35) setShellOpacity(0.25); };
+      row.appendChild(btn);
+    });
+    if (closures.length) document.getElementById('closeRow').hidden = false;
+  }
+  function stepClosures(dt) {
+    closures.forEach(cl => { if (cl.t === cl.target) return;
+      cl.t += Math.sign(cl.target - cl.t) * Math.min(Math.abs(cl.target - cl.t), dt * 1.2);
+      const e = cl.t * cl.t * (3 - 2 * cl.t);   // smoothstep easing
+      cl.pivot.quaternion.setFromAxisAngle(cl.axis, cl.max * e); });
+  }
+
+  // ---- Photo-based exterior shell (Tripo AI mesh, visual estimate, D-030..D-032) ----
+  let shell = null, shellOpacity = 1, shellMats = [];
+  function setShellOpacity(o) {
+    shellOpacity = o; document.getElementById('xray').value = Math.round(o * 100);
+    shellMats.forEach(m => { m.transparent = o < 0.999; m.opacity = o; m.depthWrite = o > 0.6; m.needsUpdate = true; });
+    if (shell) shell.visible = o > 0.01;
+    // While the photo shell is mostly opaque, the coincident placeholder exterior would poke through
+    // it (headliner, roof, sills): move every engineering mesh to layer 1, which the camera does not draw but the raycaster still tests (object.visible would also drop it from selection).
+    parts.forEach(p => p.meshes.forEach(m => m.layers.set(!shell || o < 0.6 ? 0 : 1)));   // layer 1: not drawn, still raycast
+    document.getElementById('s-on').classList.toggle('on', o > 0.01); document.getElementById('s-off').classList.toggle('on', o <= 0.01);
+  }
+  function setupShell() {
+    const data = document.getElementById('glb-shell'), place = jsonTag('shell-place');
+    if (!data || !place) return;
+    const bin = atob(data.textContent.trim()), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    new THREE.GLTFLoader().parse(buf.buffer, '', g => {
+      shell = g.scene; shell.position.set(...place.position); shell.quaternion.set(...place.quaternion); shell.scale.setScalar(place.scale);
+      shell.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.raycast = () => {}; shellMats.push(m.material); } });
+      root.add(shell);
+      document.getElementById('shellRow').hidden = false;
+      document.getElementById('xray').oninput = e => setShellOpacity(e.target.value / 100);
+      document.getElementById('s-on').onclick = () => setShellOpacity(1);
+      document.getElementById('s-off').onclick = () => setShellOpacity(0);
+      setShellOpacity(1);
+      if (window.__kartalViewer) window.__kartalViewer.shell = true;
+    }, e => { console.warn('shell', e); });
+  }
+
   const fail = err => { msg.textContent = 'Model yüklenemedi: ' + (err && err.message || err); };
   // Packaged builds embed the GLB as base64 (tools/package_viewer.py); otherwise fetch vehicle.glb.
   const embedded = document.getElementById('glb-data');
@@ -280,6 +361,8 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     new THREE.GLTFLoader().load('vehicle.glb', onModel, undefined, fail);
   }
 
-  (function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+  let last = performance.now();
+  (function loop(now) { requestAnimationFrame(loop); const t = now || performance.now(); stepClosures(Math.min((t - last) / 1000, 0.1)); last = t;
+    controls.update(); renderer.render(scene, camera); })();
 })();
 </script>

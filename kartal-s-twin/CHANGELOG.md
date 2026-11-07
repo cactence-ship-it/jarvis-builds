@@ -2,6 +2,15 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Interactive body + real-look layer (D-033)
+
+### Added
+- Viewer: "Gerçek görünüm" layer (photo-based Tripo shell) with X-ray opacity slider; engineering parts stay selectable under it (three.js layer 1).
+- Viewer: open/close buttons for the four doors, hood (front-hinged, from owner photos) and tailgate, with eased hinge animation; door mirrors, handles, glass and door cards move with their door (closure map from vehicle_master.yaml dependencies).
+- Viewer: underside camera ("Alt") with the floor hidden and brighter ground light.
+- `tools/package_viewer.py --shell/--place` embeds the shell; closure map always embedded.
+- Tests: `tools/viewer_smoke/run.sh` passes with and without the shell (no console errors); a separate headless check confirmed taps select BDY-003, BDY-008, WHL-001 after the shell has loaded and that opening a door drops the shell to 25 %.
+
 ## [Unreleased] - 2026-11-07 - Tripo v3.1 multiview (front fixed)
 
 ### Changed
