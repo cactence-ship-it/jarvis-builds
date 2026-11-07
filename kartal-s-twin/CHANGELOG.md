@@ -2,6 +2,14 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Phase 5 start: engine bay and LPG tank skins
+
+### Added
+- Tripo v3.1 skins: air-filter housing (ENG-005, from engine-bay photo, replaces only the housing mesh), battery (ELE-001, text-to-model after the photo crop gave only lid and cables), LPG toroidal tank (FUL-005, from trunk photo). Sizes ESTIMATED (0.42 / 0.24 / 0.60 m). 150 credits; 30 left.
+- Viewer: engine close view hides body panels and glass; skin config option `box` (replace only placeholder meshes inside a box).
+- All six interior/engine skins reduced (384 px textures, ~1.4 % triangles) so the packaged page stays at 14.1 MB (< 16 MB).
+- Tests: viewer smoke test passes, no console errors.
+
 ## [Unreleased] - 2026-11-07 - Shell symmetry and lamp glass (D-036)
 
 ### Changed

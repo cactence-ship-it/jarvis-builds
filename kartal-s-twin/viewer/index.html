@@ -165,7 +165,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     floor.visible = true; controls.target.copy(c); controls.update();
   }
   function setView(name) {
-    cabinMode = name === 'cabin'; applyLayers();
+    closeMode = name === 'cabin' || name === 'engine' ? name : null; applyLayers();
     if (name === 'cabin' || name === 'engine') return focusView(name);
     document.querySelectorAll('#views button').forEach(b => b.classList.toggle('on', b.id === 'v-' + name));
     // Distance that fits the bounding sphere in the narrower of the two fields of view.
@@ -337,14 +337,16 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
 
   // Which meshes are drawn (layer 0) or only selectable (layer 1): the opaque shell hides the engineering
   // model, a photo skin hides the placeholder it replaces, and the cabin view hides the headliner.
-  let cabinMode = false;
+  let closeMode = null;   // 'cabin' | 'engine' | null
   function applyLayers() {
     parts.forEach(p => p.meshes.forEach(m => m.layers.set(
-      (!shell || shellOpacity < 0.6 || cabinMode) && !m.userData.skinHidden && !(cabinMode && CABIN_HIDE(p)) ? 0 : 1)));
-    if (shell) shell.visible = shellOpacity > 0.01 && !cabinMode;
+      (!shell || shellOpacity < 0.6 || closeMode) && !m.userData.skinHidden && !(closeMode && HIDE[closeMode](p)) ? 0 : 1)));
+    if (shell) shell.visible = shellOpacity > 0.01 && !closeMode;
   }
   // Cabin view opens the car up: no roof, body panels, glass, exterior trim or headliner.
-  const CABIN_HIDE = p => p.data.id === 'INT-018' || ['BODY_ASSEMBLY', 'GLAZING', 'EXTERIOR_TRIM', 'LIGHTING'].includes(p.data.assembly);
+  // Engine view: no body panels or glass, so the bay is seen from above.
+  const HIDE = { cabin: p => p.data.id === 'INT-018' || ['BODY_ASSEMBLY', 'GLAZING', 'EXTERIOR_TRIM', 'LIGHTING'].includes(p.data.assembly),
+                 engine: p => ['BODY_ASSEMBLY', 'GLAZING', 'EXTERIOR_TRIM'].includes(p.data.assembly) };
 
   // ---- Photo-based interior skins (Tripo, D-034): look only; the part record stays the part's ----
   function b64buf(id) { const t = document.getElementById(id); const bin = atob(t.textContent.trim()), buf = new Uint8Array(bin.length);
@@ -359,8 +361,13 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
         inner.rotation.set(...sk.rot.map(d => d * Math.PI / 180), 'XYZ'); wrap.add(inner);
         wrap.updateMatrixWorld(true);
         const sb = new THREE.Box3().setFromObject(wrap), ss = sb.getSize(new THREE.Vector3());
-        p.meshes.forEach(m => { m.userData.skinHidden = true; m.layers.set(1); });   // placeholder: not drawn, still selectable
-        const pb = new THREE.Box3(); p.meshes.forEach(m => pb.expandByObject(m));
+        // sk.box: replace only the placeholder meshes inside this box (twin frame, metres), e.g. the air-filter
+        // housing of the intake-system record; otherwise the whole part.
+        const inBox = m => { if (!sk.box) return true; const c = new THREE.Box3().setFromObject(m).getCenter(new THREE.Vector3());
+          return new THREE.Box3(new THREE.Vector3(...sk.box[0]), new THREE.Vector3(...sk.box[1])).containsPoint(c); };
+        const targets = p.meshes.filter(inBox);
+        targets.forEach(m => { m.userData.skinHidden = true; m.layers.set(1); });   // placeholder: not drawn, still selectable
+        const pb = new THREE.Box3(); targets.forEach(m => pb.expandByObject(m));
         const ps = pb.getSize(new THREE.Vector3()), pc = pb.getCenter(new THREE.Vector3()), sc = sb.getCenter(new THREE.Vector3());
         // sk.size: largest dimension in metres (ESTIMATED, see assembly/tripo_interior.json); else fit inside the placeholder.
         const k = sk.size ? sk.size / Math.max(ss.x, ss.y, ss.z) : Math.min(ps.x / ss.x, ps.y / ss.y, ps.z / ss.z);
