@@ -2,6 +2,12 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Tripo model from owner photos
+
+### Changed
+- 25 owner photos ingested (local-only, D-012); 6 exterior photos blurred (plates, plate frames, rear-window name sticker) before upload to Tripo.
+- Phone viewer now shows the photo-based mesh (task 7d6dae58, image_to_model from the rear three-quarter photo). Pre-correction residual width +16.4 %, height +21.1 % (INCONSISTENT); corrected with scale node (0.859, 0.826, 1), heading set to front -z after visual check (D-032). Visual check: wheels sit about 0.25-0.3 m forward of the reference wheel centres (overhangs of the generated mesh differ from the twin). Rejected: front three-quarter candidate (broken geometry), multiview candidate (+28.3 % / +32.0 %, plate blur turned into geometry). Credits used: 120.
+
 ## [Unreleased] - 2026-11-07 - Automatic Tripo model and literature pass 2
 
 ### Added
