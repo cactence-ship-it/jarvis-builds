@@ -2,6 +2,15 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Interior skins from owner photos (D-034)
+
+### Added
+- Tripo v3.1 interior meshes from cropped owner photos: steering wheel (INT-003), front seat (INT-009/010, same mesh), rear bench (INT-011). Rejected: dashboard (Tripo returned only the steering wheel); first front-seat attempt (two seats merged). 200 credits; 290 left.
+- Viewer: interior skins (`--skins assembly/tripo_interior.json`), "Kabin" and "Motor" close cameras, cabin view opens the car (no roof/panels/glass/headliner/shell).
+- Sizes used for skins are ESTIMATED (wheel 0.35 m, front seat 0.95 m, rear bench 1.30 m); no spec value changed.
+- Packaged page 15.3 MB (shell textures 1536 px, interior textures 512 px) to stay under the 16 MB publish limit.
+- Tests: viewer smoke test passes with shell and skins, no console errors; unit tests and validate pass.
+
 ## [Unreleased] - 2026-11-07 - Interactive body + real-look layer (D-033)
 
 ### Added

@@ -60,6 +60,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--shell", type=Path, help="photo-based exterior GLB (visual estimate)")
     ap.add_argument("--place", type=Path, help="meshfit placements.json for the shell")
+    ap.add_argument("--skins", type=Path, help="interior skin config (assembly/tripo_interior.json)")
     args = ap.parse_args()
     glb = ROOT / "build" / "vehicle.glb"
     if not glb.exists():
@@ -69,6 +70,18 @@ def main() -> int:
     blob = base64.b64encode(data).decode()
     tag = f'<script type="application/octet-stream" id="glb-data">{blob}</script>\n'
     tag += f'<script type="application/json" id="closures-data">{json.dumps(closure_map())}</script>\n'
+    if args.skins:
+        cfg = json.loads(args.skins.read_text(encoding="utf-8"))
+        skins = []
+        for i, sk in enumerate(cfg["skins"]):
+            f = ROOT / "refs" / "derived" / "tripo" / sk["file"]
+            if not f.exists():
+                print(f"skin {sk['file']} missing - skipped")
+                continue
+            tag += (f'<script type="application/octet-stream" id="skin-{i}">'
+                    f'{base64.b64encode(f.read_bytes()).decode()}</script>\n')
+            skins.append(dict(sk, tag=f"skin-{i}"))
+        tag += f'<script type="application/json" id="skins-data">{json.dumps(skins)}</script>\n'
     if args.shell:
         place = json.loads(args.place.read_text(encoding="utf-8"))
         inst = next(p for p in place["parts"] if p["kind"] == "car")["instances"][0]

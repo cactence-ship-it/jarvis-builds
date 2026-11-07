@@ -68,7 +68,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   <div id="msg">3D model yükleniyor…</div>
   <div id="views" role="toolbar" aria-label="Kamera görünümleri">
     <button id="v-iso" class="on">İzo</button><button id="v-front">Ön</button><button id="v-rear">Arka</button>
-    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button><button id="v-bottom">Alt</button><button id="v-cinema">Sinema</button>
+    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button><button id="v-bottom">Alt</button><button id="v-cabin">Kabin</button><button id="v-engine">Motor</button><button id="v-cinema">Sinema</button>
   </div>
 </div>
 
@@ -153,7 +153,20 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
 
   let root, centre = new THREE.Vector3(), radius = 3, parts = [], selected = null, statusMode = false;
 
+  // Close views: orbit around one assembly's bounding box (cabin = INTERIOR, engine bay = ENGINE).
+  function focusView(name) {
+    document.querySelectorAll('#views button').forEach(b => b.classList.toggle('on', b.id === 'v-' + name));
+    const asm = name === 'cabin' ? 'INTERIOR' : 'ENGINE', b = new THREE.Box3();
+    parts.filter(p => p.data.assembly === asm).forEach(p => p.meshes.forEach(m => b.expandByObject(m)));
+    if (b.isEmpty()) return setView('iso');
+    const c = b.getCenter(new THREE.Vector3()), r = b.getSize(new THREE.Vector3()).length() / 2;
+    const dir = name === 'cabin' ? new THREE.Vector3(.75, .55, -.35) : new THREE.Vector3(.45, .85, .55);
+    camera.position.copy(c).addScaledVector(dir.normalize(), r * 2.1);
+    floor.visible = true; controls.target.copy(c); controls.update();
+  }
   function setView(name) {
+    cabinMode = name === 'cabin'; applyLayers();
+    if (name === 'cabin' || name === 'engine') return focusView(name);
     document.querySelectorAll('#views button').forEach(b => b.classList.toggle('on', b.id === 'v-' + name));
     // Distance that fits the bounding sphere in the narrower of the two fields of view.
     const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
@@ -166,7 +179,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     floor.visible = name !== 'bottom'; hemi.groundColor.setHex(name === 'bottom' ? 0x8a8f96 : 0x202020);
     controls.target.copy(c); controls.update();
   }
-  ['iso', 'front', 'rear', 'left', 'right', 'top', 'bottom', 'cinema'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
+  ['iso', 'front', 'rear', 'left', 'right', 'top', 'bottom', 'cinema', 'cabin', 'engine'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
 
   const statusColor = s => new THREE.Color(css(s === 'VALIDATED' ? '--ok' : s === 'DRAFT' ? '--draft' : '--ph'));
   function paint() {
@@ -195,6 +208,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       <dl><dt>Montaj</dt><dd>${esc(ASM_TR[u.assembly] || u.assembly)} (${esc(u.assembly)})</dd>
       <dt>Geometri</dt><dd>${esc(u.geometry_status)} · ${esc(u.representation)}</dd>
       <dt>Parametre</dt><dd>${Object.keys(prm).length} adet, ${nPh} tanesi varsayım (kanıt değil)</dd>
+      ${p.skin ? `<dt>Görünüm</dt><dd>${esc(p.skin)} · Tripo, görsel tahmin</dd>` : ''}
       ${u.note ? `<dt>Not</dt><dd>${esc(u.note)}</dd>` : ''}</dl>
       <div class="prov">${chips}</div>`;
   }
@@ -253,7 +267,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const statuses = new Set(parts.map(p => p.data.geometry_status));
     const chip = document.getElementById('statusChip');
     if (!statuses.has('PLACEHOLDER')) { chip.className = 'chip draft'; chip.textContent = 'DRAFT · kanıta dayalı taslak'; }
-    setupClosures(); setupShell();
+    setupClosures(); setupSkins(); setupShell();
     msg.hidden = true; setView('iso');
     // Read-only hook for the automated browser test (tools/viewer_smoke): exposes state, changes nothing.
     window.__kartalViewer = {
@@ -321,6 +335,46 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       cl.pivot.quaternion.setFromAxisAngle(cl.axis, cl.max * e); });
   }
 
+  // Which meshes are drawn (layer 0) or only selectable (layer 1): the opaque shell hides the engineering
+  // model, a photo skin hides the placeholder it replaces, and the cabin view hides the headliner.
+  let cabinMode = false;
+  function applyLayers() {
+    parts.forEach(p => p.meshes.forEach(m => m.layers.set(
+      (!shell || shellOpacity < 0.6 || cabinMode) && !m.userData.skinHidden && !(cabinMode && CABIN_HIDE(p)) ? 0 : 1)));
+    if (shell) shell.visible = shellOpacity > 0.01 && !cabinMode;
+  }
+  // Cabin view opens the car up: no roof, body panels, glass, exterior trim or headliner.
+  const CABIN_HIDE = p => p.data.id === 'INT-018' || ['BODY_ASSEMBLY', 'GLAZING', 'EXTERIOR_TRIM', 'LIGHTING'].includes(p.data.assembly);
+
+  // ---- Photo-based interior skins (Tripo, D-034): look only; the part record stays the part's ----
+  function b64buf(id) { const t = document.getElementById(id); const bin = atob(t.textContent.trim()), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i); return buf.buffer; }
+  function setupSkins() {
+    const cfg = jsonTag('skins-data'); if (!cfg) return;
+    root.updateMatrixWorld(true);
+    cfg.forEach(sk => new THREE.GLTFLoader().parse(b64buf(sk.tag), '', g => {
+      sk.parts.forEach(id => {
+        const p = parts.find(q => q.data.id === id); if (!p) return;
+        const wrap = new THREE.Group(), inner = g.scene.clone(true);
+        inner.rotation.set(...sk.rot.map(d => d * Math.PI / 180), 'XYZ'); wrap.add(inner);
+        wrap.updateMatrixWorld(true);
+        const sb = new THREE.Box3().setFromObject(wrap), ss = sb.getSize(new THREE.Vector3());
+        p.meshes.forEach(m => { m.userData.skinHidden = true; m.layers.set(1); });   // placeholder: not drawn, still selectable
+        const pb = new THREE.Box3(); p.meshes.forEach(m => pb.expandByObject(m));
+        const ps = pb.getSize(new THREE.Vector3()), pc = pb.getCenter(new THREE.Vector3()), sc = sb.getCenter(new THREE.Vector3());
+        // sk.size: largest dimension in metres (ESTIMATED, see assembly/tripo_interior.json); else fit inside the placeholder.
+        const k = sk.size ? sk.size / Math.max(ss.x, ss.y, ss.z) : Math.min(ps.x / ss.x, ps.y / ss.y, ps.z / ss.z);
+        wrap.scale.setScalar(k);
+        wrap.position.set(pc.x - sc.x * k, sk.align === 'bottom' ? pb.min.y - sb.min.y * k : pc.y - sc.y * k, pc.z - sc.z * k);
+        wrap.updateMatrixWorld(true); p.node.attach(wrap);
+        wrap.traverse(m => { if (m.isMesh) { m.userData.orig = m.material; m.castShadow = true; m.receiveShadow = true; p.meshes.push(m); } });
+        p.skin = sk.label;
+      });
+      if (window.__kartalViewer) window.__kartalViewer.skins = (window.__kartalViewer.skins || 0) + 1;
+      applyLayers();
+    }, e => console.warn('skin', sk.file, e)));
+  }
+
   // ---- Photo-based exterior shell (Tripo AI mesh, visual estimate, D-030..D-032) ----
   let shell = null, shellOpacity = 1, shellMats = [];
   function setShellOpacity(o) {
@@ -329,7 +383,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     if (shell) shell.visible = o > 0.01;
     // While the photo shell is mostly opaque, the coincident placeholder exterior would poke through
     // it (headliner, roof, sills): move every engineering mesh to layer 1, which the camera does not draw but the raycaster still tests (object.visible would also drop it from selection).
-    parts.forEach(p => p.meshes.forEach(m => m.layers.set(!shell || o < 0.6 ? 0 : 1)));   // layer 1: not drawn, still raycast
+    applyLayers();   // layer 1: not drawn, still raycast
     document.getElementById('s-on').classList.toggle('on', o > 0.01); document.getElementById('s-off').classList.toggle('on', o <= 0.01);
   }
   function setupShell() {
