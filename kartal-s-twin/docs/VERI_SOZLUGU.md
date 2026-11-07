@@ -11,9 +11,9 @@ Spec revizyonu 0.8.0: 134 parametre. Değerler ve açıklamalar `specs/kartal_s_
 | MEASURED | Araç üzerinde fiziksel ölçümle elde edildi (MEASUREMENT kanıtı, VERIFIED). | 0 |
 | DOCUMENT_CONFIRMED | Ruhsat veya teknik belgeyle doğrulandı (DOCUMENT/PHOTO kanıtı, VERIFIED). | 25 |
 | USER_CONFIRMED | Araç sahibi doğrudan söyledi (USER_STATEMENT, güven HIGH); belge veya ölçü olmadan ESTIMATED kalır. | 4 |
-| SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 9 |
-| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 40 |
-| UNKNOWN | Henüz bilinmiyor; değer yok. | 56 |
+| SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 11 |
+| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 41 |
+| UNKNOWN | Henüz bilinmiyor; değer yok. | 53 |
 
 Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomatik türetilir. ESTIMATED değerler kesin ölçü değildir; gerekçeleri ve nasıl doğrulanacakları spec'teki `notes` ve `verify_by` alanlarındadır.
 
@@ -44,7 +44,7 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `dimensions.wheel_centre_to_arch_fr` | Hub centre to wheel-arch lip, front right | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
 | `dimensions.wheel_centre_to_arch_rl` | Hub centre to wheel-arch lip, rear left | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
 | `dimensions.wheel_centre_to_arch_rr` | Hub centre to wheel-arch lip, rear right | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
-| `dimensions.turning_circle_kerb` | Turning circle, kerb to kerb | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner's manual, or full-lock circle chalked on the ground |
+| `dimensions.turning_circle_kerb` | Turning circle, kerb to kerb | 10300 mm | ± 300 | ESTIMATED | ESTIMATED / LOW | E-038 | Owner's manual, or full-lock circle chalked on the ground |
 | `body.body_construction` | Body construction (unibody / separate frame) | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody photos |
 | `body.cargo_floor_length_seat_up` | Cargo floor length, rear seat up | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape at floor level: tailgate seal to rear-seat backrest |
 | `body.cargo_floor_length_seat_folded` | Cargo floor length, rear seat folded | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape at floor level: tailgate seal to front-seat backs |
@@ -92,11 +92,11 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `suspension.rear_spring_type` | Rear spring type (coil / leaf) | coil |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-032, E-025 | Underbody photo |
 | `suspension.front_antiroll_bar_fitted` | Front anti-roll bar fitted | True |  | ESTIMATED | ESTIMATED / LOW | E-032 | Underbody photo |
 | `suspension.rear_antiroll_bar_fitted` | Rear anti-roll bar fitted | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody photo |
-| `steering.steering_gear_type` | Steering gear type (rack-and-pinion / recirculating ball) | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody or engine bay photo |
+| `steering.steering_gear_type` | Steering gear type (rack-and-pinion / recirculating ball) | rack-and-pinion |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-039, E-038 | Underbody or engine bay photo |
 | `steering.power_assisted` | Power assisted | yes (hydraulic, belt-driven pump) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Engine bay photo (pump, reservoir) |
 | `steering.turns_lock_to_lock` | Steering-wheel turns, lock to lock | - |  | UNKNOWN | UNKNOWN / NONE | - | Count with a tape mark on the wheel rim |
 | `brakes.front_brake_type` | Front brake type (disc / drum) | disc |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-032 | Photo through the wheel |
-| `brakes.front_disc_diameter` | Front disc diameter | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape across the disc (wheel off) / manual |
+| `brakes.front_disc_diameter` | Front disc diameter | 227.5 mm | ± 1 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-037, E-038 | Tape across the disc (wheel off) / manual |
 | `brakes.rear_brake_type` | Rear brake type (disc / drum) | drum |  | ESTIMATED | ESTIMATED / MEDIUM | E-025 | Photo through the wheel |
 | `brakes.rear_drum_diameter` | Rear drum diameter | - |  | UNKNOWN | UNKNOWN / NONE | - | Manual / measurement with the wheel off |
 | `brakes.brake_booster_fitted` | Brake booster (servo) fitted | - |  | UNKNOWN | UNKNOWN / NONE | - | Engine bay photo behind the master cylinder |

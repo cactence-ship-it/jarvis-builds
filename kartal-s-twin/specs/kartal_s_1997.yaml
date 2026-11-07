@@ -280,14 +280,14 @@ parameters:
       notes: ''
     turning_circle_kerb:
       name: Turning circle, kerb to kerb
-      value: null
+      value: 10300
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 300
+      source: [E-038]
       verify_by: Owner's manual, or full-lock circle chalked on the ground
-      notes: ''
+      notes: Fiat 131 Panorama figure; kerb/wall definition not stated.
   # ---------------------------------------------------------------- Body, closures and cargo
   body:
     body_construction:
@@ -455,7 +455,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Engine-number stamping photo / documents
-      notes: ''
+      notes: 'Candidates (E-040): 131.D1.016 (carburettor, more likely given E-027) or 131.F3.016 (i.e.). Read the engine-number stamping to settle.'
     displacement:
       name: Displacement
       value: 1581
@@ -778,14 +778,14 @@ parameters:
   steering:
     steering_gear_type:
       name: Steering gear type (rack-and-pinion / recirculating ball)
-      value: null
+      value: rack-and-pinion
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-039, E-038]
       verify_by: Underbody or engine bay photo
-      notes: ''
+      notes: Mechanical rack for the family (E-039); VEH-01 has a belt-driven power-steering pump (E-027), so assisted rack likely on this car.
     power_assisted:
       name: Power assisted
       value: yes (hydraulic, belt-driven pump)
@@ -820,14 +820,14 @@ parameters:
       notes: Front discs with single-piston sliding calipers, rear drums (E-032).
     front_disc_diameter:
       name: Front disc diameter
-      value: null
+      value: 227.5
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 1
+      source: [E-037, E-038]
       verify_by: Tape across the disc (wheel off) / manual
-      notes: ''
+      notes: Solid disc, 10.8 mm thick (min 9 mm), OEM 4208311; listed for cars up to MY2000 (E-037). Measure the disc to confirm.
     rear_brake_type:
       name: Rear brake type (disc / drum)
       value: drum
@@ -1243,7 +1243,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Alternator label photo
-      notes: ''
+      notes: Listed variants 55 / 65 / 85 A (E-039); read the alternator label.
     headlamp_type:
       name: Headlamp type / bulb
       value: H4 halogen
