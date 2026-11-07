@@ -2,6 +2,13 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Engine bay rev 2, sequential exploded view (D-037)
+
+### Changed
+- Parametric engine bay (same IDs, PLACEHOLDER): ribbed block, timing cover, head with plug leads, cam cover with cap, stepped sump, exhaust runners, radiator tanks and cap, 7-blade fan with shroud, hoses, accessory belt over four pulleys, starter solenoid, mount bushes. Build: STEP 462 solids valid, GLB 154 k triangles, no open bodies or flipped normals.
+- Viewer: exploded view per system (dropdown) or whole car, sequential outside-in, play/pause/reverse; smoke test covers it (engine-only motion, other systems hidden, exact reassembly) and passed 3 runs in a row.
+- Tripo: Studio credits (≈3 145) not usable from this cloud session (no browser/computer link); API wallet 30 credits, no generation this stage.
+
 ## [Unreleased] - 2026-11-07 - Phase 5 start: engine bay and LPG tank skins
 
 ### Added

@@ -33,6 +33,7 @@ h1 small { font-weight: 500; color: var(--muted); font-size: .95rem; margin-left
 #stage { position: relative; flex: 1; min-height: 0; background: var(--stage); }
 #stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 #msg { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-data); color: var(--muted); text-align: center; padding: 16px; }
+select { font: 500 .82rem var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px; }
 #views { position: absolute; top: 10px; left: max(10px, env(safe-area-inset-left, 0px)); display: flex; gap: 6px; flex-wrap: wrap; max-width: calc(100% - 20px); }
 button, .tog { font: 500 .82rem var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 7px 10px; cursor: pointer; }
 button:hover, .tog:hover { border-color: var(--muted); }
@@ -85,7 +86,10 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   </div>
   <div class="row">
     <label class="lbl" for="explode">Patlatma</label>
-    <input id="explode" type="range" min="0" max="100" value="0">
+    <select id="exScope" aria-label="Patlatılacak sistem"><option value="">Tüm araç</option></select>
+    <button id="exBack" title="Geri (montaj)">⏮</button><button id="exPlay" title="Oynat / durdur">▶</button>
+    <input id="explode" type="range" min="0" max="100" value="0" aria-label="Patlatma miktarı">
+    <span class="hint" style="flex-basis:100%">Sıralı demontaj: önce dıştaki parçalar ayrılır, geri oynatınca aynı sırayla yerine oturur. Yönler parçanın sistem merkezine göre konumundan hesaplanır (görsel, gerçek montaj sırası değil).</span>
   </div>
   <div class="row">
     <span class="lbl">Renk</span>
@@ -191,10 +195,42 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   document.getElementById('c-real').onclick = e => { statusMode = false; e.target.classList.add('on'); document.getElementById('c-status').classList.remove('on'); document.getElementById('legend').hidden = true; paint(); };
   document.getElementById('c-status').onclick = e => { statusMode = true; e.target.classList.add('on'); document.getElementById('c-real').classList.remove('on'); document.getElementById('legend').hidden = false; paint(); };
 
-  document.getElementById('explode').oninput = e => {
-    const k = e.target.value / 100 * 0.9;
-    parts.forEach(p => p.node.position.copy(p.home).addScaledVector(p.dir, k));
-  };
+  // ---- Sequential exploded view (whole car or one assembly), play / pause / reverse ----
+  // Order: farthest from the scope centre leaves first (outside-in disassembly), reassembly is the
+  // exact reverse. Directions are visual (from geometry), not a verified service procedure.
+  let exK = 0, exDir = 0, exScope = null, exList = [];
+  function exPrepare() {
+    const name = document.getElementById('exScope').value || null;
+    parts.forEach(p => p.node.position.copy(p.home));
+    exScope = name; const list = parts.filter(p => !name || p.data.assembly === name);
+    const b = new THREE.Box3(); list.forEach(p => b.expandByObject(p.node)); const c = b.getCenter(new THREE.Vector3());
+    const rad = b.getSize(new THREE.Vector3()).length() / 2 || 1;
+    exList = list.map(p => { const pc = new THREE.Box3().setFromObject(p.node).getCenter(new THREE.Vector3());
+      const off = pc.sub(c); if (!name) off.y = Math.max(off.y, 0) * 1.4;
+      const len = off.length(), dir = len > 1e-4 ? off.clone().normalize() : new THREE.Vector3(0, 1, 0);
+      return { p, dist: len, vec: dir.multiplyScalar(name ? 0.12 + len * 1.6 : len * 0.9 + 0.05) }; })
+      .sort((a, b) => b.dist - a.dist);
+    parts.forEach(p => { p.node.visible = !name || p.data.assembly === name || !(exK > 0); });
+    exApply();
+  }
+  function exApply() {
+    const n = exList.length, S = 1.2;
+    exList.forEach((e, i) => { const t = Math.min(1, Math.max(0, exK * (1 + S) - S * i / Math.max(1, n - 1)));
+      const ease = t * t * (3 - 2 * t); e.p.node.position.copy(e.p.home).addScaledVector(e.vec, ease); });
+    if (exScope) parts.forEach(p => { if (p.data.assembly !== exScope) p.node.visible = exK < 0.01; });
+    document.getElementById('explode').value = Math.round(exK * 100);
+    if (exK > 0 && shell && shellOpacity > 0.01) setShellOpacity(0);
+  }
+  function stepExplode(dt) {
+    if (!exDir) return;
+    exK = Math.min(1, Math.max(0, exK + exDir * dt * 0.22)); exApply();
+    if (exK === 0 || exK === 1) { exDir = 0; document.getElementById('exPlay').textContent = '▶'; }
+  }
+  document.getElementById('explode').oninput = e => { exDir = 0; document.getElementById('exPlay').textContent = '▶'; exK = e.target.value / 100; exApply(); };
+  document.getElementById('exPlay').onclick = e => { if (exDir) { exDir = 0; e.target.textContent = '▶'; return; }
+    exDir = exK >= 1 ? -1 : 1; e.target.textContent = '⏸'; };
+  document.getElementById('exBack').onclick = () => { exDir = -1; document.getElementById('exPlay').textContent = '⏸'; };
+  document.getElementById('exScope').onchange = () => { exK = 0; exDir = 0; document.getElementById('exPlay').textContent = '▶'; exPrepare(); };
 
   function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]); }
   function showInfo(p) {
@@ -268,6 +304,9 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const chip = document.getElementById('statusChip');
     if (!statuses.has('PLACEHOLDER')) { chip.className = 'chip draft'; chip.textContent = 'DRAFT · kanıta dayalı taslak'; }
     setupClosures(); setupSkins(); setupShell();
+    const sel = document.getElementById('exScope');
+    Object.keys(groups).forEach(g => { const o = document.createElement('option'); o.value = g; o.textContent = ASM_TR[g] || g; sel.appendChild(o); });
+    exPrepare();
     msg.hidden = true; setView('iso');
     // Read-only hook for the automated browser test (tools/viewer_smoke): exposes state, changes nothing.
     window.__kartalViewer = {
@@ -454,7 +493,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   }
 
   let last = performance.now();
-  (function loop(now) { requestAnimationFrame(loop); const t = now || performance.now(); stepClosures(Math.min((t - last) / 1000, 0.1)); last = t;
+  (function loop(now) { requestAnimationFrame(loop); const t = now || performance.now(); const dt = Math.min((t - last) / 1000, 0.1); stepClosures(dt); stepExplode(dt); last = t;
     controls.update(); renderer.render(scene, camera); })();
 })();
 </script>

@@ -54,6 +54,23 @@ const check = (cond, m) => { if (!cond) fail(m); console.log('ok: ' + m); };
   const back = Math.max(...pos2.map(x => Math.hypot(...x.position.map((v, i) => v - pos0[x.id][i]))));
   check(back < 1e-9, 'explode 0 restores the original positions');
 
+  // 3b. Sequential exploded view of one system: play moves only ENGINE parts and hides the rest;
+  //     reverse play restores every original position exactly and shows everything again.
+  await p.selectOption('#exScope', 'ENGINE');
+  await p.click('#exPlay');
+  // wait for the animation to stop itself (button back to play), not for the rounded slider value
+  await p.waitForFunction(() => document.getElementById('exPlay').textContent === '▶', null, { timeout: 20000 });
+  const pe = await p.evaluate(() => window.__kartalViewer.parts());
+  const movedE = pe.filter(x => Math.hypot(...x.position.map((v, i) => v - pos0[x.id][i])) > 0.01);
+  check(movedE.length > 0 && movedE.every(x => x.assembly === 'ENGINE'), `engine explode moves only ENGINE parts (${movedE.length})`);
+  check(pe.filter(x => x.assembly !== 'ENGINE').every(x => !x.visible), 'other systems hidden during engine explode');
+  await p.click('#exBack');
+  await p.waitForFunction(() => document.getElementById('exPlay').textContent === '▶', null, { timeout: 20000 });
+  const pr = await p.evaluate(() => window.__kartalViewer.parts());
+  const backE = Math.max(...pr.map(x => Math.hypot(...x.position.map((v, i) => v - pos0[x.id][i]))));
+  check(backE < 1e-9 && pr.every(x => x.visible), 'reverse play reassembles exactly and shows all systems');
+  await p.selectOption('#exScope', '');
+
   // 4. Assembly visibility: hiding GLAZING hides exactly its parts; showing restores them.
   const glazing = parts.filter(x => x.assembly === 'GLAZING').length;
   check(glazing > 0, `GLAZING has ${glazing} parts`);
