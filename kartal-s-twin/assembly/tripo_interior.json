@@ -1,5 +1,5 @@
 {
- "note": "Photo-based interior skins (Tripo AI v3.1 image-to-model from VEH-01 interior photos, D-034). Visual estimates, not measurements: each skin is scaled uniformly to fit inside the PLACEHOLDER part's bounding box and replaces only its look; the part record, status and selection stay those of the part. Rotations (degrees, applied X then Y then Z) orient the generated mesh into the car frame (glTF: +Z forward, +Y up) and were checked visually. GLB files live in git-ignored refs/derived/tripo/ (textures come from owner photos). 'size' is the largest dimension in metres (ESTIMATED from typical values for this class, not measured): steering wheel 0.35 m (aftermarket three-spoke), front seat 0.95 m, rear bench 1.30 m wide.",
+ "note": "Photo-based interior skins (Tripo AI v3.1 image-to-model from VEH-01 interior photos, D-034). Visual estimates, not measurements: each skin is scaled uniformly to fit inside the PLACEHOLDER part's bounding box and replaces only its look; the part record, status and selection stay those of the part. Rotations (degrees, applied X then Y then Z) orient the generated mesh into the car frame (glTF: +Z forward, +Y up) and were checked visually. GLB files live in git-ignored refs/derived/tripo/ (textures come from owner photos). 'size' is the largest dimension in metres (ESTIMATED from typical values for this class, not measured): steering wheel 0.35 m (aftermarket three-spoke), front seat 0.95 m, rear bench 1.30 m wide. Rear bench: text-to-model (the photo of the bench is blocked by the front seat), colours described from owner photos.",
  "skins": [
   {
    "file": "int_wheel.glb",
@@ -31,17 +31,17 @@
    "size": 0.95
   },
   {
-   "file": "int_rear.glb",
+   "file": "int_rear2.glb",
    "parts": [
     "INT-011"
    ],
    "rot": [
     0,
-    90,
+    -90,
     0
    ],
    "align": "bottom",
-   "label": "Arka koltuk (fotoğraftan, kılıflı)",
+   "label": "Arka koltuk (yazıdan üretildi, kılıf renkleri fotoğrafa benzetildi)",
    "size": 1.3
   }
  ]

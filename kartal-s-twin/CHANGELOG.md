@@ -2,6 +2,11 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-07 - Rear bench replaced
+
+### Changed
+- Rear bench skin (INT-011) replaced by a text-to-model bench (photo of the bench is blocked by the front seat; colours described from owner photos), rotated -90 deg so the backrest faces the rear. Second dashboard attempt (centre-stack crop) returned only a radio box: not used, dashboard stays PLACEHOLDER. 70 credits; 180 left.
+
 ## [Unreleased] - 2026-11-07 - Interior skins from owner photos (D-034)
 
 ### Added
