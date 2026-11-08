@@ -2,6 +2,13 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-08 - Electrical layout from the owner's manual
+
+### Changed
+- Fuse box (22 positions) and relays moved to the lower right of the dashboard (manual p.59-60, VERIFIED location); main loom re-routed through the dash.
+- Earthing bracket on the right inner side of the front panel added (manual p.60); ignition described as electronic, firing order 1-3-4-2 (p.90).
+- Tests: build, unit tests, validate, viewer smoke test pass.
+
 ## [Unreleased] - 2026-11-08 - Fiat 131 Panorama blueprint (E-061)
 
 ### Added
