@@ -1,4 +1,4 @@
-# Test run 2026-11-07T22:43:03Z on commit base 4569b42
+# Test run 2026-11-08T00:05:04Z on commit base 37ef73c
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -160,7 +160,7 @@ test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval
 test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
 
 ----------------------------------------------------------------------
-Ran 147 tests in 142.677s
+Ran 147 tests in 137.912s
 
 OK
 ## result: validate=0 unittest=0

@@ -2,6 +2,12 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-08 - Viewer engineering tools (D-042)
+
+### Added
+- Section plane, ruler, part envelope (VCS mm), wireframe, turntable, lamp simulation, focus / isolate / hide / show all, keyboard shortcuts, searchable parts list, evidence-share heat map.
+- Smoke test covers list + search, list selection, envelope, section on/off, ruler (two taps), isolate/restore, wireframe, lights, heat map; passes with and without the photo shell.
+
 ## [Unreleased] - 2026-11-07 - Drivetrain and rear links from owner research (D-041)
 
 ### Added
