@@ -167,7 +167,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Straight-edge across the rails to the ground
-      notes: ''
+      notes: Manual gives 1496 mm unladen without saying whether the rails are included (E-058/E-059). Measure over the rails.
     wheelbase_lh:
       name: Wheelbase, left side
       value: 2490
@@ -292,24 +292,24 @@ parameters:
   body:
     body_construction:
       name: Body construction (unibody / separate frame)
-      value: null
+      value: monocoque (self-supporting steel body)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-058, E-059]
       verify_by: Underbody photos
-      notes: ''
+      notes: 'Manual p.92: rear links attached to the steel body; Fiat/SEAT 131 documents call it integral / monocasco autoportante (E-059, not opened).'
     cargo_floor_length_seat_up:
       name: Cargo floor length, rear seat up
-      value: null
+      value: 1340
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-059]
       verify_by: 'Tape at floor level: tailgate seal to rear-seat backrest'
-      notes: ''
+      notes: 'Forum: MDF board cut for a Kartal cargo floor 134 x 105 cm (E-059); board, not a measured floor length.'
     cargo_floor_length_seat_folded:
       name: Cargo floor length, rear seat folded
       value: null
@@ -322,14 +322,14 @@ parameters:
       notes: ''
     cargo_width_between_arches:
       name: Cargo width between wheel arches
-      value: null
+      value: 1050
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-059]
       verify_by: Tape across the narrowest point
-      notes: ''
+      notes: Same forum MDF board width (E-059).
     tailgate_opening_width:
       name: Tailgate opening width
       value: null
@@ -401,7 +401,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Tape across the rim
-      notes: ''
+      notes: 'Factory: Fiat/SEAT 131 400 mm, Tofaş new body ~380 mm (listing) per E-059. VEH-01 has an aftermarket three-spoke wheel: measure it.'
   # ---------------------------------------------------------------- Mass
   mass:
     curb_mass:
@@ -433,7 +433,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Weighbridge at the reference state
-      notes: ''
+      notes: 'Reference only: Fiat 131 CL max front axle load 670 kg (KFT sheet via E-059); SEAT 131 weight split 52.5 / 47.5. A weighbridge reading of VEH-01 is needed.'
     axle_load_rear_measured:
       name: Rear axle load, measured
       value: null
@@ -443,7 +443,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Weighbridge at the reference state
-      notes: ''
+      notes: 'Reference only: Fiat 131 CL max rear axle load 800 kg (E-059).'
   # ---------------------------------------------------------------- Engine - variant NOT yet identified (U-001); no value may be assumed
   engine:
     engine_code:
@@ -721,14 +721,14 @@ parameters:
   # ---------------------------------------------------------------- Drivetrain
     clutch_disc_diameter:
       name: Clutch disc diameter
-      value: null
+      value: 190
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 10
+      source: [E-059, E-060]
       verify_by: Read the disc stamping when the clutch is out
-      notes: Candidates 190 / 200 / 215 mm (E-054, E-056). Valeo 826522 is 200 mm, 20 teeth, hub 20.9 x 15.2 but no Fiat 131 fitment and one 240 mm listing; Fiat 131 kit 003348 has hub 23.07 x 20.11 (E-057). Unresolved.
+      notes: 'E-059: Opar 98000053 (131 D1.016 OHC, 1993+) = 190 mm, 20 teeth, hub 20.1 x 23; 98000052 = 200 mm for the older OHV engine. MAPA part number not found (E-060). Read the disc stamping to confirm.'
     gearbox_input_bearing:
       name: Gearbox input (main) bearing, bore x OD x width
       value: 30 x 75 x 19
@@ -932,9 +932,9 @@ parameters:
       status: ESTIMATED
       confidence: LOW
       tolerance: 20
-      source: [E-044]
+      source: [E-044, E-059]
       verify_by: Measure the removed damper
-      notes: KYB 343142, Fiat 131 saloon application; estate may differ.
+      notes: 'KYB 343142 337 mm (E-044) and SEAT 131 workshop manual 340 +/- 2 mm (E-059): agree within 3 mm.'
     rear_damper_length_extended:
       name: Rear damper eye-to-eye length, extended
       value: 527
@@ -942,9 +942,9 @@ parameters:
       status: ESTIMATED
       confidence: LOW
       tolerance: 20
-      source: [E-044]
+      source: [E-044, E-059]
       verify_by: Measure the removed damper
-      notes: KYB 343142 (stroke 190 mm).
+      notes: KYB 527 mm and SEAT 131 manual 526 +/- 2 mm agree.
     front_lower_arm_length:
       name: Front lower arm (with ball joint) length
       value: 289
@@ -1007,14 +1007,54 @@ parameters:
       notes: Arnold 1174003 617 mm, listed for 124 Spider; long lower arm shared by 124 and 131 to 1978 (E-057). Kartal fit not confirmed.
     panhard_rod_length:
       name: Panhard rod length, hole to hole
-      value: null
+      value: 1000
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-059]
       verify_by: Measure the rod under the car
-      notes: Manual p.92 confirms one transverse reaction rod (Panhard). Length not given; Kartal 7733924 not found (E-057).
+      notes: Kartal-specific OEM 7733924 (centre bowed) per Opar list (E-059, not opened); ~1000 mm is the OVERALL length from a listing, not eye to eye. Şahin 4337930 / Doğan 4401237 do not fit.
+    front_spring_height_loaded:
+      name: Front spring height under the check load
+      value: 270
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-059]
+      verify_by: Workshop check on the car
+      notes: 'SEAT 131 manual: 270 mm under 280 +/- 12 kg (yellow > 270, green < 270). Fiat/SEAT 131 data.'
+    rear_spring_height_loaded:
+      name: Rear spring height under the check load
+      value: 235
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-059]
+      verify_by: Workshop check on the car
+      notes: 'SEAT 131 manual: 235 mm under 265 +/- 13.5 kg. Kartal estate springs may differ.'
+    front_strut_length_extended:
+      name: Front strut damper length, extended
+      value: 522
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-059]
+      verify_by: Measure the removed insert
+      notes: 'SEAT 131 manual (BOGE): 522 extended, 362 closed, stroke 160.'
+    front_strut_length_compressed:
+      name: Front strut damper length, compressed
+      value: 362
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-059]
+      verify_by: Measure the removed insert
+      notes: SEAT 131 manual (BOGE).
   steering:
     steering_gear_type:
       name: Steering gear type (rack-and-pinion / recirculating ball)
@@ -1304,14 +1344,14 @@ parameters:
   lpg_system:
     kit_type:
       name: LPG kit type (venturi mixer or vapour injection)
-      value: null
+      value: conventional venturi / leaf mixer at the carburettor with petrol cut-off solenoid (typical for 131 D1.016)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-059, E-022]
       verify_by: 'Engine-bay photo: mixer in the air intake vs injector rail'
-      notes: No mixer or injector rail visible in the engine-bay photos (E-027); the air cleaner covers the carburettor. A round coolant-heated unit near the bulkhead may be the vaporiser (unconfirmed).
+      notes: Typical kit for this engine (Atiker / BRC catalogues via E-059); the mixer on VEH-01 not yet photographed.
     tank_type:
       name: LPG tank type
       value: toroidal (ring) tank in the spare-wheel well
@@ -1451,7 +1491,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Exterior photo (bumper / fuel flap / body side)
-      notes: 'Not visible on the exterior photos (E-026): no separate LPG filler on either side or the bumper in those views. Ask the owner or photograph under the fuel flap and the rear bumper.'
+      notes: 'Typical 1990s-2000s: under the rear bumper (opposite the exhaust) or in the bumper; post-2017 inspection rules require it outside the bumper underside (E-059). VEH-01 not photographed.'
     tank_mounting:
       name: Tank mounting (frame, straps, bolts)
       value: bolted through the floor of the spare-wheel well at the tank centre (two brackets in the central opening, two bolt heads visible from below); opening closed by a black cover with two holes
@@ -1566,14 +1606,14 @@ parameters:
       notes: H4 bulbs listed for the Şahin (E-036); same body family. Read the bulb code to verify.
     fuse_box_location:
       name: Fuse box location
-      value: null
+      value: lower right of the dashboard (passenger side, under the glovebox), cover with two screws; relays on and beside the box
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058, E-060]
       verify_by: Photo
-      notes: Manual p.60 shows the 22-position fuse box and relays, not its location in the car.
+      notes: Owner's manual p.59 (1997) / p.44 (1994 per E-059).
   # ---------------------------------------------------------------- Body profile (VCS) - shape values; placeholders stand in until measured (docs/OLCUM_REHBERI.md)
   body_profile:
     bumper_protrusion:

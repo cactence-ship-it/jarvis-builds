@@ -15,6 +15,9 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | dimensions.rear_overhang | - / UNKNOWN / NONE | 1141 mm / VERIFIED / HIGH | E-058 | Manual p.95 (Kartal drawing). |
 | dimensions.ground_clearance_min | - / UNKNOWN / NONE | 120 mm / ESTIMATED / LOW | E-052 | Fiat 131 Panorama figure; Kartal and this car (LPG tank in the spare-wheel well protrudes below the floor, E-025) may differ. Measure. |
 | dimensions.turning_circle_kerb | - / UNKNOWN / NONE | 10300 mm / VERIFIED / HIGH | E-058 | Manual p.93: minimum turning circle diameter 10.3 m (kerb or wall not stated). |
+| body.body_construction | - / UNKNOWN / NONE | monocoque (self-supporting steel body) / ESTIMATED / MEDIUM | E-058, E-059 | Manual p.92: rear links attached to the steel body; Fiat/SEAT 131 documents call it integral / monocasco autoportante (E-059, not opened). |
+| body.cargo_floor_length_seat_up | - / UNKNOWN / NONE | 1340 mm / ESTIMATED / LOW | E-059 | Forum: MDF board cut for a Kartal cargo floor 134 x 105 cm (E-059); board, not a measured floor length. |
+| body.cargo_width_between_arches | - / UNKNOWN / NONE | 1050 mm / ESTIMATED / LOW | E-059 | Same forum MDF board width (E-059). |
 | body.cargo_volume | 846 L / ESTIMATED / LOW | 846 L / VERIFIED / HIGH | E-058 | Manual p.95: 846 dm3 (SAE) rear seat up, 2054 dm3 folded. |
 | mass.gross_vehicle_mass | 1550 kg / ESTIMATED / LOW | 1550 kg / ESTIMATED / HIGH | E-058 | Manual p.97, Kartal S-SLX (gross 1550, payload 490, kerb 1060 incl. fuel and spare, trailer 1100). Registered kerb mass stays the document value (E-014/E-015). |
 | engine.engine_code | - / UNKNOWN / NONE | 131 D1.016 / ESTIMATED / HIGH | E-058, E-040 | Manual p.89 lists 131 D1.016 for Kartal S-SLX (plain Kartal 131 D2.016, 1.6 i.e. 131 F3.016). Rests on VEH-01 being a Kartal S; stamping at the front of the block right of the water pump (p.88) not yet read. |
@@ -36,7 +39,7 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | transmission.reverse_ratio | 3.526 ratio / ESTIMATED / LOW | 3.526 ratio / VERIFIED / HIGH | E-058 | Forum-quoted (E-031). |
 | transmission.final_drive_ratio | 4.1 ratio / ESTIMATED / LOW | 4.1 ratio / VERIFIED / HIGH | E-058 | Manual p.91: hypoid 4.1:1 (10/41). |
 | transmission.clutch_actuation | cable / ESTIMATED / LOW | mechanical (cable), self-adjusting / VERIFIED / HIGH | E-058 | Clutch cable sold for Doğan/Kartal/Şahin 1.6 (E-035). Verify: cable at the pedal box or a master cylinder on the bulkhead. |
-| transmission.clutch_disc_diameter | (yok, yeni parametre) | - / UNKNOWN / NONE | - | Candidates 190 / 200 / 215 mm (E-054, E-056). Valeo 826522 is 200 mm, 20 teeth, hub 20.9 x 15.2 but no Fiat 131 fitment and one 240 mm listing; Fiat 131 kit 003348 has hub 23.07 x 20.11 (E-057). Unresolved. |
+| transmission.clutch_disc_diameter | (yok, yeni parametre) | 190 mm / ESTIMATED / LOW | E-059, E-060 | E-059: Opar 98000053 (131 D1.016 OHC, 1993+) = 190 mm, 20 teeth, hub 20.1 x 23; 98000052 = 200 mm for the older OHV engine. MAPA part number not found (E-060). Read the disc stamping to confirm. |
 | transmission.gearbox_input_bearing | (yok, yeni parametre) | 30 x 75 x 19 / ESTIMATED / LOW | E-056 | ORS/QJ 630106 (owner summary only). |
 | transmission.gearbox_output_bearing | (yok, yeni parametre) | 25 x 52 x 21 / ESTIMATED / LOW | E-056 | Arnold Classic 1178168 (owner summary only). |
 | drivetrain.propshaft_construction | (yok, yeni parametre) | two-piece, flexible coupling at the gearbox, centre bearing, universal joints / ESTIMATED / LOW | E-056 | From parts that exist for the family (guibo 4516801, centre bearing 4181556); VEH-01 not checked. |
@@ -53,15 +56,19 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | suspension.rear_spring_type | coil / ESTIMATED / MEDIUM | coil / VERIFIED / HIGH | E-058 | Live axle on coil springs with a Panhard rod (E-032); the transverse locating rod seen under the car (E-025) is consistent. |
 | suspension.front_antiroll_bar_fitted | True / ESTIMATED / LOW | True / VERIFIED / HIGH | E-058 | Manual p.92: the anti-roll bar acts as the reaction rod of the lower arm. |
 | suspension.rear_antiroll_bar_fitted | - / UNKNOWN / NONE | False / ESTIMATED / MEDIUM | E-058 | Manual p.92 lists 4 longitudinal and 1 transverse reaction rods, coil springs and dampers for the rear, no anti-roll bar. Absence in a description, not a statement. |
-| suspension.rear_damper_length_compressed | (yok, yeni parametre) | 337 mm / ESTIMATED / LOW | E-044 | KYB 343142, Fiat 131 saloon application; estate may differ. |
-| suspension.rear_damper_length_extended | (yok, yeni parametre) | 527 mm / ESTIMATED / LOW | E-044 | KYB 343142 (stroke 190 mm). |
+| suspension.rear_damper_length_compressed | (yok, yeni parametre) | 337 mm / ESTIMATED / LOW | E-044, E-059 | KYB 343142 337 mm (E-044) and SEAT 131 workshop manual 340 +/- 2 mm (E-059): agree within 3 mm. |
+| suspension.rear_damper_length_extended | (yok, yeni parametre) | 527 mm / ESTIMATED / LOW | E-044, E-059 | KYB 527 mm and SEAT 131 manual 526 +/- 2 mm agree. |
 | suspension.front_lower_arm_length | (yok, yeni parametre) | 289 mm / ESTIMATED / LOW | E-046 | AYD 00016 listing; reference points of the length not stated. |
 | suspension.front_strut_bore | (yok, yeni parametre) | 27 mm / ESTIMATED / LOW | E-048 | Monroe 11002, Fiat 131 saloon. |
 | suspension.front_strut_rod_diameter | (yok, yeni parametre) | 20 mm / ESTIMATED / LOW | E-048 | Monroe 11002. |
 | suspension.front_wheel_bearing | (yok, yeni parametre) | 28 x 57.15 x 17.462 / ESTIMATED / LOW | E-047 | SKF 639297/Q, J15585/J15520. |
 | suspension.rear_upper_link_length | (yok, yeni parametre) | 315 mm / ESTIMATED / LOW | E-056, E-057 | Arnold 1774001 "compression strut short, Fiat 131" 315 mm (confirmed E-057). |
 | suspension.rear_lower_link_length | (yok, yeni parametre) | 617 mm / ESTIMATED / LOW | E-056, E-057 | Arnold 1174003 617 mm, listed for 124 Spider; long lower arm shared by 124 and 131 to 1978 (E-057). Kartal fit not confirmed. |
-| suspension.panhard_rod_length | (yok, yeni parametre) | - / UNKNOWN / NONE | - | Manual p.92 confirms one transverse reaction rod (Panhard). Length not given; Kartal 7733924 not found (E-057). |
+| suspension.panhard_rod_length | (yok, yeni parametre) | 1000 mm / ESTIMATED / LOW | E-059 | Kartal-specific OEM 7733924 (centre bowed) per Opar list (E-059, not opened); ~1000 mm is the OVERALL length from a listing, not eye to eye. Şahin 4337930 / Doğan 4401237 do not fit. |
+| suspension.front_spring_height_loaded | (yok, yeni parametre) | 270 mm / ESTIMATED / LOW | E-059 | SEAT 131 manual: 270 mm under 280 +/- 12 kg (yellow > 270, green < 270). Fiat/SEAT 131 data. |
+| suspension.rear_spring_height_loaded | (yok, yeni parametre) | 235 mm / ESTIMATED / LOW | E-059 | SEAT 131 manual: 235 mm under 265 +/- 13.5 kg. Kartal estate springs may differ. |
+| suspension.front_strut_length_extended | (yok, yeni parametre) | 522 mm / ESTIMATED / LOW | E-059 | SEAT 131 manual (BOGE): 522 extended, 362 closed, stroke 160. |
+| suspension.front_strut_length_compressed | (yok, yeni parametre) | 362 mm / ESTIMATED / LOW | E-059 | SEAT 131 manual (BOGE). |
 | steering.steering_gear_type | - / UNKNOWN / NONE | rack-and-pinion / VERIFIED / HIGH | E-058 | Manual p.93: rack and pinion, hydraulic assistance on some types. |
 | steering.turns_lock_to_lock | - / UNKNOWN / NONE | 3 turns / VERIFIED / HIGH | E-058, E-027 | Manual p.93: 3 turns hydraulic, 3.4 manual; VEH-01 has hydraulic assistance (E-027). |
 | steering.tie_rod_length | (yok, yeni parametre) | 282.5 mm / ESTIMATED / LOW | E-045 | 282-283 mm (two listings), M14x1.5; mechanical-steering part, power-steering cars may differ. |
@@ -77,6 +84,7 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | wheels_tires.wheel_rim_width | 5.5 in / ESTIMATED / LOW | 5.5 in / VERIFIED / HIGH | E-058 | Manual p.93: Kartal S 5 1/2 J x 14 H1, factory tyre 185/70 R14 (the car now has 185/65 R14, E-028). |
 | wheels_tires.wheel_offset_et | - / UNKNOWN / NONE | 29 mm / ESTIMATED / LOW | E-053 | Fiat 131 4x98 wheels (single source); VEH-01 black steel 14 in rims not checked. |
 | wheels_tires.wheel_centre_bore | - / UNKNOWN / NONE | 58.1 mm / ESTIMATED / LOW | E-053 | Generic Fiat 4x98 hub bore; matches E-053. |
+| lpg_system.kit_type | - / UNKNOWN / NONE | conventional venturi / leaf mixer at the carburettor with petrol cut-off solenoid (typical for 131 D1.016) / ESTIMATED / LOW | E-059, E-022 | Typical kit for this engine (Atiker / BRC catalogues via E-059); the mixer on VEH-01 not yet photographed. |
 | electrical.system_voltage | 12 V / ESTIMATED / MEDIUM | 12 V / VERIFIED / HIGH | E-058 | 12 V battery seen in the engine bay (E-027). |
 | electrical.earth_polarity | - / UNKNOWN / NONE | negative / VERIFIED / HIGH | E-058 | Manual p.94; earth bracket on the right inner side of the front panel (p.60). |
 | electrical.battery_capacity | - / UNKNOWN / NONE | 72 Ah / VERIFIED / HIGH | E-049 | Fitted battery label (E-049). Factory battery 45 Ah, 220 A (manual p.94). |
@@ -85,3 +93,4 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | electrical.battery_case_width | (yok, yeni parametre) | 175 mm / ESTIMATED / LOW | E-043, E-049 | Same 175 mm for 60 and 72 Ah cases. |
 | electrical.battery_case_height | (yok, yeni parametre) | 175 mm / ESTIMATED / LOW | E-043, E-049 | Common 72 Ah case height; İnci 60 Ah is 190 mm. |
 | electrical.alternator_rated_current | - / UNKNOWN / NONE | 55 A / ESTIMATED / HIGH | E-058 | Manual p.94: Kartal S-SLX AA 125R 14 V 55 A (1.6 i.e. SLX 65 A, or 85 A with A/C). Rests on VEH-01 being a Kartal S; a replacement unit is not checked. |
+| electrical.fuse_box_location | - / UNKNOWN / NONE | lower right of the dashboard (passenger side, under the glovebox), cover with two screws; relays on and beside the box / VERIFIED / HIGH | E-058, E-060 | Owner's manual p.59 (1997) / p.44 (1994 per E-059). |

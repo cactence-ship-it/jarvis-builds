@@ -63,7 +63,7 @@ Tank ölçüleri şu an **geçici varsayım** (600 x 180 mm). Gerçek ölçü ve
 | M35 | LPG tank centre X (VCS, rearward from front axle) (`lpg_system.tank_centre_x`) | Ön jant merkezinden tank merkezine yatay mesafe (araç boyunca, yerde çekülle işaretleyerek). | PLACEHOLDER 3150 mm (sadece görsel) |
 | M36 | LPG tank centre Y (VCS, right positive) (`lpg_system.tank_centre_y`) | Aracın orta çizgisinden tank merkezine yanal mesafe (sağa +, sola -). | PLACEHOLDER 0 mm (sadece görsel) |
 | M37 | LPG tank underside height above ground (`lpg_system.tank_base_z`) | Tankın alt yüzeyinin (veya oturduğu stepne yuvası tabanının) yerden yüksekliği; araç altından ölçün. | PLACEHOLDER 350 mm (sadece görsel) |
-| M38 | Cargo width between wheel arches (`body.cargo_width_between_arches`) | Bagajda iki arka çamurluk kemeri arasındaki en dar genişlik. | UNKNOWN |
+| M38 | Cargo width between wheel arches (`body.cargo_width_between_arches`) | Bagajda iki arka çamurluk kemeri arasındaki en dar genişlik. | ESTIMATED (1050) |
 
 ## 3. Ruhsat bilgileri
 
@@ -97,4 +97,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 165 parametre: 62 VERIFIED, 64 ESTIMATED, 39 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 169 parametre: 63 VERIFIED, 74 ESTIMATED, 32 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.

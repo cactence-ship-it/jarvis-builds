@@ -2,6 +2,14 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-08 - Gemini research report (E-059/E-060)
+
+### Added
+- Owner-supplied Gemini report ingested (R-0037, local-only) and checked: fuse-box location VERIFIED against the owner's manual p.59; rear damper length now backed by two sources (KYB and SEAT 131 manual).
+- ESTIMATED: body construction monocoque (MEDIUM), clutch 190 mm / 20 teeth, Panhard rod ~1000 mm overall (Kartal 7733924), LPG kit type (venturi mixer), cargo floor ~1340 x 1050 (forum MDF board) - all LOW.
+- New parameters from the SEAT 131 workshop manual (via the report): front/rear spring heights under check load, front strut extended/compressed length.
+- Spec 169 parameters: 63 VERIFIED / 74 ESTIMATED / 32 UNKNOWN. Engineering documents regenerated.
+
 ## [Unreleased] - 2026-11-08 - Factory owner's manual (D-043)
 
 ### Added

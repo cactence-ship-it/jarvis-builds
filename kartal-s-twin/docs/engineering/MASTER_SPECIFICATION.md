@@ -4,12 +4,12 @@ Güncelleme: 2026-11-07. Bu dosya `specs/kartal_s_1997.yaml` dosyasından üreti
 
 ## Bugünkü başlangıçta bilinmeyen 52 değerin durumu
 
-**VERIFIED**: 9 · **PROVISIONAL**: 6 · **UNKNOWN**: 1 · **MEASURE_REQUIRED**: 36
+**VERIFIED**: 10 · **PROVISIONAL**: 10 · **UNKNOWN**: 0 · **MEASURE_REQUIRED**: 32
 
 | Anahtar | Ad | Değer | Spec durumu | Sınıf | Güven | Kaynak | Not |
 |---|---|---|---|---|---|---|---|
 | dimensions.overall_width_mirrors | Overall width incl. mirrors | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
-| dimensions.overall_height_roof_rails | Overall height incl. roof rails (if fitted) | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
+| dimensions.overall_height_roof_rails | Overall height incl. roof rails (if fitted) | - | UNKNOWN | MEASURE_REQUIRED | - | - | Manual gives 1496 mm unladen without saying whether the rails are included (E-058/E-059). Measure over the rails. |
 | dimensions.front_overhang | Front overhang (front axle to front extremity) | 765 mm | VERIFIED | VERIFIED | A | E-058 | Manual p.95 (Kartal drawing). |
 | dimensions.rear_overhang | Rear overhang (rear axle to rear extremity) | 1141 mm | VERIFIED | VERIFIED | A | E-058 | Manual p.95 (Kartal drawing). |
 | dimensions.ground_clearance_min | Minimum ground clearance (unladen) | 120 mm | ESTIMATED | PROVISIONAL | D | E-052 | Fiat 131 Panorama figure; Kartal and this car (LPG tank in the spare-wheel well protrudes below the floor, E-025) may differ. Measure. |
@@ -17,16 +17,16 @@ Güncelleme: 2026-11-07. Bu dosya `specs/kartal_s_1997.yaml` dosyasından üreti
 | dimensions.wheel_centre_to_arch_fr | Hub centre to wheel-arch lip, front right | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
 | dimensions.wheel_centre_to_arch_rl | Hub centre to wheel-arch lip, rear left | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
 | dimensions.wheel_centre_to_arch_rr | Hub centre to wheel-arch lip, rear right | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
-| body.body_construction | Body construction (unibody / separate frame) | - | UNKNOWN | UNKNOWN | - | - |  |
-| body.cargo_floor_length_seat_up | Cargo floor length, rear seat up | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
+| body.body_construction | Body construction (unibody / separate frame) | monocoque (self-supporting steel body) | ESTIMATED | PROVISIONAL | D | E-058, E-059 | Manual p.92: rear links attached to the steel body; Fiat/SEAT 131 documents call it integral / monocasco autoportante (E-059, not opened). |
+| body.cargo_floor_length_seat_up | Cargo floor length, rear seat up | 1340 mm | ESTIMATED | PROVISIONAL | D | E-059 | Forum: MDF board cut for a Kartal cargo floor 134 x 105 cm (E-059); board, not a measured floor length. |
 | body.cargo_floor_length_seat_folded | Cargo floor length, rear seat folded | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
-| body.cargo_width_between_arches | Cargo width between wheel arches | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
+| body.cargo_width_between_arches | Cargo width between wheel arches | 1050 mm | ESTIMATED | PROVISIONAL | D | E-059 | Same forum MDF board width (E-059). |
 | body.tailgate_opening_width | Tailgate opening width | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
 | body.tailgate_opening_height | Tailgate opening height | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
 | body.load_sill_height | Load sill height | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
-| interior.steering_wheel_diameter | Steering wheel outer diameter | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
-| mass.axle_load_front_measured | Front axle load, measured | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
-| mass.axle_load_rear_measured | Rear axle load, measured | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
+| interior.steering_wheel_diameter | Steering wheel outer diameter | - | UNKNOWN | MEASURE_REQUIRED | - | - | Factory: Fiat/SEAT 131 400 mm, Tofaş new body ~380 mm (listing) per E-059. VEH-01 has an aftermarket three-spoke wheel: measure it. |
+| mass.axle_load_front_measured | Front axle load, measured | - | UNKNOWN | MEASURE_REQUIRED | - | - | Reference only: Fiat 131 CL max front axle load 670 kg (KFT sheet via E-059); SEAT 131 weight split 52.5 / 47.5. A weighbridge reading of VEH-01 is needed. |
+| mass.axle_load_rear_measured | Rear axle load, measured | - | UNKNOWN | MEASURE_REQUIRED | - | - | Reference only: Fiat 131 CL max rear axle load 800 kg (E-059). |
 | engine.engine_code | Engine type code | 131 D1.016 | ESTIMATED | PROVISIONAL | D | E-058, E-040 | Manual p.89 lists 131 D1.016 for Kartal S-SLX (plain Kartal 131 D2.016, 1.6 i.e. 131 F3.016). Rests on VEH-01 being a Kartal S; stamping at the front of the block right of the water pump (p.88) not yet read. |
 | engine.ignition_type | Ignition system type | electronic | VERIFIED | VERIFIED | A | E-058 | Manual p.90: electronic ignition on every version; firing order 1-3-4-2, advance 10 deg. Module on the LH inner wing in the photos (E-051). |
 | suspension.rear_antiroll_bar_fitted | Rear anti-roll bar fitted | False | ESTIMATED | PROVISIONAL | D | E-058 | Manual p.92 lists 4 longitudinal and 1 transverse reaction rods, coil springs and dampers for the rear, no anti-roll bar. Absence in a description, not a statement. |
@@ -35,16 +35,16 @@ Güncelleme: 2026-11-07. Bu dosya `specs/kartal_s_1997.yaml` dosyasından üreti
 | brakes.parking_brake_type | Parking brake type | mechanical lever, acting on the rear wheels | VERIFIED | VERIFIED | A | E-058, E-055 | Lever seen in the interior photo; cables inferred. |
 | wheels_tires.wheel_offset_et | Wheel offset (ET) | 29 mm | ESTIMATED | PROVISIONAL | D | E-053 | Fiat 131 4x98 wheels (single source); VEH-01 black steel 14 in rims not checked. |
 | wheels_tires.wheel_centre_bore | Wheel centre bore | 58.1 mm | ESTIMATED | PROVISIONAL | D | E-053 | Generic Fiat 4x98 hub bore; matches E-053. |
-| lpg_system.kit_type | LPG kit type (venturi mixer or vapour injection) | - | UNKNOWN | MEASURE_REQUIRED | - | - | No mixer or injector rail visible in the engine-bay photos (E-027); the air cleaner covers the carburettor. A round coolant-heated unit near the bulkhead may be the vaporiser (unconfirmed). |
+| lpg_system.kit_type | LPG kit type (venturi mixer or vapour injection) | conventional venturi / leaf mixer at the carburettor with petrol cut-off solenoid (typical for 131 D1.016) | ESTIMATED | PROVISIONAL | D | E-059, E-022 | Typical kit for this engine (Atiker / BRC catalogues via E-059); the mixer on VEH-01 not yet photographed. |
 | lpg_system.tank_centre_x | LPG tank centre X (VCS, rearward from front axle) | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
 | lpg_system.tank_centre_y | LPG tank centre Y (VCS, right positive) | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
 | lpg_system.tank_base_z | LPG tank underside height above ground | - | UNKNOWN | MEASURE_REQUIRED | - | - |  |
-| lpg_system.filler_location | LPG filler valve location | - | UNKNOWN | MEASURE_REQUIRED | - | - | Not visible on the exterior photos (E-026): no separate LPG filler on either side or the bumper in those views. Ask the owner or photograph under the fuel flap and the rear bumper. |
+| lpg_system.filler_location | LPG filler valve location | - | UNKNOWN | MEASURE_REQUIRED | - | - | Typical 1990s-2000s: under the rear bumper (opposite the exhaust) or in the bumper; post-2017 inspection rules require it outside the bumper underside (E-059). VEH-01 not photographed. |
 | electrical.earth_polarity | Earth polarity | negative | VERIFIED | VERIFIED | A | E-058 | Manual p.94; earth bracket on the right inner side of the front panel (p.60). |
 | electrical.battery_capacity | Battery capacity | 72 Ah | VERIFIED | VERIFIED | A | E-049 | Fitted battery label (E-049). Factory battery 45 Ah, 220 A (manual p.94). |
 | electrical.battery_cold_cranking | Battery cold-cranking current | 700 A | VERIFIED | VERIFIED | A | E-049 | 700 A (EN) per label. |
 | electrical.alternator_rated_current | Alternator rated current | 55 A | ESTIMATED | PROVISIONAL | D | E-058 | Manual p.94: Kartal S-SLX AA 125R 14 V 55 A (1.6 i.e. SLX 65 A, or 85 A with A/C). Rests on VEH-01 being a Kartal S; a replacement unit is not checked. |
-| electrical.fuse_box_location | Fuse box location | - | UNKNOWN | MEASURE_REQUIRED | - | - | Manual p.60 shows the 22-position fuse box and relays, not its location in the car. |
+| electrical.fuse_box_location | Fuse box location | lower right of the dashboard (passenger side, under the glovebox), cover with two screws; relays on and beside the box | VERIFIED | VERIFIED | A | E-058, E-060 | Owner's manual p.59 (1997) / p.44 (1994 per E-059). |
 | body_profile.bumper_protrusion | Bumper face beyond the body face (front and rear) | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
 | body_profile.bumper_height | Bumper vertical height | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
 | body_profile.bumper_bottom_z | Bumper lower edge above ground | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
@@ -91,10 +91,10 @@ Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor:
 | dimensions.wheel_centre_to_arch_rl | Hub centre to wheel-arch lip, rear left | - | - | UNKNOWN | - | - |
 | dimensions.wheel_centre_to_arch_rr | Hub centre to wheel-arch lip, rear right | - | - | UNKNOWN | - | - |
 | dimensions.turning_circle_kerb | Turning circle, kerb to kerb | 10300 mm | 0 | VERIFIED | A | E-058 |
-| body.body_construction | Body construction (unibody / separate frame) | - | - | UNKNOWN | - | - |
-| body.cargo_floor_length_seat_up | Cargo floor length, rear seat up | - | - | UNKNOWN | - | - |
+| body.body_construction | Body construction (unibody / separate frame) | monocoque (self-supporting steel body) | - | ESTIMATED | D | E-058, E-059 |
+| body.cargo_floor_length_seat_up | Cargo floor length, rear seat up | 1340 mm | 50 | ESTIMATED | D | E-059 |
 | body.cargo_floor_length_seat_folded | Cargo floor length, rear seat folded | - | - | UNKNOWN | - | - |
-| body.cargo_width_between_arches | Cargo width between wheel arches | - | - | UNKNOWN | - | - |
+| body.cargo_width_between_arches | Cargo width between wheel arches | 1050 mm | 50 | ESTIMATED | D | E-059 |
 | body.tailgate_opening_width | Tailgate opening width | - | - | UNKNOWN | - | - |
 | body.tailgate_opening_height | Tailgate opening height | - | - | UNKNOWN | - | - |
 | body.load_sill_height | Load sill height | - | - | UNKNOWN | - | - |
@@ -133,7 +133,7 @@ Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor:
 | transmission.reverse_ratio | Reverse gear ratio | 3.526 ratio | 0 | VERIFIED | A | E-058 |
 | transmission.final_drive_ratio | Final drive ratio | 4.1 ratio | 0 | VERIFIED | A | E-058 |
 | transmission.clutch_actuation | Clutch actuation (cable / hydraulic) | mechanical (cable), self-adjusting | - | VERIFIED | A | E-058 |
-| transmission.clutch_disc_diameter | Clutch disc diameter | - | - | UNKNOWN | - | - |
+| transmission.clutch_disc_diameter | Clutch disc diameter | 190 mm | 10 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-059, E-060 |
 | transmission.gearbox_input_bearing | Gearbox input (main) bearing, bore x OD x width | 30 x 75 x 19 | - | ESTIMATED | D | E-056 |
 | transmission.gearbox_output_bearing | Gearbox rear output bearing, bore x OD x width | 25 x 52 x 21 | - | ESTIMATED | D | E-056 |
 | drivetrain.drive_layout | Drive layout (e.g. front-engine RWD / FWD) | front-engine, rear-wheel drive | - | ESTIMATED | D | E-009 |
@@ -153,15 +153,19 @@ Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor:
 | suspension.rear_spring_type | Rear spring type (coil / leaf) | coil | - | VERIFIED | A | E-058 |
 | suspension.front_antiroll_bar_fitted | Front anti-roll bar fitted | True | - | VERIFIED | A | E-058 |
 | suspension.rear_antiroll_bar_fitted | Rear anti-roll bar fitted | False | - | ESTIMATED | D | E-058 |
-| suspension.rear_damper_length_compressed | Rear damper eye-to-eye length, compressed | 337 mm | 20 | ESTIMATED | D | E-044 |
-| suspension.rear_damper_length_extended | Rear damper eye-to-eye length, extended | 527 mm | 20 | ESTIMATED | D | E-044 |
+| suspension.rear_damper_length_compressed | Rear damper eye-to-eye length, compressed | 337 mm | 20 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-044, E-059 |
+| suspension.rear_damper_length_extended | Rear damper eye-to-eye length, extended | 527 mm | 20 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-044, E-059 |
 | suspension.front_lower_arm_length | Front lower arm (with ball joint) length | 289 mm | 3 | ESTIMATED | D | E-046 |
 | suspension.front_strut_bore | Front strut damper bore | 27 mm | 1 | ESTIMATED | D | E-048 |
 | suspension.front_strut_rod_diameter | Front strut piston-rod diameter | 20 mm | 1 | ESTIMATED | D | E-048 |
 | suspension.front_wheel_bearing | Front wheel taper bearing (bore x OD x width) | 28 x 57.15 x 17.462 | 0.1 | ESTIMATED | D | E-047 |
 | suspension.rear_upper_link_length | Rear upper (short) link, hole to hole | 315 mm | 2 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-056, E-057 |
 | suspension.rear_lower_link_length | Rear lower (long) trailing arm, hole to hole | 617 mm | 3 | ESTIMATED | D (B adayı: birden fazla ilan/özet, bağımsızlık doğrulanmadı) | E-056, E-057 |
-| suspension.panhard_rod_length | Panhard rod length, hole to hole | - | - | UNKNOWN | - | - |
+| suspension.panhard_rod_length | Panhard rod length, hole to hole | 1000 mm | 40 | ESTIMATED | D | E-059 |
+| suspension.front_spring_height_loaded | Front spring height under the check load | 270 mm | 5 | ESTIMATED | D | E-059 |
+| suspension.rear_spring_height_loaded | Rear spring height under the check load | 235 mm | 5 | ESTIMATED | D | E-059 |
+| suspension.front_strut_length_extended | Front strut damper length, extended | 522 mm | 3 | ESTIMATED | D | E-059 |
+| suspension.front_strut_length_compressed | Front strut damper length, compressed | 362 mm | 3 | ESTIMATED | D | E-059 |
 | steering.steering_gear_type | Steering gear type (rack-and-pinion / recirculating ball) | rack-and-pinion | - | VERIFIED | A | E-058 |
 | steering.power_assisted | Power assisted | yes (hydraulic, belt-driven pump) | - | VERIFIED | A | E-027 |
 | steering.turns_lock_to_lock | Steering-wheel turns, lock to lock | 3 turns | 0 | VERIFIED | A | E-058, E-027 |
@@ -190,7 +194,7 @@ Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor:
 | wheels_tires.wheel_rim_flange_height | Rim flange height above the bead seat (contour J) | 17.5 mm | 1.0 | ESTIMATED | D | E-021 |
 | wheels_tires.wheel_rim_steel_thickness | Rim barrel and flange steel thickness | 3.0 mm | 1.0 | ESTIMATED | E | E-019 |
 | wheels_tires.wheel_disc_thickness | Wheel disc (centre) steel thickness | 4.0 mm | 1.5 | ESTIMATED | E | E-019 |
-| lpg_system.kit_type | LPG kit type (venturi mixer or vapour injection) | - | - | UNKNOWN | - | - |
+| lpg_system.kit_type | LPG kit type (venturi mixer or vapour injection) | conventional venturi / leaf mixer at the carburettor with petrol cut-off solenoid (typical for 131 D1.016) | - | ESTIMATED | D | E-059, E-022 |
 | lpg_system.tank_type | LPG tank type | toroidal (ring) tank in the spare-wheel well | - | VERIFIED | A | E-017, E-022 |
 | lpg_system.tank_location | LPG tank location | spare-wheel well at the rear of the luggage floor, near the tailgate sill; underside protrudes below the floor | - | VERIFIED | A | E-017, E-022, E-025 |
 | lpg_system.tank_nominal_capacity | LPG tank nominal capacity | 40 L | 1 | ESTIMATED | D | E-017 |
@@ -216,7 +220,7 @@ Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor:
 | electrical.battery_case_height | Battery case height | 175 mm | 15 | ESTIMATED | D | E-043, E-049 |
 | electrical.alternator_rated_current | Alternator rated current | 55 A | 1 | ESTIMATED | D | E-058 |
 | electrical.headlamp_type | Headlamp type / bulb | H4 halogen | - | ESTIMATED | D | E-036 |
-| electrical.fuse_box_location | Fuse box location | - | - | UNKNOWN | - | - |
+| electrical.fuse_box_location | Fuse box location | lower right of the dashboard (passenger side, under the glovebox), cover with two screws; relays on and beside the box | - | VERIFIED | A | E-058, E-060 |
 | body_profile.bumper_protrusion | Bumper face beyond the body face (front and rear) | - | - | UNKNOWN | - | - |
 | body_profile.bumper_height | Bumper vertical height | - | - | UNKNOWN | - | - |
 | body_profile.bumper_bottom_z | Bumper lower edge above ground | - | - | UNKNOWN | - | - |
