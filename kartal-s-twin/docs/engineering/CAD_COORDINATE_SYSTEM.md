@@ -1,6 +1,6 @@
 # CAD coordinate system and datums
 
-Güncelleme: 2026-11-07. Tanım karar **D-003**'tür (değişmedi); bu belge datum tablosunu toplar.
+Güncelleme: 2026-11-08 (fabrika kullanım kılavuzu E-058 ile). Tanım karar **D-003**'tür (değişmedi); bu belge datum tablosunu toplar.
 
 ## Eksenler (Vehicle Coordinate System, VCS)
 - **X**: boyuna eksen, **arkaya doğru pozitif**. X = 0 ön aks (ön teker merkezi) çizgisi.
@@ -15,8 +15,10 @@ X'in yönüdür (arkaya pozitif) ve proje başından beri böyle olduğu için d
 
 | Datum | X | Y | Z | Durum | Kaynak |
 |---|---|---|---|---|---|
-| Ön aks merkezi (FL/FR teker merkezi) | 0 | ∓693 | ≈286 | X tanım; Y ESTIMATED LOW (iz 1386); Z PLACEHOLDER (lastik yarıçapı, yük altında değil) | E-011, E-028 |
-| Arka aks merkezi (RL/RR) | 2490 | ∓663,5 | ≈286 | X ESTIMATED LOW (dingil 2490; sol/sağ ayrı ölçülmedi); Y ESTIMATED LOW (iz 1327) | E-009, E-010, E-011 |
+| Araç ön ucu | -765 | 0 | - | VERIFIED (ön çıkıntı 765, kılavuz s.95) | E-058 |
+| Ön aks merkezi (FL/FR teker merkezi) | 0 | ∓693 | ≈286 | X tanım; Y VERIFIED (iz 1386, kılavuz); Z PLACEHOLDER (lastik yarıçapı, yük altında değil) | E-058, E-028 |
+| Arka aks merkezi (RL/RR) | 2490 | ∓663,5 | ≈286 | X VERIFIED nominal (dingil 2490, kılavuz); Y VERIFIED (iz 1327) | E-058 |
+| Araç arka ucu | 3631 | 0 | - | VERIFIED (arka çıkıntı 1141; toplam boy 4396) | E-058 |
 | Motor bloğu ön yüzü | -150 | 0 | - | PLACEHOLDER (`pkg_engine_x0`) | tahmin |
 | Motor bloğu arka yüzü / volan | 320 | 0 | - | PLACEHOLDER (blok 470 mm) | tahmin |
 | Krank mili ekseni | -150…320 | 0 | 300 | PLACEHOLDER (`pkg_crank_z`); **U-017**: karter zemine ~70 mm, gerçekçi değil | tahmin |

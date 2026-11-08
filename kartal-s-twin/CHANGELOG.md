@@ -2,6 +2,17 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-08 - Factory owner's manual (D-043)
+
+### Added
+- E-058: official Tofaş owner's manual (R-0036, local-only like other originals). 35 spec values VERIFIED or ESTIMATED HIGH from it; spec 165 parameters: 62 VERIFIED / 64 ESTIMATED / 39 UNKNOWN.
+- Engine 131 D1.016 (Kartal S-SLX), Weber 32/34 TLDE twin-choke carburettor, electronic ignition, gearbox ratios 3.543 / 2.139 / 1.377 / 1.000 / 0.868 (forum ratios replaced), 3 turns lock to lock (hydraulic), overhangs 765 / 1141, negative earth, alternator 55 A.
+
+### Changed
+- Body package and photo shell re-fitted to the documented overhangs (rear 1141 mm).
+- Tests made data independent (consistency NOT_EVALUATED case, measurement intake, rim tolerance).
+- Engineering documents regenerated.
+
 ## [Unreleased] - 2026-11-08 - Viewer engineering tools (D-042)
 
 ### Added

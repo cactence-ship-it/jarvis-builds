@@ -27,6 +27,9 @@ ilanların beyanıdır, şasi numarasıyla doğrulanmadı.
 | Akü (takılı) | - | İnci Akü Formul A Taurus | 72 Ah, 700 A (EN) | Takılı akü | E-049 | **VERIFIED** (etiket fotoğrafı) |
 | Jant | - | Fiat 131 çelik 5,5×14 | 4×98, ET29, merkez 58,1, M12×1,25 | Fiat 131 | E-053 | PROVISIONAL (tek kaynak) |
 
+## Fabrika kılavuzundan (E-058) doğrulananlar
+Motor 131 D1.016 (Kartal S-SLX), karbüratör WEBER 32/34 TLDE 29/150, alternatör AA 125R 14 V 55 A, marş motoru E80-1/12, jant 5 1/2 J x 14" H1, lastik 185/70 R14 (fabrika), vites oranları 3,543 / 2,139 / 1,377 / 1,000 / 0,868, geri 3,526, diferansiyel 4,1 (10/41). Bunlar parça numarası değil, fabrika teknik verisidir.
+
 ## Kesin doğrulanan OEM kodu
 Hiçbiri fabrika kataloğuyla doğrulanmadı. Birden fazla bağımsız satıcı aynı kodu aynı modellere bağlıyor: 4208311, 85015914, 98805255, 4476352, 4461468, 4322913 (kod-model eşleşmesi tutarlı, D).
 

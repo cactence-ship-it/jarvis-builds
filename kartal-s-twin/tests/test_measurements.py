@@ -24,11 +24,12 @@ class MeasurementIntake(unittest.TestCase):
 
     def test_measurement_becomes_verified_and_drives_geometry(self):
         codes = rm._load("measurement_guide").codes()
-        wb = next(c for c, p in codes.items() if p == "dimensions.wheelbase_lh")
+        # a parameter that is still UNKNOWN (the wheelbase became VERIFIED from the manual, E-058)
+        wb = next(c for c, p in codes.items() if p == "dimensions.wheel_centre_to_arch_fl")
         belt = next(c for c, p in codes.items() if p == "body_profile.belt_z")
         before = spec.status_counts(spec.load_spec(self.root / "specs" / "kartal_s_1997.yaml"))["VERIFIED"]
-        eid, changed = rm.record(self.root, {wb: 2488.0, belt: 955.0}, 5.0, "test state", "2026-11-02")
-        self.assertEqual(set(changed), {"dimensions.wheelbase_lh", "body_profile.belt_z"})
+        eid, changed = rm.record(self.root, {wb: 380.0, belt: 955.0}, 5.0, "test state", "2026-11-02")
+        self.assertEqual(set(changed), {"dimensions.wheel_centre_to_arch_fl", "body_profile.belt_z"})
         self.assertTrue((self.root / "evidence" / "measurements" / f"{eid}.yaml").exists())
         ev = spec.load_evidence(self.root / "EVIDENCE_REGISTER.md")
         s = spec.load_spec(self.root / "specs" / "kartal_s_1997.yaml")

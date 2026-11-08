@@ -122,22 +122,22 @@ parameters:
       name: Overall length incl. bumpers
       value: 4396
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 40
-      source: [E-007, E-008, E-009]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Tape on level ground between plumb lines at front and rear extremities
-      notes: Literature for the model, not measured on VEH-01. Sources conflict (4396 vs 4360/4361 mm); tolerance covers both.
+      notes: 'Manual p.95 (Kartal drawing): 765 + 2490 + 1141. Aggregators also gave 4361.'
     overall_width_body:
       name: Overall width excl. mirrors
       value: 1642
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 20
-      source: [E-007, E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Plumb lines at the widest body point
-      notes: Literature for the model; mirror inclusion not stated by the source.
+      notes: Manual p.95.
     overall_width_mirrors:
       name: Overall width incl. mirrors
       value: null
@@ -152,12 +152,12 @@ parameters:
       name: Overall height excl. roof rails
       value: 1496
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 25
-      source: [E-007, E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Straight-edge across the roof to the ground
-      notes: Literature; whether roof rails and load state are included is not stated.
+      notes: Manual p.95, unladen (Kartal drawing; roof rails not stated).
     overall_height_roof_rails:
       name: Overall height incl. roof rails (if fitted)
       value: null
@@ -172,62 +172,62 @@ parameters:
       name: Wheelbase, left side
       value: 2490
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 10
-      source: [E-009, E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Hub centre to hub centre, wheels straight ahead
-      notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
+      notes: Nominal, manual p.95; per-side measurement still useful (D-020).
     wheelbase_rh:
       name: Wheelbase, right side
       value: 2490
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 10
-      source: [E-009, E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Hub centre to hub centre, wheels straight ahead
-      notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
+      notes: Nominal, manual p.95.
     front_track:
       name: Front track (tyre tread centre to centre)
       value: 1386
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 15
-      source: [E-011]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Tread centres at the ground, wheels straight ahead
-      notes: Literature (aggregators agree on 1386). Replaces the 1380 mm placeholder.
+      notes: Manual p.95.
     rear_track:
       name: Rear track (tyre tread centre to centre)
       value: 1327
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 15
-      source: [E-011]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Tread centres at the ground
-      notes: Literature (aggregators agree on 1327). Replaces the 1350 mm placeholder.
+      notes: Manual p.95.
     front_overhang:
       name: Front overhang (front axle to front extremity)
-      value: null
+      value: 765
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Plumb line at the front extremity to the front hub centre
-      notes: Not published. Sum of overhangs = length - wheelbase = 1906 mm (4396) or 1871 mm (4361); the split needs a measurement.
+      notes: Manual p.95 (Kartal drawing).
     rear_overhang:
       name: Rear overhang (rear axle to rear extremity)
-      value: null
+      value: 1141
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Plumb line at the rear extremity to the rear hub centre
-      notes: 'See front_overhang: only the sum is derivable from published length and wheelbase.'
+      notes: Manual p.95 (Kartal drawing).
     ground_clearance_min:
       name: Minimum ground clearance (unladen)
       value: 120
@@ -282,12 +282,12 @@ parameters:
       name: Turning circle, kerb to kerb
       value: 10300
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 300
-      source: [E-038]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Owner's manual, or full-lock circle chalked on the ground
-      notes: Fiat 131 Panorama figure; kerb/wall definition not stated.
+      notes: 'Manual p.93: minimum turning circle diameter 10.3 m (kerb or wall not stated).'
   # ---------------------------------------------------------------- Body, closures and cargo
   body:
     body_construction:
@@ -364,12 +364,12 @@ parameters:
       name: Cargo volume (state the method in notes)
       value: 846
       unit: L
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 50
-      source: [E-034]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Owner's manual or brochure; record the measuring method
-      notes: 846 L repeated in owner-entered listings; seat position not stated, likely seats folded.
+      notes: 'Manual p.95: 846 dm3 (SAE) rear seat up, 2054 dm3 folded.'
   # ---------------------------------------------------------------- Interior
   interior:
     seating_capacity:
@@ -419,11 +419,11 @@ parameters:
       value: 1550
       unit: kg
       status: ESTIMATED
-      confidence: LOW
+      confidence: HIGH
       tolerance: 50
-      source: [E-011]
+      source: [E-058]
       verify_by: Ruhsat 'Azami yüklü ağırlığı' field
-      notes: Aggregator value (E-011). The ruhsat field 'Azami yüklü ağırlığı' is EMPTY on both registration documents (E-014, E-015), so it cannot be verified from them.
+      notes: Manual p.97, Kartal S-SLX (gross 1550, payload 490, kerb 1060 incl. fuel and spare, trailer 1100). Registered kerb mass stays the document value (E-014/E-015).
     axle_load_front_measured:
       name: Front axle load, measured
       value: null
@@ -448,14 +448,14 @@ parameters:
   engine:
     engine_code:
       name: Engine type code
-      value: null
+      value: 131 D1.016
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058, E-040]
       verify_by: Engine-number stamping photo / documents
-      notes: 'Candidates: 131.D1.016 (carburettor, Doğan/Kartal 1.6 S/SL/SLX 1992-2002, wikipedia table E-040) or 131.F3.016 (i.e. cat 1998-2002). VEH-01 is a 1997 carburettor car (air cleaner on a carburettor, E-027), so 131.D1.016 is the only candidate that fits; still UNKNOWN until the block stamping is read.'
+      notes: Manual p.89 lists 131 D1.016 for Kartal S-SLX (plain Kartal 131 D2.016, 1.6 i.e. 131 F3.016). Rests on VEH-01 being a Kartal S; stamping at the front of the block right of the water pump (p.88) not yet read.
     displacement:
       name: Displacement
       value: 1581
@@ -470,50 +470,50 @@ parameters:
       name: Number of cylinders
       value: 4
       unit: null
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: null
-      source: [E-011]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Engine bay photo / documents
       notes: Aggregator data for all Kartal 1.6 variants.
     cylinder_layout:
       name: Cylinder layout
       value: inline
       unit: null
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-011]
+      source: [E-058]
       verify_by: Engine bay photo
       notes: Aggregator data.
     valvetrain:
       name: Valvetrain (OHV / SOHC / DOHC)
-      value: SOHC
+      value: SOHC, toothed timing belt
       unit: null
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-012]
+      source: [E-058]
       verify_by: Engine bay photo (cam cover, timing cover) / manual
       notes: Listings describe an overhead-cam 'Tempra' engine. Confirm with an engine-bay photo.
     bore:
       name: Bore
       value: 86.4
       unit: mm
-      status: ESTIMATED
-      confidence: MEDIUM
-      tolerance: 0.1
-      source: [E-029]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Workshop manual
       notes: 'Fiat SOHC 1581 cm3 version (E-029). Consistent with the VERIFIED displacement: 4 x pi/4 x 86.4^2 x 67.4 mm = 1580.6 cm3 vs 1581 cm3 (E-015). Fiat data, Tofaş installation not confirmed.'
     stroke:
       name: Stroke
       value: 67.4
       unit: mm
-      status: ESTIMATED
-      confidence: MEDIUM
-      tolerance: 0.1
-      source: [E-029]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Workshop manual
       notes: Fiat SOHC 1581 cm3 version (E-029); with bore 86.4 mm gives 1580.6 cm3, matching E-015 (1581 cm3).
     compression_ratio:
@@ -521,11 +521,11 @@ parameters:
       value: 9.2
       unit: ratio
       status: ESTIMATED
-      confidence: LOW
-      tolerance: 0.3
-      source: [E-029]
+      confidence: HIGH
+      tolerance: 0.1
+      source: [E-058]
       verify_by: Workshop manual
-      notes: 9.2:1 is quoted for the fuel-injected Tempra 1.6 i.e.; no figure found for the carburettor version.
+      notes: 9.2:1 for 131 D1.016 (Kartal S-SLX), 8.3:1 for D2.016 (plain Kartal), manual p.89.
     max_power:
       name: Maximum power
       value: 61
@@ -538,32 +538,32 @@ parameters:
       notes: 83 HP (61 kW) reported for the carburettor 1.6; 81-84 hp listed elsewhere (60-62 kW). The ruhsat field 'Motor gücü' is EMPTY on the registration certificate (E-015), so the document cannot confirm it.
     max_power_speed:
       name: Engine speed at maximum power
-      value: 5500
+      value: 5800
       unit: rpm
       status: ESTIMATED
-      confidence: LOW
-      tolerance: 250
-      source: [E-030]
+      confidence: HIGH
+      tolerance: 50
+      source: [E-058]
       verify_by: Manual
-      notes: 83 hp at 5500 rpm for the Kartal 1.6 i SLX (aggregator).
+      notes: 'Manual p.89: 96 hp (SAE) at 5800 for D1.016. The stored max_power value is a DIN/kW figure from aggregators and is not the same standard.'
     max_torque:
       name: Maximum torque
-      value: 131
+      value: 132
       unit: N·m
       status: ESTIMATED
-      confidence: LOW
-      tolerance: 6
-      source: [E-013]
+      confidence: HIGH
+      tolerance: 1
+      source: [E-058]
       verify_by: Manual
-      notes: Reported for the 1997 SLX carburettor 1.6.
+      notes: 13.5 kgm (DIN) = 132.4 Nm at 3250 (manual p.89, D1.016).
     max_torque_speed:
       name: Engine speed at maximum torque
-      value: 3000
+      value: 3250
       unit: rpm
       status: ESTIMATED
-      confidence: LOW
-      tolerance: 250
-      source: [E-030]
+      confidence: HIGH
+      tolerance: 50
+      source: [E-058]
       verify_by: Manual
       notes: 125 Nm at 3000 rpm (E-030); E-013 gives 131 Nm without speed.
     fuel_type:
@@ -593,19 +593,19 @@ parameters:
       status: ESTIMATED
       confidence: HIGH
       tolerance: null
-      source: [E-017, E-012, E-013, E-027]
+      source: [E-058, E-027]
       verify_by: Engine bay photo of the intake
-      notes: 'Owner states a carburettor engine (E-017); literature for the S trim agrees (E-012, E-013); the round air cleaner on top of the engine (E-027) is typical of a downdraught carburettor, but the carburettor itself is hidden, so this stays ESTIMATED. Fuel-injected 1.6 i.e. engines (E-009) are a DIFFERENT variant: specs/configuration_rules.yaml forbids engine.* values sourced from them while this value is ''carburettor''.'
+      notes: 'Manual p.90: Kartal S-SLX WEBER 32/34 TLDE 29/150 twin-choke downdraught; photos show the round air cleaner on a carburettor.'
     ignition_type:
       name: Ignition system type
-      value: electronic (breakerless) module
+      value: electronic
       unit: null
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-051]
+      source: [E-058]
       verify_by: Engine bay photo (distributor, coil)
-      notes: Module-like unit on the LH inner wing (photo). Listings sell both breaker-point and module distributors for the family; distributor not visible.
+      notes: 'Manual p.90: electronic ignition on every version; firing order 1-3-4-2, advance 10 deg. Module on the LH inner wing in the photos (E-051).'
     cooling_system_type:
       name: Cooling system type
       value: liquid-cooled; front radiator with electric fan; separate expansion tank
@@ -672,50 +672,50 @@ parameters:
       name: Number of forward gears
       value: 5
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
-      tolerance: null
-      source: [E-031, E-012]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Gear-knob shift pattern photo
       notes: Kartal of this period sold as '5 vites'; forum ratios (E-031) list five forward gears. Count the gear-lever pattern to verify.
     gear_ratios:
       name: Forward gear ratios (1st..nth)
-      value: [3.667, 2.1, 1.361, 1.0, 0.881]
+      value: [3.543, 2.139, 1.377, 1.0, 0.868]
       unit: ratio
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: 0.01
-      source: [E-031]
+      source: [E-058]
       verify_by: Workshop manual
-      notes: Tofaş forum ratios (E-031). Fiat 131 (1979+) 5-speed quoted as 3.612 / 2.045 / 1.357 / 1.000 / 0.834 (E-056); variants differ, not merged.
+      notes: Manual p.91. Replaces forum ratios (E-031) and Fiat 131 ratios (E-056).
     reverse_ratio:
       name: Reverse gear ratio
       value: 3.526
       unit: ratio
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 0.01
-      source: [E-031]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Workshop manual
       notes: Forum-quoted (E-031).
     final_drive_ratio:
       name: Final drive ratio
       value: 4.1
       unit: ratio
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 0.05
-      source: [E-031, E-056]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Workshop manual / axle tag
-      notes: 4.10 (10/41) in forum ratios (E-031) and in the owner summary (Fiat 4321374, E-056); 9/40 and 3.58 exist for other versions.
+      notes: 'Manual p.91: hypoid 4.1:1 (10/41).'
     clutch_actuation:
       name: Clutch actuation (cable / hydraulic)
-      value: cable
+      value: mechanical (cable), self-adjusting
       unit: null
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-035]
+      source: [E-058]
       verify_by: Pedal box or bell-housing photo
       notes: 'Clutch cable sold for Doğan/Kartal/Şahin 1.6 (E-035). Verify: cable at the pedal box or a master cylinder on the bulkhead.'
   # ---------------------------------------------------------------- Drivetrain
@@ -854,14 +854,14 @@ parameters:
   chassis:
     fuel_tank_capacity:
       name: Fuel tank capacity
-      value: 52
+      value: 50
       unit: L
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 3
-      source: [E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Owner's manual
-      notes: Several owner-entered listings.
+      notes: 'Manual p.98: 50 L incl. 5-7 L reserve (1.6 i.e. SLX: 45 L).'
   # ---------------------------------------------------------------- Suspension
   suspension:
     front_suspension_type:
@@ -888,42 +888,42 @@ parameters:
       name: Front spring type
       value: coil
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-032, E-027]
+      source: [E-058]
       verify_by: Wheel-arch photo
       notes: MacPherson struts with coil springs (E-032); strut tops seen in the engine bay (E-027).
     rear_spring_type:
       name: Rear spring type (coil / leaf)
       value: coil
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-032, E-025]
+      source: [E-058]
       verify_by: Underbody photo
       notes: Live axle on coil springs with a Panhard rod (E-032); the transverse locating rod seen under the car (E-025) is consistent.
     front_antiroll_bar_fitted:
       name: Front anti-roll bar fitted
       value: true
       unit: null
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-032]
+      source: [E-058]
       verify_by: Underbody photo
-      notes: An anti-roll bar is mentioned for the Şahin (E-032); position not stated in the summary. Check under the front crossmember.
+      notes: 'Manual p.92: the anti-roll bar acts as the reaction rod of the lower arm.'
     rear_antiroll_bar_fitted:
       name: Rear anti-roll bar fitted
-      value: null
+      value: false
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Underbody photo
-      notes: ''
+      notes: Manual p.92 lists 4 longitudinal and 1 transverse reaction rods, coil springs and dampers for the rear, no anti-roll bar. Absence in a description, not a statement.
   # ---------------------------------------------------------------- Steering
     rear_damper_length_compressed:
       name: Rear damper eye-to-eye length, compressed
@@ -1014,18 +1014,18 @@ parameters:
       tolerance: null
       source: []
       verify_by: Measure the rod under the car
-      notes: Kartal-specific 7733924 claimed (E-056) but not found (E-057); Fiat 124/131 references 1010 (1070 overall) straight or ~935 curved do not apply to the estate without proof.
+      notes: Manual p.92 confirms one transverse reaction rod (Panhard). Length not given; Kartal 7733924 not found (E-057).
   steering:
     steering_gear_type:
       name: Steering gear type (rack-and-pinion / recirculating ball)
       value: rack-and-pinion
       unit: null
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-039, E-038]
+      source: [E-058]
       verify_by: Underbody or engine bay photo
-      notes: Mechanical rack for the family (E-039); VEH-01 has a belt-driven power-steering pump (E-027), so assisted rack likely on this car.
+      notes: 'Manual p.93: rack and pinion, hydraulic assistance on some types.'
     power_assisted:
       name: Power assisted
       value: yes (hydraulic, belt-driven pump)
@@ -1038,14 +1038,14 @@ parameters:
       notes: Belt-driven power-steering pump and a reservoir cap marked for power-steering oil in the engine-bay photos (E-027).
     turns_lock_to_lock:
       name: Steering-wheel turns, lock to lock
-      value: null
+      value: 3
       unit: turns
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058, E-027]
       verify_by: Count with a tape mark on the wheel rim
-      notes: Fiat 131 manual rack 3.4 turns (E-056); VEH-01 has power assistance, so not adopted. Count on the car.
+      notes: 'Manual p.93: 3 turns hydraulic, 3.4 manual; VEH-01 has hydraulic assistance (E-027).'
   # ---------------------------------------------------------------- Brakes
     tie_rod_length:
       name: Tie rod (rot mili) length
@@ -1072,10 +1072,10 @@ parameters:
       name: Front brake type (disc / drum)
       value: disc
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-032]
+      source: [E-058]
       verify_by: Photo through the wheel
       notes: Front discs with single-piston sliding calipers, rear drums (E-032).
     front_disc_diameter:
@@ -1092,12 +1092,12 @@ parameters:
       name: Rear brake type (disc / drum)
       value: drum
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-025]
+      source: [E-058]
       verify_by: Photo through the wheel
-      notes: Round brake housing behind the rear wheel in one underbody photo (E-025) is consistent with a drum brake; not certain. Verify with a photo through the wheel or with the wheel off.
+      notes: With brake regulator, self-adjusting shoes (p.92).
     rear_drum_diameter:
       name: Rear drum diameter
       value: 228
@@ -1132,20 +1132,20 @@ parameters:
       name: Brake booster (servo) fitted
       value: true
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-050]
+      source: [E-058, E-050]
       verify_by: Engine bay photo behind the master cylinder
-      notes: Round unit behind the master cylinder at the LH bulkhead (photo interpretation).
+      notes: 'Manual p.92: hydraulic servo brakes; booster seen in photos (E-050).'
     parking_brake_type:
       name: Parking brake type
-      value: centre lever, cables to rear drums
+      value: mechanical lever, acting on the rear wheels
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-055, E-042]
+      source: [E-058, E-055]
       verify_by: Photo of the lever and underbody cables
       notes: Lever seen in the interior photo; cables inferred.
   # ---------------------------------------------------------------- Wheels and tires
@@ -1184,12 +1184,12 @@ parameters:
       name: Rim width
       value: 5.5
       unit: in
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 0.5
-      source: [E-018]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0.1
+      source: [E-058]
       verify_by: Rim stamping
-      notes: 'PROVISIONAL CAD value given by the owner (E-018), not measured. 5.5 in = 139.7 mm between the flanges. Verify: rim stamping or inside width between the flanges.'
+      notes: 'Manual p.93: Kartal S 5 1/2 J x 14 H1, factory tyre 185/70 R14 (the car now has 185/65 R14, E-028).'
     wheel_offset_et:
       name: Wheel offset (ET)
       value: 29
@@ -1478,22 +1478,22 @@ parameters:
       name: System voltage
       value: 12
       unit: V
-      status: ESTIMATED
-      confidence: MEDIUM
-      tolerance: 0.5
-      source: [E-027]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Battery label photo
       notes: 12 V battery seen in the engine bay (E-027).
     earth_polarity:
       name: Earth polarity
-      value: null
+      value: negative
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Battery terminal photo
-      notes: ''
+      notes: Manual p.94; earth bracket on the right inner side of the front panel (p.60).
     battery_capacity:
       name: Battery capacity
       value: 72
@@ -1503,7 +1503,7 @@ parameters:
       tolerance: 0
       source: [E-049]
       verify_by: Battery label photo
-      notes: Label of the fitted battery (İnci Formul A Taurus). The original factory battery is not known.
+      notes: Fitted battery label (E-049). Factory battery 45 Ah, 220 A (manual p.94).
     battery_cold_cranking:
       name: Battery cold-cranking current
       value: 700
@@ -1546,14 +1546,14 @@ parameters:
       notes: Common 72 Ah case height; İnci 60 Ah is 190 mm.
     alternator_rated_current:
       name: Alternator rated current
-      value: null
+      value: 55
       unit: A
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: 1
+      source: [E-058]
       verify_by: Alternator label photo
-      notes: Listed variants 55 / 65 / 85 A (E-039); read the alternator label.
+      notes: 'Manual p.94: Kartal S-SLX AA 125R 14 V 55 A (1.6 i.e. SLX 65 A, or 85 A with A/C). Rests on VEH-01 being a Kartal S; a replacement unit is not checked.'
     headlamp_type:
       name: Headlamp type / bulb
       value: H4 halogen
@@ -1573,7 +1573,7 @@ parameters:
       tolerance: null
       source: []
       verify_by: Photo
-      notes: ''
+      notes: Manual p.60 shows the 22-position fuse box and relays, not its location in the car.
   # ---------------------------------------------------------------- Body profile (VCS) - shape values; placeholders stand in until measured (docs/OLCUM_REHBERI.md)
   body_profile:
     bumper_protrusion:

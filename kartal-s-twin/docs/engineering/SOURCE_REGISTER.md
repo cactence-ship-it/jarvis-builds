@@ -61,3 +61,4 @@ Güncelleme: 2026-11-07. Tam kayıt `EVIDENCE_REGISTER.md` (tek doğru kaynak); 
 | E-055 | Owner photo: front seats and console | PHOTO | A (etiket okuma) / C (yorum) | 2026-11-07 |
 | E-056 | Owner-supplied research summary (2026-11-07): gearbox, propshaft, rear axle, rear links, steering gear | LITERATURE | D | 2026-11-07 |
 | E-057 | Claude spot-check of E-056 (search summaries) | LITERATURE | D | 2026-11-07 |
+| E-058 | Manufacturer document: Tofaş owner's manual Şahin / Doğan / Kartal (new body, 1.6 i.e. era; file name says 1997, PDF title "DSK 1992"), Turkish, 109 scanned pages | DOCUMENT | A | 2026-11-08 |

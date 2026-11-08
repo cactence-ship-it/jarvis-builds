@@ -9,11 +9,11 @@ Spec revizyonu 0.8.0: 165 parametre. Değerler ve açıklamalar `specs/kartal_s_
 | Sınıf | Anlamı | Adet |
 |---|---|---|
 | MEASURED | Araç üzerinde fiziksel ölçümle elde edildi (MEASUREMENT kanıtı, VERIFIED). | 0 |
-| DOCUMENT_CONFIRMED | Ruhsat veya teknik belgeyle doğrulandı (DOCUMENT/PHOTO kanıtı, VERIFIED). | 27 |
-| USER_CONFIRMED | Araç sahibi doğrudan söyledi (USER_STATEMENT, güven HIGH); belge veya ölçü olmadan ESTIMATED kalır. | 4 |
-| SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 10 |
-| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 78 |
-| UNKNOWN | Henüz bilinmiyor; değer yok. | 46 |
+| DOCUMENT_CONFIRMED | Ruhsat veya teknik belgeyle doğrulandı (DOCUMENT/PHOTO kanıtı, VERIFIED). | 62 |
+| USER_CONFIRMED | Araç sahibi doğrudan söyledi (USER_STATEMENT, güven HIGH); belge veya ölçü olmadan ESTIMATED kalır. | 3 |
+| SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 4 |
+| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 57 |
+| UNKNOWN | Henüz bilinmiyor; değer yok. | 39 |
 
 Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomatik türetilir. ESTIMATED değerler kesin ölçü değildir; gerekçeleri ve nasıl doğrulanacakları spec'teki `notes` ve `verify_by` alanlarındadır.
 
@@ -28,23 +28,23 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `identity.body_style` | Body style | estate (station wagon) with tailgate |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-001, E-026 | Side-profile and rear photos |
 | `identity.side_door_count` | Number of side doors (excluding tailgate) | 4 |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-001, E-026 | Side-profile photos |
 | `identity.exterior_colour` | Exterior colour | Turkuaz yeşil (turquoise green), registered colour name |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-014, E-015, E-017 | Photos + ruhsat 'Rengi' field |
-| `dimensions.overall_length` | Overall length incl. bumpers | 4396 mm | ± 40 | ESTIMATED | ESTIMATED / LOW | E-007, E-008, E-009 | Tape on level ground between plumb lines at front and rear extremities |
-| `dimensions.overall_width_body` | Overall width excl. mirrors | 1642 mm | ± 20 | ESTIMATED | ESTIMATED / LOW | E-007, E-010 | Plumb lines at the widest body point |
+| `dimensions.overall_length` | Overall length incl. bumpers | 4396 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Tape on level ground between plumb lines at front and rear extremities |
+| `dimensions.overall_width_body` | Overall width excl. mirrors | 1642 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Plumb lines at the widest body point |
 | `dimensions.overall_width_mirrors` | Overall width incl. mirrors | - |  | UNKNOWN | UNKNOWN / NONE | - | Plumb lines at the mirror housings |
-| `dimensions.overall_height` | Overall height excl. roof rails | 1496 mm | ± 25 | ESTIMATED | ESTIMATED / LOW | E-007, E-010 | Straight-edge across the roof to the ground |
+| `dimensions.overall_height` | Overall height excl. roof rails | 1496 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Straight-edge across the roof to the ground |
 | `dimensions.overall_height_roof_rails` | Overall height incl. roof rails (if fitted) | - |  | UNKNOWN | UNKNOWN / NONE | - | Straight-edge across the rails to the ground |
-| `dimensions.wheelbase_lh` | Wheelbase, left side | 2490 mm | ± 10 | ESTIMATED | ESTIMATED / LOW | E-009, E-010 | Hub centre to hub centre, wheels straight ahead |
-| `dimensions.wheelbase_rh` | Wheelbase, right side | 2490 mm | ± 10 | ESTIMATED | ESTIMATED / LOW | E-009, E-010 | Hub centre to hub centre, wheels straight ahead |
-| `dimensions.front_track` | Front track (tyre tread centre to centre) | 1386 mm | ± 15 | ESTIMATED | ESTIMATED / LOW | E-011 | Tread centres at the ground, wheels straight ahead |
-| `dimensions.rear_track` | Rear track (tyre tread centre to centre) | 1327 mm | ± 15 | ESTIMATED | ESTIMATED / LOW | E-011 | Tread centres at the ground |
-| `dimensions.front_overhang` | Front overhang (front axle to front extremity) | - |  | UNKNOWN | UNKNOWN / NONE | - | Plumb line at the front extremity to the front hub centre |
-| `dimensions.rear_overhang` | Rear overhang (rear axle to rear extremity) | - |  | UNKNOWN | UNKNOWN / NONE | - | Plumb line at the rear extremity to the rear hub centre |
+| `dimensions.wheelbase_lh` | Wheelbase, left side | 2490 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Hub centre to hub centre, wheels straight ahead |
+| `dimensions.wheelbase_rh` | Wheelbase, right side | 2490 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Hub centre to hub centre, wheels straight ahead |
+| `dimensions.front_track` | Front track (tyre tread centre to centre) | 1386 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Tread centres at the ground, wheels straight ahead |
+| `dimensions.rear_track` | Rear track (tyre tread centre to centre) | 1327 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Tread centres at the ground |
+| `dimensions.front_overhang` | Front overhang (front axle to front extremity) | 765 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Plumb line at the front extremity to the front hub centre |
+| `dimensions.rear_overhang` | Rear overhang (rear axle to rear extremity) | 1141 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Plumb line at the rear extremity to the rear hub centre |
 | `dimensions.ground_clearance_min` | Minimum ground clearance (unladen) | 120 mm | ± 20 | ESTIMATED | ESTIMATED / LOW | E-052 | Lowest underbody point to the ground; name the component in notes |
 | `dimensions.wheel_centre_to_arch_fl` | Hub centre to wheel-arch lip, front left | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge (records ride height) |
 | `dimensions.wheel_centre_to_arch_fr` | Hub centre to wheel-arch lip, front right | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
 | `dimensions.wheel_centre_to_arch_rl` | Hub centre to wheel-arch lip, rear left | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
 | `dimensions.wheel_centre_to_arch_rr` | Hub centre to wheel-arch lip, rear right | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
-| `dimensions.turning_circle_kerb` | Turning circle, kerb to kerb | 10300 mm | ± 300 | ESTIMATED | ESTIMATED / LOW | E-038 | Owner's manual, or full-lock circle chalked on the ground |
+| `dimensions.turning_circle_kerb` | Turning circle, kerb to kerb | 10300 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Owner's manual, or full-lock circle chalked on the ground |
 | `body.body_construction` | Body construction (unibody / separate frame) | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody photos |
 | `body.cargo_floor_length_seat_up` | Cargo floor length, rear seat up | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape at floor level: tailgate seal to rear-seat backrest |
 | `body.cargo_floor_length_seat_folded` | Cargo floor length, rear seat folded | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape at floor level: tailgate seal to front-seat backs |
@@ -52,41 +52,41 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `body.tailgate_opening_width` | Tailgate opening width | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape across the opening at its narrowest point |
 | `body.tailgate_opening_height` | Tailgate opening height | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape from sill to header at the centre |
 | `body.load_sill_height` | Load sill height | - |  | UNKNOWN | UNKNOWN / NONE | - | Ground to top of the rear sill |
-| `body.cargo_volume` | Cargo volume (state the method in notes) | 846 L | ± 50 | ESTIMATED | ESTIMATED / LOW | E-034 | Owner's manual or brochure; record the measuring method |
+| `body.cargo_volume` | Cargo volume (state the method in notes) | 846 L | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Owner's manual or brochure; record the measuring method |
 | `interior.seating_capacity` | Seating capacity | 5 | ± 1 | ESTIMATED | ESTIMATED / MEDIUM | E-014, E-015, E-024 | Ruhsat 'İstiap haddi' (persons) field plus an interior photo; the documents have no 'Koltuk sayısı' field |
 | `interior.steering_side` | Steering side (LHD / RHD) | left-hand drive (LHD) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-024 | Dashboard photo |
 | `interior.steering_wheel_diameter` | Steering wheel outer diameter | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape across the rim |
 | `mass.curb_mass` | Curb mass (as defined by the source document) | 1125 kg | ± 1 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-014, E-015, E-017 | Ruhsat 'Net ağırlığı' field; note the document's definition |
-| `mass.gross_vehicle_mass` | Gross vehicle mass | 1550 kg | ± 50 | ESTIMATED | ESTIMATED / LOW | E-011 | Ruhsat 'Azami yüklü ağırlığı' field |
+| `mass.gross_vehicle_mass` | Gross vehicle mass | 1550 kg | ± 50 | ESTIMATED | ESTIMATED / HIGH | E-058 | Ruhsat 'Azami yüklü ağırlığı' field |
 | `mass.axle_load_front_measured` | Front axle load, measured | - |  | UNKNOWN | UNKNOWN / NONE | - | Weighbridge at the reference state |
 | `mass.axle_load_rear_measured` | Rear axle load, measured | - |  | UNKNOWN | UNKNOWN / NONE | - | Weighbridge at the reference state |
-| `engine.engine_code` | Engine type code | - |  | UNKNOWN | UNKNOWN / NONE | - | Engine-number stamping photo / documents |
+| `engine.engine_code` | Engine type code | 131 D1.016 |  | SOURCE_SUPPORTED | ESTIMATED / HIGH | E-058, E-040 | Engine-number stamping photo / documents |
 | `engine.displacement` | Displacement | 1581 cm3 | ± 1 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-015 | Ruhsat 'Silindir hacmi' field |
-| `engine.cylinder_count` | Number of cylinders | 4 |  | ESTIMATED | ESTIMATED / LOW | E-011 | Engine bay photo / documents |
-| `engine.cylinder_layout` | Cylinder layout | inline |  | ESTIMATED | ESTIMATED / LOW | E-011 | Engine bay photo |
-| `engine.valvetrain` | Valvetrain (OHV / SOHC / DOHC) | SOHC |  | ESTIMATED | ESTIMATED / LOW | E-012 | Engine bay photo (cam cover, timing cover) / manual |
-| `engine.bore` | Bore | 86.4 mm | ± 0.1 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-029 | Workshop manual |
-| `engine.stroke` | Stroke | 67.4 mm | ± 0.1 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-029 | Workshop manual |
-| `engine.compression_ratio` | Compression ratio | 9.2 ratio | ± 0.3 | ESTIMATED | ESTIMATED / LOW | E-029 | Workshop manual |
+| `engine.cylinder_count` | Number of cylinders | 4 | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Engine bay photo / documents |
+| `engine.cylinder_layout` | Cylinder layout | inline |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Engine bay photo |
+| `engine.valvetrain` | Valvetrain (OHV / SOHC / DOHC) | SOHC, toothed timing belt |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Engine bay photo (cam cover, timing cover) / manual |
+| `engine.bore` | Bore | 86.4 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Workshop manual |
+| `engine.stroke` | Stroke | 67.4 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Workshop manual |
+| `engine.compression_ratio` | Compression ratio | 9.2 ratio | ± 0.1 | ESTIMATED | ESTIMATED / HIGH | E-058 | Workshop manual |
 | `engine.max_power` | Maximum power | 61 kW | ± 3 | ESTIMATED | ESTIMATED / LOW | E-011, E-013 | Ruhsat 'Motor gücü' field / manual |
-| `engine.max_power_speed` | Engine speed at maximum power | 5500 rpm | ± 250 | ESTIMATED | ESTIMATED / LOW | E-030 | Manual |
-| `engine.max_torque` | Maximum torque | 131 N·m | ± 6 | ESTIMATED | ESTIMATED / LOW | E-013 | Manual |
-| `engine.max_torque_speed` | Engine speed at maximum torque | 3000 rpm | ± 250 | ESTIMATED | ESTIMATED / LOW | E-030 | Manual |
+| `engine.max_power_speed` | Engine speed at maximum power | 5800 rpm | ± 50 | ESTIMATED | ESTIMATED / HIGH | E-058 | Manual |
+| `engine.max_torque` | Maximum torque | 132 N·m | ± 1 | ESTIMATED | ESTIMATED / HIGH | E-058 | Manual |
+| `engine.max_torque_speed` | Engine speed at maximum torque | 3250 rpm | ± 50 | ESTIMATED | ESTIMATED / HIGH | E-058 | Manual |
 | `engine.fuel_type` | Fuel type as registered (check for LPG conversion) | LPG (registered conversion) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-014, E-015 | Ruhsat 'Cinsi' field, which carries the fuel suffix (here 'H.OTO LPG'); these documents have no separate 'Yakıt cinsi' field |
 | `engine.base_fuel` | Base fuel of the engine before the LPG conversion | petrol |  | USER_CONFIRMED | ESTIMATED / HIGH | E-017, E-011, E-013 | Engine-bay photos (carburettor or injection system, LPG mixer / injectors, change-over switch) |
-| `engine.fuel_system_type` | Fuel system (carburettor / single-point / multi-point injection) | carburettor |  | USER_CONFIRMED | ESTIMATED / HIGH | E-017, E-012, E-013, E-027 | Engine bay photo of the intake |
-| `engine.ignition_type` | Ignition system type | electronic (breakerless) module |  | ESTIMATED | ESTIMATED / LOW | E-051 | Engine bay photo (distributor, coil) |
+| `engine.fuel_system_type` | Fuel system (carburettor / single-point / multi-point injection) | carburettor |  | ESTIMATED | ESTIMATED / HIGH | E-058, E-027 | Engine bay photo of the intake |
+| `engine.ignition_type` | Ignition system type | electronic |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Engine bay photo (distributor, coil) |
 | `engine.cooling_system_type` | Cooling system type | liquid-cooled; front radiator with electric fan; separate expansion tank |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Engine bay photo |
 | `engine.radiator_core_width` | Radiator core width | 470 mm | ± 5 | ESTIMATED | ESTIMATED / LOW | E-041 | Tape across the radiator core |
 | `engine.radiator_core_height` | Radiator core height | 292 mm | ± 5 | ESTIMATED | ESTIMATED / LOW | E-041 | Tape on the radiator core |
 | `engine.radiator_core_depth` | Radiator core depth | 32 mm | ± 2 | ESTIMATED | ESTIMATED / LOW | E-041 | Caliper on the core |
 | `engine.engine_orientation` | Engine orientation (longitudinal / transverse) | longitudinal |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Engine bay photo |
 | `transmission.transmission_type` | Transmission type (manual / automatic) | manual (floor-mounted lever, three pedals) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-024 | Gear lever photo |
-| `transmission.forward_gear_count` | Number of forward gears | 5 |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-031, E-012 | Gear-knob shift pattern photo |
-| `transmission.gear_ratios` | Forward gear ratios (1st..nth) | [3.667, 2.1, 1.361, 1.0, 0.881] ratio | ± 0.01 | ESTIMATED | ESTIMATED / LOW | E-031 | Workshop manual |
-| `transmission.reverse_ratio` | Reverse gear ratio | 3.526 ratio | ± 0.01 | ESTIMATED | ESTIMATED / LOW | E-031 | Workshop manual |
-| `transmission.final_drive_ratio` | Final drive ratio | 4.1 ratio | ± 0.05 | ESTIMATED | ESTIMATED / LOW | E-031, E-056 | Workshop manual / axle tag |
-| `transmission.clutch_actuation` | Clutch actuation (cable / hydraulic) | cable |  | ESTIMATED | ESTIMATED / LOW | E-035 | Pedal box or bell-housing photo |
+| `transmission.forward_gear_count` | Number of forward gears | 5 | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Gear-knob shift pattern photo |
+| `transmission.gear_ratios` | Forward gear ratios (1st..nth) | [3.543, 2.139, 1.377, 1.0, 0.868] ratio | ± 0.01 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Workshop manual |
+| `transmission.reverse_ratio` | Reverse gear ratio | 3.526 ratio | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Workshop manual |
+| `transmission.final_drive_ratio` | Final drive ratio | 4.1 ratio | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Workshop manual / axle tag |
+| `transmission.clutch_actuation` | Clutch actuation (cable / hydraulic) | mechanical (cable), self-adjusting |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Pedal box or bell-housing photo |
 | `transmission.clutch_disc_diameter` | Clutch disc diameter | - |  | UNKNOWN | UNKNOWN / NONE | - | Read the disc stamping when the clutch is out |
 | `transmission.gearbox_input_bearing` | Gearbox input (main) bearing, bore x OD x width | 30 x 75 x 19 |  | ESTIMATED | ESTIMATED / LOW | E-056 | Bearing marking |
 | `transmission.gearbox_output_bearing` | Gearbox rear output bearing, bore x OD x width | 25 x 52 x 21 |  | ESTIMATED | ESTIMATED / LOW | E-056 | Bearing marking |
@@ -100,13 +100,13 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `drivetrain.axle_shaft_spline_diameter` | Rear half-shaft spline diameter | 24 mm | ± 0.5 | ESTIMATED | ESTIMATED / LOW | E-056, E-057 | Caliper on the splines |
 | `drivetrain.rear_wheel_bearing` | Rear wheel bearing, bore x OD x width | 30 x 65 x 21 |  | ESTIMATED | ESTIMATED / LOW | E-056 | Bearing marking |
 | `drivetrain.diff_side_bearing` | Differential side bearing (taper) | 38.112 x 71.016 x 18.258 |  | ESTIMATED | ESTIMATED / LOW | E-056 | Bearing marking |
-| `chassis.fuel_tank_capacity` | Fuel tank capacity | 52 L | ± 3 | ESTIMATED | ESTIMATED / LOW | E-010 | Owner's manual |
+| `chassis.fuel_tank_capacity` | Fuel tank capacity | 50 L | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Owner's manual |
 | `suspension.front_suspension_type` | Front suspension type | MacPherson strut |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Wheel-arch photo, wheel turned to full lock |
 | `suspension.rear_suspension_type` | Rear suspension type | rigid (live) rear axle |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-025 | Underbody photo behind the rear wheels |
-| `suspension.front_spring_type` | Front spring type | coil |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-032, E-027 | Wheel-arch photo |
-| `suspension.rear_spring_type` | Rear spring type (coil / leaf) | coil |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-032, E-025 | Underbody photo |
-| `suspension.front_antiroll_bar_fitted` | Front anti-roll bar fitted | True |  | ESTIMATED | ESTIMATED / LOW | E-032 | Underbody photo |
-| `suspension.rear_antiroll_bar_fitted` | Rear anti-roll bar fitted | - |  | UNKNOWN | UNKNOWN / NONE | - | Underbody photo |
+| `suspension.front_spring_type` | Front spring type | coil |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Wheel-arch photo |
+| `suspension.rear_spring_type` | Rear spring type (coil / leaf) | coil |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Underbody photo |
+| `suspension.front_antiroll_bar_fitted` | Front anti-roll bar fitted | True |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Underbody photo |
+| `suspension.rear_antiroll_bar_fitted` | Rear anti-roll bar fitted | False |  | ESTIMATED | ESTIMATED / MEDIUM | E-058 | Underbody photo |
 | `suspension.rear_damper_length_compressed` | Rear damper eye-to-eye length, compressed | 337 mm | ± 20 | ESTIMATED | ESTIMATED / LOW | E-044 | Measure the removed damper |
 | `suspension.rear_damper_length_extended` | Rear damper eye-to-eye length, extended | 527 mm | ± 20 | ESTIMATED | ESTIMATED / LOW | E-044 | Measure the removed damper |
 | `suspension.front_lower_arm_length` | Front lower arm (with ball joint) length | 289 mm | ± 3 | ESTIMATED | ESTIMATED / LOW | E-046 | Measure the removed arm |
@@ -116,23 +116,23 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `suspension.rear_upper_link_length` | Rear upper (short) link, hole to hole | 315 mm | ± 2 | ESTIMATED | ESTIMATED / LOW | E-056, E-057 | Measure removed link |
 | `suspension.rear_lower_link_length` | Rear lower (long) trailing arm, hole to hole | 617 mm | ± 3 | ESTIMATED | ESTIMATED / LOW | E-056, E-057 | Measure removed arm |
 | `suspension.panhard_rod_length` | Panhard rod length, hole to hole | - |  | UNKNOWN | UNKNOWN / NONE | - | Measure the rod under the car |
-| `steering.steering_gear_type` | Steering gear type (rack-and-pinion / recirculating ball) | rack-and-pinion |  | ESTIMATED | ESTIMATED / LOW | E-039, E-038 | Underbody or engine bay photo |
+| `steering.steering_gear_type` | Steering gear type (rack-and-pinion / recirculating ball) | rack-and-pinion |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Underbody or engine bay photo |
 | `steering.power_assisted` | Power assisted | yes (hydraulic, belt-driven pump) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-027 | Engine bay photo (pump, reservoir) |
-| `steering.turns_lock_to_lock` | Steering-wheel turns, lock to lock | - |  | UNKNOWN | UNKNOWN / NONE | - | Count with a tape mark on the wheel rim |
+| `steering.turns_lock_to_lock` | Steering-wheel turns, lock to lock | 3 turns | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058, E-027 | Count with a tape mark on the wheel rim |
 | `steering.tie_rod_length` | Tie rod (rot mili) length | 282.5 mm | ± 1 | ESTIMATED | ESTIMATED / LOW | E-045 | Measure the removed tie rod |
 | `steering.steering_gear_overall_length` | Steering gear overall length (catalogue) | 1112 mm | ± 5 | ESTIMATED | ESTIMATED / LOW | E-056 | Measure end to end on the car |
-| `brakes.front_brake_type` | Front brake type (disc / drum) | disc |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-032 | Photo through the wheel |
+| `brakes.front_brake_type` | Front brake type (disc / drum) | disc |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Photo through the wheel |
 | `brakes.front_disc_diameter` | Front disc diameter | 227.5 mm | ± 1 | ESTIMATED | ESTIMATED / LOW | E-037, E-038 | Tape across the disc (wheel off) / manual |
-| `brakes.rear_brake_type` | Rear brake type (disc / drum) | drum |  | ESTIMATED | ESTIMATED / MEDIUM | E-025 | Photo through the wheel |
+| `brakes.rear_brake_type` | Rear brake type (disc / drum) | drum |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Photo through the wheel |
 | `brakes.rear_drum_diameter` | Rear drum diameter | 228 mm | ± 2 | ESTIMATED | ESTIMATED / LOW | E-042 | Manual / measurement with the wheel off |
 | `brakes.rear_drum_width` | Rear drum width | 47.7 mm | ± 1 | ESTIMATED | ESTIMATED / LOW | E-042 | Caliper with the drum off |
 | `brakes.front_disc_thickness` | Front disc thickness (new) | 10.8 mm | ± 0.2 | ESTIMATED | ESTIMATED / LOW | E-037 | Caliper on the disc |
-| `brakes.brake_booster_fitted` | Brake booster (servo) fitted | True |  | ESTIMATED | ESTIMATED / MEDIUM | E-050 | Engine bay photo behind the master cylinder |
-| `brakes.parking_brake_type` | Parking brake type | centre lever, cables to rear drums |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-055, E-042 | Photo of the lever and underbody cables |
+| `brakes.brake_booster_fitted` | Brake booster (servo) fitted | True |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058, E-050 | Engine bay photo behind the master cylinder |
+| `brakes.parking_brake_type` | Parking brake type | mechanical lever, acting on the rear wheels |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058, E-055 | Photo of the lever and underbody cables |
 | `wheels_tires.tire_size_front` | Front tire size and load/speed index | 185/65 R14 |  | ESTIMATED | ESTIMATED / MEDIUM | E-028 | Sidewall photo (also record the DOT date code) |
 | `wheels_tires.tire_size_rear` | Rear tire size and load/speed index | 185/65 R14 |  | ESTIMATED | ESTIMATED / MEDIUM | E-028 | Sidewall photo |
 | `wheels_tires.wheel_rim_diameter` | Rim diameter | 14 in | ± 0.5 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-017, E-010, E-028 | Sidewall marking / rim stamping |
-| `wheels_tires.wheel_rim_width` | Rim width | 5.5 in | ± 0.5 | ESTIMATED | ESTIMATED / LOW | E-018 | Rim stamping |
+| `wheels_tires.wheel_rim_width` | Rim width | 5.5 in | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Rim stamping |
 | `wheels_tires.wheel_offset_et` | Wheel offset (ET) | 29 mm | ± 5 | ESTIMATED | ESTIMATED / LOW | E-053 | Rim stamping |
 | `wheels_tires.wheel_pcd` | Bolt-circle diameter (PCD) | 98 mm | ± 0.5 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-033, E-026 | Measure across studs / documents |
 | `wheels_tires.wheel_fastener_count` | Number of wheel bolts or studs | 4 |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-026 | Wheel photo |
@@ -161,14 +161,14 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `lpg_system.filler_location` | LPG filler valve location | - |  | UNKNOWN | UNKNOWN / NONE | - | Exterior photo (bumper / fuel flap / body side) |
 | `lpg_system.tank_mounting` | Tank mounting (frame, straps, bolts) | bolted through the floor of the spare-wheel well at the tank centre (two brackets in the central opening, two bolt heads visible from below); opening closed by a black cover with two holes |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-022, E-025 | Cargo-area photo; no mounting is modelled |
 | `lpg_system.tank_marking` | LPG tank maker and approval marking | maker ATIKER; approval mark 'E7 67R-01 0049401' (UN Regulation No. 67, 01 series) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-022 | Photo of the tank top |
-| `electrical.system_voltage` | System voltage | 12 V | ± 0.5 | ESTIMATED | ESTIMATED / MEDIUM | E-027 | Battery label photo |
-| `electrical.earth_polarity` | Earth polarity | - |  | UNKNOWN | UNKNOWN / NONE | - | Battery terminal photo |
+| `electrical.system_voltage` | System voltage | 12 V | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Battery label photo |
+| `electrical.earth_polarity` | Earth polarity | negative |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Battery terminal photo |
 | `electrical.battery_capacity` | Battery capacity | 72 Ah | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-049 | Battery label photo |
 | `electrical.battery_cold_cranking` | Battery cold-cranking current | 700 A | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-049 | Battery label photo |
 | `electrical.battery_case_length` | Battery case length | 278 mm | ± 10 | ESTIMATED | ESTIMATED / LOW | E-043, E-049 | Tape on the battery |
 | `electrical.battery_case_width` | Battery case width | 175 mm | ± 2 | ESTIMATED | ESTIMATED / LOW | E-043, E-049 | Tape on the battery |
 | `electrical.battery_case_height` | Battery case height | 175 mm | ± 15 | ESTIMATED | ESTIMATED / LOW | E-043, E-049 | Tape on the battery |
-| `electrical.alternator_rated_current` | Alternator rated current | - |  | UNKNOWN | UNKNOWN / NONE | - | Alternator label photo |
+| `electrical.alternator_rated_current` | Alternator rated current | 55 A | ± 1 | ESTIMATED | ESTIMATED / HIGH | E-058 | Alternator label photo |
 | `electrical.headlamp_type` | Headlamp type / bulb | H4 halogen |  | ESTIMATED | ESTIMATED / LOW | E-036 | Headlamp photo / bulb marking |
 | `electrical.fuse_box_location` | Fuse box location | - |  | UNKNOWN | UNKNOWN / NONE | - | Photo |
 | `body_profile.bumper_protrusion` | Bumper face beyond the body face (front and rear) | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |

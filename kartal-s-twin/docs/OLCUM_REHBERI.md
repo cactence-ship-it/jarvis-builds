@@ -12,17 +12,17 @@ Bu rehber, dijital ikizdeki **tahminleri (ESTIMATED)** ve **varsayımları (PLAC
 
 | Kod | Ölçü | Nasıl ölçülür | Şu anki durum |
 |---|---|---|---|
-| M01 | Overall length incl. bumpers (`dimensions.overall_length`) | Ön ve arka tamponun en uç noktasından yere çekül (ip + ağırlık) sarkıtın, iki işaret arasını ölçün. | ESTIMATED (4396) |
-| M02 | Overall width excl. mirrors (`dimensions.overall_width_body`) | Aynalar hariç, gövdenin en geniş noktasından iki yana çekül; aradaki mesafe. | ESTIMATED (1642) |
+| M01 | Overall length incl. bumpers (`dimensions.overall_length`) | Ön ve arka tamponun en uç noktasından yere çekül (ip + ağırlık) sarkıtın, iki işaret arasını ölçün. | VERIFIED (4396) |
+| M02 | Overall width excl. mirrors (`dimensions.overall_width_body`) | Aynalar hariç, gövdenin en geniş noktasından iki yana çekül; aradaki mesafe. | VERIFIED (1642) |
 | M03 | Overall width incl. mirrors (`dimensions.overall_width_mirrors`) | Aynalar dahil en geniş nokta, iki yandan çekül. | UNKNOWN |
-| M04 | Overall height excl. roof rails (`dimensions.overall_height`) | Tavana düz bir çıta koyun (tavan rayı varsa rayların arasından), çıtadan yere dik mesafe. | ESTIMATED (1496) |
+| M04 | Overall height excl. roof rails (`dimensions.overall_height`) | Tavana düz bir çıta koyun (tavan rayı varsa rayların arasından), çıtadan yere dik mesafe. | VERIFIED (1496) |
 | M05 | Overall height incl. roof rails (if fitted) (`dimensions.overall_height_roof_rails`) | Tavan rayı varsa: rayların üstüne çıta, çıtadan yere. | UNKNOWN |
-| M06 | Wheelbase, left side (`dimensions.wheelbase_lh`) | Sol taraf: ön jant göbeği merkezinden arka jant göbeği merkezine (tekerlekler düz). | ESTIMATED (2490) |
-| M07 | Wheelbase, right side (`dimensions.wheelbase_rh`) | Sağ taraf: aynı ölçü. | ESTIMATED (2490) |
-| M08 | Front track (tyre tread centre to centre) (`dimensions.front_track`) | Ön iki lastiğin diş ortasından ortasına, yere yakın (tekerlekler düz). | ESTIMATED (1386) |
-| M09 | Rear track (tyre tread centre to centre) (`dimensions.rear_track`) | Arka iki lastiğin diş ortasından ortasına. | ESTIMATED (1327) |
-| M10 | Front overhang (front axle to front extremity) (`dimensions.front_overhang`) | Ön jant merkezinden tamponun en ön noktasına (yatay, yerde çekülle). | UNKNOWN |
-| M11 | Rear overhang (rear axle to rear extremity) (`dimensions.rear_overhang`) | Arka jant merkezinden tamponun en arka noktasına. | UNKNOWN |
+| M06 | Wheelbase, left side (`dimensions.wheelbase_lh`) | Sol taraf: ön jant göbeği merkezinden arka jant göbeği merkezine (tekerlekler düz). | VERIFIED (2490) |
+| M07 | Wheelbase, right side (`dimensions.wheelbase_rh`) | Sağ taraf: aynı ölçü. | VERIFIED (2490) |
+| M08 | Front track (tyre tread centre to centre) (`dimensions.front_track`) | Ön iki lastiğin diş ortasından ortasına, yere yakın (tekerlekler düz). | VERIFIED (1386) |
+| M09 | Rear track (tyre tread centre to centre) (`dimensions.rear_track`) | Arka iki lastiğin diş ortasından ortasına. | VERIFIED (1327) |
+| M10 | Front overhang (front axle to front extremity) (`dimensions.front_overhang`) | Ön jant merkezinden tamponun en ön noktasına (yatay, yerde çekülle). | VERIFIED (765) |
+| M11 | Rear overhang (rear axle to rear extremity) (`dimensions.rear_overhang`) | Arka jant merkezinden tamponun en arka noktasına. | VERIFIED (1141) |
 | M12 | Minimum ground clearance (unladen) (`dimensions.ground_clearance_min`) | Gövdenin en alçak noktasından yere; hangi parça olduğunu yazın. | ESTIMATED (120) |
 | M13 | Hub centre to wheel-arch lip, front left (`dimensions.wheel_centre_to_arch_fl`) | Sol ön: jant merkezinden çamurluk kemerinin kenarına dik mesafe. | UNKNOWN |
 | M14 | Hub centre to wheel-arch lip, front right (`dimensions.wheel_centre_to_arch_fr`) | Sağ ön: aynı ölçü. | UNKNOWN |
@@ -97,4 +97,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 165 parametre: 27 VERIFIED, 92 ESTIMATED, 46 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 165 parametre: 62 VERIFIED, 64 ESTIMATED, 39 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.

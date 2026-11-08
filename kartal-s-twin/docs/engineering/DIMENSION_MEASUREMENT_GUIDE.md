@@ -8,8 +8,6 @@ Koordinat ve referanslar: `CAD_COORDINATE_SYSTEM.md` (D-003). Ölçümler araç 
 |---|---|---|---|
 | dimensions.overall_width_mirrors | Overall width incl. mirrors | Plumb lines at the mirror housings | ±5 mm |
 | dimensions.overall_height_roof_rails | Overall height incl. roof rails (if fitted) | Straight-edge across the rails to the ground | ±5 mm |
-| dimensions.front_overhang | Front overhang (front axle to front extremity) | Plumb line at the front extremity to the front hub centre | ±5 mm |
-| dimensions.rear_overhang | Rear overhang (rear axle to rear extremity) | Plumb line at the rear extremity to the rear hub centre | ±5 mm |
 | dimensions.wheel_centre_to_arch_fl | Hub centre to wheel-arch lip, front left | Vertical tape, hub centre to arch edge (records ride height) | ±5 mm |
 | dimensions.wheel_centre_to_arch_fr | Hub centre to wheel-arch lip, front right | Vertical tape, hub centre to arch edge | ±5 mm |
 | dimensions.wheel_centre_to_arch_rl | Hub centre to wheel-arch lip, rear left | Vertical tape, hub centre to arch edge | ±5 mm |
@@ -23,17 +21,13 @@ Koordinat ve referanslar: `CAD_COORDINATE_SYSTEM.md` (D-003). Ölçümler araç 
 | interior.steering_wheel_diameter | Steering wheel outer diameter | Tape across the rim | ±5 mm |
 | mass.axle_load_front_measured | Front axle load, measured | Weighbridge at the reference state | ±10 kg |
 | mass.axle_load_rear_measured | Rear axle load, measured | Weighbridge at the reference state | ±10 kg |
-| engine.engine_code | Engine type code | Engine-number stamping photo / documents | okunan değer |
 | transmission.clutch_disc_diameter | Clutch disc diameter | Read the disc stamping when the clutch is out | ±5 mm |
-| suspension.rear_antiroll_bar_fitted | Rear anti-roll bar fitted | Underbody photo | okunan değer |
 | suspension.panhard_rod_length | Panhard rod length, hole to hole | Measure the rod under the car | ±5 mm |
 | lpg_system.kit_type | LPG kit type (venturi mixer or vapour injection) | Engine-bay photo: mixer in the air intake vs injector rail | okunan değer |
 | lpg_system.tank_centre_x | LPG tank centre X (VCS, rearward from front axle) | Tape from the rear wheel centre to the tank centre, plus wheelbase | ±5 mm |
 | lpg_system.tank_centre_y | LPG tank centre Y (VCS, right positive) | Tape from the body centre line | ±5 mm |
 | lpg_system.tank_base_z | LPG tank underside height above ground | Tape from the ground to the tank bottom (or floor of the well) | ±5 mm |
 | lpg_system.filler_location | LPG filler valve location | Exterior photo (bumper / fuel flap / body side) | okunan değer |
-| electrical.earth_polarity | Earth polarity | Battery terminal photo | okunan değer |
-| electrical.alternator_rated_current | Alternator rated current | Alternator label photo | okunan değer |
 | electrical.fuse_box_location | Fuse box location | Photo | okunan değer |
 | body_profile.bumper_protrusion | Bumper face beyond the body face (front and rear) | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
 | body_profile.bumper_height | Bumper vertical height | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
