@@ -12,8 +12,8 @@ Spec revizyonu 0.8.0: 169 parametre. Değerler ve açıklamalar `specs/kartal_s_
 | DOCUMENT_CONFIRMED | Ruhsat veya teknik belgeyle doğrulandı (DOCUMENT/PHOTO kanıtı, VERIFIED). | 63 |
 | USER_CONFIRMED | Araç sahibi doğrudan söyledi (USER_STATEMENT, güven HIGH); belge veya ölçü olmadan ESTIMATED kalır. | 3 |
 | SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 5 |
-| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 66 |
-| UNKNOWN | Henüz bilinmiyor; değer yok. | 32 |
+| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 70 |
+| UNKNOWN | Henüz bilinmiyor; değer yok. | 28 |
 
 Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomatik türetilir. ESTIMATED değerler kesin ölçü değildir; gerekçeleri ve nasıl doğrulanacakları spec'teki `notes` ve `verify_by` alanlarındadır.
 
@@ -181,12 +181,12 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `body_profile.sill_z` | Body-side (sill) lower edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.nose_bottom_z` | Front panel lower edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.nose_top_z` | Hood leading edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.cowl_x` | Windshield base, X behind the front wheel centre | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.cowl_x` | Windshield base, X behind the front wheel centre | 480 mm | ± 100 | ESTIMATED | ESTIMATED / LOW | E-061 | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.belt_z` | Side-window sill (beltline) above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.rear_bottom_z` | Rear panel lower edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.windshield_top_x` | Windshield top edge, X behind the front wheel centre | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.windshield_top_x` | Windshield top edge, X behind the front wheel centre | 910 mm | ± 80 | ESTIMATED | ESTIMATED / LOW | E-061 | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.roof_rear_inset` | Roof end ahead of the rear body face | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.roof_width` | Roof width (side to side, at the roof) | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.b_pillar_x` | B-pillar centre, X behind the front wheel centre | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.c_pillar_x` | Rear-door rear edge, X behind the front wheel centre | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.b_pillar_x` | B-pillar centre, X behind the front wheel centre | 1525 mm | ± 80 | ESTIMATED | ESTIMATED / LOW | E-061 | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.c_pillar_x` | Rear-door rear edge, X behind the front wheel centre | 2400 mm | ± 100 | ESTIMATED | ESTIMATED / LOW | E-061 | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.mirror_protrusion` | Mirror housing beyond the body side | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |

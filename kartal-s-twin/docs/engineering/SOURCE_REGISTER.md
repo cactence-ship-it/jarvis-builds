@@ -64,3 +64,4 @@ Güncelleme: 2026-11-07. Tam kayıt `EVIDENCE_REGISTER.md` (tek doğru kaynak); 
 | E-058 | Manufacturer document: Tofaş owner's manual Şahin / Doğan / Kartal (new body, 1.6 i.e. era; file name says 1997, PDF title "DSK 1992"), Turkish, 109 scanned pages | DOCUMENT | A | 2026-11-08 |
 | E-059 | Owner-supplied research report (Gemini Deep Research, 2026-11-08), "Tofaş Kartal S 1997 39 teknik değer raporu", 13 pages | LITERATURE | D | 2026-11-08 |
 | E-060 | Claude check of E-059 | LITERATURE | D | 2026-11-08 |
+| E-061 | Literature: 1974 Fiat 131 Mirafiori Panorama blueprint, preview image 475 x 246 px (carblueprints.info, stored as R-0038) | LITERATURE | D | 2026-11-08 |

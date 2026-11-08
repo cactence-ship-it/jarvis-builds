@@ -4,7 +4,7 @@ Güncelleme: 2026-11-07. Bu dosya `specs/kartal_s_1997.yaml` dosyasından üreti
 
 ## Bugünkü başlangıçta bilinmeyen 52 değerin durumu
 
-**VERIFIED**: 10 · **PROVISIONAL**: 10 · **UNKNOWN**: 0 · **MEASURE_REQUIRED**: 32
+**VERIFIED**: 10 · **PROVISIONAL**: 14 · **UNKNOWN**: 0 · **MEASURE_REQUIRED**: 28
 
 | Anahtar | Ad | Değer | Spec durumu | Sınıf | Güven | Kaynak | Not |
 |---|---|---|---|---|---|---|---|
@@ -51,14 +51,14 @@ Güncelleme: 2026-11-07. Bu dosya `specs/kartal_s_1997.yaml` dosyasından üreti
 | body_profile.sill_z | Body-side (sill) lower edge above ground | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
 | body_profile.nose_bottom_z | Front panel lower edge above ground | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
 | body_profile.nose_top_z | Hood leading edge above ground | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
-| body_profile.cowl_x | Windshield base, X behind the front wheel centre | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
+| body_profile.cowl_x | Windshield base, X behind the front wheel centre | 480 mm | ESTIMATED | PROVISIONAL | D | E-061 | Fiat 131 Panorama blueprint preview: windshield base about 390-570 behind the front wheel centre (E-061). Tripo shell of VEH-01 suggests about 650 (not a source). Was a placeholder 850. |
 | body_profile.belt_z | Side-window sill (beltline) above ground | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
 | body_profile.rear_bottom_z | Rear panel lower edge above ground | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
-| body_profile.windshield_top_x | Windshield top edge, X behind the front wheel centre | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
+| body_profile.windshield_top_x | Windshield top edge, X behind the front wheel centre | 910 mm | ESTIMATED | PROVISIONAL | D | E-061 | Blueprint E-061; Tripo shell about 1035 (cross-check only). Kartal raised roof may move it. |
 | body_profile.roof_rear_inset | Roof end ahead of the rear body face | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
 | body_profile.roof_width | Roof width (side to side, at the roof) | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
-| body_profile.b_pillar_x | B-pillar centre, X behind the front wheel centre | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
-| body_profile.c_pillar_x | Rear-door rear edge, X behind the front wheel centre | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
+| body_profile.b_pillar_x | B-pillar centre, X behind the front wheel centre | 1525 mm | ESTIMATED | PROVISIONAL | D | E-061 | Blueprint E-061 (doors assumed shared with the 131); Tripo shell about 1650. |
+| body_profile.c_pillar_x | Rear-door rear edge, X behind the front wheel centre | 2400 mm | ESTIMATED | PROVISIONAL | D | E-061 | Rear-door rear edge, blueprint E-061; Tripo shell about 2285. |
 | body_profile.mirror_protrusion | Mirror housing beyond the body side | - | UNKNOWN | MEASURE_REQUIRED | - | - | Placeholder in specs/placeholder_assumptions.yaml until measured |
 
 Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor: ön ve arka tampon çıkıntısı/yüksekliği (`body_profile.bumper_protrusion`, `bumper_height`), sol ve sağ ayna çıkıntısı (`body_profile.mirror_protrusion`). "Bagaj tabanının iç derinliği" ve "arka yan gövde çizgisi" spec'te ayrı parametre değil; bkz. UNKNOWN_VALUES_REGISTER.md.
@@ -227,12 +227,12 @@ Owner prompt listesindeki bazı maddeler spec'te tek parametre olarak tutuluyor:
 | body_profile.sill_z | Body-side (sill) lower edge above ground | - | - | UNKNOWN | - | - |
 | body_profile.nose_bottom_z | Front panel lower edge above ground | - | - | UNKNOWN | - | - |
 | body_profile.nose_top_z | Hood leading edge above ground | - | - | UNKNOWN | - | - |
-| body_profile.cowl_x | Windshield base, X behind the front wheel centre | - | - | UNKNOWN | - | - |
+| body_profile.cowl_x | Windshield base, X behind the front wheel centre | 480 mm | 100 | ESTIMATED | D | E-061 |
 | body_profile.belt_z | Side-window sill (beltline) above ground | - | - | UNKNOWN | - | - |
 | body_profile.rear_bottom_z | Rear panel lower edge above ground | - | - | UNKNOWN | - | - |
-| body_profile.windshield_top_x | Windshield top edge, X behind the front wheel centre | - | - | UNKNOWN | - | - |
+| body_profile.windshield_top_x | Windshield top edge, X behind the front wheel centre | 910 mm | 80 | ESTIMATED | D | E-061 |
 | body_profile.roof_rear_inset | Roof end ahead of the rear body face | - | - | UNKNOWN | - | - |
 | body_profile.roof_width | Roof width (side to side, at the roof) | - | - | UNKNOWN | - | - |
-| body_profile.b_pillar_x | B-pillar centre, X behind the front wheel centre | - | - | UNKNOWN | - | - |
-| body_profile.c_pillar_x | Rear-door rear edge, X behind the front wheel centre | - | - | UNKNOWN | - | - |
+| body_profile.b_pillar_x | B-pillar centre, X behind the front wheel centre | 1525 mm | 80 | ESTIMATED | D | E-061 |
+| body_profile.c_pillar_x | Rear-door rear edge, X behind the front wheel centre | 2400 mm | 100 | ESTIMATED | D | E-061 |
 | body_profile.mirror_protrusion | Mirror housing beyond the body side | - | - | UNKNOWN | - | - |

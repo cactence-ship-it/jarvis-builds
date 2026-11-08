@@ -29,12 +29,8 @@ Koordinat ve referanslar: `CAD_COORDINATE_SYSTEM.md` (D-003). Ölçümler araç 
 | body_profile.sill_z | Body-side (sill) lower edge above ground | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
 | body_profile.nose_bottom_z | Front panel lower edge above ground | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
 | body_profile.nose_top_z | Hood leading edge above ground | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
-| body_profile.cowl_x | Windshield base, X behind the front wheel centre | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
 | body_profile.belt_z | Side-window sill (beltline) above ground | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
 | body_profile.rear_bottom_z | Rear panel lower edge above ground | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
-| body_profile.windshield_top_x | Windshield top edge, X behind the front wheel centre | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
 | body_profile.roof_rear_inset | Roof end ahead of the rear body face | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
 | body_profile.roof_width | Roof width (side to side, at the roof) | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
-| body_profile.b_pillar_x | B-pillar centre, X behind the front wheel centre | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
-| body_profile.c_pillar_x | Rear-door rear edge, X behind the front wheel centre | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |
 | body_profile.mirror_protrusion | Mirror housing beyond the body side | Owner tape measurement per docs/OLCUM_REHBERI.md | ±5 mm |

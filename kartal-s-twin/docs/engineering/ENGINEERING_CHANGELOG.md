@@ -94,3 +94,7 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | electrical.battery_case_height | (yok, yeni parametre) | 175 mm / ESTIMATED / LOW | E-043, E-049 | Common 72 Ah case height; İnci 60 Ah is 190 mm. |
 | electrical.alternator_rated_current | - / UNKNOWN / NONE | 55 A / ESTIMATED / HIGH | E-058 | Manual p.94: Kartal S-SLX AA 125R 14 V 55 A (1.6 i.e. SLX 65 A, or 85 A with A/C). Rests on VEH-01 being a Kartal S; a replacement unit is not checked. |
 | electrical.fuse_box_location | - / UNKNOWN / NONE | lower right of the dashboard (passenger side, under the glovebox), cover with two screws; relays on and beside the box / VERIFIED / HIGH | E-058, E-060 | Owner's manual p.59 (1997) / p.44 (1994 per E-059). |
+| body_profile.cowl_x | - / UNKNOWN / NONE | 480 mm / ESTIMATED / LOW | E-061 | Fiat 131 Panorama blueprint preview: windshield base about 390-570 behind the front wheel centre (E-061). Tripo shell of VEH-01 suggests about 650 (not a source). Was a placeholder 850. |
+| body_profile.windshield_top_x | - / UNKNOWN / NONE | 910 mm / ESTIMATED / LOW | E-061 | Blueprint E-061; Tripo shell about 1035 (cross-check only). Kartal raised roof may move it. |
+| body_profile.b_pillar_x | - / UNKNOWN / NONE | 1525 mm / ESTIMATED / LOW | E-061 | Blueprint E-061 (doors assumed shared with the 131); Tripo shell about 1650. |
+| body_profile.c_pillar_x | - / UNKNOWN / NONE | 2400 mm / ESTIMATED / LOW | E-061 | Rear-door rear edge, blueprint E-061; Tripo shell about 2285. |

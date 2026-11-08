@@ -2,6 +2,14 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-08 - Fiat 131 Panorama blueprint (E-061)
+
+### Added
+- Sources checked: carblueprints.info preview (used), Scribd (bot challenge, not opened), FiatClub manuals (members only, not bypassed), Autobooks Fiat 131 on archive.org (OCR without data appendix).
+- From the 1974 Panorama blueprint scaled by the wheelbase (ESTIMATED LOW, doors assumed shared): windshield base 480, windshield top 910, B-pillar 1525, rear-door edge 2400 mm behind the front wheel centre. Tripo-shell cross-check recorded in notes only (D-030).
+- U-019: engine-bay rear-wall package guess now behind the windshield base.
+- Spec 169 parameters: 63 VERIFIED / 78 ESTIMATED / 28 UNKNOWN.
+
 ## [Unreleased] - 2026-11-08 - Gemini research report (E-059/E-060)
 
 ### Added

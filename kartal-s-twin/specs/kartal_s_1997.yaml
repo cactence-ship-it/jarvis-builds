@@ -1678,14 +1678,14 @@ parameters:
       notes: Placeholder in specs/placeholder_assumptions.yaml until measured
     cowl_x:
       name: Windshield base, X behind the front wheel centre
-      value: null
+      value: 480
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 100
+      source: [E-061]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Fiat 131 Panorama blueprint preview: windshield base about 390-570 behind the front wheel centre (E-061). Tripo shell of VEH-01 suggests about 650 (not a source). Was a placeholder 850.'
     belt_z:
       name: Side-window sill (beltline) above ground
       value: null
@@ -1708,14 +1708,14 @@ parameters:
       notes: Placeholder in specs/placeholder_assumptions.yaml until measured
     windshield_top_x:
       name: Windshield top edge, X behind the front wheel centre
-      value: null
+      value: 910
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-061]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: Blueprint E-061; Tripo shell about 1035 (cross-check only). Kartal raised roof may move it.
     roof_rear_inset:
       name: Roof end ahead of the rear body face
       value: null
@@ -1738,24 +1738,24 @@ parameters:
       notes: Placeholder in specs/placeholder_assumptions.yaml until measured
     b_pillar_x:
       name: B-pillar centre, X behind the front wheel centre
-      value: null
+      value: 1525
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-061]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: Blueprint E-061 (doors assumed shared with the 131); Tripo shell about 1650.
     c_pillar_x:
       name: Rear-door rear edge, X behind the front wheel centre
-      value: null
+      value: 2400
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 100
+      source: [E-061]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: Rear-door rear edge, blueprint E-061; Tripo shell about 2285.
     mirror_protrusion:
       name: Mirror housing beyond the body side
       value: null
