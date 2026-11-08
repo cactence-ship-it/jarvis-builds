@@ -8,6 +8,7 @@ const check = (cond, m) => { if (!cond) fail(m); console.log('ok: ' + m); };
 (async () => {
   const b = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const p = await b.newPage({ viewport: { width: 412, height: 860 }, deviceScaleFactor: 2 });
+  p.setDefaultTimeout(120000);   // software GL in CI containers can be slow
   const errs = [];
   p.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
   p.on('pageerror', e => errs.push(String(e)));
@@ -59,13 +60,13 @@ const check = (cond, m) => { if (!cond) fail(m); console.log('ok: ' + m); };
   await p.selectOption('#exScope', 'ENGINE');
   await p.click('#exPlay');
   // wait for the animation to stop itself (button back to play), not for the rounded slider value
-  await p.waitForFunction(() => document.getElementById('exPlay').textContent === '▶', null, { timeout: 20000 });
+  await p.waitForFunction(() => document.getElementById('exPlay').textContent === '▶', null, { timeout: 90000 });
   const pe = await p.evaluate(() => window.__kartalViewer.parts());
   const movedE = pe.filter(x => Math.hypot(...x.position.map((v, i) => v - pos0[x.id][i])) > 0.01);
   check(movedE.length > 0 && movedE.every(x => x.assembly === 'ENGINE'), `engine explode moves only ENGINE parts (${movedE.length})`);
   check(pe.filter(x => x.assembly !== 'ENGINE').every(x => !x.visible), 'other systems hidden during engine explode');
   await p.click('#exBack');
-  await p.waitForFunction(() => document.getElementById('exPlay').textContent === '▶', null, { timeout: 20000 });
+  await p.waitForFunction(() => document.getElementById('exPlay').textContent === '▶', null, { timeout: 90000 });
   const pr = await p.evaluate(() => window.__kartalViewer.parts());
   const backE = Math.max(...pr.map(x => Math.hypot(...x.position.map((v, i) => v - pos0[x.id][i]))));
   check(backE < 1e-9 && pr.every(x => x.visible), 'reverse play reassembles exactly and shows all systems');

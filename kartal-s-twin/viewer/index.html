@@ -640,7 +640,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   }
 
   let last = performance.now();
-  (function loop(now) { requestAnimationFrame(loop); const t = now || performance.now(); const dt = Math.min((t - last) / 1000, 0.1); stepClosures(dt); stepExplode(dt); last = t;
+  (function loop(now) { requestAnimationFrame(loop); const t = now || performance.now(); const dt = Math.min((t - last) / 1000, 0.25); /* slow devices still finish animations in real time */ stepClosures(dt); stepExplode(dt); last = t;
     controls.update(); renderer.render(scene, camera); })();
 })();
 </script>
