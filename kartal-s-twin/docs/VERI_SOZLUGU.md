@@ -132,7 +132,7 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `wheels_tires.tire_size_front` | Front tire size and load/speed index | 185/65 R14 |  | ESTIMATED | ESTIMATED / MEDIUM | E-028 | Sidewall photo (also record the DOT date code) |
 | `wheels_tires.tire_size_rear` | Rear tire size and load/speed index | 185/65 R14 |  | ESTIMATED | ESTIMATED / MEDIUM | E-028 | Sidewall photo |
 | `wheels_tires.wheel_rim_diameter` | Rim diameter | 14 in | ± 0.5 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-017, E-010, E-028 | Sidewall marking / rim stamping |
-| `wheels_tires.wheel_rim_width` | Rim width | 5.5 in | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Rim stamping |
+| `wheels_tires.wheel_rim_width` | Rim width | 5.5 in | ± 0.1 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Rim stamping |
 | `wheels_tires.wheel_offset_et` | Wheel offset (ET) | 29 mm | ± 5 | ESTIMATED | ESTIMATED / LOW | E-053 | Rim stamping |
 | `wheels_tires.wheel_pcd` | Bolt-circle diameter (PCD) | 98 mm | ± 0.5 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-033, E-026 | Measure across studs / documents |
 | `wheels_tires.wheel_fastener_count` | Number of wheel bolts or studs | 4 |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-026 | Wheel photo |

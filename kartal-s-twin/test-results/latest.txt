@@ -1,4 +1,4 @@
-# Test run 2026-11-08T00:28:25Z on commit base fd04efa
+# Test run 2026-11-08T00:30:57Z on commit base 6b14daf
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -84,7 +84,7 @@ test_missing_geometry_is_reported_not_skipped (tests.test_interfaces.Rules.test_
 test_touching_is_not_clearance (tests.test_interfaces.Rules.test_touching_is_not_clearance) ... ok
 test_tire_clearances_match_analytic_values (tests.test_interfaces.VehicleCad.test_tire_clearances_match_analytic_values) ... ok
 test_unloaded_tires_touch_ground (tests.test_interfaces.VehicleCad.test_unloaded_tires_touch_ground) ... ok
-test_data_dictionary_is_up_to_date (tests.test_inventory.Inventory.test_data_dictionary_is_up_to_date) ... FAIL
+test_data_dictionary_is_up_to_date (tests.test_inventory.Inventory.test_data_dictionary_is_up_to_date) ... ok
 test_detects_dependency_cycle (tests.test_inventory.Inventory.test_detects_dependency_cycle) ... ok
 test_detects_duplicate_id (tests.test_inventory.Inventory.test_detects_duplicate_id) ... ok
 test_detects_unknown_dependency (tests.test_inventory.Inventory.test_detects_unknown_dependency) ... ok
@@ -159,18 +159,8 @@ test_review_of_other_commit_is_rejected (tests.test_tasks.TaskRegistry.test_revi
 test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval_is_rejected) ... ok
 test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
 
-======================================================================
-FAIL: test_data_dictionary_is_up_to_date (tests.test_inventory.Inventory.test_data_dictionary_is_up_to_date)
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/user/jarvis-builds/kartal-s-twin/tests/test_inventory.py", line 42, in test_data_dictionary_is_up_to_date
-    self.assertEqual(r.returncode, 0, r.stdout)
-    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError: 1 != 0 : docs/VERI_SOZLUGU.md is stale - run tools/data_dictionary.py
+Ran 147 tests in 137.973s
 
-
-----------------------------------------------------------------------
-Ran 147 tests in 137.563s
-
-FAILED (failures=1)
-## result: validate=0 unittest=1
+OK
+## result: validate=0 unittest=0
