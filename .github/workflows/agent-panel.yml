@@ -1,0 +1,121 @@
+name: Agent panel
+
+# Manually started by the owner: one partner writes an engineering report for the task,
+# the guard checks it, the other two review it. Results appear on the run page.
+# Nothing is pushed, no PR is opened, nothing is merged.
+#
+# Paid calls happen only when BOTH repository variables are set by the owner:
+#   KARTAL_PAID_DISPATCH = on          (kill switch: anything else blocks every call)
+#   KARTAL_RUN_BUDGET_MICROS = 500000  (USD micro-dollars per run; 500000 = $0.50)
+# Keys live only in repository secrets: OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY.
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: "Görev (Türkçe, tek paragraf yeterli)"
+        required: true
+        type: string
+      author:
+        description: "Bu görevi kim yazsın? Diğer ikisi inceler."
+        required: true
+        type: choice
+        options: [openai, anthropic, gemini]
+        default: anthropic
+      allow_repeat:
+        description: "Aynı görevi aynı commit'te bilerek tekrar çalıştır (yeniden ücretlendirilir)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  # Read-only access to this repository's run artifacts: the dispatch record lives there.
+  actions: read
+
+# One run at a time: two parallel runs could each spend a full budget.
+concurrency:
+  group: agent-panel
+  cancel-in-progress: false
+
+jobs:
+  panel:
+    # Provider secrets only for the protected default branch: a workflow definition
+    # from any other branch never receives them.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install stable Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build
+        run: cargo build --manifest-path orchestrator/Cargo.toml --locked --release
+      # Durable idempotency: one record (a tiny artifact named after the dispatch key) per
+      # task + commit + author. A repeated dispatch is refused before any paid call. The
+      # concurrency group above serialises runs, so check-then-run cannot race. If the
+      # check itself fails, the step fails and nothing is called (fail closed).
+      - name: Dispatch key
+        id: key
+        env:
+          KARTAL_TASK: ${{ inputs.task }}
+          AUTHOR: ${{ inputs.author }}
+        run: echo "key=$(orchestrator/target/release/kartal-orchestrator panel-key --author "$AUTHOR")" >> "$GITHUB_OUTPUT"
+      - name: Refuse a repeated dispatch
+        id: refuse
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KEY: ${{ steps.key.outputs.key }}
+          ALLOW_REPEAT: ${{ inputs.allow_repeat }}
+        run: |
+          count=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=panel-$KEY&per_page=100" \
+            --jq '[.artifacts[] | select(.expired == false)] | length')
+          echo "earlier runs with key $KEY: $count"
+          if [ "$count" -gt 0 ] && [ "$ALLOW_REPEAT" != "true" ]; then
+            echo "::error title=already-run::This task already ran at this commit with this author. Set allow_repeat to run (and pay) again."
+            exit 1
+          fi
+      - name: Run panel
+        id: panel
+        env:
+          KARTAL_TASK: ${{ inputs.task }}
+          AUTHOR: ${{ inputs.author }}
+          KARTAL_PAID_DISPATCH: ${{ vars.KARTAL_PAID_DISPATCH }}
+          KARTAL_RUN_BUDGET_MICROS: ${{ vars.KARTAL_RUN_BUDGET_MICROS }}
+          KARTAL_OPENAI_MODEL: ${{ vars.KARTAL_OPENAI_MODEL }}
+          KARTAL_OPENAI_PRICE_IN: ${{ vars.KARTAL_OPENAI_PRICE_IN }}
+          KARTAL_OPENAI_PRICE_OUT: ${{ vars.KARTAL_OPENAI_PRICE_OUT }}
+          KARTAL_ANTHROPIC_MODEL: ${{ vars.KARTAL_ANTHROPIC_MODEL }}
+          KARTAL_ANTHROPIC_PRICE_IN: ${{ vars.KARTAL_ANTHROPIC_PRICE_IN }}
+          KARTAL_ANTHROPIC_PRICE_OUT: ${{ vars.KARTAL_ANTHROPIC_PRICE_OUT }}
+          KARTAL_GEMINI_MODEL: ${{ vars.KARTAL_GEMINI_MODEL }}
+          KARTAL_GEMINI_PRICE_IN: ${{ vars.KARTAL_GEMINI_PRICE_IN }}
+          KARTAL_GEMINI_PRICE_OUT: ${{ vars.KARTAL_GEMINI_PRICE_OUT }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -o pipefail
+          orchestrator/target/release/kartal-orchestrator panel-run --author "$AUTHOR" | tee "$RUNNER_TEMP/panel.out"
+      # Record the dispatch whenever money may have been spent, including a run that failed
+      # half-way. Only a run that provably spent nothing (blocked before any call) is not
+      # recorded, so the owner can fix the configuration and dispatch again.
+      - name: Decide whether to record
+        id: spent
+        if: always() && steps.refuse.outcome == 'success'
+        env:
+          KEY: ${{ steps.key.outputs.key }}
+        run: |
+          if grep -qx 'spent_micros=0' "$RUNNER_TEMP/panel.out" 2>/dev/null; then
+            echo "record=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "record=true" >> "$GITHUB_OUTPUT"
+          fi
+          printf 'key=%s\nrun=%s\nsha=%s\n' "$KEY" "$GITHUB_RUN_ID" "$GITHUB_SHA" > "$RUNNER_TEMP/dispatch-record.txt"
+      - name: Record dispatch
+        if: always() && steps.spent.outputs.record == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: panel-${{ steps.key.outputs.key }}
+          path: ${{ runner.temp }}/dispatch-record.txt
+          retention-days: 90

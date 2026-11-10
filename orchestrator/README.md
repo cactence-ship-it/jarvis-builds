@@ -4,11 +4,17 @@ Rust M0 skeleton for the Kartal S digital-twin repository.
 
 ## Current guarantees
 
-- Offline mock provider only; no HTTP client and no API integrations.
-- OpenAI/Anthropic/Gemini dispatch is blocked by default in policy.
+- Provider adapters for OpenAI, Anthropic and Gemini (`src/providers.rs`) over the system
+  `curl`, configured on stdin so keys never reach argv; std-only JSON (`src/json.rs`).
+- `panel-run` (`src/run.rs`): author report, guard, two reviews, charge-before-call budget.
+  Manual workflow `.github/workflows/agent-panel.yml`; owner setup in Turkish: `KURULUM.md`.
+- Paid dispatch is blocked unless the owner sets `KARTAL_PAID_DISPATCH=on` and a run budget
+  (`KARTAL_RUN_BUDGET_MICROS`); a provider without a configured price is never called.
 - Per-run budget ceiling, bounded retry planning, idempotency ledger, and independent-review SHA check.
 - Standard-library-only implementation; no third-party crates or dependency downloads.
 - Existing YAML task queue and Python CAD pipeline remain authoritative and untouched.
+  `panel-run` takes a task the owner types; it does not read `kartal-s-twin/tasks/*.yaml`
+  and is not autonomous dispatch.
 - Output guard (`src/guard.rs`): model text and model diffs are untrusted. It rejects success
   claims without a CI run link / exit status and commit SHA, flags flattery, rejects weakened
   checks (`cargo fmt` without `--check`, `|| true`, `continue-on-error`, `--no-verify`,
@@ -52,4 +58,7 @@ Expected CLI output includes `mode=offline-mock` and `paid_api_calls=0`.
 
 ## Scope limits
 
-This is an initial in-memory core, not a persistent worker. The dispatch ledger is process-local; task persistence, provider HTTP adapters, GitHub branch/PR operations, and scheduling are not implemented. Paid provider execution remains disabled. Do not add API keys to this repository.
+Not a persistent worker. The dispatch ledger is process-local; task persistence, GitHub
+branch/PR operations (M3) and scheduling (M4) are not implemented. A panel run produces a
+report and two reviews on the job page and changes nothing in the repository. Paid execution is off unless the owner enables it in repository variables. Do not add API keys to
+this repository; they belong in repository secrets only.

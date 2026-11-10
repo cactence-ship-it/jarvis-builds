@@ -1,4 +1,4 @@
-# Test run 2026-11-03T06:33:23Z on commit base 0ea2466
+# Test run 2026-11-10T10:43:30Z on commit base f4295c8
 ## validate
 [PASS] evidence register
 [PASS] master spec
@@ -9,7 +9,7 @@
 [PASS] hash integrity (audit snapshots, refs manifest)
 [PASS] configuration (engine variant separation)
 [PASS] dimensional consistency
-spec: 134 parameters (VERIFIED 25, ESTIMATED 35, UNKNOWN 74) | inventory: 157 components | evidence: 28 items
+spec: 169 parameters (VERIFIED 63, ESTIMATED 106, UNKNOWN 0) | inventory: 157 components | evidence: 63 items
 ## unittest
 test_glb_is_valid_metres_and_y_up (tests.test_cad_toolchain.CadToolchain.test_glb_is_valid_metres_and_y_up) ... ok
 test_kernel_builds_valid_solid (tests.test_cad_toolchain.CadToolchain.test_kernel_builds_valid_solid) ... ok
@@ -103,6 +103,7 @@ test_placeholder_cannot_bypass_spec_key (tests.test_measurements.MeasurementInta
 test_rejects_unknown_code_and_zero_tolerance (tests.test_measurements.MeasurementIntake.test_rejects_unknown_code_and_zero_tolerance) ... ok
 test_recovers_known_points_despite_roll (tests.test_photo_scale.PhotoScale.test_recovers_known_points_despite_roll) ... ok
 test_rejects_non_side_quantities (tests.test_photo_scale.PhotoScale.test_rejects_non_side_quantities) ... ok
+test_cad_resolver_refuses_engineering_estimates (tests.test_pipeline.EngineeringCad.test_cad_resolver_refuses_engineering_estimates) ... ok
 test_cad_resolver_refuses_placeholders (tests.test_pipeline.EngineeringCad.test_cad_resolver_refuses_placeholders) ... ok
 test_step_volume_and_position_match_the_designation (tests.test_pipeline.EngineeringCad.test_step_volume_and_position_match_the_designation) ... ok
 test_tire_envelopes_are_draft_without_placeholders (tests.test_pipeline.EngineeringCad.test_tire_envelopes_are_draft_without_placeholders) ... ok
@@ -160,7 +161,7 @@ test_self_approval_is_rejected (tests.test_tasks.TaskRegistry.test_self_approval
 test_short_and_full_sha_are_equivalent (tests.test_tasks.TaskRegistry.test_short_and_full_sha_are_equivalent) ... ok
 
 ----------------------------------------------------------------------
-Ran 147 tests in 313.013s
+Ran 148 tests in 226.939s
 
 OK
 ## result: validate=0 unittest=0

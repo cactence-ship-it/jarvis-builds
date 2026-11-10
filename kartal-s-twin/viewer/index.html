@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Kartal S Dijital İkiz</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
@@ -32,6 +33,8 @@ h1 small { font-weight: 500; color: var(--muted); font-size: .95rem; margin-left
 #stage { position: relative; flex: 1; min-height: 0; background: var(--stage); }
 #stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 #msg { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-data); color: var(--muted); text-align: center; padding: 16px; }
+select { font: 500 .82rem var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px; }
+#bom table { width:100%; border-collapse:collapse; font-size:.76rem; } #bom td, #bom th { padding:4px 6px; border-bottom:1px solid var(--line); text-align:left; } #bom tr { cursor:pointer; } #bom tr.on td { background: var(--accent); color: var(--accent-ink); }
 #views { position: absolute; top: 10px; left: max(10px, env(safe-area-inset-left, 0px)); display: flex; gap: 6px; flex-wrap: wrap; max-width: calc(100% - 20px); }
 button, .tog { font: 500 .82rem var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 7px 10px; cursor: pointer; }
 button:hover, .tog:hover { border-color: var(--muted); }
@@ -67,23 +70,59 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   <div id="msg">3D model yükleniyor…</div>
   <div id="views" role="toolbar" aria-label="Kamera görünümleri">
     <button id="v-iso" class="on">İzo</button><button id="v-front">Ön</button><button id="v-rear">Arka</button>
-    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button><button id="v-cinema">Sinema</button>
+    <button id="v-left">Sol</button><button id="v-right">Sağ</button><button id="v-top">Üst</button><button id="v-bottom">Alt</button><button id="v-cabin">Kabin</button><button id="v-engine">Motor</button><button id="v-cinema">Sinema</button>
   </div>
 </div>
 
 <section id="sheet" aria-label="Kontroller">
+  <div class="row" id="shellRow" hidden>
+    <label class="lbl" for="xray">Kaporta</label>
+    <button id="s-on" class="on">Gerçek görünüm</button><button id="s-off">Mühendislik</button>
+    <input id="xray" type="range" min="0" max="100" value="100" aria-label="Gerçek kaporta opaklığı (X-ray)">
+    <span class="hint" style="flex-basis:100%">Gerçek görünüm senin fotoğraflarından üretilen tek parça Tripo modelidir (görsel tahmin). Kaydırıcıyı sola çekince içindeki mühendislik parçaları görünür; açılan kapılar mühendislik katmanıdır.</span>
+  </div>
+  <div class="row" id="closeRow" hidden>
+    <span class="lbl">Aç / kapat</span>
+    <div id="closures" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+  </div>
   <div class="row">
     <label class="lbl" for="explode">Patlatma</label>
-    <input id="explode" type="range" min="0" max="100" value="0">
+    <select id="exScope" aria-label="Patlatılacak sistem"><option value="">Tüm araç</option></select>
+    <button id="exBack" title="Geri (montaj)">⏮</button><button id="exPlay" title="Oynat / durdur">▶</button>
+    <input id="explode" type="range" min="0" max="100" value="0" aria-label="Patlatma miktarı">
+    <span class="hint" style="flex-basis:100%">Sıralı demontaj: önce dıştaki parçalar ayrılır, geri oynatınca aynı sırayla yerine oturur. Yönler parçanın sistem merkezine göre konumundan hesaplanır (görsel, gerçek montaj sırası değil).</span>
   </div>
   <div class="row">
     <span class="lbl">Renk</span>
-    <button id="c-real" class="on">Malzeme</button><button id="c-status">Kanıt durumu</button>
+    <button id="c-real" class="on">Malzeme</button><button id="c-status">Kanıt durumu</button><button id="c-share">Kanıt oranı</button>
     <span class="legend" id="legend" hidden>
       <span><i class="sw" style="background:var(--ph)"></i>PLACEHOLDER</span>
       <span><i class="sw" style="background:var(--draft)"></i>DRAFT</span>
       <span><i class="sw" style="background:var(--ok)"></i>VALIDATED</span>
     </span>
+  </div>
+  <div class="row" id="toolsRow">
+    <span class="lbl">Araçlar</span>
+    <button id="t-cut" title="Kesit düzlemi (C)">Kesit</button>
+    <select id="cutAxis" aria-label="Kesit ekseni"><option value="x">X boyuna</option><option value="y">Y enine</option><option value="z">Z dikey</option></select>
+    <input id="cutPos" type="range" min="0" max="100" value="50" aria-label="Kesit konumu" disabled>
+    <button id="t-ruler" title="Cetvel: iki noktaya dokunun (M)">Cetvel</button>
+    <button id="t-wire" title="Tel kafes (W)">Tel kafes</button>
+    <button id="t-spin" title="Döner tabla (T)">Döner tabla</button>
+    <button id="t-lights" title="Far ve stopları yak (L)">Işıklar</button>
+    <button id="t-focus" title="Seçili parçaya odaklan (F)">Odakla</button>
+    <button id="t-iso" title="Yalnız seçili parça ve montajı (I)">İzole et</button>
+    <button id="t-hide" title="Seçili parçayı gizle (H)">Gizle</button>
+    <button id="t-all" title="Gizlenenleri geri getir">Tümünü göster</button>
+    <span class="hint" id="toolHint" style="flex-basis:100%"></span>
+  </div>
+  <div class="row" style="align-items:flex-start">
+    <span class="lbl">Parça listesi</span>
+    <div style="flex:1;min-width:0">
+      <input id="bomQ" type="search" placeholder="Ara: kimlik, ad, montaj, durum (ör. ENG, fren, DRAFT)" aria-label="Parça ara" style="width:100%;font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink)">
+      <div id="bomInfo" class="hint" style="margin:4px 0"></div>
+      <div id="bom" style="max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:4px"></div>
+    </div>
   </div>
   <div class="row" style="align-items:flex-start">
     <span class="lbl">Montajlar</span>
@@ -120,7 +159,7 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
   controls.enableDamping = true;
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
-  scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x202020, 0.6));
+  const hemi = new THREE.HemisphereLight(0xdfe8ff, 0x202020, 0.6); scene.add(hemi);
   const sun = new THREE.DirectionalLight(0xffffff, 2.6); sun.position.set(3.5, 6, 4.5);
   sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -0.0004; sun.shadow.radius = 4;
   Object.assign(sun.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4, near: 0.5, far: 20 });
@@ -142,33 +181,83 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
 
   let root, centre = new THREE.Vector3(), radius = 3, parts = [], selected = null, statusMode = false;
 
+  // Close views: orbit around one assembly's bounding box (cabin = INTERIOR, engine bay = ENGINE).
+  function focusView(name) {
+    document.querySelectorAll('#views button').forEach(b => b.classList.toggle('on', b.id === 'v-' + name));
+    const asm = name === 'cabin' ? 'INTERIOR' : 'ENGINE', b = new THREE.Box3();
+    parts.filter(p => p.data.assembly === asm).forEach(p => p.meshes.forEach(m => b.expandByObject(m)));
+    if (b.isEmpty()) return setView('iso');
+    const c = b.getCenter(new THREE.Vector3()), r = b.getSize(new THREE.Vector3()).length() / 2;
+    const dir = name === 'cabin' ? new THREE.Vector3(.75, .55, -.35) : new THREE.Vector3(.45, .85, .55);
+    camera.position.copy(c).addScaledVector(dir.normalize(), r * 2.1);
+    floor.visible = true; controls.target.copy(c); controls.update();
+  }
   function setView(name) {
+    closeMode = name === 'cabin' || name === 'engine' ? name : null; applyLayers();
+    if (name === 'cabin' || name === 'engine') return focusView(name);
     document.querySelectorAll('#views button').forEach(b => b.classList.toggle('on', b.id === 'v-' + name));
     // Distance that fits the bounding sphere in the narrower of the two fields of view.
     const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
     const d = radius * 1.08 / Math.sin(Math.min(vf, hf) / 2), c = centre;
     const dir = { iso: [.62, .42, .68], front: [0, .12, 1], rear: [0, .12, -1],
-      left: [1, .12, 0], right: [-1, .12, 0], top: [0, 1, 0.001], cinema: [.78, .16, .58] }[name];
+      left: [1, .12, 0], right: [-1, .12, 0], top: [0, 1, 0.001], bottom: [0, -1, 0.001], cinema: [.78, .16, .58] }[name];
     const v = new THREE.Vector3(...dir).normalize().multiplyScalar(d);
     camera.position.set(c.x + v.x, c.y + v.y, c.z + v.z);
+    // Underside view: hide the floor so the camera can look up through it.
+    floor.visible = name !== 'bottom'; hemi.groundColor.setHex(name === 'bottom' ? 0x8a8f96 : 0x202020);
     controls.target.copy(c); controls.update();
   }
-  ['iso', 'front', 'rear', 'left', 'right', 'top', 'cinema'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
+  ['iso', 'front', 'rear', 'left', 'right', 'top', 'bottom', 'cinema', 'cabin', 'engine'].forEach(n => document.getElementById('v-' + n).onclick = () => setView(n));
 
   const statusColor = s => new THREE.Color(css(s === 'VALIDATED' ? '--ok' : s === 'DRAFT' ? '--draft' : '--ph'));
   function paint() {
     parts.forEach(p => p.meshes.forEach(m => {
-      m.material = statusMode ? p.statusMat : m.userData.orig;
+      m.material = statusMode === 'share' ? (p.shareMat = p.shareMat || new THREE.MeshStandardMaterial({ roughness: .6,
+        color: new THREE.Color().setHSL(0.33 * share(p), 0.75, 0.45) })) : statusMode ? p.statusMat : m.userData.orig;
       if (m.material.emissive) m.material.emissive.setHex(p === selected ? 0x553311 : 0x000000);
     }));
   }
-  document.getElementById('c-real').onclick = e => { statusMode = false; e.target.classList.add('on'); document.getElementById('c-status').classList.remove('on'); document.getElementById('legend').hidden = true; paint(); };
-  document.getElementById('c-status').onclick = e => { statusMode = true; e.target.classList.add('on'); document.getElementById('c-real').classList.remove('on'); document.getElementById('legend').hidden = false; paint(); };
+  document.getElementById('c-real').onclick = e => { statusMode = false; e.target.classList.add('on'); ['c-status', 'c-share'].forEach(i => document.getElementById(i).classList.remove('on')); document.getElementById('legend').hidden = true; paint(); };
+  document.getElementById('c-share').onclick = e => { statusMode = 'share'; ['c-real', 'c-status'].forEach(i => document.getElementById(i).classList.remove('on'));
+    e.target.classList.add('on'); document.getElementById('legend').hidden = true; hint('Kanıt oranı: kırmızı = parametrelerin hepsi tahmin, yeşil = hepsi spec kanıtlı'); paint(); };
+  document.getElementById('c-status').onclick = e => { statusMode = true; e.target.classList.add('on'); ['c-real', 'c-share'].forEach(i => document.getElementById(i).classList.remove('on')); document.getElementById('legend').hidden = false; paint(); };
 
-  document.getElementById('explode').oninput = e => {
-    const k = e.target.value / 100 * 0.9;
-    parts.forEach(p => p.node.position.copy(p.home).addScaledVector(p.dir, k));
-  };
+  // ---- Sequential exploded view (whole car or one assembly), play / pause / reverse ----
+  // Order: farthest from the scope centre leaves first (outside-in disassembly), reassembly is the
+  // exact reverse. Directions are visual (from geometry), not a verified service procedure.
+  let exK = 0, exDir = 0, exScope = null, exList = [];
+  function exPrepare() {
+    const name = document.getElementById('exScope').value || null;
+    parts.forEach(p => p.node.position.copy(p.home));
+    exScope = name; const list = parts.filter(p => !name || p.data.assembly === name);
+    const b = new THREE.Box3(); list.forEach(p => b.expandByObject(p.node)); const c = b.getCenter(new THREE.Vector3());
+    const rad = b.getSize(new THREE.Vector3()).length() / 2 || 1;
+    exList = list.map(p => { const pc = new THREE.Box3().setFromObject(p.node).getCenter(new THREE.Vector3());
+      const off = pc.sub(c); if (!name) off.y = Math.max(off.y, 0) * 1.4;
+      const len = off.length(), dir = len > 1e-4 ? off.clone().normalize() : new THREE.Vector3(0, 1, 0);
+      return { p, dist: len, vec: dir.multiplyScalar(name ? 0.12 + len * 1.6 : len * 0.9 + 0.05) }; })
+      .sort((a, b) => b.dist - a.dist);
+    parts.forEach(p => { p.node.visible = !name || p.data.assembly === name || !(exK > 0); });
+    exApply();
+  }
+  function exApply() {
+    const n = exList.length, S = 1.2;
+    exList.forEach((e, i) => { const t = Math.min(1, Math.max(0, exK * (1 + S) - S * i / Math.max(1, n - 1)));
+      const ease = t * t * (3 - 2 * t); e.p.node.position.copy(e.p.home).addScaledVector(e.vec, ease); });
+    if (exScope) parts.forEach(p => { if (p.data.assembly !== exScope) p.node.visible = exK < 0.01; });
+    document.getElementById('explode').value = Math.round(exK * 100);
+    if (exK > 0 && shell && shellOpacity > 0.01) setShellOpacity(0);
+  }
+  function stepExplode(dt) {
+    if (!exDir) return;
+    exK = Math.min(1, Math.max(0, exK + exDir * dt * 0.22)); exApply();
+    if (exK === 0 || exK === 1) { exDir = 0; document.getElementById('exPlay').textContent = '▶'; }
+  }
+  document.getElementById('explode').oninput = e => { exDir = 0; document.getElementById('exPlay').textContent = '▶'; exK = e.target.value / 100; exApply(); };
+  document.getElementById('exPlay').onclick = e => { if (exDir) { exDir = 0; e.target.textContent = '▶'; return; }
+    exDir = exK >= 1 ? -1 : 1; e.target.textContent = '⏸'; };
+  document.getElementById('exBack').onclick = () => { exDir = -1; document.getElementById('exPlay').textContent = '⏸'; };
+  document.getElementById('exScope').onchange = () => { exK = 0; exDir = 0; document.getElementById('exPlay').textContent = '▶'; exPrepare(); };
 
   function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]); }
   function showInfo(p) {
@@ -182,11 +271,13 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       <dl><dt>Montaj</dt><dd>${esc(ASM_TR[u.assembly] || u.assembly)} (${esc(u.assembly)})</dd>
       <dt>Geometri</dt><dd>${esc(u.geometry_status)} · ${esc(u.representation)}</dd>
       <dt>Parametre</dt><dd>${Object.keys(prm).length} adet, ${nPh} tanesi varsayım (kanıt değil)</dd>
+      <dt>Zarf (VCS)</dt><dd>${envelope(p)}</dd>
+      ${p.skin ? `<dt>Görünüm</dt><dd>${esc(p.skin)} · Tripo, görsel tahmin</dd>` : ''}
       ${u.note ? `<dt>Not</dt><dd>${esc(u.note)}</dd>` : ''}</dl>
       <div class="prov">${chips}</div>`;
   }
 
-  const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+  const ray = new THREE.Raycaster(), ptr = new THREE.Vector2(); ray.layers.enable(1);
   let down = null;
   renderer.domElement.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; });
   renderer.domElement.addEventListener('pointerup', e => {
@@ -194,10 +285,127 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const r = renderer.domElement.getBoundingClientRect();
     ptr.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
     ray.setFromCamera(ptr, camera);
+    if (rulerOn) { rulerClick(); return; }
     const hit = ray.intersectObjects(parts.filter(p => p.node.visible).flatMap(p => p.meshes), false)[0];
-    selected = hit ? parts.find(p => p.meshes.includes(hit.object)) : null;
-    showInfo(selected); paint();
+    select(hit ? parts.find(p => p.meshes.includes(hit.object)) : null);
   });
+
+
+  // ================= Engineering tools (2026-11-07, D-042) =================
+  // VCS (D-003) from glTF metres: X = -z, Y = -x, Z = y (mm).
+  const toVcs = v => [Math.round(-v.z * 1000), Math.round(-v.x * 1000), Math.round(v.y * 1000)];
+  function envelope(p) {
+    const b = new THREE.Box3(); p.meshes.forEach(m => b.expandByObject(m));
+    if (b.isEmpty()) return '-';
+    const s = b.getSize(new THREE.Vector3()), c = b.getCenter(new THREE.Vector3());
+    return `${Math.round(s.z * 1000)} × ${Math.round(s.x * 1000)} × ${Math.round(s.y * 1000)} mm (X × Y × Z), merkez ${toVcs(c).join(' / ')} mm`;
+  }
+  const hint = t => { document.getElementById('toolHint').textContent = t || ''; };
+  function select(p) {
+    selected = p; showInfo(p); paint();
+    document.querySelectorAll('#bom tr').forEach(tr => tr.classList.toggle('on', !!p && tr.dataset.id === p.data.id));
+  }
+  // Section plane: one global clipping plane, moved through the car's bounding box.
+  let cutOn = false; const cutPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0);
+  function applyCut() {
+    const ax = document.getElementById('cutAxis').value, t = document.getElementById('cutPos').value / 100;
+    const b = new THREE.Box3().setFromObject(root);
+    // Kept side: X cut keeps the front part (section seen from "Arka"), Y cut keeps the RH half (seen from "Sol"),
+    // Z cut keeps the lower part (seen from "Üst").
+    const n = { x: new THREE.Vector3(0, 0, 1), y: new THREE.Vector3(-1, 0, 0), z: new THREE.Vector3(0, -1, 0) }[ax];
+    const lo = { x: b.min.z, y: b.min.x, z: b.min.y }[ax], hi = { x: b.max.z, y: b.max.x, z: b.max.y }[ax];
+    const pos = lo + (hi - lo) * t, pt = new THREE.Vector3(ax === 'y' ? pos : 0, ax === 'z' ? pos : 0, ax === 'x' ? pos : 0);
+    cutPlane.normal.copy(n); cutPlane.constant = -n.dot(pt);
+    renderer.clippingPlanes = cutOn ? [cutPlane] : [];
+    if (cutOn) hint(`Kesit ${ax.toUpperCase()} = ${ax === 'z' ? Math.round(pos * 1000) : -Math.round(pos * 1000)} mm (VCS)`);
+  }
+  document.getElementById('t-cut').onclick = e => { cutOn = !cutOn; e.target.classList.toggle('on', cutOn);
+    document.getElementById('cutPos').disabled = !cutOn; if (cutOn && shell && shellOpacity > 0.01) setShellOpacity(0); applyCut(); if (!cutOn) hint(''); };
+  document.getElementById('cutAxis').onchange = applyCut; document.getElementById('cutPos').oninput = applyCut;
+  // Ruler: two taps on any visible surface; distance in mm, line and end markers in the scene.
+  let rulerOn = false, rulerPts = []; const rulerGroup = new THREE.Group(); scene.add(rulerGroup);
+  function rulerClick() {
+    const targets = []; scene.traverse(o => { if (o.isMesh && o.visible && o.layers.test(camera.layers) && o.parent !== rulerGroup) targets.push(o); });
+    const saved = targets.map(o => o.raycast); targets.forEach(o => { o.raycast = THREE.Mesh.prototype.raycast; });
+    const hit = ray.intersectObjects(targets, false)[0]; targets.forEach((o, i) => { o.raycast = saved[i]; });
+    if (!hit) return;
+    if (rulerPts.length === 2) { rulerPts = []; rulerGroup.clear(); }
+    rulerPts.push(hit.point.clone());
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(0.012, 12, 8), new THREE.MeshBasicMaterial({ color: 0xffcc00, depthTest: false }));
+    dot.position.copy(hit.point); dot.renderOrder = 10; rulerGroup.add(dot);
+    if (rulerPts.length === 2) {
+      const g = new THREE.BufferGeometry().setFromPoints(rulerPts);
+      const ln = new THREE.Line(g, new THREE.LineBasicMaterial({ color: 0xffcc00, depthTest: false })); ln.renderOrder = 10; rulerGroup.add(ln);
+      const d = rulerPts[0].distanceTo(rulerPts[1]) * 1000, a = toVcs(rulerPts[0]), c = toVcs(rulerPts[1]);
+      window.__lastMeasure = d;
+      hint(`Mesafe ${d.toFixed(0)} mm · ΔX ${c[0] - a[0]} · ΔY ${c[1] - a[1]} · ΔZ ${c[2] - a[2]} mm (görsel modelden; ölçüm değil)`);
+    } else hint('İkinci noktaya dokunun.');
+  }
+  document.getElementById('t-ruler').onclick = e => { rulerOn = !rulerOn; e.target.classList.toggle('on', rulerOn);
+    rulerPts = []; rulerGroup.clear(); hint(rulerOn ? 'Cetvel: ilk noktaya dokunun.' : ''); };
+  // Wireframe, turntable, lights.
+  let wireOn = false;
+  document.getElementById('t-wire').onclick = e => { wireOn = !wireOn; e.target.classList.toggle('on', wireOn);
+    scene.traverse(o => { if (o.isMesh && o.material) [].concat(o.material).forEach(m => { m.wireframe = wireOn; }); }); };
+  document.getElementById('t-spin').onclick = e => { controls.autoRotate = !controls.autoRotate; controls.autoRotateSpeed = 1.2; e.target.classList.toggle('on', controls.autoRotate); };
+  let lightsOn = false; const lampLights = new THREE.Group(); scene.add(lampLights);
+  document.getElementById('t-lights').onclick = e => {
+    lightsOn = !lightsOn; e.target.classList.toggle('on', lightsOn); lampLights.clear();
+    parts.filter(p => p.data.assembly === 'LIGHTING').forEach(p => p.meshes.forEach(m => { if (m.material && m.material.emissive) {
+      const red = m.material.color && m.material.color.r > m.material.color.g * 1.6;
+      m.material.emissive.setHex(lightsOn ? (red ? 0xff1a00 : 0xfff2d0) : 0x000000); m.material.emissiveIntensity = lightsOn ? 1.5 : 0.08; } }));
+    if (shell) shell.traverse(m => { if (m.isMesh && /^lens:/.test(m.name)) { const st = /Stop/.test(m.name);
+      m.material.emissive.setHex(lightsOn ? (st ? 0xff1a00 : 0xfff6e0) : (st ? 0x2a0400 : 0x111316)); m.material.opacity = lightsOn ? 0.75 : (st ? 0.35 : 0.22); } });
+    if (lightsOn) {
+      const b = new THREE.Box3().setFromObject(root);
+      for (const sx of [-0.55, 0.55]) {
+        const sp = new THREE.SpotLight(0xfff2d0, 6, 12, 0.45, 0.5); sp.position.set(sx, 0.65, b.max.z - 0.05); sp.target.position.set(sx * 1.4, 0, b.max.z + 6);
+        lampLights.add(sp, sp.target);
+        const rl = new THREE.PointLight(0xff2200, 1.2, 2.2); rl.position.set(sx * 1.25, 0.6, b.min.z - 0.1); lampLights.add(rl);
+      }
+    }
+  };
+  // Focus / isolate / hide.
+  function focusOn(p) {
+    const b = new THREE.Box3(); p.meshes.forEach(m => b.expandByObject(m)); if (b.isEmpty()) return;
+    const c = b.getCenter(new THREE.Vector3()), r = Math.max(b.getSize(new THREE.Vector3()).length() / 2, 0.15);
+    const dir = camera.position.clone().sub(controls.target).normalize();
+    controls.target.copy(c); camera.position.copy(c).addScaledVector(dir, r * 3.2); controls.update();
+  }
+  const hidden = new Set();
+  document.getElementById('t-focus').onclick = () => { if (selected) focusOn(selected); else hint('Önce bir parça seçin.'); };
+  document.getElementById('t-iso').onclick = () => {
+    if (!selected) return hint('Önce bir parça seçin.');
+    if (shell && shellOpacity > 0.01) setShellOpacity(0);
+    parts.forEach(p => { if (p !== selected) { p.node.visible = false; hidden.add(p); } }); focusOn(selected);
+    hint(`${selected.data.id} izole edildi. "Tümünü göster" ile geri dönün.`);
+  };
+  document.getElementById('t-hide').onclick = () => { if (!selected) return hint('Önce bir parça seçin.');
+    selected.node.visible = false; hidden.add(selected); hint(`${selected.data.id} gizlendi.`); select(null); };
+  document.getElementById('t-all').onclick = () => { hidden.forEach(p => { p.node.visible = true; }); hidden.clear();
+    document.querySelectorAll('#asm input').forEach(i => { if (!i.checked) { i.checked = true; i.dispatchEvent(new Event('change')); } }); hint(''); };
+  // Keyboard shortcuts (desktop).
+  addEventListener('keydown', e => { if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const id = { c: 't-cut', m: 't-ruler', w: 't-wire', t: 't-spin', l: 't-lights', f: 't-focus', i: 't-iso', h: 't-hide' }[e.key.toLowerCase()];
+    if (id) document.getElementById(id).click(); });
+  // Parts list (BOM): every part record in the model, searchable; tap a row to select and focus.
+  const STATUS_TR = { PLACEHOLDER: 'yer tutucu', DRAFT: 'taslak (kanıta dayalı)', VALIDATED: 'doğrulanmış' };
+  // Evidence share: fraction of a part's parameters that come from the spec (VERIFIED / ESTIMATED) rather than
+  // from package guesses (PLACEHOLDER). Informational only; geometry status stays the D-016 rule.
+  const share = p => { const v = Object.values(p.data.parameters || {}); return v.length ? v.filter(x => x !== 'PLACEHOLDER').length / v.length : 0; };
+  function buildBom() {
+    const q = document.getElementById('bomQ').value.trim().toLocaleLowerCase('tr');
+    const rows = parts.filter(p => !q || [p.data.id, p.data.name, ASM_TR[p.data.assembly] || '', p.data.assembly, p.data.geometry_status, STATUS_TR[p.data.geometry_status] || '']
+      .join(' ').toLocaleLowerCase('tr').includes(q));
+    const counts = {}; parts.forEach(p => { counts[p.data.geometry_status] = (counts[p.data.geometry_status] || 0) + 1; });
+    document.getElementById('bomInfo').textContent = `${rows.length} / ${parts.length} parça · ` +
+      Object.entries(counts).map(([k, v]) => `${STATUS_TR[k] || k}: ${v}`).join(' · ') + ' (durum spec dosyasındaki kanıtlardan hesaplanır)';
+    document.getElementById('bom').innerHTML = '<table><thead><tr><th>Kimlik</th><th>Ad</th><th>Montaj</th><th>Durum</th><th title="Kanıta dayalı parametre oranı">Kanıt</th></tr></thead><tbody>' +
+      rows.map(p => `<tr data-id="${esc(p.data.id)}"><td>${esc(p.data.id)}</td><td>${esc(p.data.name)}</td><td>${esc(ASM_TR[p.data.assembly] || p.data.assembly)}</td><td>${esc(p.data.geometry_status)}</td><td>${Math.round(share(p) * 100)} %</td></tr>`).join('') + '</tbody></table>';
+    document.querySelectorAll('#bom tr[data-id]').forEach(tr => tr.onclick = () => { const p = parts.find(x => x.data.id === tr.dataset.id);
+      if (!p.node.visible) { p.node.visible = true; hidden.delete(p); } select(p); focusOn(p); });
+  }
+  document.getElementById('bomQ').oninput = buildBom;
 
   // Material from the part's assembly and colour (visual only - says nothing about real materials).
   function studioMaterial(src, u) {
@@ -240,10 +448,16 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     const statuses = new Set(parts.map(p => p.data.geometry_status));
     const chip = document.getElementById('statusChip');
     if (!statuses.has('PLACEHOLDER')) { chip.className = 'chip draft'; chip.textContent = 'DRAFT · kanıta dayalı taslak'; }
+    setupClosures(); setupSkins(); setupShell();
+    const sel = document.getElementById('exScope');
+    Object.keys(groups).forEach(g => { const o = document.createElement('option'); o.value = g; o.textContent = ASM_TR[g] || g; sel.appendChild(o); });
+    exPrepare(); buildBom();
     msg.hidden = true; setView('iso');
     // Read-only hook for the automated browser test (tools/viewer_smoke): exposes state, changes nothing.
     window.__kartalViewer = {
       loaded: true,
+      tools: () => ({ cut: renderer.clippingPlanes.length, wire: wireOn, spin: controls.autoRotate, lights: lightsOn,
+        hidden: hidden.size, measure: window.__lastMeasure || null, bomRows: document.querySelectorAll('#bom tr[data-id]').length }),
       parts: () => parts.map(p => ({ id: p.data.id, assembly: p.data.assembly, visible: p.node.visible,
         position: p.node.position.toArray() })),
       selected: () => (selected ? selected.data.id : null),
@@ -269,6 +483,161 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       },
     };
   }
+  // ---- Closures (doors, hood, tailgate): visual hinge animation, NOT measured hinge geometry ----
+  // Hinge lines are taken from each closure's bounding box (doors: front vertical edge, hood: front
+  // edge as seen on VEH-01 photos, tailgate: top edge). The closure map (which parts move with which
+  // closure) comes from assembly/vehicle_master.yaml dependencies, embedded by tools/package_viewer.py.
+  const closures = [];
+  function jsonTag(id) { const t = document.getElementById(id); try { return t ? JSON.parse(t.textContent) : null; } catch (e) { return null; } }
+  function setupClosures() {
+    const map = jsonTag('closures-data'); if (!map) return;
+    root.updateMatrixWorld(true);   // attach() needs real world matrices before the first frame
+    const row = document.getElementById('closures');
+    Object.entries(map).forEach(([id, c]) => {
+      const main = parts.find(p => p.data.id === id); if (!main) return;
+      const b = new THREE.Box3().setFromObject(main.node), pivot = new THREE.Object3D();
+      let axis, max;
+      if (c.kind === 'door') { pivot.position.set((b.max.x + b.min.x) / 2 > centre.x ? b.max.x : b.min.x, (b.min.y + b.max.y) / 2, b.max.z);
+        // Rotate so the rear edge swings outward (away from the car centre line), about 63 degrees.
+        axis = new THREE.Vector3(0, 1, 0); max = (b.max.x + b.min.x) / 2 > centre.x ? -1.1 : 1.1; }
+      else if (c.kind === 'hood') { pivot.position.set(centre.x, b.max.y, b.max.z); axis = new THREE.Vector3(1, 0, 0); max = 1.0; }
+      else { pivot.position.set(centre.x, b.max.y, b.max.z); axis = new THREE.Vector3(1, 0, 0); max = 1.35; }
+      main.node.parent.add(pivot); pivot.updateMatrixWorld(true);
+      const moving = parts.filter(p => p.data.id === id || (c.deps || []).includes(p.data.id));
+      moving.forEach(p => { pivot.attach(p.node); p.home = p.node.position.clone(); });
+      const cl = { id, c, pivot, axis, max, t: 0, target: 0 };
+      closures.push(cl);
+      const btn = document.createElement('button'); btn.textContent = c.label;
+      btn.onclick = () => { cl.target = cl.target ? 0 : 1; btn.classList.toggle('on', !!cl.target);
+        if (cl.target && shell && shellOpacity > 0.35) setShellOpacity(0.25); };
+      row.appendChild(btn);
+    });
+    if (closures.length) document.getElementById('closeRow').hidden = false;
+  }
+  function stepClosures(dt) {
+    closures.forEach(cl => { if (cl.t === cl.target) return;
+      cl.t += Math.sign(cl.target - cl.t) * Math.min(Math.abs(cl.target - cl.t), dt * 1.2);
+      const e = cl.t * cl.t * (3 - 2 * cl.t);   // smoothstep easing
+      cl.pivot.quaternion.setFromAxisAngle(cl.axis, cl.max * e); });
+  }
+
+  // Which meshes are drawn (layer 0) or only selectable (layer 1): the opaque shell hides the engineering
+  // model, a photo skin hides the placeholder it replaces, and the cabin view hides the headliner.
+  let closeMode = null;   // 'cabin' | 'engine' | null
+  function applyLayers() {
+    parts.forEach(p => p.meshes.forEach(m => m.layers.set(
+      (!shell || shellOpacity < 0.6 || closeMode) && !m.userData.skinHidden && !(closeMode && HIDE[closeMode](p)) ? 0 : 1)));
+    if (shell) shell.visible = shellOpacity > 0.01 && !closeMode;
+  }
+  // Cabin view opens the car up: no roof, body panels, glass, exterior trim or headliner.
+  // Engine view: no body panels or glass, so the bay is seen from above.
+  const HIDE = { cabin: p => p.data.id === 'INT-018' || ['BODY_ASSEMBLY', 'GLAZING', 'EXTERIOR_TRIM', 'LIGHTING'].includes(p.data.assembly),
+                 engine: p => ['BODY_ASSEMBLY', 'GLAZING', 'EXTERIOR_TRIM'].includes(p.data.assembly) };
+
+  // ---- Photo-based interior skins (Tripo, D-034): look only; the part record stays the part's ----
+  function b64buf(id) { const t = document.getElementById(id); const bin = atob(t.textContent.trim()), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i); return buf.buffer; }
+  function setupSkins() {
+    const cfg = jsonTag('skins-data'); if (!cfg) return;
+    root.updateMatrixWorld(true);
+    cfg.forEach(sk => new THREE.GLTFLoader().parse(b64buf(sk.tag), '', g => {
+      sk.parts.forEach(id => {
+        const p = parts.find(q => q.data.id === id); if (!p) return;
+        const wrap = new THREE.Group(), inner = g.scene.clone(true);
+        inner.rotation.set(...sk.rot.map(d => d * Math.PI / 180), 'XYZ'); wrap.add(inner);
+        wrap.updateMatrixWorld(true);
+        const sb = new THREE.Box3().setFromObject(wrap), ss = sb.getSize(new THREE.Vector3());
+        // sk.box: replace only the placeholder meshes inside this box (twin frame, metres), e.g. the air-filter
+        // housing of the intake-system record; otherwise the whole part.
+        const inBox = m => { if (!sk.box) return true; const c = new THREE.Box3().setFromObject(m).getCenter(new THREE.Vector3());
+          return new THREE.Box3(new THREE.Vector3(...sk.box[0]), new THREE.Vector3(...sk.box[1])).containsPoint(c); };
+        const targets = p.meshes.filter(inBox);
+        targets.forEach(m => { m.userData.skinHidden = true; m.layers.set(1); });   // placeholder: not drawn, still selectable
+        const pb = new THREE.Box3(); targets.forEach(m => pb.expandByObject(m));
+        const ps = pb.getSize(new THREE.Vector3()), pc = pb.getCenter(new THREE.Vector3()), sc = sb.getCenter(new THREE.Vector3());
+        // sk.size: largest dimension in metres (ESTIMATED, see assembly/tripo_interior.json); else fit inside the placeholder.
+        const k = sk.size ? sk.size / Math.max(ss.x, ss.y, ss.z) : Math.min(ps.x / ss.x, ps.y / ss.y, ps.z / ss.z);
+        wrap.scale.setScalar(k);
+        wrap.position.set(pc.x - sc.x * k, sk.align === 'bottom' ? pb.min.y - sb.min.y * k : pc.y - sc.y * k, pc.z - sc.z * k);
+        wrap.updateMatrixWorld(true); p.node.attach(wrap);
+        wrap.traverse(m => { if (m.isMesh) { m.userData.orig = m.material; m.castShadow = true; m.receiveShadow = true; p.meshes.push(m); } });
+        p.skin = sk.label;
+      });
+      if (window.__kartalViewer) window.__kartalViewer.skins = (window.__kartalViewer.skins || 0) + 1;
+      applyLayers();
+    }, e => console.warn('skin', sk.file, e)));
+  }
+
+  // ---- Photo-based exterior shell (Tripo AI mesh, visual estimate, D-030..D-032) ----
+  let shell = null, shellOpacity = 1, shellMats = [];
+  function setShellOpacity(o) {
+    shellOpacity = o; document.getElementById('xray').value = Math.round(o * 100);
+    shellMats.forEach(m => { m.transparent = o < 0.999; m.opacity = o; m.depthWrite = o > 0.6; m.needsUpdate = true; });
+    if (shell) shell.visible = o > 0.01;
+    // While the photo shell is mostly opaque, the coincident placeholder exterior would poke through
+    // it (headliner, roof, sills): move every engineering mesh to layer 1, which the camera does not draw but the raycaster still tests (object.visible would also drop it from selection).
+    applyLayers();   // layer 1: not drawn, still raycast
+    document.getElementById('s-on').classList.toggle('on', o > 0.01); document.getElementById('s-off').classList.toggle('on', o <= 0.01);
+  }
+  // Glass lenses over the shell's lamp areas (D-036): the photo texture shows through, the lens adds
+  // the specular highlight a flat texture cannot. Children of the shell, so they hide with it.
+  function addLenses() {
+    const items = jsonTag('lens-data'); if (!items) return;
+    shell.updateMatrixWorld(true);
+    const rc = new THREE.Raycaster(), inv = new THREE.Matrix4().copy(shell.matrixWorld).invert();
+    const shellMeshes = []; shell.traverse(m => { if (m.isMesh) shellMeshes.push(m); });
+    shellMeshes.forEach(m => { m.userData.rc = m.raycast; m.raycast = THREE.Mesh.prototype.raycast; });
+    items.forEach(it => {
+      const cx = (it.x[0] + it.x[1]) / 2, cy = (it.y[0] + it.y[1]) / 2, w = Math.abs(it.x[1] - it.x[0]), h = it.y[1] - it.y[0];
+      const front = it.face === 'front', dir = new THREE.Vector3(0, 0, front ? -1 : 1);
+      const zs = [];   // depth at the centre and 4 inner points, so the lens follows the face
+      for (const [dx, dy] of [[0, 0], [-.35, -.35], [.35, -.35], [-.35, .35], [.35, .35]]) {
+        rc.set(new THREE.Vector3(cx + dx * w, cy + dy * h, front ? 5 : -10), dir);
+        const hit = rc.intersectObjects(shellMeshes, false)[0]; if (hit) zs.push(hit.point.z);
+      }
+      if (!zs.length) return;
+      const z = front ? Math.max(...zs) + 0.004 : Math.min(...zs) - 0.004;
+      const head = it.kind === 'head';
+      const mat = new THREE.MeshPhysicalMaterial({ color: head ? 0xf4f8ff : 0xff2a1a, transparent: true, opacity: head ? 0.22 : 0.35,
+        roughness: 0.04, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 2.4, depthWrite: false,
+        emissive: head ? 0x111316 : 0x2a0400 });
+      const lens = new THREE.Mesh(new THREE.BoxGeometry(w * 0.98, h * 0.96, 0.006), mat);
+      lens.position.set(cx, cy, z); lens.name = 'lens:' + it.label; lens.raycast = () => {};
+      shell.attach(lens);
+    });
+    shellMeshes.forEach(m => { m.raycast = m.userData.rc; });
+  }
+  function setupShell() {
+    // The shell is either embedded (base64 GLB, tests and single-file builds) or served next to the page
+    // as a glTF JSON plus full-resolution textures (published build: no 16 MB page limit on detail).
+    const data = document.getElementById('glb-shell'), place = jsonTag('shell-place'), src = jsonTag('shell-src');
+    if ((!data && !src) || !place) return;
+    const onShell = g => {
+      shell = g.scene; shell.position.set(...place.position); shell.quaternion.set(...place.quaternion); shell.scale.setScalar(place.scale);
+      shell.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.raycast = () => {};
+        if (m.material.map) m.material.map.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        m.material.envMapIntensity = 1.0; shellMats.push(m.material); } });
+      root.add(shell);
+      addLenses();
+      document.getElementById('shellRow').hidden = false;
+      document.getElementById('xray').oninput = e => setShellOpacity(e.target.value / 100);
+      document.getElementById('s-on').onclick = () => setShellOpacity(1);
+      document.getElementById('s-off').onclick = () => setShellOpacity(0);
+      setShellOpacity(1);
+      const chip = document.getElementById('statusChip'); chip.className = 'chip draft';
+      chip.textContent = 'Dış görünüm: fotoğraftan (görsel tahmin) · iç parçalar PLACEHOLDER';
+      if (window.__kartalViewer) window.__kartalViewer.shell = true;
+    }, onErr = e => { console.warn('shell', e); };
+    if (src) {
+      msg.hidden = false; msg.textContent = 'Gerçek görünüm (yüksek çözünürlük) yükleniyor…';
+      new THREE.GLTFLoader().load(src.url, g => { msg.hidden = true; onShell(g); }, undefined, e => { msg.hidden = true; onErr(e); });
+      return;
+    }
+    const bin = atob(data.textContent.trim()), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    new THREE.GLTFLoader().parse(buf.buffer, '', onShell, onErr);
+  }
+
   const fail = err => { msg.textContent = 'Model yüklenemedi: ' + (err && err.message || err); };
   // Packaged builds embed the GLB as base64 (tools/package_viewer.py); otherwise fetch vehicle.glb.
   const embedded = document.getElementById('glb-data');
@@ -280,6 +649,8 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     new THREE.GLTFLoader().load('vehicle.glb', onModel, undefined, fail);
   }
 
-  (function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+  let last = performance.now();
+  (function loop(now) { requestAnimationFrame(loop); const t = now || performance.now(); const dt = Math.min((t - last) / 1000, 0.25); /* slow devices still finish animations in real time */ stepClosures(dt); stepExplode(dt); last = t;
+    controls.update(); renderer.render(scene, camera); })();
 })();
 </script>

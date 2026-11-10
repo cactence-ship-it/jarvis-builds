@@ -12,22 +12,22 @@ Bu rehber, dijital ikizdeki **tahminleri (ESTIMATED)** ve **varsayımları (PLAC
 
 | Kod | Ölçü | Nasıl ölçülür | Şu anki durum |
 |---|---|---|---|
-| M01 | Overall length incl. bumpers (`dimensions.overall_length`) | Ön ve arka tamponun en uç noktasından yere çekül (ip + ağırlık) sarkıtın, iki işaret arasını ölçün. | ESTIMATED (4396) |
-| M02 | Overall width excl. mirrors (`dimensions.overall_width_body`) | Aynalar hariç, gövdenin en geniş noktasından iki yana çekül; aradaki mesafe. | ESTIMATED (1642) |
-| M03 | Overall width incl. mirrors (`dimensions.overall_width_mirrors`) | Aynalar dahil en geniş nokta, iki yandan çekül. | UNKNOWN |
-| M04 | Overall height excl. roof rails (`dimensions.overall_height`) | Tavana düz bir çıta koyun (tavan rayı varsa rayların arasından), çıtadan yere dik mesafe. | ESTIMATED (1496) |
-| M05 | Overall height incl. roof rails (if fitted) (`dimensions.overall_height_roof_rails`) | Tavan rayı varsa: rayların üstüne çıta, çıtadan yere. | UNKNOWN |
-| M06 | Wheelbase, left side (`dimensions.wheelbase_lh`) | Sol taraf: ön jant göbeği merkezinden arka jant göbeği merkezine (tekerlekler düz). | ESTIMATED (2490) |
-| M07 | Wheelbase, right side (`dimensions.wheelbase_rh`) | Sağ taraf: aynı ölçü. | ESTIMATED (2490) |
-| M08 | Front track (tyre tread centre to centre) (`dimensions.front_track`) | Ön iki lastiğin diş ortasından ortasına, yere yakın (tekerlekler düz). | ESTIMATED (1386) |
-| M09 | Rear track (tyre tread centre to centre) (`dimensions.rear_track`) | Arka iki lastiğin diş ortasından ortasına. | ESTIMATED (1327) |
-| M10 | Front overhang (front axle to front extremity) (`dimensions.front_overhang`) | Ön jant merkezinden tamponun en ön noktasına (yatay, yerde çekülle). | UNKNOWN |
-| M11 | Rear overhang (rear axle to rear extremity) (`dimensions.rear_overhang`) | Arka jant merkezinden tamponun en arka noktasına. | UNKNOWN |
-| M12 | Minimum ground clearance (unladen) (`dimensions.ground_clearance_min`) | Gövdenin en alçak noktasından yere; hangi parça olduğunu yazın. | UNKNOWN |
-| M13 | Hub centre to wheel-arch lip, front left (`dimensions.wheel_centre_to_arch_fl`) | Sol ön: jant merkezinden çamurluk kemerinin kenarına dik mesafe. | UNKNOWN |
-| M14 | Hub centre to wheel-arch lip, front right (`dimensions.wheel_centre_to_arch_fr`) | Sağ ön: aynı ölçü. | UNKNOWN |
-| M15 | Hub centre to wheel-arch lip, rear left (`dimensions.wheel_centre_to_arch_rl`) | Sol arka: aynı ölçü. | UNKNOWN |
-| M16 | Hub centre to wheel-arch lip, rear right (`dimensions.wheel_centre_to_arch_rr`) | Sağ arka: aynı ölçü. | UNKNOWN |
+| M01 | Overall length incl. bumpers (`dimensions.overall_length`) | Ön ve arka tamponun en uç noktasından yere çekül (ip + ağırlık) sarkıtın, iki işaret arasını ölçün. | VERIFIED (4396) |
+| M02 | Overall width excl. mirrors (`dimensions.overall_width_body`) | Aynalar hariç, gövdenin en geniş noktasından iki yana çekül; aradaki mesafe. | VERIFIED (1642) |
+| M03 | Overall width incl. mirrors (`dimensions.overall_width_mirrors`) | Aynalar dahil en geniş nokta, iki yandan çekül. | ESTIMATED (1832) |
+| M04 | Overall height excl. roof rails (`dimensions.overall_height`) | Tavana düz bir çıta koyun (tavan rayı varsa rayların arasından), çıtadan yere dik mesafe. | VERIFIED (1496) |
+| M05 | Overall height incl. roof rails (if fitted) (`dimensions.overall_height_roof_rails`) | Tavan rayı varsa: rayların üstüne çıta, çıtadan yere. | ESTIMATED (1500) |
+| M06 | Wheelbase, left side (`dimensions.wheelbase_lh`) | Sol taraf: ön jant göbeği merkezinden arka jant göbeği merkezine (tekerlekler düz). | VERIFIED (2490) |
+| M07 | Wheelbase, right side (`dimensions.wheelbase_rh`) | Sağ taraf: aynı ölçü. | VERIFIED (2490) |
+| M08 | Front track (tyre tread centre to centre) (`dimensions.front_track`) | Ön iki lastiğin diş ortasından ortasına, yere yakın (tekerlekler düz). | VERIFIED (1386) |
+| M09 | Rear track (tyre tread centre to centre) (`dimensions.rear_track`) | Arka iki lastiğin diş ortasından ortasına. | VERIFIED (1327) |
+| M10 | Front overhang (front axle to front extremity) (`dimensions.front_overhang`) | Ön jant merkezinden tamponun en ön noktasına (yatay, yerde çekülle). | VERIFIED (765) |
+| M11 | Rear overhang (rear axle to rear extremity) (`dimensions.rear_overhang`) | Arka jant merkezinden tamponun en arka noktasına. | VERIFIED (1141) |
+| M12 | Minimum ground clearance (unladen) (`dimensions.ground_clearance_min`) | Gövdenin en alçak noktasından yere; hangi parça olduğunu yazın. | ESTIMATED (120) |
+| M13 | Hub centre to wheel-arch lip, front left (`dimensions.wheel_centre_to_arch_fl`) | Sol ön: jant merkezinden çamurluk kemerinin kenarına dik mesafe. | ESTIMATED (380) |
+| M14 | Hub centre to wheel-arch lip, front right (`dimensions.wheel_centre_to_arch_fr`) | Sağ ön: aynı ölçü. | ESTIMATED (380) |
+| M15 | Hub centre to wheel-arch lip, rear left (`dimensions.wheel_centre_to_arch_rl`) | Sol arka: aynı ölçü. | ESTIMATED (385) |
+| M16 | Hub centre to wheel-arch lip, rear right (`dimensions.wheel_centre_to_arch_rr`) | Sağ arka: aynı ölçü. | ESTIMATED (385) |
 
 ## 2. Biçim ölçüleri (şu an PLACEHOLDER varsayım)
 
@@ -35,21 +35,21 @@ Koordinat: X = ön jant merkezinden **geriye** doğru yatay mesafe, Z = **yerden
 
 | Kod | Ölçü | Nasıl ölçülür | Şu anki değer |
 |---|---|---|---|
-| M17 | Hood leading edge above ground (`body_profile.nose_top_z`) | Kaputun ön kenarının yerden yüksekliği. | PLACEHOLDER 840 mm |
-| M18 | Front panel lower edge above ground (`body_profile.nose_bottom_z`) | Ön panelin (tampon arkası) alt kenarının yerden yüksekliği. | PLACEHOLDER 300 mm |
-| M19 | Bumper lower edge above ground (`body_profile.bumper_bottom_z`) | Ön tamponun alt kenarının yerden yüksekliği. | PLACEHOLDER 280 mm |
-| M20 | Bumper vertical height (`body_profile.bumper_height`) | Tamponun dikey yüksekliği. | PLACEHOLDER 180 mm |
-| M21 | Bumper face beyond the body face (front and rear) (`body_profile.bumper_protrusion`) | Tamponun kaportadan ne kadar dışarı çıktığı. | PLACEHOLDER 60 mm |
-| M22 | Body-side (sill) lower edge above ground (`body_profile.sill_z`) | Kapı altı marşpiyelin alt kenarının yerden yüksekliği. | PLACEHOLDER 200 mm |
-| M23 | Side-window sill (beltline) above ground (`body_profile.belt_z`) | Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği. | PLACEHOLDER 960 mm |
-| M24 | Windshield base, X behind the front wheel centre (`body_profile.cowl_x`) | Ön jant merkezinden ön camın alt kenarına yatay mesafe. | PLACEHOLDER 850 mm |
-| M25 | Windshield top edge, X behind the front wheel centre (`body_profile.windshield_top_x`) | Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle). | PLACEHOLDER 1450 mm |
-| M26 | B-pillar centre, X behind the front wheel centre (`body_profile.b_pillar_x`) | Ön jant merkezinden orta direğin (ön/arka kapı arası) ortasına. | PLACEHOLDER 1760 mm |
-| M27 | Rear-door rear edge, X behind the front wheel centre (`body_profile.c_pillar_x`) | Ön jant merkezinden arka kapının arka kenarına. | PLACEHOLDER 2600 mm |
-| M28 | Roof end ahead of the rear body face (`body_profile.roof_rear_inset`) | Tavanın arka bitişi ile arka gövde yüzeyi arasındaki yatay fark. | PLACEHOLDER 120 mm |
-| M29 | Rear panel lower edge above ground (`body_profile.rear_bottom_z`) | Bagaj kapağı altındaki arka panelin alt kenarının yerden yüksekliği. | PLACEHOLDER 420 mm |
-| M30 | Roof width (side to side, at the roof) (`body_profile.roof_width`) | Tavanın yandan yana genişliği. | PLACEHOLDER 1362 mm |
-| M31 | Mirror housing beyond the body side (`body_profile.mirror_protrusion`) | Aynanın gövde yanından dışarı taşma mesafesi. | PLACEHOLDER 110 mm |
+| M17 | Hood leading edge above ground (`body_profile.nose_top_z`) | Kaputun ön kenarının yerden yüksekliği. | ESTIMATED (840) |
+| M18 | Front panel lower edge above ground (`body_profile.nose_bottom_z`) | Ön panelin (tampon arkası) alt kenarının yerden yüksekliği. | ESTIMATED (300) |
+| M19 | Bumper lower edge above ground (`body_profile.bumper_bottom_z`) | Ön tamponun alt kenarının yerden yüksekliği. | ESTIMATED (250) |
+| M20 | Bumper vertical height (`body_profile.bumper_height`) | Tamponun dikey yüksekliği. | ESTIMATED (220) |
+| M21 | Bumper face beyond the body face (front and rear) (`body_profile.bumper_protrusion`) | Tamponun kaportadan ne kadar dışarı çıktığı. | ESTIMATED (60) |
+| M22 | Body-side (sill) lower edge above ground (`body_profile.sill_z`) | Kapı altı marşpiyelin alt kenarının yerden yüksekliği. | ESTIMATED (200) |
+| M23 | Side-window sill (beltline) above ground (`body_profile.belt_z`) | Yan camların alt kenarının (kapı üst çizgisi) yerden yüksekliği. | ESTIMATED (960) |
+| M24 | Windshield base, X behind the front wheel centre (`body_profile.cowl_x`) | Ön jant merkezinden ön camın alt kenarına yatay mesafe. | ESTIMATED (480) |
+| M25 | Windshield top edge, X behind the front wheel centre (`body_profile.windshield_top_x`) | Ön jant merkezinden ön camın üst kenarına yatay mesafe (çekülle). | ESTIMATED (910) |
+| M26 | B-pillar centre, X behind the front wheel centre (`body_profile.b_pillar_x`) | Ön jant merkezinden orta direğin (ön/arka kapı arası) ortasına. | ESTIMATED (1525) |
+| M27 | Rear-door rear edge, X behind the front wheel centre (`body_profile.c_pillar_x`) | Ön jant merkezinden arka kapının arka kenarına. | ESTIMATED (2400) |
+| M28 | Roof end ahead of the rear body face (`body_profile.roof_rear_inset`) | Tavanın arka bitişi ile arka gövde yüzeyi arasındaki yatay fark. | ESTIMATED (120) |
+| M29 | Rear panel lower edge above ground (`body_profile.rear_bottom_z`) | Bagaj kapağı altındaki arka panelin alt kenarının yerden yüksekliği. | ESTIMATED (470) |
+| M30 | Roof width (side to side, at the roof) (`body_profile.roof_width`) | Tavanın yandan yana genişliği. | ESTIMATED (1300) |
+| M31 | Mirror housing beyond the body side (`body_profile.mirror_protrusion`) | Aynanın gövde yanından dışarı taşma mesafesi. | ESTIMATED (95) |
 
 ## 2b. LPG tankı ve bagaj (şu an geçici değer / bilinmiyor)
 
@@ -60,10 +60,10 @@ Tank ölçüleri şu an **geçici varsayım** (600 x 180 mm). Gerçek ölçü ve
 | M32 | LPG tank outer diameter (`lpg_system.tank_outer_diameter`) | Tankın dış çapı: şerit metreyi tankın üstünden, merkezden geçecek şekilde uçtan uca tutun (veya tank etiketindeki '600x180' gibi değeri yazın). | ESTIMATED (600) |
 | M33 | LPG tank height (`lpg_system.tank_height`) | Tankın yüksekliği: tabandan üst yüzeye dik mesafe (etiketteki ikinci sayı). | ESTIMATED (180) |
 | M34 | LPG tank central opening diameter (`lpg_system.tank_central_opening_diameter`) | Tankın ortasındaki deliğin çapı (varsa). | ESTIMATED (130) |
-| M35 | LPG tank centre X (VCS, rearward from front axle) (`lpg_system.tank_centre_x`) | Ön jant merkezinden tank merkezine yatay mesafe (araç boyunca, yerde çekülle işaretleyerek). | PLACEHOLDER 3150 mm (sadece görsel) |
-| M36 | LPG tank centre Y (VCS, right positive) (`lpg_system.tank_centre_y`) | Aracın orta çizgisinden tank merkezine yanal mesafe (sağa +, sola -). | PLACEHOLDER 0 mm (sadece görsel) |
-| M37 | LPG tank underside height above ground (`lpg_system.tank_base_z`) | Tankın alt yüzeyinin (veya oturduğu stepne yuvası tabanının) yerden yüksekliği; araç altından ölçün. | PLACEHOLDER 350 mm (sadece görsel) |
-| M38 | Cargo width between wheel arches (`body.cargo_width_between_arches`) | Bagajda iki arka çamurluk kemeri arasındaki en dar genişlik. | UNKNOWN |
+| M35 | LPG tank centre X (VCS, rearward from front axle) (`lpg_system.tank_centre_x`) | Ön jant merkezinden tank merkezine yatay mesafe (araç boyunca, yerde çekülle işaretleyerek). | ESTIMATED (3150) |
+| M36 | LPG tank centre Y (VCS, right positive) (`lpg_system.tank_centre_y`) | Aracın orta çizgisinden tank merkezine yanal mesafe (sağa +, sola -). | ESTIMATED (0) |
+| M37 | LPG tank underside height above ground (`lpg_system.tank_base_z`) | Tankın alt yüzeyinin (veya oturduğu stepne yuvası tabanının) yerden yüksekliği; araç altından ölçün. | ESTIMATED (220) |
+| M38 | Cargo width between wheel arches (`body.cargo_width_between_arches`) | Bagajda iki arka çamurluk kemeri arasındaki en dar genişlik. | ESTIMATED (1050) |
 
 ## 3. Ruhsat bilgileri
 
@@ -97,4 +97,4 @@ Ruhsatın fotoğrafını çekmeden önce **ad-soyad, TC kimlik no, adres ve plak
 
 ## Özet
 
-Spec: 134 parametre: 25 VERIFIED, 35 ESTIMATED, 74 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.
+Spec: 169 parametre: 63 VERIFIED, 106 ESTIMATED, 0 UNKNOWN. Varsayım dosyası: 60 PLACEHOLDER değer. Bu rehberdeki ölçüler geldikçe ilgili parçalar PLACEHOLDER'dan DRAFT'a geçer.

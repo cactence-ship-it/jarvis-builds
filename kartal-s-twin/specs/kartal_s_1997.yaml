@@ -122,254 +122,254 @@ parameters:
       name: Overall length incl. bumpers
       value: 4396
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 40
-      source: [E-007, E-008, E-009]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Tape on level ground between plumb lines at front and rear extremities
-      notes: Literature for the model, not measured on VEH-01. Sources conflict (4396 vs 4360/4361 mm); tolerance covers both.
+      notes: 'Manual p.95 (Kartal drawing): 765 + 2490 + 1141. Aggregators also gave 4361.'
     overall_width_body:
       name: Overall width excl. mirrors
       value: 1642
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 20
-      source: [E-007, E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Plumb lines at the widest body point
-      notes: Literature for the model; mirror inclusion not stated by the source.
+      notes: Manual p.95.
     overall_width_mirrors:
       name: Overall width incl. mirrors
-      value: null
+      value: 1832
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Plumb lines at the mirror housings
-      notes: ''
+      notes: 'Assumption: body width 1642 (E-058) + 2 x mirror 95.'
     overall_height:
       name: Overall height excl. roof rails
       value: 1496
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 25
-      source: [E-007, E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Straight-edge across the roof to the ground
-      notes: Literature; whether roof rails and load state are included is not stated.
+      notes: Manual p.95, unladen (Kartal drawing; roof rails not stated).
     overall_height_roof_rails:
       name: Overall height incl. roof rails (if fitted)
-      value: null
+      value: 1500
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Straight-edge across the rails to the ground
-      notes: ''
+      notes: 'Assumption: the manual''s 1496 (E-058) is drawn on a Kartal with rails; the rails are low. Measure over the rails.'
     wheelbase_lh:
       name: Wheelbase, left side
       value: 2490
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 10
-      source: [E-009, E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Hub centre to hub centre, wheels straight ahead
-      notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
+      notes: Nominal, manual p.95; per-side measurement still useful (D-020).
     wheelbase_rh:
       name: Wheelbase, right side
       value: 2490
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 10
-      source: [E-009, E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Hub centre to hub centre, wheels straight ahead
-      notes: Literature nominal wheelbase (same value in independent sources); side-to-side difference unknown.
+      notes: Nominal, manual p.95.
     front_track:
       name: Front track (tyre tread centre to centre)
       value: 1386
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 15
-      source: [E-011]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Tread centres at the ground, wheels straight ahead
-      notes: Literature (aggregators agree on 1386). Replaces the 1380 mm placeholder.
+      notes: Manual p.95.
     rear_track:
       name: Rear track (tyre tread centre to centre)
       value: 1327
       unit: mm
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 15
-      source: [E-011]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Tread centres at the ground
-      notes: Literature (aggregators agree on 1327). Replaces the 1350 mm placeholder.
+      notes: Manual p.95.
     front_overhang:
       name: Front overhang (front axle to front extremity)
-      value: null
+      value: 765
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Plumb line at the front extremity to the front hub centre
-      notes: ''
+      notes: Manual p.95 (Kartal drawing).
     rear_overhang:
       name: Rear overhang (rear axle to rear extremity)
-      value: null
+      value: 1141
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Plumb line at the rear extremity to the rear hub centre
-      notes: ''
+      notes: Manual p.95 (Kartal drawing).
     ground_clearance_min:
       name: Minimum ground clearance (unladen)
-      value: null
+      value: 120
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 20
+      source: [E-052]
       verify_by: Lowest underbody point to the ground; name the component in notes
-      notes: ''
+      notes: Fiat 131 Panorama figure; Kartal and this car (LPG tank in the spare-wheel well protrudes below the floor, E-025) may differ. Measure.
     wheel_centre_to_arch_fl:
       name: Hub centre to wheel-arch lip, front left
-      value: null
+      value: 380
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Vertical tape, hub centre to arch edge (records ride height)
-      notes: ''
+      notes: 'Assumption: tyre free radius ~298 (185/65 R14) + ~80 mm arch gap seen in photos E-026.'
     wheel_centre_to_arch_fr:
       name: Hub centre to wheel-arch lip, front right
-      value: null
+      value: 380
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Vertical tape, hub centre to arch edge
-      notes: ''
+      notes: 'Assumption: tyre free radius ~298 (185/65 R14) + ~80 mm arch gap seen in photos E-026.'
     wheel_centre_to_arch_rl:
       name: Hub centre to wheel-arch lip, rear left
-      value: null
+      value: 385
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Vertical tape, hub centre to arch edge
-      notes: ''
+      notes: 'Assumption: tyre free radius ~298 + ~85 mm arch gap (estate rear, unladen; photos E-026).'
     wheel_centre_to_arch_rr:
       name: Hub centre to wheel-arch lip, rear right
-      value: null
+      value: 385
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Vertical tape, hub centre to arch edge
-      notes: ''
+      notes: 'Assumption: tyre free radius ~298 + ~85 mm arch gap (estate rear, unladen; photos E-026).'
     turning_circle_kerb:
       name: Turning circle, kerb to kerb
-      value: null
+      value: 10300
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Owner's manual, or full-lock circle chalked on the ground
-      notes: ''
+      notes: 'Manual p.93: minimum turning circle diameter 10.3 m (kerb or wall not stated).'
   # ---------------------------------------------------------------- Body, closures and cargo
   body:
     body_construction:
       name: Body construction (unibody / separate frame)
-      value: null
+      value: monocoque (self-supporting steel body)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-058, E-059]
       verify_by: Underbody photos
-      notes: ''
+      notes: 'Manual p.92: rear links attached to the steel body; Fiat/SEAT 131 documents call it integral / monocasco autoportante (E-059, not opened).'
     cargo_floor_length_seat_up:
       name: Cargo floor length, rear seat up
-      value: null
+      value: 1340
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-059]
       verify_by: 'Tape at floor level: tailgate seal to rear-seat backrest'
-      notes: ''
+      notes: 'Forum: MDF board cut for a Kartal cargo floor 134 x 105 cm (E-059); board, not a measured floor length.'
     cargo_floor_length_seat_folded:
       name: Cargo floor length, rear seat folded
-      value: null
+      value: 1850
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 120
+      source: [E-062]
       verify_by: 'Tape at floor level: tailgate seal to front-seat backs'
-      notes: ''
+      notes: 'Assumption: seat-up floor ~1340 (E-059) + ~510 mm of folded rear seat (cushion tipped, backrest flat).'
     cargo_width_between_arches:
       name: Cargo width between wheel arches
-      value: null
+      value: 1050
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-059]
       verify_by: Tape across the narrowest point
-      notes: ''
+      notes: Same forum MDF board width (E-059).
     tailgate_opening_width:
       name: Tailgate opening width
-      value: null
+      value: 1150
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-062]
       verify_by: Tape across the opening at its narrowest point
-      notes: ''
+      notes: 'Assumption: body width 1642 less the D-pillars and tail-lamp clusters (photos E-026).'
     tailgate_opening_height:
       name: Tailgate opening height
-      value: null
+      value: 780
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-062]
       verify_by: Tape from sill to header at the centre
-      notes: ''
+      notes: 'Assumption: from the bumper line to the roof header of a near-vertical tailgate (photos E-026, height 1496).'
     load_sill_height:
       name: Load sill height
-      value: null
+      value: 470
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Ground to top of the rear sill
-      notes: ''
+      notes: 'Assumption: the tailgate opens flush with the rear bumper top (Fiat 131 Familiare description, E-059): bumper bottom 250 + height 220.'
     cargo_volume:
       name: Cargo volume (state the method in notes)
-      value: null
+      value: 846
       unit: L
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Owner's manual or brochure; record the measuring method
-      notes: ''
+      notes: 'Manual p.95: 846 dm3 (SAE) rear seat up, 2054 dm3 folded.'
   # ---------------------------------------------------------------- Interior
   interior:
     seating_capacity:
@@ -394,14 +394,14 @@ parameters:
       notes: Steering wheel on the left in the interior photos (E-024). The fitted wheel is an aftermarket sport wheel (U-010).
     steering_wheel_diameter:
       name: Steering wheel outer diameter
-      value: null
+      value: 350
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 30
+      source: [E-062]
       verify_by: Tape across the rim
-      notes: ''
+      notes: 'Assumption: the fitted aftermarket three-spoke sport wheel (photos E-024) is typically 350 mm. Factory wheel would be ~380-400 (E-059).'
   # ---------------------------------------------------------------- Mass
   mass:
     curb_mass:
@@ -419,43 +419,43 @@ parameters:
       value: 1550
       unit: kg
       status: ESTIMATED
-      confidence: LOW
+      confidence: HIGH
       tolerance: 50
-      source: [E-011]
+      source: [E-058]
       verify_by: Ruhsat 'Azami yüklü ağırlığı' field
-      notes: Aggregator value (E-011). The ruhsat field 'Azami yüklü ağırlığı' is EMPTY on both registration documents (E-014, E-015), so it cannot be verified from them.
+      notes: Manual p.97, Kartal S-SLX (gross 1550, payload 490, kerb 1060 incl. fuel and spare, trailer 1100). Registered kerb mass stays the document value (E-014/E-015).
     axle_load_front_measured:
       name: Front axle load, measured
-      value: null
+      value: 565
       unit: kg
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Weighbridge at the reference state
-      notes: ''
+      notes: 'Assumption: factory split ~52.5 / 47.5 (Fiat 131, E-059) on the manual kerb mass 1060, plus the LPG kit (+65 kg to the registered 1125, mostly at the rear).'
     axle_load_rear_measured:
       name: Rear axle load, measured
-      value: null
+      value: 560
       unit: kg
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Weighbridge at the reference state
-      notes: ''
+      notes: 'Assumption: see the front axle load; sum 1125 = registered kerb mass.'
   # ---------------------------------------------------------------- Engine - variant NOT yet identified (U-001); no value may be assumed
   engine:
     engine_code:
       name: Engine type code
-      value: null
+      value: 131 D1.016
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058, E-040]
       verify_by: Engine-number stamping photo / documents
-      notes: ''
+      notes: Manual p.89 lists 131 D1.016 for Kartal S-SLX (plain Kartal 131 D2.016, 1.6 i.e. 131 F3.016). Rests on VEH-01 being a Kartal S; stamping at the front of the block right of the water pump (p.88) not yet read.
     displacement:
       name: Displacement
       value: 1581
@@ -470,62 +470,62 @@ parameters:
       name: Number of cylinders
       value: 4
       unit: null
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: null
-      source: [E-011]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Engine bay photo / documents
       notes: Aggregator data for all Kartal 1.6 variants.
     cylinder_layout:
       name: Cylinder layout
       value: inline
       unit: null
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-011]
+      source: [E-058]
       verify_by: Engine bay photo
       notes: Aggregator data.
     valvetrain:
       name: Valvetrain (OHV / SOHC / DOHC)
-      value: SOHC
+      value: SOHC, toothed timing belt
       unit: null
-      status: ESTIMATED
-      confidence: LOW
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-012]
+      source: [E-058]
       verify_by: Engine bay photo (cam cover, timing cover) / manual
       notes: Listings describe an overhead-cam 'Tempra' engine. Confirm with an engine-bay photo.
     bore:
       name: Bore
-      value: null
+      value: 86.4
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Workshop manual
-      notes: ''
+      notes: 'Fiat SOHC 1581 cm3 version (E-029). Consistent with the VERIFIED displacement: 4 x pi/4 x 86.4^2 x 67.4 mm = 1580.6 cm3 vs 1581 cm3 (E-015). Fiat data, Tofaş installation not confirmed.'
     stroke:
       name: Stroke
-      value: null
+      value: 67.4
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Workshop manual
-      notes: ''
+      notes: Fiat SOHC 1581 cm3 version (E-029); with bore 86.4 mm gives 1580.6 cm3, matching E-015 (1581 cm3).
     compression_ratio:
       name: Compression ratio
-      value: null
+      value: 9.2
       unit: ratio
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: 0.1
+      source: [E-058]
       verify_by: Workshop manual
-      notes: ''
+      notes: 9.2:1 for 131 D1.016 (Kartal S-SLX), 8.3:1 for D2.016 (plain Kartal), manual p.89.
     max_power:
       name: Maximum power
       value: 61
@@ -538,34 +538,34 @@ parameters:
       notes: 83 HP (61 kW) reported for the carburettor 1.6; 81-84 hp listed elsewhere (60-62 kW). The ruhsat field 'Motor gücü' is EMPTY on the registration certificate (E-015), so the document cannot confirm it.
     max_power_speed:
       name: Engine speed at maximum power
-      value: null
+      value: 5800
       unit: rpm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: 50
+      source: [E-058]
       verify_by: Manual
-      notes: ''
+      notes: 'Manual p.89: 96 hp (SAE) at 5800 for D1.016. The stored max_power value is a DIN/kW figure from aggregators and is not the same standard.'
     max_torque:
       name: Maximum torque
-      value: 131
+      value: 132
       unit: N·m
       status: ESTIMATED
-      confidence: LOW
-      tolerance: 6
-      source: [E-013]
+      confidence: HIGH
+      tolerance: 1
+      source: [E-058]
       verify_by: Manual
-      notes: Reported for the 1997 SLX carburettor 1.6.
+      notes: 13.5 kgm (DIN) = 132.4 Nm at 3250 (manual p.89, D1.016).
     max_torque_speed:
       name: Engine speed at maximum torque
-      value: null
+      value: 3250
       unit: rpm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: 50
+      source: [E-058]
       verify_by: Manual
-      notes: ''
+      notes: 125 Nm at 3000 rpm (E-030); E-013 gives 131 Nm without speed.
     fuel_type:
       name: Fuel type as registered (check for LPG conversion)
       value: LPG (registered conversion)
@@ -593,19 +593,19 @@ parameters:
       status: ESTIMATED
       confidence: HIGH
       tolerance: null
-      source: [E-017, E-012, E-013, E-027]
+      source: [E-058, E-027]
       verify_by: Engine bay photo of the intake
-      notes: 'Owner states a carburettor engine (E-017); literature for the S trim agrees (E-012, E-013); the round air cleaner on top of the engine (E-027) is typical of a downdraught carburettor, but the carburettor itself is hidden, so this stays ESTIMATED. Fuel-injected 1.6 i.e. engines (E-009) are a DIFFERENT variant: specs/configuration_rules.yaml forbids engine.* values sourced from them while this value is ''carburettor''.'
+      notes: 'Manual p.90: Kartal S-SLX WEBER 32/34 TLDE 29/150 twin-choke downdraught; photos show the round air cleaner on a carburettor.'
     ignition_type:
       name: Ignition system type
-      value: null
+      value: electronic
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Engine bay photo (distributor, coil)
-      notes: ''
+      notes: 'Manual p.90: electronic ignition on every version; firing order 1-3-4-2, advance 10 deg. Module on the LH inner wing in the photos (E-051).'
     cooling_system_type:
       name: Cooling system type
       value: liquid-cooled; front radiator with electric fan; separate expansion tank
@@ -616,6 +616,36 @@ parameters:
       source: [E-027]
       verify_by: Engine bay photo
       notes: Engine-bay photos (E-027). Radiator cap marked '0.9' (presumably bar); not recorded as a parameter.
+    radiator_core_width:
+      name: Radiator core width
+      value: 470
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-041]
+      verify_by: Tape across the radiator core
+      notes: Aftermarket KALE 0106092AL for M131 1.6 (2-row aluminium, plastic tanks).
+    radiator_core_height:
+      name: Radiator core height
+      value: 292
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-041]
+      verify_by: Tape on the radiator core
+      notes: E-041
+    radiator_core_depth:
+      name: Radiator core depth
+      value: 32
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-041]
+      verify_by: Caliper on the core
+      notes: 32 mm (one listing 34 mm).
     engine_orientation:
       name: Engine orientation (longitudinal / transverse)
       value: longitudinal
@@ -640,55 +670,85 @@ parameters:
       notes: Floor gear lever and three pedals in the interior photos (E-024). Number of forward gears not readable (forward_gear_count UNKNOWN).
     forward_gear_count:
       name: Number of forward gears
-      value: null
+      value: 5
       unit: null
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Gear-knob shift pattern photo
-      notes: ''
+      notes: Kartal of this period sold as '5 vites'; forum ratios (E-031) list five forward gears. Count the gear-lever pattern to verify.
     gear_ratios:
       name: Forward gear ratios (1st..nth)
-      value: null
+      value: [3.543, 2.139, 1.377, 1.0, 0.868]
       unit: ratio
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0.01
+      source: [E-058]
       verify_by: Workshop manual
-      notes: ''
+      notes: Manual p.91. Replaces forum ratios (E-031) and Fiat 131 ratios (E-056).
     reverse_ratio:
       name: Reverse gear ratio
-      value: null
+      value: 3.526
       unit: ratio
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Workshop manual
-      notes: ''
+      notes: Forum-quoted (E-031).
     final_drive_ratio:
       name: Final drive ratio
-      value: null
+      value: 4.1
       unit: ratio
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Workshop manual / axle tag
-      notes: ''
+      notes: 'Manual p.91: hypoid 4.1:1 (10/41).'
     clutch_actuation:
       name: Clutch actuation (cable / hydraulic)
-      value: null
+      value: mechanical (cable), self-adjusting
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Pedal box or bell-housing photo
-      notes: ''
+      notes: 'Clutch cable sold for Doğan/Kartal/Şahin 1.6 (E-035). Verify: cable at the pedal box or a master cylinder on the bulkhead.'
   # ---------------------------------------------------------------- Drivetrain
+    clutch_disc_diameter:
+      name: Clutch disc diameter
+      value: 190
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 10
+      source: [E-059, E-060]
+      verify_by: Read the disc stamping when the clutch is out
+      notes: 'E-059: Opar 98000053 (131 D1.016 OHC, 1993+) = 190 mm, 20 teeth, hub 20.1 x 23; 98000052 = 200 mm for the older OHV engine. MAPA part number not found (E-060). Read the disc stamping to confirm.'
+    gearbox_input_bearing:
+      name: Gearbox input (main) bearing, bore x OD x width
+      value: 30 x 75 x 19
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Bearing marking
+      notes: ORS/QJ 630106 (owner summary only).
+    gearbox_output_bearing:
+      name: Gearbox rear output bearing, bore x OD x width
+      value: 25 x 52 x 21
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Bearing marking
+      notes: Arnold Classic 1178168 (owner summary only).
   drivetrain:
     drive_layout:
       name: Drive layout (e.g. front-engine RWD / FWD)
@@ -701,17 +761,107 @@ parameters:
       verify_by: 'Underbody photo: propeller shaft and differential housing (U-006)'
       notes: Literature (E-009); supports hypothesis U-006. Confirm with an underbody photo before modelling the driveline.
   # ---------------------------------------------------------------- Chassis and fuel
+    propshaft_construction:
+      name: Propeller shaft construction
+      value: two-piece, flexible coupling at the gearbox, centre bearing, universal joints
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Look under the car
+      notes: From parts that exist for the family (guibo 4516801, centre bearing 4181556); VEH-01 not checked.
+    propshaft_tube_od:
+      name: Propeller shaft tube outer diameter
+      value: 69.85
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.5
+      source: [E-056]
+      verify_by: Caliper on the tube
+      notes: Wall 1.6 mm (or 70 x 2), Uzman Kardan M124/131 (owner summary only).
+    flex_coupling_od:
+      name: Flexible coupling (guibo) outer diameter
+      value: 130
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-056]
+      verify_by: Caliper
+      notes: Inner 52 mm, thickness 47 mm, bolt circle 101 mm, 6 x 12 mm holes; Fiat 4516801 (owner summary only).
+    flex_coupling_thickness:
+      name: Flexible coupling thickness
+      value: 47
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-056]
+      verify_by: Caliper
+      notes: 61 mm including bushes (Arnold 1176031).
+    ujoint_cross:
+      name: Universal-joint cross (cup diameter x span)
+      value: 23.8 x 61.2
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Caliper on a removed cross
+      notes: Tirsan / Uzman Kardan listings (owner summary only).
+    axle_shaft_length:
+      name: Rear half-shaft overall length
+      value: 690
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 10
+      source: [E-056]
+      verify_by: Measure a removed half-shaft
+      notes: 4472221 per owner summary (E-056), not found in the spot-check (E-057); conflicts with the 1327 mm rear track (U-018). Shaft lengths differ by version.
+    axle_shaft_spline_diameter:
+      name: Rear half-shaft spline diameter
+      value: 24
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.5
+      source: [E-056, E-057]
+      verify_by: Caliper on the splines
+      notes: 24 mm splines confirmed for Fiat 131 4420483 (E-057).
+    rear_wheel_bearing:
+      name: Rear wheel bearing, bore x OD x width
+      value: 30 x 65 x 21
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Bearing marking
+      notes: 630374; collar 30 x 47 x 13.5, seal 30 x 45 x 8 (owner summary only).
+    diff_side_bearing:
+      name: Differential side bearing (taper)
+      value: 38.112 x 71.016 x 18.258
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: null
+      source: [E-056]
+      verify_by: Bearing marking
+      notes: SKF BT1-0017 / 639330Q (owner summary only).
   chassis:
     fuel_tank_capacity:
       name: Fuel tank capacity
-      value: 52
+      value: 50
       unit: L
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 3
-      source: [E-010]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Owner's manual
-      notes: Several owner-entered listings.
+      notes: 'Manual p.98: 50 L incl. 5-7 L reserve (1.6 i.e. SLX: 45 L).'
   # ---------------------------------------------------------------- Suspension
   suspension:
     front_suspension_type:
@@ -736,56 +886,186 @@ parameters:
       notes: 'Axle tube spanning both rear wheels and a transverse locating rod in the underbody photos (E-025). Spring type (coil or leaf) not visible: rear_spring_type stays UNKNOWN.'
     front_spring_type:
       name: Front spring type
-      value: null
+      value: coil
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Wheel-arch photo
-      notes: ''
+      notes: MacPherson struts with coil springs (E-032); strut tops seen in the engine bay (E-027).
     rear_spring_type:
       name: Rear spring type (coil / leaf)
-      value: null
+      value: coil
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Underbody photo
-      notes: ''
+      notes: Live axle on coil springs with a Panhard rod (E-032); the transverse locating rod seen under the car (E-025) is consistent.
     front_antiroll_bar_fitted:
       name: Front anti-roll bar fitted
-      value: null
+      value: true
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Underbody photo
-      notes: ''
+      notes: 'Manual p.92: the anti-roll bar acts as the reaction rod of the lower arm.'
     rear_antiroll_bar_fitted:
       name: Rear anti-roll bar fitted
-      value: null
+      value: false
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: MEDIUM
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Underbody photo
-      notes: ''
+      notes: Manual p.92 lists 4 longitudinal and 1 transverse reaction rods, coil springs and dampers for the rear, no anti-roll bar. Absence in a description, not a statement.
   # ---------------------------------------------------------------- Steering
+    rear_damper_length_compressed:
+      name: Rear damper eye-to-eye length, compressed
+      value: 337
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 20
+      source: [E-044, E-059]
+      verify_by: Measure the removed damper
+      notes: 'KYB 343142 337 mm (E-044) and SEAT 131 workshop manual 340 +/- 2 mm (E-059): agree within 3 mm.'
+    rear_damper_length_extended:
+      name: Rear damper eye-to-eye length, extended
+      value: 527
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 20
+      source: [E-044, E-059]
+      verify_by: Measure the removed damper
+      notes: KYB 527 mm and SEAT 131 manual 526 +/- 2 mm agree.
+    front_lower_arm_length:
+      name: Front lower arm (with ball joint) length
+      value: 289
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-046]
+      verify_by: Measure the removed arm
+      notes: AYD 00016 listing; reference points of the length not stated.
+    front_strut_bore:
+      name: Front strut damper bore
+      value: 27
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-048]
+      verify_by: Strut insert data sheet
+      notes: Monroe 11002, Fiat 131 saloon.
+    front_strut_rod_diameter:
+      name: Front strut piston-rod diameter
+      value: 20
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-048]
+      verify_by: Caliper on the rod
+      notes: Monroe 11002.
+    front_wheel_bearing:
+      name: Front wheel taper bearing (bore x OD x width)
+      value: 28 x 57.15 x 17.462
+      unit: null
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.1
+      source: [E-047]
+      verify_by: Bearing marking
+      notes: SKF 639297/Q, J15585/J15520.
+    rear_upper_link_length:
+      name: Rear upper (short) link, hole to hole
+      value: 315
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-056, E-057]
+      verify_by: Measure removed link
+      notes: Arnold 1774001 "compression strut short, Fiat 131" 315 mm (confirmed E-057).
+    rear_lower_link_length:
+      name: Rear lower (long) trailing arm, hole to hole
+      value: 617
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-056, E-057]
+      verify_by: Measure removed arm
+      notes: Arnold 1174003 617 mm, listed for 124 Spider; long lower arm shared by 124 and 131 to 1978 (E-057). Kartal fit not confirmed.
+    panhard_rod_length:
+      name: Panhard rod length, hole to hole
+      value: 1000
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-059]
+      verify_by: Measure the rod under the car
+      notes: Kartal-specific OEM 7733924 (centre bowed) per Opar list (E-059, not opened); ~1000 mm is the OVERALL length from a listing, not eye to eye. Şahin 4337930 / Doğan 4401237 do not fit.
+    front_spring_height_loaded:
+      name: Front spring height under the check load
+      value: 270
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-059]
+      verify_by: Workshop check on the car
+      notes: 'SEAT 131 manual: 270 mm under 280 +/- 12 kg (yellow > 270, green < 270). Fiat/SEAT 131 data.'
+    rear_spring_height_loaded:
+      name: Rear spring height under the check load
+      value: 235
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-059]
+      verify_by: Workshop check on the car
+      notes: 'SEAT 131 manual: 235 mm under 265 +/- 13.5 kg. Kartal estate springs may differ.'
+    front_strut_length_extended:
+      name: Front strut damper length, extended
+      value: 522
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-059]
+      verify_by: Measure the removed insert
+      notes: 'SEAT 131 manual (BOGE): 522 extended, 362 closed, stroke 160.'
+    front_strut_length_compressed:
+      name: Front strut damper length, compressed
+      value: 362
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 3
+      source: [E-059]
+      verify_by: Measure the removed insert
+      notes: SEAT 131 manual (BOGE).
   steering:
     steering_gear_type:
       name: Steering gear type (rack-and-pinion / recirculating ball)
-      value: null
+      value: rack-and-pinion
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Underbody or engine bay photo
-      notes: ''
+      notes: 'Manual p.93: rack and pinion, hydraulic assistance on some types.'
     power_assisted:
       name: Power assisted
       value: yes (hydraulic, belt-driven pump)
@@ -798,76 +1078,116 @@ parameters:
       notes: Belt-driven power-steering pump and a reservoir cap marked for power-steering oil in the engine-bay photos (E-027).
     turns_lock_to_lock:
       name: Steering-wheel turns, lock to lock
-      value: null
+      value: 3
       unit: turns
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058, E-027]
       verify_by: Count with a tape mark on the wheel rim
-      notes: ''
+      notes: 'Manual p.93: 3 turns hydraulic, 3.4 manual; VEH-01 has hydraulic assistance (E-027).'
   # ---------------------------------------------------------------- Brakes
+    tie_rod_length:
+      name: Tie rod (rot mili) length
+      value: 282.5
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-045]
+      verify_by: Measure the removed tie rod
+      notes: 282-283 mm (two listings), M14x1.5; mechanical-steering part, power-steering cars may differ.
+    steering_gear_overall_length:
+      name: Steering gear overall length (catalogue)
+      value: 1112
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-056]
+      verify_by: Measure end to end on the car
+      notes: Hydraulic box 7799432 / MGA 90400 / TRW 1110-1115 (owner summary); mechanical 4461468 1088-1093. Measurement points not stated; the model's outer tie-rod joints are 1126 mm apart (consistent within 1.3 %).
   brakes:
     front_brake_type:
       name: Front brake type (disc / drum)
-      value: null
+      value: disc
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Photo through the wheel
-      notes: ''
+      notes: Front discs with single-piston sliding calipers, rear drums (E-032).
     front_disc_diameter:
       name: Front disc diameter
-      value: null
+      value: 227.5
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-037, E-038]
       verify_by: Tape across the disc (wheel off) / manual
-      notes: ''
+      notes: Solid disc, 10.8 mm thick (min 9 mm), OEM 4208311; listed for cars up to MY2000 (E-037). Measure the disc to confirm.
     rear_brake_type:
       name: Rear brake type (disc / drum)
       value: drum
       unit: null
-      status: ESTIMATED
-      confidence: MEDIUM
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: [E-025]
+      source: [E-058]
       verify_by: Photo through the wheel
-      notes: Round brake housing behind the rear wheel in one underbody photo (E-025) is consistent with a drum brake; not certain. Verify with a photo through the wheel or with the wheel off.
+      notes: With brake regulator, self-adjusting shoes (p.92).
     rear_drum_diameter:
       name: Rear drum diameter
-      value: null
+      value: 228
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-042]
       verify_by: Manual / measurement with the wheel off
-      notes: ''
+      notes: Fiat 131 1.6 rear drum (Brembo catalogue), max 230 mm; Tofaş OEM 85015914 listings give no size.
+    rear_drum_width:
+      name: Rear drum width
+      value: 47.7
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 1
+      source: [E-042]
+      verify_by: Caliper with the drum off
+      notes: Fiat 131 1.6 (Brembo catalogue).
+    front_disc_thickness:
+      name: Front disc thickness (new)
+      value: 10.8
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.2
+      source: [E-037]
+      verify_by: Caliper on the disc
+      notes: Minimum 9 mm (E-037).
     brake_booster_fitted:
       name: Brake booster (servo) fitted
-      value: null
+      value: true
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058, E-050]
       verify_by: Engine bay photo behind the master cylinder
-      notes: ''
+      notes: 'Manual p.92: hydraulic servo brakes; booster seen in photos (E-050).'
     parking_brake_type:
       name: Parking brake type
-      value: null
+      value: mechanical lever, acting on the rear wheels
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058, E-055]
       verify_by: Photo of the lever and underbody cables
-      notes: ''
+      notes: Lever seen in the interior photo; cables inferred.
   # ---------------------------------------------------------------- Wheels and tires
   wheels_tires:
     tire_size_front:
@@ -904,32 +1224,32 @@ parameters:
       name: Rim width
       value: 5.5
       unit: in
-      status: ESTIMATED
-      confidence: LOW
-      tolerance: 0.5
-      source: [E-018]
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0.1
+      source: [E-058]
       verify_by: Rim stamping
-      notes: 'PROVISIONAL CAD value given by the owner (E-018), not measured. 5.5 in = 139.7 mm between the flanges. Verify: rim stamping or inside width between the flanges.'
+      notes: 'Manual p.93: Kartal S 5 1/2 J x 14 H1, factory tyre 185/70 R14 (the car now has 185/65 R14, E-028).'
     wheel_offset_et:
       name: Wheel offset (ET)
-      value: null
+      value: 29
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 5
+      source: [E-053]
       verify_by: Rim stamping
-      notes: ''
+      notes: Fiat 131 4x98 wheels (single source); VEH-01 black steel 14 in rims not checked.
     wheel_pcd:
       name: Bolt-circle diameter (PCD)
-      value: null
+      value: 98
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: MEDIUM
+      tolerance: 0.5
+      source: [E-033, E-026]
       verify_by: Measure across studs / documents
-      notes: ''
+      notes: 4x98 sold for Şahin/Doğan/Kartal (E-033); four wheel nuts seen (E-026).
     wheel_fastener_count:
       name: Number of wheel bolts or studs
       value: 4
@@ -942,14 +1262,14 @@ parameters:
       notes: Four wheel nuts on the front wheel in one exterior photo (E-026); other wheels assumed the same. PCD and centre bore not measurable from photos.
     wheel_centre_bore:
       name: Wheel centre bore
-      value: null
+      value: 58.1
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 0.5
+      source: [E-053]
       verify_by: Measure with the wheel off
-      notes: ''
+      notes: Generic Fiat 4x98 hub bore; matches E-053.
     wheel_material:
       name: Wheel material (steel / alloy)
       value: pressed steel
@@ -1024,14 +1344,14 @@ parameters:
   lpg_system:
     kit_type:
       name: LPG kit type (venturi mixer or vapour injection)
-      value: null
+      value: conventional venturi / leaf mixer at the carburettor with petrol cut-off solenoid (typical for 131 D1.016)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-059, E-022]
       verify_by: 'Engine-bay photo: mixer in the air intake vs injector rail'
-      notes: No mixer or injector rail visible in the engine-bay photos (E-027); the air cleaner covers the carburettor. A round coolant-heated unit near the bulkhead may be the vaporiser (unconfirmed).
+      notes: Typical kit for this engine (Atiker / BRC catalogues via E-059); the mixer on VEH-01 not yet photographed.
     tank_type:
       name: LPG tank type
       value: toroidal (ring) tank in the spare-wheel well
@@ -1124,34 +1444,34 @@ parameters:
       notes: 'Owner assumes about 80 % (E-018); every listed tank gives usable = 80 % of water capacity (E-020), the fill-stop limit of ECE R67 equipment. Usable LPG at 40 L nominal: 32 L.'
     tank_centre_x:
       name: LPG tank centre X (VCS, rearward from front axle)
-      value: null
+      value: 3150
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 100
+      source: [E-062]
       verify_by: Tape from the rear wheel centre to the tank centre, plus wheelbase
-      notes: ''
+      notes: 'Assumption: centre of the spare-wheel well behind the rear axle (photos E-022/E-025); rear axle 2490, rear end 3631 (E-058).'
     tank_centre_y:
       name: LPG tank centre Y (VCS, right positive)
-      value: null
+      value: 0
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-062]
       verify_by: Tape from the body centre line
-      notes: ''
+      notes: 'Assumption: spare-wheel well on the centre line (photo E-022 shows the tank centred in the floor).'
     tank_base_z:
       name: LPG tank underside height above ground
-      value: null
+      value: 220
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Tape from the ground to the tank bottom (or floor of the well)
-      notes: ''
+      notes: 'Assumption: the well protrudes below the floor (E-025); its inside floor about 220 mm above ground with 120 mm minimum clearance below it.'
     multivalve_orientation:
       name: Multivalve clock position on the tank
       value: in the central opening, on the inner wall of the tank (ALBIEN multivalve, 12 V solenoid, level gauge)
@@ -1164,14 +1484,14 @@ parameters:
       notes: Photos E-022, E-023. Clock angle not determined.
     filler_location:
       name: LPG filler valve location
-      value: null
+      value: under the rear bumper, side opposite the exhaust (typical 1990s installation)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-062]
       verify_by: Exterior photo (bumper / fuel flap / body side)
-      notes: 'Not visible on the exterior photos (E-026): no separate LPG filler on either side or the bumper in those views. Ask the owner or photograph under the fuel flap and the rear bumper.'
+      notes: Assumption from typical installations (E-059); post-2017 inspection rules move it outside the bumper underside. Photograph to confirm.
     tank_mounting:
       name: Tank mounting (frame, straps, bolts)
       value: bolted through the floor of the spare-wheel well at the tank centre (two brackets in the central opening, two bolt heads visible from below); opening closed by a black cover with two holes
@@ -1196,223 +1516,253 @@ parameters:
   electrical:
     system_voltage:
       name: System voltage
-      value: null
+      value: 12
       unit: V
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-058]
       verify_by: Battery label photo
-      notes: ''
+      notes: 12 V battery seen in the engine bay (E-027).
     earth_polarity:
       name: Earth polarity
-      value: null
+      value: negative
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058]
       verify_by: Battery terminal photo
-      notes: ''
+      notes: Manual p.94; earth bracket on the right inner side of the front panel (p.60).
     battery_capacity:
       name: Battery capacity
-      value: null
+      value: 72
       unit: Ah
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-049]
       verify_by: Battery label photo
-      notes: ''
+      notes: Fitted battery label (E-049). Factory battery 45 Ah, 220 A (manual p.94).
     battery_cold_cranking:
       name: Battery cold-cranking current
-      value: null
+      value: 700
       unit: A
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: VERIFIED
+      confidence: HIGH
+      tolerance: 0
+      source: [E-049]
       verify_by: Battery label photo
-      notes: ''
+      notes: 700 A (EN) per label.
+    battery_case_length:
+      name: Battery case length
+      value: 278
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 10
+      source: [E-043, E-049]
+      verify_by: Tape on the battery
+      notes: '72 Ah case (E-049): 278 x 175 x 175 is the common 72 Ah size (Exide FA722, Tudor TA722); İnci''s own 72 Ah sheet not found.'
+    battery_case_width:
+      name: Battery case width
+      value: 175
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 2
+      source: [E-043, E-049]
+      verify_by: Tape on the battery
+      notes: Same 175 mm for 60 and 72 Ah cases.
+    battery_case_height:
+      name: Battery case height
+      value: 175
+      unit: mm
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 15
+      source: [E-043, E-049]
+      verify_by: Tape on the battery
+      notes: Common 72 Ah case height; İnci 60 Ah is 190 mm.
     alternator_rated_current:
       name: Alternator rated current
-      value: null
+      value: 55
       unit: A
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: HIGH
+      tolerance: 1
+      source: [E-058]
       verify_by: Alternator label photo
-      notes: ''
+      notes: 'Manual p.94: Kartal S-SLX AA 125R 14 V 55 A (1.6 i.e. SLX 65 A, or 85 A with A/C). Rests on VEH-01 being a Kartal S; a replacement unit is not checked.'
     headlamp_type:
       name: Headlamp type / bulb
-      value: null
+      value: H4 halogen
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-036]
       verify_by: Headlamp photo / bulb marking
-      notes: ''
+      notes: H4 bulbs listed for the Şahin (E-036); same body family. Read the bulb code to verify.
     fuse_box_location:
       name: Fuse box location
-      value: null
+      value: lower right of the dashboard (passenger side, under the glovebox), cover with two screws; relays on and beside the box
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: VERIFIED
+      confidence: HIGH
       tolerance: null
-      source: []
+      source: [E-058, E-060]
       verify_by: Photo
-      notes: ''
+      notes: Owner's manual p.59 (1997) / p.44 (1994 per E-059).
   # ---------------------------------------------------------------- Body profile (VCS) - shape values; placeholders stand in until measured (docs/OLCUM_REHBERI.md)
   body_profile:
     bumper_protrusion:
       name: Bumper face beyond the body face (front and rear)
-      value: null
+      value: 60
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 30
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: deep plastic bumpers stand ~60 mm proud of the body face (photos E-026).'
     bumper_height:
       name: Bumper vertical height
-      value: null
+      value: 220
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: deep black S-series bumpers (photos E-026).'
     bumper_bottom_z:
       name: Bumper lower edge above ground
-      value: null
+      value: 250
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: proportion of the photos E-026 against the 1496 height.'
     sill_z:
       name: Body-side (sill) lower edge above ground
-      value: null
+      value: 200
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: sill about 200 mm above ground, above the 120 mm minimum clearance point (E-052/E-058); proportion of photos E-026. Kept at the previous package value so cabin floor parts stay inside the body.'
     nose_bottom_z:
       name: Front panel lower edge above ground
-      value: null
+      value: 300
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: front panel lower edge behind the bumper (photos E-026).'
     nose_top_z:
       name: Hood leading edge above ground
-      value: null
+      value: 840
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: nearly flat hood, tall front face (photos E-026).'
     cowl_x:
       name: Windshield base, X behind the front wheel centre
-      value: null
+      value: 480
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 100
+      source: [E-061]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Fiat 131 Panorama blueprint preview: windshield base about 390-570 behind the front wheel centre (E-061). Tripo shell of VEH-01 suggests about 650 (not a source). Was a placeholder 850.'
     belt_z:
       name: Side-window sill (beltline) above ground
-      value: null
+      value: 960
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: side-window sill line (photos E-026, height 1496).'
     rear_bottom_z:
       name: Rear panel lower edge above ground
-      value: null
+      value: 470
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: rear panel lower edge = top of the rear bumper (load sill flush with the bumper).'
     windshield_top_x:
       name: Windshield top edge, X behind the front wheel centre
-      value: null
+      value: 910
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-061]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: Blueprint E-061; Tripo shell about 1035 (cross-check only). Kartal raised roof may move it.
     roof_rear_inset:
       name: Roof end ahead of the rear body face
-      value: null
+      value: 120
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: near-vertical tailgate, roof ends ~120 mm ahead of the rear face.'
     roof_width:
       name: Roof width (side to side, at the roof)
-      value: null
+      value: 1300
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: body width 1642 less ~170 mm tumblehome per side (raised Kartal roof, front photos E-026).'
     b_pillar_x:
       name: B-pillar centre, X behind the front wheel centre
-      value: null
+      value: 1525
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-061]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: Blueprint E-061 (doors assumed shared with the 131); Tripo shell about 1650.
     c_pillar_x:
       name: Rear-door rear edge, X behind the front wheel centre
-      value: null
+      value: 2400
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 100
+      source: [E-061]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: Rear-door rear edge, blueprint E-061; Tripo shell about 2285.
     mirror_protrusion:
       name: Mirror housing beyond the body side
-      value: null
+      value: 95
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 30
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: typical door mirror on this body, about 95 mm beyond the door skin (photos E-026).'

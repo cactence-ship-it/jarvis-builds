@@ -8,28 +8,22 @@
 
 <!-- AUTO-CHECKPOINT:BEGIN (scripts/checkpoint.sh yazar; elle düzenlemeyin) -->
 ## Son checkpoint (otomatik)
-- **Checkpoint #49** - 2026-11-03 06:38 UTC
-- **Commit:** bu kaydı içeren commit = `0ea2466` commit'inin hemen ardından gelen commit
+- **Checkpoint #50** - 2026-11-07 07:30 UTC
+- **Commit:** bu kaydı içeren commit = `5786f86` commit'inin hemen ardından gelen commit
   (güncel SHA: `git log -1 --format=%h` veya `bash scripts/checkpoint.sh --verify`)
-- **Başlık:** feat(kartal-s-twin): realistic rotatable studio model via Blender (D-028), placeholder cowl from photos
-- **Testler:** PASS - Ran 147 tests in 313.013s; ## result: validate=0 unittest=0
+- **Başlık:** data(kartal-s-twin): fill 18 parameters from public literature (E-029..E-036), all ESTIMATED with source and tolerance
+- **Testler:** PASS - Ran 147 tests in 122.966s; ## result: validate=0 unittest=0
 - **Değişen dosyalar:**
 ```
     M	kartal-s-twin/CHANGELOG.md
-    M	kartal-s-twin/ENGINEERING_DECISIONS.md
-    M	kartal-s-twin/HANDOFF.md
+    M	kartal-s-twin/EVIDENCE_REGISTER.md
     M	kartal-s-twin/PROJECT_STATUS.md
     M	kartal-s-twin/docs/OLCUM_REHBERI.md
+    M	kartal-s-twin/docs/VERI_SOZLUGU.md
     M	kartal-s-twin/persistence/checkpoint.json
-    M	kartal-s-twin/specs/placeholder_assumptions.yaml
+    M	kartal-s-twin/specs/kartal_s_1997.yaml
     M	kartal-s-twin/test-results/latest.txt
-    A	kartal-s-twin/tools/blender/README.md
-    A	kartal-s-twin/tools/blender/export_params.py
-    A	kartal-s-twin/tools/blender/kartal_body.py
-    A	kartal-s-twin/tools/blender/package_studio.py
-    A	kartal-s-twin/tools/blender/smoke_studio.sh
-    A	kartal-s-twin/tools/viewer_smoke/studio_glb.js
-    A	kartal-s-twin/viewer/studio.html
+    M	kartal-s-twin/tests/test_pipeline.py
 ```
 <!-- AUTO-CHECKPOINT:END -->
 

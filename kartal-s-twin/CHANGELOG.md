@@ -2,6 +2,192 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-10 - High-resolution photo shell
+
+### Changed
+- Viewer can load the photo shell from a file next to the page (`package_viewer.py --shell-url`): published build now uses 4096 px textures and 30 % of the mesh triangles (was 1536 px and 9 %), outside the 16 MB page limit. Embedded mode unchanged (tests). Anisotropic filtering on the shell texture.
+- Smoke test passes (embedded); external mode checked in a headless browser with no console errors.
+
+## [Unreleased] - 2026-11-10 - Estimates for all remaining unknowns (D-044)
+
+### Added
+- Evidence type ENGINEERING_ESTIMATE and E-062: reasoned estimates for the 28 measurement-only values. Spec 169 parameters: 63 VERIFIED / 106 ESTIMATED / 0 UNKNOWN.
+- Resolver: estimate-only values are refused by engineering CAD and keep visual geometry PLACEHOLDER (test added).
+
+### Changed
+- Tests made data independent (consistency NOT_EVALUATED case blanks its own inputs; CAD refusal tested on a package guess and on an estimate).
+- Engineering documents, data dictionary and measurement guide regenerated.
+
+## [Unreleased] - 2026-11-08 - Electrical layout from the owner's manual
+
+### Changed
+- Fuse box (22 positions) and relays moved to the lower right of the dashboard (manual p.59-60, VERIFIED location); main loom re-routed through the dash.
+- Earthing bracket on the right inner side of the front panel added (manual p.60); ignition described as electronic, firing order 1-3-4-2 (p.90).
+- Tests: build, unit tests, validate, viewer smoke test pass.
+
+## [Unreleased] - 2026-11-08 - Fiat 131 Panorama blueprint (E-061)
+
+### Added
+- Sources checked: carblueprints.info preview (used), Scribd (bot challenge, not opened), FiatClub manuals (members only, not bypassed), Autobooks Fiat 131 on archive.org (OCR without data appendix).
+- From the 1974 Panorama blueprint scaled by the wheelbase (ESTIMATED LOW, doors assumed shared): windshield base 480, windshield top 910, B-pillar 1525, rear-door edge 2400 mm behind the front wheel centre. Tripo-shell cross-check recorded in notes only (D-030).
+- U-019: engine-bay rear-wall package guess now behind the windshield base.
+- Spec 169 parameters: 63 VERIFIED / 78 ESTIMATED / 28 UNKNOWN.
+
+## [Unreleased] - 2026-11-08 - Gemini research report (E-059/E-060)
+
+### Added
+- Owner-supplied Gemini report ingested (R-0037, local-only) and checked: fuse-box location VERIFIED against the owner's manual p.59; rear damper length now backed by two sources (KYB and SEAT 131 manual).
+- ESTIMATED: body construction monocoque (MEDIUM), clutch 190 mm / 20 teeth, Panhard rod ~1000 mm overall (Kartal 7733924), LPG kit type (venturi mixer), cargo floor ~1340 x 1050 (forum MDF board) - all LOW.
+- New parameters from the SEAT 131 workshop manual (via the report): front/rear spring heights under check load, front strut extended/compressed length.
+- Spec 169 parameters: 63 VERIFIED / 74 ESTIMATED / 32 UNKNOWN. Engineering documents regenerated.
+
+## [Unreleased] - 2026-11-08 - Factory owner's manual (D-043)
+
+### Added
+- E-058: official Tofaş owner's manual (R-0036, local-only like other originals). 35 spec values VERIFIED or ESTIMATED HIGH from it; spec 165 parameters: 62 VERIFIED / 64 ESTIMATED / 39 UNKNOWN.
+- Engine 131 D1.016 (Kartal S-SLX), Weber 32/34 TLDE twin-choke carburettor, electronic ignition, gearbox ratios 3.543 / 2.139 / 1.377 / 1.000 / 0.868 (forum ratios replaced), 3 turns lock to lock (hydraulic), overhangs 765 / 1141, negative earth, alternator 55 A.
+
+### Changed
+- Body package and photo shell re-fitted to the documented overhangs (rear 1141 mm).
+- Tests made data independent (consistency NOT_EVALUATED case, measurement intake, rim tolerance).
+- Engineering documents regenerated.
+
+## [Unreleased] - 2026-11-08 - Viewer engineering tools (D-042)
+
+### Added
+- Section plane, ruler, part envelope (VCS mm), wireframe, turntable, lamp simulation, focus / isolate / hide / show all, keyboard shortcuts, searchable parts list, evidence-share heat map.
+- Smoke test covers list + search, list selection, envelope, section on/off, ruler (two taps), isolate/restore, wireframe, lights, heat map; passes with and without the photo shell.
+
+## [Unreleased] - 2026-11-07 - Drivetrain and rear links from owner research (D-041)
+
+### Added
+- Evidence E-056 (owner research summary) and E-057 (spot-check); 16 spec parameters (gearbox bearings, clutch UNKNOWN, propshaft, coupling, cross, half-shaft, bearings, rear links, Panhard UNKNOWN, steering-gear length): spec 165 parameters, 27 VERIFIED / 92 ESTIMATED / 46 UNKNOWN.
+- Geometry: two-piece propshaft (coupling, centre bearing, crosses), drive flange, wheel bearings, half-shafts; rear four-link axle (617 / 315 mm) with Panhard rod, bushes and body mounts.
+- U-018: quoted 690 mm half-shaft contradicts the rear track.
+- OEM_CROSS_REFERENCE.md extended; engineering documents regenerated.
+- Tests: build (STEP 507 solids valid), unit tests, validate, viewer smoke test pass.
+
+## [Unreleased] - 2026-11-07 - 52 unknown values pass, engineering documents (D-040)
+
+### Added
+- Evidence E-049..E-055 (battery label photo, booster/ignition/handbrake photos, Fiat 131 clearance and wheel data, OEM cross references).
+- Spec: battery 72 Ah / 700 A VERIFIED; battery case 278 x 175 x 175 (LOW); brake booster, parking brake, ignition type, ground clearance, wheel ET and centre bore ESTIMATED. Spec 149 parameters: 27 VERIFIED / 78 ESTIMATED / 44 UNKNOWN.
+- docs/engineering/: MASTER_SPECIFICATION, OEM_CROSS_REFERENCE, UNKNOWN_VALUES_REGISTER, DIMENSION_MEASUREMENT_GUIDE, CAD_COORDINATE_SYSTEM, SOURCE_REGISTER, ENGINEERING_CHANGELOG.
+- Battery CAD and Tripo battery skin resized to the 72 Ah case.
+- Tests: build, unit tests, validate, viewer smoke test pass.
+
+## [Unreleased] - 2026-11-07 - Front suspension and steering from listings (D-039)
+
+### Added
+- Evidence E-045..E-048; 5 spec parameters (tie rod, lower arm, front bearing, strut bore and rod): spec 149 parameters, 25 VERIFIED / 72 ESTIMATED / 52 UNKNOWN.
+- Geometry: catalogue-length track-control arms with ball joints, struts sized from bore/rod, hubs with taper bearings and spindles, rack-and-pinion with boots and pinion housing, tie rods of catalogue length with ball joints.
+- U-017: rack vs engine package interference and unrealistic sump ground clearance of the package guess.
+- Tests: build (STEP 487 solids valid, no open bodies), unit tests, validate, viewer smoke test pass; page 15.3 MB.
+
+## [Unreleased] - 2026-11-07 - Dimensions from spare-part listings (D-038)
+
+### Added
+- Evidence E-041..E-044; 9 new spec parameters (radiator core, battery case, rear drum width, front disc thickness, rear damper lengths) and rear drum diameter filled: spec 144 parameters, 25 VERIFIED / 67 ESTIMATED / 52 UNKNOWN.
+- Geometry now reads them: radiator core and fan sized to the core, front discs with hat and caliper, rear drums with back plates, battery case with terminals, rear dampers at catalogue mid-stroke length.
+- U-016 (rear damper upper eye vs placeholder cargo floor).
+
+### Changed
+- Confidence of listing-based values lowered to LOW (D-020).
+- Tests: build (STEP 471 solids valid, no open bodies), unit tests, validate and viewer smoke test pass; page 15.1 MB.
+
+## [Unreleased] - 2026-11-07 - Engine bay rev 2, sequential exploded view (D-037)
+
+### Changed
+- Parametric engine bay (same IDs, PLACEHOLDER): ribbed block, timing cover, head with plug leads, cam cover with cap, stepped sump, exhaust runners, radiator tanks and cap, 7-blade fan with shroud, hoses, accessory belt over four pulleys, starter solenoid, mount bushes. Build: STEP 462 solids valid, GLB 154 k triangles, no open bodies or flipped normals.
+- Viewer: exploded view per system (dropdown) or whole car, sequential outside-in, play/pause/reverse; smoke test covers it (engine-only motion, other systems hidden, exact reassembly) and passed 3 runs in a row.
+- Tripo: Studio credits (≈3 145) not usable from this cloud session (no browser/computer link); API wallet 30 credits, no generation this stage.
+
+## [Unreleased] - 2026-11-07 - Phase 5 start: engine bay and LPG tank skins
+
+### Added
+- Tripo v3.1 skins: air-filter housing (ENG-005, from engine-bay photo, replaces only the housing mesh), battery (ELE-001, text-to-model after the photo crop gave only lid and cables), LPG toroidal tank (FUL-005, from trunk photo). Sizes ESTIMATED (0.42 / 0.24 / 0.60 m). 150 credits; 30 left.
+- Viewer: engine close view hides body panels and glass; skin config option `box` (replace only placeholder meshes inside a box).
+- All six interior/engine skins reduced (384 px textures, ~1.4 % triangles) so the packaged page stays at 14.1 MB (< 16 MB).
+- Tests: viewer smoke test passes, no console errors.
+
+## [Unreleased] - 2026-11-07 - Shell symmetry and lamp glass (D-036)
+
+### Changed
+- Photo shell: plan-view shear removed (front fascia and rear face now centred, lamps symmetric).
+- Viewer: glass lenses over headlamps and tail lamps of the shell.
+- Tests: viewer smoke test passes, no console errors.
+
+## [Unreleased] - 2026-11-07 - Shell proportions fixed (D-035)
+
+### Changed
+- Photo shell: pitch levelled (3.8°) and length re-proportioned to the twin's wheel centres (rear overhang 17.5 % -> 24.5 % of length). Then width/height scale node (1, 0.869, 0.850). Tool: `tools/meshfit/scripts/reprop.mjs`.
+
+## [Unreleased] - 2026-11-07 - Rear bench replaced
+
+### Changed
+- Rear bench skin (INT-011) replaced by a text-to-model bench (photo of the bench is blocked by the front seat; colours described from owner photos), rotated -90 deg so the backrest faces the rear. Second dashboard attempt (centre-stack crop) returned only a radio box: not used, dashboard stays PLACEHOLDER. 70 credits; 180 left.
+
+## [Unreleased] - 2026-11-07 - Interior skins from owner photos (D-034)
+
+### Added
+- Tripo v3.1 interior meshes from cropped owner photos: steering wheel (INT-003), front seat (INT-009/010, same mesh), rear bench (INT-011). Rejected: dashboard (Tripo returned only the steering wheel); first front-seat attempt (two seats merged). 200 credits; 290 left.
+- Viewer: interior skins (`--skins assembly/tripo_interior.json`), "Kabin" and "Motor" close cameras, cabin view opens the car (no roof/panels/glass/headliner/shell).
+- Sizes used for skins are ESTIMATED (wheel 0.35 m, front seat 0.95 m, rear bench 1.30 m); no spec value changed.
+- Packaged page 15.3 MB (shell textures 1536 px, interior textures 512 px) to stay under the 16 MB publish limit.
+- Tests: viewer smoke test passes with shell and skins, no console errors; unit tests and validate pass.
+
+## [Unreleased] - 2026-11-07 - Interactive body + real-look layer (D-033)
+
+### Added
+- Viewer: "Gerçek görünüm" layer (photo-based Tripo shell) with X-ray opacity slider; engineering parts stay selectable under it (three.js layer 1).
+- Viewer: open/close buttons for the four doors, hood (front-hinged, from owner photos) and tailgate, with eased hinge animation; door mirrors, handles, glass and door cards move with their door (closure map from vehicle_master.yaml dependencies).
+- Viewer: underside camera ("Alt") with the floor hidden and brighter ground light.
+- `tools/package_viewer.py --shell/--place` embeds the shell; closure map always embedded.
+- Tests: `tools/viewer_smoke/run.sh` passes with and without the shell (no console errors); a separate headless check confirmed taps select BDY-003, BDY-008, WHL-001 after the shell has loaded and that opening a door drops the shell to 25 %.
+
+## [Unreleased] - 2026-11-07 - Tripo v3.1 multiview (front fixed)
+
+### Changed
+- Owner feedback: the front of the rear-photo mesh was wrong (front was hallucinated). Regenerated with Tripo v3.1 multiview from four owner photos (front-left, rear-left, rear, front-right three-quarters): front lamps, grille and bumper now match the car. Pre-correction residual width +17.0 %, height +21.2 % (INCONSISTENT); corrected with scale node (1, 0.825, 0.855) per D-032; heading front +x checked visually. Alternative v3.1 from the front photo alone: +9.8 % / +11.3 %. 80 credits.
+
+## [Unreleased] - 2026-11-07 - Tripo v3.1 model, no correction
+
+### Changed
+- Owner decision 2026-11-07: plates may stay visible in Tripo uploads and textures; owner originals are never edited. GLBs still stay out of the public repository (D-012).
+- Earlier API calls used Tripo's default (older) model version. Regenerated with the Tripo CLI (`tripo make`, v3.1-20260211, PBR, detailed texture) from the original rear three-quarter photo: width -4.3 %, height -3.8 % (WARN), so the mesh is used unedited (uniform scale only, no D-031/D-032 correction). Heading front -x, checked visually; wheels sit on the reference wheel centres. Other candidates: v3.1 from the front three-quarter photo (+12.2 % / +13.2 %), P2 (+18.2 % / +7.7 %, no texture). 200 credits.
+- Phone viewer: mesh simplified to 15 %, textures 2048 px WebP, embedded (7.9 MB page).
+
+## [Unreleased] - 2026-11-07 - Tripo model from owner photos
+
+### Changed
+- 25 owner photos ingested (local-only, D-012); 6 exterior photos blurred (plates, plate frames, rear-window name sticker) before upload to Tripo.
+- Phone viewer now shows the photo-based mesh (task 7d6dae58, image_to_model from the rear three-quarter photo). Pre-correction residual width +16.4 %, height +21.1 % (INCONSISTENT); corrected with scale node (0.859, 0.826, 1), heading set to front -z after visual check (D-032). Visual check: wheels sit about 0.25-0.3 m forward of the reference wheel centres (overhangs of the generated mesh differ from the twin). Rejected: front three-quarter candidate (broken geometry), multiview candidate (+28.3 % / +32.0 %, plate blur turned into geometry). Credits used: 120.
+
+## [Unreleased] - 2026-11-07 - Automatic Tripo model and literature pass 2
+
+### Added
+- Evidence E-037..E-040: front disc 227.5 mm (OEM 4208311, up to MY2000), rack-and-pinion steering, Fiat 131 turning circle 10.3 m, engine-code and alternator candidates. 3 parameters UNKNOWN -> ESTIMATED.
+- Automatic Tripo pipeline (D-031): 5 text-to-model candidates via the Tripo API (150 credits). Best candidate (task 75965f78) residual before correction: width +13.4 %, height +6.5 % (INCONSISTENT). Corrected with one scale node (0.882, 0.939, 1); after correction CONSISTENT by construction. Heading and wheel centres checked visually in the viewer.
+- Phone viewer with the corrected model embedded (texture 2048 px, mesh simplified to 40 %, quantized): https://claude.ai/artifact/N6Wiwb9pzGy2QmLDPF2Xq3
+
+## [Unreleased] - 2026-11-07 - Public-literature data pass
+
+### Added
+- Evidence E-029..E-036 (literature, via search summaries; source pages not readable from the build environment).
+- 18 parameters moved from UNKNOWN to ESTIMATED, each with source, tolerance and a verify-by note: engine bore 86.4 mm and stroke 67.4 mm (MEDIUM; 4 cylinders give 1580.6 cm3 against the registered 1581 cm3), compression ratio 9.2, power/torque speeds 5500/3000 rpm, 5 forward gears with ratios 3.667/2.1/1.361/1.0/0.881, reverse 3.526, final drive 4.10, cable clutch, coil springs front and rear, front anti-roll bar, front disc brakes, 4x98 PCD, 846 L luggage volume, 12 V system, H4 headlamps.
+
+### Added (Tripo assembly, D-030)
+- `tools/meshfit` (Rust, std-only): reads a GLB's bounds, turns the car front onto +Z, scales it to the twin's length (wheel: tire diameter), places it (car on the ground, body from the roof line, wheel at the four wheel centres) and reports width/height deviation: CONSISTENT < 3 %, WARN < 8 %, INCONSISTENT otherwise. 8 unit tests.
+- `viewer/tripo.html`: phone page for the placed meshes, with a measurement frame, wheel-centre circles and a FRONT arrow; `tools/viewer_smoke/tripo.sh` fits and checks it in headless Chromium (`--self-test` uses the twin's own GLB: 0.0 % width, +0.7 % height deviation).
+- `assembly/tripo_parts.json` (plan A, whole car) and `tripo_parts_split.json` (plan B, body + wheel); `docs/TRIPO_URETIM.md`, the owner's phone guide.
+
+### Not filled (no consistent public source)
+- Engine type code, ignition type, steering-gear type, brake disc/drum diameters, wheel offset and centre bore, battery and alternator ratings; all vehicle-specific measurements (arch gaps, axle loads, LPG tank position, body profile). They stay UNKNOWN.
+
+### Changed
+- `tests/test_pipeline.py`: `test_unknown_without_placeholder_raises` now forces `engine.bore` to UNKNOWN in a copy of the spec, like the neighbouring placeholder test, so the rule stays tested when real data arrives.
+- Regenerated `docs/VERI_SOZLUGU.md` and `docs/OLCUM_REHBERI.md`.
+
 ## [0.13.0] - 2026-11-03 - Realistic rotatable studio model (owner priority)
 
 ### Added

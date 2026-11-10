@@ -5,10 +5,12 @@ on:
     branches: ["feat/rust-agent-orchestrator-plan"]
     paths:
       - "orchestrator/**"
+      - "kartal-s-twin/tools/meshfit/**"
       - ".github/workflows/rust-orchestrator.yml"
   pull_request:
     paths:
       - "orchestrator/**"
+      - "kartal-s-twin/tools/meshfit/**"
       - ".github/workflows/rust-orchestrator.yml"
   workflow_dispatch:
 
@@ -34,3 +36,13 @@ jobs:
         run: cargo test --manifest-path orchestrator/Cargo.toml --locked
       - name: Offline smoke run
         run: cargo run --manifest-path orchestrator/Cargo.toml --locked
+      - name: Offline panel run (mock partners, no network)
+        env:
+          KARTAL_TASK: "CI smoke: write and review a placeholder report"
+        run: cargo run --manifest-path orchestrator/Cargo.toml --locked -- panel-run --author anthropic --mock
+      - name: meshfit format check
+        run: cargo fmt --manifest-path kartal-s-twin/tools/meshfit/Cargo.toml --check
+      - name: meshfit clippy
+        run: cargo clippy --manifest-path kartal-s-twin/tools/meshfit/Cargo.toml --locked --all-targets -- -D warnings
+      - name: meshfit tests
+        run: cargo test --manifest-path kartal-s-twin/tools/meshfit/Cargo.toml --locked

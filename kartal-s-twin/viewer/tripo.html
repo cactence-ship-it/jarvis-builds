@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kartal S Tripo</title>
+<style>
+  /* same dark studio as studio.html: the car sits in a dark photo studio in every theme */
+  :root { --bg: #0d0e10; --ink: #e9ecee; --muted: #9aa3a8; --accent: #2fb3ad; --accent-ink: #062a28;
+          --ok: #4cc38a; --warn: #e3b341; --bad: #f2555a;
+          --chip: rgba(255,255,255,.08); --chip-line: rgba(255,255,255,.16); color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+               font-family: system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+  #stage { position: fixed; inset: 0; }
+  canvas { display: block; width: 100% !important; height: 100% !important; touch-action: none; }
+  header { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px));
+           top: calc(14px + env(safe-area-inset-top, 0px)); pointer-events: none; }
+  h1 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: .2px; }
+  .sub { color: var(--muted); font-size: 12.5px; margin-top: 3px; }
+  #parts { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { font-size: 12px; padding: 4px 9px; border-radius: 999px; background: var(--chip); border: 1px solid var(--chip-line); }
+  .pill b { font-weight: 650; }
+  .CONSISTENT b { color: var(--ok); } .WARN b { color: var(--warn); } .INCONSISTENT b, .MISSING b { color: var(--bad); }
+  #bar { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+         display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; width: max-content; max-width: calc(100vw - 32px); }
+  button { background: var(--chip); color: var(--ink); border: 1px solid var(--chip-line); border-radius: 999px;
+           padding: 10px 14px; font-size: 14px; backdrop-filter: blur(6px); }
+  button.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #msg { position: fixed; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 14px;
+         pointer-events: none; padding: 0 24px; text-align: center; }
+  #msg[hidden] { display: none; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<header>
+  <h1>Tofaş Kartal S · Tripo parçaları</h1>
+  <div class="sub">Gerçek ölçülere oturtulmuş üretilmiş model · görsel tahmin, ölçüm değil</div>
+  <div id="parts"></div>
+</header>
+<div id="bar">
+  <button id="frame" class="on">Ölçü çerçevesi</button>
+  <button id="front">Ön</button><button id="side">Yan</button><button id="rear">Arka</button><button id="top">Üst</button>
+</div>
+<div id="msg">Model yükleniyor…</div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>
+(async () => {
+  const msg = document.getElementById('msg');
+  const state = { loaded: false, parts: [], placed: 0, errors: [] };
+  window.__tripo = state;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.shadowMap.enabled = true;
+  document.getElementById('stage').appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0d0e10);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
+  const sun = new THREE.DirectionalLight(0xffffff, 1.6);
+  sun.position.set(3, 6, 4); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4 });
+  scene.add(sun);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.ShadowMaterial({ opacity: 0.45 }));
+  floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.05, 100);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.maxPolarAngle = Math.PI * 0.495;
+
+  let place;
+  try {
+    const r = await fetch('placements.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error('placements.json: HTTP ' + r.status);
+    place = await r.json();
+  } catch (e) {
+    msg.textContent = 'Yerleşim dosyası okunamadı: ' + e.message;
+    state.errors.push(String(e));
+    return;
+  }
+
+  // Reference overlay: overall box, wheel circles and a FRONT arrow, all in metres.
+  const ref = place.reference;
+  const overlay = new THREE.Group();
+  const box = new THREE.Box3(new THREE.Vector3(...ref.overall_box.min), new THREE.Vector3(...ref.overall_box.max));
+  overlay.add(new THREE.Box3Helper(box, 0x2fb3ad));
+  const ringMat = new THREE.LineBasicMaterial({ color: 0xe3b341 });
+  for (const w of ref.wheels) {
+    const pts = [];
+    for (let i = 0; i <= 64; i++) {
+      const a = i / 64 * Math.PI * 2;
+      pts.push(new THREE.Vector3(0, Math.sin(a) * ref.tire_od_m / 2, Math.cos(a) * ref.tire_od_m / 2));
+    }
+    const ring = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), ringMat);
+    ring.position.set(...w.centre); overlay.add(ring);
+  }
+  const arrow = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0.02, box.max.z + 0.15), 0.6, 0x2fb3ad, 0.18, 0.12);
+  overlay.add(arrow);
+  scene.add(overlay);
+
+  const loader = new THREE.GLTFLoader();
+  const load = url => new Promise((ok, bad) => loader.load(url, ok, undefined, bad));
+  const list = document.getElementById('parts');
+  for (const part of place.parts) {
+    const pill = document.createElement('span');
+    pill.className = 'pill ' + part.status;
+    const label = { CONSISTENT: 'tutarlı', WARN: 'sınırda', INCONSISTENT: 'tutarsız', MISSING: 'eksik' }[part.status] || part.status;
+    pill.innerHTML = part.id.replace('VIS-TRIPO-', '') + ' · <b>' + label + '</b>';
+    list.appendChild(pill);
+    state.parts.push({ id: part.id, status: part.status });
+    if (!part.instances) continue;
+    try {
+      const g = await load('parts/' + part.file);
+      for (const inst of part.instances) {
+        const o = g.scene.clone(true);
+        o.position.set(...inst.position);
+        o.quaternion.set(...inst.quaternion);
+        o.scale.setScalar(inst.scale);
+        o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+        scene.add(o);
+        state.placed++;
+      }
+    } catch (e) {
+      state.errors.push(part.file + ': ' + e);
+      pill.className = 'pill MISSING';
+      pill.innerHTML = part.id.replace('VIS-TRIPO-', '') + ' · <b>okunamadı</b>';
+    }
+  }
+
+  const centre = box.getCenter(new THREE.Vector3());
+  // View directions; the distance is computed so the whole box fits the current screen.
+  const views = {
+    front: [0.55, 0.3, 1], side: [-1, 0.18, 0], rear: [-0.55, 0.35, -1], top: [0, 1, 0.002],
+  };
+  const radius = box.getBoundingSphere(new THREE.Sphere()).radius;
+  let current = 'front';
+  function view(name) {
+    current = name;
+    const vfov = THREE.MathUtils.degToRad(camera.fov);
+    const hfov = 2 * Math.atan(Math.tan(vfov / 2) * camera.aspect);
+    const dist = radius * 1.08 / Math.sin(Math.min(vfov, hfov) / 2);
+    const d = new THREE.Vector3(...views[name]).normalize().multiplyScalar(dist);
+    camera.position.copy(centre).add(d); controls.target.copy(centre); controls.update();
+    for (const id of Object.keys(views)) document.getElementById(id).classList.toggle('on', id === name);
+  }
+  for (const id of Object.keys(views)) document.getElementById(id).onclick = () => view(id);
+  document.getElementById('frame').onclick = e => {
+    overlay.visible = !overlay.visible; e.currentTarget.classList.toggle('on', overlay.visible);
+  };
+  view('front');
+
+  function resize() {
+    const w = window.innerWidth, h = window.innerHeight;
+    renderer.setSize(w, h); camera.aspect = w / h;
+    camera.fov = w < h ? 50 : 35; camera.updateProjectionMatrix();
+    if (state.loaded) view(current);
+  }
+  window.addEventListener('resize', resize); resize();
+  (function loop() { controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); })();
+
+  msg.hidden = state.placed > 0;
+  if (!state.placed) msg.textContent = 'Henüz yerleştirilmiş Tripo parçası yok.';
+  state.loaded = true;
+})();
+</script>
+</body>
+</html>

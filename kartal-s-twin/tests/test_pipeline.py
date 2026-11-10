@@ -16,8 +16,14 @@ from kartal_twin.params import Resolver, UnknownParameter
 
 class ResolverRules(unittest.TestCase):
     def test_unknown_without_placeholder_raises(self):
+        # Independent of current data: force a record with no placeholder to UNKNOWN.
+        base = Resolver()
+        spec = copy.deepcopy(base.spec)
+        spec["parameters"]["engine"]["bore"].update(
+            value=None, status="UNKNOWN", confidence="NONE", tolerance=None, source=[])
+        self.assertNotIn("engine.bore", str(base.assumptions))
         with self.assertRaises(UnknownParameter):
-            Resolver().get("engine.bore")
+            Resolver(spec, base.assumptions).get("engine.bore")
 
     def test_placeholder_marks_provenance(self):
         # Independent of current data: force the record to UNKNOWN so the placeholder is used.
@@ -120,8 +126,18 @@ class EngineeringCad(unittest.TestCase):
         cls.tmp.cleanup()
 
     def test_cad_resolver_refuses_placeholders(self):
+        # a pure package guess (no spec parameter behind it)
+        with self.assertRaises(UnknownParameter):
+            Resolver(allow_placeholders=False).get("pkg_engine_x0")
+
+    def test_cad_resolver_refuses_engineering_estimates(self):
+        # D-044: a spec value resting only on ENGINEERING_ESTIMATE evidence is a guess: refused by CAD,
+        # and visual geometry built from it stays PLACEHOLDER.
         with self.assertRaises(UnknownParameter):
             Resolver(allow_placeholders=False).get("body_profile.belt_z")
+        r = Resolver()
+        r.get("body_profile.belt_z")
+        self.assertEqual(r.used["body_profile.belt_z"], "PLACEHOLDER")
 
     TIRES = ["WHL-001", "WHL-002", "WHL-003", "WHL-004"]
 

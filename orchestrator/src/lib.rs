@@ -1,12 +1,26 @@
 //! Offline-first orchestration primitives. No provider network calls are implemented.
 
 pub mod guard;
+pub mod json;
 pub mod panel;
+pub mod providers;
+pub mod run;
 
 /// System prompt for model providers: senior-engineer conduct and the report format
 /// that `guard::scan_engineering_report` checks. Single source; the owner-facing copy
 /// in kartal-s-twin/agents/GPT_DAVRANIS_KURALLARI.md points here.
 pub const ENGINEER_SYSTEM_PROMPT: &str = include_str!("../prompts/engineer_tr.txt");
+
+/// Level-6 coordinator prompt: decomposes work and dispatches; does not produce artifacts.
+pub const TEAM_LEADER_SYSTEM_PROMPT: &str = include_str!("../prompts/team_leader_tr.txt");
+
+/// Full team-leader instruction with the owner's task appended.
+pub fn team_leader_prompt(instruction: &str) -> String {
+    format!(
+        "{TEAM_LEADER_SYSTEM_PROMPT}\nSAHİP TALEBİ\n{}\n",
+        instruction.trim()
+    )
+}
 
 /// Full request text for a provider: engineer rules, then the task instruction.
 pub fn engineer_prompt(instruction: &str) -> String {
@@ -92,6 +106,12 @@ impl Policy {
         }
         self.spent_micros = next;
         Ok(())
+    }
+
+    /// Record money already spent by a completed call. Unlike `record_spend` this never
+    /// refuses: the money is gone, and an overrun must block the next `authorize`.
+    pub fn charge(&mut self, amount_micros: u64) {
+        self.spent_micros = self.spent_micros.saturating_add(amount_micros);
     }
 }
 
@@ -247,10 +267,34 @@ mod tests {
     }
 
     #[test]
+    fn team_leader_prompt_requires_decomposition_and_evidence() {
+        let p = team_leader_prompt("Kartal dış gövdeyi incele");
+        assert!(p.contains("SAHİP TALEBİ"));
+        assert!(p.contains("allowed_paths"));
+        assert!(p.contains("bağımsız"));
+        assert!(p.contains("Tripo"));
+    }
+
+    #[test]
     fn engineer_prompt_wraps_the_task() {
         let p = engineer_prompt("  lastik zarfını kontrol et \n");
         assert!(p.starts_with("ROL: BAŞ MÜHENDİS"));
         assert!(p.ends_with("GÖREV\nlastik zarfını kontrol et\n"));
+    }
+
+    #[test]
+    fn charge_always_records_and_overrun_blocks_next_call() {
+        let mut p = Policy {
+            paid_dispatch_enabled: true,
+            per_run_budget_micros: 100,
+            ..Policy::default()
+        };
+        p.charge(150);
+        assert_eq!(p.spent_micros, 150);
+        assert_eq!(
+            p.authorize(&task(ProviderKind::OpenAi)),
+            Err(BlockReason::BudgetExceeded)
+        );
     }
 
     #[test]

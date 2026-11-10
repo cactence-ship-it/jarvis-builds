@@ -12,11 +12,20 @@ from pathlib import Path
 import yaml
 
 from . import PROJECT_ROOT
-from .spec import iter_parameters, load_spec
+from .spec import ESTIMATE_ONLY_TYPES, iter_parameters, load_evidence, load_spec
 
 ASSUMPTIONS_PATH = PROJECT_ROOT / "specs" / "placeholder_assumptions.yaml"
 # Best achievable geometry status for each provenance. VALIDATED is never automatic.
 _STATUS_FOR = {"VERIFIED": "DRAFT", "ESTIMATED": "DRAFT", "PLACEHOLDER": "PLACEHOLDER"}
+
+
+def _assumption_ids() -> frozenset:
+    """Evidence items that are estimates for measurement-only values (ENGINEERING_ESTIMATE, D-044).
+    Owner-authorised provisional CAD values (ASSUMPTION, E-018/E-019, D-026) are not included."""
+    try:
+        return frozenset(e.id for e in load_evidence().values() if e.type in ESTIMATE_ONLY_TYPES)
+    except (OSError, ValueError):
+        return frozenset()
 
 
 class UnknownParameter(KeyError):
@@ -36,18 +45,28 @@ class Resolver:
         self._params = dict(iter_parameters(self.spec))
         self._replacing = {a["replaces"]: k for k, a in self.assumptions.items() if a.get("replaces")}
         self.used: dict[str, str] = {}
+        self._assumptions_ev = _assumption_ids()
 
     def fork(self) -> "Resolver":
         """Fresh usage record sharing the same data (one per component)."""
         r = Resolver.__new__(Resolver)
         r.spec, r.assumptions, r._params, r._replacing = self.spec, self.assumptions, self._params, self._replacing
         r.allow_placeholders = self.allow_placeholders
+        r._assumptions_ev = self._assumptions_ev
         r.used = {}
         return r
 
     def get(self, key: str):
         p = self._params.get(key)
         if p is not None and p["status"] != "UNKNOWN":
+            # A value resting only on ENGINEERING_ESTIMATE evidence (D-044) is a guess with provenance:
+            # engineering CAD refuses it (D-016) and visual geometry built from it stays PLACEHOLDER.
+            src = set(p.get("source") or [])
+            if src and src <= self._assumptions_ev:
+                if not self.allow_placeholders:
+                    raise UnknownParameter(f"{key}: estimate-only value is not allowed for engineering CAD (D-016, D-044)")
+                self.used[key] = "PLACEHOLDER"
+                return p["value"]
             self.used[key] = p["status"]
             return p["value"]
         alt = self._replacing.get(key)

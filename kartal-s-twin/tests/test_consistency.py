@@ -47,10 +47,16 @@ class Consistency(unittest.TestCase):
         self.assertNotIn("FAIL", {r["status"] for r in consistency.evaluate(self.base)})
 
     def test_unknown_inputs_are_not_evaluated(self):
-        r = self._res(self.base)["DC-001"]
+        # Data-independent since the owner's manual made the overhangs known (E-058): blank one input.
+        s = copy.deepcopy(self.base)
+        fo = s["parameters"]["dimensions"]["front_overhang"]
+        fo.update(value=None, status="UNKNOWN", confidence="NONE", tolerance=None, source=[])
+        arch = s["parameters"]["dimensions"]["wheel_centre_to_arch_fl"]
+        arch.update(value=None, status="UNKNOWN", confidence="NONE", tolerance=None, source=[])
+        r = self._res(s)["DC-001"]
         self.assertEqual(r["status"], "NOT_EVALUATED")
         self.assertIn("dimensions.front_overhang", r["missing"])
-        self.assertEqual(self._res(self.base)["DC-012"]["status"], "NOT_EVALUATED")
+        self.assertEqual(self._res(s)["DC-012"]["status"], "NOT_EVALUATED")
 
     # --- tire radius vs wheel-arch clearance (worst case) -----------------------------------
     def test_clearance_safe_over_whole_range(self):
