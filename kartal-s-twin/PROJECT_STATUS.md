@@ -1,19 +1,23 @@
 # Project Status - Tofaş Kartal S (1997) digital twin (VEH-01)
 
-**Updated:** 2026-11-03 · **Spec rev:** 0.8.0 · **Branch:** `ccr-b5d82c24-config-lpg-wheels` (stacked on `ccr-b5d82c24-huyj0b`, PR #1 open)
+**Updated:** 2026-11-10 · **Branch:** `claude/new-session-9teun9` (draft PR to `main`)
 Task queue: [TASKS.md](TASKS.md) · Roadmap: [ROADMAP.md](ROADMAP.md) · Session log: [HANDOFF.md](HANDOFF.md). Rules: [CLAUDE.md](CLAUDE.md).
 
-## Phase tracker
+## Phase tracker (state at the close of the 2026-11-07..10 session)
 | Phase | Scope | State |
 |---|---|---|
 | 0-1 | Environment, persistence, infrastructure | DONE |
-| 2 | Photo and source-data analysis | IN PROGRESS: 28 owner photos and registration documents analysed (E-014..E-028); legacy ZIP not received |
-| 3 | Dimensional database | IN PROGRESS: registration documents received (7 VERIFIED, E-014..E-016); literature estimates and measurement guide ready; waiting for owner measurements |
-| 4 | Exterior body | PLACEHOLDER envelope: 35 components (body, closures, glazing, lamps, trim incl. handles and wipers, wheels) |
-| 4 (CAD) | First engineering CAD | 4 tire design envelopes (DRAFT), STEP re-opened, byte-reproducible; review: COLLAB_REVIEW_CLAUDE.md |
-| 11 (partial) | Export and validation, Android viewer | DONE for current parts: STEP/STL/GLB re-open checks, viewer published |
-| 5-10 | Interior, powertrain, chassis, suspension, electrical | PLACEHOLDER package built (D-027): arrangement from photos, every size a labelled guess; engineering CAD needs measurements |
-| 12 | Documentation | IN PROGRESS |
+| 2 | Photos, documents, literature | DONE for available sources: 25 owner photos, registration, **factory owner's manual (E-058)**, parts listings, two owner research reports (E-056, E-059) |
+| 3 | Dimensional database | 169 parameters: 63 VERIFIED / 78 ESTIMATED / 28 UNKNOWN. All 28 unknowns need a tape, a weighbridge or a photo on the car (docs/engineering/UNKNOWN_VALUES_REGISTER.md) |
+| 4 | Exterior | Photo-based Tripo shell fitted to the manual's dimensions (overhangs 765 / 1141), symmetric, lamp glass; parametric body below it |
+| 4b | Interactive body | DONE: doors, hood, tailgate open; X-ray; part selection under the shell |
+| 5 | Interior and engine bay | Photo skins (wheel, seats, rear bench, air filter, battery, LPG tank); parametric engine bay rev 2; dashboard still placeholder |
+| 6 | Chassis and drivetrain | Catalogue / manual sizes: brakes, radiator, front struts and arms, rack, two-piece propshaft, four-link rear axle with Panhard |
+| 7 | Electrical and LPG | Fuse box, relays and earth at the manual's locations; LPG routing schematic (mixer position not photographed) |
+| 8 | Exploded view | DONE: per system or whole car, sequential, play / pause / reverse |
+| 9 | Inspection tools | DONE: section plane, ruler, envelopes, isolate, parts list, evidence heat map; smoke-tested |
+
+**Not done and why:** engine internals (no evidence, not invented); factory-grade exterior surface (needs a 3D scan or a professional model); the 28 measurement-only values; open uncertainties U-016..U-019 (rear damper top mount, rack vs engine package, half-shaft length, cowl vs bulkhead).
 
 ## Current numbers
 - Spec: 169 parameters, 63 VERIFIED / 78 ESTIMATED / 28 UNKNOWN (factory owner's manual E-058) (engineering documents: docs/engineering/) (2026-11-07: 18 values filled from public literature E-029..E-036, all ESTIMATED with source and tolerance). Data classes (D-026): 25 DOCUMENT_CONFIRMED (documents and photos), 4 USER_CONFIRMED, 9 SOURCE_SUPPORTED, 40 ESTIMATED, 56 UNKNOWN - see docs/VERI_SOZLUGU.md. Evidence items: E-001..E-036 (photos E-022..E-028, originals local-only) (E-014..E-016 registration documents, originals local-only; E-017 owner configuration; E-018/E-019 provisional assumptions).
