@@ -608,13 +608,15 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
     shellMeshes.forEach(m => { m.raycast = m.userData.rc; });
   }
   function setupShell() {
-    const data = document.getElementById('glb-shell'), place = jsonTag('shell-place');
-    if (!data || !place) return;
-    const bin = atob(data.textContent.trim()), buf = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
-    new THREE.GLTFLoader().parse(buf.buffer, '', g => {
+    // The shell is either embedded (base64 GLB, tests and single-file builds) or served next to the page
+    // as a glTF JSON plus full-resolution textures (published build: no 16 MB page limit on detail).
+    const data = document.getElementById('glb-shell'), place = jsonTag('shell-place'), src = jsonTag('shell-src');
+    if ((!data && !src) || !place) return;
+    const onShell = g => {
       shell = g.scene; shell.position.set(...place.position); shell.quaternion.set(...place.quaternion); shell.scale.setScalar(place.scale);
-      shell.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.raycast = () => {}; shellMats.push(m.material); } });
+      shell.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.raycast = () => {};
+        if (m.material.map) m.material.map.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        m.material.envMapIntensity = 1.0; shellMats.push(m.material); } });
       root.add(shell);
       addLenses();
       document.getElementById('shellRow').hidden = false;
@@ -625,7 +627,15 @@ input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
       const chip = document.getElementById('statusChip'); chip.className = 'chip draft';
       chip.textContent = 'Dış görünüm: fotoğraftan (görsel tahmin) · iç parçalar PLACEHOLDER';
       if (window.__kartalViewer) window.__kartalViewer.shell = true;
-    }, e => { console.warn('shell', e); });
+    }, onErr = e => { console.warn('shell', e); };
+    if (src) {
+      msg.hidden = false; msg.textContent = 'Gerçek görünüm (yüksek çözünürlük) yükleniyor…';
+      new THREE.GLTFLoader().load(src.url, g => { msg.hidden = true; onShell(g); }, undefined, e => { msg.hidden = true; onErr(e); });
+      return;
+    }
+    const bin = atob(data.textContent.trim()), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    new THREE.GLTFLoader().parse(buf.buffer, '', onShell, onErr);
   }
 
   const fail = err => { msg.textContent = 'Model yüklenemedi: ' + (err && err.message || err); };

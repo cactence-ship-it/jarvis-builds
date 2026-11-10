@@ -2,6 +2,12 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-10 - High-resolution photo shell
+
+### Changed
+- Viewer can load the photo shell from a file next to the page (`package_viewer.py --shell-url`): published build now uses 4096 px textures and 30 % of the mesh triangles (was 1536 px and 9 %), outside the 16 MB page limit. Embedded mode unchanged (tests). Anisotropic filtering on the shell texture.
+- Smoke test passes (embedded); external mode checked in a headless browser with no console errors.
+
 ## [Unreleased] - 2026-11-10 - Estimates for all remaining unknowns (D-044)
 
 ### Added

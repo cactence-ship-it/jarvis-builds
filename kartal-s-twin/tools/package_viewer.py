@@ -60,6 +60,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--shell", type=Path, help="photo-based exterior GLB (visual estimate)")
     ap.add_argument("--place", type=Path, help="meshfit placements.json for the shell")
+    ap.add_argument("--shell-url", help="serve the shell next to the page instead of embedding it "
+                    "(e.g. shell_gltf.json published with its textures); needs --place")
     ap.add_argument("--skins", type=Path, help="interior skin config (assembly/tripo_interior.json)")
     args = ap.parse_args()
     glb = ROOT / "build" / "vehicle.glb"
@@ -82,6 +84,14 @@ def main() -> int:
                     f'{base64.b64encode(f.read_bytes()).decode()}</script>\n')
             skins.append(dict(sk, tag=f"skin-{i}"))
         tag += f'<script type="application/json" id="skins-data">{json.dumps(skins)}</script>\n'
+    if args.shell_url and not args.shell:
+        place = json.loads(args.place.read_text(encoding="utf-8"))
+        inst = next(p for p in place["parts"] if p["kind"] == "car")["instances"][0]
+        tag += f'<script type="application/json" id="shell-src">{json.dumps({"url": args.shell_url})}</script>\n'
+        tag += f'<script type="application/json" id="shell-place">{json.dumps(inst)}</script>\n'
+        lenses = json.loads((ROOT / "assembly" / "tripo_parts.json").read_text(encoding="utf-8")).get("lenses")
+        if lenses:
+            tag += f'<script type="application/json" id="lens-data">{json.dumps(lenses["items"])}</script>\n'
     if args.shell:
         place = json.loads(args.place.read_text(encoding="utf-8"))
         inst = next(p for p in place["parts"] if p["kind"] == "car")["instances"][0]
