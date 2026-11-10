@@ -17,7 +17,11 @@ from . import EVIDENCE_PATH, SPEC_PATH
 STATUSES = ("VERIFIED", "ESTIMATED", "UNKNOWN")
 CONFIDENCES = ("HIGH", "MEDIUM", "LOW", "NONE")
 EVIDENCE_TYPES = ("USER_STATEMENT", "PHOTO", "DOCUMENT", "MEASUREMENT",
-                  "LEGACY_MODEL", "LITERATURE", "ENVIRONMENT_TEST", "ASSUMPTION")
+                  "LEGACY_MODEL", "LITERATURE", "ENVIRONMENT_TEST", "ASSUMPTION",
+                  "ENGINEERING_ESTIMATE")
+# ENGINEERING_ESTIMATE (D-044): a reasoned guess for a value only a measurement can settle. Confidence
+# LOW only; engineering CAD refuses it and geometry built from it stays PLACEHOLDER (params.Resolver).
+ESTIMATE_ONLY_TYPES = frozenset({"ENGINEERING_ESTIMATE"})
 # Data classes shown to people (D-026). DERIVED from status, confidence and evidence type -
 # never stored, so they cannot drift from the evidence rules (D-005).
 DATA_CLASSES = ("MEASURED", "DOCUMENT_CONFIRMED", "USER_CONFIRMED", "SOURCE_SUPPORTED",
@@ -173,8 +177,10 @@ def validate_spec(spec: dict, evidence: dict[str, Evidence]) -> list[str]:
                     err(f"{st} numeric value needs a tolerance (± {unit}); "
                         f"{'> 0' if st == 'ESTIMATED' else '>= 0'}")
         kinds = {evidence[s].type for s in src if s in evidence}
-        if kinds and kinds <= {"ASSUMPTION"} and conf != "LOW":
-            err("a value supported only by ASSUMPTION evidence must have confidence LOW (D-026)")
+        if kinds and kinds <= {"ASSUMPTION", "ENGINEERING_ESTIMATE"} and conf != "LOW":
+            err("a value supported only by ASSUMPTION / ENGINEERING_ESTIMATE evidence must have confidence LOW (D-026, D-044)")
+        if kinds and kinds <= ESTIMATE_ONLY_TYPES and st == "VERIFIED":
+            err("an ENGINEERING_ESTIMATE can never make a value VERIFIED (D-044)")
         if st == "VERIFIED":
             if conf != "HIGH":
                 err("VERIFIED requires confidence: HIGH")
@@ -190,7 +196,7 @@ def data_class(p: dict, evidence: dict[str, Evidence]) -> str:
     VERIFIED: MEASURED if a measurement supports it, otherwise DOCUMENT_CONFIRMED.
     ESTIMATED: USER_CONFIRMED when the owner stated it directly (USER_STATEMENT, confidence HIGH);
     SOURCE_SUPPORTED when a literature source supports it with confidence MEDIUM or HIGH;
-    otherwise ESTIMATED (aggregators are capped LOW by D-020; ASSUMPTION is always ESTIMATED).
+    otherwise ESTIMATED (aggregators are capped LOW by D-020; ASSUMPTION and ENGINEERING_ESTIMATE are always ESTIMATED).
     """
     st = p.get("status")
     if st == "UNKNOWN":

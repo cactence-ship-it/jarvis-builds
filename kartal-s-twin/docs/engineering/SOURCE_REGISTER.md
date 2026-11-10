@@ -65,3 +65,4 @@ Güncelleme: 2026-11-07. Tam kayıt `EVIDENCE_REGISTER.md` (tek doğru kaynak); 
 | E-059 | Owner-supplied research report (Gemini Deep Research, 2026-11-08), "Tofaş Kartal S 1997 39 teknik değer raporu", 13 pages | LITERATURE | D | 2026-11-08 |
 | E-060 | Claude check of E-059 | LITERATURE | D | 2026-11-08 |
 | E-061 | Literature: 1974 Fiat 131 Mirafiori Panorama blueprint, preview image 475 x 246 px (carblueprints.info, stored as R-0038) | LITERATURE | D | 2026-11-08 |
+| E-062 | Engineering estimates for the 28 values that only a measurement on VEH-01 can settle (Claude, owner request 2026-11-10 "bilinmeyen değerleri tahmin et") | ENGINEERING_ESTIMATE | - | 2026-11-10 |

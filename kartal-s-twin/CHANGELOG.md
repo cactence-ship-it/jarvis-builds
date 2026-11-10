@@ -2,6 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions follow the master spec revision.
 
+## [Unreleased] - 2026-11-10 - Estimates for all remaining unknowns (D-044)
+
+### Added
+- Evidence type ENGINEERING_ESTIMATE and E-062: reasoned estimates for the 28 measurement-only values. Spec 169 parameters: 63 VERIFIED / 106 ESTIMATED / 0 UNKNOWN.
+- Resolver: estimate-only values are refused by engineering CAD and keep visual geometry PLACEHOLDER (test added).
+
+### Changed
+- Tests made data independent (consistency NOT_EVALUATED case blanks its own inputs; CAD refusal tested on a package guess and on an estimate).
+- Engineering documents, data dictionary and measurement guide regenerated.
+
 ## [Unreleased] - 2026-11-08 - Electrical layout from the owner's manual
 
 ### Changed

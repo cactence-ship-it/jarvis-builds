@@ -6,7 +6,9 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 |---|---|---|---|---|
 | dimensions.overall_length | 4396 mm / ESTIMATED / LOW | 4396 mm / VERIFIED / HIGH | E-058 | Manual p.95 (Kartal drawing): 765 + 2490 + 1141. Aggregators also gave 4361. |
 | dimensions.overall_width_body | 1642 mm / ESTIMATED / LOW | 1642 mm / VERIFIED / HIGH | E-058 | Manual p.95. |
+| dimensions.overall_width_mirrors | - / UNKNOWN / NONE | 1832 mm / ESTIMATED / LOW | E-062 | Assumption: body width 1642 (E-058) + 2 x mirror 95. |
 | dimensions.overall_height | 1496 mm / ESTIMATED / LOW | 1496 mm / VERIFIED / HIGH | E-058 | Manual p.95, unladen (Kartal drawing; roof rails not stated). |
+| dimensions.overall_height_roof_rails | - / UNKNOWN / NONE | 1500 mm / ESTIMATED / LOW | E-062 | Assumption: the manual's 1496 (E-058) is drawn on a Kartal with rails; the rails are low. Measure over the rails. |
 | dimensions.wheelbase_lh | 2490 mm / ESTIMATED / LOW | 2490 mm / VERIFIED / HIGH | E-058 | Nominal, manual p.95; per-side measurement still useful (D-020). |
 | dimensions.wheelbase_rh | 2490 mm / ESTIMATED / LOW | 2490 mm / VERIFIED / HIGH | E-058 | Nominal, manual p.95. |
 | dimensions.front_track | 1386 mm / ESTIMATED / LOW | 1386 mm / VERIFIED / HIGH | E-058 | Manual p.95. |
@@ -14,12 +16,23 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | dimensions.front_overhang | - / UNKNOWN / NONE | 765 mm / VERIFIED / HIGH | E-058 | Manual p.95 (Kartal drawing). |
 | dimensions.rear_overhang | - / UNKNOWN / NONE | 1141 mm / VERIFIED / HIGH | E-058 | Manual p.95 (Kartal drawing). |
 | dimensions.ground_clearance_min | - / UNKNOWN / NONE | 120 mm / ESTIMATED / LOW | E-052 | Fiat 131 Panorama figure; Kartal and this car (LPG tank in the spare-wheel well protrudes below the floor, E-025) may differ. Measure. |
+| dimensions.wheel_centre_to_arch_fl | - / UNKNOWN / NONE | 380 mm / ESTIMATED / LOW | E-062 | Assumption: tyre free radius ~298 (185/65 R14) + ~80 mm arch gap seen in photos E-026. |
+| dimensions.wheel_centre_to_arch_fr | - / UNKNOWN / NONE | 380 mm / ESTIMATED / LOW | E-062 | Assumption: tyre free radius ~298 (185/65 R14) + ~80 mm arch gap seen in photos E-026. |
+| dimensions.wheel_centre_to_arch_rl | - / UNKNOWN / NONE | 385 mm / ESTIMATED / LOW | E-062 | Assumption: tyre free radius ~298 + ~85 mm arch gap (estate rear, unladen; photos E-026). |
+| dimensions.wheel_centre_to_arch_rr | - / UNKNOWN / NONE | 385 mm / ESTIMATED / LOW | E-062 | Assumption: tyre free radius ~298 + ~85 mm arch gap (estate rear, unladen; photos E-026). |
 | dimensions.turning_circle_kerb | - / UNKNOWN / NONE | 10300 mm / VERIFIED / HIGH | E-058 | Manual p.93: minimum turning circle diameter 10.3 m (kerb or wall not stated). |
 | body.body_construction | - / UNKNOWN / NONE | monocoque (self-supporting steel body) / ESTIMATED / MEDIUM | E-058, E-059 | Manual p.92: rear links attached to the steel body; Fiat/SEAT 131 documents call it integral / monocasco autoportante (E-059, not opened). |
 | body.cargo_floor_length_seat_up | - / UNKNOWN / NONE | 1340 mm / ESTIMATED / LOW | E-059 | Forum: MDF board cut for a Kartal cargo floor 134 x 105 cm (E-059); board, not a measured floor length. |
+| body.cargo_floor_length_seat_folded | - / UNKNOWN / NONE | 1850 mm / ESTIMATED / LOW | E-062 | Assumption: seat-up floor ~1340 (E-059) + ~510 mm of folded rear seat (cushion tipped, backrest flat). |
 | body.cargo_width_between_arches | - / UNKNOWN / NONE | 1050 mm / ESTIMATED / LOW | E-059 | Same forum MDF board width (E-059). |
+| body.tailgate_opening_width | - / UNKNOWN / NONE | 1150 mm / ESTIMATED / LOW | E-062 | Assumption: body width 1642 less the D-pillars and tail-lamp clusters (photos E-026). |
+| body.tailgate_opening_height | - / UNKNOWN / NONE | 780 mm / ESTIMATED / LOW | E-062 | Assumption: from the bumper line to the roof header of a near-vertical tailgate (photos E-026, height 1496). |
+| body.load_sill_height | - / UNKNOWN / NONE | 470 mm / ESTIMATED / LOW | E-062 | Assumption: the tailgate opens flush with the rear bumper top (Fiat 131 Familiare description, E-059): bumper bottom 250 + height 220. |
 | body.cargo_volume | 846 L / ESTIMATED / LOW | 846 L / VERIFIED / HIGH | E-058 | Manual p.95: 846 dm3 (SAE) rear seat up, 2054 dm3 folded. |
+| interior.steering_wheel_diameter | - / UNKNOWN / NONE | 350 mm / ESTIMATED / LOW | E-062 | Assumption: the fitted aftermarket three-spoke sport wheel (photos E-024) is typically 350 mm. Factory wheel would be ~380-400 (E-059). |
 | mass.gross_vehicle_mass | 1550 kg / ESTIMATED / LOW | 1550 kg / ESTIMATED / HIGH | E-058 | Manual p.97, Kartal S-SLX (gross 1550, payload 490, kerb 1060 incl. fuel and spare, trailer 1100). Registered kerb mass stays the document value (E-014/E-015). |
+| mass.axle_load_front_measured | - / UNKNOWN / NONE | 565 kg / ESTIMATED / LOW | E-062 | Assumption: factory split ~52.5 / 47.5 (Fiat 131, E-059) on the manual kerb mass 1060, plus the LPG kit (+65 kg to the registered 1125, mostly at the rear). |
+| mass.axle_load_rear_measured | - / UNKNOWN / NONE | 560 kg / ESTIMATED / LOW | E-062 | Assumption: see the front axle load; sum 1125 = registered kerb mass. |
 | engine.engine_code | - / UNKNOWN / NONE | 131 D1.016 / ESTIMATED / HIGH | E-058, E-040 | Manual p.89 lists 131 D1.016 for Kartal S-SLX (plain Kartal 131 D2.016, 1.6 i.e. 131 F3.016). Rests on VEH-01 being a Kartal S; stamping at the front of the block right of the water pump (p.88) not yet read. |
 | engine.cylinder_count | 4 / ESTIMATED / LOW | 4 / VERIFIED / HIGH | E-058 | Aggregator data for all Kartal 1.6 variants. |
 | engine.cylinder_layout | inline / ESTIMATED / LOW | inline / VERIFIED / HIGH | E-058 | Aggregator data. |
@@ -85,6 +98,10 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | wheels_tires.wheel_offset_et | - / UNKNOWN / NONE | 29 mm / ESTIMATED / LOW | E-053 | Fiat 131 4x98 wheels (single source); VEH-01 black steel 14 in rims not checked. |
 | wheels_tires.wheel_centre_bore | - / UNKNOWN / NONE | 58.1 mm / ESTIMATED / LOW | E-053 | Generic Fiat 4x98 hub bore; matches E-053. |
 | lpg_system.kit_type | - / UNKNOWN / NONE | conventional venturi / leaf mixer at the carburettor with petrol cut-off solenoid (typical for 131 D1.016) / ESTIMATED / LOW | E-059, E-022 | Typical kit for this engine (Atiker / BRC catalogues via E-059); the mixer on VEH-01 not yet photographed. |
+| lpg_system.tank_centre_x | - / UNKNOWN / NONE | 3150 mm / ESTIMATED / LOW | E-062 | Assumption: centre of the spare-wheel well behind the rear axle (photos E-022/E-025); rear axle 2490, rear end 3631 (E-058). |
+| lpg_system.tank_centre_y | - / UNKNOWN / NONE | 0 mm / ESTIMATED / LOW | E-062 | Assumption: spare-wheel well on the centre line (photo E-022 shows the tank centred in the floor). |
+| lpg_system.tank_base_z | - / UNKNOWN / NONE | 220 mm / ESTIMATED / LOW | E-062 | Assumption: the well protrudes below the floor (E-025); its inside floor about 220 mm above ground with 120 mm minimum clearance below it. |
+| lpg_system.filler_location | - / UNKNOWN / NONE | under the rear bumper, side opposite the exhaust (typical 1990s installation) / ESTIMATED / LOW | E-062 | Assumption from typical installations (E-059); post-2017 inspection rules move it outside the bumper underside. Photograph to confirm. |
 | electrical.system_voltage | 12 V / ESTIMATED / MEDIUM | 12 V / VERIFIED / HIGH | E-058 | 12 V battery seen in the engine bay (E-027). |
 | electrical.earth_polarity | - / UNKNOWN / NONE | negative / VERIFIED / HIGH | E-058 | Manual p.94; earth bracket on the right inner side of the front panel (p.60). |
 | electrical.battery_capacity | - / UNKNOWN / NONE | 72 Ah / VERIFIED / HIGH | E-049 | Fitted battery label (E-049). Factory battery 45 Ah, 220 A (manual p.94). |
@@ -94,7 +111,18 @@ Güncelleme: 2026-11-07. Bugün (commit 53af01c sonrası) değişen her spec de�
 | electrical.battery_case_height | (yok, yeni parametre) | 175 mm / ESTIMATED / LOW | E-043, E-049 | Common 72 Ah case height; İnci 60 Ah is 190 mm. |
 | electrical.alternator_rated_current | - / UNKNOWN / NONE | 55 A / ESTIMATED / HIGH | E-058 | Manual p.94: Kartal S-SLX AA 125R 14 V 55 A (1.6 i.e. SLX 65 A, or 85 A with A/C). Rests on VEH-01 being a Kartal S; a replacement unit is not checked. |
 | electrical.fuse_box_location | - / UNKNOWN / NONE | lower right of the dashboard (passenger side, under the glovebox), cover with two screws; relays on and beside the box / VERIFIED / HIGH | E-058, E-060 | Owner's manual p.59 (1997) / p.44 (1994 per E-059). |
+| body_profile.bumper_protrusion | - / UNKNOWN / NONE | 60 mm / ESTIMATED / LOW | E-062 | Assumption: deep plastic bumpers stand ~60 mm proud of the body face (photos E-026). |
+| body_profile.bumper_height | - / UNKNOWN / NONE | 220 mm / ESTIMATED / LOW | E-062 | Assumption: deep black S-series bumpers (photos E-026). |
+| body_profile.bumper_bottom_z | - / UNKNOWN / NONE | 250 mm / ESTIMATED / LOW | E-062 | Assumption: proportion of the photos E-026 against the 1496 height. |
+| body_profile.sill_z | - / UNKNOWN / NONE | 200 mm / ESTIMATED / LOW | E-062 | Assumption: sill about 200 mm above ground, above the 120 mm minimum clearance point (E-052/E-058); proportion of photos E-026. Kept at the previous package value so cabin floor parts stay inside the body. |
+| body_profile.nose_bottom_z | - / UNKNOWN / NONE | 300 mm / ESTIMATED / LOW | E-062 | Assumption: front panel lower edge behind the bumper (photos E-026). |
+| body_profile.nose_top_z | - / UNKNOWN / NONE | 840 mm / ESTIMATED / LOW | E-062 | Assumption: nearly flat hood, tall front face (photos E-026). |
 | body_profile.cowl_x | - / UNKNOWN / NONE | 480 mm / ESTIMATED / LOW | E-061 | Fiat 131 Panorama blueprint preview: windshield base about 390-570 behind the front wheel centre (E-061). Tripo shell of VEH-01 suggests about 650 (not a source). Was a placeholder 850. |
+| body_profile.belt_z | - / UNKNOWN / NONE | 960 mm / ESTIMATED / LOW | E-062 | Assumption: side-window sill line (photos E-026, height 1496). |
+| body_profile.rear_bottom_z | - / UNKNOWN / NONE | 470 mm / ESTIMATED / LOW | E-062 | Assumption: rear panel lower edge = top of the rear bumper (load sill flush with the bumper). |
 | body_profile.windshield_top_x | - / UNKNOWN / NONE | 910 mm / ESTIMATED / LOW | E-061 | Blueprint E-061; Tripo shell about 1035 (cross-check only). Kartal raised roof may move it. |
+| body_profile.roof_rear_inset | - / UNKNOWN / NONE | 120 mm / ESTIMATED / LOW | E-062 | Assumption: near-vertical tailgate, roof ends ~120 mm ahead of the rear face. |
+| body_profile.roof_width | - / UNKNOWN / NONE | 1300 mm / ESTIMATED / LOW | E-062 | Assumption: body width 1642 less ~170 mm tumblehome per side (raised Kartal roof, front photos E-026). |
 | body_profile.b_pillar_x | - / UNKNOWN / NONE | 1525 mm / ESTIMATED / LOW | E-061 | Blueprint E-061 (doors assumed shared with the 131); Tripo shell about 1650. |
 | body_profile.c_pillar_x | - / UNKNOWN / NONE | 2400 mm / ESTIMATED / LOW | E-061 | Rear-door rear edge, blueprint E-061; Tripo shell about 2285. |
+| body_profile.mirror_protrusion | - / UNKNOWN / NONE | 95 mm / ESTIMATED / LOW | E-062 | Assumption: typical door mirror on this body, about 95 mm beyond the door skin (photos E-026). |

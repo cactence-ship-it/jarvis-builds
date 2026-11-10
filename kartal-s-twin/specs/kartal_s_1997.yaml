@@ -140,14 +140,14 @@ parameters:
       notes: Manual p.95.
     overall_width_mirrors:
       name: Overall width incl. mirrors
-      value: null
+      value: 1832
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Plumb lines at the mirror housings
-      notes: ''
+      notes: 'Assumption: body width 1642 (E-058) + 2 x mirror 95.'
     overall_height:
       name: Overall height excl. roof rails
       value: 1496
@@ -160,14 +160,14 @@ parameters:
       notes: Manual p.95, unladen (Kartal drawing; roof rails not stated).
     overall_height_roof_rails:
       name: Overall height incl. roof rails (if fitted)
-      value: null
+      value: 1500
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Straight-edge across the rails to the ground
-      notes: Manual gives 1496 mm unladen without saying whether the rails are included (E-058/E-059). Measure over the rails.
+      notes: 'Assumption: the manual''s 1496 (E-058) is drawn on a Kartal with rails; the rails are low. Measure over the rails.'
     wheelbase_lh:
       name: Wheelbase, left side
       value: 2490
@@ -240,44 +240,44 @@ parameters:
       notes: Fiat 131 Panorama figure; Kartal and this car (LPG tank in the spare-wheel well protrudes below the floor, E-025) may differ. Measure.
     wheel_centre_to_arch_fl:
       name: Hub centre to wheel-arch lip, front left
-      value: null
+      value: 380
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Vertical tape, hub centre to arch edge (records ride height)
-      notes: ''
+      notes: 'Assumption: tyre free radius ~298 (185/65 R14) + ~80 mm arch gap seen in photos E-026.'
     wheel_centre_to_arch_fr:
       name: Hub centre to wheel-arch lip, front right
-      value: null
+      value: 380
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Vertical tape, hub centre to arch edge
-      notes: ''
+      notes: 'Assumption: tyre free radius ~298 (185/65 R14) + ~80 mm arch gap seen in photos E-026.'
     wheel_centre_to_arch_rl:
       name: Hub centre to wheel-arch lip, rear left
-      value: null
+      value: 385
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Vertical tape, hub centre to arch edge
-      notes: ''
+      notes: 'Assumption: tyre free radius ~298 + ~85 mm arch gap (estate rear, unladen; photos E-026).'
     wheel_centre_to_arch_rr:
       name: Hub centre to wheel-arch lip, rear right
-      value: null
+      value: 385
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Vertical tape, hub centre to arch edge
-      notes: ''
+      notes: 'Assumption: tyre free radius ~298 + ~85 mm arch gap (estate rear, unladen; photos E-026).'
     turning_circle_kerb:
       name: Turning circle, kerb to kerb
       value: 10300
@@ -312,14 +312,14 @@ parameters:
       notes: 'Forum: MDF board cut for a Kartal cargo floor 134 x 105 cm (E-059); board, not a measured floor length.'
     cargo_floor_length_seat_folded:
       name: Cargo floor length, rear seat folded
-      value: null
+      value: 1850
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 120
+      source: [E-062]
       verify_by: 'Tape at floor level: tailgate seal to front-seat backs'
-      notes: ''
+      notes: 'Assumption: seat-up floor ~1340 (E-059) + ~510 mm of folded rear seat (cushion tipped, backrest flat).'
     cargo_width_between_arches:
       name: Cargo width between wheel arches
       value: 1050
@@ -332,34 +332,34 @@ parameters:
       notes: Same forum MDF board width (E-059).
     tailgate_opening_width:
       name: Tailgate opening width
-      value: null
+      value: 1150
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-062]
       verify_by: Tape across the opening at its narrowest point
-      notes: ''
+      notes: 'Assumption: body width 1642 less the D-pillars and tail-lamp clusters (photos E-026).'
     tailgate_opening_height:
       name: Tailgate opening height
-      value: null
+      value: 780
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-062]
       verify_by: Tape from sill to header at the centre
-      notes: ''
+      notes: 'Assumption: from the bumper line to the roof header of a near-vertical tailgate (photos E-026, height 1496).'
     load_sill_height:
       name: Load sill height
-      value: null
+      value: 470
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Ground to top of the rear sill
-      notes: ''
+      notes: 'Assumption: the tailgate opens flush with the rear bumper top (Fiat 131 Familiare description, E-059): bumper bottom 250 + height 220.'
     cargo_volume:
       name: Cargo volume (state the method in notes)
       value: 846
@@ -394,14 +394,14 @@ parameters:
       notes: Steering wheel on the left in the interior photos (E-024). The fitted wheel is an aftermarket sport wheel (U-010).
     steering_wheel_diameter:
       name: Steering wheel outer diameter
-      value: null
+      value: 350
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 30
+      source: [E-062]
       verify_by: Tape across the rim
-      notes: 'Factory: Fiat/SEAT 131 400 mm, Tofaş new body ~380 mm (listing) per E-059. VEH-01 has an aftermarket three-spoke wheel: measure it.'
+      notes: 'Assumption: the fitted aftermarket three-spoke sport wheel (photos E-024) is typically 350 mm. Factory wheel would be ~380-400 (E-059).'
   # ---------------------------------------------------------------- Mass
   mass:
     curb_mass:
@@ -426,24 +426,24 @@ parameters:
       notes: Manual p.97, Kartal S-SLX (gross 1550, payload 490, kerb 1060 incl. fuel and spare, trailer 1100). Registered kerb mass stays the document value (E-014/E-015).
     axle_load_front_measured:
       name: Front axle load, measured
-      value: null
+      value: 565
       unit: kg
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Weighbridge at the reference state
-      notes: 'Reference only: Fiat 131 CL max front axle load 670 kg (KFT sheet via E-059); SEAT 131 weight split 52.5 / 47.5. A weighbridge reading of VEH-01 is needed.'
+      notes: 'Assumption: factory split ~52.5 / 47.5 (Fiat 131, E-059) on the manual kerb mass 1060, plus the LPG kit (+65 kg to the registered 1125, mostly at the rear).'
     axle_load_rear_measured:
       name: Rear axle load, measured
-      value: null
+      value: 560
       unit: kg
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Weighbridge at the reference state
-      notes: 'Reference only: Fiat 131 CL max rear axle load 800 kg (E-059).'
+      notes: 'Assumption: see the front axle load; sum 1125 = registered kerb mass.'
   # ---------------------------------------------------------------- Engine - variant NOT yet identified (U-001); no value may be assumed
   engine:
     engine_code:
@@ -1444,34 +1444,34 @@ parameters:
       notes: 'Owner assumes about 80 % (E-018); every listed tank gives usable = 80 % of water capacity (E-020), the fill-stop limit of ECE R67 equipment. Usable LPG at 40 L nominal: 32 L.'
     tank_centre_x:
       name: LPG tank centre X (VCS, rearward from front axle)
-      value: null
+      value: 3150
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 100
+      source: [E-062]
       verify_by: Tape from the rear wheel centre to the tank centre, plus wheelbase
-      notes: ''
+      notes: 'Assumption: centre of the spare-wheel well behind the rear axle (photos E-022/E-025); rear axle 2490, rear end 3631 (E-058).'
     tank_centre_y:
       name: LPG tank centre Y (VCS, right positive)
-      value: null
+      value: 0
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-062]
       verify_by: Tape from the body centre line
-      notes: ''
+      notes: 'Assumption: spare-wheel well on the centre line (photo E-022 shows the tank centred in the floor).'
     tank_base_z:
       name: LPG tank underside height above ground
-      value: null
+      value: 220
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 60
+      source: [E-062]
       verify_by: Tape from the ground to the tank bottom (or floor of the well)
-      notes: ''
+      notes: 'Assumption: the well protrudes below the floor (E-025); its inside floor about 220 mm above ground with 120 mm minimum clearance below it.'
     multivalve_orientation:
       name: Multivalve clock position on the tank
       value: in the central opening, on the inner wall of the tank (ALBIEN multivalve, 12 V solenoid, level gauge)
@@ -1484,14 +1484,14 @@ parameters:
       notes: Photos E-022, E-023. Clock angle not determined.
     filler_location:
       name: LPG filler valve location
-      value: null
+      value: under the rear bumper, side opposite the exhaust (typical 1990s installation)
       unit: null
-      status: UNKNOWN
-      confidence: NONE
+      status: ESTIMATED
+      confidence: LOW
       tolerance: null
-      source: []
+      source: [E-062]
       verify_by: Exterior photo (bumper / fuel flap / body side)
-      notes: 'Typical 1990s-2000s: under the rear bumper (opposite the exhaust) or in the bumper; post-2017 inspection rules require it outside the bumper underside (E-059). VEH-01 not photographed.'
+      notes: Assumption from typical installations (E-059); post-2017 inspection rules move it outside the bumper underside. Photograph to confirm.
     tank_mounting:
       name: Tank mounting (frame, straps, bolts)
       value: bolted through the floor of the spare-wheel well at the tank centre (two brackets in the central opening, two bolt heads visible from below); opening closed by a black cover with two holes
@@ -1618,64 +1618,64 @@ parameters:
   body_profile:
     bumper_protrusion:
       name: Bumper face beyond the body face (front and rear)
-      value: null
+      value: 60
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 30
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: deep plastic bumpers stand ~60 mm proud of the body face (photos E-026).'
     bumper_height:
       name: Bumper vertical height
-      value: null
+      value: 220
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: deep black S-series bumpers (photos E-026).'
     bumper_bottom_z:
       name: Bumper lower edge above ground
-      value: null
+      value: 250
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: proportion of the photos E-026 against the 1496 height.'
     sill_z:
       name: Body-side (sill) lower edge above ground
-      value: null
+      value: 200
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 40
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: sill about 200 mm above ground, above the 120 mm minimum clearance point (E-052/E-058); proportion of photos E-026. Kept at the previous package value so cabin floor parts stay inside the body.'
     nose_bottom_z:
       name: Front panel lower edge above ground
-      value: null
+      value: 300
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: front panel lower edge behind the bumper (photos E-026).'
     nose_top_z:
       name: Hood leading edge above ground
-      value: null
+      value: 840
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: nearly flat hood, tall front face (photos E-026).'
     cowl_x:
       name: Windshield base, X behind the front wheel centre
       value: 480
@@ -1688,24 +1688,24 @@ parameters:
       notes: 'Fiat 131 Panorama blueprint preview: windshield base about 390-570 behind the front wheel centre (E-061). Tripo shell of VEH-01 suggests about 650 (not a source). Was a placeholder 850.'
     belt_z:
       name: Side-window sill (beltline) above ground
-      value: null
+      value: 960
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: side-window sill line (photos E-026, height 1496).'
     rear_bottom_z:
       name: Rear panel lower edge above ground
-      value: null
+      value: 470
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: rear panel lower edge = top of the rear bumper (load sill flush with the bumper).'
     windshield_top_x:
       name: Windshield top edge, X behind the front wheel centre
       value: 910
@@ -1718,24 +1718,24 @@ parameters:
       notes: Blueprint E-061; Tripo shell about 1035 (cross-check only). Kartal raised roof may move it.
     roof_rear_inset:
       name: Roof end ahead of the rear body face
-      value: null
+      value: 120
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 50
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: near-vertical tailgate, roof ends ~120 mm ahead of the rear face.'
     roof_width:
       name: Roof width (side to side, at the roof)
-      value: null
+      value: 1300
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 80
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: body width 1642 less ~170 mm tumblehome per side (raised Kartal roof, front photos E-026).'
     b_pillar_x:
       name: B-pillar centre, X behind the front wheel centre
       value: 1525
@@ -1758,11 +1758,11 @@ parameters:
       notes: Rear-door rear edge, blueprint E-061; Tripo shell about 2285.
     mirror_protrusion:
       name: Mirror housing beyond the body side
-      value: null
+      value: 95
       unit: mm
-      status: UNKNOWN
-      confidence: NONE
-      tolerance: null
-      source: []
+      status: ESTIMATED
+      confidence: LOW
+      tolerance: 30
+      source: [E-062]
       verify_by: Owner tape measurement per docs/OLCUM_REHBERI.md
-      notes: Placeholder in specs/placeholder_assumptions.yaml until measured
+      notes: 'Assumption: typical door mirror on this body, about 95 mm beyond the door skin (photos E-026).'

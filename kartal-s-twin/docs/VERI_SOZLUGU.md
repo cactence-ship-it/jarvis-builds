@@ -12,8 +12,8 @@ Spec revizyonu 0.8.0: 169 parametre. Değerler ve açıklamalar `specs/kartal_s_
 | DOCUMENT_CONFIRMED | Ruhsat veya teknik belgeyle doğrulandı (DOCUMENT/PHOTO kanıtı, VERIFIED). | 63 |
 | USER_CONFIRMED | Araç sahibi doğrudan söyledi (USER_STATEMENT, güven HIGH); belge veya ölçü olmadan ESTIMATED kalır. | 3 |
 | SOURCE_SUPPORTED | Teknik kaynakla destekleniyor (LITERATURE, güven MEDIUM/HIGH). | 5 |
-| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 70 |
-| UNKNOWN | Henüz bilinmiyor; değer yok. | 28 |
+| ESTIMATED | Geçici mühendislik varsayımı veya zayıf kaynak (ASSUMPTION ya da güven LOW). | 98 |
+| UNKNOWN | Henüz bilinmiyor; değer yok. | 0 |
 
 Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomatik türetilir. ESTIMATED değerler kesin ölçü değildir; gerekçeleri ve nasıl doğrulanacakları spec'teki `notes` ve `verify_by` alanlarındadır.
 
@@ -30,9 +30,9 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `identity.exterior_colour` | Exterior colour | Turkuaz yeşil (turquoise green), registered colour name |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-014, E-015, E-017 | Photos + ruhsat 'Rengi' field |
 | `dimensions.overall_length` | Overall length incl. bumpers | 4396 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Tape on level ground between plumb lines at front and rear extremities |
 | `dimensions.overall_width_body` | Overall width excl. mirrors | 1642 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Plumb lines at the widest body point |
-| `dimensions.overall_width_mirrors` | Overall width incl. mirrors | - |  | UNKNOWN | UNKNOWN / NONE | - | Plumb lines at the mirror housings |
+| `dimensions.overall_width_mirrors` | Overall width incl. mirrors | 1832 mm | ± 60 | ESTIMATED | ESTIMATED / LOW | E-062 | Plumb lines at the mirror housings |
 | `dimensions.overall_height` | Overall height excl. roof rails | 1496 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Straight-edge across the roof to the ground |
-| `dimensions.overall_height_roof_rails` | Overall height incl. roof rails (if fitted) | - |  | UNKNOWN | UNKNOWN / NONE | - | Straight-edge across the rails to the ground |
+| `dimensions.overall_height_roof_rails` | Overall height incl. roof rails (if fitted) | 1500 mm | ± 60 | ESTIMATED | ESTIMATED / LOW | E-062 | Straight-edge across the rails to the ground |
 | `dimensions.wheelbase_lh` | Wheelbase, left side | 2490 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Hub centre to hub centre, wheels straight ahead |
 | `dimensions.wheelbase_rh` | Wheelbase, right side | 2490 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Hub centre to hub centre, wheels straight ahead |
 | `dimensions.front_track` | Front track (tyre tread centre to centre) | 1386 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Tread centres at the ground, wheels straight ahead |
@@ -40,26 +40,26 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `dimensions.front_overhang` | Front overhang (front axle to front extremity) | 765 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Plumb line at the front extremity to the front hub centre |
 | `dimensions.rear_overhang` | Rear overhang (rear axle to rear extremity) | 1141 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Plumb line at the rear extremity to the rear hub centre |
 | `dimensions.ground_clearance_min` | Minimum ground clearance (unladen) | 120 mm | ± 20 | ESTIMATED | ESTIMATED / LOW | E-052 | Lowest underbody point to the ground; name the component in notes |
-| `dimensions.wheel_centre_to_arch_fl` | Hub centre to wheel-arch lip, front left | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge (records ride height) |
-| `dimensions.wheel_centre_to_arch_fr` | Hub centre to wheel-arch lip, front right | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
-| `dimensions.wheel_centre_to_arch_rl` | Hub centre to wheel-arch lip, rear left | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
-| `dimensions.wheel_centre_to_arch_rr` | Hub centre to wheel-arch lip, rear right | - |  | UNKNOWN | UNKNOWN / NONE | - | Vertical tape, hub centre to arch edge |
+| `dimensions.wheel_centre_to_arch_fl` | Hub centre to wheel-arch lip, front left | 380 mm | ± 40 | ESTIMATED | ESTIMATED / LOW | E-062 | Vertical tape, hub centre to arch edge (records ride height) |
+| `dimensions.wheel_centre_to_arch_fr` | Hub centre to wheel-arch lip, front right | 380 mm | ± 40 | ESTIMATED | ESTIMATED / LOW | E-062 | Vertical tape, hub centre to arch edge |
+| `dimensions.wheel_centre_to_arch_rl` | Hub centre to wheel-arch lip, rear left | 385 mm | ± 40 | ESTIMATED | ESTIMATED / LOW | E-062 | Vertical tape, hub centre to arch edge |
+| `dimensions.wheel_centre_to_arch_rr` | Hub centre to wheel-arch lip, rear right | 385 mm | ± 40 | ESTIMATED | ESTIMATED / LOW | E-062 | Vertical tape, hub centre to arch edge |
 | `dimensions.turning_circle_kerb` | Turning circle, kerb to kerb | 10300 mm | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Owner's manual, or full-lock circle chalked on the ground |
 | `body.body_construction` | Body construction (unibody / separate frame) | monocoque (self-supporting steel body) |  | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-058, E-059 | Underbody photos |
 | `body.cargo_floor_length_seat_up` | Cargo floor length, rear seat up | 1340 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-059 | Tape at floor level: tailgate seal to rear-seat backrest |
-| `body.cargo_floor_length_seat_folded` | Cargo floor length, rear seat folded | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape at floor level: tailgate seal to front-seat backs |
+| `body.cargo_floor_length_seat_folded` | Cargo floor length, rear seat folded | 1850 mm | ± 120 | ESTIMATED | ESTIMATED / LOW | E-062 | Tape at floor level: tailgate seal to front-seat backs |
 | `body.cargo_width_between_arches` | Cargo width between wheel arches | 1050 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-059 | Tape across the narrowest point |
-| `body.tailgate_opening_width` | Tailgate opening width | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape across the opening at its narrowest point |
-| `body.tailgate_opening_height` | Tailgate opening height | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape from sill to header at the centre |
-| `body.load_sill_height` | Load sill height | - |  | UNKNOWN | UNKNOWN / NONE | - | Ground to top of the rear sill |
+| `body.tailgate_opening_width` | Tailgate opening width | 1150 mm | ± 80 | ESTIMATED | ESTIMATED / LOW | E-062 | Tape across the opening at its narrowest point |
+| `body.tailgate_opening_height` | Tailgate opening height | 780 mm | ± 80 | ESTIMATED | ESTIMATED / LOW | E-062 | Tape from sill to header at the centre |
+| `body.load_sill_height` | Load sill height | 470 mm | ± 60 | ESTIMATED | ESTIMATED / LOW | E-062 | Ground to top of the rear sill |
 | `body.cargo_volume` | Cargo volume (state the method in notes) | 846 L | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Owner's manual or brochure; record the measuring method |
 | `interior.seating_capacity` | Seating capacity | 5 | ± 1 | ESTIMATED | ESTIMATED / MEDIUM | E-014, E-015, E-024 | Ruhsat 'İstiap haddi' (persons) field plus an interior photo; the documents have no 'Koltuk sayısı' field |
 | `interior.steering_side` | Steering side (LHD / RHD) | left-hand drive (LHD) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-024 | Dashboard photo |
-| `interior.steering_wheel_diameter` | Steering wheel outer diameter | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape across the rim |
+| `interior.steering_wheel_diameter` | Steering wheel outer diameter | 350 mm | ± 30 | ESTIMATED | ESTIMATED / LOW | E-062 | Tape across the rim |
 | `mass.curb_mass` | Curb mass (as defined by the source document) | 1125 kg | ± 1 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-014, E-015, E-017 | Ruhsat 'Net ağırlığı' field; note the document's definition |
 | `mass.gross_vehicle_mass` | Gross vehicle mass | 1550 kg | ± 50 | ESTIMATED | ESTIMATED / HIGH | E-058 | Ruhsat 'Azami yüklü ağırlığı' field |
-| `mass.axle_load_front_measured` | Front axle load, measured | - |  | UNKNOWN | UNKNOWN / NONE | - | Weighbridge at the reference state |
-| `mass.axle_load_rear_measured` | Rear axle load, measured | - |  | UNKNOWN | UNKNOWN / NONE | - | Weighbridge at the reference state |
+| `mass.axle_load_front_measured` | Front axle load, measured | 565 kg | ± 60 | ESTIMATED | ESTIMATED / LOW | E-062 | Weighbridge at the reference state |
+| `mass.axle_load_rear_measured` | Rear axle load, measured | 560 kg | ± 60 | ESTIMATED | ESTIMATED / LOW | E-062 | Weighbridge at the reference state |
 | `engine.engine_code` | Engine type code | 131 D1.016 |  | SOURCE_SUPPORTED | ESTIMATED / HIGH | E-058, E-040 | Engine-number stamping photo / documents |
 | `engine.displacement` | Displacement | 1581 cm3 | ± 1 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-015 | Ruhsat 'Silindir hacmi' field |
 | `engine.cylinder_count` | Number of cylinders | 4 | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Engine bay photo / documents |
@@ -158,11 +158,11 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `lpg_system.tank_wall_thickness` | LPG tank wall thickness | 3.0 mm | ± 1.0 | ESTIMATED | ESTIMATED / LOW | E-019 | Manufacturer data for the labelled tank |
 | `lpg_system.tank_section_shape` | LPG tank cross-section model | stadium |  | ESTIMATED | ESTIMATED / LOW | E-019 | Tank photo from the side |
 | `lpg_system.max_fill_fraction` | Maximum fill (fill-stop) fraction of water capacity | 80 % | ± 2 | SOURCE_SUPPORTED | ESTIMATED / MEDIUM | E-018, E-020 | Tank label / multivalve type |
-| `lpg_system.tank_centre_x` | LPG tank centre X (VCS, rearward from front axle) | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape from the rear wheel centre to the tank centre, plus wheelbase |
-| `lpg_system.tank_centre_y` | LPG tank centre Y (VCS, right positive) | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape from the body centre line |
-| `lpg_system.tank_base_z` | LPG tank underside height above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Tape from the ground to the tank bottom (or floor of the well) |
+| `lpg_system.tank_centre_x` | LPG tank centre X (VCS, rearward from front axle) | 3150 mm | ± 100 | ESTIMATED | ESTIMATED / LOW | E-062 | Tape from the rear wheel centre to the tank centre, plus wheelbase |
+| `lpg_system.tank_centre_y` | LPG tank centre Y (VCS, right positive) | 0 mm | ± 80 | ESTIMATED | ESTIMATED / LOW | E-062 | Tape from the body centre line |
+| `lpg_system.tank_base_z` | LPG tank underside height above ground | 220 mm | ± 60 | ESTIMATED | ESTIMATED / LOW | E-062 | Tape from the ground to the tank bottom (or floor of the well) |
 | `lpg_system.multivalve_orientation` | Multivalve clock position on the tank | in the central opening, on the inner wall of the tank (ALBIEN multivalve, 12 V solenoid, level gauge) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-022, E-023 | Cargo-area photo |
-| `lpg_system.filler_location` | LPG filler valve location | - |  | UNKNOWN | UNKNOWN / NONE | - | Exterior photo (bumper / fuel flap / body side) |
+| `lpg_system.filler_location` | LPG filler valve location | under the rear bumper, side opposite the exhaust (typical 1990s installation) |  | ESTIMATED | ESTIMATED / LOW | E-062 | Exterior photo (bumper / fuel flap / body side) |
 | `lpg_system.tank_mounting` | Tank mounting (frame, straps, bolts) | bolted through the floor of the spare-wheel well at the tank centre (two brackets in the central opening, two bolt heads visible from below); opening closed by a black cover with two holes |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-022, E-025 | Cargo-area photo; no mounting is modelled |
 | `lpg_system.tank_marking` | LPG tank maker and approval marking | maker ATIKER; approval mark 'E7 67R-01 0049401' (UN Regulation No. 67, 01 series) |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-022 | Photo of the tank top |
 | `electrical.system_voltage` | System voltage | 12 V | ± 0 | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058 | Battery label photo |
@@ -175,18 +175,18 @@ Sınıf, durum (VERIFIED/ESTIMATED/UNKNOWN), güven ve kanıt türünden otomati
 | `electrical.alternator_rated_current` | Alternator rated current | 55 A | ± 1 | ESTIMATED | ESTIMATED / HIGH | E-058 | Alternator label photo |
 | `electrical.headlamp_type` | Headlamp type / bulb | H4 halogen |  | ESTIMATED | ESTIMATED / LOW | E-036 | Headlamp photo / bulb marking |
 | `electrical.fuse_box_location` | Fuse box location | lower right of the dashboard (passenger side, under the glovebox), cover with two screws; relays on and beside the box |  | DOCUMENT_CONFIRMED | VERIFIED / HIGH | E-058, E-060 | Photo |
-| `body_profile.bumper_protrusion` | Bumper face beyond the body face (front and rear) | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.bumper_height` | Bumper vertical height | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.bumper_bottom_z` | Bumper lower edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.sill_z` | Body-side (sill) lower edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.nose_bottom_z` | Front panel lower edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.nose_top_z` | Hood leading edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.bumper_protrusion` | Bumper face beyond the body face (front and rear) | 60 mm | ± 30 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.bumper_height` | Bumper vertical height | 220 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.bumper_bottom_z` | Bumper lower edge above ground | 250 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.sill_z` | Body-side (sill) lower edge above ground | 200 mm | ± 40 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.nose_bottom_z` | Front panel lower edge above ground | 300 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.nose_top_z` | Hood leading edge above ground | 840 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.cowl_x` | Windshield base, X behind the front wheel centre | 480 mm | ± 100 | ESTIMATED | ESTIMATED / LOW | E-061 | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.belt_z` | Side-window sill (beltline) above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.rear_bottom_z` | Rear panel lower edge above ground | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.belt_z` | Side-window sill (beltline) above ground | 960 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.rear_bottom_z` | Rear panel lower edge above ground | 470 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.windshield_top_x` | Windshield top edge, X behind the front wheel centre | 910 mm | ± 80 | ESTIMATED | ESTIMATED / LOW | E-061 | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.roof_rear_inset` | Roof end ahead of the rear body face | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.roof_width` | Roof width (side to side, at the roof) | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.roof_rear_inset` | Roof end ahead of the rear body face | 120 mm | ± 50 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.roof_width` | Roof width (side to side, at the roof) | 1300 mm | ± 80 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.b_pillar_x` | B-pillar centre, X behind the front wheel centre | 1525 mm | ± 80 | ESTIMATED | ESTIMATED / LOW | E-061 | Owner tape measurement per docs/OLCUM_REHBERI.md |
 | `body_profile.c_pillar_x` | Rear-door rear edge, X behind the front wheel centre | 2400 mm | ± 100 | ESTIMATED | ESTIMATED / LOW | E-061 | Owner tape measurement per docs/OLCUM_REHBERI.md |
-| `body_profile.mirror_protrusion` | Mirror housing beyond the body side | - |  | UNKNOWN | UNKNOWN / NONE | - | Owner tape measurement per docs/OLCUM_REHBERI.md |
+| `body_profile.mirror_protrusion` | Mirror housing beyond the body side | 95 mm | ± 30 | ESTIMATED | ESTIMATED / LOW | E-062 | Owner tape measurement per docs/OLCUM_REHBERI.md |

@@ -51,10 +51,12 @@ class Consistency(unittest.TestCase):
         s = copy.deepcopy(self.base)
         fo = s["parameters"]["dimensions"]["front_overhang"]
         fo.update(value=None, status="UNKNOWN", confidence="NONE", tolerance=None, source=[])
+        arch = s["parameters"]["dimensions"]["wheel_centre_to_arch_fl"]
+        arch.update(value=None, status="UNKNOWN", confidence="NONE", tolerance=None, source=[])
         r = self._res(s)["DC-001"]
         self.assertEqual(r["status"], "NOT_EVALUATED")
         self.assertIn("dimensions.front_overhang", r["missing"])
-        self.assertEqual(self._res(self.base)["DC-012"]["status"], "NOT_EVALUATED")
+        self.assertEqual(self._res(s)["DC-012"]["status"], "NOT_EVALUATED")
 
     # --- tire radius vs wheel-arch clearance (worst case) -----------------------------------
     def test_clearance_safe_over_whole_range(self):
