@@ -4,12 +4,12 @@ length from listings (E-045); points are guesses. Column = INT-004, wheel = INT-
 import build123d as bd
 
 from ..cad.mech import ALU, DARK, STEEL, adder, block, cyl, pipe, ring
+from .front_suspension import points
 
 
 def bd_sphere(c, r):
     return bd.Pos(*c) * bd.Sphere(r)
 
-from .front_suspension import points
 
 ASSEMBLY = "STEERING"
 PHASE = 8

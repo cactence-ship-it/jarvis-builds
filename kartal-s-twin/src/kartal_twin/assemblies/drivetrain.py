@@ -4,13 +4,13 @@ Rear-wheel drive with a rigid (live) rear axle (photos E-025); sizes are package
 """
 from .. import layout
 from ..cad.mech import DARK, STEEL, adder, cyl, disc, ring
+from .transmission import output_point
 from ..cad.shapes import box
 
 
 def block_c(c, lx, ly, lz):
     return box(c[0] - lx / 2, c[0] + lx / 2, c[1] - ly / 2, c[1] + ly / 2, c[2] - lz / 2, c[2] + lz / 2)
 
-from .transmission import output_point
 
 ASSEMBLY = "DRIVETRAIN"
 PHASE = 6

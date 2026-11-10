@@ -11,7 +11,7 @@ PHASE = 8
 def build(ctx):
     base = ctx.resolver()
     w = layout.wheel_centres(base)
-    br, fw, fz = base.get("pkg_brake_r"), base.get("pkg_firewall_x"), base.get("pkg_floor_z")
+    fw, fz = base.get("pkg_firewall_x"), base.get("pkg_floor_z")
     hb = base.get("pkg_handbrake_x")
     add = adder(ctx, ASSEMBLY, base)
     mx, my, mz = fw - 120, -380, 700
